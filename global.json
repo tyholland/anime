@@ -74,6 +74,11 @@
     "fontSize": 30,
     "textAlign": "center"
   },
+  "subTitle": {
+    "marginBottom": "5%",
+    "fontSize": 20,
+    "textAlign": "center"
+  },
   "submit": {
     "marginTop": 5
   }

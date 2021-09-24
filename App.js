@@ -4,14 +4,20 @@ import SignIn from "./src/screens/sign-in";
 import SignUp from "./src/screens/sign-up";
 import Forgot from "./src/screens/forgot";
 import Home from "./src/screens/home";
+import ViewLeague from "./src/screens/view-league";
+import VoteMatchup from "./src/screens/vote-matchup";
+import JoinLeague from "./src/screens/join-league";
 
 const App = () => {
   return (
     <View style={styles.container}>
       {/* <SignIn /> */}
       {/* <SignUp /> */}
-      <Forgot />
+      {/* <Forgot /> */}
       {/* <Home /> */}
+      {/* <ViewLeague /> */}
+      {/* <VoteMatchup /> */}
+      <JoinLeague />
     </View>
   );
 };

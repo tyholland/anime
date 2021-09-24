@@ -1,0 +1,26 @@
+{
+  "league": {
+    "display": "flex",
+    "flexDirection": "row",
+    "justifyContent": "space-between",
+    "borderBottomColor": "#000",
+    "borderStyle": "solid",
+    "borderBottomWidth": 2,
+    "paddingVertical": "3%",
+    "alignItems": "center"
+  },
+  "viewBtn": {
+    "width": "40%",
+    "marginBottom": 10
+  },
+  "viewBtnText": {
+    "fontSize": 15
+  },
+  "textContent": {
+    "marginVertical": 5,
+    "fontSize": 14
+  },
+  "content": {
+    "marginTop": "10%"
+  }
+}
