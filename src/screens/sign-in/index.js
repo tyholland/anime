@@ -17,7 +17,7 @@ const SignIn = () => {
     <ScrollView centerContent={true}>
       <View style={global.container}>
         <Image
-          source={require('../../../assets/abz-logo.png')}
+          source={require("../../../assets/abz-logo.png")}
           style={styles.img}
         />
         <Text style={global.title}>Anime Fantasy League</Text>
@@ -41,7 +41,7 @@ const SignIn = () => {
         </KeyboardAvoidingView>
         <View style={global.submit}>
           <Pressable style={global.primaryBtn}>
-            <Text style={global.primaryBtnText}>Sign In</Text>
+            <Text style={global.secondaryBtnText}>Sign In</Text>
           </Pressable>
         </View>
         <View style={styles.contentLinks}>

@@ -65,7 +65,7 @@
     "fontWeight": "600",
     "marginTop": 30,
     "textAlign": "center",
-    "color": "#559eff",
+    "color": "rgb(27, 5, 246)",
     "textDecorationLine": "underline"
   },
   "title": {
@@ -81,5 +81,14 @@
   },
   "submit": {
     "marginTop": 5
+  },
+  "right": {
+    "textAlign": "right"
+  },
+  "footerEnding": {
+    "marginBottom": "22%"
+  },
+  "headerBeginning": {
+    "marginTop": "25%"
   }
 }

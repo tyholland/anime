@@ -1,0 +1,18 @@
+{
+  "container": {
+    "position": "absolute",
+    "top": 0,
+    "width": "100%",
+    "display": "flex",
+    "justifyContent": "center",
+    "height": "10%",
+    "backgroundColor": "rgb(249, 128, 17)"
+  },
+  "headerTitle": {
+    "fontSize": 20,
+    "color": "#000",
+    "fontWeight": "700",
+    "textAlign": "center",
+    "marginTop": "8%"
+  }
+}

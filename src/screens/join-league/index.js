@@ -19,7 +19,9 @@ const JoinLeague = () => {
           <Text style={global.title}>Join League</Text>
         </View>
         <View>
-          <Text style={global.subTitle}>Enter the code you were given below, to join your friend's league.</Text>
+          <Text style={global.subTitle}>
+            Enter the code you were given below, to join your friend's league.
+          </Text>
         </View>
         <KeyboardAvoidingView>
           <View>

@@ -31,7 +31,7 @@ const ForgotPassword = () => {
         </KeyboardAvoidingView>
         <View style={global.submit}>
           <Pressable style={global.primaryBtn}>
-            <Text style={global.primaryBtnText}>Get Temporary Password</Text>
+            <Text style={global.secondaryBtnText}>Get Temporary Password</Text>
           </Pressable>
         </View>
         <View>

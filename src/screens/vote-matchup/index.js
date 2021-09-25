@@ -19,7 +19,10 @@ const VoteMatchup = () => {
           <Text style={global.title}>Vote on Matchup</Text>
         </View>
         <View>
-          <Text style={global.subTitle}>Enter the code you were given below, to vote on the head-to-head matchup.</Text>
+          <Text style={global.subTitle}>
+            Enter the code you were given below, to vote on the head-to-head
+            matchup.
+          </Text>
         </View>
         <KeyboardAvoidingView>
           <View>

@@ -1,0 +1,26 @@
+{
+  "container": {
+    "position": "absolute",
+    "bottom": 0,
+    "width": "100%",
+    "display": "flex",
+    "flexDirection": "row"
+  },
+  "nav": {
+    "paddingHorizontal": "5%",
+    "paddingTop": "5%",
+    "paddingBottom": "8%",
+    "backgroundColor": "rgb(249, 128, 17)"
+  },
+  "navSelected": {
+    "backgroundColor": "#fff"
+  },
+  "navText": {
+    "color": "#000",
+    "fontSize": 16,
+    "fontWeight": "700"
+  },
+  "navTextSelected": {
+    "color": "rgb(27, 5, 246)"
+  }
+}

@@ -39,7 +39,7 @@ const SignUp = () => {
         </KeyboardAvoidingView>
         <View style={global.submit}>
           <Pressable style={global.primaryBtn}>
-            <Text style={global.primaryBtnText}>Join</Text>
+            <Text style={global.secondaryBtnText}>Join ABZ</Text>
           </Pressable>
         </View>
         <View>

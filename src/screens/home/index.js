@@ -1,13 +1,7 @@
 import React from "react";
 import homeStyles from "./home.json";
 import globalStyles from "../../../global.json";
-import {
-  StyleSheet,
-  View,
-  Pressable,
-  Text,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, View, Pressable, Text, ScrollView } from "react-native";
 
 const Home = () => {
   return (

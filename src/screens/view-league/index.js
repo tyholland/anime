@@ -1,13 +1,7 @@
 import React from "react";
 import leagueStyles from "./view-league.json";
 import globalStyles from "../../../global.json";
-import {
-  StyleSheet,
-  View,
-  Pressable,
-  Text,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, View, Pressable, Text, ScrollView } from "react-native";
 
 const ViewLeague = () => {
   return (
@@ -18,54 +12,46 @@ const ViewLeague = () => {
         </View>
         <View style={styles.league}>
           <View>
-            <Text style={styles.textContent}>
-              League Name
-            </Text>
-            <Text style={styles.textContent}>
-              Team Name
-            </Text>
+            <Text style={styles.textContent}>League Name</Text>
+            <Text style={styles.textContent}>Team Name</Text>
           </View>
           <Pressable style={[global.primaryBtn, styles.viewBtn]}>
-            <Text style={[global.secondaryBtnText, styles.viewBtnText]}>View Team</Text>
+            <Text style={[global.secondaryBtnText, styles.viewBtnText]}>
+              View Team
+            </Text>
           </Pressable>
         </View>
         <View style={styles.league}>
           <View>
-            <Text style={styles.textContent}>
-              League Name
-            </Text>
-            <Text style={styles.textContent}>
-              Team Name
-            </Text>
+            <Text style={styles.textContent}>League Name</Text>
+            <Text style={styles.textContent}>Team Name</Text>
           </View>
           <Pressable style={[global.primaryBtn, styles.viewBtn]}>
-            <Text style={[global.secondaryBtnText, styles.viewBtnText]}>View Team</Text>
+            <Text style={[global.secondaryBtnText, styles.viewBtnText]}>
+              View Team
+            </Text>
           </Pressable>
         </View>
         <View style={styles.league}>
           <View>
-            <Text style={styles.textContent}>
-              League Name
-            </Text>
-            <Text style={styles.textContent}>
-              Team Name
-            </Text>
+            <Text style={styles.textContent}>League Name</Text>
+            <Text style={styles.textContent}>Team Name</Text>
           </View>
           <Pressable style={[global.primaryBtn, styles.viewBtn]}>
-            <Text style={[global.secondaryBtnText, styles.viewBtnText]}>View Team</Text>
+            <Text style={[global.secondaryBtnText, styles.viewBtnText]}>
+              View Team
+            </Text>
           </Pressable>
         </View>
         <View style={styles.league}>
           <View>
-            <Text style={styles.textContent}>
-              League Name
-            </Text>
-            <Text style={styles.textContent}>
-              Team Name
-            </Text>
+            <Text style={styles.textContent}>League Name</Text>
+            <Text style={styles.textContent}>Team Name</Text>
           </View>
           <Pressable style={[global.primaryBtn, styles.viewBtn]}>
-            <Text style={[global.secondaryBtnText, styles.viewBtnText]}>View Team</Text>
+            <Text style={[global.secondaryBtnText, styles.viewBtnText]}>
+              View Team
+            </Text>
           </Pressable>
         </View>
       </View>
