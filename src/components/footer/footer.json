@@ -16,11 +16,14 @@
     "backgroundColor": "#fff"
   },
   "navText": {
-    "color": "#000",
+    "color": "#fff",
     "fontSize": 16,
     "fontWeight": "700"
   },
   "navTextSelected": {
-    "color": "rgb(27, 5, 246)"
+    "color": "rgb(249, 128, 17)",
+    "textShadowColor": "#000",
+    "textShadowOffset": {"width": 1, "height": 1},
+    "textShadowRadius": 1
   }
 }

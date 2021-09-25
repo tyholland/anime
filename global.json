@@ -90,5 +90,28 @@
   },
   "headerBeginning": {
     "marginTop": "25%"
+  },
+  "circle": {
+    "width": 15,
+    "height": 15,
+    "borderRadius": 10
+  },
+  "fireAffinity": {
+    "backgroundColor": "#cc0000"
+  },
+  "arcaneAffinity": {
+    "backgroundColor": "#999"
+  },
+  "darknessAffinity": {
+    "backgroundColor": "#000"
+  },
+  "waterAffinity": {
+    "backgroundColor": "rgb(27, 5, 246)"
+  },
+  "iceAffinity": {
+    "backgroundColor": "rgb(137, 196, 244)"
+  },
+  "electricAffinity": {
+    "backgroundColor": "#cc0000"
   }
 }

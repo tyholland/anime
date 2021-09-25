@@ -8,7 +8,7 @@
     "borderBottomColor": "#000"
   },
   "headerSection": {
-    "backgroundColor": "rgba(250, 179, 28, .3)",
+    "backgroundColor": "rgba(249, 128, 17, .3)",
     "borderBottomWidth": 0,
     "marginTop": 20
   },
@@ -24,13 +24,17 @@
   "duo": {
     "paddingVertical": 26
   },
+  "duoText": {
+    "color": "rgb(27, 5, 246)"
+  },
   "none": {
     "backgroundColor": "rgba(0, 0, 0, 0)"
   },
   "character": {
     "width": "30%",
     "marginVertical": 15,
-    "marginLeft": 5
+    "marginLeft": 5,
+    "color": "rgb(27, 5, 246)"
   },
   "affinity": {
     "width": "30%",
@@ -43,7 +47,8 @@
     "paddingRight": 10
   },
   "bold": {
-    "fontWeight": "700"
+    "fontWeight": "700",
+    "color": "#000"
   },
   "total": {
     "display": "flex",

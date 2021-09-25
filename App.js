@@ -10,6 +10,7 @@ import JoinLeague from "./src/screens/join-league";
 import Footer from "./src/components/footer";
 import Header from "./src/components/header";
 import Team from "./src/screens/team";
+import Bio from "./src/screens/bio";
 
 const App = () => {
   return (
@@ -22,7 +23,8 @@ const App = () => {
       {/* <VoteMatchup /> */}
       {/* <JoinLeague /> */}
       <Header />
-      <Team />
+        <Team />
+        {/* <Bio /> */}
       <Footer />
     </View>
   );
