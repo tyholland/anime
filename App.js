@@ -11,6 +11,7 @@ import Footer from "./src/components/footer";
 import Header from "./src/components/header";
 import Team from "./src/screens/team";
 import Bio from "./src/screens/bio";
+import ViewMatchup from "./src/screens/view-matchup";
 
 const App = () => {
   return (
@@ -23,8 +24,9 @@ const App = () => {
       {/* <VoteMatchup /> */}
       {/* <JoinLeague /> */}
       <Header />
-        <Team />
-        {/* <Bio /> */}
+      <ViewMatchup />
+      {/* <Team /> */}
+      {/* <Bio /> */}
       <Footer />
     </View>
   );

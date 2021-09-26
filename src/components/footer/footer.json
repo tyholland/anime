@@ -23,7 +23,7 @@
   "navTextSelected": {
     "color": "rgb(249, 128, 17)",
     "textShadowColor": "#000",
-    "textShadowOffset": {"width": 1, "height": 1},
+    "textShadowOffset": { "width": 1, "height": 1 },
     "textShadowRadius": 1
   }
 }

@@ -43,7 +43,9 @@ const Bio = () => {
         </View>
         <View style={global.submit}>
           <Pressable style={[global.fourthBtn, styles.dropBtn]}>
-            <Text style={[global.tertiaryBtnText, styles.dropBtnText]}>Drop Character</Text>
+            <Text style={[global.tertiaryBtnText, styles.dropBtnText]}>
+              Drop Character
+            </Text>
           </Pressable>
         </View>
       </View>
