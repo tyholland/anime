@@ -38,5 +38,12 @@
   },
   "dropBtnText": {
     "fontSize": 14
+  },
+  "iosBackLink": {
+    "marginBottom": 40,
+    "marginTop": "-3%"
+  },
+  "androidBackLink": {
+    "marginBottom": 40
   }
 }

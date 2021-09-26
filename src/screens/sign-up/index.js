@@ -14,7 +14,12 @@ import {
 const SignUp = () => {
   return (
     <ScrollView centerContent={true}>
-      <View style={global.container}>
+      <View
+        style={[
+          global.container,
+          Platform.OS !== "ios" && global.centerContent,
+        ]}
+      >
         <View>
           <Text style={global.title}>Join ABZ's</Text>
           <Text style={global.title}>Anime Fantasy League</Text>

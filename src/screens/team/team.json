@@ -56,21 +56,31 @@
     "justifyContent": "flex-end",
     "width": "100%"
   },
-  "iosEditBtn": {
-    "position": "absolute",
-    "bottom": "9.5%",
+  "editBtn": {
     "width": "95%"
   },
-  "androidEditBtn": {
+  "iosBtn": {
     "position": "absolute",
-    "bottom": "1%",
-    "width": "95%"
+    "bottom": 0,
+    "backgroundColor": "#fff",
+    "width": "100%",
+    "display": "flex",
+    "alignItems": "center",
+    "paddingBottom": "7%"
+  },
+  "androidBtn": {
+    "position": "relative",
+    "bottom": 0,
+    "width": "100%",
+    "display": "flex",
+    "alignItems": "center",
+    "backgroundColor": "#fff"
   },
   "iosContainerBottom": {
-    "marginBottom": "33%"
+    "marginBottom": "25%"
   },
   "androidContainerBottom": {
-    "marginBottom": "18%"
+    "marginBottom": "3%"
   },
   "containerTop": {
     "display": "flex",

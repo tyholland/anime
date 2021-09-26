@@ -10,15 +10,21 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Image,
+  Platform,
 } from "react-native";
 
 const SignIn = () => {
   return (
     <ScrollView centerContent={true}>
-      <View style={global.container}>
+      <View
+        style={[
+          global.container,
+          Platform.OS !== "ios" && global.centerContent,
+        ]}
+      >
         <Image
           source={require("../../../assets/abz-logo.png")}
-          style={styles.img}
+          style={Platform.OS === "ios" ? styles.iosImg : styles.andriodImg}
         />
         <Text style={global.title}>Anime Fantasy League</Text>
         <KeyboardAvoidingView>

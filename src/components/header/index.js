@@ -1,12 +1,26 @@
 import React from "react";
 import headerStyles from "./header.json";
 import globalStyles from "../../../global.json";
+import Nav from "../nav";
 import { StyleSheet, Text, View, Platform } from "react-native";
 
 const Header = () => {
   return (
-    <View style={Platform.OS === 'ios' ? styles.iosContainer : styles.androidContainer}>
-      <Text style={Platform.OS === 'ios' ? styles.iosHeaderTitle : styles.androidHeaderTitle}>ABZ</Text>
+    <View
+      style={
+        Platform.OS === "ios" ? styles.iosContainer : styles.androidContainer
+      }
+    >
+      <Text
+        style={
+          Platform.OS === "ios"
+            ? styles.iosHeaderTitle
+            : styles.androidHeaderTitle
+        }
+      >
+        ABZ
+      </Text>
+      <Nav />
     </View>
   );
 };

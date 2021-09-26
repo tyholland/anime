@@ -15,7 +15,12 @@ import {
 const ForgotPassword = () => {
   return (
     <ScrollView centerContent={true}>
-      <View style={global.container}>
+      <View
+        style={[
+          global.container,
+          Platform.OS !== "ios" && global.centerContent,
+        ]}
+      >
         <View>
           <Text style={global.title}>Forgot Your Password</Text>
         </View>

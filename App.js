@@ -7,7 +7,6 @@ import Home from "./src/screens/home";
 import ViewLeague from "./src/screens/view-league";
 import VoteMatchup from "./src/screens/vote-matchup";
 import JoinLeague from "./src/screens/join-league";
-import Footer from "./src/components/footer";
 import Header from "./src/components/header";
 import Team from "./src/screens/team";
 import Bio from "./src/screens/bio";
@@ -24,10 +23,9 @@ const App = () => {
       {/* <VoteMatchup /> */}
       {/* <JoinLeague /> */}
       <Header />
-      <ViewMatchup />
-      {/* <Team /> */}
+      {/* <ViewMatchup /> */}
+      <Team />
       {/* <Bio /> */}
-      <Footer />
     </View>
   );
 };

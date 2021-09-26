@@ -1,11 +1,15 @@
 import React from "react";
-import footerStyles from "./footer.json";
+import navStyles from "./nav.json";
 import globalStyles from "../../../global.json";
 import { StyleSheet, View, Pressable, Text, Platform } from "react-native";
 
-const Footer = () => {
+const Nav = () => {
   return (
-    <View style={Platform.OS === 'ios' ? styles.iosContainer : styles.androidContainer}>
+    <View
+      style={
+        Platform.OS === "ios" ? styles.iosContainer : styles.androidContainer
+      }
+    >
       <Pressable style={styles.nav}>
         <Text style={styles.navText}>Team</Text>
       </Pressable>
@@ -22,7 +26,7 @@ const Footer = () => {
   );
 };
 
-const styles = StyleSheet.create(footerStyles);
+const styles = StyleSheet.create(navStyles);
 const global = StyleSheet.create(globalStyles);
 
-export default Footer;
+export default Nav;

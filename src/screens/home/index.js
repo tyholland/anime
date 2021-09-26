@@ -6,7 +6,12 @@ import { StyleSheet, View, Pressable, Text, ScrollView } from "react-native";
 const Home = () => {
   return (
     <ScrollView centerContent={true}>
-      <View style={global.container}>
+      <View
+        style={[
+          global.container,
+          Platform.OS !== "ios" && global.centerContent,
+        ]}
+      >
         <View>
           <Text style={global.title}>Choose Your Path</Text>
         </View>

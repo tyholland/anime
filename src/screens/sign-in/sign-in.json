@@ -12,11 +12,17 @@
     "alignItems": "center",
     "justifyContent": "space-around"
   },
-  "img": {
+  "iosImg": {
     "height": "60%",
     "width": "auto",
     "resizeMode": "contain",
     "marginBottom": "10%",
     "marginTop": "-45%"
+  },
+  "andriodImg": {
+    "height": "35%",
+    "width": "auto",
+    "resizeMode": "contain",
+    "marginBottom": "10%"
   }
 }

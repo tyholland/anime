@@ -85,14 +85,8 @@
   "right": {
     "textAlign": "right"
   },
-  "iosFooterEnding": {
-    "marginBottom": "22%"
-  },
-  "androidFooterEnding": {
-    "marginBottom": "5%"
-  },
   "iosHeaderBeginning": {
-    "marginTop": "25%"
+    "marginTop": "35%"
   },
   "androidHeaderBeginning": {
     "marginTop": "40%"
@@ -119,5 +113,9 @@
   },
   "electricAffinity": {
     "backgroundColor": "#cc0000"
+  },
+  "centerContent": {
+    "marginTop": "35%",
+    "marginBottom": "50%"
   }
 }
