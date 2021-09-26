@@ -1,11 +1,11 @@
 import React from "react";
 import teamStyles from "./team.json";
 import globalStyles from "../../../global.json";
-import { StyleSheet, View, Pressable, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Pressable, Text, ScrollView, Platform } from "react-native";
 
 const Team = () => {
   return (
-    <View style={[global.headerBeginning, styles.containerTop]}>
+    <View style={[Platform.OS === 'ios' ? global.iosHeaderBeginning : global.androidHeaderBeginning, styles.containerTop]}>
       <ScrollView>
         <View style={styles.teamContent}>
           <Text style={styles.teamName}>Jack Of All Trades</Text>
@@ -88,7 +88,7 @@ const Team = () => {
           <Text style={[styles.affinity, styles.bold]}>Affinity</Text>
           <Text style={[styles.power, styles.bold]}>Power Level</Text>
         </View>
-        <View style={[global.footerEnding, styles.containerBottom]}>
+        <View style={[Platform.OS === 'ios' ? global.iosFooterEnding : global.androidFooterEnding, Platform.OS === 'ios' ? styles.iosContainerBottom : styles.androidContainerBottom]}>
           <View style={styles.section}>
             <Text style={styles.position}>BN</Text>
             <Text style={styles.character}>Erza Scarlet</Text>
@@ -123,7 +123,7 @@ const Team = () => {
           </View>
         </View>
       </ScrollView>
-      <Pressable style={[global.primaryBtn, styles.editBtn]}>
+      <Pressable style={[global.primaryBtn, Platform.OS === 'ios' ? styles.iosEditBtn : styles.androidEditBtn]}>
         <Text style={global.secondaryBtnText}>Edit Team</Text>
       </Pressable>
     </View>

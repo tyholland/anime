@@ -85,11 +85,17 @@
   "right": {
     "textAlign": "right"
   },
-  "footerEnding": {
+  "iosFooterEnding": {
     "marginBottom": "22%"
   },
-  "headerBeginning": {
+  "androidFooterEnding": {
+    "marginBottom": "5%"
+  },
+  "iosHeaderBeginning": {
     "marginTop": "25%"
+  },
+  "androidHeaderBeginning": {
+    "marginTop": "40%"
   },
   "circle": {
     "width": 15,

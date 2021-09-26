@@ -1,11 +1,11 @@
 import React from "react";
 import matchupStyles from "./view-matchup.json";
 import globalStyles from "../../../global.json";
-import { StyleSheet, View, Pressable, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Pressable, Text, ScrollView, Platform } from "react-native";
 
 const ViewMatchup = () => {
   return (
-    <View style={global.headerBeginning}>
+    <View style={Platform.OS === 'ios' ? global.iosHeaderBeginning : global.androidHeaderBeginning}>
       <ScrollView>
         <View style={styles.matchup}>
           <View style={styles.teamContent}>
@@ -17,7 +17,7 @@ const ViewMatchup = () => {
             <Text style={styles.teamTotal}>9000</Text>
           </View>
         </View>
-        <View style={[global.footerEnding, styles.teamSplit]}>
+        <View style={[Platform.OS === 'ios' ? global.iosFooterEnding : global.androidFooterEnding, styles.teamSplit]}>
           <View style={styles.column}>
             <View style={styles.section}>
               <View style={styles.headliner}>

@@ -56,13 +56,21 @@
     "justifyContent": "flex-end",
     "width": "100%"
   },
-  "editBtn": {
+  "iosEditBtn": {
     "position": "absolute",
     "bottom": "9.5%",
     "width": "95%"
   },
-  "containerBottom": {
+  "androidEditBtn": {
+    "position": "absolute",
+    "bottom": "1%",
+    "width": "95%"
+  },
+  "iosContainerBottom": {
     "marginBottom": "33%"
+  },
+  "androidContainerBottom": {
+    "marginBottom": "18%"
   },
   "containerTop": {
     "display": "flex",

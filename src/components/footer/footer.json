@@ -1,6 +1,13 @@
 {
-  "container": {
+  "iosContainer": {
     "position": "absolute",
+    "bottom": 0,
+    "width": "100%",
+    "display": "flex",
+    "flexDirection": "row"
+  },
+  "androidContainer": {
+    "position": "relative",
     "bottom": 0,
     "width": "100%",
     "display": "flex",
