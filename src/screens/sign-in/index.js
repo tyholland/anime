@@ -6,14 +6,15 @@ import {
   View,
   Pressable,
   Text,
-  TextInput,
   ScrollView,
-  KeyboardAvoidingView,
   Image,
   Platform,
 } from "react-native";
+import Button from "../../components/button";
+import PropTypes from "prop-types";
+import TextField from "../../components/text-field";
 
-const SignIn = () => {
+const SignIn = (props) => {
   return (
     <ScrollView centerContent={true}>
       <View
@@ -27,41 +28,40 @@ const SignIn = () => {
           style={Platform.OS === "ios" ? styles.iosImg : styles.andriodImg}
         />
         <Text style={global.title}>Anime Fantasy League</Text>
-        <KeyboardAvoidingView>
-          <View>
-            <TextInput
-              placeholder="Email"
-              autoCapitalize="none"
-              keyboardType={"email-address"}
-              style={global.textField}
-            />
-          </View>
-          <View>
-            <TextInput
-              placeholder="Password"
-              textContentType={"password"}
-              secureTextEntry={true}
-              style={global.textField}
-            />
-          </View>
-        </KeyboardAvoidingView>
-        <View style={global.submit}>
-          <Pressable style={global.primaryBtn}>
-            <Text style={global.secondaryBtnText}>Sign In</Text>
-          </Pressable>
-        </View>
+        <TextField placeholder="Email" keyboard="email-address" />
+        <TextField placeholder="Password" type="password" />
+        <Button
+          btnText="Sign In"
+          btnTextColor="black"
+          btnColor="orange"
+          redirect={() => {
+            props.setPage("Home");
+          }}
+        />
         <View style={styles.contentLinks}>
-          <Pressable>
+          <Pressable
+            onPress={() => {
+              props.setPage("SignUp");
+            }}
+          >
             <Text style={global.link}>Sign Up</Text>
           </Pressable>
           <Text style={styles.split}>|</Text>
-          <Pressable>
+          <Pressable
+            onPress={() => {
+              props.setPage("Forgot");
+            }}
+          >
             <Text style={global.link}>Forgot Password?</Text>
           </Pressable>
         </View>
       </View>
     </ScrollView>
   );
+};
+
+SignIn.propTypes = {
+  setPage: PropTypes.func,
 };
 
 const styles = StyleSheet.create(signStyles);

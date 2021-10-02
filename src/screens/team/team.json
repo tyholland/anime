@@ -33,7 +33,9 @@
   "character": {
     "width": "30%",
     "marginVertical": 15,
-    "marginLeft": 5,
+    "marginLeft": 5
+  },
+  "characterTxt": {
     "color": "rgb(27, 5, 246)"
   },
   "affinity": {

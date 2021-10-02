@@ -1,17 +1,18 @@
 import React from "react";
-import signStyles from "./sign-up.json";
 import globalStyles from "../../../global.json";
 import {
   StyleSheet,
   View,
   Pressable,
   Text,
-  TextInput,
   ScrollView,
-  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
+import Button from "../../components/button";
+import PropTypes from "prop-types";
+import TextField from "../../components/text-field";
 
-const SignUp = () => {
+const SignUp = (props) => {
   return (
     <ScrollView centerContent={true}>
       <View
@@ -24,31 +25,19 @@ const SignUp = () => {
           <Text style={global.title}>Join ABZ's</Text>
           <Text style={global.title}>Anime Fantasy League</Text>
         </View>
-        <KeyboardAvoidingView>
-          <View>
-            <TextInput
-              placeholder="Please enter a email"
-              keyboardType={"email-address"}
-              autoCapitalize="none"
-              style={global.textField}
-            />
-          </View>
-          <View>
-            <TextInput
-              placeholder="Please enter a password"
-              style={global.textField}
-              textContentType={"password"}
-              secureTextEntry={true}
-            />
-          </View>
-        </KeyboardAvoidingView>
-        <View style={global.submit}>
-          <Pressable style={global.primaryBtn}>
-            <Text style={global.secondaryBtnText}>Join ABZ</Text>
-          </Pressable>
-        </View>
+        <TextField
+          placeholder="Please enter a email"
+          keyboard="email-address"
+        />
+        <TextField placeholder="Please enter a password" type="password" />
+        <Button
+          btnText="Join ABZ"
+          btnTextColor="black"
+          btnColor="orange"
+          redirect={() => props.setPage("Home")}
+        />
         <View>
-          <Pressable>
+          <Pressable onPress={() => props.setPage("SignIn")}>
             <Text style={global.link}>Sign In</Text>
           </Pressable>
         </View>
@@ -57,7 +46,10 @@ const SignUp = () => {
   );
 };
 
-const styles = StyleSheet.create(signStyles);
+SignUp.propTypes = {
+  setPage: PropTypes.func,
+};
+
 const global = StyleSheet.create(globalStyles);
 
 export default SignUp;

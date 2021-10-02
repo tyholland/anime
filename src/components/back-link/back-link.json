@@ -1,0 +1,13 @@
+{
+  "iosBackLink": {
+    "marginBottom": 40,
+    "marginTop": "-3%"
+  },
+  "androidBackLink": {
+    "marginBottom": 40
+  },
+  "link": {
+    "color": "rgb(27, 5, 246)",
+    "textDecorationLine": "underline"
+  }
+}

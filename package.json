@@ -6,9 +6,12 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "prettier": "prettier -w .",
+    "lint": "eslint .",
     "eject": "expo eject"
   },
   "dependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.26.1",
     "expo": "~42.0.1",
     "expo-status-bar": "~1.0.4",
     "prettier": "^2.4.1",

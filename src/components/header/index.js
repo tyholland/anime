@@ -1,10 +1,10 @@
 import React from "react";
 import headerStyles from "./header.json";
-import globalStyles from "../../../global.json";
 import Nav from "../nav";
 import { StyleSheet, Text, View, Platform } from "react-native";
+import PropTypes from "prop-types";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <View
       style={
@@ -20,12 +20,16 @@ const Header = () => {
       >
         ABZ
       </Text>
-      <Nav />
+      <Nav page={props.page} setPage={props.setPage} />
     </View>
   );
 };
 
+Header.propTypes = {
+  page: PropTypes.string,
+  setPage: PropTypes.func,
+};
+
 const styles = StyleSheet.create(headerStyles);
-const global = StyleSheet.create(globalStyles);
 
 export default Header;

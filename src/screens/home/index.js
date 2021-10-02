@@ -1,9 +1,10 @@
 import React from "react";
-import homeStyles from "./home.json";
 import globalStyles from "../../../global.json";
-import { StyleSheet, View, Pressable, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, ScrollView, Platform } from "react-native";
+import Button from "../../components/button";
+import PropTypes from "prop-types";
 
-const Home = () => {
+const Home = (props) => {
   return (
     <ScrollView centerContent={true}>
       <View
@@ -15,32 +16,32 @@ const Home = () => {
         <View>
           <Text style={global.title}>Choose Your Path</Text>
         </View>
-        <View style={global.submit}>
-          <Pressable style={global.fourthBtn}>
-            <Text style={global.tertiaryBtnText}>View Your League(s)</Text>
-          </Pressable>
-        </View>
-        <View style={global.submit}>
-          <Pressable style={global.secondaryBtn}>
-            <Text style={global.secondaryBtnText}>Vote on a Matchup</Text>
-          </Pressable>
-        </View>
-        <View style={global.submit}>
-          <Pressable style={global.tertiaryBtn}>
-            <Text style={global.primaryBtnText}>Join a League</Text>
-          </Pressable>
-        </View>
-        <View style={global.submit}>
-          <Pressable style={global.primaryBtn}>
-            <Text style={global.secondaryBtnText}>Create a League</Text>
-          </Pressable>
-        </View>
+        <Button
+          btnText="View Your League(s)"
+          btnTextColor="yellow"
+          btnColor="black"
+          redirect={() => props.setPage("ViewLeague")}
+        />
+        <Button
+          btnText="Vote on a Matchup"
+          btnTextColor="black"
+          btnColor="yellow"
+        />
+        <Button btnText="Join a League" btnTextColor="white" btnColor="blue" />
+        <Button
+          btnText="Create a League"
+          btnTextColor="black"
+          btnColor="orange"
+        />
       </View>
     </ScrollView>
   );
 };
 
-const styles = StyleSheet.create(homeStyles);
+Home.propTypes = {
+  setPage: PropTypes.func,
+};
+
 const global = StyleSheet.create(globalStyles);
 
 export default Home;

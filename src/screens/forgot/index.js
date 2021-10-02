@@ -1,18 +1,19 @@
 import React from "react";
-import forgotStyles from "./forgot.json";
 import globalStyles from "../../../global.json";
 import {
   StyleSheet,
-  KeyboardAvoidingView,
   View,
   Pressable,
   Text,
-  TextInput,
   ScrollView,
+  Platform,
   Modal,
 } from "react-native";
+import Button from "../../components/button";
+import TextField from "../../components/text-field";
+import PropTypes from "prop-types";
 
-const ForgotPassword = () => {
+const ForgotPassword = (props) => {
   return (
     <ScrollView centerContent={true}>
       <View
@@ -24,23 +25,15 @@ const ForgotPassword = () => {
         <View>
           <Text style={global.title}>Forgot Your Password</Text>
         </View>
-        <KeyboardAvoidingView>
-          <View>
-            <TextInput
-              placeholder="Enter your email"
-              style={global.textField}
-              keyboardType={"email-address"}
-              autoCapitalize="none"
-            />
-          </View>
-        </KeyboardAvoidingView>
-        <View style={global.submit}>
-          <Pressable style={global.primaryBtn}>
-            <Text style={global.secondaryBtnText}>Get Temporary Password</Text>
-          </Pressable>
-        </View>
+        <TextField placeholder="Enter your email" keyboard="email-address" />
+        <Button
+          btnText="Get Temporary Password"
+          btnTextColor="black"
+          btnColor="orange"
+          redirect={() => props.setPage("SignIn")}
+        />
         <View>
-          <Pressable>
+          <Pressable onPress={() => props.setPage("SignIn")}>
             <Text style={global.link}>Sign In</Text>
           </Pressable>
         </View>
@@ -62,7 +55,10 @@ const ForgotPassword = () => {
   );
 };
 
-const styles = StyleSheet.create(forgotStyles);
+ForgotPassword.propTypes = {
+  setPage: PropTypes.func,
+};
+
 const global = StyleSheet.create(globalStyles);
 
 export default ForgotPassword;

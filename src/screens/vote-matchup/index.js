@@ -1,15 +1,8 @@
 import React from "react";
-import voteStyles from "./vote-matchup.json";
 import globalStyles from "../../../global.json";
-import {
-  StyleSheet,
-  KeyboardAvoidingView,
-  View,
-  Pressable,
-  Text,
-  TextInput,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, View, Text, ScrollView, Platform } from "react-native";
+import Button from "../../components/button";
+import TextField from "../../components/text-field";
 
 const VoteMatchup = () => {
   return (
@@ -29,26 +22,17 @@ const VoteMatchup = () => {
             matchup.
           </Text>
         </View>
-        <KeyboardAvoidingView>
-          <View>
-            <TextInput
-              placeholder="Enter your voting code"
-              style={global.textField}
-              autoCapitalize="none"
-            />
-          </View>
-        </KeyboardAvoidingView>
-        <View style={global.submit}>
-          <Pressable style={global.primaryBtn}>
-            <Text style={global.secondaryBtnText}>Make Your Vote</Text>
-          </Pressable>
-        </View>
+        <TextField placeholder="Enter your voting code" />
+        <Button
+          btnText="Make Your Vote"
+          btnTextColor="black"
+          btnColor="orange"
+        />
       </View>
     </ScrollView>
   );
 };
 
-const styles = StyleSheet.create(voteStyles);
 const global = StyleSheet.create(globalStyles);
 
 export default VoteMatchup;

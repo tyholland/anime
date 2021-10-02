@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Dimensions, StyleSheet } from "react-native";
 import SignIn from "./src/screens/sign-in";
 import SignUp from "./src/screens/sign-up";
@@ -13,19 +13,32 @@ import Bio from "./src/screens/bio";
 import ViewMatchup from "./src/screens/view-matchup";
 
 const App = () => {
+  const [page, setPage] = useState("SignIn");
+  const [hasHeader, setHasHeader] = useState(false);
+
   return (
     <View style={styles.container}>
-      {/* <SignIn /> */}
-      {/* <SignUp /> */}
-      {/* <Forgot /> */}
-      {/* <Home /> */}
-      {/* <ViewLeague /> */}
-      {/* <VoteMatchup /> */}
-      {/* <JoinLeague /> */}
-      <Header />
-      {/* <ViewMatchup /> */}
-      <Team />
-      {/* <Bio /> */}
+      {page === "SignIn" && <SignIn setPage={setPage} />}
+      {page === "SignUp" && <SignUp setPage={setPage} />}
+      {page === "Forgot" && <Forgot setPage={setPage} />}
+      {page === "Home" && <Home setPage={setPage} />}
+      {page === "ViewLeague" && (
+        <ViewLeague setPage={setPage} setHasHeader={setHasHeader} />
+      )}
+      {page === "VoteMatchup" && (
+        <VoteMatchup setPage={setPage} setHasHeader={setHasHeader} />
+      )}
+      {page === "JoinLeague" && (
+        <JoinLeague setPage={setPage} setHasHeader={setHasHeader} />
+      )}
+      {hasHeader ? (
+        <>
+          <Header setPage={setPage} setHasHeader={setHasHeader} page={page} />
+          {page === "ViewMatchup" && <ViewMatchup />}
+          {page === "Team" && <Team setPage={setPage} />}
+          {page === "Bio" && <Bio setPage={setPage} />}
+        </>
+      ) : null}
     </View>
   );
 };

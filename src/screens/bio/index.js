@@ -1,18 +1,15 @@
 import React from "react";
 import bioStyles from "./bio.json";
 import globalStyles from "../../../global.json";
-import { StyleSheet, View, Pressable, Text, Platform } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
+import Button from "../../components/button";
+import BackLink from "../../components/back-link";
+import PropTypes from "prop-types";
 
-const Bio = () => {
+const Bio = (props) => {
   return (
     <View style={[global.iosHeaderBeginning, global.container]}>
-      <Pressable
-        style={
-          Platform.OS === "ios" ? styles.iosBackLink : styles.androidBackLink
-        }
-      >
-        <Text>&lt; Back</Text>
-      </Pressable>
+      <BackLink redirect={() => props.setPage("Team")} />
       <View>
         <Text style={styles.title}>Natsu</Text>
         <Text style={styles.subTitle}>Anime Series: DBZ</Text>
@@ -39,15 +36,19 @@ const Bio = () => {
           </View>
         </View>
       </View>
-      <View style={global.submit}>
-        <Pressable style={[global.fourthBtn, styles.dropBtn]}>
-          <Text style={[global.tertiaryBtnText, styles.dropBtnText]}>
-            Drop Character
-          </Text>
-        </Pressable>
-      </View>
+      <Button
+        btnText="Drop Character"
+        btnTextColor="white"
+        btnColor="red"
+        customBtnColor={styles.dropBtn}
+        customBtnTextColor={styles.dropBtnText}
+      />
     </View>
   );
+};
+
+Bio.propTypes = {
+  setPage: PropTypes.func,
 };
 
 const styles = StyleSheet.create(bioStyles);

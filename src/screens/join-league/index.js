@@ -1,15 +1,8 @@
 import React from "react";
-import joinStyles from "./join-league.json";
 import globalStyles from "../../../global.json";
-import {
-  StyleSheet,
-  KeyboardAvoidingView,
-  View,
-  Pressable,
-  Text,
-  TextInput,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, View, Text, ScrollView, Platform } from "react-native";
+import Button from "../../components/button";
+import TextField from "../../components/text-field";
 
 const JoinLeague = () => {
   return (
@@ -28,26 +21,13 @@ const JoinLeague = () => {
             Enter the code you were given below, to join your friend's league.
           </Text>
         </View>
-        <KeyboardAvoidingView>
-          <View>
-            <TextInput
-              placeholder="Enter your league code"
-              style={global.textField}
-              autoCapitalize="none"
-            />
-          </View>
-        </KeyboardAvoidingView>
-        <View style={global.submit}>
-          <Pressable style={global.primaryBtn}>
-            <Text style={global.secondaryBtnText}>Enter League</Text>
-          </Pressable>
-        </View>
+        <TextField placeholder="Enter your league code" />
+        <Button btnText="Enter League" btnTextColor="black" btnColor="orange" />
       </View>
     </ScrollView>
   );
 };
 
-const styles = StyleSheet.create(joinStyles);
 const global = StyleSheet.create(globalStyles);
 
 export default JoinLeague;

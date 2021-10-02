@@ -4,13 +4,15 @@ import globalStyles from "../../../global.json";
 import {
   StyleSheet,
   View,
-  Pressable,
   Text,
   ScrollView,
   Platform,
+  Pressable,
 } from "react-native";
+import Button from "../../components/button";
+import PropTypes from "prop-types";
 
-const Team = () => {
+const Team = (props) => {
   return (
     <View
       style={[
@@ -36,13 +38,23 @@ const Team = () => {
         <View>
           <View style={styles.section}>
             <Text style={styles.position}>C</Text>
-            <Text style={styles.character}>Goku</Text>
+            <Pressable
+              onPress={() => props.setPage("Bio")}
+              style={styles.character}
+            >
+              <Text style={styles.characterTxt}>Goku</Text>
+            </Pressable>
             <Text style={styles.affinity}>-</Text>
             <Text style={styles.power}>1500</Text>
           </View>
           <View style={styles.section}>
             <Text style={styles.position}>B</Text>
-            <Text style={styles.character}>Arthur Boyle</Text>
+            <Pressable
+              onPress={() => props.setPage("Bio")}
+              style={styles.character}
+            >
+              <Text style={styles.characterTxt}>Arthur Boyle</Text>
+            </Pressable>
             <Text style={styles.affinity}>
               <View style={[global.circle, global.fireAffinity]}></View>
             </Text>
@@ -50,7 +62,12 @@ const Team = () => {
           </View>
           <View style={styles.section}>
             <Text style={styles.position}>B</Text>
-            <Text style={styles.character}>Genos</Text>
+            <Pressable
+              onPress={() => props.setPage("Bio")}
+              style={styles.character}
+            >
+              <Text style={styles.characterTxt}>Genos</Text>
+            </Pressable>
             <Text style={styles.affinity}>
               <View style={[global.circle, global.fireAffinity]}></View>
             </Text>
@@ -59,8 +76,12 @@ const Team = () => {
           <View style={styles.section}>
             <Text style={[styles.position, styles.duo]}>B/S</Text>
             <View style={styles.character}>
-              <Text style={styles.duoText}>Rock Lee</Text>
-              <Text style={styles.duoText}>Tenten</Text>
+              <Pressable onPress={() => props.setPage("Bio")}>
+                <Text style={styles.duoText}>Rock Lee</Text>
+              </Pressable>
+              <Pressable onPress={() => props.setPage("Bio")}>
+                <Text style={styles.duoText}>Tenten</Text>
+              </Pressable>
             </View>
             <View style={styles.affinity}>
               <Text>-</Text>
@@ -73,19 +94,34 @@ const Team = () => {
           </View>
           <View style={styles.section}>
             <Text style={styles.position}>S</Text>
-            <Text style={styles.character}>Chad</Text>
+            <Pressable
+              onPress={() => props.setPage("Bio")}
+              style={styles.character}
+            >
+              <Text style={styles.characterTxt}>Chad</Text>
+            </Pressable>
             <Text style={styles.affinity}>-</Text>
             <Text style={styles.power}>1000</Text>
           </View>
           <View style={styles.section}>
             <Text style={styles.position}>V</Text>
-            <Text style={styles.character}>Sasori</Text>
+            <Pressable
+              onPress={() => props.setPage("Bio")}
+              style={styles.character}
+            >
+              <Text style={styles.characterTxt}>Sasori</Text>
+            </Pressable>
             <Text style={styles.affinity}>-</Text>
             <Text style={styles.power}>1250</Text>
           </View>
           <View style={styles.section}>
             <Text style={styles.position}>BF</Text>
-            <Text style={styles.character}>Soul Society</Text>
+            <Pressable
+              onPress={() => props.setPage("Bio")}
+              style={styles.character}
+            >
+              <Text style={styles.characterTxt}>Soul Society</Text>
+            </Pressable>
             <Text style={styles.affinity}>
               <View style={[global.circle, global.arcaneAffinity]}></View>
             </Text>
@@ -111,13 +147,23 @@ const Team = () => {
         >
           <View style={styles.section}>
             <Text style={styles.position}>BN</Text>
-            <Text style={styles.character}>Erza Scarlet</Text>
+            <Pressable
+              onPress={() => props.setPage("Bio")}
+              style={styles.character}
+            >
+              <Text style={styles.characterTxt}>Erza Scarlet</Text>
+            </Pressable>
             <Text style={styles.affinity}>-</Text>
             <Text style={styles.power}>1500</Text>
           </View>
           <View style={styles.section}>
             <Text style={styles.position}>BN</Text>
-            <Text style={styles.character}>Endeavor</Text>
+            <Pressable
+              onPress={() => props.setPage("Bio")}
+              style={styles.character}
+            >
+              <Text style={styles.characterTxt}>Endeavor</Text>
+            </Pressable>
             <Text style={styles.affinity}>
               <View style={[global.circle, global.fireAffinity]}></View>
             </Text>
@@ -125,31 +171,52 @@ const Team = () => {
           </View>
           <View style={styles.section}>
             <Text style={styles.position}>BN</Text>
-            <Text style={styles.character}>Shino Aburame</Text>
+            <Pressable
+              onPress={() => props.setPage("Bio")}
+              style={styles.character}
+            >
+              <Text style={styles.characterTxt}>Shino Aburame</Text>
+            </Pressable>
             <Text style={styles.affinity}>-</Text>
             <Text style={styles.power}>1250</Text>
           </View>
           <View style={styles.section}>
             <Text style={styles.position}>BN</Text>
-            <Text style={styles.character}>Lucy Heartfelia</Text>
+            <Pressable
+              onPress={() => props.setPage("Bio")}
+              style={styles.character}
+            >
+              <Text style={styles.characterTxt}>Lucy Heartfelia</Text>
+            </Pressable>
             <Text style={styles.affinity}>-</Text>
             <Text style={styles.power}>1000</Text>
           </View>
           <View style={styles.section}>
             <Text style={styles.position}>BN</Text>
-            <Text style={styles.character}>Boros</Text>
+            <Pressable
+              onPress={() => props.setPage("Bio")}
+              style={styles.character}
+            >
+              <Text style={styles.characterTxt}>Boros</Text>
+            </Pressable>
             <Text style={styles.affinity}>-</Text>
             <Text style={styles.power}>1250</Text>
           </View>
         </View>
       </ScrollView>
-      <View style={Platform.OS === "ios" ? styles.iosBtn : styles.androidBtn}>
-        <Pressable style={[global.primaryBtn, styles.editBtn]}>
-          <Text style={global.secondaryBtnText}>Edit Team</Text>
-        </Pressable>
-      </View>
+      <Button
+        btnText="Join ABZ"
+        btnTextColor="black"
+        btnColor="orange"
+        customBtnColor={styles.editBtn}
+        viewStyle={Platform.OS === "ios" ? styles.iosBtn : styles.androidBtn}
+      />
     </View>
   );
+};
+
+Team.propTypes = {
+  setPage: PropTypes.func,
 };
 
 const styles = StyleSheet.create(teamStyles);

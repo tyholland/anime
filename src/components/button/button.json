@@ -1,0 +1,40 @@
+{
+  "btn": {
+    "borderRadius": 10,
+    "padding": "3%",
+    "marginTop": 10,
+    "width": "100%"
+  },
+  "orangeBtn": {
+    "backgroundColor": "rgb(249, 128, 17)"
+  },
+  "yellowBtn": {
+    "backgroundColor": "rgb(250, 179, 28)"
+  },
+  "blueBtn": {
+    "backgroundColor": "rgb(27, 5, 246)"
+  },
+  "blackBtn": {
+    "backgroundColor": "#000"
+  },
+  "redBtn": {
+    "backgroundColor": "#cc0000"
+  },
+  "btnText": {
+    "textAlign": "center",
+    "fontSize": 20,
+    "fontWeight": "700"
+  },
+  "whiteText": {
+    "color": "#fff"
+  },
+  "blackText": {
+    "color": "#000"
+  },
+  "yellowText": {
+    "color": "rgb(250, 179, 28)"
+  },
+  "submit": {
+    "marginTop": 5
+  }
+}

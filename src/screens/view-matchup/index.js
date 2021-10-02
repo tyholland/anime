@@ -1,14 +1,7 @@
 import React from "react";
 import matchupStyles from "./view-matchup.json";
 import globalStyles from "../../../global.json";
-import {
-  StyleSheet,
-  View,
-  Pressable,
-  Text,
-  ScrollView,
-  Platform,
-} from "react-native";
+import { StyleSheet, View, Text, ScrollView, Platform } from "react-native";
 
 const ViewMatchup = () => {
   return (

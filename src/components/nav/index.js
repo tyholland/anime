@@ -1,20 +1,40 @@
 import React from "react";
 import navStyles from "./nav.json";
-import globalStyles from "../../../global.json";
 import { StyleSheet, View, Pressable, Text, Platform } from "react-native";
+import PropTypes from "prop-types";
 
-const Nav = () => {
+const Nav = (props) => {
+  const teamView = props.page === "Team" || props.page === "Bio";
+
   return (
     <View
       style={
         Platform.OS === "ios" ? styles.iosContainer : styles.androidContainer
       }
     >
-      <Pressable style={styles.nav}>
-        <Text style={styles.navText}>Team</Text>
+      <Pressable
+        style={[styles.nav, teamView ? styles.navSelected : ""]}
+        onPress={() => props.setPage("Team")}
+      >
+        <Text style={[styles.navText, teamView ? styles.navTextSelected : ""]}>
+          Team
+        </Text>
       </Pressable>
-      <Pressable style={[styles.nav, styles.navSelected]}>
-        <Text style={[styles.navText, styles.navTextSelected]}>Matchup</Text>
+      <Pressable
+        style={[
+          styles.nav,
+          props.page === "ViewMatchup" ? styles.navSelected : "",
+        ]}
+        onPress={() => props.setPage("ViewMatchup")}
+      >
+        <Text
+          style={[
+            styles.navText,
+            props.page === "ViewMatchup" ? styles.navTextSelected : "",
+          ]}
+        >
+          Matchup
+        </Text>
       </Pressable>
       <Pressable style={styles.nav}>
         <Text style={styles.navText}>Characters</Text>
@@ -26,7 +46,11 @@ const Nav = () => {
   );
 };
 
+Nav.propTypes = {
+  page: PropTypes.string,
+  setPage: PropTypes.func,
+};
+
 const styles = StyleSheet.create(navStyles);
-const global = StyleSheet.create(globalStyles);
 
 export default Nav;
