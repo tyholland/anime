@@ -1,0 +1,46 @@
+{
+  "column": {
+    "width": "46%"
+  },
+  "section": {
+    "display": "flex",
+    "flexDirection": "row-reverse",
+    "alignItems": "center",
+    "borderBottomWidth": 1,
+    "borderStyle": "solid",
+    "borderBottomColor": "#000",
+    "height": 80
+  },
+  "duoSection": {
+    "display": "flex",
+    "flexDirection": "row-reverse",
+    "alignItems": "center",
+    "height": 80
+  },
+  "headliner": {
+    "width": "50%"
+  },
+  "character": {
+    "marginTop": 5,
+    "marginLeft": 0,
+    "marginRight": "10%",
+    "textAlign": "right"
+  },
+  "affinity": {
+    "marginTop": 15,
+    "marginLeft": 0,
+    "marginRight": "5%",
+    "position": "relative",
+    "right": "-75%"
+  },
+  "power": {
+    "width": "50%",
+    "marginVertical": 15,
+    "paddingRight": 0,
+    "paddingLeft": "5%"
+  },
+  "powerText": {
+    "textAlign": "left",
+    "color": "rgb(27, 5, 246)"
+  }
+}

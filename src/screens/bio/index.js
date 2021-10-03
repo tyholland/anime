@@ -1,7 +1,7 @@
 import React from "react";
 import bioStyles from "./bio.json";
 import globalStyles from "../../../global.json";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Alert } from "react-native";
 import Button from "../../components/button";
 import BackLink from "../../components/back-link";
 import PropTypes from "prop-types";
@@ -42,6 +42,9 @@ const Bio = (props) => {
         btnColor="red"
         customBtnColor={styles.dropBtn}
         customBtnTextColor={styles.dropBtnText}
+        redirect={() =>
+          Alert.alert("This functionality hasn't been created yet")
+        }
       />
     </View>
   );

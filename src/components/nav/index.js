@@ -4,7 +4,8 @@ import { StyleSheet, View, Pressable, Text, Platform } from "react-native";
 import PropTypes from "prop-types";
 
 const Nav = (props) => {
-  const teamView = props.page === "Team" || props.page === "Bio";
+  const teamView =
+    props.page === "Team" || props.page === "Bio" || props.page === "TeamInfo";
 
   return (
     <View
@@ -39,8 +40,21 @@ const Nav = (props) => {
       <Pressable style={styles.nav}>
         <Text style={styles.navText}>Characters</Text>
       </Pressable>
-      <Pressable style={styles.nav}>
-        <Text style={styles.navText}>League</Text>
+      <Pressable
+        style={[
+          styles.nav,
+          props.page === "Settings" ? styles.navSelected : "",
+        ]}
+        onPress={() => props.setPage("Settings")}
+      >
+        <Text
+          style={[
+            styles.navText,
+            props.page === "Settings" ? styles.navTextSelected : "",
+          ]}
+        >
+          Settings
+        </Text>
       </Pressable>
     </View>
   );

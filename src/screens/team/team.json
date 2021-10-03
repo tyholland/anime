@@ -1,57 +1,4 @@
 {
-  "section": {
-    "display": "flex",
-    "flexDirection": "row",
-    "alignItems": "center",
-    "borderBottomWidth": 1,
-    "borderStyle": "solid",
-    "borderBottomColor": "#000"
-  },
-  "headerSection": {
-    "backgroundColor": "rgba(249, 128, 17, .3)",
-    "borderBottomWidth": 0,
-    "marginTop": 20
-  },
-  "position": {
-    "width": "5%",
-    "paddingVertical": 17,
-    "fontWeight": "600",
-    "color": "#999",
-    "textAlign": "center",
-    "backgroundColor": "rgba(0, 0, 0, .1)",
-    "fontSize": 10
-  },
-  "duo": {
-    "paddingVertical": 26
-  },
-  "duoText": {
-    "color": "rgb(27, 5, 246)"
-  },
-  "none": {
-    "backgroundColor": "rgba(0, 0, 0, 0)"
-  },
-  "character": {
-    "width": "30%",
-    "marginVertical": 15,
-    "marginLeft": 5
-  },
-  "characterTxt": {
-    "color": "rgb(27, 5, 246)"
-  },
-  "affinity": {
-    "width": "30%",
-    "marginVertical": 15
-  },
-  "power": {
-    "width": "30%",
-    "textAlign": "right",
-    "marginVertical": 15,
-    "paddingRight": 10
-  },
-  "bold": {
-    "fontWeight": "700",
-    "color": "#000"
-  },
   "total": {
     "display": "flex",
     "flexDirection": "row",
@@ -78,18 +25,24 @@
     "alignItems": "center",
     "backgroundColor": "#fff"
   },
-  "iosContainerBottom": {
-    "marginBottom": "25%"
-  },
-  "androidContainerBottom": {
-    "marginBottom": "3%"
-  },
   "containerTop": {
     "display": "flex",
     "alignItems": "center"
   },
+  "teamInfo": {
+    "display": "flex",
+    "flexDirection": "row",
+    "justifyContent": "space-between",
+    "alignItems": "center"
+  },
   "teamContent": {
     "marginLeft": 10
+  },
+  "infoContent": {
+    "marginRight": 10
+  },
+  "infoTxt": {
+    "color": "rgb(27, 5, 246)"
   },
   "teamName": {
     "fontSize": 18,
@@ -117,5 +70,9 @@
     "textAlign": "right",
     "marginVertical": 15,
     "paddingRight": "7%"
+  },
+  "bold": {
+    "fontWeight": "700",
+    "color": "#000"
   }
 }

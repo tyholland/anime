@@ -1,0 +1,64 @@
+{
+  "section": {
+    "display": "flex",
+    "flexDirection": "row",
+    "alignItems": "center",
+    "borderBottomWidth": 1,
+    "borderStyle": "solid",
+    "borderBottomColor": "#000"
+  },
+  "headerSection": {
+    "backgroundColor": "rgba(249, 128, 17, .3)",
+    "borderBottomWidth": 0,
+    "marginTop": 20
+  },
+  "position": {
+    "width": "5%",
+    "paddingVertical": 18,
+    "fontWeight": "600",
+    "color": "rgb(249, 128, 17)",
+    "textAlign": "center",
+    "backgroundColor": "rgba(0, 0, 0, .8)",
+    "fontSize": 10
+  },
+  "duo": {
+    "paddingVertical": 36
+  },
+  "duoText": {
+    "color": "rgb(27, 5, 246)"
+  },
+  "duoSpace": {
+    "paddingVertical": 5
+  },
+  "none": {
+    "backgroundColor": "rgba(0, 0, 0, 0)"
+  },
+  "character": {
+    "width": "30%",
+    "marginVertical": 15,
+    "marginLeft": 5
+  },
+  "characterTxt": {
+    "color": "rgb(27, 5, 246)"
+  },
+  "affinity": {
+    "width": "30%",
+    "marginVertical": 15
+  },
+  "power": {
+    "width": "30%",
+    "textAlign": "right",
+    "marginVertical": 15,
+    "paddingRight": 10
+  },
+  "bold": {
+    "fontWeight": "700",
+    "color": "#000"
+  },
+  "iosContainerBottom": {
+    "marginBottom": "25%"
+  },
+  "androidContainerBottom": {
+    "marginBottom": "3%"
+  }
+}

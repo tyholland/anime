@@ -2,8 +2,11 @@ import React from "react";
 import matchupStyles from "./view-matchup.json";
 import globalStyles from "../../../global.json";
 import { StyleSheet, View, Text, ScrollView, Platform } from "react-native";
+import HomeTeam from "../../components/home-team";
+import AwayTeam from "../../components/away-team";
+import PropTypes from "prop-types";
 
-const ViewMatchup = () => {
+const ViewMatchup = (props) => {
   return (
     <View
       style={
@@ -24,70 +27,7 @@ const ViewMatchup = () => {
           </View>
         </View>
         <View style={styles.teamSplit}>
-          <View style={styles.column}>
-            <View style={styles.section}>
-              <View style={styles.headliner}>
-                <Text style={styles.character}>Goku</Text>
-                <Text style={styles.affinity}>-</Text>
-              </View>
-              <Text style={styles.power}>1500</Text>
-            </View>
-            <View style={styles.section}>
-              <View style={styles.headliner}>
-                <Text style={styles.character}>Arthur Boyle</Text>
-                <Text style={styles.affinity}>
-                  <View style={[global.circle, global.fireAffinity]}></View>
-                </Text>
-              </View>
-              <Text style={styles.power}>1250</Text>
-            </View>
-            <View style={styles.section}>
-              <View style={styles.headliner}>
-                <Text style={styles.character}>Genos</Text>
-                <Text style={styles.affinity}>
-                  <View style={[global.circle, global.fireAffinity]}></View>
-                </Text>
-              </View>
-              <Text style={styles.power}>1250</Text>
-            </View>
-            <View style={styles.duoSection}>
-              <View style={styles.headliner}>
-                <Text style={styles.character}>Rock Lee</Text>
-                <Text style={styles.affinity}>-</Text>
-              </View>
-              <Text style={styles.power}>1250</Text>
-            </View>
-            <View style={styles.section}>
-              <View style={styles.headliner}>
-                <Text style={styles.character}>Tenten</Text>
-                <Text style={styles.affinity}>-</Text>
-              </View>
-              <Text style={styles.power}>1000</Text>
-            </View>
-            <View style={styles.section}>
-              <View style={styles.headliner}>
-                <Text style={styles.character}>Chad</Text>
-                <Text style={styles.affinity}>-</Text>
-              </View>
-              <Text style={styles.power}>1000</Text>
-            </View>
-            <View style={styles.section}>
-              <View style={styles.headliner}>
-                <Text style={styles.character}>Sasori</Text>
-                <Text style={styles.affinity}>-</Text>
-              </View>
-              <Text style={styles.power}>1250</Text>
-            </View>
-            <View style={styles.section}>
-              <View style={styles.headliner}>
-                <Text style={styles.character}>Soul Society</Text>
-                <Text style={styles.affinity}>
-                  <View style={[global.circle, global.arcaneAffinity]}></View>
-                </Text>
-              </View>
-              <Text style={styles.power}>-</Text>
-            </View>
-          </View>
+          <HomeTeam setPage={props.setPage} />
           <View style={styles.positionColumn}>
             <View style={styles.positionSection}>
               <Text style={styles.position}>C</Text>
@@ -111,100 +51,15 @@ const ViewMatchup = () => {
               <Text style={styles.position}>BF</Text>
             </View>
           </View>
-          <View style={styles.column}>
-            <View style={[styles.section, styles.reverse]}>
-              <View style={styles.headliner}>
-                <Text style={[styles.character, styles.characterReverse]}>
-                  Goku
-                </Text>
-                <Text style={[styles.affinity, styles.affinityReverseEmpty]}>
-                  -
-                </Text>
-              </View>
-              <Text style={[styles.power, styles.powerReverse]}>1500</Text>
-            </View>
-            <View style={[styles.section, styles.reverse]}>
-              <View style={styles.headliner}>
-                <Text style={[styles.character, styles.characterReverse]}>
-                  Arthur Boyle
-                </Text>
-                <Text style={[styles.affinity, styles.affinityReverse]}>
-                  <View style={[global.circle, global.fireAffinity]}></View>
-                </Text>
-              </View>
-              <Text style={[styles.power, styles.powerReverse]}>1250</Text>
-            </View>
-            <View style={[styles.section, styles.reverse]}>
-              <View style={styles.headliner}>
-                <Text style={[styles.character, styles.characterReverse]}>
-                  Genos
-                </Text>
-                <Text style={[styles.affinity, styles.affinityReverse]}>
-                  <View style={[global.circle, global.fireAffinity]}></View>
-                </Text>
-              </View>
-              <Text style={[styles.power, styles.powerReverse]}>1250</Text>
-            </View>
-            <View style={[styles.duoSection, styles.reverse]}>
-              <View style={styles.headliner}>
-                <Text style={[styles.character, styles.characterReverse]}>
-                  Rock Lee
-                </Text>
-                <Text style={[styles.affinity, styles.affinityReverseEmpty]}>
-                  -
-                </Text>
-              </View>
-              <Text style={[styles.power, styles.powerReverse]}>1250</Text>
-            </View>
-            <View style={[styles.section, styles.reverse]}>
-              <View style={styles.headliner}>
-                <Text style={[styles.character, styles.characterReverse]}>
-                  Tenten
-                </Text>
-                <Text style={[styles.affinity, styles.affinityReverseEmpty]}>
-                  -
-                </Text>
-              </View>
-              <Text style={[styles.power, styles.powerReverse]}>1000</Text>
-            </View>
-            <View style={[styles.section, styles.reverse]}>
-              <View style={styles.headliner}>
-                <Text style={[styles.character, styles.characterReverse]}>
-                  Chad
-                </Text>
-                <Text style={[styles.affinity, styles.affinityReverseEmpty]}>
-                  -
-                </Text>
-              </View>
-              <Text style={[styles.power, styles.powerReverse]}>1000</Text>
-            </View>
-            <View style={[styles.section, styles.reverse]}>
-              <View style={styles.headliner}>
-                <Text style={[styles.character, styles.characterReverse]}>
-                  Sasori
-                </Text>
-                <Text style={[styles.affinity, styles.affinityReverseEmpty]}>
-                  -
-                </Text>
-              </View>
-              <Text style={[styles.power, styles.powerReverse]}>1250</Text>
-            </View>
-            <View style={[styles.section, styles.reverse]}>
-              <View style={styles.headliner}>
-                <Text style={[styles.character, styles.characterReverse]}>
-                  Soul Society
-                </Text>
-                <Text style={[styles.affinity, styles.affinityReverse]}>
-                  <View style={[global.circle, global.arcaneAffinity]}></View>
-                </Text>
-              </View>
-              <Text style={[styles.power, styles.powerReverse]}>-</Text>
-            </View>
-          </View>
+          <AwayTeam />
         </View>
       </ScrollView>
     </View>
   );
+};
+
+ViewMatchup.propTypes = {
+  setPage: PropTypes.func,
 };
 
 const styles = StyleSheet.create(matchupStyles);

@@ -1,17 +1,20 @@
 import React from "react";
-import leagueStyles from "./view-league.json";
 import globalStyles from "../../../global.json";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 import Leagues from "../../components/leagues";
 import PropTypes from "prop-types";
+import BackLink from "../../components/back-link";
 
 const ViewLeague = (props) => {
   return (
-    <ScrollView>
-      <View style={global.container}>
-        <View style={styles.content}>
-          <Text style={global.title}>Your Leagues</Text>
-        </View>
+    <View style={[global.container, 
+      Platform.OS === "ios"
+      ? global.iosHeaderBeginning
+      : global.androidHeaderBeginning]}
+    >
+      <BackLink redirect={() => props.setPage("Home")} />
+      <ScrollView>
+        <Text style={global.title}>Your Leagues</Text>
         <Leagues
           league="League Name"
           team="Team Name"
@@ -54,8 +57,8 @@ const ViewLeague = (props) => {
           setPage={props.setPage}
           setHeader={props.setHasHeader}
         />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
@@ -64,7 +67,6 @@ ViewLeague.propTypes = {
   setHasHeader: PropTypes.func,
 };
 
-const styles = StyleSheet.create(leagueStyles);
 const global = StyleSheet.create(globalStyles);
 
 export default ViewLeague;

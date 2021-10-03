@@ -11,6 +11,9 @@ import Header from "./src/components/header";
 import Team from "./src/screens/team";
 import Bio from "./src/screens/bio";
 import ViewMatchup from "./src/screens/view-matchup";
+import Settings from "./src/screens/settings";
+import TeamInfo from "./src/screens/team-info";
+import Vote from "./src/screens/vote";
 
 const App = () => {
   const [page, setPage] = useState("SignIn");
@@ -18,6 +21,7 @@ const App = () => {
 
   return (
     <View style={styles.container}>
+      <Header setPage={setPage} setHasHeader={setHasHeader} page={page} hasHeader={hasHeader} />
       {page === "SignIn" && <SignIn setPage={setPage} />}
       {page === "SignUp" && <SignUp setPage={setPage} />}
       {page === "Forgot" && <Forgot setPage={setPage} />}
@@ -28,15 +32,21 @@ const App = () => {
       {page === "VoteMatchup" && (
         <VoteMatchup setPage={setPage} setHasHeader={setHasHeader} />
       )}
+      {page === "Vote" && (
+        <Vote setPage={setPage} />
+      )}
       {page === "JoinLeague" && (
         <JoinLeague setPage={setPage} setHasHeader={setHasHeader} />
       )}
       {hasHeader ? (
         <>
-          <Header setPage={setPage} setHasHeader={setHasHeader} page={page} />
-          {page === "ViewMatchup" && <ViewMatchup />}
+          {page === "ViewMatchup" && <ViewMatchup setPage={setPage} />}
           {page === "Team" && <Team setPage={setPage} />}
           {page === "Bio" && <Bio setPage={setPage} />}
+          {page === "Settings" && (
+            <Settings setPage={setPage} setHasHeader={setHasHeader} />
+          )}
+          {page === "TeamInfo" && <TeamInfo setPage={setPage} />}
         </>
       ) : null}
     </View>

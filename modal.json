@@ -1,0 +1,16 @@
+{
+  "container": {
+    "padding": "5%"
+  },
+  "body": {
+    "marginTop": "50%"
+  },
+  "button": {
+    "paddingTop": "10%"
+  },
+  "contentText": {
+    "fontSize": 18,
+    "fontWeight": "700",
+    "textAlign": "center"
+  }
+}
