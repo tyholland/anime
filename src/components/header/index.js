@@ -9,7 +9,7 @@ const Header = (props) => {
     <View
       style={[
         Platform.OS === "ios" ? styles.iosContainer : styles.androidContainer,
-        props.hasHeader ? "" : styles.noHeader
+        props.hasHeader ? "" : styles.noHeader,
       ]}
     >
       <Text
@@ -21,9 +21,9 @@ const Header = (props) => {
       >
         ABZ
       </Text>
-      { props.hasHeader ?
+      {props.hasHeader ? (
         <Nav page={props.page} setPage={props.setPage} />
-        : null }
+      ) : null}
     </View>
   );
 };
@@ -31,7 +31,7 @@ const Header = (props) => {
 Header.propTypes = {
   page: PropTypes.string,
   setPage: PropTypes.func,
-  hasHeader: PropTypes.bool
+  hasHeader: PropTypes.bool,
 };
 
 const styles = StyleSheet.create(headerStyles);

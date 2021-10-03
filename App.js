@@ -21,7 +21,12 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <Header setPage={setPage} setHasHeader={setHasHeader} page={page} hasHeader={hasHeader} />
+      <Header
+        setPage={setPage}
+        setHasHeader={setHasHeader}
+        page={page}
+        hasHeader={hasHeader}
+      />
       {page === "SignIn" && <SignIn setPage={setPage} />}
       {page === "SignUp" && <SignUp setPage={setPage} />}
       {page === "Forgot" && <Forgot setPage={setPage} />}
@@ -32,9 +37,7 @@ const App = () => {
       {page === "VoteMatchup" && (
         <VoteMatchup setPage={setPage} setHasHeader={setHasHeader} />
       )}
-      {page === "Vote" && (
-        <Vote setPage={setPage} />
-      )}
+      {page === "Vote" && <Vote setPage={setPage} />}
       {page === "JoinLeague" && (
         <JoinLeague setPage={setPage} setHasHeader={setHasHeader} />
       )}

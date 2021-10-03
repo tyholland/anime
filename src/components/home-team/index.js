@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import homeStyles from "./home-team.json";
 import globalStyles from "../../../global.json";
 import modalStyles from "../../../modal.json";
@@ -96,15 +96,9 @@ const HomeTeam = (props) => {
       <Modal animationType="slide" transparent={false} visible={isModalOpen}>
         <View style={modal.container}>
           <View style={modal.body}>
-            <Text style={modal.contentText}>
-              Power Level: 1500
-            </Text>
-            <Text style={modal.contentText}>
-              Power Boost: 0
-            </Text>
-            <Text style={modal.contentText}>
-              Power Loss: 0
-            </Text>
+            <Text style={modal.contentText}>Power Level: 1500</Text>
+            <Text style={modal.contentText}>Power Boost: 0</Text>
+            <Text style={modal.contentText}>Power Loss: 0</Text>
           </View>
           <View style={modal.button}>
             <Button

@@ -10,8 +10,8 @@ const Home = (props) => {
       style={[
         global.container,
         Platform.OS === "ios"
-        ? global.iosHeaderBeginning
-        : global.androidHeaderBeginning,
+          ? global.iosHeaderBeginning
+          : global.androidHeaderBeginning,
       ]}
     >
       <View>

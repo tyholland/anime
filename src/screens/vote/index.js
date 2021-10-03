@@ -1,14 +1,7 @@
 import React from "react";
 import voteStyles from "./vote.json";
 import globalStyles from "../../../global.json";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Platform,
-  Pressable,
-  Alert
-} from "react-native";
+import { StyleSheet, View, Text, Platform, Alert } from "react-native";
 import Button from "../../components/button";
 import PropTypes from "prop-types";
 import BackLink from "../../components/back-link";
@@ -20,7 +13,7 @@ const Vote = (props) => {
         global.container,
         Platform.OS === "ios"
           ? global.iosHeaderBeginning
-          : global.androidHeaderBeginning
+          : global.androidHeaderBeginning,
       ]}
     >
       <BackLink redirect={() => props.setPage("VoteMatchup")} />

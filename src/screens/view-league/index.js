@@ -1,16 +1,19 @@
 import React from "react";
 import globalStyles from "../../../global.json";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, ScrollView, Platform } from "react-native";
 import Leagues from "../../components/leagues";
 import PropTypes from "prop-types";
 import BackLink from "../../components/back-link";
 
 const ViewLeague = (props) => {
   return (
-    <View style={[global.container, 
-      Platform.OS === "ios"
-      ? global.iosHeaderBeginning
-      : global.androidHeaderBeginning]}
+    <View
+      style={[
+        global.container,
+        Platform.OS === "ios"
+          ? global.iosHeaderBeginning
+          : global.androidHeaderBeginning,
+      ]}
     >
       <BackLink redirect={() => props.setPage("Home")} />
       <ScrollView>

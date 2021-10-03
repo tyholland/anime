@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import teamStyles from "./team-info.json";
 import globalStyles from "../../../global.json";
-import {
-  StyleSheet,
-  View,
-  Pressable,
-  Text,
-  ScrollView,
-  Platform,
-} from "react-native";
+import { StyleSheet, View, Text, Platform } from "react-native";
 import Button from "../../components/button";
 import PropTypes from "prop-types";
 import TextField from "../../components/text-field";

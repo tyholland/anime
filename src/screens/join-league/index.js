@@ -1,11 +1,6 @@
 import React from "react";
 import globalStyles from "../../../global.json";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Platform,
-} from "react-native";
+import { StyleSheet, View, Text, Platform } from "react-native";
 import Button from "../../components/button";
 import TextField from "../../components/text-field";
 import PropTypes from "prop-types";
@@ -17,8 +12,8 @@ const JoinLeague = (props) => {
       style={[
         global.container,
         Platform.OS === "ios"
-  ? global.iosHeaderBeginning
-  : global.androidHeaderBeginning,
+          ? global.iosHeaderBeginning
+          : global.androidHeaderBeginning,
       ]}
     >
       <BackLink redirect={() => props.setPage("Home")} />
@@ -27,10 +22,15 @@ const JoinLeague = (props) => {
         Enter the code you were given below, to join your friend's league.
       </Text>
       <TextField placeholder="Enter your league code" />
-      <Button btnText="Enter League" btnTextColor="black" btnColor="orange" redirect={() => {
-        props.setPage("Team");
-        props.setHasHeader(true);
-      }} />
+      <Button
+        btnText="Enter League"
+        btnTextColor="black"
+        btnColor="orange"
+        redirect={() => {
+          props.setPage("Team");
+          props.setHasHeader(true);
+        }}
+      />
     </View>
   );
 };

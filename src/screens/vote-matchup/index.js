@@ -1,13 +1,6 @@
 import React from "react";
 import globalStyles from "../../../global.json";
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Platform,
-  Pressable,
-} from "react-native";
+import { StyleSheet, View, Text, Platform } from "react-native";
 import Button from "../../components/button";
 import TextField from "../../components/text-field";
 import PropTypes from "prop-types";
@@ -19,8 +12,8 @@ const VoteMatchup = (props) => {
       style={[
         global.container,
         Platform.OS === "ios"
-    ? global.iosHeaderBeginning
-    : global.androidHeaderBeginning,
+          ? global.iosHeaderBeginning
+          : global.androidHeaderBeginning,
       ]}
     >
       <BackLink redirect={() => props.setPage("Home")} />
