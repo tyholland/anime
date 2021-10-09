@@ -16,6 +16,7 @@ import TeamInfo from "./src/screens/team-info";
 import Vote from "./src/screens/vote";
 import Resources from "./src/screens/resources";
 import Suggestions from "./src/screens/suggestion";
+import LeagueSettings from "./src/screens/league-settings";
 
 const App = () => {
   const [page, setPage] = useState("SignIn");
@@ -53,6 +54,7 @@ const App = () => {
           )}
           {page === "Resources" && <Resources setPage={setPage} />}
           {page === "Suggestions" && <Suggestions setPage={setPage} />}
+          {page === "LeagueSettings" && <LeagueSettings setPage={setPage} />}
           {page === "TeamInfo" && <TeamInfo setPage={setPage} />}
         </>
       ) : null}

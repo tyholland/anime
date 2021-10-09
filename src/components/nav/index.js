@@ -4,8 +4,8 @@ import { StyleSheet, View, Pressable, Text, Platform } from "react-native";
 import PropTypes from "prop-types";
 
 const Nav = (props) => {
-  const teamView =
-    props.page === "Team" || props.page === "Bio" || props.page === "TeamInfo";
+  const teamView = ["Team", "Bio", "TeamInfo"].includes(props.page);
+  const settingsView = ["Settings", "Resources", "Suggestions", "LeagueSettings"].includes(props.page);
 
   return (
     <View
@@ -43,14 +43,14 @@ const Nav = (props) => {
       <Pressable
         style={[
           styles.nav,
-          props.page === "Settings" ? styles.navSelected : "",
+          settingsView ? styles.navSelected : "",
         ]}
         onPress={() => props.setPage("Settings")}
       >
         <Text
           style={[
             styles.navText,
-            props.page === "Settings" ? styles.navTextSelected : "",
+            settingsView ? styles.navTextSelected : "",
           ]}
         >
           Settings

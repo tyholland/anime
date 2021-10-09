@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import homeStyles from "./home-team.json";
 import globalStyles from "../../../global.json";
 import modalStyles from "../../../modal.json";
-import { StyleSheet, View, Text, Modal, Pressable } from "react-native";
+import { StyleSheet, View, Text, Modal, Pressable, Share } from "react-native";
 import PropTypes from "prop-types";
 import Button from "../button";
 
@@ -11,6 +11,20 @@ const HomeTeam = (props) => {
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
+  };
+
+  const shareEvent = async () => {
+    try {
+      const result = await Share.share({
+        message: "Help me when my battle by voting for Goku",
+      });
+  
+      if (result.action === Share.sharedAction) {}
+  
+      return false;
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -109,10 +123,22 @@ const HomeTeam = (props) => {
               <Text style={modal.label}>Power Loss</Text>
               <Text style={modal.points}>0</Text>
             </View>
+            <View style={modal.scoring}>
+              <Text style={modal.label}>Voting</Text>
+              <Text style={modal.points}>0</Text>
+            </View>
             <View style={[modal.scoring, modal.totalPoints]}>
               <Text style={modal.label}>Total Points</Text>
               <Text style={modal.points}>1500</Text>
             </View>
+          </View>
+          <View style={modal.button}>
+            <Button
+              btnText="Get Votes"
+              btnTextColor="black"
+              btnColor="orange"
+              redirect={shareEvent}
+            />
           </View>
           <View style={modal.button}>
             <Button

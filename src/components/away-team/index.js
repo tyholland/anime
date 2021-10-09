@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import awayStyles from "./away-team.json";
 import globalStyles from "../../../global.json";
 import modalStyles from "../../../modal.json";
-import { StyleSheet, View, Text, Modal, Pressable } from "react-native";
+import { StyleSheet, View, Text, Modal, Pressable, Share } from "react-native";
 import PropTypes from "prop-types";
 import Button from "../button";
 
@@ -11,6 +11,20 @@ const AwayTeam = (props) => {
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
+  };
+
+  const shareEvent = async () => {
+    try {
+      const result = await Share.share({
+        message: "Help me when my battle by voting for Goku",
+      });
+  
+      if (result.action === Share.sharedAction) {}
+  
+      return false;
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -96,9 +110,35 @@ const AwayTeam = (props) => {
       <Modal animationType="slide" transparent={false} visible={isModalOpen}>
         <View style={modal.container}>
           <View style={modal.body}>
-            <Text style={modal.contentText}>Power Level: 1500</Text>
-            <Text style={modal.contentText}>Power Boost: 0</Text>
-            <Text style={modal.contentText}>Power Loss: 0</Text>
+            <Text style={global.title}>Goku</Text>
+            <View style={modal.scoring}>
+              <Text style={modal.label}>Power Level</Text>
+              <Text style={modal.points}>1500</Text>
+            </View>
+            <View style={modal.scoring}>
+              <Text style={modal.label}>Power Boost</Text>
+              <Text style={modal.points}>0</Text>
+            </View>
+            <View style={modal.scoring}>
+              <Text style={modal.label}>Power Loss</Text>
+              <Text style={modal.points}>0</Text>
+            </View>
+            <View style={modal.scoring}>
+              <Text style={modal.label}>Voting</Text>
+              <Text style={modal.points}>0</Text>
+            </View>
+            <View style={[modal.scoring, modal.totalPoints]}>
+              <Text style={modal.label}>Total Points</Text>
+              <Text style={modal.points}>1500</Text>
+            </View>
+          </View>
+          <View style={modal.button}>
+            <Button
+              btnText="Get Votes"
+              btnTextColor="black"
+              btnColor="orange"
+              redirect={shareEvent}
+            />
           </View>
           <View style={modal.button}>
             <Button

@@ -30,7 +30,7 @@ const Settings = (props) => {
         </Pressable>
       </View>
       <View style={styles.contentLinks}>
-        <Pressable>
+        <Pressable onPress={() => props.setPage("LeagueSettings")}>
           <Text style={styles.link}>League Settings</Text>
         </Pressable>
       </View>

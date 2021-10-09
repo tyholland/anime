@@ -68,7 +68,7 @@ const Suggestions = (props) => {
               btnText="Close"
               btnTextColor="white"
               btnColor="red"
-              redirect={() => setIsModalOpen(false)}
+              redirect={() => props.setPage("Settings")}
             />
           </View>
         </View>
