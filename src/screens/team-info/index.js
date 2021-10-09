@@ -20,29 +20,25 @@ const TeamInfo = (props) => {
       ]}
     >
       <BackLink redirect={() => props.setPage("Team")} />
-      <View>
-        <View>
-          <Text style={global.title}>Update Team Info</Text>
-        </View>
-        <Text style={styles.title}>Team Name:</Text>
-        {edit ? (
-          <TextField placeholder="Enter Team Name" />
-        ) : (
-          <Text style={styles.content}>Jack Of All Trades</Text>
-        )}
-        <Text style={styles.title}>Your Name:</Text>
-        {edit ? (
-          <TextField placeholder="Enter Your Name" />
-        ) : (
-          <Text style={styles.content}>John Smith</Text>
-        )}
-        <Button
-          btnText={edit ? "Save" : "Edit"}
-          btnTextColor="black"
-          btnColor="orange"
-          redirect={() => setEdit(!edit)}
-        />
-      </View>
+      <Text style={global.title}>Update Team Info</Text>
+      <Text style={styles.title}>Team Name:</Text>
+      {edit ? (
+        <TextField placeholder="Enter Team Name" />
+      ) : (
+        <Text style={styles.content}>Jack Of All Trades</Text>
+      )}
+      <Text style={styles.title}>Your Name:</Text>
+      {edit ? (
+        <TextField placeholder="Enter Your Name" />
+      ) : (
+        <Text style={styles.content}>John Smith</Text>
+      )}
+      <Button
+        btnText={edit ? "Save" : "Edit"}
+        btnTextColor="black"
+        btnColor="orange"
+        redirect={() => setEdit(!edit)}
+      />
     </View>
   );
 };

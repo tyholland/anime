@@ -14,6 +14,8 @@ import ViewMatchup from "./src/screens/view-matchup";
 import Settings from "./src/screens/settings";
 import TeamInfo from "./src/screens/team-info";
 import Vote from "./src/screens/vote";
+import Resources from "./src/screens/resources";
+import Suggestions from "./src/screens/suggestion";
 
 const App = () => {
   const [page, setPage] = useState("SignIn");
@@ -49,6 +51,8 @@ const App = () => {
           {page === "Settings" && (
             <Settings setPage={setPage} setHasHeader={setHasHeader} />
           )}
+          {page === "Resources" && <Resources setPage={setPage} />}
+          {page === "Suggestions" && <Suggestions setPage={setPage} />}
           {page === "TeamInfo" && <TeamInfo setPage={setPage} />}
         </>
       ) : null}

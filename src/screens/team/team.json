@@ -38,11 +38,16 @@
   "teamContent": {
     "marginLeft": 10
   },
+  "points": {
+    "marginRight": 10,
+    "marginTop": 10
+  },
   "infoContent": {
     "marginRight": 10
   },
   "infoTxt": {
-    "color": "rgb(27, 5, 246)"
+    "color": "rgb(27, 5, 246)",
+    "textAlign": "right"
   },
   "teamName": {
     "fontSize": 18,

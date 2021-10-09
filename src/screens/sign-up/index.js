@@ -15,10 +15,8 @@ const SignUp = (props) => {
           : global.androidHeaderBeginning,
       ]}
     >
-      <View>
-        <Text style={global.title}>Join ABZ's</Text>
-        <Text style={global.title}>Anime Fantasy League</Text>
-      </View>
+      <Text style={global.title}>Join ABZ's</Text>
+      <Text style={global.title}>Anime Fantasy League</Text>
       <TextField placeholder="Please enter a email" keyboard="email-address" />
       <TextField placeholder="Please enter a password" type="password" />
       <Button
@@ -27,11 +25,9 @@ const SignUp = (props) => {
         btnColor="orange"
         redirect={() => props.setPage("Home")}
       />
-      <View>
-        <Pressable onPress={() => props.setPage("SignIn")}>
-          <Text style={global.link}>Sign In</Text>
-        </Pressable>
-      </View>
+      <Pressable onPress={() => props.setPage("SignIn")}>
+        <Text style={global.link}>Sign In</Text>
+      </Pressable>
     </View>
   );
 };

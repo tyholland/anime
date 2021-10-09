@@ -32,12 +32,15 @@ const Team = (props) => {
             <Text style={styles.teamOwner}>John Smith</Text>
             <Text style={styles.teamRecord}>4-1</Text>
           </View>
-          <Pressable
-            style={styles.infoContent}
-            onPress={() => props.setPage("TeamInfo")}
-          >
-            <Text style={styles.infoTxt}>Team Info</Text>
-          </Pressable>
+          <View>
+            <Pressable
+              style={styles.infoContent}
+              onPress={() => props.setPage("TeamInfo")}
+            >
+              <Text style={styles.infoTxt}>Team Info</Text>
+            </Pressable>
+            <Text style={styles.points}>1000 points</Text>
+          </View>
         </View>
         <Squad setPage={props.setPage} />
         <View style={styles.total}>

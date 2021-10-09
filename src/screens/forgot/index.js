@@ -29,9 +29,7 @@ const ForgotPassword = (props) => {
           : global.androidHeaderBeginning,
       ]}
     >
-      <View>
-        <Text style={global.title}>Forgot Your Password</Text>
-      </View>
+      <Text style={global.title}>Forgot Your Password</Text>
       <TextField placeholder="Enter your email" keyboard="email-address" />
       <Button
         btnText="Get Temporary Password"
@@ -39,11 +37,9 @@ const ForgotPassword = (props) => {
         btnColor="orange"
         redirect={toggleModal}
       />
-      <View>
-        <Pressable onPress={() => props.setPage("SignIn")}>
-          <Text style={global.link}>Sign In</Text>
-        </Pressable>
-      </View>
+      <Pressable onPress={() => props.setPage("SignIn")}>
+        <Text style={global.link}>Sign In</Text>
+      </Pressable>
       <Modal animationType="slide" transparent={false} visible={isModalOpen}>
         <View style={modal.container}>
           <View style={modal.body}>

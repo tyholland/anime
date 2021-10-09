@@ -96,9 +96,23 @@ const HomeTeam = (props) => {
       <Modal animationType="slide" transparent={false} visible={isModalOpen}>
         <View style={modal.container}>
           <View style={modal.body}>
-            <Text style={modal.contentText}>Power Level: 1500</Text>
-            <Text style={modal.contentText}>Power Boost: 0</Text>
-            <Text style={modal.contentText}>Power Loss: 0</Text>
+            <Text style={global.title}>Goku</Text>
+            <View style={modal.scoring}>
+              <Text style={modal.label}>Power Level</Text>
+              <Text style={modal.points}>1500</Text>
+            </View>
+            <View style={modal.scoring}>
+              <Text style={modal.label}>Power Boost</Text>
+              <Text style={modal.points}>0</Text>
+            </View>
+            <View style={modal.scoring}>
+              <Text style={modal.label}>Power Loss</Text>
+              <Text style={modal.points}>0</Text>
+            </View>
+            <View style={[modal.scoring, modal.totalPoints]}>
+              <Text style={modal.label}>Total Points</Text>
+              <Text style={modal.points}>1500</Text>
+            </View>
           </View>
           <View style={modal.button}>
             <Button

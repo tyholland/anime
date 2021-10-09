@@ -7,58 +7,62 @@ import PropTypes from "prop-types";
 const Settings = (props) => {
   return (
     <View
-      style={
+      style={[
+        global.container,
         Platform.OS === "ios"
           ? global.iosHeaderBeginning
-          : global.androidHeaderBeginning
-      }
+          : global.androidHeaderBeginning,
+      ]}
     >
-      <View>
-        <View style={styles.contentLinks}>
-          <Pressable>
-            <Text style={styles.link}>Scoreboard</Text>
-          </Pressable>
-        </View>
-        <View style={styles.contentLinks}>
-          <Pressable>
-            <Text style={styles.link}>Standings</Text>
-          </Pressable>
-        </View>
-        <View style={styles.contentLinks}>
-          <Pressable>
-            <Text style={styles.link}>League Settings</Text>
-          </Pressable>
-        </View>
-        <View style={styles.contentLinks}>
-          <Pressable>
-            <Text style={styles.link}>Resources</Text>
-          </Pressable>
-        </View>
-        <View style={styles.contentLinks}>
-          <Pressable>
-            <Text style={styles.link}>Suggestions</Text>
-          </Pressable>
-        </View>
-        <View style={styles.contentLinks}>
-          <Pressable
-            onPress={() => {
-              props.setPage("Home");
-              props.setHasHeader(false);
-            }}
-          >
-            <Text style={styles.link}>Switch Leagues</Text>
-          </Pressable>
-        </View>
-        <View style={styles.contentLinks}>
-          <Pressable
-            onPress={() => {
-              props.setPage("SignIn");
-              props.setHasHeader(false);
-            }}
-          >
-            <Text style={styles.link}>Log Out</Text>
-          </Pressable>
-        </View>
+      <View style={styles.contentLinks}>
+        <Pressable>
+          <Text style={styles.link}>Schedule</Text>
+        </Pressable>
+      </View>
+      <View style={styles.contentLinks}>
+        <Pressable>
+          <Text style={styles.link}>Scoreboard</Text>
+        </Pressable>
+      </View>
+      <View style={styles.contentLinks}>
+        <Pressable>
+          <Text style={styles.link}>Standings</Text>
+        </Pressable>
+      </View>
+      <View style={styles.contentLinks}>
+        <Pressable>
+          <Text style={styles.link}>League Settings</Text>
+        </Pressable>
+      </View>
+      <View style={styles.contentLinks}>
+        <Pressable onPress={() => props.setPage("Resources")}>
+          <Text style={styles.link}>Resources</Text>
+        </Pressable>
+      </View>
+      <View style={styles.contentLinks}>
+        <Pressable onPress={() => props.setPage("Suggestions")}>
+          <Text style={styles.link}>Suggestions</Text>
+        </Pressable>
+      </View>
+      <View style={styles.contentLinks}>
+        <Pressable
+          onPress={() => {
+            props.setPage("Home");
+            props.setHasHeader(false);
+          }}
+        >
+          <Text style={styles.link}>Switch Leagues</Text>
+        </Pressable>
+      </View>
+      <View style={styles.contentLinks}>
+        <Pressable
+          onPress={() => {
+            props.setPage("SignIn");
+            props.setHasHeader(false);
+          }}
+        >
+          <Text style={styles.link}>Log Out</Text>
+        </Pressable>
       </View>
     </View>
   );

@@ -14,9 +14,7 @@ const Home = (props) => {
           : global.androidHeaderBeginning,
       ]}
     >
-      <View>
-        <Text style={global.title}>Choose Your Path</Text>
-      </View>
+      <Text style={global.title}>Choose Your Path</Text>
       <Button
         btnText="View Your League(s)"
         btnTextColor="yellow"
