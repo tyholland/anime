@@ -2,11 +2,13 @@
   "iosContainer": {
     "marginTop": "5%",
     "display": "flex",
-    "flexDirection": "row"
+    "flexDirection": "row",
+    "width": "92%"
   },
   "androidContainer": {
     "display": "flex",
-    "flexDirection": "row"
+    "flexDirection": "row",
+    "width": "90%"
   },
   "nav": {
     "paddingHorizontal": "5%",

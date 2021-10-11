@@ -39,7 +39,7 @@ const Team = (props) => {
             >
               <Text style={styles.infoTxt}>Team Info</Text>
             </Pressable>
-            <Text style={styles.points}>1000 points</Text>
+            <Text style={styles.points}>1000 pts left</Text>
           </View>
         </View>
         <Squad setPage={props.setPage} />

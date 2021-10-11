@@ -2,8 +2,7 @@ import React from "react";
 import matchupStyles from "./view-matchup.json";
 import globalStyles from "../../../global.json";
 import { StyleSheet, View, Text, ScrollView, Platform } from "react-native";
-import HomeTeam from "../../components/home-team";
-import AwayTeam from "../../components/away-team";
+import MatchUp from "../../components/matchup";
 import PropTypes from "prop-types";
 
 const ViewMatchup = (props) => {
@@ -27,7 +26,7 @@ const ViewMatchup = (props) => {
           </View>
         </View>
         <View style={styles.teamSplit}>
-          <HomeTeam setPage={props.setPage} />
+          <MatchUp setPage={props.setPage} isReverse={false} />
           <View style={styles.positionColumn}>
             <View style={styles.positionSection}>
               <Text style={styles.position}>C</Text>
@@ -51,7 +50,7 @@ const ViewMatchup = (props) => {
               <Text style={styles.position}>BF</Text>
             </View>
           </View>
-          <AwayTeam />
+          <MatchUp setPage={props.setPage} isReverse={true} />
         </View>
       </ScrollView>
     </View>
