@@ -109,7 +109,7 @@ const MatchUp = (props) => {
       </View>
       <Modal animationType="slide" transparent={false} visible={isModalOpen}>
         <View style={modal.container}>
-          <View style={modal.body}>
+          <View style={modal.stats}>
             <Text style={global.title}>Goku</Text>
             <View style={modal.scoring}>
               <Text style={modal.label}>Power Level</Text>
@@ -117,11 +117,35 @@ const MatchUp = (props) => {
             </View>
             <View style={modal.scoring}>
               <Text style={modal.label}>Power Boost</Text>
-              <Text style={modal.points}>0</Text>
+              <Text style={modal.points}>300</Text>
+            </View>
+            <View style={modal.scoring}>
+              <Text style={modal.specificLabel}>Weekly Affinity</Text>
+              <Text style={modal.specificPoints}>100</Text>
+            </View>
+            <View style={modal.scoring}>
+              <Text style={modal.specificLabel}>Support</Text>
+              <Text style={modal.specificPoints}>100</Text>
+            </View>
+            <View style={modal.scoring}>
+              <Text style={modal.specificLabel}>Battlefield</Text>
+              <Text style={modal.specificPoints}>100</Text>
             </View>
             <View style={modal.scoring}>
               <Text style={modal.label}>Power Loss</Text>
-              <Text style={modal.points}>0</Text>
+              <Text style={modal.points}>- 100</Text>
+            </View>
+            <View style={modal.scoring}>
+              <Text style={modal.specificLabel}>Weekly Affinity</Text>
+              <Text style={modal.specificPoints}>50</Text>
+            </View>
+            <View style={modal.scoring}>
+              <Text style={modal.specificLabel}>Villain</Text>
+              <Text style={modal.specificPoints}>50</Text>
+            </View>
+            <View style={modal.scoring}>
+              <Text style={modal.specificLabel}>Battlefield</Text>
+              <Text style={modal.specificPoints}>0</Text>
             </View>
             <View style={modal.scoring}>
               <Text style={modal.label}>Voting</Text>
@@ -129,7 +153,7 @@ const MatchUp = (props) => {
             </View>
             <View style={[modal.scoring, modal.totalPoints]}>
               <Text style={modal.label}>Total Points</Text>
-              <Text style={modal.points}>1500</Text>
+              <Text style={modal.points}>1700</Text>
             </View>
           </View>
           <View style={modal.button}>

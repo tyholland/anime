@@ -5,8 +5,11 @@
   "body": {
     "marginTop": "50%"
   },
+  "stats": {
+    "marginTop": "15%"
+  },
   "button": {
-    "paddingTop": "10%"
+    "paddingTop": "5%"
   },
   "contentText": {
     "fontSize": 18,
@@ -23,14 +26,29 @@
     "textAlign": "left",
     "width": "48%",
     "paddingLeft": "2%",
-    "fontSize": 18
+    "fontSize": 20
+  },
+  "specificPoints": {
+    "textAlign": "left",
+    "width": "48%",
+    "paddingLeft": "2%",
+    "fontSize": 14,
+    "color": "rgba(0, 0, 0, .5)"
   },
   "label": {
     "textAlign": "right",
     "width": "48%",
     "paddingRight": "2%",
     "fontWeight": "700",
-    "fontSize": 18
+    "fontSize": 20
+  },
+  "specificLabel": {
+    "textAlign": "right",
+    "width": "48%",
+    "paddingRight": "2%",
+    "fontWeight": "700",
+    "fontSize": 14,
+    "color": "rgba(0, 0, 0, .5)"
   },
   "totalPoints": {
     "borderTopWidth": 1,
