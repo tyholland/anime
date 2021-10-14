@@ -14,9 +14,13 @@ import ViewMatchup from "./src/screens/view-matchup";
 import Settings from "./src/screens/settings";
 import TeamInfo from "./src/screens/team-info";
 import Vote from "./src/screens/vote";
-import Resources from "./src/screens/resources";
-import Suggestions from "./src/screens/suggestion";
-import LeagueSettings from "./src/screens/league-settings";
+import Resources from "./src/screens/settings/resources";
+import Suggestions from "./src/screens/settings/suggestion";
+import LeagueSettings from "./src/screens/settings/league-settings";
+import Affinities from "./src/screens/settings/affinities";
+import Boost from "./src/screens/settings/boost";
+import Loss from "./src/screens/settings/loss";
+import Voting from "./src/screens/settings/voting";
 
 const App = () => {
   const [page, setPage] = useState("SignIn");
@@ -55,6 +59,10 @@ const App = () => {
           {page === "Resources" && <Resources setPage={setPage} />}
           {page === "Suggestions" && <Suggestions setPage={setPage} />}
           {page === "LeagueSettings" && <LeagueSettings setPage={setPage} />}
+          {page === "Affinity" && <Affinities setPage={setPage} />}
+          {page === "Boost" && <Boost setPage={setPage} />}
+          {page === "Loss" && <Loss setPage={setPage} />}
+          {page === "Voting" && <Voting setPage={setPage} />}
           {page === "TeamInfo" && <TeamInfo setPage={setPage} />}
         </>
       ) : null}

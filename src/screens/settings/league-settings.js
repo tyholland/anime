@@ -1,5 +1,5 @@
 import React from "react";
-import leagueStyles from "./league-settings.json";
+import leagueStyles from "./settings.json";
 import globalStyles from "../../../global.json";
 import {
   StyleSheet,
@@ -24,21 +24,26 @@ const LeagueSettings = (props) => {
       <BackLink redirect={() => props.setPage("Settings")} />
       <View style={styles.contentLinks}>
         <Pressable>
-          <Text style={styles.link}>Game Rules</Text>
+          <Text style={styles.link}>Gameplay</Text>
         </Pressable>
       </View>
       <View style={styles.contentLinks}>
-        <Pressable>
+        <Pressable onPress={() => props.setPage("Affinity")}>
+          <Text style={styles.link}>Weekly Element Affinities</Text>
+        </Pressable>
+      </View>
+      <View style={styles.contentLinks}>
+        <Pressable onPress={() => props.setPage("Boost")}>
           <Text style={styles.link}>Power Boosts</Text>
         </Pressable>
       </View>
       <View style={styles.contentLinks}>
-        <Pressable>
+        <Pressable onPress={() => props.setPage("Loss")}>
           <Text style={styles.link}>Power Loss</Text>
         </Pressable>
       </View>
       <View style={styles.contentLinks}>
-        <Pressable>
+        <Pressable onPress={() => props.setPage("Voting")}>
           <Text style={styles.link}>Voting Rules</Text>
         </Pressable>
       </View>

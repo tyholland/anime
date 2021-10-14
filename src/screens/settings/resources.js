@@ -1,5 +1,5 @@
 import React from "react";
-import resourceStyles from "./resources.json";
+import resourceStyles from "./settings.json";
 import globalStyles from "../../../global.json";
 import {
   StyleSheet,

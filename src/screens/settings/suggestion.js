@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import suggestStyles from "./suggestion.json";
+import suggestStyles from "./settings.json";
 import globalStyles from "../../../global.json";
 import modalStyles from "../../../modal.json";
 import { StyleSheet, View, Text, Platform, Modal } from "react-native";
