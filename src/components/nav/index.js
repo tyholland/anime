@@ -1,37 +1,37 @@
-import React from "react";
-import navStyles from "./nav.json";
-import { StyleSheet, View, Pressable, Text, Platform } from "react-native";
-import PropTypes from "prop-types";
+import React from 'react';
+import navStyles from './nav.json';
+import { StyleSheet, View, Pressable, Text, Platform } from 'react-native';
+import PropTypes from 'prop-types';
 
 const Nav = (props) => {
-  const teamView = ["Team", "Bio", "TeamInfo"].includes(props.page);
-  const settingsView = ["Settings", "Resources", "Suggestions", "LeagueSettings"].includes(props.page);
+  const teamView = ['Team', 'Bio', 'TeamInfo'].includes(props.page);
+  const settingsView = ['Settings', 'Resources', 'Suggestions', 'LeagueSettings'].includes(props.page);
 
   return (
     <View
       style={
-        Platform.OS === "ios" ? styles.iosContainer : styles.androidContainer
+        Platform.OS === 'ios' ? styles.iosContainer : styles.androidContainer
       }
     >
       <Pressable
-        style={[styles.nav, teamView ? styles.navSelected : ""]}
-        onPress={() => props.setPage("Team")}
+        style={[styles.nav, teamView ? styles.navSelected : '']}
+        onPress={() => props.setPage('Team')}
       >
-        <Text style={[styles.navText, teamView ? styles.navTextSelected : ""]}>
+        <Text style={[styles.navText, teamView ? styles.navTextSelected : '']}>
           Team
         </Text>
       </Pressable>
       <Pressable
         style={[
           styles.nav,
-          props.page === "ViewMatchup" ? styles.navSelected : "",
+          props.page === 'ViewMatchup' ? styles.navSelected : '',
         ]}
-        onPress={() => props.setPage("ViewMatchup")}
+        onPress={() => props.setPage('ViewMatchup')}
       >
         <Text
           style={[
             styles.navText,
-            props.page === "ViewMatchup" ? styles.navTextSelected : "",
+            props.page === 'ViewMatchup' ? styles.navTextSelected : '',
           ]}
         >
           Matchup
@@ -43,14 +43,14 @@ const Nav = (props) => {
       <Pressable
         style={[
           styles.nav,
-          settingsView ? styles.navSelected : "",
+          settingsView ? styles.navSelected : '',
         ]}
-        onPress={() => props.setPage("Settings")}
+        onPress={() => props.setPage('Settings')}
       >
         <Text
           style={[
             styles.navText,
-            settingsView ? styles.navTextSelected : "",
+            settingsView ? styles.navTextSelected : '',
           ]}
         >
           Settings

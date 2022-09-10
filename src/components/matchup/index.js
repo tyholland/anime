@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import matchStyles from "./matchup.json";
-import globalStyles from "../../../global.json";
-import modalStyles from "../../../modal.json";
-import { StyleSheet, View, Text, Modal, Pressable, Share } from "react-native";
-import PropTypes from "prop-types";
-import Button from "../button";
+import React, { useState } from 'react';
+import matchStyles from './matchup.json';
+import globalStyles from '../../../global.json';
+import modalStyles from '../../../modal.json';
+import { StyleSheet, View, Text, Modal, Pressable, Share } from 'react-native';
+import PropTypes from 'prop-types';
+import Button from '../button';
 
 const MatchUp = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,7 +16,7 @@ const MatchUp = (props) => {
   const shareEvent = async () => {
     try {
       const result = await Share.share({
-        message: "Help me when my battle by voting for Goku",
+        message: 'Help me when my battle by voting for Goku',
       });
   
       if (result.action === Share.sharedAction) {}

@@ -1,7 +1,7 @@
-import React from "react";
-import textStyles from "./text-field.json";
-import { StyleSheet, KeyboardAvoidingView, TextInput } from "react-native";
-import PropTypes from "prop-types";
+import React from 'react';
+import textStyles from './text-field.json';
+import { StyleSheet, KeyboardAvoidingView, TextInput } from 'react-native';
+import PropTypes from 'prop-types';
 
 const TextField = (props) => {
   return (
@@ -9,10 +9,10 @@ const TextField = (props) => {
       <TextInput
         placeholder={props.placeholder}
         style={styles.textField}
-        keyboardType={props.keyboard ? props.keyboard : "default"}
+        keyboardType={props.keyboard ? props.keyboard : 'default'}
         autoCapitalize="none"
-        textContentType={props.type === "password" ? "password" : "none"}
-        secureTextEntry={props.type === "password"}
+        textContentType={props.type === 'password' ? 'password' : 'none'}
+        secureTextEntry={props.type === 'password'}
       />
     </KeyboardAvoidingView>
   );

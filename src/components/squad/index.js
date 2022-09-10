@@ -1,18 +1,18 @@
-import React from "react";
-import squadStyles from "./squad.json";
-import globalStyles from "../../../global.json";
-import { StyleSheet, View, Pressable, Text, Platform } from "react-native";
-import PropTypes from "prop-types";
+import React from 'react';
+import squadStyles from './squad.json';
+import globalStyles from '../../../global.json';
+import { StyleSheet, View, Pressable, Text, Platform } from 'react-native';
+import PropTypes from 'prop-types';
 
 const Squad = (props) => {
-  const isBench = props.type && props.type === "Bench";
+  const isBench = props.type && props.type === 'Bench';
 
   return (
     <>
       <View style={[styles.section, styles.headerSection]}>
         <Text style={[styles.position, styles.none]}></Text>
         <Text style={[styles.character, styles.bold]}>
-          {isBench ? "Bench" : "Starters"}
+          {isBench ? 'Bench' : 'Starters'}
         </Text>
         <Text style={[styles.affinity, styles.bold]}>Affinity</Text>
         <Text style={[styles.power, styles.bold]}>Power Level</Text>
@@ -20,16 +20,16 @@ const Squad = (props) => {
       <View
         style={
           isBench
-            ? Platform.OS === "ios"
+            ? Platform.OS === 'ios'
               ? styles.iosContainerBottom
               : styles.androidContainerBottom
-            : ""
+            : ''
         }
       >
         <View style={styles.section}>
-          <Text style={styles.position}>{isBench ? "BN" : "C"}</Text>
+          <Text style={styles.position}>{isBench ? 'BN' : 'C'}</Text>
           <Pressable
-            onPress={() => props.setPage("Bio")}
+            onPress={() => props.setPage('Bio')}
             style={styles.character}
           >
             <Text style={styles.characterTxt}>Goku</Text>
@@ -38,9 +38,9 @@ const Squad = (props) => {
           <Text style={styles.power}>1500</Text>
         </View>
         <View style={styles.section}>
-          <Text style={styles.position}>{isBench ? "BN" : "B"}</Text>
+          <Text style={styles.position}>{isBench ? 'BN' : 'B'}</Text>
           <Pressable
-            onPress={() => props.setPage("Bio")}
+            onPress={() => props.setPage('Bio')}
             style={styles.character}
           >
             <Text style={styles.characterTxt}>Arthur Boyle</Text>
@@ -51,9 +51,9 @@ const Squad = (props) => {
           <Text style={styles.power}>1250</Text>
         </View>
         <View style={styles.section}>
-          <Text style={styles.position}>{isBench ? "BN" : "B"}</Text>
+          <Text style={styles.position}>{isBench ? 'BN' : 'B'}</Text>
           <Pressable
-            onPress={() => props.setPage("Bio")}
+            onPress={() => props.setPage('Bio')}
             style={styles.character}
           >
             <Text style={styles.characterTxt}>Genos</Text>
@@ -67,10 +67,10 @@ const Squad = (props) => {
           <View style={styles.section}>
             <Text style={[styles.position, styles.duo]}>B/S</Text>
             <View style={styles.character}>
-              <Pressable onPress={() => props.setPage("Bio")}>
+              <Pressable onPress={() => props.setPage('Bio')}>
                 <Text style={[styles.duoText, styles.duoSpace]}>Rock Lee</Text>
               </Pressable>
-              <Pressable onPress={() => props.setPage("Bio")}>
+              <Pressable onPress={() => props.setPage('Bio')}>
                 <Text style={[styles.duoText, styles.duoSpace]}>Tenten</Text>
               </Pressable>
             </View>
@@ -85,9 +85,9 @@ const Squad = (props) => {
           </View>
         )}
         <View style={styles.section}>
-          <Text style={styles.position}>{isBench ? "BN" : "S"}</Text>
+          <Text style={styles.position}>{isBench ? 'BN' : 'S'}</Text>
           <Pressable
-            onPress={() => props.setPage("Bio")}
+            onPress={() => props.setPage('Bio')}
             style={styles.character}
           >
             <Text style={styles.characterTxt}>Chad</Text>
@@ -96,9 +96,9 @@ const Squad = (props) => {
           <Text style={styles.power}>1000</Text>
         </View>
         <View style={styles.section}>
-          <Text style={styles.position}>{isBench ? "BN" : "V"}</Text>
+          <Text style={styles.position}>{isBench ? 'BN' : 'V'}</Text>
           <Pressable
-            onPress={() => props.setPage("Bio")}
+            onPress={() => props.setPage('Bio')}
             style={styles.character}
           >
             <Text style={styles.characterTxt}>Sasori</Text>
@@ -110,7 +110,7 @@ const Squad = (props) => {
           <View style={styles.section}>
             <Text style={styles.position}>BF</Text>
             <Pressable
-              onPress={() => props.setPage("Bio")}
+              onPress={() => props.setPage('Bio')}
               style={styles.character}
             >
               <Text style={styles.characterTxt}>Soul Society</Text>

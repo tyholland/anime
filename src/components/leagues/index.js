@@ -1,8 +1,8 @@
-import React from "react";
-import leagueStyles from "./leagues.json";
-import { StyleSheet, View, Text } from "react-native";
-import PropTypes from "prop-types";
-import Button from "../button";
+import React from 'react';
+import leagueStyles from './leagues.json';
+import { StyleSheet, View, Text } from 'react-native';
+import PropTypes from 'prop-types';
+import Button from '../button';
 
 const Leagues = (props) => {
   return (
@@ -17,7 +17,7 @@ const Leagues = (props) => {
         btnColor="orange"
         customBtnColor={styles.viewBtn}
         customBtnTextColor={styles.viewBtnText}
-        redirect={() => props.setPage("Team")}
+        redirect={() => props.setPage('Team')}
         setHeader={props.setHeader}
         header={true}
       />
