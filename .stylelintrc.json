@@ -1,0 +1,18 @@
+{
+  "extends": ["stylelint-config-recommended", "stylelint-config-styled-components"],
+  "plugins": ["stylelint-prettier"],
+  "overrides": [
+    {
+      "files": ["src/styles/*.style.js"],
+      "customSyntax": "@stylelint/postcss-css-in-js",
+      "rules": {
+        "at-rule-no-unknown": null
+      }
+    }
+  ],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "prettier/prettier": true,
+    "indentation": 2
+  }
+}
