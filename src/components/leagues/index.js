@@ -1,37 +1,24 @@
 import React from 'react';
-import leagueStyles from './leagues.json';
-import { StyleSheet, View, Text } from 'react-native';
-import PropTypes from 'prop-types';
 import Button from '../button';
+import { $LeaguesTextContent, $Leagues, $LeaguesViewBtnText, $LeaguesViewBtn } from './leagues.style';
 
-const Leagues = (props) => {
+const Leagues = ({ league, setPage, setHeader }) => {
   return (
-    <View style={styles.league}>
-      <View>
-        <Text style={styles.textContent}>{props.league}</Text>
-        <Text style={styles.textContent}>{props.league}</Text>
-      </View>
+    <$Leagues>
+      <$LeaguesTextContent>{league}</$LeaguesTextContent>
+      <$LeaguesTextContent>{league}</$LeaguesTextContent>
       <Button
         btnText="View Team"
         btnTextColor="black"
         btnColor="orange"
-        customBtnColor={styles.viewBtn}
-        customBtnTextColor={styles.viewBtnText}
-        redirect={() => props.setPage('Team')}
-        setHeader={props.setHeader}
+        customBtnColor={$LeaguesViewBtn}
+        customBtnTextColor={$LeaguesViewBtnText}
+        redirect={() => setPage('Team')}
+        setHeader={setHeader}
         header={true}
       />
-    </View>
+    </$Leagues>
   );
 };
-
-Leagues.propTypes = {
-  league: PropTypes.string,
-  team: PropTypes.string,
-  setPage: PropTypes.func,
-  setHeader: PropTypes.func,
-};
-
-const styles = StyleSheet.create(leagueStyles);
 
 export default Leagues;

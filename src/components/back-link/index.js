@@ -1,25 +1,15 @@
+import Link from 'next/link';
 import React from 'react';
-import backStyles from './back-link.json';
-import { StyleSheet, Pressable, Text, Platform } from 'react-native';
-import PropTypes from 'prop-types';
+import { $BackLinkText } from './back-link.style';
 
-const BackLink = (props) => {
+const BackLink = ({ redirect }) => {
   return (
-    <Pressable
-      style={
-        Platform.OS === 'ios' ? styles.iosBackLink : styles.androidBackLink
-      }
-      onPress={props.redirect}
-    >
-      <Text style={styles.link}>&lt; Back</Text>
-    </Pressable>
+    <Link href={`/${redirect}`}>
+      <button>
+        <$BackLinkText>&lt; Back</$BackLinkText>
+      </button>
+    </Link>
   );
 };
-
-BackLink.propTypes = {
-  redirect: PropTypes.func,
-};
-
-const styles = StyleSheet.create(backStyles);
 
 export default BackLink;

@@ -1,75 +1,57 @@
 import React from 'react';
-import globalStyles from '../../../global.json';
-import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native';
-import Leagues from '../../components/leagues';
-import PropTypes from 'prop-types';
-import BackLink from '../../components/back-link';
+import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
+import Leagues from 'Components/leagues';
+import BackLink from 'Components/back-link';
 
-const ViewLeague = (props) => {
+const ViewLeague = ({ setPage, setHasHeader }) => {
   return (
-    <View
-      style={[
-        global.container,
-        Platform.OS === 'ios'
-          ? global.iosHeaderBeginning
-          : global.androidHeaderBeginning,
-      ]}
-    >
-      <BackLink redirect={() => props.setPage('Home')} />
-      <ScrollView>
-        <Text style={global.title}>Your Leagues</Text>
-        <Leagues
-          league="League Name"
-          team="Team Name"
-          setPage={props.setPage}
-          setHeader={props.setHasHeader}
-        />
-        <Leagues
-          league="League Name"
-          team="Team Name"
-          setPage={props.setPage}
-          setHeader={props.setHasHeader}
-        />
-        <Leagues
-          league="League Name"
-          team="Team Name"
-          setPage={props.setPage}
-          setHeader={props.setHasHeader}
-        />
-        <Leagues
-          league="League Name"
-          team="Team Name"
-          setPage={props.setPage}
-          setHeader={props.setHasHeader}
-        />
-        <Leagues
-          league="League Name"
-          team="Team Name"
-          setPage={props.setPage}
-          setHeader={props.setHasHeader}
-        />
-        <Leagues
-          league="League Name"
-          team="Team Name"
-          setPage={props.setPage}
-          setHeader={props.setHasHeader}
-        />
-        <Leagues
-          league="League Name"
-          team="Team Name"
-          setPage={props.setPage}
-          setHeader={props.setHasHeader}
-        />
-      </ScrollView>
-    </View>
+    <$GlobalContainer>
+      <BackLink redirect="" />
+      <$GlobalTitle>Your Leagues</$GlobalTitle>
+      <Leagues
+        league="League Name"
+        team="Team Name"
+        setPage={setPage}
+        setHeader={setHasHeader}
+      />
+      <Leagues
+        league="League Name"
+        team="Team Name"
+        setPage={setPage}
+        setHeader={setHasHeader}
+      />
+      <Leagues
+        league="League Name"
+        team="Team Name"
+        setPage={setPage}
+        setHeader={setHasHeader}
+      />
+      <Leagues
+        league="League Name"
+        team="Team Name"
+        setPage={setPage}
+        setHeader={setHasHeader}
+      />
+      <Leagues
+        league="League Name"
+        team="Team Name"
+        setPage={setPage}
+        setHeader={setHasHeader}
+      />
+      <Leagues
+        league="League Name"
+        team="Team Name"
+        setPage={setPage}
+        setHeader={setHasHeader}
+      />
+      <Leagues
+        league="League Name"
+        team="Team Name"
+        setPage={setPage}
+        setHeader={setHasHeader}
+      />
+    </$GlobalContainer>
   );
 };
-
-ViewLeague.propTypes = {
-  setPage: PropTypes.func,
-  setHasHeader: PropTypes.func,
-};
-
-const global = StyleSheet.create(globalStyles);
 
 export default ViewLeague;

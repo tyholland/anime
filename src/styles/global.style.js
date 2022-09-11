@@ -1,73 +1,77 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const $GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
   }
-  
-  .container {
-    padding: 5%;
-  }
 
-  .link {
-    font-size: 16px;
-    line-height: 32px;
-    font-weight: 600;
-    margin-top: 30px;
-    text-align: center;
-    color: rgb(27, 5, 246);
-    text-decoration-line: underline;
+  button {
+    cursor: pointer;
   }
+`;
 
-  .title {
-    font-weight: 700;
-    margin-bottom: 5%;
-    font-size: 30px;
-    text-align: center;
-  }
+export const $GlobalContainer = styled.div`
+  padding: 5%;
+`;
 
-  .subTitle {
-    margin-bottom: 5%;
-    font-size: 20px;
-    text-align: center;
-  }
+export const $GlobalLink = styled.div`
+  font-size: 16px;
+  line-height: 32px;
+  font-weight: 600;
+  margin-top: 30px;
+  text-align: center;
+  color: rgb(27, 5, 246);
+  text-decoration-line: underline;
+`;
 
-  .right {
-    text-align: right;
-  }
+export const $GlobalTitle = styled.div`
+  font-weight: 700;
+  margin-bottom: 5%;
+  font-size: 30px;
+  text-align: center;
+`;
 
-  .circle {
-    width: 15px;
-    height: 15px;
-    border-radius: 10px;
-  }
+export const $GlobalSubTitle = styled.div`
+  margin-bottom: 5%;
+  font-size: 20px;
+  text-align: center;
+`;
 
-  .fireAffinity {
-    background-color: #cc0000;
-  }
+export const $GlobalRight = styled.div`
+  text-align: right;
+`;
 
-  .arcaneAffinity {
-    background-color: #999;
-  }
+export const $GlobalCircle = styled.div`
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+`;
 
-  .darknessAffinity {
-    background-color: #000;
-  }
+export const $GlobalFireAffinity = styled.div`
+  background-color: #cc0000;
+`;
 
-  .waterAffinity {
-    background-color: rgb(27, 5, 246);
-  }
+export const $GlobalArcaneAffinity = styled.div`
+  background-color: #999;
+`;
 
-  .iceAffinity {
-    background-color: rgb(137, 196, 244);
-  }
+export const $GlobalDarknessAffinity = styled.div`
+  background-color: #000;
+`;
 
-  .electricAffinity {
-    background-color: #cc0000;
-  }
+export const $GlobalWaterAffinity = styled.div`
+  background-color: rgb(27, 5, 246);
+`;
 
-  .centerContent {
-    margin-top: 35%;
-    margin-bottom: 50%;
-  }
+export const $GlobalIceAffinity = styled.div`
+  background-color: rgb(137, 196, 244);
+`;
+
+export const $GlobalElectricAffinity = styled.div`
+  background-color: #cc0000;
+`;
+
+export const $GlobalCenterContent = styled.div`
+  margin-top: 35%;
+  margin-bottom: 50%;
 `;

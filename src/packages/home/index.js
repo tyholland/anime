@@ -1,18 +1,19 @@
 import React from 'react';
-import { $GlobalStyles } from 'Styles/global.style';
+import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import Button from 'Components/button';
+import HomeMetadata from './HomeMetadata';
 
 const Home = ({ setPage }) => {
   return (
     <>
-      <$GlobalStyles />
-      <div className="container">
-        <div className="title">Choose Your Path</div>
+      <HomeMetadata />
+      <$GlobalContainer>
+        <$GlobalTitle>Choose Your Path</$GlobalTitle>
         <Button
           btnText="View Your League(s)"
           btnTextColor="yellow"
           btnColor="black"
-          redirect={() => setPage('ViewLeague')}
+          redirect={'leagues'}
         />
         <Button
           btnText="Vote on a Matchup"
@@ -32,7 +33,7 @@ const Home = ({ setPage }) => {
           btnColor="orange"
           redirect={() => alert('This page hasn\'t been created yet')}
         />
-      </div>
+      </$GlobalContainer>
     </>
   );
 };
