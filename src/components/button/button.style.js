@@ -35,6 +35,19 @@ export const $Btn = styled.button`
     }
   }
 
+  &.medium {
+    width: 350px;
+    padding: 15px;
+
+    span {
+      font-size: 14px;
+    }
+  }
+
+  &.space{
+    margin: 2%;
+  }
+
   &.leagues {
     margin-bottom: 10px;
     padding: 15px;

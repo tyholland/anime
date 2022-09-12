@@ -3,7 +3,7 @@ import { $GlobalContainer } from 'Styles/global.style';
 import HomeMetadata from './HomeMetadata';
 import Card from 'Components/card';
 
-const Home = ({ setPage }) => {
+const Home = () => {
   return (
     <>
       <HomeMetadata />

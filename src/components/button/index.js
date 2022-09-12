@@ -13,7 +13,7 @@ const Button = ({
 }) => {
 
   return (
-    <Link href={`/${redirect}`}>
+    <Link href={redirect}>
       <$Btn
         className={`${btnColor} ${customBtnClass || ''}`}
         onClick={() => {

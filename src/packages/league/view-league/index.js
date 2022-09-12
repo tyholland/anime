@@ -6,7 +6,7 @@ import BackLink from 'Components/back-link';
 const ViewLeague = ({ setPage, setHasHeader }) => {
   return (
     <$GlobalContainer>
-      <BackLink redirect="" />
+      <BackLink redirect="/" />
       <$GlobalTitle>Your Leagues</$GlobalTitle>
       <Leagues
         league="League Name"
