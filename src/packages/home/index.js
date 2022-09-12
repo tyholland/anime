@@ -1,34 +1,33 @@
 import React from 'react';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
-import Button from 'Components/button';
+import { $GlobalContainer } from 'Styles/global.style';
 import HomeMetadata from './HomeMetadata';
+import Card from 'Components/card';
 
 const Home = ({ setPage }) => {
   return (
     <>
       <HomeMetadata />
-      <$GlobalContainer>
-        <$GlobalTitle>Choose Your Path</$GlobalTitle>
-        <Button
-          btnText="View Your League(s)"
-          btnTextColor="yellow"
-          btnColor="black"
-          redirect={'leagues'}
-        />
-        <Button
-          btnText="Vote on a Matchup"
+      <$GlobalContainer className="grid logoBg">
+        <Card
+          btnText="Gameplay"
           btnTextColor="black"
-          btnColor="yellow"
-          redirect={() => setPage('VoteMatchup')}
+          btnColor="orange"
+          redirect="gameplay"
         />
-        <Button
+        <Card
           btnText="Join a League"
-          btnTextColor="white"
-          btnColor="blue"
-          redirect={() => setPage('JoinLeague')}
+          btnTextColor="black"
+          btnColor="orange"
+          redirect="league/join"
         />
-        <Button
-          btnText="Create a League"
+        <Card
+          btnText="Character List"
+          btnTextColor="black"
+          btnColor="orange"
+          redirect="characters"
+        />
+        <Card
+          btnText="Vote on Matchup"
           btnTextColor="black"
           btnColor="orange"
           redirect={() => alert('This page hasn\'t been created yet')}

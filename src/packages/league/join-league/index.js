@@ -1,10 +1,10 @@
 import React from 'react';
 import globalStyles from '../../../global.json';
 import { StyleSheet, View, Text, Platform } from 'react-native';
-import Button from '../../components/button';
-import TextField from '../../components/text-field';
+import Button from '../../../components/button';
+import TextField from '../../../components/text-field';
 import PropTypes from 'prop-types';
-import BackLink from '../../components/back-link';
+import BackLink from '../../../components/back-link';
 
 const JoinLeague = (props) => {
   return (

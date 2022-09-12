@@ -2,7 +2,9 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 export const $GlobalStyles = createGlobalStyle`
   body {
-    margin: 0;
+    margin: 0 auto;
+    min-width: 960px;
+    max-width: 1200px;
   }
 
   button {
@@ -11,7 +13,21 @@ export const $GlobalStyles = createGlobalStyle`
 `;
 
 export const $GlobalContainer = styled.div`
-  padding: 5%;
+  padding: 2%;
+
+  &.grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.logoBg {
+    background-image: url("/assets/abz-logo-transparent.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 `;
 
 export const $GlobalLink = styled.div`

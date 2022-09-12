@@ -1,13 +1,8 @@
 import React from 'react';
 import { $NavContainer, $NavBtn, $NavText } from './nav.style.js';
-import { useRouter } from 'next/router';
 import Link from 'next/link.js';
 
 const Nav = () => {
-  const router = useRouter();
-  const teamView = ['Team', 'Bio', 'TeamInfo'].includes(router.pathname);
-  const settingsView = ['Settings', 'Resources', 'Suggestions', 'LeagueSettings'].includes(router.pathname);
-
   return (
     <$NavContainer>
       <Link href="/">
@@ -15,39 +10,28 @@ const Nav = () => {
           <$NavText>Home</$NavText>
         </$NavBtn>
       </Link>
-      <$NavBtn>
-        <$NavText>League</$NavText>
-      </$NavBtn>
-      {/* <Link href="/team">
-          <$NavBtn className={ teamView && 'selected' } >
-            <$NavText className={ settingsView && 'selected' }>
-              Team
-            </$NavText>
-          </$NavBtn>
-        </Link> */}
-      {/* <$NavBtn>
-          <$NavText>Characters</$NavText>
-        </$NavBtn> */}
-      <Link href="/matchup">
-        <$NavBtn className={ teamView && 'selected' }>
-          <$NavText className={ settingsView && 'selected' }>
-            Matchup
+      <Link href="/league">
+        <$NavBtn>
+          <$NavText>League</$NavText>
+        </$NavBtn>
+      </Link>
+      <Link href="/gameplay">
+        <$NavBtn>
+          <$NavText>
+            Gameplay
           </$NavText>
         </$NavBtn>
       </Link>
-      <Link href="/rules">
-        <$NavBtn className={ teamView && styles.navSelected }>
-          <$NavText className={ settingsView && 'selected' }>
-            Game Rules
-          </$NavText>
+      <Link href="/resources">
+        <$NavBtn>
+          <$NavText>Resources</$NavText>
         </$NavBtn>
       </Link>
-      <$NavBtn>
-        <$NavText>Resources</$NavText>
-      </$NavBtn>
-      <$NavBtn>
-        <$NavText>Sign In / Account</$NavText>
-      </$NavBtn>
+      <Link href="/account">
+        <$NavBtn>
+          <$NavText>Account</$NavText>
+        </$NavBtn>
+      </Link>
     </$NavContainer>
   );
 };

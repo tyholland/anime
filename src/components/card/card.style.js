@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
-export const $Btn = styled.button`
+export const $CardBlock = styled.button`
   border-radius: 10px;
   padding: 3%;
-  margin-top: 10px;
-  width: 100%;
+  margin: 2%;
+  width: 350px;
+  height: 400px;
+  z-index: 1;
 
   &.orange {
     background-color: rgb(249, 128, 17);
@@ -25,29 +27,11 @@ export const $Btn = styled.button`
   &.red {
     background-color: #cc0000;
   }
-
-  &.small {
-    width: 70px;
-    padding: 5px;
-
-    span {
-      font-size: 12px;
-    }
-  }
-
-  &.leagues {
-    margin-bottom: 10px;
-    padding: 15px;
-
-    span {
-      font-size: 15px;
-    }
-  }
 `;
 
-export const $BtnText = styled.span`
+export const $CardText = styled.span`
   text-align: center;
-  font-size: 20px;
+  font-size: 35px;
   font-weight: 700;
 
   &.whiteText {

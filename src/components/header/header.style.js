@@ -1,3 +1,4 @@
+import Button from 'Components/button';
 import styled from 'styled-components';
 
 export const $HeaderContainer = styled.div`
@@ -14,3 +15,12 @@ export const $HeaderTitle = styled.div`
   text-align: center;
   margin-top: 2%;
 `;
+
+export const $HeaderTop = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 2%;
+`;
+
+export const $HeaderBtn = Button;

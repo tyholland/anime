@@ -14,18 +14,10 @@ export const $NavBtn = styled.button`
   border: none;
   background-color: rgb(249, 128, 17);
   margin: 0 1%;
-
-  &.selected {
-    background-color: #fff;
-  }
 `;
 
 export const $NavText = styled.span`
   color: #fff;
   font-size: 16px;
   font-weight: 700;
-
-  &.selected {
-    color: rgb(249, 128, 17);
-  }
 `;
