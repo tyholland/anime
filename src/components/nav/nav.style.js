@@ -6,12 +6,14 @@ export const $NavContainer = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: center;
+  background-color: rgb(249, 128, 17);
 `;
 
 export const $NavBtn = styled.button`
-  padding: 1% 5%;
-  background-color: rgb(249, 128, 17);
+  padding: 1%;
   border: none;
+  background-color: rgb(249, 128, 17);
+  margin: 0 1%;
 
   &.selected {
     background-color: #fff;

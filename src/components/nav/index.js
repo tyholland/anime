@@ -10,13 +10,24 @@ const Nav = () => {
 
   return (
     <$NavContainer>
-      <Link href="/team">
-        <$NavBtn className={ teamView && 'selected' } >
-          <$NavText className={ settingsView && 'selected' }>
-            Team
-          </$NavText>
+      <Link href="/">
+        <$NavBtn>
+          <$NavText>Home</$NavText>
         </$NavBtn>
       </Link>
+      <$NavBtn>
+        <$NavText>League</$NavText>
+      </$NavBtn>
+        {/* <Link href="/team">
+          <$NavBtn className={ teamView && 'selected' } >
+            <$NavText className={ settingsView && 'selected' }>
+              Team
+            </$NavText>
+          </$NavBtn>
+        </Link> */}
+        {/* <$NavBtn>
+          <$NavText>Characters</$NavText>
+        </$NavBtn> */}
       <Link href="/matchup">
         <$NavBtn className={ teamView && 'selected' }>
           <$NavText className={ settingsView && 'selected' }>
@@ -24,16 +35,19 @@ const Nav = () => {
           </$NavText>
         </$NavBtn>
       </Link>
-      <$NavBtn>
-        <$NavText>Characters</$NavText>
-      </$NavBtn>
-      <Link href="/settings">
+      <Link href="/rules">
         <$NavBtn className={ teamView && styles.navSelected }>
           <$NavText className={ settingsView && 'selected' }>
-            Settings
+            Game Rules
           </$NavText>
         </$NavBtn>
       </Link>
+      <$NavBtn>
+        <$NavText>Resources</$NavText>
+      </$NavBtn>
+      <$NavBtn>
+        <$NavText>Sign In / Account</$NavText>
+      </$NavBtn>
     </$NavContainer>
   );
 };
