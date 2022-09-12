@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "eslint": "eslint . --fix",
-    "stylelint": "stylelint src/styles/*.style.js"
+    "stylelint": "stylelint src/styles/*.style.js src/packages/*/*.style.js src/components/*/*.style.js"
   },
   "dependencies": {
     "@stylelint/postcss-css-in-js": "^0.38.0",

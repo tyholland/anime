@@ -1,3 +1,3 @@
-import Resources from "Packages/resources";
+import Resources from 'Packages/resources';
 
 export default Resources;

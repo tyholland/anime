@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const $ResourceContentLinks = styled.div`
   display: flex;

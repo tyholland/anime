@@ -3,7 +3,7 @@
   "plugins": ["stylelint-prettier"],
   "overrides": [
     {
-      "files": ["src/styles/*.style.js"],
+      "files": ["src/styles/*.style.js", "src/packages/*/*.style.js", "src/components/*/*.style.js"],
       "customSyntax": "@stylelint/postcss-css-in-js",
       "rules": {
         "at-rule-no-unknown": null

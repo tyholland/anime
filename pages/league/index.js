@@ -1,3 +1,3 @@
-import League from "Packages/league";
+import League from 'Packages/league';
 
 export default League;
