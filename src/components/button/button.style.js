@@ -29,6 +29,24 @@ export const $Btn = styled.button`
   &.red {
     background-color: #cc0000;
   }
+
+  &.small {
+    width: 8%;
+    padding: 1%;
+
+    span {
+      font-size: 12px;
+    }
+  }
+
+  &.leagues {
+    margin-bottom: 10px;
+    padding: 15px;
+
+    span {
+      font-size: 15px;
+    }
+  }
 `;
 
 export const $BtnText = styled.span`

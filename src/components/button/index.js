@@ -3,29 +3,27 @@ import React from 'react';
 import { $Btn, $BtnText, $BtnWrapper } from './button.style.js';
 
 const Button = ({
-  viewStyle,
   btnColor,
   btnText,
-  customBtnColor,
   setHeader,
   header,
   btnTextColor,
-  customBtnTextColor,
   redirect,
+  customBtnClass,
 }) => {
 
   return (
-    <$BtnWrapper className={viewStyle || ''}>
+    <$BtnWrapper>
       <Link href={`/${redirect}`}>
         <$Btn
-          className={`${btnColor} ${customBtnColor || ''}`}
+          className={`${btnColor} ${customBtnClass || ''}`}
           onClick={() => {
             if (setHeader) {
               setHeader(header);
             }
           }}
         >
-          <$BtnText className={`${btnTextColor}Text ${customBtnTextColor || ''}`}>
+          <$BtnText className={`${btnTextColor}Text`}>
             {btnText}
           </$BtnText>
         </$Btn>

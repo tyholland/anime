@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../button';
-import { $LeaguesTextContent, $Leagues, $LeaguesViewBtnText, $LeaguesViewBtn } from './leagues.style';
+import { $LeaguesTextContent, $Leagues } from './leagues.style';
 
 const Leagues = ({ league, setPage, setHeader }) => {
   return (
@@ -11,9 +11,8 @@ const Leagues = ({ league, setPage, setHeader }) => {
         btnText="View Team"
         btnTextColor="black"
         btnColor="orange"
-        customBtnColor={$LeaguesViewBtn}
-        customBtnTextColor={$LeaguesViewBtnText}
-        redirect={() => setPage('Team')}
+        customBtnClass="leagues"
+        redirect="team"
         setHeader={setHeader}
         header={true}
       />

@@ -1,70 +1,41 @@
 import React from 'react';
-import navStyles from './nav.json';
-import { StyleSheet, View, Pressable, Text, Platform } from 'react-native';
-import PropTypes from 'prop-types';
+import { $NavContainer, $NavBtn, $NavText } from './nav.style.js';
+import { useRouter } from 'next/router';
+import Link from 'next/link.js';
 
-const Nav = (props) => {
-  const teamView = ['Team', 'Bio', 'TeamInfo'].includes(props.page);
-  const settingsView = ['Settings', 'Resources', 'Suggestions', 'LeagueSettings'].includes(props.page);
+const Nav = () => {
+  const router = useRouter();
+  const teamView = ['Team', 'Bio', 'TeamInfo'].includes(router.pathname);
+  const settingsView = ['Settings', 'Resources', 'Suggestions', 'LeagueSettings'].includes(router.pathname);
 
   return (
-    <View
-      style={
-        Platform.OS === 'ios' ? styles.iosContainer : styles.androidContainer
-      }
-    >
-      <Pressable
-        style={[styles.nav, teamView ? styles.navSelected : '']}
-        onPress={() => props.setPage('Team')}
-      >
-        <Text style={[styles.navText, teamView ? styles.navTextSelected : '']}>
-          Team
-        </Text>
-      </Pressable>
-      <Pressable
-        style={[
-          styles.nav,
-          props.page === 'ViewMatchup' ? styles.navSelected : '',
-        ]}
-        onPress={() => props.setPage('ViewMatchup')}
-      >
-        <Text
-          style={[
-            styles.navText,
-            props.page === 'ViewMatchup' ? styles.navTextSelected : '',
-          ]}
-        >
-          Matchup
-        </Text>
-      </Pressable>
-      <Pressable style={styles.nav}>
-        <Text style={styles.navText}>Characters</Text>
-      </Pressable>
-      <Pressable
-        style={[
-          styles.nav,
-          settingsView ? styles.navSelected : '',
-        ]}
-        onPress={() => props.setPage('Settings')}
-      >
-        <Text
-          style={[
-            styles.navText,
-            settingsView ? styles.navTextSelected : '',
-          ]}
-        >
-          Settings
-        </Text>
-      </Pressable>
-    </View>
+    <$NavContainer>
+      <Link href="/team">
+        <$NavBtn className={ teamView && 'selected' } >
+          <$NavText className={ settingsView && 'selected' }>
+            Team
+          </$NavText>
+        </$NavBtn>
+      </Link>
+      <Link href="/matchup">
+        <$NavBtn className={ teamView && 'selected' }>
+          <$NavText className={ settingsView && 'selected' }>
+            Matchup
+          </$NavText>
+        </$NavBtn>
+      </Link>
+      <$NavBtn>
+        <$NavText>Characters</$NavText>
+      </$NavBtn>
+      <Link href="/settings">
+        <$NavBtn className={ teamView && styles.navSelected }>
+          <$NavText className={ settingsView && 'selected' }>
+            Settings
+          </$NavText>
+        </$NavBtn>
+      </Link>
+    </$NavContainer>
   );
 };
-
-Nav.propTypes = {
-  page: PropTypes.string,
-  setPage: PropTypes.func,
-};
-
-const styles = StyleSheet.create(navStyles);
 
 export default Nav;

@@ -1,14 +1,16 @@
-import Link from 'next/link';
+import Button from 'Components/button';
 import React from 'react';
-import { $BackLinkText } from './back-link.style';
 
 const BackLink = ({ redirect }) => {
   return (
-    <Link href={`/${redirect}`}>
-      <button>
-        <$BackLinkText>&lt; Back</$BackLinkText>
-      </button>
-    </Link>
+    <Button
+      btnText="&lt; Back"
+      btnTextColor="black"
+      btnColor="orange"
+      customBtnClass="small"
+      redirect={redirect}
+      header={true}
+    />
   );
 };
 
