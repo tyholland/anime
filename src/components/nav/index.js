@@ -18,14 +18,14 @@ const Nav = () => {
       <$NavBtn>
         <$NavText>League</$NavText>
       </$NavBtn>
-        {/* <Link href="/team">
+      {/* <Link href="/team">
           <$NavBtn className={ teamView && 'selected' } >
             <$NavText className={ settingsView && 'selected' }>
               Team
             </$NavText>
           </$NavBtn>
         </Link> */}
-        {/* <$NavBtn>
+      {/* <$NavBtn>
           <$NavText>Characters</$NavText>
         </$NavBtn> */}
       <Link href="/matchup">

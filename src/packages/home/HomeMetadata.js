@@ -1,5 +1,5 @@
-import Head from "next/head";
-import React from "react";
+import Head from 'next/head';
+import React from 'react';
 
 const HomeMetadata = () => {
   return (
@@ -25,7 +25,7 @@ const HomeMetadata = () => {
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="short icon" href="/favicon.ico"/>
     </Head>
-  )
+  );
 };
 
 export default HomeMetadata;
