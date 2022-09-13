@@ -30,7 +30,7 @@ const Home = () => {
           btnText="Vote on Matchup"
           btnTextColor="black"
           btnColor="orange"
-          redirect={() => alert('This page hasn\'t been created yet')}
+          redirect="/"
         />
       </$GlobalContainer>
     </>
