@@ -7,23 +7,23 @@ const League = () => {
   return (
     <>
       <HomeMetadata />
-      <$GlobalContainer className="grid logoBg">
+      <$GlobalContainer className="grid">
         <SelectionCard
-          btnText="Join a League"
-          btnTextColor="yellow"
-          btnColor="black"
+          btnText="Join League"
+          btnTextColor="black"
+          btnColor="orange"
           redirect="league/join"
         />
         <SelectionCard
-          btnText="Create a League"
-          btnTextColor="yellow"
-          btnColor="black"
+          btnText="Create League"
+          btnTextColor="black"
+          btnColor="orange"
           redirect="league/create"
         />
         <SelectionCard
-          btnText="View your League"
-          btnTextColor="yellow"
-          btnColor="black"
+          btnText="View All Leagues"
+          btnTextColor="black"
+          btnColor="orange"
           redirect="league/view"
         />
       </$GlobalContainer>

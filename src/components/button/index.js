@@ -22,7 +22,7 @@ const Button = ({
           }
         }}
       >
-        <$BtnText className={`${btnTextColor}Text`}>
+        <$BtnText className={btnTextColor}>
           {btnText}
         </$BtnText>
       </$Btn>

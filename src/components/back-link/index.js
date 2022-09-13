@@ -5,8 +5,8 @@ const BackLink = ({ redirect }) => {
   return (
     <Button
       btnText="&lt; Back"
-      btnTextColor="black"
-      btnColor="orange"
+      btnTextColor="orange"
+      btnColor="black"
       customBtnClass="small"
       redirect={redirect}
       header={true}

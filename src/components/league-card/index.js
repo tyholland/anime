@@ -13,21 +13,21 @@ const LeagueCard = ({ league, team }) => {
         <Button
           btnText="View League"
           btnTextColor="black"
-          btnColor="yellow"
+          btnColor="orange"
           customBtnClass="leagues"
           redirect="/league/123"
         />
         <Button
           btnText="View Team"
-          btnTextColor="white"
-          btnColor="black"
+          btnTextColor="black"
+          btnColor="orange"
           customBtnClass="leagues"
           redirect="/team/123"
         />
         <Button
           btnText="View Matchup"
-          btnTextColor="white"
-          btnColor="red"
+          btnTextColor="black"
+          btnColor="orange"
           customBtnClass="leagues"
           redirect="matchup"
         />

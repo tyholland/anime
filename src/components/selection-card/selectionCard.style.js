@@ -6,26 +6,32 @@ export const $SelectionCardBlock = styled.button`
   margin: 2%;
   width: 350px;
   height: 400px;
-  z-index: 1;
+  background-image: url("/assets/abz-logo.png");
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: 50% 15%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 
   &.orange {
-    background-color: rgb(249, 128, 17);
+    background-color: rgba(249, 128, 17, .6);
   }
   
   &.yellow {
-    background-color: rgb(250, 179, 28);
+    background-color: rgba(250, 179, 28, .6);
   }
   
   &.blue {
-    background-color: rgb(27, 5, 246);
+    background-color: rgba(27, 5, 246, .6);
   }
   
   &.black {
-    background-color: #000;
+    background-color: #00000060;
   }
   
   &.red {
-    background-color: #cc0000;
+    background-color: #cc000060;
   }
 `;
 

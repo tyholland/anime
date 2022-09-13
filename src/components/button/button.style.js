@@ -14,10 +14,6 @@ export const $Btn = styled.button`
     background-color: rgb(250, 179, 28);
   }
   
-  &.blue {
-    background-color: rgb(27, 5, 246);
-  }
-  
   &.black {
     background-color: #000;
   }
@@ -64,15 +60,19 @@ export const $BtnText = styled.span`
   font-size: 20px;
   font-weight: 700;
 
-  &.whiteText {
+  &.white {
     color: #fff;
   }
   
-  &.blackText {
+  &.black {
     color: #000;
   }
   
-  &.yellowText {
+  &.yellow {
     color: rgb(250, 179, 28);
+  }
+
+  &.orange {
+    color: rgb(249, 128, 17);
   }
 `;  

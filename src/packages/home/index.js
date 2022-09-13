@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <>
       <HomeMetadata />
-      <$GlobalContainer className="grid logoBg">
+      <$GlobalContainer className="grid">
         <SelectionCard
           btnText="Gameplay"
           btnTextColor="black"

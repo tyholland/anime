@@ -10,9 +10,9 @@ const Header = () => {
           ABZ
         </$HeaderTitle>
         <$HeaderBtn
-          btnColor="blue"
+          btnColor="yellow"
           btnText="Login"
-          btnTextColor="white"
+          btnTextColor="black"
           redirect="/"
           customBtnClass="small"
         />

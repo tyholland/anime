@@ -10,7 +10,7 @@ const SelectionCard = ({
 }) => {
 
   return (
-    <Link href={`/${redirect}`}>
+    <Link href={redirect}>
       <$SelectionCardBlock className={btnColor}>
         <$SelectionCardText className={`${btnTextColor}Text`}>
           {btnText}
