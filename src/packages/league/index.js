@@ -1,6 +1,6 @@
 import React from 'react';
 import { $GlobalContainer } from 'Styles/global.style';
-import HomeMetadata from './LeagueMetadata';
+import HomeMetadata from './leagueMetadata';
 import Card from 'Components/card';
 
 const League = () => {
@@ -24,7 +24,7 @@ const League = () => {
           btnText="View your League"
           btnTextColor="yellow"
           btnColor="black"
-          redirect="characters"
+          redirect="league/view"
         />
       </$GlobalContainer>
     </>

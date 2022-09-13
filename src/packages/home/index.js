@@ -1,6 +1,6 @@
 import React from 'react';
 import { $GlobalContainer } from 'Styles/global.style';
-import HomeMetadata from './HomeMetadata';
+import HomeMetadata from './homeMetadata';
 import Card from 'Components/card';
 
 const Home = () => {
