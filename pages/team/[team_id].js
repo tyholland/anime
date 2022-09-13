@@ -1,3 +1,3 @@
-import Team from "Packages/team";
+import Team from 'Packages/team';
 
 export default Team;

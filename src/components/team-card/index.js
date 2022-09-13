@@ -1,5 +1,5 @@
-import Link from "next/link.js";
-import React from "react";
+import Link from 'next/link.js';
+import React from 'react';
 import {
   $TeamCardSection,
   $TeamCardPosition,
@@ -8,22 +8,22 @@ import {
   $TeamCardPower,
   $TeamCardCharacterTxt,
   $TeamCardDuoSpace,
-} from "./teamCard.style.js";
-import { $GlobalCircle } from "Styles/global.style.js";
+} from './teamCard.style.js';
+import { $GlobalCircle } from 'Styles/global.style.js';
 
-const TeamCard = ({ type = "default" }) => {
-  const isBench = type === "Bench";
+const TeamCard = ({ type = 'default' }) => {
+  const isBench = type === 'Bench';
 
   return (
     <>
       <$TeamCardSection className="header">
         <$TeamCardPosition className="none"></$TeamCardPosition>
-        <$TeamCardCharacter>{isBench ? type : "Starters"}</$TeamCardCharacter>
+        <$TeamCardCharacter>{isBench ? type : 'Starters'}</$TeamCardCharacter>
         <$TeamCardAffinity>Affinity</$TeamCardAffinity>
         <$TeamCardPower>Power Level</$TeamCardPower>
       </$TeamCardSection>
       <$TeamCardSection>
-        <$TeamCardPosition>{isBench ? "BN" : "C"}</$TeamCardPosition>
+        <$TeamCardPosition>{isBench ? 'BN' : 'C'}</$TeamCardPosition>
         <Link href="bio">
           <$TeamCardCharacter>
             <$TeamCardCharacterTxt>Goku</$TeamCardCharacterTxt>
@@ -33,7 +33,7 @@ const TeamCard = ({ type = "default" }) => {
         <$TeamCardPower>1500</$TeamCardPower>
       </$TeamCardSection>
       <$TeamCardSection>
-        <$TeamCardPosition>{isBench ? "BN" : "B"}</$TeamCardPosition>
+        <$TeamCardPosition>{isBench ? 'BN' : 'B'}</$TeamCardPosition>
         <Link href="bio">
           <$TeamCardCharacter>
             <$TeamCardCharacterTxt>Arthur Boyle</$TeamCardCharacterTxt>
@@ -45,7 +45,7 @@ const TeamCard = ({ type = "default" }) => {
         <$TeamCardPower>1250</$TeamCardPower>
       </$TeamCardSection>
       <$TeamCardSection>
-        <$TeamCardPosition>{isBench ? "BN" : "B"}</$TeamCardPosition>
+        <$TeamCardPosition>{isBench ? 'BN' : 'B'}</$TeamCardPosition>
         <Link href="bio">
           <$TeamCardCharacter>
             <$TeamCardCharacterTxt>Genos</$TeamCardCharacterTxt>
@@ -78,7 +78,7 @@ const TeamCard = ({ type = "default" }) => {
         </$TeamCardSection>
       )}
       <$TeamCardSection>
-        <$TeamCardPosition>{isBench ? "BN" : "S"}</$TeamCardPosition>
+        <$TeamCardPosition>{isBench ? 'BN' : 'S'}</$TeamCardPosition>
         <Link href="bio">
           <$TeamCardCharacter>
             <$TeamCardCharacterTxt>Chad</$TeamCardCharacterTxt>
@@ -88,7 +88,7 @@ const TeamCard = ({ type = "default" }) => {
         <$TeamCardPower>1000</$TeamCardPower>
       </$TeamCardSection>
       <$TeamCardSection>
-        <$TeamCardPosition>{isBench ? "BN" : "V"}</$TeamCardPosition>
+        <$TeamCardPosition>{isBench ? 'BN' : 'V'}</$TeamCardPosition>
         <Link href="bio">
           <$TeamCardCharacter>
             <$TeamCardCharacterTxt>Sasori</$TeamCardCharacterTxt>

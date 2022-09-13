@@ -1,3 +1,3 @@
-import Gameplay from "Packages/gameplay";
+import Gameplay from 'Packages/gameplay';
 
 export default Gameplay;

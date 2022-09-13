@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   $TeamTotalText,
   $TeamTotalAmount,
@@ -10,10 +10,10 @@ import {
   $TeamLeague,
   $TeamOwner,
   $TeamRecord,
-} from "./team.style.js";
-import { $GlobalContainer } from "Styles/global.style";
-import Button from "Components/button";
-import TeamCard from "Components/team-card";
+} from './team.style.js';
+import { $GlobalContainer } from 'Styles/global.style';
+import Button from 'Components/button';
+import TeamCard from 'Components/team-card';
 
 const Team = () => {
   return (
