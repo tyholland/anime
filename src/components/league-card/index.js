@@ -15,7 +15,7 @@ const LeagueCard = ({ league, team }) => {
           btnTextColor="yellow"
           btnColor="black"
           customBtnClass="leagues"
-          redirect="team"
+          redirect="/team/123"
         />
         <Button
           btnText="View Matchup"

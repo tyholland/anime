@@ -53,38 +53,34 @@ export const $GlobalSubTitle = styled.div`
   text-align: center;
 `;
 
-export const $GlobalRight = styled.div`
-  text-align: right;
-`;
-
 export const $GlobalCircle = styled.div`
   width: 15px;
   height: 15px;
   border-radius: 10px;
-`;
 
-export const $GlobalFireAffinity = styled.div`
-  background-color: #cc0000;
-`;
+  &.fire {
+    background-color: #cc0000;
+  }
 
-export const $GlobalArcaneAffinity = styled.div`
-  background-color: #999;
-`;
+  &.arcane {
+    background-color: #999;
+  }
 
-export const $GlobalDarknessAffinity = styled.div`
-  background-color: #000;
-`;
+  &.darkness {
+    background-color: #000;
+  }
 
-export const $GlobalWaterAffinity = styled.div`
-  background-color: rgb(27, 5, 246);
-`;
+  &.water {
+    background-color: rgb(27, 5, 246);
+  }
 
-export const $GlobalIceAffinity = styled.div`
-  background-color: rgb(137, 196, 244);
-`;
+  &.ice {
+    background-color: rgb(137, 196, 244);
+  }
 
-export const $GlobalElectricAffinity = styled.div`
-  background-color: #cc0000;
+  &.electric {
+    background-color: #cc0000;
+  }
 `;
 
 export const $GlobalCenterContent = styled.div`
