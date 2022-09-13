@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const $SelectionCardBlock = styled.button`
   border-radius: 10px;
-  padding: 3%;
+  padding: 2%;
   margin: 2%;
   width: 350px;
   height: 400px;
