@@ -9,7 +9,7 @@ const ViewLeague = ({ setPage, setHasHeader }) => {
     <>
       <ViewLeagueMetadata />
       <$GlobalContainer>
-        <BackLink redirect="/" />
+        <BackLink redirect="/league" />
         <$GlobalTitle>Your Leagues</$GlobalTitle>
         <Leagues
           league="League Name"

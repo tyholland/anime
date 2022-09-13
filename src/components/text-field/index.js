@@ -1,29 +1,18 @@
 import React from 'react';
-import textStyles from './text-field.json';
-import { StyleSheet, KeyboardAvoidingView, TextInput } from 'react-native';
-import PropTypes from 'prop-types';
+import { $Input } from './text-field.style.js';
 
-const TextField = (props) => {
+const TextField = ({ placeholder, textField, keyboard, type }) => {
+  const isPassword = type === 'password';
+
   return (
-    <KeyboardAvoidingView>
-      <TextInput
-        placeholder={props.placeholder}
-        style={styles.textField}
-        keyboardType={props.keyboard ? props.keyboard : 'default'}
-        autoCapitalize="none"
-        textContentType={props.type === 'password' ? 'password' : 'none'}
-        secureTextEntry={props.type === 'password'}
-      />
-    </KeyboardAvoidingView>
+    <$Input
+      placeholder={placeholder}
+      keyboardType={keyboard || 'default'}
+      autoCapitalize="none"
+      textContentType={isPassword ? type : 'none'}
+      secureTextEntry={isPassword}
+    />
   );
 };
-
-TextField.propTypes = {
-  placeholder: PropTypes.string,
-  keyboard: PropTypes.string,
-  type: PropTypes.string,
-};
-
-const styles = StyleSheet.create(textStyles);
 
 export default TextField;

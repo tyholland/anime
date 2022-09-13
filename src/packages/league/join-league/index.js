@@ -1,45 +1,31 @@
 import React from 'react';
-import globalStyles from '../../../global.json';
-import { StyleSheet, View, Text, Platform } from 'react-native';
-import Button from '../../../components/button';
-import TextField from '../../../components/text-field';
-import PropTypes from 'prop-types';
-import BackLink from '../../../components/back-link';
+import Button from 'Components/button';
+import TextField from 'Components/text-field';
+import BackLink from 'Components/back-link';
+import { $GlobalContainer, $GlobalTitle, $GlobalSubTitle } from 'Styles/global.style';
+import { $JoinLeagueWrapper } from './joinLeague.style';
+import JoinLeagueMetadata from './joinLeagueMetadata';
 
-const JoinLeague = (props) => {
+const JoinLeague = () => {
   return (
-    <View
-      style={[
-        global.container,
-        Platform.OS === 'ios'
-          ? global.iosHeaderBeginning
-          : global.androidHeaderBeginning,
-      ]}
-    >
-      <BackLink redirect={() => props.setPage('Home')} />
-      <Text style={global.title}>Join League</Text>
-      <Text style={global.subTitle}>
-        Enter the code you were given below, to join your friend's league.
-      </Text>
-      <TextField placeholder="Enter your league code" />
-      <Button
-        btnText="Enter League"
-        btnTextColor="black"
-        btnColor="orange"
-        redirect={() => {
-          props.setPage('Team');
-          props.setHasHeader(true);
-        }}
-      />
-    </View>
+    <>
+      <JoinLeagueMetadata />
+      <$GlobalContainer>
+        <BackLink redirect="/league" />
+        <$GlobalTitle>Join a League</$GlobalTitle>
+        <$JoinLeagueWrapper>
+          <TextField placeholder="Enter your league code" />
+          <Button
+            btnText="Enter League"
+            btnTextColor="black"
+            btnColor="orange"
+            redirect="league/123"
+            customBtnClass="medium"
+          />
+        </$JoinLeagueWrapper>
+      </$GlobalContainer>
+    </>
   );
 };
-
-JoinLeague.propTypes = {
-  setPage: PropTypes.func,
-  setHasHeader: PropTypes.func,
-};
-
-const global = StyleSheet.create(globalStyles);
 
 export default JoinLeague;
