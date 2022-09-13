@@ -1,6 +1,6 @@
 import React from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
-import Leagues from 'Components/leagues';
+import LeagueCard from 'Components/league-card';
 import BackLink from 'Components/back-link';
 import ViewLeagueMetadata from './ViewLeagueMetadata';
 
@@ -11,47 +11,33 @@ const ViewLeague = ({ setPage, setHasHeader }) => {
       <$GlobalContainer>
         <BackLink redirect="/league" />
         <$GlobalTitle>Your Leagues</$GlobalTitle>
-        <Leagues
+        <LeagueCard
           league="League Name"
           team="Team Name"
-          setPage={setPage}
-          setHeader={setHasHeader}
         />
-        <Leagues
+        <LeagueCard
           league="League Name"
           team="Team Name"
-          setPage={setPage}
-          setHeader={setHasHeader}
         />
-        <Leagues
+        <LeagueCard
           league="League Name"
           team="Team Name"
-          setPage={setPage}
-          setHeader={setHasHeader}
         />
-        <Leagues
+        <LeagueCard
           league="League Name"
           team="Team Name"
-          setPage={setPage}
-          setHeader={setHasHeader}
         />
-        <Leagues
+        <LeagueCard
           league="League Name"
           team="Team Name"
-          setPage={setPage}
-          setHeader={setHasHeader}
         />
-        <Leagues
+        <LeagueCard
           league="League Name"
           team="Team Name"
-          setPage={setPage}
-          setHeader={setHasHeader}
         />
-        <Leagues
+        <LeagueCard
           league="League Name"
           team="Team Name"
-          setPage={setPage}
-          setHeader={setHasHeader}
         />
       </$GlobalContainer>
     </>

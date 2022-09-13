@@ -50,8 +50,8 @@ export const $Btn = styled.button`
 
   &.leagues {
     margin-bottom: 10px;
-    padding: 1%;
-    width: 20%;
+    padding: 10px;
+    width: 150px;
 
     span {
       font-size: 15px;

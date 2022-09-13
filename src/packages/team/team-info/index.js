@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import teamStyles from './team-info.json';
 import globalStyles from '../../../global.json';
 import { StyleSheet, View, Text, Platform } from 'react-native';
-import Button from '../../components/button';
+import Button from '../../../components/button';
 import PropTypes from 'prop-types';
-import TextField from '../../components/text-field';
-import BackLink from '../../components/back-link';
+import TextField from '../../../components/text-field';
+import BackLink from '../../../components/back-link';
 
 const TeamInfo = (props) => {
   const [edit, setEdit] = useState(false);

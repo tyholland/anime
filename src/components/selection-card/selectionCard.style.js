@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const $CardBlock = styled.button`
+export const $SelectionCardBlock = styled.button`
   border-radius: 10px;
   padding: 3%;
   margin: 2%;
@@ -29,7 +29,7 @@ export const $CardBlock = styled.button`
   }
 `;
 
-export const $CardText = styled.span`
+export const $SelectionCardText = styled.span`
   text-align: center;
   font-size: 35px;
   font-weight: 700;

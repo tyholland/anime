@@ -1,32 +1,32 @@
 import React from 'react';
 import { $GlobalContainer } from 'Styles/global.style';
 import HomeMetadata from './homeMetadata';
-import Card from 'Components/card';
+import SelectionCard from 'Components/selection-card';
 
 const Home = () => {
   return (
     <>
       <HomeMetadata />
       <$GlobalContainer className="grid logoBg">
-        <Card
+        <SelectionCard
           btnText="Gameplay"
           btnTextColor="black"
           btnColor="orange"
           redirect="gameplay"
         />
-        <Card
+        <SelectionCard
           btnText="Join a League"
           btnTextColor="black"
           btnColor="orange"
           redirect="league/join"
         />
-        <Card
+        <SelectionCard
           btnText="Character List"
           btnTextColor="black"
           btnColor="orange"
           redirect="characters"
         />
-        <Card
+        <SelectionCard
           btnText="Vote on Matchup"
           btnTextColor="black"
           btnColor="orange"
