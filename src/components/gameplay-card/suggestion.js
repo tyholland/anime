@@ -3,11 +3,11 @@ import suggestStyles from './settings.json';
 import globalStyles from '../../../global.json';
 import modalStyles from '../../../modal.json';
 import { StyleSheet, View, Text, Platform, Modal } from 'react-native';
-import Button from '../../components/button';
-import TextField from '../../components/text-field';
+import Button from '../button';
+import TextField from '../text-field';
 import PropTypes from 'prop-types';
 import RNPickerSelect from 'react-native-picker-select';
-import BackLink from '../../components/back-link';
+import BackLink from '../back-link';
 
 const Suggestions = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

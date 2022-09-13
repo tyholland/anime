@@ -2,8 +2,8 @@ import React from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import BackLink from 'Components/back-link';
-import { $GlobalContainer, $GlobalTitle, $GlobalSubTitle } from 'Styles/global.style';
-import { $JoinLeagueWrapper } from './joinLeague.style';
+import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
+import { $JoinLeagueWrapper } from './join.style';
 import JoinLeagueMetadata from './joinLeagueMetadata';
 
 const JoinLeague = () => {

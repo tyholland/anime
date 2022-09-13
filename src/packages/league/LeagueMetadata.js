@@ -5,6 +5,7 @@ const LeagueMetadata = () => {
   return (
     <Head>
       <title>ABZ - League</title>
+      <meta name="title" content="ABZ - League"/>
       <meta name="description" content="Join, Create, or View a league at ABZ"/>
       <meta name="image" content=""/>
       

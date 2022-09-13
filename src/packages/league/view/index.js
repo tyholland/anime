@@ -4,7 +4,7 @@ import LeagueCard from 'Components/league-card';
 import BackLink from 'Components/back-link';
 import ViewLeagueMetadata from './ViewLeagueMetadata';
 
-const ViewLeague = ({ setPage, setHasHeader }) => {
+const ViewLeague = () => {
   return (
     <>
       <ViewLeagueMetadata />

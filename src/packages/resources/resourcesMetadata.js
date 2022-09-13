@@ -5,6 +5,7 @@ const ResourcesMetadata = () => {
   return (
     <Head>
       <title>ABZ - Resources</title>
+      <meta name="title" content="ABZ - Resources"/>
       <meta name="description" content="Learn about everything Anime Brothaz"/>
       <meta name="image" content=""/>
       

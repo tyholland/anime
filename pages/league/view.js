@@ -1,3 +1,3 @@
-import ViewLeague from 'Packages/league/view-league';
+import ViewLeague from 'Packages/league/view';
 
 export default ViewLeague;

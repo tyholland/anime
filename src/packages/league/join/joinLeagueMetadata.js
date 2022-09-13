@@ -5,6 +5,7 @@ const JoinLeagueMetadata = () => {
   return (
     <Head>
       <title>ABZ - Join a League</title>
+      <meta name="title" content="ABZ - Join a League"/>
       <meta name="description" content="Join an ABZ League and see if you can create the ultimate team and win the league"/>
       <meta name="image" content="/assets/abz-logo.png"/>
       

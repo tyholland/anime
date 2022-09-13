@@ -49,7 +49,7 @@ export const $Btn = styled.button`
   }
 
   &.leagues {
-    margin-bottom: 10px;
+    margin: 10px;
     padding: 10px;
     width: 150px;
 

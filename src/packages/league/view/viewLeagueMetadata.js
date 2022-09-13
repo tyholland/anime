@@ -5,6 +5,7 @@ const ViewLeagueMetadata = () => {
   return (
     <Head>
       <title>ABZ - View Leagues</title>
+      <meta name="title" content="ABZ - View Leagues"/>
       <meta name="description" content="View all the Leagues that you are participating in"/>
       <meta name="image" content=""/>
       

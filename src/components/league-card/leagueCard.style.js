@@ -23,4 +23,10 @@ export const $LeagueCardText = styled.div`
 export const $LeagueCardSection = styled.div`
   display: flex;
   flex-direction: column;
+
+  &.actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 50%;
+  }
 `;

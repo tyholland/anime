@@ -9,7 +9,7 @@ import {
   ScrollView,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import BackLink from '../../components/back-link';
+import BackLink from '../back-link';
 
 const Voting = (props) => {
   return (

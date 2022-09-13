@@ -5,6 +5,7 @@ const HomeMetadata = () => {
   return (
     <Head>
       <title>ABZ - Home</title>
+      <meta name="title" content="ABZ - Home"/>
       <meta name="description" content="Anime Brothaz Fantasy League"/>
       <meta name="image" content=""/>
       

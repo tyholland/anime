@@ -9,10 +9,17 @@ const LeagueCard = ({ league, team }) => {
         <$LeagueCardText className="league">{league}</$LeagueCardText>
         <$LeagueCardText>{team}</$LeagueCardText>
       </$LeagueCardSection>
-      <$LeagueCardSection>
+      <$LeagueCardSection className="actions">
+        <Button
+          btnText="View League"
+          btnTextColor="black"
+          btnColor="yellow"
+          customBtnClass="leagues"
+          redirect="/league/123"
+        />
         <Button
           btnText="View Team"
-          btnTextColor="yellow"
+          btnTextColor="white"
           btnColor="black"
           customBtnClass="leagues"
           redirect="/team/123"
