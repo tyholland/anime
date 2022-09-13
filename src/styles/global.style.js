@@ -5,10 +5,12 @@ export const $GlobalStyles = createGlobalStyle`
     margin: 0 auto;
     min-width: 960px;
     max-width: 1200px;
+    font-family: Arial, sans-serif;
   }
 
   button {
     cursor: pointer;
+    font-family: Arial, sans-serif;
   }
 `;
 
