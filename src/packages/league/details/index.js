@@ -12,37 +12,37 @@ const LeagueDetails = () => {
           btnText="Your Team"
           btnTextColor="black"
           btnColor="orange"
-          redirect="team/123"
+          redirect="/team/123"
         />
         <SelectionCard
           btnText="View Matchup"
           btnTextColor="black"
           btnColor="orange"
-          redirect="matchup"
+          redirect="/matchup"
         />
         <SelectionCard
           btnText="Schedule"
           btnTextColor="black"
           btnColor="orange"
-          redirect="schedule"
+          redirect="/schedule"
         />
         <SelectionCard
           btnText="Scoreboard"
           btnTextColor="black"
           btnColor="orange"
-          redirect="scoreboard"
+          redirect="/scoreboard"
         />
         <SelectionCard
           btnText="Standings"
           btnTextColor="black"
           btnColor="orange"
-          redirect="standings"
+          redirect="/standings"
         />
         <SelectionCard
           btnText="Playoffs"
           btnTextColor="black"
           btnColor="orange"
-          redirect="playoffs"
+          redirect="/playoffs"
         />
       </$GlobalContainer>
     </>

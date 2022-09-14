@@ -1,7 +1,7 @@
 import React from 'react';
 import { $Input } from './text-field.style.js';
 
-const TextField = ({ placeholder, textField, keyboard, type }) => {
+const TextField = ({ placeholder, keyboard, type }) => {
   const isPassword = type === 'password';
 
   return (

@@ -3,13 +3,13 @@ import {
   $TeamTotalText,
   $TeamTotalAmount,
   $TeamTotal,
-  $TeamPoints,
+  $TeamStats,
   $TeamInfo,
   $TeamContent,
   $TeamName,
   $TeamLeague,
   $TeamOwner,
-  $TeamRecord,
+  $TeamBtnSection,
 } from './team.style.js';
 import { $GlobalContainer } from 'Styles/global.style';
 import Button from 'Components/button';
@@ -23,18 +23,25 @@ const Team = () => {
           <$TeamName>Jack Of All Trades</$TeamName>
           <$TeamLeague>Anime Ballers</$TeamLeague>
           <$TeamOwner>John Smith</$TeamOwner>
-          <$TeamRecord>4-1</$TeamRecord>
+          <$TeamStats><span>Record:</span> 4-1</$TeamStats>
+          <$TeamStats><span>Remaining:</span> 1000 pts</$TeamStats>
         </$TeamContent>
-        <div>
+        <$TeamBtnSection>
           <Button
             btnText="Team Info"
             btnColor="black"
             btnTextColor="yellow"
-            redirect="settings"
+            redirect="info/123"
             customBtnClass="small"
           />
-          <$TeamPoints>1000 pts left</$TeamPoints>
-        </div>
+          <Button
+            btnText="Edit"
+            btnTextColor="black"
+            btnColor="orange"
+            customBtnClass="small"
+            redirect=""
+          />
+        </$TeamBtnSection>
       </$TeamInfo>
       <TeamCard />
       <$TeamTotal>
@@ -42,13 +49,6 @@ const Team = () => {
         <$TeamTotalAmount>9000</$TeamTotalAmount>
       </$TeamTotal>
       <TeamCard type="Bench" />
-      <Button
-        btnText="Edit"
-        btnTextColor="black"
-        btnColor="orange"
-        customBtnColor="medium"
-        redirect=""
-      />
     </$GlobalContainer>
   );
 };
