@@ -5,7 +5,12 @@ export const $GameplayStyles = createGlobalStyle`
     padding: 2%;
     border: 1px solid #000;
     border-bottom: none;
-    font-weight: 700;
+
+    span {
+      font-weight: 700;
+      font-size: 18px;
+      cursor: pointer;
+    }
   }
 
   .Collapsible:last-child {

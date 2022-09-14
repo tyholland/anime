@@ -4,15 +4,18 @@ import Loss from 'Components/gameplay-card/loss';
 // import Suggestions from 'Components/gameplay-card/suggestion';
 import Voting from 'Components/gameplay-card/voting';
 import React from 'react';
-import { $GlobalContainer } from 'Styles/global.style';
+import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import { $GameplayStyles } from './gameplay.style';
+import GameplayMetadata from './gameplayMetadata';
 
 const Gameplay = () => {
   return (
     <>
       <$GameplayStyles />
+      <GameplayMetadata />
       <$GlobalContainer>
+        <$GlobalTitle>Gameplay</$GlobalTitle>
         <Collapsible trigger="Weekly Element Affinities" className="something">
           <Affinities />
         </Collapsible>
