@@ -29,7 +29,7 @@ const LeagueCard = ({ league, team }) => {
           btnTextColor="black"
           btnColor="orange"
           customBtnClass="leagues"
-          redirect="matchup"
+          redirect="/matchup/123"
         />
       </$LeagueCardSection>
     </$LeagueCardWrapper>
