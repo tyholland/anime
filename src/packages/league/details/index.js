@@ -18,7 +18,7 @@ const LeagueDetails = () => {
           btnText="View Matchup"
           btnTextColor="black"
           btnColor="orange"
-          redirect="/matchup"
+          redirect="/matchup/123"
         />
         <SelectionCard
           btnText="Schedule"

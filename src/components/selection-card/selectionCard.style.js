@@ -4,8 +4,8 @@ export const $SelectionCardBlock = styled.button`
   border-radius: 10px;
   padding: 2%;
   margin: 2%;
-  width: 350px;
-  height: 400px;
+  width: 190px;
+  height: 320px;
   background-image: url("/assets/abz-logo.png");
   background-size: 80%;
   background-repeat: no-repeat;
@@ -37,7 +37,7 @@ export const $SelectionCardBlock = styled.button`
 
 export const $SelectionCardText = styled.span`
   text-align: center;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 700;
 
   &.whiteText {
