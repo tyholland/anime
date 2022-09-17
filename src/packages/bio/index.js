@@ -1,58 +1,53 @@
-import React from 'react';
-import bioStyles from './bio.json';
-import globalStyles from '../../../global.json';
-import { StyleSheet, View, Text, Alert } from 'react-native';
-import Button from '../../components/button';
-import BackLink from '../../components/back-link';
-import PropTypes from 'prop-types';
+import React from "react";
+import Button from "Components/button";
+import BackLink from "Components/back-link";
+import { $GlobalContainer, $GlobalCircle } from "Styles/global.style.js";
+import {
+  $BioAffinity,
+  $BioAffinityText,
+  $BioTitle,
+  $BioSubTitle,
+  $BioAttribute,
+  $BioSubAttribute,
+} from "./bio.style";
 
-const Bio = (props) => {
+const Bio = () => {
   return (
-    <View style={[global.iosHeaderBeginning, global.container]}>
-      <BackLink redirect={() => props.setPage('Team')} />
-      <Text style={styles.title}>Natsu</Text>
-      <Text style={styles.subTitle}>Anime Series: DBZ</Text>
-      <Text style={styles.attribute}>Rank:</Text>
-      <Text style={styles.subAttribute}>Captain</Text>
-      <Text style={styles.attribute}>Power Level:</Text>
-      <Text style={styles.subAttribute}>1500</Text>
-      <Text style={styles.attribute}>Element Affinity:</Text>
-      <View style={[styles.affinity, styles.spaceDown]}>
-        <View style={[styles.affinity, styles.spaceRight]}>
-          <View style={[global.circle, global.fireAffinity]}></View>
-          <Text style={styles.affinityText}>Fire</Text>
-        </View>
-        <View style={[styles.affinity, styles.spaceRight]}>
-          <View style={[global.circle, global.darknessAffinity]}></View>
-          <Text style={styles.affinityText}>Darkness</Text>
-        </View>
-      </View>
-      <Text style={styles.attribute}>Element Weakness:</Text>
-      <View style={styles.affinity}>
-        <View style={styles.affinity}>
-          <View style={[global.circle, global.waterAffinity]}></View>
-          <Text style={styles.affinityText}>Water</Text>
-        </View>
-      </View>
+    <$GlobalContainer>
+      <BackLink redirect="/team/123" />
+      <$BioTitle>Natsu</$BioTitle>
+      <$BioSubTitle>Anime Series: DBZ</$BioSubTitle>
+      <$BioAttribute>Rank:</$BioAttribute>
+      <$BioSubAttribute>Captain</$BioSubAttribute>
+      <$BioAttribute>Power Level:</$BioAttribute>
+      <$BioSubAttribute>1500</$BioSubAttribute>
+      <$BioAttribute>Element Affinity:</$BioAttribute>
+      <$BioAffinity className="down">
+        <$BioAffinity className="right">
+          <$GlobalCircle className="fire"></$GlobalCircle>
+          <$BioAffinityText>Fire</$BioAffinityText>
+        </$BioAffinity>
+        <$BioAffinity className="right">
+          <$GlobalCircle className="darkness"></$GlobalCircle>
+          <$BioAffinityText>Darkness</$BioAffinityText>
+        </$BioAffinity>
+      </$BioAffinity>
+      <$BioAttribute>Element Weakness:</$BioAttribute>
+      <$BioAffinity className="last">
+        <$BioAffinity>
+          <$GlobalCircle className="water"></$GlobalCircle>
+          <$BioAffinityText>Water</$BioAffinityText>
+        </$BioAffinity>
+      </$BioAffinity>
       <Button
         btnText="Drop Character"
         btnTextColor="white"
         btnColor="red"
-        customBtnColor={styles.dropBtn}
-        customBtnTextColor={styles.dropBtnText}
-        redirect={() =>
-          Alert.alert('This functionality hasn\'t been created yet')
-        }
+        btnFunction={() => alert("This functionality hasn't been created yet")}
+        customBtnClass="medium"
       />
-    </View>
+    </$GlobalContainer>
   );
 };
-
-Bio.propTypes = {
-  setPage: PropTypes.func,
-};
-
-const styles = StyleSheet.create(bioStyles);
-const global = StyleSheet.create(globalStyles);
 
 export default Bio;

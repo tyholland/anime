@@ -8,6 +8,7 @@ import {
   $TeamCardPower,
   $TeamCardCharacterTxt,
   $TeamCardDuoSpace,
+  $TeamCardCharacterWrapper,
 } from './teamCard.style.js';
 import { $GlobalCircle } from 'Styles/global.style.js';
 
@@ -24,21 +25,25 @@ const TeamCard = ({ type = 'default' }) => {
       </$TeamCardSection>
       <$TeamCardSection>
         <$TeamCardPosition>{isBench ? 'BN' : 'C'}</$TeamCardPosition>
-        <Link href="bio">
-          <$TeamCardCharacter>
-            <$TeamCardCharacterTxt>Goku</$TeamCardCharacterTxt>
-          </$TeamCardCharacter>
-        </Link>
+        <$TeamCardCharacterWrapper>
+          <Link href="/bio/goku">
+            <$TeamCardCharacter>
+              <$TeamCardCharacterTxt>Goku</$TeamCardCharacterTxt>
+            </$TeamCardCharacter>
+          </Link>
+        </$TeamCardCharacterWrapper>
         <$TeamCardAffinity>-</$TeamCardAffinity>
         <$TeamCardPower>1500</$TeamCardPower>
       </$TeamCardSection>
       <$TeamCardSection>
         <$TeamCardPosition>{isBench ? 'BN' : 'B'}</$TeamCardPosition>
-        <Link href="bio">
-          <$TeamCardCharacter>
-            <$TeamCardCharacterTxt>Arthur Boyle</$TeamCardCharacterTxt>
-          </$TeamCardCharacter>
-        </Link>
+        <$TeamCardCharacterWrapper>
+          <Link href="/bio/arthurboyle">
+            <$TeamCardCharacter>
+              <$TeamCardCharacterTxt>Arthur Boyle</$TeamCardCharacterTxt>
+            </$TeamCardCharacter>
+          </Link>
+        </$TeamCardCharacterWrapper>
         <$TeamCardAffinity>
           <$GlobalCircle className="fire"></$GlobalCircle>
         </$TeamCardAffinity>
@@ -46,11 +51,13 @@ const TeamCard = ({ type = 'default' }) => {
       </$TeamCardSection>
       <$TeamCardSection>
         <$TeamCardPosition>{isBench ? 'BN' : 'B'}</$TeamCardPosition>
-        <Link href="bio">
-          <$TeamCardCharacter>
-            <$TeamCardCharacterTxt>Genos</$TeamCardCharacterTxt>
-          </$TeamCardCharacter>
-        </Link>
+        <$TeamCardCharacterWrapper>
+          <Link href="/bio/genos">
+            <$TeamCardCharacter>
+              <$TeamCardCharacterTxt>Genos</$TeamCardCharacterTxt>
+            </$TeamCardCharacter>
+          </Link>
+        </$TeamCardCharacterWrapper>
         <$TeamCardAffinity>
           <$GlobalCircle className="fire"></$GlobalCircle>
         </$TeamCardAffinity>
@@ -59,14 +66,18 @@ const TeamCard = ({ type = 'default' }) => {
       {!isBench && (
         <$TeamCardSection>
           <$TeamCardPosition className="duo">B/S</$TeamCardPosition>
-          <$TeamCardCharacter>
-            <Link href="bio">
-              <$TeamCardDuoSpace className="text">Rock Lee</$TeamCardDuoSpace>
-            </Link>
-            <Link href="bio">
-              <$TeamCardDuoSpace className="text">Tenten</$TeamCardDuoSpace>
-            </Link>
-          </$TeamCardCharacter>
+            <$TeamCardCharacterWrapper className="duo">
+              <Link href="/bio/rocklee">
+                <$TeamCardCharacter>
+                  <$TeamCardDuoSpace className="text">Rock Lee</$TeamCardDuoSpace>
+                </$TeamCardCharacter>
+              </Link>
+              <Link href="/bio/tenten">
+                <$TeamCardCharacter>
+                  <$TeamCardDuoSpace className="text">Tenten</$TeamCardDuoSpace>
+                </$TeamCardCharacter>
+              </Link>
+            </$TeamCardCharacterWrapper>
           <$TeamCardAffinity>
             <$TeamCardDuoSpace>-</$TeamCardDuoSpace>
             <$TeamCardDuoSpace>-</$TeamCardDuoSpace>
@@ -79,32 +90,38 @@ const TeamCard = ({ type = 'default' }) => {
       )}
       <$TeamCardSection>
         <$TeamCardPosition>{isBench ? 'BN' : 'S'}</$TeamCardPosition>
-        <Link href="bio">
-          <$TeamCardCharacter>
-            <$TeamCardCharacterTxt>Chad</$TeamCardCharacterTxt>
-          </$TeamCardCharacter>
-        </Link>
+        <$TeamCardCharacterWrapper>
+          <Link href="/bio/chad">
+            <$TeamCardCharacter>
+              <$TeamCardCharacterTxt>Chad</$TeamCardCharacterTxt>
+            </$TeamCardCharacter>
+          </Link>
+        </$TeamCardCharacterWrapper>
         <$TeamCardAffinity>-</$TeamCardAffinity>
         <$TeamCardPower>1000</$TeamCardPower>
       </$TeamCardSection>
       <$TeamCardSection>
         <$TeamCardPosition>{isBench ? 'BN' : 'V'}</$TeamCardPosition>
-        <Link href="bio">
-          <$TeamCardCharacter>
-            <$TeamCardCharacterTxt>Sasori</$TeamCardCharacterTxt>
-          </$TeamCardCharacter>
-        </Link>
+        <$TeamCardCharacterWrapper>
+          <Link href="/bio/sasori">
+            <$TeamCardCharacter>
+              <$TeamCardCharacterTxt>Sasori</$TeamCardCharacterTxt>
+            </$TeamCardCharacter>
+          </Link>
+        </$TeamCardCharacterWrapper>
         <$TeamCardAffinity>-</$TeamCardAffinity>
         <$TeamCardPower>1250</$TeamCardPower>
       </$TeamCardSection>
       {!isBench && (
         <$TeamCardSection>
           <$TeamCardPosition>BF</$TeamCardPosition>
-          <Link href="bio">
-            <$TeamCardCharacter>
-              <$TeamCardCharacterTxt>Soul Society</$TeamCardCharacterTxt>
-            </$TeamCardCharacter>
-          </Link>
+          <$TeamCardCharacterWrapper>
+            <Link href="/bio/soulsociety">
+              <$TeamCardCharacter>
+                <$TeamCardCharacterTxt>Soul Society</$TeamCardCharacterTxt>
+              </$TeamCardCharacter>
+            </Link>
+          </$TeamCardCharacterWrapper>
           <$TeamCardAffinity>
             <$GlobalCircle className="arcane"></$GlobalCircle>
           </$TeamCardAffinity>

@@ -32,7 +32,8 @@ export const $TeamCardPosition = styled.div`
 `;
 
 export const $TeamCardDuoSpace = styled.div`
-  padding: 5px 0;
+  padding: 5px 0 0 0;
+  cursor: pointer;
 
   &.right {
     text-align: right;
@@ -43,11 +44,22 @@ export const $TeamCardDuoSpace = styled.div`
   }
 `;
 
-export const $TeamCardCharacter = styled.div`
+export const $TeamCardCharacterWrapper = styled.div`
   width: 30%;
   margin: 15px 0 15px 5px;
-  font-weight: 700;
+
+  &.duo {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0 20px 5px;
+  }
+`;
+
+export const $TeamCardCharacter = styled.button`
   color: #000;
+  background: transparent;
+  border: none;
+  text-align: left;
 `;
 
 export const $TeamCardCharacterTxt = styled.span`
