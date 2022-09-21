@@ -17,8 +17,21 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen }) => {
 
   Modal.setAppElement('#__next');
 
+  const customStyles = {
+    content: {
+      position: 'relative',
+      minWidth: '300px',
+      maxWidth: '800px',
+    },
+    overlay: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }
+  };
+
   return (
-    <Modal isOpen={isModalOpen}>
+    <Modal isOpen={isModalOpen} style={ customStyles }>
       <$CharacterStatsContainer>
         <$GlobalTitle>Goku</$GlobalTitle>
         <$CharacterStatsScoring>
@@ -62,14 +75,14 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen }) => {
             btnText="Get Votes"
             btnTextColor="black"
             btnColor="orange"
+            customBtnClass="medium"
             btnFunction={shareEvent}
           />
-        </$CharacterStatsBtnWrapper>
-        <$CharacterStatsBtnWrapper>
           <Button
             btnText="Close"
             btnTextColor="white"
             btnColor="red"
+            customBtnClass="medium"
             btnFunction={() => setIsModalOpen(!isModalOpen)}
           />
         </$CharacterStatsBtnWrapper>

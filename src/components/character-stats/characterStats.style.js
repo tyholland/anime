@@ -5,7 +5,10 @@ export const $CharacterStatsContainer = styled.div`
 `;
 
 export const $CharacterStatsBtnWrapper = styled.div`
-  padding-top: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const $CharacterStatsScoring = styled.div`
