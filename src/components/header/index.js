@@ -13,7 +13,7 @@ const Header = () => {
           btnColor="yellow"
           btnText="Login"
           btnTextColor="black"
-          redirect="/"
+          redirect="login"
           customBtnClass="small"
         />
       </$HeaderTop>

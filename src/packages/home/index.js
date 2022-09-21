@@ -30,7 +30,7 @@ const Home = () => {
           btnText="Matchup Voting"
           btnTextColor="black"
           btnColor="orange"
-          redirect="/"
+          redirect="/matchup/vote"
         />
       </$GlobalContainer>
     </>

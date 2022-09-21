@@ -1,42 +1,38 @@
 import React from 'react';
-import globalStyles from '../../../global.json';
-import { StyleSheet, View, Text, Platform } from 'react-native';
-import Button from '../../components/button';
-import TextField from '../../components/text-field';
-import PropTypes from 'prop-types';
-import BackLink from '../../components/back-link';
+import { $VoteMatchupCharacter, $VoteMatchupTeam, $VoteMatchupVersus, $VoteMatchupWrapper } from './voteMatchup.style.js';
+import Button from 'Components/button';
+import BackLink from 'Components/back-link';
+import { $GlobalContainer } from 'Styles/global.style.js';
 
-const VoteMatchup = (props) => {
+const VoteMatchup = () => {
   return (
-    <View
-      style={[
-        global.container,
-        Platform.OS === 'ios'
-          ? global.iosHeaderBeginning
-          : global.androidHeaderBeginning,
-      ]}
-    >
+    <>
       <BackLink />
-      <Text style={global.title}>Vote on Matchup</Text>
-      <Text style={global.subTitle}>
-        Enter the code you were given below, to vote on the head-to-head
-        matchup.
-      </Text>
-      <TextField placeholder="Enter your voting code" />
-      <Button
-        btnText="Make Your Vote"
-        btnTextColor="black"
-        btnColor="orange"
-        redirect={() => props.setPage('Vote')}
-      />
-    </View>
+      <$GlobalContainer>
+        <$VoteMatchupWrapper>
+          <$VoteMatchupCharacter>Goku</$VoteMatchupCharacter>
+          <$VoteMatchupTeam>Jack Of All Trades</$VoteMatchupTeam>
+          <Button
+            btnText="Vote for Goku"
+            btnTextColor="black"
+            btnColor="orange"
+            customBtnClass="medium"
+            btnFunction={() => alert('This functional hasn\'t been created yet')}
+          />
+          <$VoteMatchupVersus>VS</$VoteMatchupVersus>
+          <$VoteMatchupCharacter>Sung Jin Woo</$VoteMatchupCharacter>
+          <$VoteMatchupTeam>Z Fighters</$VoteMatchupTeam>
+          <Button
+            btnText="Vote for Sung Jin Woo"
+            btnTextColor="black"
+            btnColor="orange"
+            customBtnClass="medium"
+            btnFunction={() => alert('This functional hasn\'t been created yet')}
+          />
+        </$VoteMatchupWrapper>
+      </$GlobalContainer>
+    </>
   );
 };
-
-VoteMatchup.propTypes = {
-  setPage: PropTypes.func,
-};
-
-const global = StyleSheet.create(globalStyles);
 
 export default VoteMatchup;

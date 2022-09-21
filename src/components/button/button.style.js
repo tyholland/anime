@@ -23,7 +23,7 @@ export const $Btn = styled.button`
   }
 
   &.small {
-    width: 70px;
+    width: auto;
     padding: 5px;
 
     span {
@@ -52,6 +52,12 @@ export const $Btn = styled.button`
     span {
       font-size: 15px;
     }
+  }
+
+  &.text {
+    background: transparent;
+    border-radius: 0;
+    border: none;
   }
 `;
 
