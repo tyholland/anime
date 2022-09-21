@@ -10,8 +10,8 @@ const JoinLeague = () => {
   return (
     <>
       <JoinLeagueMetadata />
+      <BackLink />
       <$GlobalContainer>
-        <BackLink redirect="/league" />
         <$GlobalTitle>Join League</$GlobalTitle>
         <$JoinLeagueWrapper>
           <TextField placeholder="Enter your league code" />

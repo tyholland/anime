@@ -16,7 +16,7 @@ const VoteMatchup = (props) => {
           : global.androidHeaderBeginning,
       ]}
     >
-      <BackLink redirect={() => props.setPage('Home')} />
+      <BackLink />
       <Text style={global.title}>Vote on Matchup</Text>
       <Text style={global.subTitle}>
         Enter the code you were given below, to vote on the head-to-head

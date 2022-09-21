@@ -2,20 +2,22 @@ import React from 'react';
 import { $GlobalContainer } from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card/index.js';
 import LeagueDetailsMetadata from './leagueDetailsMetadata';
+import BackLink from 'Components/back-link';
 
 const LeagueDetails = () => {
   return (
     <>
       <LeagueDetailsMetadata />
+      <BackLink />
       <$GlobalContainer className="grid">
         <SelectionCard
-          btnText="Your Team"
+          btnText="Team"
           btnTextColor="black"
           btnColor="orange"
           redirect="/team/123"
         />
         <SelectionCard
-          btnText="View Matchup"
+          btnText="Matchup"
           btnTextColor="black"
           btnColor="orange"
           redirect="/matchup/123"

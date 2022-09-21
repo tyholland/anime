@@ -26,7 +26,7 @@ const Suggestions = (props) => {
           : global.androidHeaderBeginning,
       ]}
     >
-      <BackLink redirect={() => props.setPage('Settings')} />
+      <BackLink />
       <Text style={global.title}>Suggest a New Character</Text>
       <TextField placeholder="Enter Character Name..." />
       <TextField placeholder="Enter Anime Series Character is from..." />

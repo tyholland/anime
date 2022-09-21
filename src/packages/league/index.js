@@ -21,7 +21,7 @@ const League = () => {
           redirect="league/create"
         />
         <SelectionCard
-          btnText="View All Leagues"
+          btnText="View Leagues"
           btnTextColor="black"
           btnColor="orange"
           redirect="league/view"

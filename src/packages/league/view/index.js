@@ -8,8 +8,8 @@ const ViewLeague = () => {
   return (
     <>
       <ViewLeagueMetadata />
+      <BackLink />
       <$GlobalContainer>
-        <BackLink redirect="/league" />
         <$GlobalTitle>All Leagues</$GlobalTitle>
         <LeagueCard
           league="League Name"

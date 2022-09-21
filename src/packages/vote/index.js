@@ -16,7 +16,7 @@ const Vote = (props) => {
           : global.androidHeaderBeginning,
       ]}
     >
-      <BackLink redirect={() => props.setPage('VoteMatchup')} />
+      <BackLink />
       <Text style={styles.character}>Goku</Text>
       <Text style={styles.team}>Jack Of All Trades</Text>
       <Button

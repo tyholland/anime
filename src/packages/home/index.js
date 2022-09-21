@@ -27,7 +27,7 @@ const Home = () => {
           redirect="characters"
         />
         <SelectionCard
-          btnText="Vote on Matchup"
+          btnText="Matchup Voting"
           btnTextColor="black"
           btnColor="orange"
           redirect="/"

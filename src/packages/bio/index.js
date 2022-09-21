@@ -13,40 +13,42 @@ import {
 
 const Bio = () => {
   return (
-    <$GlobalContainer>
-      <BackLink redirect="/team/123" />
-      <$BioTitle>Natsu</$BioTitle>
-      <$BioSubTitle>Anime Series: DBZ</$BioSubTitle>
-      <$BioAttribute>Rank:</$BioAttribute>
-      <$BioSubAttribute>Captain</$BioSubAttribute>
-      <$BioAttribute>Power Level:</$BioAttribute>
-      <$BioSubAttribute>1500</$BioSubAttribute>
-      <$BioAttribute>Element Affinity:</$BioAttribute>
-      <$BioAffinity className="down">
-        <$BioAffinity className="right">
-          <$GlobalCircle className="fire"></$GlobalCircle>
-          <$BioAffinityText>Fire</$BioAffinityText>
+    <>
+      <BackLink />
+      <$GlobalContainer>
+        <$BioTitle>Natsu</$BioTitle>
+        <$BioSubTitle>Anime Series: DBZ</$BioSubTitle>
+        <$BioAttribute>Rank:</$BioAttribute>
+        <$BioSubAttribute>Captain</$BioSubAttribute>
+        <$BioAttribute>Power Level:</$BioAttribute>
+        <$BioSubAttribute>1500</$BioSubAttribute>
+        <$BioAttribute>Element Affinity:</$BioAttribute>
+        <$BioAffinity className="down">
+          <$BioAffinity className="right">
+            <$GlobalCircle className="fire"></$GlobalCircle>
+            <$BioAffinityText>Fire</$BioAffinityText>
+          </$BioAffinity>
+          <$BioAffinity className="right">
+            <$GlobalCircle className="darkness"></$GlobalCircle>
+            <$BioAffinityText>Darkness</$BioAffinityText>
+          </$BioAffinity>
         </$BioAffinity>
-        <$BioAffinity className="right">
-          <$GlobalCircle className="darkness"></$GlobalCircle>
-          <$BioAffinityText>Darkness</$BioAffinityText>
+        <$BioAttribute>Element Weakness:</$BioAttribute>
+        <$BioAffinity className="last">
+          <$BioAffinity>
+            <$GlobalCircle className="water"></$GlobalCircle>
+            <$BioAffinityText>Water</$BioAffinityText>
+          </$BioAffinity>
         </$BioAffinity>
-      </$BioAffinity>
-      <$BioAttribute>Element Weakness:</$BioAttribute>
-      <$BioAffinity className="last">
-        <$BioAffinity>
-          <$GlobalCircle className="water"></$GlobalCircle>
-          <$BioAffinityText>Water</$BioAffinityText>
-        </$BioAffinity>
-      </$BioAffinity>
-      <Button
-        btnText="Drop Character"
-        btnTextColor="white"
-        btnColor="red"
-        btnFunction={() => alert("This functionality hasn't been created yet")}
-        customBtnClass="medium"
-      />
-    </$GlobalContainer>
+        <Button
+          btnText="Drop Character"
+          btnTextColor="white"
+          btnColor="red"
+          btnFunction={() => alert("This functionality hasn't been created yet")}
+          customBtnClass="medium"
+        />
+      </$GlobalContainer>
+    </>
   );
 };
 

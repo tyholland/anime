@@ -3,46 +3,50 @@ import { $TeamInfoContent, $TeamInfoTitle, $TeamInfoBtn } from './teamInfo.style
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
+import BackLink from 'Components/back-link/index.js';
 
 const TeamInfo = () => {
   const [edit, setEdit] = useState(false);
 
   return (
-    <$GlobalContainer>
-      <$GlobalTitle>Update Team Info</$GlobalTitle>
-      <$TeamInfoTitle>Team Name:</$TeamInfoTitle>
-      { edit && (
-        <TextField placeholder="Enter Team Name" />
-      )}
-      { !edit && (
-        <$TeamInfoContent>Jack Of All Trades</$TeamInfoContent>
-      )}
-      <$TeamInfoTitle>Your Name:</$TeamInfoTitle>
-      { edit && (
-        <TextField placeholder="Enter Your Name" />
-      )}
-      { !edit && (
-        <$TeamInfoContent>John Smith</$TeamInfoContent>
-      )}
-      <$TeamInfoBtn>
-        <Button
-          btnText={edit ? 'Save' : 'Edit'}
-          btnTextColor="black"
-          btnColor="orange"
-          btnFunction={() => setEdit(!edit)}
-          customBtnClass="medium"
-        />
+    <>
+      <BackLink />
+      <$GlobalContainer>
+        <$GlobalTitle>Update Team Info</$GlobalTitle>
+        <$TeamInfoTitle>Team Name:</$TeamInfoTitle>
         { edit && (
+          <TextField placeholder="Enter Team Name" />
+        )}
+        { !edit && (
+          <$TeamInfoContent>Jack Of All Trades</$TeamInfoContent>
+        )}
+        <$TeamInfoTitle>Your Name:</$TeamInfoTitle>
+        { edit && (
+          <TextField placeholder="Enter Your Name" />
+        )}
+        { !edit && (
+          <$TeamInfoContent>John Smith</$TeamInfoContent>
+        )}
+        <$TeamInfoBtn>
           <Button
-            btnText="Cancel"
-            btnTextColor="white"
-            btnColor="red"
-            btnFunction={() => setEdit(false)}
+            btnText={edit ? 'Save' : 'Edit'}
+            btnTextColor="black"
+            btnColor="orange"
+            btnFunction={() => setEdit(!edit)}
             customBtnClass="medium"
           />
-        )}
-      </$TeamInfoBtn>
-    </$GlobalContainer>
+          { edit && (
+            <Button
+              btnText="Cancel"
+              btnTextColor="white"
+              btnColor="red"
+              btnFunction={() => setEdit(false)}
+              customBtnClass="medium"
+            />
+          )}
+        </$TeamInfoBtn>
+      </$GlobalContainer>
+    </>
   );
 };
 

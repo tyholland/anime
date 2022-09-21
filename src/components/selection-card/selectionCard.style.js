@@ -4,10 +4,10 @@ export const $SelectionCardBlock = styled.button`
   border-radius: 10px;
   padding: 2%;
   margin: 2%;
-  width: 190px;
-  height: 320px;
+  width: 280px;
+  height: 280px;
   background-image: url("/assets/abz-logo.png");
-  background-size: 80%;
+  background-size: 65%;
   background-repeat: no-repeat;
   background-position: 50% 15%;
   display: flex;
