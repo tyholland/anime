@@ -55,6 +55,14 @@ export const $TeamCardCharacterWrapper = styled.div`
   }
 `;
 
+export const $TeamCardCharacterHeader = styled.div`
+  color: #000;
+  text-align: left;
+  width: 30%;
+  margin: 15px 0 15px 7px;
+  font-weight: 700;
+`;
+
 export const $TeamCardCharacter = styled.button`
   color: #000;
   background: transparent;

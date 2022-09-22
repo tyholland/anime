@@ -9,6 +9,7 @@ import {
   $TeamCardCharacterTxt,
   $TeamCardDuoSpace,
   $TeamCardCharacterWrapper,
+  $TeamCardCharacterHeader,
 } from './teamCard.style.js';
 import { $GlobalCircle } from 'Styles/global.style.js';
 
@@ -19,7 +20,7 @@ const TeamCard = ({ type = 'default' }) => {
     <>
       <$TeamCardSection className="header">
         <$TeamCardPosition className="none"></$TeamCardPosition>
-        <$TeamCardCharacter>{isBench ? type : 'Starters'}</$TeamCardCharacter>
+        <$TeamCardCharacterHeader>{isBench ? type : 'Starters'}</$TeamCardCharacterHeader>
         <$TeamCardAffinity>Affinity</$TeamCardAffinity>
         <$TeamCardPower>Power Level</$TeamCardPower>
       </$TeamCardSection>
