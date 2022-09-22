@@ -23,7 +23,7 @@ const Boost = () => {
       </$GameplayCardSection>
       <$GameplayCardSection>
         <$GameplayCardTitle>User Voting</$GameplayCardTitle>
-        <div>Characters in a specific Head-to-Head Battle can recieve a boost. The character will recieve a the full amount of the User Voting power boost. Characters that can be affected by this boost are Captains, Brawlers, Support, and Villains.</div>
+        <div>Characters in a specific Head-to-Head Battle can recieve a boost. The character will recieve the full amount of the User Voting power boost. Characters that can be affected by this boost are Captains, Brawlers, Support, and Villains.</div>
       </$GameplayCardSection>
     </$GlobalContainer>
   );

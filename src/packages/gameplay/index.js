@@ -8,6 +8,8 @@ import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import { $GameplayStyles } from './gameplay.style';
 import GameplayMetadata from './gameplayMetadata';
+import MakeTeam from 'Components/gameplay-card/make-team';
+import Schedule from 'Components/gameplay-card/schedule';
 
 const Gameplay = () => {
   return (
@@ -16,7 +18,13 @@ const Gameplay = () => {
       <GameplayMetadata />
       <$GlobalContainer>
         <$GlobalTitle>Gameplay</$GlobalTitle>
-        <Collapsible trigger="Weekly Element Affinities" className="something">
+        <Collapsible trigger="Making Your Team">
+          <MakeTeam />
+        </Collapsible>
+        <Collapsible trigger="League Schedule">
+          <Schedule />
+        </Collapsible>
+        <Collapsible trigger="Weekly Element Affinities">
           <Affinities />
         </Collapsible>
         <Collapsible trigger="Power Boosts">
