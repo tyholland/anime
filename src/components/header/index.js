@@ -14,7 +14,7 @@ const Header = () => {
           btnText="Login"
           btnTextColor="black"
           redirect="login"
-          customBtnClass="small"
+          customBtnClass="small header"
         />
       </$HeaderTop>
       <Nav />

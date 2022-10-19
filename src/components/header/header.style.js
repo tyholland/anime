@@ -13,14 +13,13 @@ export const $HeaderTitle = styled.div`
   color: #000;
   font-weight: 700;
   text-align: center;
-  margin-top: 2%;
 `;
 
 export const $HeaderTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 2%;
+  margin: 2% 2% 0;
 `;
 
 export const $HeaderBtn = Button;

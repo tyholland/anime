@@ -59,6 +59,11 @@ export const $Btn = styled.button`
     border-radius: 0;
     border: none;
   }
+
+  &.header {
+    margin: 0;
+    width: 80px;
+  }
 `;
 
 export const $BtnText = styled.span`
