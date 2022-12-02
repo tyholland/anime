@@ -1,3 +1,3 @@
-import LeagueDetails from 'Packages/league/details';
+import LeagueDetails from 'PageComponents/league/details';
 
 export default LeagueDetails;

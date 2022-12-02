@@ -1,3 +1,3 @@
-import League from 'Packages/league';
+import League from 'PageComponents/league';
 
 export default League;

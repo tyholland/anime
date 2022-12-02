@@ -1,3 +1,3 @@
-import Home from 'Packages/home';
+import Home from 'PageComponents/home';
 
 export default Home;

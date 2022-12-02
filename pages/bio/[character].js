@@ -1,3 +1,3 @@
-import Bio from "Packages/bio";
+import Bio from "PageComponents/bio";
 
 export default Bio;

@@ -1,3 +1,3 @@
-import Login from "Packages/login";
+import Login from "PageComponents/login";
 
 export default Login;

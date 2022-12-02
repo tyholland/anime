@@ -1,3 +1,3 @@
-import ViewMatchup from "Packages/view-matchup";
+import ViewMatchup from "PageComponents/view-matchup";
 
 export default ViewMatchup;

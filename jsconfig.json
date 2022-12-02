@@ -4,7 +4,7 @@
     "paths": {
       "Components/*": ["src/components/*"],
       "Assets/*": ["public/assets/*"],
-      "Packages/*": ["src/packages/*"],
+      "PageComponents/*": ["src/page-components/*"],
       "Styles/*": ["src/styles/*"],
       "Utils/*": ["src/utils/*"],
     }

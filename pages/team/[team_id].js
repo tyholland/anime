@@ -1,3 +1,3 @@
-import Team from 'Packages/team';
+import Team from 'PageComponents/team';
 
 export default Team;
