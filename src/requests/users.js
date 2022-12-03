@@ -11,7 +11,7 @@ export const getAccountInfo = async (firebaseUID) => {
 };
 
 export const addNewAccount = async (options) => {
-  const url = `${api}/users/account`;
+  const url = `${api}/users/create`;
   
   return await axiosClient(url, options);
 };
