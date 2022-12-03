@@ -10,7 +10,7 @@ const Login = () => {
       <$LoginWrapper>
         <$GlobalTitle>Login</$GlobalTitle>
         <Button
-          btnText="Continue with Google"
+          btnText="Login with Google"
           btnTextColor="black"
           btnColor="white"
           customBtnClass="medium"

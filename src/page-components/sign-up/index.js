@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
-import { $LoginContentLinks, $LoginWrapper } from 'PageComponents/login/login.style.js';
+import { $LoginContentLinks, $LoginWrapper, $LoginOr } from 'PageComponents/login/login.style.js';
 import { addNewAccount } from 'src/requests/users';
 
 const SignUp = () => {
@@ -32,6 +32,14 @@ const SignUp = () => {
     <$GlobalContainer>
       <$LoginWrapper>
         <$GlobalTitle>Sign Up</$GlobalTitle>
+        <Button
+          btnText="Sign Up with Google"
+          btnTextColor="black"
+          btnColor="white"
+          customBtnClass="medium"
+          redirect="/"
+        />
+        <$LoginOr>or</$LoginOr>
         <TextField placeholder="Please enter a username" onChange={setUsername} />
         <TextField placeholder="Please enter a email" keyboard="email-address" onChange={setEmail} />
         <TextField placeholder="Please enter a password" type="password" />
