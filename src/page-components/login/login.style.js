@@ -8,16 +8,12 @@ export const $LoginSplit = styled.div`
 
 export const $LoginContentLinks = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-around;
   margin-top: 20px;
   width: 350px;
 `;
 
-export const $LoginImg = styled.img`
-  height: auto;
-  width: 20%;
-  margin-bottom: 5%;
+export const $LoginOr = styled.div`
+  margin: 3% 0 2%;
 `;
 
 export const $LoginWrapper = styled.div`

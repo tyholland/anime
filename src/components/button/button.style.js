@@ -14,6 +14,11 @@ export const $Btn = styled.button`
     background-color: rgb(250, 179, 28);
   }
   
+  &.white {
+    background-color: #fff;
+    border-color: #000;
+  }
+  
   &.black {
     background-color: #000;
   }
@@ -58,6 +63,17 @@ export const $Btn = styled.button`
     background: transparent;
     border-radius: 0;
     border: none;
+    margin: 0 0 0 2%;
+    padding: 0;
+    width: auto;
+
+    & span {
+      font-size: 16px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   &.header {
