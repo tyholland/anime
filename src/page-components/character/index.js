@@ -51,7 +51,7 @@ const Character = () => {
   return (
     <>
       <CharacterMetadata />
-      <$GlobalContainer className="grid">
+      <$GlobalContainer className="grid character">
         <DataGrid columns={columns} rows={rows} className={styles.fillGrid} />
       </$GlobalContainer>
     </>

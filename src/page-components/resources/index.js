@@ -7,7 +7,7 @@ const Resources = () => {
   return (
     <>
       <ResourcesMetadata />
-      <$GlobalContainer className="grid">
+      <$GlobalContainer className="grid resource">
         <SelectionCard
           redirect="https://www.buzzsprout.com/1260827"
           btnText="Podcast"

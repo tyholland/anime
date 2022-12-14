@@ -14,14 +14,121 @@ export const $GlobalStyles = createGlobalStyle`
   }
 `;
 
+export const $GlobalWrapper = styled.div`
+  &.leagueDetail {
+    position: relative;
+    height: auto;
+
+    &::before {
+      content: ' ';
+      background-image: url(/assets/background/goku-kamehameha.jpeg);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      filter: grayscale(100%);
+    }
+  }
+`;
+
 export const $GlobalContainer = styled.div`
   padding: 2%;
 
   &.grid {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+  }
+
+  &.home {
+    position: relative;
+    height: 100vh;
+
+    &::before {
+      content: ' ';
+      background-image: url(/assets/background/itachi.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      filter: grayscale(100%);
+    }
+  }
+
+  &.league {
+    position: relative;
+    height: 100vh;
+
+    &::before {
+      content: ' ';
+      background-image: url(/assets/background/naruto-rasengan.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      filter: grayscale(85%);
+    }
+  }
+
+  &.resource {
+    position: relative;
+    height: auto;
+
+    &::before {
+      content: ' ';
+      background-image: url(/assets/background/kakashi-sharigan.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      filter: grayscale(100%);
+    }
+  }
+
+  &.character {
+    position: relative;
+    height: auto;
+
+    &::before {
+      content: ' ';
+      background-image: url(/assets/background/young-goku.jpeg);
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      filter: grayscale(100%);
+    }
+  }
+
+  &.join {
+    background-image: url(/assets/background/vegito.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+  }
+
+  &.voteMatchup {
+    background-image: url(/assets/background/goku-ssj2.png);
+    background-size: 15%;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    height: 70vh;
   }
 `;
 

@@ -8,7 +8,7 @@ const VoteMatchup = () => {
   return (
     <>
       <BackLink />
-      <$GlobalContainer>
+      <$GlobalContainer className="voteMatchup">
         <$VoteMatchupWrapper>
           <$VoteMatchupCharacter>Goku</$VoteMatchupCharacter>
           <$VoteMatchupTeam>Jack Of All Trades</$VoteMatchupTeam>

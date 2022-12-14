@@ -29,7 +29,10 @@ export const $Btn = styled.button`
 
   &.small {
     width: auto;
-    padding: 5px;
+    padding: 5px 15px;
+    position: relative;
+    margin: 2% 0 0 2%;
+    border-color: #fff;
 
     span {
       font-size: 12px;

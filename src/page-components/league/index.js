@@ -7,7 +7,7 @@ const League = () => {
   return (
     <>
       <HomeMetadata />
-      <$GlobalContainer className="grid">
+      <$GlobalContainer className="grid league">
         <SelectionCard
           btnText="Join League"
           btnTextColor="black"

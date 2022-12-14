@@ -1,44 +1,30 @@
 import styled from 'styled-components';
 
 export const $SelectionCardBlock = styled.button`
-  border-radius: 10px;
   padding: 2%;
   margin: 2%;
   width: 280px;
   height: 280px;
-  background-image: url("/assets/abz-logo.png");
-  background-size: 65%;
+  background-image: url("/assets/background/dragonball.png");
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: 50% 15%;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-
-  &.orange {
-    background-color: rgba(249, 128, 17, .6);
-  }
-  
-  &.yellow {
-    background-color: rgba(250, 179, 28, .6);
-  }
-  
-  &.blue {
-    background-color: rgba(27, 5, 246, .6);
-  }
-  
-  &.black {
-    background-color: #00000060;
-  }
-  
-  &.red {
-    background-color: #cc000060;
-  }
+  background-color: transparent;
+  border: none;
+  position: relative;
 `;
 
 export const $SelectionCardText = styled.span`
   text-align: center;
   font-size: 30px;
   font-weight: 700;
+  background: #ffffff99;
+  padding: 3% 4%;
+  border-radius: 15px;
+  width: min-content;
 
   &.whiteText {
     color: #fff;
