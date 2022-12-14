@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const $NavContainer = styled.div`
-  margin-top: 2%;
+  margin-top: 1%;
   display: flex;
   flex-direction: row;
   width: 100%;

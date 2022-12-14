@@ -7,7 +7,7 @@ const Header = () => {
     <$HeaderContainer>
       <$HeaderTop>
         <$HeaderTitle>
-          ABZ
+          <img src="/assets/abz-logo.png" />
         </$HeaderTitle>
         <$HeaderBtn
           btnColor="yellow"
