@@ -3,10 +3,9 @@ import { $GlobalContainer } from 'Styles/global.style';
 import CharacterMetadata from './characterMetadata';
 import 'react-data-grid/lib/styles.css';
 import DataGrid from 'react-data-grid';
-import { getPlayers } from 'src/requests/character';
 import styles from './character.module.css';
 
-const Character = () => {
+const Character = ({ players }) => {
   const [rows, setRows] = useState([]);
   const columns = [
     {
@@ -28,7 +27,6 @@ const Character = () => {
   ];
 
   const getCharacters = async () => {
-    const players = await getPlayers();
     const playerArr = [];
 
     players.forEach(item => {

@@ -1,13 +1,10 @@
 import { axiosClient } from 'Utils/axios';
 const api = process.env.NEXT_PUBLIC_API;
 
-export const getAccountInfo = async (firebaseUID) => {
-  const url = `${api}/users/account`;
-  const body = {
-    firebaseUID
-  };
+export const getAccountInfo = async () => {
+  const url = `${api}/users/${userId}`;
   
-  return await axiosClient(url, body);
+  return await axiosClient(url);
 };
 
 export const addNewAccount = async (options) => {

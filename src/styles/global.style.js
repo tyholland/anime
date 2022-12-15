@@ -62,6 +62,24 @@ export const $GlobalContainer = styled.div`
     }
   }
 
+  &.notFound {
+    position: relative;
+    height: 100vh;
+
+    &::before {
+      content: ' ';
+      background-image: url(/assets/background/deku-allmight.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      filter: grayscale(100%);
+    }
+  }
+
   &.league {
     position: relative;
     height: 100vh;
