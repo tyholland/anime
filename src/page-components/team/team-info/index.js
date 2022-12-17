@@ -20,13 +20,6 @@ const TeamInfo = () => {
         { !edit && (
           <$TeamInfoContent>Jack Of All Trades</$TeamInfoContent>
         )}
-        <$TeamInfoTitle>Your Name:</$TeamInfoTitle>
-        { edit && (
-          <TextField placeholder="Enter Your Name" />
-        )}
-        { !edit && (
-          <$TeamInfoContent>John Smith</$TeamInfoContent>
-        )}
         <$TeamInfoBtn>
           <Button
             btnText={edit ? 'Save' : 'Edit'}

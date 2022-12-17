@@ -32,6 +32,12 @@ const Home = () => {
           btnColor="orange"
           redirect="/matchup/vote"
         />
+        <SelectionCard
+          btnText="Suggest Character"
+          btnTextColor="black"
+          btnColor="orange"
+          redirect=""
+        />
       </$GlobalContainer>
     </>
   );

@@ -134,6 +134,24 @@ export const $GlobalContainer = styled.div`
     }
   }
 
+  &.leagueCharacter {
+    position: relative;
+    height: auto;
+
+    &::before {
+      content: ' ';
+      background-image: url(/assets/background/saitama.png);
+      background-size: 50%;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: absolute;
+      top: 5%;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+    }
+  }
+
   &.join {
     background-image: url(/assets/background/vegito.png);
     background-size: contain;

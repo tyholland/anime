@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "Components/button";
 import BackLink from "Components/back-link";
 import { $GlobalContainer, $GlobalCircle } from "Styles/global.style.js";
 import {
@@ -40,13 +39,6 @@ const Bio = () => {
             <$BioAffinityText>Water</$BioAffinityText>
           </$BioAffinity>
         </$BioAffinity>
-        <Button
-          btnText="Drop Character"
-          btnTextColor="white"
-          btnColor="red"
-          btnFunction={() => alert("This functionality hasn't been created yet")}
-          customBtnClass="medium"
-        />
       </$GlobalContainer>
     </>
   );

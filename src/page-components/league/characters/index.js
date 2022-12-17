@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { $GlobalContainer } from 'Styles/global.style';
-import CharacterMetadata from './characterMetadata';
+import LeagueCharacterMetadata from './leagueCharacterMetadata';
 import 'react-data-grid/lib/styles.css';
-import DataGrid from 'react-data-grid';
-import styles from './character.module.css';
-import { useRouter } from 'next/router';
+import DataGrid, { SelectColumn } from 'react-data-grid';
+import styles from './leaguecharacters.module.css';
 
-const Character = ({ players }) => {
-  const router = useRouter();
+const LeagueCharacters = ({ players }) => {
   const [rows, setRows] = useState([]);
+
   const columns = [
+    SelectColumn,
     {
       key: 'name',
       name: 'Name'
@@ -20,11 +20,7 @@ const Character = ({ players }) => {
     },
     {
       key: 'power',
-      name: 'Power Level'
-    },
-    {
-      key: 'series',
-      name: 'Anime Series'
+      name: 'Cost'
     }
   ];
 
@@ -36,16 +32,16 @@ const Character = ({ players }) => {
         name: item.full_name,
         position: item.category,
         power: item.power_level,
-        series: item.series,
-        width: 200
+        width: 200,
+        id: item.id,
       });
     });
 
     setRows(playerArr);
   };
 
-  const handleRowClick = (item) => {
-    router.push(`/bio/123`)
+  const handleRowClick = async (item) => {
+    console.log(item);
   };
 
   useEffect(() => {
@@ -54,12 +50,17 @@ const Character = ({ players }) => {
 
   return (
     <>
-      <CharacterMetadata />
-      <$GlobalContainer className="grid character">
-        <DataGrid columns={columns} rows={rows} className={styles.fillGrid} onRowClick={(val) => handleRowClick(val)} />
+      <LeagueCharacterMetadata />
+      <$GlobalContainer className="grid leagueCharacter">
+        <DataGrid
+          columns={columns}
+          rows={rows}
+          className={styles.fillGrid}
+          onRowClick={(val) => handleRowClick(val)}
+        />
       </$GlobalContainer>
     </>
   );
 };
 
-export default Character;
+export default LeagueCharacters;
