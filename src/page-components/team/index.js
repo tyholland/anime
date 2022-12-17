@@ -42,7 +42,7 @@ const Team = () => {
               btnTextColor="black"
               btnColor="orange"
               customBtnClass="medium"
-              redirect="/league/characters"
+              redirect="edit/123"
             />
           </$TeamBtnSection>
         </$TeamInfo>

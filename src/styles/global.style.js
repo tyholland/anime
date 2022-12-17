@@ -137,11 +137,13 @@ export const $GlobalContainer = styled.div`
   &.leagueCharacter {
     position: relative;
     height: auto;
+    flex-direction: column;
+    align-items: center;
 
     &::before {
       content: ' ';
       background-image: url(/assets/background/saitama.png);
-      background-size: 50%;
+      background-size: 450px;
       background-repeat: no-repeat;
       background-position: center;
       position: absolute;

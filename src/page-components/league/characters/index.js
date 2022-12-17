@@ -52,6 +52,7 @@ const LeagueCharacters = ({ players }) => {
     <>
       <LeagueCharacterMetadata />
       <$GlobalContainer className="grid leagueCharacter">
+        <div>Remaining Points: 9000</div>
         <DataGrid
           columns={columns}
           rows={rows}
