@@ -1,6 +1,6 @@
-import React from "react";
-import BackLink from "Components/back-link";
-import { $GlobalContainer, $GlobalCircle } from "Styles/global.style.js";
+import React from 'react';
+import BackLink from 'Components/back-link';
+import { $GlobalContainer, $GlobalCircle } from 'Styles/global.style.js';
 import {
   $BioAffinity,
   $BioAffinityText,
@@ -8,7 +8,7 @@ import {
   $BioSubTitle,
   $BioAttribute,
   $BioSubAttribute,
-} from "./bio.style";
+} from './bio.style';
 
 const Bio = () => {
   return (

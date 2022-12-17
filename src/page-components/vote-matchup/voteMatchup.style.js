@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const $VoteMatchupCharacter = styled.div`
   font-size: 30px;

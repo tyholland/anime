@@ -11,7 +11,7 @@ const JoinLeague = () => {
     <>
       <JoinLeagueMetadata />
       <BackLink />
-      <$GlobalContainer className='join'>
+      <$GlobalContainer className="join">
         <$GlobalTitle>Join League</$GlobalTitle>
         <$JoinLeagueWrapper>
           <TextField placeholder="Enter your league code" />

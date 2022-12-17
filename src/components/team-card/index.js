@@ -67,18 +67,18 @@ const TeamCard = ({ type = 'default' }) => {
       {!isBench && (
         <$TeamCardSection>
           <$TeamCardPosition className="duo">B/S</$TeamCardPosition>
-            <$TeamCardCharacterWrapper className="duo">
-              <Link href="/bio/rocklee">
-                <$TeamCardCharacter>
-                  <$TeamCardDuoSpace className="text">Rock Lee</$TeamCardDuoSpace>
-                </$TeamCardCharacter>
-              </Link>
-              <Link href="/bio/tenten">
-                <$TeamCardCharacter>
-                  <$TeamCardDuoSpace className="text">Tenten</$TeamCardDuoSpace>
-                </$TeamCardCharacter>
-              </Link>
-            </$TeamCardCharacterWrapper>
+          <$TeamCardCharacterWrapper className="duo">
+            <Link href="/bio/rocklee">
+              <$TeamCardCharacter>
+                <$TeamCardDuoSpace className="text">Rock Lee</$TeamCardDuoSpace>
+              </$TeamCardCharacter>
+            </Link>
+            <Link href="/bio/tenten">
+              <$TeamCardCharacter>
+                <$TeamCardDuoSpace className="text">Tenten</$TeamCardDuoSpace>
+              </$TeamCardCharacter>
+            </Link>
+          </$TeamCardCharacterWrapper>
           <$TeamCardAffinity>
             <$TeamCardDuoSpace>-</$TeamCardDuoSpace>
             <$TeamCardDuoSpace>-</$TeamCardDuoSpace>

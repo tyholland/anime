@@ -45,7 +45,7 @@ const Character = ({ players }) => {
   };
 
   const handleRowClick = (item) => {
-    router.push(`/bio/123`)
+    router.push('/bio/123');
   };
 
   useEffect(() => {
