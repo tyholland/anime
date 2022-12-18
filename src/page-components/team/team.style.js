@@ -65,4 +65,10 @@ export const $TeamTotalAmount = styled.div`
 export const $TeamBtnSection = styled.div`
   display: flex;
   flex-direction: column;
+  
+  button {
+    width: 100% !important;
+    padding: 5px 15px !important;
+    margin: 0 0 10px 0;
+  }
 `;

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import Button from 'Components/button';
-import BackLink from 'Components/back-link/index.js';
 import { $TeamEditWrapper, $TeamEditBtn } from './teamEdit.style';
+import { useRouter } from 'next/router';
 
 const TeamEdit = () => {
+  const router = useRouter();
   const [edit, setEdit] = useState(false);
 
   return (
     <>
-      <BackLink />
       <$GlobalContainer>
         <$GlobalTitle>Edit Team</$GlobalTitle>
         <$TeamEditWrapper>
@@ -236,6 +236,22 @@ const TeamEdit = () => {
             </$TeamEditBtn>
           </div>
         </$TeamEditWrapper>
+        <$TeamEditBtn className="decision">
+          <Button
+            btnText="Save"
+            btnTextColor="black"
+            btnColor="orange"
+            customBtnClass="leagues"
+            redirect="/league/123"
+          />
+          <Button
+            btnText="Cancel"
+            btnTextColor="white"
+            btnColor="red"
+            customBtnClass="leagues"
+            btnFunction={() => router.back()}
+          />
+        </$TeamEditBtn>
       </$GlobalContainer>
     </>
   );

@@ -12,6 +12,8 @@ export const $BioAffinity = styled.div`
 
   &.down {
     margin-bottom: 25px;
+    flex-wrap: wrap;
+    width: 100%;
   }
 
   &.last {
@@ -26,7 +28,7 @@ export const $BioAffinityText = styled.div`
 export const $BioTitle = styled.div`
   font-size: 30px;
   font-weight: 700;
-  margin-top: 4%;
+  margin-bottom: 5%;
 `;
 
 export const $BioSubTitle = styled.div`
@@ -34,6 +36,10 @@ export const $BioSubTitle = styled.div`
   color: #999;
   font-weight: 700;
   margin-bottom: 25px;
+
+  span {
+    font-weight: 400;
+  }
 `;
 
 export const $BioAttribute = styled.div`
@@ -44,4 +50,22 @@ export const $BioAttribute = styled.div`
 export const $BioSubAttribute = styled.div`
   font-size: 20px;
   margin-bottom: 25px;
+`;
+
+export const $BioImage = styled.img`
+  width: 300px;
+  filter: grayscale(100);
+  margin-bottom: 10%;
+`;
+
+export const $BioWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 70%;
+  margin: 0 auto;
+
+  > div {
+    width: 50%;
+  }
 `;

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "eslint": "eslint . --fix",
-    "stylelint": "stylelint src/styles/*.style.js src/page-components/*/*.style.js src/components/*/*.style.js",
+    "stylelint": "stylelint src/styles/*.style.js src/page-components/**/*.style.js src/page-components/**/**/*.style.js src/components/**/*.style.js",
     "prepare": "husky install"
   },
   "dependencies": {

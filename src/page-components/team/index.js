@@ -32,13 +32,20 @@ const Team = () => {
           <$TeamBtnSection>
             <Button
               btnText="Team Info"
-              btnColor="black"
-              btnTextColor="yellow"
+              btnColor="orange"
+              btnTextColor="black"
               redirect="info/123"
               customBtnClass="medium"
             />
             <Button
               btnText="Edit Roster"
+              btnTextColor="black"
+              btnColor="orange"
+              customBtnClass="medium"
+              redirect="edit/123"
+            />
+            <Button
+              btnText="Edit Lineup"
               btnTextColor="black"
               btnColor="orange"
               customBtnClass="medium"

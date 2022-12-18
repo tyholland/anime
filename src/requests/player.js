@@ -6,3 +6,9 @@ export const getPlayers = async () => {
   
   return await axiosClient(url);
 };
+
+export const getPlayer = async (playerId) => {
+  const url = `${api}/player/${playerId}`;
+  
+  return await axiosClient(url);
+};

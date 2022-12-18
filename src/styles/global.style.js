@@ -119,6 +119,8 @@ export const $GlobalContainer = styled.div`
   &.character {
     position: relative;
     height: auto;
+    align-items: center;
+    flex-direction: column;
 
     &::before {
       content: ' ';
@@ -126,7 +128,7 @@ export const $GlobalContainer = styled.div`
       background-size: contain;
       background-repeat: no-repeat;
       position: absolute;
-      top: 0px;
+      top: 5%;
       right: 0px;
       bottom: 0px;
       left: 0px;
@@ -194,8 +196,9 @@ export const $GlobalSubTitle = styled.div`
 `;
 
 export const $GlobalCircle = styled.div`
-  width: 15px;
-  height: 15px;
+  border: 1px solid #000;
+  width: 14px;
+  height: 14px;
   border-radius: 10px;
 
   &.fire {
@@ -208,6 +211,7 @@ export const $GlobalCircle = styled.div`
 
   &.darkness {
     background-color: #000;
+    border: 1px solid #ccc;
   }
 
   &.water {
@@ -219,7 +223,19 @@ export const $GlobalCircle = styled.div`
   }
 
   &.electric {
-    background-color: #cc0000;
+    background-color: #FFD70080;
+  }
+
+  &.wind {
+    background-color: #00000020;
+  }
+
+  &.earth {
+    background-color: #964B0070;
+  }
+
+  &.celestrial {
+    background-color: #fff;
   }
 `;
 
