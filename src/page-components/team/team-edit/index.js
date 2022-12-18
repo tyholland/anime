@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import Button from 'Components/button';
 import BackLink from 'Components/back-link/index.js';
-import { $TeamEditWrapper } from './teamEdit.style';
+import { $TeamEditWrapper, $TeamEditBtn } from './teamEdit.style';
 
 const TeamEdit = () => {
   const [edit, setEdit] = useState(false);
@@ -42,7 +42,7 @@ const TeamEdit = () => {
             <div>Goku</div>
           </div>
           <div>
-            <div>
+            <$TeamEditBtn>
               <Button
                 btnText="Add"
                 btnTextColor="black"
@@ -57,8 +57,8 @@ const TeamEdit = () => {
                 customBtnClass="small"
                 redirect="/league/characters"
               />
-            </div>
-            <div>
+            </$TeamEditBtn>
+            <$TeamEditBtn>
               <Button
                 btnText="Add"
                 btnTextColor="black"
@@ -73,8 +73,8 @@ const TeamEdit = () => {
                 customBtnClass="small"
                 redirect="/league/characters"
               />
-            </div>
-            <div>
+            </$TeamEditBtn>
+            <$TeamEditBtn>
               <Button
                 btnText="Add"
                 btnTextColor="black"
@@ -89,8 +89,8 @@ const TeamEdit = () => {
                 customBtnClass="small"
                 redirect="/league/characters"
               />
-            </div>
-            <div>
+            </$TeamEditBtn>
+            <$TeamEditBtn>
               <Button
                 btnText="Add"
                 btnTextColor="black"
@@ -105,8 +105,8 @@ const TeamEdit = () => {
                 customBtnClass="small"
                 redirect="/league/characters"
               />
-            </div>
-            <div>
+            </$TeamEditBtn>
+            <$TeamEditBtn>
               <Button
                 btnText="Add"
                 btnTextColor="black"
@@ -121,8 +121,8 @@ const TeamEdit = () => {
                 customBtnClass="small"
                 redirect="/league/characters"
               />
-            </div>
-            <div>
+            </$TeamEditBtn>
+            <$TeamEditBtn>
               <Button
                 btnText="Add"
                 btnTextColor="black"
@@ -137,8 +137,8 @@ const TeamEdit = () => {
                 customBtnClass="small"
                 redirect="/league/characters"
               />
-            </div>
-            <div>
+            </$TeamEditBtn>
+            <$TeamEditBtn>
               <Button
                 btnText="Add"
                 btnTextColor="black"
@@ -153,8 +153,8 @@ const TeamEdit = () => {
                 customBtnClass="small"
                 redirect="/league/characters"
               />
-            </div>
-            <div>
+            </$TeamEditBtn>
+            <$TeamEditBtn>
               <Button
                 btnText="Add"
                 btnTextColor="black"
@@ -169,8 +169,8 @@ const TeamEdit = () => {
                 customBtnClass="small"
                 redirect="/league/characters"
               />
-            </div>
-            <div>
+            </$TeamEditBtn>
+            <$TeamEditBtn>
               <Button
                 btnText="Add"
                 btnTextColor="black"
@@ -185,8 +185,8 @@ const TeamEdit = () => {
                 customBtnClass="small"
                 redirect="/league/characters"
               />
-            </div>
-            <div>
+            </$TeamEditBtn>
+            <$TeamEditBtn>
               <Button
                 btnText="Add"
                 btnTextColor="black"
@@ -201,8 +201,8 @@ const TeamEdit = () => {
                 customBtnClass="small"
                 redirect="/league/characters"
               />
-            </div>
-            <div>
+            </$TeamEditBtn>
+            <$TeamEditBtn>
               <Button
                 btnText="Add"
                 btnTextColor="black"
@@ -217,8 +217,8 @@ const TeamEdit = () => {
                 customBtnClass="small"
                 redirect="/league/characters"
               />
-            </div>
-            <div>
+            </$TeamEditBtn>
+            <$TeamEditBtn>
               <Button
                 btnText="Add"
                 btnTextColor="black"
@@ -233,7 +233,7 @@ const TeamEdit = () => {
                 customBtnClass="small"
                 redirect="/league/characters"
               />
-            </div>
+            </$TeamEditBtn>
           </div>
         </$TeamEditWrapper>
       </$GlobalContainer>

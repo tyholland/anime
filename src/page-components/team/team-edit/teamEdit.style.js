@@ -24,3 +24,8 @@ export const $TeamEditWrapper = styled.div`
     }
   }
 `;
+
+export const $TeamEditBtn = styled.div`
+  display: flex;
+  justify-content: center;
+`;
