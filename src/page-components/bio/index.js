@@ -74,15 +74,15 @@ const Bio = ({ player }) => {
             <$BioAttribute>Element Affinity:</$BioAttribute>
             <$BioAffinity className="down">
               { affinities.map(item => {
-                  if (!!item.value && item.value > 0) {
-                    return (
-                      <$BioAffinity className="right">
-                        <$GlobalCircle className={item.type.toLowerCase()}></$GlobalCircle>
-                        <$BioAffinityText>{item.type}</$BioAffinityText>
-                      </$BioAffinity>
-                    )
-                  }
-                })
+                if (!!item.value && item.value > 0) {
+                  return (
+                    <$BioAffinity className="right" key={item.type}>
+                      <$GlobalCircle className={item.type.toLowerCase()}></$GlobalCircle>
+                      <$BioAffinityText>{item.type}</$BioAffinityText>
+                    </$BioAffinity>
+                  );
+                }
+              })
               }
             </$BioAffinity>
             { !noWeakness && (
