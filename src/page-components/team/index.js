@@ -8,7 +8,6 @@ import {
   $TeamContent,
   $TeamName,
   $TeamLeague,
-  $TeamOwner,
   $TeamBtnSection,
 } from './team.style.js';
 import { $GlobalContainer } from 'Styles/global.style';
@@ -25,9 +24,6 @@ const Team = () => {
           <$TeamContent>
             <$TeamName>Jack Of All Trades</$TeamName>
             <$TeamLeague>Anime Ballers</$TeamLeague>
-            <$TeamOwner>John Smith</$TeamOwner>
-            <$TeamStats><span>Record:</span> 4-1</$TeamStats>
-            <$TeamStats><span>Remaining:</span> 1000 pts</$TeamStats>
           </$TeamContent>
           <$TeamBtnSection>
             <Button

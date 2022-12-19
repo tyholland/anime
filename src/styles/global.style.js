@@ -46,7 +46,7 @@ export const $GlobalContainer = styled.div`
 
   &.home {
     position: relative;
-    height: 100vh;
+    height: auto;
 
     &::before {
       content: ' ';
@@ -128,7 +128,7 @@ export const $GlobalContainer = styled.div`
       background-size: contain;
       background-repeat: no-repeat;
       position: absolute;
-      top: 5%;
+      top: 15%;
       right: 0px;
       bottom: 0px;
       left: 0px;
@@ -149,7 +149,7 @@ export const $GlobalContainer = styled.div`
       background-repeat: no-repeat;
       background-position: center;
       position: absolute;
-      top: 5%;
+      top: 15%;
       right: 0px;
       bottom: 0px;
       left: 0px;
@@ -187,6 +187,7 @@ export const $GlobalTitle = styled.div`
   margin-bottom: 5%;
   font-size: 30px;
   text-align: center;
+  position: relative;
 `;
 
 export const $GlobalSubTitle = styled.div`

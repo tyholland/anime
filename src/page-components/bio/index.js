@@ -17,7 +17,7 @@ const Bio = ({ player }) => {
 
   const noWeakness = !weakness || weakness === 'None';
 
-  const affinities = [
+  const affinitiesTypes = [
     {
       type: 'Fire',
       value: fire,
@@ -56,6 +56,12 @@ const Bio = ({ player }) => {
     }
   ];
 
+  const affinities = affinitiesTypes.filter(item => {
+    if (!!item.value && item.value > 0) {
+      return item;
+    }
+  });
+
   return (
     <>
       <BackLink />
@@ -71,20 +77,19 @@ const Bio = ({ player }) => {
             <$BioSubAttribute>{ category }</$BioSubAttribute>
             <$BioAttribute>Power Level:</$BioAttribute>
             <$BioSubAttribute>{ power_level }</$BioSubAttribute>
-            <$BioAttribute>Element Affinity:</$BioAttribute>
-            <$BioAffinity className="down">
-              { affinities.map(item => {
-                if (!!item.value && item.value > 0) {
-                  return (
+            { !!affinities.length && (
+              <>
+                <$BioAttribute>Element Affinity:</$BioAttribute>
+                <$BioAffinity className="down">
+                  { affinities.map(item => (
                     <$BioAffinity className="right" key={item.type}>
                       <$GlobalCircle className={item.type.toLowerCase()}></$GlobalCircle>
                       <$BioAffinityText>{item.type}</$BioAffinityText>
                     </$BioAffinity>
-                  );
-                }
-              })
-              }
-            </$BioAffinity>
+                  ))}
+                </$BioAffinity>
+              </>
+            )}
             { !noWeakness && (
               <>
                 <$BioAttribute>Element Weakness:</$BioAttribute>

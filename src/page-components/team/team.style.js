@@ -9,21 +9,12 @@ export const $TeamTotal = styled.div`
 
 export const $TeamInfo = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
 `;
 
 export const $TeamContent = styled.div`
   margin-left: 10px;
-`;
-
-export const $TeamStats = styled.div`
-  margin: 3px 0;
-  font-size: 14px;
-
-  span {
-    font-weight: 700;
-  }
 `;
 
 export const $TeamInfoTxt = styled.div`
@@ -39,11 +30,6 @@ export const $TeamName = styled.div`
 export const $TeamLeague = styled.div`
   font-size: 14px;
   color: rgba(0, 0, 0, .5);
-`;
-
-export const $TeamOwner = styled.div`
-  font-size: 16px;
-  margin: 6px 0 12px 0;
 `;
 
 export const $TeamTotalText = styled.div`
@@ -64,11 +50,12 @@ export const $TeamTotalAmount = styled.div`
 
 export const $TeamBtnSection = styled.div`
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  margin-top: 2%;
   
   button {
-    width: 100% !important;
+    width: 140px !important;
     padding: 5px 15px !important;
-    margin: 0 0 10px 0;
+    margin: 0 3% 10px 0;
   }
 `;

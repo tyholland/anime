@@ -14,11 +14,24 @@ export const $TeamInfoContent = styled.div`
 export const $TeamInfoTitle = styled.div`
   font-size: 20px;
   font-weight: 700;
-  margin-top: 20px;
 `;
 
 export const $TeamInfoBtn = styled.div`
   margin-top: 20px;
   display: flex;
   flex-direction: column;
+`;
+
+export const $TeamInfoStats = styled.div`
+  margin-bottom: 10%;
+  font-size: 20px;
+
+  span {
+    font-weight: 700;
+  }
+`;
+
+export const $TeamInfoWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
 `;

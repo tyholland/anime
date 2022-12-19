@@ -61,7 +61,7 @@ export const $BioImage = styled.img`
 export const $BioWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: self-start;
   width: 70%;
   margin: 0 auto;
 

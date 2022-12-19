@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
-export const $CharacterStyles = createGlobalStyle`
+export const $PlayersStyles = createGlobalStyle`
   .fillGrid {
     grid-template-columns: 250px 150px 150px 250px !important;
     width: auto;
@@ -20,7 +20,7 @@ export const $CharacterStyles = createGlobalStyle`
   }
 `;
 
-export const $CharacterFilter = styled.div`
+export const $PlayersFilter = styled.div`
   display: flex;
   margin-bottom: 2%;
   width: 100%;
