@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   $VoteMatchupCharacter,
   $VoteMatchupTeam,
@@ -6,10 +6,10 @@ import {
   $VoteMatchupWrapper,
   $VoteMatchupSection,
   $VoteMatchupImage,
-} from "./voteMatchup.style.js";
-import Button from "Components/button";
-import BackLink from "Components/back-link";
-import { $GlobalContainer } from "Styles/global.style.js";
+} from './voteMatchup.style.js';
+import Button from 'Components/button';
+import BackLink from 'Components/back-link';
+import { $GlobalContainer } from 'Styles/global.style.js';
 
 const VoteMatchup = () => {
   return (
@@ -27,7 +27,7 @@ const VoteMatchup = () => {
               btnColor="orange"
               customBtnClass="medium"
               btnFunction={() =>
-                alert("This functional hasn't been created yet")
+                alert('This functional hasn\'t been created yet')
               }
             />
           </$VoteMatchupSection>
@@ -47,7 +47,7 @@ const VoteMatchup = () => {
               btnColor="orange"
               customBtnClass="medium"
               btnFunction={() =>
-                alert("This functional hasn't been created yet")
+                alert('This functional hasn\'t been created yet')
               }
             />
           </$VoteMatchupSection>

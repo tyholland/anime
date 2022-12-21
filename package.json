@@ -9,7 +9,7 @@
     "eslint": "eslint . --fix",
     "stylelint": "stylelint src/styles/*.style.js src/page-components/**/*.style.js src/page-components/**/**/*.style.js src/components/**/*.style.js",
     "prepare": "husky install",
-    "clean": "rm -rf node_modules && npm install && npm run prepare"
+    "clean": "rm -rf node_modules && yarn && yarn prepare"
   },
   "dependencies": {
     "@amplitude/analytics-browser": "^1.6.4",
@@ -31,8 +31,9 @@
     "stylelint-prettier": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "8.23.0",
+    "eslint": "^8.30.0",
     "eslint-config-next": "12.3.0",
+    "eslint-plugin-react": "^7.31.11",
     "husky": "^8.0.0"
   }
 }
