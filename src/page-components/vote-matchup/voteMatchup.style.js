@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const $VoteMatchupCharacter = styled.div`
   font-size: 30px;
@@ -7,7 +7,7 @@ export const $VoteMatchupCharacter = styled.div`
 
 export const $VoteMatchupTeam = styled.div`
   font-size: 18px;
-  color: rgba(0, 0, 0, .5);
+  color: rgba(0, 0, 0, 0.5);
 `;
 
 export const $VoteMatchupVersus = styled.div`
@@ -19,7 +19,21 @@ export const $VoteMatchupVersus = styled.div`
 
 export const $VoteMatchupWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
+  margin-top: 3%;
+`;
+
+export const $VoteMatchupSection = styled.div`
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+`;
+
+export const $VoteMatchupImage = styled.img`
+  width: 300px;
+  height: auto;
+  margin-bottom: 2%;
+  filter: grayscale(100);
 `;

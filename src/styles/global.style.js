@@ -162,14 +162,6 @@ export const $GlobalContainer = styled.div`
     background-repeat: no-repeat;
     background-position: bottom right;
   }
-
-  &.voteMatchup {
-    background-image: url(/assets/background/goku-ssj2.png);
-    background-size: 15%;
-    background-repeat: no-repeat;
-    background-position: bottom left;
-    height: 70vh;
-  }
 `;
 
 export const $GlobalLink = styled.div`
