@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
-import Button from 'Components/button';
-import { $TeamEditWrapper, $TeamEditBtn } from './teamEdit.style';
-import { useRouter } from 'next/router';
+import React from "react";
+import { $GlobalContainer, $GlobalTitle } from "Styles/global.style.js";
+import Button from "Components/button";
+import { $TeamEditWrapper, $TeamEditBtn } from "./teamEdit.style";
+import { useRouter } from "next/router";
 
 const TeamEdit = () => {
   const router = useRouter();
-  const [edit, setEdit] = useState(false);
 
   return (
     <>

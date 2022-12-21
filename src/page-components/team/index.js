@@ -3,7 +3,6 @@ import {
   $TeamTotalText,
   $TeamTotalAmount,
   $TeamTotal,
-  $TeamStats,
   $TeamInfo,
   $TeamContent,
   $TeamName,

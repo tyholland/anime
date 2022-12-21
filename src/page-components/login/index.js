@@ -1,5 +1,5 @@
 import React from 'react';
-import { $LoginOr, $LoginContentLinks, $LoginSplit, $LoginWrapper } from './login.style.js';
+import { $LoginOr, $LoginContentLinks, $LoginWrapper } from './login.style.js';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
@@ -28,11 +28,7 @@ const Login = () => {
         />
         <$LoginContentLinks>
           Forgot your password?
-          <Button
-            btnText="Reset password"
-            customBtnClass="text"
-            redirect="/"
-          />
+          <Button btnText="Reset password" customBtnClass="text" redirect="/" />
         </$LoginContentLinks>
         <$LoginContentLinks>
           Don't have an account?
