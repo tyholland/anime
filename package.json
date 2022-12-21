@@ -8,7 +8,8 @@
     "start": "next start",
     "eslint": "eslint . --fix",
     "stylelint": "stylelint src/styles/*.style.js src/page-components/**/*.style.js src/page-components/**/**/*.style.js src/components/**/*.style.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "clean": "rm -rf node_modules && npm install && npm run prepare"
   },
   "dependencies": {
     "@amplitude/analytics-browser": "^1.6.4",

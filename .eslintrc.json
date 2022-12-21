@@ -13,6 +13,7 @@
         "ignoredNodes": ["TemplateLiteral"]
       }
     ],
-    "eol-last": ["error", "always"]
+    "eol-last": ["error", "always"],
+    "template-curly-spacing": "off"
   }
 }
