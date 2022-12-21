@@ -1,10 +1,10 @@
-import LeagueCharacters from 'src/page-components/league/characters';
-import { getPlayers } from 'src/requests/player';
+import LeagueCharacters from "src/page-components/league/characters";
+import { getPlayers } from "src/requests/player";
 
 export const getServerSideProps = async () => {
   const players = await getPlayers();
 
-  if (!players) {
+  if (!players.length) {
     return {
       notFound: true,
     };

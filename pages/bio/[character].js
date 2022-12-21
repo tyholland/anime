@@ -1,11 +1,11 @@
-import Bio from 'PageComponents/bio';
-import { getPlayer } from 'src/requests/player';
+import Bio from "PageComponents/bio";
+import { getPlayer } from "src/requests/player";
 
 export const getServerSideProps = async (context) => {
   const { query } = context;
   const player = await getPlayer(query.character);
 
-  if (!player) {
+  if (!player.length) {
     return {
       notFound: true,
     };
