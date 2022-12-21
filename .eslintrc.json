@@ -3,6 +3,7 @@
   "rules": {
     "semi": ["error", "always"],
     "quotes": ["error", "single"],
+    "react/no-unescaped-entities": "off",
     "jsx-quotes": ["error", "prefer-double"],
     "react/prop-types": 0,
     "indent": [
@@ -12,7 +13,6 @@
         "ignoredNodes": ["TemplateLiteral"]
       }
     ],
-    "eol-last": ["error", "always"],
-    "template-curly-spacing": "off"
+    "eol-last": ["error", "always"]
   }
 }
