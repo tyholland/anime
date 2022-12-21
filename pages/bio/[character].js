@@ -1,5 +1,5 @@
-import Bio from "PageComponents/bio";
-import { getPlayer } from "src/requests/player";
+import Bio from 'PageComponents/bio';
+import { getPlayer } from 'src/requests/player';
 
 export const getServerSideProps = async (context) => {
   const { query } = context;
