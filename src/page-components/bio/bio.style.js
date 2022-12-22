@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const $BioAffinity = styled.div`
   display: flex;
@@ -53,7 +53,7 @@ export const $BioSubAttribute = styled.div`
 `;
 
 export const $BioImage = styled.img`
-  width: 300px;
+  width: 100%;
   filter: grayscale(100);
   margin-bottom: 10%;
 `;
@@ -66,6 +66,7 @@ export const $BioWrapper = styled.div`
   margin: 0 auto;
 
   > div {
-    width: 50%;
+    width: 40%;
+    margin: 0 5%;
   }
 `;
