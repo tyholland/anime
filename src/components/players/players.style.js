@@ -23,7 +23,7 @@ export const $PlayersStyles = createGlobalStyle`
 export const $PlayersFilter = styled.div`
   display: flex;
   margin-bottom: 2%;
-  width: 100%;
+  width: 800px;
   justify-content: center;
   align-items: center;
 
@@ -41,6 +41,6 @@ export const $PlayersFilter = styled.div`
   }
 
   div {
-    width: 35%;
+    width: 40%;
   }
 `;
