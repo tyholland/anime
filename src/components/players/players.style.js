@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
 
 export const $PlayersStyles = createGlobalStyle`
   .fillGrid {
@@ -25,6 +25,7 @@ export const $PlayersFilter = styled.div`
   margin-bottom: 2%;
   width: 100%;
   justify-content: center;
+  align-items: center;
 
   label,
   select {
@@ -37,5 +38,9 @@ export const $PlayersFilter = styled.div`
 
   label {
     font-weight: 700;
+  }
+
+  div {
+    width: 35%;
   }
 `;

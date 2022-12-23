@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const $GameplayStyles = createGlobalStyle`
   .Collapsible {
@@ -6,7 +6,7 @@ export const $GameplayStyles = createGlobalStyle`
     border: 1px solid #000;
     border-bottom: none;
 
-    span {
+    div[role="button"] {
       font-weight: 700;
       font-size: 18px;
       cursor: pointer;
