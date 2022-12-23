@@ -1,6 +1,6 @@
-import React from "react";
-import BackLink from "Components/back-link";
-import { $GlobalContainer, $GlobalCircle } from "Styles/global.style.js";
+import React from 'react';
+import BackLink from 'Components/back-link';
+import { $GlobalContainer, $GlobalCircle } from 'Styles/global.style.js';
 import {
   $BioAffinity,
   $BioAffinityText,
@@ -10,7 +10,7 @@ import {
   $BioSubAttribute,
   $BioImage,
   $BioWrapper,
-} from "./bio.style";
+} from './bio.style';
 
 const Bio = ({ player }) => {
   const {
@@ -33,61 +33,61 @@ const Bio = ({ player }) => {
     no_affinity,
   } = player[0];
 
-  const noWeakness = !weakness || weakness === "None";
-  const isVillain = category === "Villain";
-  const isBattlefield = category === "Battlefield";
-  const isSupport = category === "Support";
+  const noWeakness = !weakness || weakness === 'None';
+  const isVillain = category === 'Villain';
+  const isBattlefield = category === 'Battlefield';
+  const isSupport = category === 'Support';
   const isFighter = !isVillain && !isBattlefield && !isSupport;
 
   const affinitiesTypes = [
     {
-      type: "Fire",
-      class: "fire",
+      type: 'Fire',
+      class: 'fire',
       value: fire,
     },
     {
-      type: "Water",
-      class: "water",
+      type: 'Water',
+      class: 'water',
       value: water,
     },
     {
-      type: "Wind",
-      class: "wind",
+      type: 'Wind',
+      class: 'wind',
       value: wind,
     },
     {
-      type: "Earth",
-      class: "earth",
+      type: 'Earth',
+      class: 'earth',
       value: earth,
     },
     {
-      type: "Arcane",
-      class: "arcane",
+      type: 'Arcane',
+      class: 'arcane',
       value: arcane,
     },
     {
-      type: "Electric",
-      class: "electric",
+      type: 'Electric',
+      class: 'electric',
       value: electric,
     },
     {
-      type: "Celestrial",
-      class: "celestrial",
+      type: 'Celestrial',
+      class: 'celestrial',
       value: celestrial,
     },
     {
-      type: "Darkness",
-      class: "darkness",
+      type: 'Darkness',
+      class: 'darkness',
       value: darkness,
     },
     {
-      type: "Ice",
-      class: "ice",
+      type: 'Ice',
+      class: 'ice',
       value: ice,
     },
     {
-      type: "No Affinity",
-      class: "noAffinity",
+      type: 'No Affinity',
+      class: 'noAffinity',
       value: no_affinity,
     },
   ];
