@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
 
 export const $GlobalStyles = createGlobalStyle`
   body {
@@ -20,7 +20,7 @@ export const $GlobalWrapper = styled.div`
     height: auto;
 
     &::before {
-      content: ' ';
+      content: " ";
       background-image: url(/assets/background/goku-kamehameha.jpeg);
       background-size: 100% 100%;
       background-repeat: no-repeat;
@@ -49,7 +49,7 @@ export const $GlobalContainer = styled.div`
     height: auto;
 
     &::before {
-      content: ' ';
+      content: " ";
       background-image: url(/assets/background/itachi.png);
       background-size: cover;
       background-repeat: no-repeat;
@@ -67,7 +67,7 @@ export const $GlobalContainer = styled.div`
     height: 100vh;
 
     &::before {
-      content: ' ';
+      content: " ";
       background-image: url(/assets/background/deku-allmight.jpg);
       background-size: cover;
       background-repeat: no-repeat;
@@ -85,7 +85,7 @@ export const $GlobalContainer = styled.div`
     height: 100vh;
 
     &::before {
-      content: ' ';
+      content: " ";
       background-image: url(/assets/background/naruto-rasengan.png);
       background-size: cover;
       background-repeat: no-repeat;
@@ -103,7 +103,7 @@ export const $GlobalContainer = styled.div`
     height: auto;
 
     &::before {
-      content: ' ';
+      content: " ";
       background-image: url(/assets/background/kakashi-sharigan.png);
       background-size: cover;
       background-repeat: no-repeat;
@@ -123,7 +123,7 @@ export const $GlobalContainer = styled.div`
     flex-direction: column;
 
     &::before {
-      content: ' ';
+      content: " ";
       background-image: url(/assets/background/young-goku.jpeg);
       background-size: contain;
       background-repeat: no-repeat;
@@ -143,7 +143,7 @@ export const $GlobalContainer = styled.div`
     align-items: center;
 
     &::before {
-      content: ' ';
+      content: " ";
       background-image: url(/assets/background/saitama.png);
       background-size: 450px;
       background-repeat: no-repeat;
@@ -216,7 +216,7 @@ export const $GlobalCircle = styled.div`
   }
 
   &.electric {
-    background-color: #FFD70080;
+    background-color: #ffd70080;
   }
 
   &.wind {
@@ -224,11 +224,15 @@ export const $GlobalCircle = styled.div`
   }
 
   &.earth {
-    background-color: #964B0070;
+    background-color: #964b0070;
   }
 
   &.celestrial {
     background-color: #fff;
+  }
+
+  &.noAffinity {
+    background: #bf40bf60;
   }
 `;
 
