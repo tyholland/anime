@@ -1,11 +1,11 @@
-import React from "react";
-import { $GlobalContainer } from "Styles/global.style";
+import React from 'react';
+import { $GlobalContainer } from 'Styles/global.style';
 import {
   $GameplayCardSection,
   $GameplayCardTitle,
   $GameplayCardHeader,
   $GameplayCardWrapper,
-} from "./gameplayCard.style";
+} from './gameplayCard.style';
 
 const Affinities = () => {
   return (

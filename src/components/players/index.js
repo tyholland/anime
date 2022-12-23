@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "react-data-grid/lib/styles.css";
-import DataGrid from "react-data-grid";
-import { useRouter } from "next/router";
-import { $PlayersFilter, $PlayersStyles } from "./players.style";
+import React, { useEffect, useState } from 'react';
+import 'react-data-grid/lib/styles.css';
+import DataGrid from 'react-data-grid';
+import { useRouter } from 'next/router';
+import { $PlayersFilter, $PlayersStyles } from './players.style';
 
 const Players = ({ data }) => {
   const router = useRouter();
@@ -10,24 +10,24 @@ const Players = ({ data }) => {
   const [listOfPlayers, setListOfPlayers] = useState(data);
   const [seriesArr, setSeriesArr] = useState([]);
   const [rankArr, setRankArr] = useState([]);
-  const [seriesName, setSeriesName] = useState("all");
-  const [rankName, setRankName] = useState("all");
+  const [seriesName, setSeriesName] = useState('all');
+  const [rankName, setRankName] = useState('all');
   const columns = [
     {
-      key: "name",
-      name: "Name",
+      key: 'name',
+      name: 'Name',
     },
     {
-      key: "rank",
-      name: "Rank",
+      key: 'rank',
+      name: 'Rank',
     },
     {
-      key: "power",
-      name: "Power Level",
+      key: 'power',
+      name: 'Power Level',
     },
     {
-      key: "series",
-      name: "Anime Series",
+      key: 'series',
+      name: 'Anime Series',
     },
   ];
 
@@ -75,10 +75,10 @@ const Players = ({ data }) => {
   const handleRankFilter = (e) => {
     setRankName(e.target.value);
 
-    if (e.target.value === "all") {
+    if (e.target.value === 'all') {
       let playersList = data;
 
-      if (rankName !== "all") {
+      if (rankName !== 'all') {
         playersList = data.filter((item) => {
           return item.series === seriesName;
         });
@@ -92,7 +92,7 @@ const Players = ({ data }) => {
       return item.category === e.target.value;
     });
 
-    if (seriesName !== "all") {
+    if (seriesName !== 'all') {
       playersList = data.filter((item) => {
         return item.category === e.target.value && item.series === seriesName;
       });
@@ -104,10 +104,10 @@ const Players = ({ data }) => {
   const handleSeriesFilter = (e) => {
     setSeriesName(e.target.value);
 
-    if (e.target.value === "all") {
+    if (e.target.value === 'all') {
       let playersList = data;
 
-      if (rankName !== "all") {
+      if (rankName !== 'all') {
         playersList = data.filter((item) => {
           return item.category === rankName;
         });
@@ -121,7 +121,7 @@ const Players = ({ data }) => {
       return item.series === e.target.value;
     });
 
-    if (rankName !== "all") {
+    if (rankName !== 'all') {
       playersList = data.filter((item) => {
         return item.series === e.target.value && item.category === rankName;
       });
