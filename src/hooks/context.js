@@ -3,8 +3,8 @@ import { createContext, useContext, useState } from 'react';
 const AppContext = createContext();
 
 export const AppWrapper = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState({});
-  const [leagueDetails, setLeagueDetails] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
+  const [leagueDetails, setLeagueDetails] = useState(null);
 
   const sharedState = {
     currentUser,
