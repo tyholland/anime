@@ -1,10 +1,16 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const AppContext = createContext();
 
 export const AppWrapper = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState({});
+  const [leagueDetails, setLeagueDetails] = useState({});
+
   const sharedState = {
-    testing: 'hello',
+    currentUser,
+    leagueDetails,
+    setCurrentUser,
+    setLeagueDetails,
   };
 
   return (
