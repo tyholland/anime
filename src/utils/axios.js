@@ -1,9 +1,11 @@
 import axios from 'axios';
 
-export const axiosClient = async (url = '', body = null, auth = null) => {
+export const axiosClient = async (data) => {
+  const { body, method, auth, url } = data;
+
   const options = {
-    method: body ? 'post' : 'get',
-    url: url,
+    method,
+    url,
   };
 
   if (auth) {

@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
-import { $LoginContentLinks, $LoginWrapper, $LoginOr } from 'PageComponents/login/login.style.js';
+import {
+  $LoginContentLinks,
+  $LoginWrapper,
+  $LoginOr,
+} from 'PageComponents/login/login.style.js';
 import { addNewAccount } from 'src/requests/users';
 
 const SignUp = () => {
-  const [ username, setUsername ] = useState(null);
-  const [ email, setEmail ] = useState(null);
+  const [username, setUsername] = useState(null);
+  const [email, setEmail] = useState(null);
   // const [ password, setPassword ] = useState(null);
   // const [ confirmPwd, setConfirmPwd ] = useState(null);
 
@@ -22,6 +26,7 @@ const SignUp = () => {
       await addNewAccount({
         username,
         email,
+        firebaseId: '123',
       });
     } catch (error) {
       console.log(error);
@@ -40,8 +45,15 @@ const SignUp = () => {
           redirect="/"
         />
         <$LoginOr>or</$LoginOr>
-        <TextField placeholder="Please enter a username" onChange={setUsername} />
-        <TextField placeholder="Please enter a email" keyboard="email-address" onChange={setEmail} />
+        <TextField
+          placeholder="Please enter a username"
+          onChange={setUsername}
+        />
+        <TextField
+          placeholder="Please enter a email"
+          keyboard="email-address"
+          onChange={setEmail}
+        />
         <TextField placeholder="Please enter a password" type="password" />
         <TextField placeholder="Confirm password" type="password" />
         <Button
@@ -54,11 +66,7 @@ const SignUp = () => {
         />
         <$LoginContentLinks>
           Already have an account?
-          <Button
-            btnText="Login"
-            customBtnClass="text"
-            redirect="/login"
-          />
+          <Button btnText="Login" customBtnClass="text" redirect="/login" />
         </$LoginContentLinks>
       </$LoginWrapper>
     </$GlobalContainer>

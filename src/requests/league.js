@@ -1,20 +1,20 @@
 import { axiosClient } from 'Utils/axios';
 const api = process.env.NEXT_PUBLIC_API;
 
-export const getPlayers = async () => {
+export const createLeague = async (payload) => {
   const data = {
-    url: `${api}/player`,
-    method: 'get',
+    url: `${api}/league/create`,
+    method: 'post',
     auth: null,
-    body: null,
+    body: payload,
   };
 
   return await axiosClient(data);
 };
 
-export const getPlayer = async (playerId) => {
+export const getLeague = async (leagueId) => {
   const data = {
-    url: `${api}/player/${playerId}`,
+    url: `${api}/league/${leagueId}`,
     method: 'get',
     auth: null,
     body: null,
