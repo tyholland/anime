@@ -5,10 +5,12 @@ import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import { createLeague } from 'src/requests/league';
 import { $LeagueCreateWrapper } from './create.style';
 import BackLink from 'Components/back-link';
+import Select from 'Components/select';
 
 const LeagueCreate = () => {
   const [teams, setTeams] = useState(6);
   const [leagueName, setLeagueName] = useState(null);
+  const options = ['6', '7', '8', '9', '10'];
 
   const handleTeamSelect = (e) => {
     const val = e.target.value;
@@ -33,14 +35,11 @@ const LeagueCreate = () => {
         <$LeagueCreateWrapper>
           <$GlobalTitle>Create a League</$GlobalTitle>
           <TextField placeholder="League Name" onChange={setLeagueName} />
-          <label>Number of Teams</label>
-          <select onChange={(val) => handleTeamSelect(val)}>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+          <Select
+            defaultVal="Number of Teams"
+            onChange={handleTeamSelect}
+            options={options}
+          />
           <Button
             btnText="Create League"
             btnTextColor="black"
