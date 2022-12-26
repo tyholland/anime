@@ -9,23 +9,27 @@ const Button = ({
   redirect,
   customBtnClass,
   btnFunction,
+  isDisabled = false,
 }) => {
   if (btnFunction) {
     return (
-      <$Btn className={`${btnColor} ${customBtnClass || ''}`} onClick={() => btnFunction()}>
-        <$BtnText className={btnTextColor}>
-          {btnText}
-        </$BtnText>
+      <$Btn
+        className={`${btnColor} ${customBtnClass || ''}`}
+        onClick={() => btnFunction()}
+        disabled={isDisabled}
+      >
+        <$BtnText className={btnTextColor}>{btnText}</$BtnText>
       </$Btn>
     );
   }
 
   return (
     <Link href={redirect}>
-      <$Btn className={`${btnColor} ${customBtnClass || ''}`}>
-        <$BtnText className={btnTextColor}>
-          {btnText}
-        </$BtnText>
+      <$Btn
+        className={`${btnColor} ${customBtnClass || ''}`}
+        disabled={isDisabled}
+      >
+        <$BtnText className={btnTextColor}>{btnText}</$BtnText>
       </$Btn>
     </Link>
   );

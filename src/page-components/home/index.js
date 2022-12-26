@@ -36,7 +36,7 @@ const Home = () => {
           btnText="Suggest Character"
           btnTextColor="black"
           btnColor="orange"
-          redirect=""
+          redirect="/suggest"
         />
       </$GlobalContainer>
     </>

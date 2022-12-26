@@ -6,23 +6,28 @@ export const $Btn = styled.button`
   margin-top: 10px;
   width: 100%;
 
+  &:disabled {
+    cursor: not-allowed;
+    background-color: rgba(249, 128, 17, 0.8) !important;
+  }
+
   &.orange {
     background-color: rgb(249, 128, 17);
   }
-  
+
   &.yellow {
     background-color: rgb(250, 179, 28);
   }
-  
+
   &.white {
     background-color: #fff;
     border-color: #000;
   }
-  
+
   &.black {
     background-color: #000;
   }
-  
+
   &.red {
     background-color: #cc0000;
   }
@@ -48,7 +53,7 @@ export const $Btn = styled.button`
     }
   }
 
-  &.space{
+  &.space {
     margin: 2%;
   }
 
@@ -93,11 +98,11 @@ export const $BtnText = styled.span`
   &.white {
     color: #fff;
   }
-  
+
   &.black {
     color: #000;
   }
-  
+
   &.yellow {
     color: rgb(250, 179, 28);
   }
@@ -105,4 +110,4 @@ export const $BtnText = styled.span`
   &.orange {
     color: rgb(249, 128, 17);
   }
-`;  
+`;
