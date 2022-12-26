@@ -12,19 +12,19 @@ const League = () => {
           btnText="Join League"
           btnTextColor="black"
           btnColor="orange"
-          redirect="league/join"
+          redirect="/league/join"
         />
         <SelectionCard
           btnText="Create League"
           btnTextColor="black"
           btnColor="orange"
-          redirect="league/create"
+          redirect="/league/create"
         />
         <SelectionCard
           btnText="View Leagues"
           btnTextColor="black"
           btnColor="orange"
-          redirect="league/view"
+          redirect="/league/view"
         />
       </$GlobalContainer>
     </>

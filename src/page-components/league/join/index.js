@@ -19,7 +19,7 @@ const JoinLeague = () => {
             btnText="Enter League"
             btnTextColor="black"
             btnColor="orange"
-            redirect="league/123"
+            redirect="/league/123"
             customBtnClass="medium"
           />
         </$JoinLeagueWrapper>

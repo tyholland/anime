@@ -12,19 +12,19 @@ const Home = () => {
           btnText="Gameplay"
           btnTextColor="black"
           btnColor="orange"
-          redirect="gameplay"
+          redirect="/gameplay"
         />
         <SelectionCard
           btnText="Join a League"
           btnTextColor="black"
           btnColor="orange"
-          redirect="league/join"
+          redirect="/league/join"
         />
         <SelectionCard
           btnText="Character List"
           btnTextColor="black"
           btnColor="orange"
-          redirect="characters"
+          redirect="/characters"
         />
         <SelectionCard
           btnText="Matchup Voting"

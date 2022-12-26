@@ -29,7 +29,7 @@ const Team = () => {
               btnText="Team Info"
               btnColor="orange"
               btnTextColor="black"
-              redirect="info/123"
+              redirect="/team/info/123"
               customBtnClass="medium"
             />
             <Button
@@ -37,14 +37,14 @@ const Team = () => {
               btnTextColor="black"
               btnColor="orange"
               customBtnClass="medium"
-              redirect="edit/123"
+              redirect="/team/edit/123"
             />
             <Button
               btnText="Edit Lineup"
               btnTextColor="black"
               btnColor="orange"
               customBtnClass="medium"
-              redirect="edit/123"
+              redirect="/team/edit/123"
             />
           </$TeamBtnSection>
         </$TeamInfo>
