@@ -6,15 +6,16 @@ import { createLeague } from 'src/requests/league';
 import { $LeagueCreateWrapper } from './create.style';
 import BackLink from 'Components/back-link';
 import Select from 'Components/select';
+import { useAppContext } from 'src/hooks/context';
 
 const LeagueCreate = () => {
-  const [teams, setTeams] = useState(6);
-  const [leagueName, setLeagueName] = useState(null);
+  const { currentUser, updateLeagueDetails } = useAppContext();
+  const [teams, setTeams] = useState('');
+  const [leagueName, setLeagueName] = useState('');
   const options = ['6', '7', '8', '9', '10'];
+  const isDisabled = !teams.length || !leagueName.length;
 
-  const handleTeamSelect = (e) => {
-    const val = e.target.value;
-
+  const handleTeamSelect = (val) => {
     setTeams(val);
   };
 
@@ -22,10 +23,12 @@ const LeagueCreate = () => {
     const payload = {
       name: leagueName,
       numTeams: teams,
-      userId: 1,
+      userId: currentUser.userId,
     };
 
-    await createLeague(payload);
+    const league = await createLeague(payload);
+
+    updateLeagueDetails(league);
   };
 
   return (
@@ -47,6 +50,7 @@ const LeagueCreate = () => {
             customBtnClass="medium"
             redirect="/account"
             btnFunction={handleLeagueCreation}
+            isDisabled={isDisabled}
           />
         </$LeagueCreateWrapper>
       </$GlobalContainer>

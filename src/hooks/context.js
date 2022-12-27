@@ -2,51 +2,67 @@ import { createContext, useContext, useState } from 'react';
 
 const AppContext = createContext();
 
+const hasWindow = typeof window !== 'undefined';
+
 const formatUser = () => {
-  return {
-    userId: null,
-    email: null,
-    isActive: null,
-    firebaseId: null,
-    username: null,
-    totalPoints: null,
-  };
+  let user = hasWindow && window.localStorage.getItem('abz.user');
+
+  if (user) {
+    user = JSON.parse(user);
+
+    return {
+      ...user,
+    };
+  }
+
+  return null;
 };
 
 const formatLeague = () => {
-  return {
-    leagueId: null,
-    leagueName: null,
-    teamId: null,
-    teamName: null,
-    week: null,
-    players: {
-      captain: null,
-      brawlerA: null,
-      brawlerB: null,
-      bsBrawler: null,
-      bsSupport: null,
-      support: null,
-      villain: null,
-      battlefield: null,
-      benchA: null,
-      benchB: null,
-      benchC: null,
-      benchD: null,
-      benchE: null,
-    },
-  };
+  let league = hasWindow && window.localStorage.getItem('abz.league');
+
+  if (league) {
+    league = JSON.parse(league);
+
+    return {
+      ...league,
+    };
+  }
+
+  return null;
 };
 
 export const AppWrapper = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(formatUser);
   const [leagueDetails, setLeagueDetails] = useState(formatLeague);
 
+  const updateCurrentUser = (userInfo) => {
+    const data = {
+      ...currentUser,
+      ...userInfo,
+    };
+
+    setCurrentUser(data);
+
+    window.localStorage.setItem('abz.user', JSON.stringify(data));
+  };
+
+  const updateLeagueDetails = (leagueInfo) => {
+    const data = {
+      ...leagueDetails,
+      ...leagueInfo,
+    };
+
+    setLeagueDetails(data);
+
+    window.localStorage.setItem('abz.league', JSON.stringify(data));
+  };
+
   const sharedState = {
     currentUser,
     leagueDetails,
-    setCurrentUser,
-    setLeagueDetails,
+    updateCurrentUser,
+    updateLeagueDetails,
   };
 
   return (

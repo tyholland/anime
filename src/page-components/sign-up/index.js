@@ -8,10 +8,14 @@ import {
   $LoginOr,
 } from 'PageComponents/login/login.style.js';
 import { addNewAccount } from 'src/requests/users';
+import { useAppContext } from 'src/hooks/context';
+import { useRouter } from 'next/router';
 
 const SignUp = () => {
-  const [username, setUsername] = useState(null);
-  const [email, setEmail] = useState(null);
+  const { updateCurrentUser } = useAppContext();
+  const router = useRouter();
+  const [userEmail, setUserEmail] = useState('');
+  const isDisabled = !userEmail.length;
   // const [ password, setPassword ] = useState(null);
   // const [ confirmPwd, setConfirmPwd ] = useState(null);
 
@@ -23,11 +27,14 @@ const SignUp = () => {
 
   const handleSignUp = async () => {
     try {
-      await addNewAccount({
-        username,
-        email,
+      const user = await addNewAccount({
+        userEmail,
         firebaseId: '123',
       });
+
+      updateCurrentUser(user);
+
+      router.push('/league');
     } catch (error) {
       console.log(error);
     }
@@ -46,13 +53,9 @@ const SignUp = () => {
         />
         <$LoginOr>or</$LoginOr>
         <TextField
-          placeholder="Please enter a username"
-          onChange={setUsername}
-        />
-        <TextField
           placeholder="Please enter a email"
           keyboard="email-address"
-          onChange={setEmail}
+          onChange={setUserEmail}
         />
         <TextField placeholder="Please enter a password" type="password" />
         <TextField placeholder="Confirm password" type="password" />
@@ -63,6 +66,7 @@ const SignUp = () => {
           customBtnClass="medium"
           redirect="/"
           btnFunction={handleSignUp}
+          isDisabled={isDisabled}
         />
         <$LoginContentLinks>
           Already have an account?
