@@ -7,6 +7,7 @@ import { $LeagueCreateWrapper } from './create.style';
 import BackLink from 'Components/back-link';
 import Select from 'Components/select';
 import { useAppContext } from 'src/hooks/context';
+import { useRouter } from 'next/router';
 
 const LeagueCreate = () => {
   const { currentUser, updateLeagueDetails } = useAppContext();
@@ -14,6 +15,7 @@ const LeagueCreate = () => {
   const [leagueName, setLeagueName] = useState('');
   const options = ['6', '7', '8', '9', '10'];
   const isDisabled = !teams.length || !leagueName.length;
+  const router = useRouter();
 
   const handleTeamSelect = (val) => {
     setTeams(val);
@@ -29,6 +31,8 @@ const LeagueCreate = () => {
     const league = await createLeague(payload);
 
     updateLeagueDetails(league);
+
+    router.push(`/team/${league.teamId}`);
   };
 
   return (
