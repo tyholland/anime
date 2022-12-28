@@ -4,12 +4,15 @@ import TextField from 'Components/text-field';
 import BackLink from 'Components/back-link';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import { $JoinLeagueWrapper } from './join.style';
-import JoinLeagueMetadata from './joinLeagueMetadata';
+import Metadata from 'Components/metadata';
 
 const JoinLeague = () => {
   return (
     <>
-      <JoinLeagueMetadata />
+      <Metadata
+        title="Join a League"
+        description="Join an ABZ League and see if you can create the ultimate team and win the league"
+      />
       <BackLink />
       <$GlobalContainer className="join">
         <$GlobalTitle>Join League</$GlobalTitle>

@@ -8,6 +8,7 @@ import BackLink from 'Components/back-link';
 import Select from 'Components/select';
 import { useAppContext } from 'src/hooks/context';
 import { useRouter } from 'next/router';
+import Metadata from 'Components/metadata';
 
 const LeagueCreate = () => {
   const { currentUser, updateLeagueDetails } = useAppContext();
@@ -37,6 +38,10 @@ const LeagueCreate = () => {
 
   return (
     <>
+      <Metadata
+        title="Create a League"
+        description="Anyone can create a new league and invite friends to join it"
+      />
       <BackLink />
       <$GlobalContainer>
         <$LeagueCreateWrapper>

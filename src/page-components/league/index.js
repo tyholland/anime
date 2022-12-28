@@ -1,12 +1,15 @@
 import React from 'react';
 import { $GlobalContainer } from 'Styles/global.style';
-import HomeMetadata from './leagueMetadata';
 import SelectionCard from 'Components/selection-card';
+import Metadata from 'Components/metadata';
 
 const League = () => {
   return (
     <>
-      <HomeMetadata />
+      <Metadata
+        title="League"
+        description="Join, Create or View all Leagues that you participant in"
+      />
       <$GlobalContainer className="grid league">
         <SelectionCard
           btnText="Join League"

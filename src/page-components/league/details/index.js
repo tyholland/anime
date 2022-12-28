@@ -1,13 +1,16 @@
 import React from 'react';
 import { $GlobalContainer, $GlobalWrapper } from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card/index.js';
-import LeagueDetailsMetadata from './leagueDetailsMetadata';
 import BackLink from 'Components/back-link';
+import Metadata from 'Components/metadata';
 
 const LeagueDetails = () => {
   return (
     <>
-      <LeagueDetailsMetadata />
+      <Metadata
+        title="League Details"
+        description="View all league details including your team, matchup, schedule, scoreboard, standing, and the playoffs"
+      />
       <$GlobalWrapper className="leagueDetail">
         <BackLink />
         <$GlobalContainer className="grid">

@@ -10,6 +10,7 @@ import {
 import { addNewAccount } from 'src/requests/users';
 import { useAppContext } from 'src/hooks/context';
 import { useRouter } from 'next/router';
+import Metadata from 'Components/metadata';
 
 const SignUp = () => {
   const { updateCurrentUser } = useAppContext();
@@ -41,39 +42,45 @@ const SignUp = () => {
   };
 
   return (
-    <$GlobalContainer>
-      <$LoginWrapper>
-        <$GlobalTitle>Sign Up</$GlobalTitle>
-        <Button
-          btnText="Sign Up with Google"
-          btnTextColor="black"
-          btnColor="white"
-          customBtnClass="medium"
-          redirect="/"
-        />
-        <$LoginOr>or</$LoginOr>
-        <TextField
-          placeholder="Please enter a email"
-          keyboard="email-address"
-          onChange={setUserEmail}
-        />
-        <TextField placeholder="Please enter a password" type="password" />
-        <TextField placeholder="Confirm password" type="password" />
-        <Button
-          btnText="Sign Up"
-          btnTextColor="black"
-          btnColor="orange"
-          customBtnClass="medium"
-          redirect="/"
-          btnFunction={handleSignUp}
-          isDisabled={isDisabled}
-        />
-        <$LoginContentLinks>
-          Already have an account?
-          <Button btnText="Login" customBtnClass="text" redirect="/login" />
-        </$LoginContentLinks>
-      </$LoginWrapper>
-    </$GlobalContainer>
+    <>
+      <Metadata
+        title="Sign Up"
+        description="Sign up to join the ABZ Fantasy League. Use Google SSO or sign up with your email and password"
+      />
+      <$GlobalContainer>
+        <$LoginWrapper>
+          <$GlobalTitle>Sign Up</$GlobalTitle>
+          <Button
+            btnText="Sign Up with Google"
+            btnTextColor="black"
+            btnColor="white"
+            customBtnClass="medium"
+            redirect="/"
+          />
+          <$LoginOr>or</$LoginOr>
+          <TextField
+            placeholder="Please enter a email"
+            keyboard="email-address"
+            onChange={setUserEmail}
+          />
+          <TextField placeholder="Please enter a password" type="password" />
+          <TextField placeholder="Confirm password" type="password" />
+          <Button
+            btnText="Sign Up"
+            btnTextColor="black"
+            btnColor="orange"
+            customBtnClass="medium"
+            redirect="/"
+            btnFunction={handleSignUp}
+            isDisabled={isDisabled}
+          />
+          <$LoginContentLinks>
+            Already have an account?
+            <Button btnText="Login" customBtnClass="text" redirect="/login" />
+          </$LoginContentLinks>
+        </$LoginWrapper>
+      </$GlobalContainer>
+    </>
   );
 };
 

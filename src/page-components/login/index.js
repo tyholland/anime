@@ -3,43 +3,54 @@ import { $LoginOr, $LoginContentLinks, $LoginWrapper } from './login.style.js';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
+import Metadata from 'Components/metadata/index.js';
 
 const Login = () => {
   return (
-    <$GlobalContainer>
-      <$LoginWrapper>
-        <$GlobalTitle>Login</$GlobalTitle>
-        <Button
-          btnText="Login with Google"
-          btnTextColor="black"
-          btnColor="white"
-          customBtnClass="medium"
-          redirect="/"
-        />
-        <$LoginOr>or</$LoginOr>
-        <TextField placeholder="Email" keyboard="email-address" />
-        <TextField placeholder="Password" type="password" />
-        <Button
-          btnText="Login"
-          btnTextColor="black"
-          btnColor="orange"
-          customBtnClass="medium"
-          redirect="/"
-        />
-        <$LoginContentLinks>
-          Forgot your password?
-          <Button btnText="Reset password" customBtnClass="text" redirect="/" />
-        </$LoginContentLinks>
-        <$LoginContentLinks>
-          Don't have an account?
+    <>
+      <Metadata
+        title="Login"
+        description="Login to the ABZ Fantasy League. Use Google SSO or login with your email and password"
+      />
+      <$GlobalContainer>
+        <$LoginWrapper>
+          <$GlobalTitle>Login</$GlobalTitle>
           <Button
-            btnText="Sign Up"
-            customBtnClass="text small"
-            redirect="/sign-up"
+            btnText="Login with Google"
+            btnTextColor="black"
+            btnColor="white"
+            customBtnClass="medium"
+            redirect="/"
           />
-        </$LoginContentLinks>
-      </$LoginWrapper>
-    </$GlobalContainer>
+          <$LoginOr>or</$LoginOr>
+          <TextField placeholder="Email" keyboard="email-address" />
+          <TextField placeholder="Password" type="password" />
+          <Button
+            btnText="Login"
+            btnTextColor="black"
+            btnColor="orange"
+            customBtnClass="medium"
+            redirect="/"
+          />
+          <$LoginContentLinks>
+            Forgot your password?
+            <Button
+              btnText="Reset password"
+              customBtnClass="text"
+              redirect="/"
+            />
+          </$LoginContentLinks>
+          <$LoginContentLinks>
+            Don't have an account?
+            <Button
+              btnText="Sign Up"
+              customBtnClass="text small"
+              redirect="/sign-up"
+            />
+          </$LoginContentLinks>
+        </$LoginWrapper>
+      </$GlobalContainer>
+    </>
   );
 };
 

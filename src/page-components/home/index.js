@@ -1,12 +1,12 @@
 import React from 'react';
 import { $GlobalContainer } from 'Styles/global.style';
-import HomeMetadata from './homeMetadata';
 import SelectionCard from 'Components/selection-card';
+import Metadata from 'Components/metadata';
 
 const Home = () => {
   return (
     <>
-      <HomeMetadata />
+      <Metadata title="Home" description="Anime Brothaz Fantasy League" />
       <$GlobalContainer className="grid home">
         <SelectionCard
           btnText="Gameplay"

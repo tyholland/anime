@@ -6,6 +6,7 @@ import { $LoginWrapper } from 'PageComponents/login/login.style.js';
 import Select from 'Components/select';
 import { addEvent } from 'Utils/amplitude';
 import BackLink from 'Components/back-link';
+import Metadata from 'Components/metadata';
 
 const Suggest = () => {
   const [player, setPlayer] = useState('');
@@ -31,6 +32,10 @@ const Suggest = () => {
 
   return (
     <>
+      <Metadata
+        title="Suggest a Character"
+        description="Suggest a character to be added to the ABZ Fantasy League. Provide the characters name, anime series, and the character rank"
+      />
       <BackLink />
       <$GlobalContainer>
         <$LoginWrapper>

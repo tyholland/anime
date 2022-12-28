@@ -11,6 +11,7 @@ import {
   $BioImage,
   $BioWrapper,
 } from './bio.style';
+import Metadata from 'Components/metadata';
 
 const Bio = ({ player }) => {
   const {
@@ -100,6 +101,10 @@ const Bio = ({ player }) => {
 
   return (
     <>
+      <Metadata
+        title={full_name}
+        description={`Profile for ${full_name}. Lists all their affinities, weaknesses, and series.`}
+      />
       <BackLink />
       <$GlobalContainer>
         <$BioWrapper>

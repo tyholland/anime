@@ -1,21 +1,23 @@
 import Affinities from 'Components/gameplay-card/affinities';
 import Boost from 'Components/gameplay-card/boost';
 import Loss from 'Components/gameplay-card/loss';
-// import Suggestions from 'Components/gameplay-card/suggestion';
 import Voting from 'Components/gameplay-card/voting';
 import React from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import { $GameplayStyles } from './gameplay.style';
-import GameplayMetadata from './gameplayMetadata';
 import MakeTeam from 'Components/gameplay-card/make-team';
 import Schedule from 'Components/gameplay-card/schedule';
+import Metadata from 'Components/metadata';
 
 const Gameplay = () => {
   return (
     <>
       <$GameplayStyles />
-      <GameplayMetadata />
+      <Metadata
+        title="Gameplay"
+        description="Read about all the rules of the ABZ Fantasy League. See how the regular season is split up and then the playoffs."
+      />
       <$GlobalContainer>
         <$GlobalTitle>Gameplay</$GlobalTitle>
         <Collapsible trigger="Making Your Team" triggerTagName="div">
