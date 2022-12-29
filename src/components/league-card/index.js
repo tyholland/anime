@@ -1,13 +1,19 @@
 import React from 'react';
 import Button from '../button';
-import { $LeagueCardText, $LeagueCardSection, $LeagueCardWrapper } from './leagueCard.style';
+import {
+  $LeagueCardText,
+  $LeagueCardSection,
+  $LeagueCardWrapper,
+} from './leagueCard.style';
 
-const LeagueCard = ({ league, team }) => {
+const LeagueCard = ({ data }) => {
+  const { name, team_name, leagueId, teamId } = data;
+
   return (
     <$LeagueCardWrapper>
       <$LeagueCardSection>
-        <$LeagueCardText className="league">{league}</$LeagueCardText>
-        <$LeagueCardText>{team}</$LeagueCardText>
+        <$LeagueCardText className="league">{name}</$LeagueCardText>
+        <$LeagueCardText>{team_name}</$LeagueCardText>
       </$LeagueCardSection>
       <$LeagueCardSection className="actions">
         <Button
@@ -15,14 +21,14 @@ const LeagueCard = ({ league, team }) => {
           btnTextColor="black"
           btnColor="orange"
           customBtnClass="leagues"
-          redirect="/league/123"
+          redirect={`/league/${leagueId}`}
         />
         <Button
           btnText="View Team"
           btnTextColor="black"
           btnColor="orange"
           customBtnClass="leagues"
-          redirect="/team/123"
+          redirect={`/team/${leagueId}/${teamId}`}
         />
         <Button
           btnText="View Matchup"

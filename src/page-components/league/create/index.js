@@ -29,9 +29,13 @@ const LeagueCreate = () => {
       userId: currentUser.userId,
     };
 
-    const { teamId, leagueId } = await createLeague(payload);
+    try {
+      const { teamId, leagueId } = await createLeague(payload);
 
-    router.push(`/team/${leagueId}/${teamId}`);
+      router.push(`/team/${leagueId}/${teamId}`);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
