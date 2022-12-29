@@ -234,6 +234,10 @@ export const $GlobalCircle = styled.div`
   &.noAffinity {
     background: #bf40bf60;
   }
+
+  &.team {
+    margin-right: 5px;
+  }
 `;
 
 export const $GlobalCenterContent = styled.div`

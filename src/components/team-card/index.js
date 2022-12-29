@@ -61,7 +61,7 @@ const TeamCard = ({ type = 'default', data }) => {
               return (
                 <$GlobalCircle
                   key={item.type}
-                  className={item.type}
+                  className={`team ${item.type}`}
                 ></$GlobalCircle>
               );
             })}
@@ -121,7 +121,7 @@ const TeamCard = ({ type = 'default', data }) => {
                 return (
                   <$GlobalCircle
                     key={item.type}
-                    className={item.type}
+                    className={`team ${item.type}`}
                   ></$GlobalCircle>
                 );
               })}
@@ -133,7 +133,7 @@ const TeamCard = ({ type = 'default', data }) => {
                 return (
                   <$GlobalCircle
                     key={item.type}
-                    className={item.type}
+                    className={`team ${item.type}`}
                   ></$GlobalCircle>
                 );
               })}

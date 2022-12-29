@@ -89,6 +89,8 @@ export const $TeamCardAffinity = styled.div`
   margin: 15px 0;
   font-weight: 700;
   color: #000;
+  display: flex;
+  align-items: center;
 `;
 
 export const $TeamCardPower = styled.div`
