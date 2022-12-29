@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
@@ -11,9 +11,10 @@ import { addNewAccount } from 'src/requests/users';
 import { useAppContext } from 'src/hooks/context';
 import { useRouter } from 'next/router';
 import Metadata from 'Components/metadata';
+import { redirectToAccount } from 'Utils/index';
 
 const SignUp = () => {
-  const { updateCurrentUser } = useAppContext();
+  const { updateCurrentUser, currentUser } = useAppContext();
   const router = useRouter();
   const [userEmail, setUserEmail] = useState('');
   const isDisabled = !userEmail.length;
@@ -40,6 +41,10 @@ const SignUp = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    redirectToAccount(currentUser, router);
+  }, []);
 
   return (
     <>

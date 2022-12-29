@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { $LoginOr, $LoginContentLinks, $LoginWrapper } from './login.style.js';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import Metadata from 'Components/metadata/index.js';
+import { useRouter } from 'next/router.js';
+import { useAppContext } from 'src/hooks/context.js';
+import { redirectToAccount } from 'Utils/index.js';
 
 const Login = () => {
+  const router = useRouter();
+  const { currentUser } = useAppContext();
+
+  useEffect(() => {
+    redirectToAccount(currentUser, router);
+  }, []);
+
   return (
     <>
       <Metadata

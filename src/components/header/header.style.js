@@ -1,4 +1,3 @@
-import Button from 'Components/button';
 import styled from 'styled-components';
 
 export const $HeaderContainer = styled.div`
@@ -26,5 +25,3 @@ export const $HeaderTop = styled.div`
   justify-content: space-between;
   margin: 1% 2% 0;
 `;
-
-export const $HeaderBtn = Button;

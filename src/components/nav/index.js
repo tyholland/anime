@@ -17,19 +17,12 @@ const Nav = () => {
       </Link>
       <Link href="/gameplay">
         <$NavBtn>
-          <$NavText>
-            Gameplay
-          </$NavText>
+          <$NavText>Gameplay</$NavText>
         </$NavBtn>
       </Link>
       <Link href="/resources">
         <$NavBtn>
           <$NavText>Resources</$NavText>
-        </$NavBtn>
-      </Link>
-      <Link href="/account">
-        <$NavBtn>
-          <$NavText>Account</$NavText>
         </$NavBtn>
       </Link>
     </$NavContainer>
