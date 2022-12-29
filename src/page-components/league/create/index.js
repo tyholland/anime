@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import Metadata from 'Components/metadata';
 
 const LeagueCreate = () => {
-  const { currentUser, updateLeagueDetails } = useAppContext();
+  const { currentUser } = useAppContext();
   const [teams, setTeams] = useState('');
   const [leagueName, setLeagueName] = useState('');
   const options = ['6', '7', '8', '9', '10'];
@@ -29,11 +29,9 @@ const LeagueCreate = () => {
       userId: currentUser.userId,
     };
 
-    const league = await createLeague(payload);
+    const { teamId, leagueId } = await createLeague(payload);
 
-    updateLeagueDetails(league);
-
-    router.push(`/team/${league.teamId}`);
+    router.push(`/team/${leagueId}/${teamId}`);
   };
 
   return (

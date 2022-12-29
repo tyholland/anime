@@ -13,120 +13,190 @@ import {
 } from './teamCard.style.js';
 import { $GlobalCircle } from 'Styles/global.style.js';
 
-const TeamCard = ({ type = 'default' }) => {
+const TeamCard = ({ type = 'default', data }) => {
   const isBench = type === 'Bench';
+  const {
+    captain,
+    brawler_a,
+    brawler_b,
+    bs_brawler,
+    bs_support,
+    support,
+    villain,
+    battlefield,
+    bench_a,
+    bench_b,
+    bench_c,
+    bench_d,
+    bench_e,
+  } = data;
+
+  const characterLink = (character) => {
+    if (!character.id) {
+      return (
+        <>
+          <$TeamCardCharacterWrapper>
+            <$TeamCardCharacter className="noLink">
+              <$TeamCardCharacterTxt>-</$TeamCardCharacterTxt>
+            </$TeamCardCharacter>
+          </$TeamCardCharacterWrapper>
+          <$TeamCardAffinity>-</$TeamCardAffinity>
+          <$TeamCardPower>-</$TeamCardPower>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <$TeamCardCharacterWrapper>
+          <Link href={`/bio/${character.id}`}>
+            <$TeamCardCharacter>
+              <$TeamCardCharacterTxt>{character.name}</$TeamCardCharacterTxt>
+            </$TeamCardCharacter>
+          </Link>
+        </$TeamCardCharacterWrapper>
+        <$TeamCardAffinity>
+          {!!character.affinity.length &&
+            character.affinity.map((item) => {
+              return (
+                <$GlobalCircle
+                  key={item.type}
+                  className={item.type}
+                ></$GlobalCircle>
+              );
+            })}
+          {!character.affinity.length && <span>-</span>}
+        </$TeamCardAffinity>
+        <$TeamCardPower>{character.points}</$TeamCardPower>
+      </>
+    );
+  };
+
+  const characterDouLink = (brawler, support) => {
+    if (!brawler.id && !support.id) {
+      return (
+        <>
+          <$TeamCardCharacterWrapper className="duo">
+            <$TeamCardCharacter className="noLink">
+              <$TeamCardDuoSpace className="text noLink">-</$TeamCardDuoSpace>
+            </$TeamCardCharacter>
+            <$TeamCardCharacter className="noLink">
+              <$TeamCardDuoSpace className="text noLink">-</$TeamCardDuoSpace>
+            </$TeamCardCharacter>
+          </$TeamCardCharacterWrapper>
+          <$TeamCardAffinity>
+            <$TeamCardDuoSpace className="noLink">-</$TeamCardDuoSpace>
+            <$TeamCardDuoSpace className="noLink">-</$TeamCardDuoSpace>
+          </$TeamCardAffinity>
+          <$TeamCardPower>
+            <$TeamCardDuoSpace className="right noLink">-</$TeamCardDuoSpace>
+            <$TeamCardDuoSpace className="right noLink">-</$TeamCardDuoSpace>
+          </$TeamCardPower>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <$TeamCardCharacterWrapper className="duo">
+          <Link href={`/bio/${brawler.id}`}>
+            <$TeamCardCharacter>
+              <$TeamCardDuoSpace className="text">
+                {brawler.name}
+              </$TeamCardDuoSpace>
+            </$TeamCardCharacter>
+          </Link>
+          <Link href={`/bio/${support.id}`}>
+            <$TeamCardCharacter>
+              <$TeamCardDuoSpace className="text">
+                {support.name}
+              </$TeamCardDuoSpace>
+            </$TeamCardCharacter>
+          </Link>
+        </$TeamCardCharacterWrapper>
+        <$TeamCardAffinity>
+          <$TeamCardDuoSpace>
+            {!!brawler.affinity.length &&
+              brawler.affinity.map((item) => {
+                return (
+                  <$GlobalCircle
+                    key={item.type}
+                    className={item.type}
+                  ></$GlobalCircle>
+                );
+              })}
+            {!brawler.affinity.length && <span>-</span>}
+          </$TeamCardDuoSpace>
+          <$TeamCardDuoSpace>
+            {!!support.affinity.length &&
+              support.affinity.map((item) => {
+                return (
+                  <$GlobalCircle
+                    key={item.type}
+                    className={item.type}
+                  ></$GlobalCircle>
+                );
+              })}
+            {!support.affinity.length && <span>-</span>}
+          </$TeamCardDuoSpace>
+        </$TeamCardAffinity>
+        <$TeamCardPower>
+          <$TeamCardDuoSpace className="right">
+            {brawler.points}
+          </$TeamCardDuoSpace>
+          <$TeamCardDuoSpace className="right">
+            {support.points}
+          </$TeamCardDuoSpace>
+        </$TeamCardPower>
+      </>
+    );
+  };
 
   return (
     <>
       <$TeamCardSection className="header">
         <$TeamCardPosition className="none"></$TeamCardPosition>
-        <$TeamCardCharacterHeader>{isBench ? type : 'Starters'}</$TeamCardCharacterHeader>
+        <$TeamCardCharacterHeader>
+          {isBench ? type : 'Starters'}
+        </$TeamCardCharacterHeader>
         <$TeamCardAffinity>Affinity</$TeamCardAffinity>
         <$TeamCardPower>Power Level</$TeamCardPower>
       </$TeamCardSection>
       <$TeamCardSection>
         <$TeamCardPosition>{isBench ? 'BN' : 'C'}</$TeamCardPosition>
-        <$TeamCardCharacterWrapper>
-          <Link href="/bio/goku">
-            <$TeamCardCharacter>
-              <$TeamCardCharacterTxt>Goku</$TeamCardCharacterTxt>
-            </$TeamCardCharacter>
-          </Link>
-        </$TeamCardCharacterWrapper>
-        <$TeamCardAffinity>-</$TeamCardAffinity>
-        <$TeamCardPower>1500</$TeamCardPower>
+        {isBench && characterLink(bench_a)}
+        {!isBench && characterLink(captain)}
       </$TeamCardSection>
       <$TeamCardSection>
         <$TeamCardPosition>{isBench ? 'BN' : 'B'}</$TeamCardPosition>
-        <$TeamCardCharacterWrapper>
-          <Link href="/bio/arthurboyle">
-            <$TeamCardCharacter>
-              <$TeamCardCharacterTxt>Arthur Boyle</$TeamCardCharacterTxt>
-            </$TeamCardCharacter>
-          </Link>
-        </$TeamCardCharacterWrapper>
-        <$TeamCardAffinity>
-          <$GlobalCircle className="fire"></$GlobalCircle>
-        </$TeamCardAffinity>
-        <$TeamCardPower>1250</$TeamCardPower>
+        {isBench && characterLink(bench_b)}
+        {!isBench && characterLink(brawler_a)}
       </$TeamCardSection>
       <$TeamCardSection>
         <$TeamCardPosition>{isBench ? 'BN' : 'B'}</$TeamCardPosition>
-        <$TeamCardCharacterWrapper>
-          <Link href="/bio/genos">
-            <$TeamCardCharacter>
-              <$TeamCardCharacterTxt>Genos</$TeamCardCharacterTxt>
-            </$TeamCardCharacter>
-          </Link>
-        </$TeamCardCharacterWrapper>
-        <$TeamCardAffinity>
-          <$GlobalCircle className="fire"></$GlobalCircle>
-        </$TeamCardAffinity>
-        <$TeamCardPower>1250</$TeamCardPower>
+        {isBench && characterLink(bench_c)}
+        {!isBench && characterLink(brawler_b)}
       </$TeamCardSection>
       {!isBench && (
         <$TeamCardSection>
           <$TeamCardPosition className="duo">B/S</$TeamCardPosition>
-          <$TeamCardCharacterWrapper className="duo">
-            <Link href="/bio/rocklee">
-              <$TeamCardCharacter>
-                <$TeamCardDuoSpace className="text">Rock Lee</$TeamCardDuoSpace>
-              </$TeamCardCharacter>
-            </Link>
-            <Link href="/bio/tenten">
-              <$TeamCardCharacter>
-                <$TeamCardDuoSpace className="text">Tenten</$TeamCardDuoSpace>
-              </$TeamCardCharacter>
-            </Link>
-          </$TeamCardCharacterWrapper>
-          <$TeamCardAffinity>
-            <$TeamCardDuoSpace>-</$TeamCardDuoSpace>
-            <$TeamCardDuoSpace>-</$TeamCardDuoSpace>
-          </$TeamCardAffinity>
-          <$TeamCardPower>
-            <$TeamCardDuoSpace className="right">1250</$TeamCardDuoSpace>
-            <$TeamCardDuoSpace className="right">1000</$TeamCardDuoSpace>
-          </$TeamCardPower>
+          {characterDouLink(bs_brawler, bs_support)}
         </$TeamCardSection>
       )}
       <$TeamCardSection>
         <$TeamCardPosition>{isBench ? 'BN' : 'S'}</$TeamCardPosition>
-        <$TeamCardCharacterWrapper>
-          <Link href="/bio/chad">
-            <$TeamCardCharacter>
-              <$TeamCardCharacterTxt>Chad</$TeamCardCharacterTxt>
-            </$TeamCardCharacter>
-          </Link>
-        </$TeamCardCharacterWrapper>
-        <$TeamCardAffinity>-</$TeamCardAffinity>
-        <$TeamCardPower>1000</$TeamCardPower>
+        {isBench && characterLink(bench_d)}
+        {!isBench && characterLink(support)}
       </$TeamCardSection>
       <$TeamCardSection>
         <$TeamCardPosition>{isBench ? 'BN' : 'V'}</$TeamCardPosition>
-        <$TeamCardCharacterWrapper>
-          <Link href="/bio/sasori">
-            <$TeamCardCharacter>
-              <$TeamCardCharacterTxt>Sasori</$TeamCardCharacterTxt>
-            </$TeamCardCharacter>
-          </Link>
-        </$TeamCardCharacterWrapper>
-        <$TeamCardAffinity>-</$TeamCardAffinity>
-        <$TeamCardPower>1250</$TeamCardPower>
+        {isBench && characterLink(bench_e)}
+        {!isBench && characterLink(villain)}
       </$TeamCardSection>
       {!isBench && (
         <$TeamCardSection>
           <$TeamCardPosition>BF</$TeamCardPosition>
-          <$TeamCardCharacterWrapper>
-            <Link href="/bio/soulsociety">
-              <$TeamCardCharacter>
-                <$TeamCardCharacterTxt>Soul Society</$TeamCardCharacterTxt>
-              </$TeamCardCharacter>
-            </Link>
-          </$TeamCardCharacterWrapper>
-          <$TeamCardAffinity>
-            <$GlobalCircle className="arcane"></$GlobalCircle>
-          </$TeamCardAffinity>
-          <$TeamCardPower>-</$TeamCardPower>
+          {characterLink(battlefield)}
         </$TeamCardSection>
       )}
     </>

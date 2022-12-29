@@ -7,7 +7,7 @@ export const $TeamCardSection = styled.div`
   border-bottom: 1px solid #000;
 
   &.header {
-    background-color: rgba(249, 128, 17, .3);
+    background-color: rgba(249, 128, 17, 0.3);
     border-bottom: none;
     margin-top: 20px;
   }
@@ -20,7 +20,7 @@ export const $TeamCardPosition = styled.div`
   color: rgb(249, 128, 17);
   text-align: center;
   font-size: 10px;
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, 0.8);
 
   &.none {
     background-color: rgba(0, 0, 0, 0);
@@ -41,6 +41,11 @@ export const $TeamCardDuoSpace = styled.div`
 
   &.text {
     color: rgb(27, 5, 246);
+  }
+
+  &.noLink {
+    cursor: default;
+    font-weight: 700;
   }
 `;
 
@@ -68,6 +73,11 @@ export const $TeamCardCharacter = styled.button`
   background: transparent;
   border: none;
   text-align: left;
+
+  &.noLink {
+    cursor: default;
+    font-weight: 700;
+  }
 `;
 
 export const $TeamCardCharacterTxt = styled.span`

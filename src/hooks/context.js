@@ -18,23 +18,8 @@ const formatUser = () => {
   return null;
 };
 
-const formatLeague = () => {
-  let league = hasWindow && window.localStorage.getItem('abz.league');
-
-  if (league) {
-    league = JSON.parse(league);
-
-    return {
-      ...league,
-    };
-  }
-
-  return null;
-};
-
 export const AppWrapper = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(formatUser);
-  const [leagueDetails, setLeagueDetails] = useState(formatLeague);
 
   const updateCurrentUser = (userInfo) => {
     const data = {
@@ -47,22 +32,9 @@ export const AppWrapper = ({ children }) => {
     window.localStorage.setItem('abz.user', JSON.stringify(data));
   };
 
-  const updateLeagueDetails = (leagueInfo) => {
-    const data = {
-      ...leagueDetails,
-      ...leagueInfo,
-    };
-
-    setLeagueDetails(data);
-
-    window.localStorage.setItem('abz.league', JSON.stringify(data));
-  };
-
   const sharedState = {
     currentUser,
-    leagueDetails,
     updateCurrentUser,
-    updateLeagueDetails,
   };
 
   return (

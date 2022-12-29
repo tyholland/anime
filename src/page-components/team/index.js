@@ -13,16 +13,23 @@ import { $GlobalContainer } from 'Styles/global.style';
 import Button from 'Components/button';
 import TeamCard from 'Components/team-card';
 import BackLink from 'Components/back-link/index.js';
+import Metadata from 'Components/metadata/index.js';
 
-const Team = () => {
+const Team = ({ data }) => {
+  const { teamName, team, leagueName } = data;
+
   return (
     <>
+      <Metadata
+        title={`${teamName}'s page`}
+        description={`Team page of ${teamName}. You can update/edit the roster. Edit your lineup for the week. As well as edit/view team info.`}
+      />
       <BackLink />
       <$GlobalContainer>
         <$TeamInfo>
           <$TeamContent>
-            <$TeamName>Jack Of All Trades</$TeamName>
-            <$TeamLeague>Anime Ballers</$TeamLeague>
+            <$TeamName>{teamName}</$TeamName>
+            <$TeamLeague>{leagueName}</$TeamLeague>
           </$TeamContent>
           <$TeamBtnSection>
             <Button
@@ -48,12 +55,12 @@ const Team = () => {
             />
           </$TeamBtnSection>
         </$TeamInfo>
-        <TeamCard />
+        <TeamCard data={team} />
         <$TeamTotal>
           <$TeamTotalText>Total</$TeamTotalText>
-          <$TeamTotalAmount>9000</$TeamTotalAmount>
+          <$TeamTotalAmount>{team.points}</$TeamTotalAmount>
         </$TeamTotal>
-        <TeamCard type="Bench" />
+        <TeamCard type="Bench" data={team} />
       </$GlobalContainer>
     </>
   );
