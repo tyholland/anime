@@ -15,7 +15,7 @@ import TeamCard from 'Components/team-card';
 import BackLink from 'Components/back-link/index.js';
 import Metadata from 'Components/metadata/index.js';
 
-const Team = ({ data }) => {
+const Team = ({ data, leagueId, teamId }) => {
   const { teamName, team, leagueName } = data;
 
   return (
@@ -36,7 +36,7 @@ const Team = ({ data }) => {
               btnText="Team Info"
               btnColor="orange"
               btnTextColor="black"
-              redirect="/team/info/123"
+              redirect={`/team/info/${leagueId}/${teamId}`}
               customBtnClass="medium"
             />
             <Button
@@ -44,14 +44,14 @@ const Team = ({ data }) => {
               btnTextColor="black"
               btnColor="orange"
               customBtnClass="medium"
-              redirect="/team/edit/123"
+              redirect={`/team/edit/${leagueId}/${teamId}`}
             />
             <Button
               btnText="Edit Lineup"
               btnTextColor="black"
               btnColor="orange"
               customBtnClass="medium"
-              redirect="/team/edit/123"
+              redirect="#"
             />
           </$TeamBtnSection>
         </$TeamInfo>

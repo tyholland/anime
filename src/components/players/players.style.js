@@ -1,7 +1,8 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const $PlayersStyles = createGlobalStyle`
-  .fillGrid {
+  .fillGrid,
+  .fillModal {
     grid-template-columns: 250px 150px 150px 250px !important;
     width: auto;
     height: 100vh;
@@ -13,6 +14,13 @@ export const $PlayersStyles = createGlobalStyle`
     --rdg-row-selected-hover-background-color: none;
     --rdg-selection-color: none;
     cursor: pointer;
+  }
+
+  .fillModal {
+    grid-template-columns: 175px 150px 150px 175px !important;
+    width: auto;
+    height: 455px;
+    margin-top: 2%;
   }
 
   .fillGrid > div:hover {

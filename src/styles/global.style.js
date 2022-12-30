@@ -145,7 +145,7 @@ export const $GlobalContainer = styled.div`
     &::before {
       content: " ";
       background-image: url(/assets/background/saitama.png);
-      background-size: 450px;
+      background-size: 250px;
       background-repeat: no-repeat;
       background-position: center;
       position: absolute;

@@ -4,7 +4,13 @@ import DataGrid from 'react-data-grid';
 import { useRouter } from 'next/router';
 import { $PlayersFilter, $PlayersStyles } from './players.style';
 
-const Players = ({ data }) => {
+const Players = ({
+  data,
+  changeRoster = false,
+  setPlayerList,
+  playerList,
+  field,
+}) => {
   const router = useRouter();
   const [rows, setRows] = useState([]);
   const [listOfPlayers, setListOfPlayers] = useState(data);
@@ -14,7 +20,7 @@ const Players = ({ data }) => {
   const [rankName, setRankName] = useState('all');
   const columns = [
     {
-      key: 'name',
+      key: 'fullName',
       name: 'Name',
     },
     {
@@ -51,7 +57,8 @@ const Players = ({ data }) => {
       rank.push(item.category);
 
       playerArr.push({
-        name: item.full_name,
+        fullName: item.full_name,
+        name: item.name,
         rank: item.category,
         power: item.power_level,
         series: item.series,
@@ -69,6 +76,13 @@ const Players = ({ data }) => {
   };
 
   const handleRowClick = (item) => {
+    if (changeRoster) {
+      playerList[field] = item;
+
+      setPlayerList(playerList);
+      return;
+    }
+
     router.push(`/bio/${item.id}`);
   };
 
@@ -137,44 +151,46 @@ const Players = ({ data }) => {
   return (
     <>
       <$PlayersStyles />
-      <$PlayersFilter>
-        <div>
-          <label>Filter by rank</label>
-          <select
-            onChange={(val) => handleRankFilter(val)}
-            defaultValue={rankArr[0] === rankName}
-          >
-            <option value="all">All</option>
-            {rankArr.map((item) => {
-              return (
-                <option value={item} key={item}>
-                  {item}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-        <div>
-          <label>Filter by series</label>
-          <select
-            onChange={(val) => handleSeriesFilter(val)}
-            defaultValue={seriesArr[0] === seriesName}
-          >
-            <option value="all">All</option>
-            {seriesArr.map((item) => {
-              return (
-                <option value={item} key={item}>
-                  {item}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-      </$PlayersFilter>
+      {!changeRoster && (
+        <$PlayersFilter>
+          <div>
+            <label>Filter by rank</label>
+            <select
+              onChange={(val) => handleRankFilter(val)}
+              defaultValue={rankArr[0] === rankName}
+            >
+              <option value="all">All</option>
+              {rankArr.map((item) => {
+                return (
+                  <option value={item} key={item}>
+                    {item}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div>
+            <label>Filter by series</label>
+            <select
+              onChange={(val) => handleSeriesFilter(val)}
+              defaultValue={seriesArr[0] === seriesName}
+            >
+              <option value="all">All</option>
+              {seriesArr.map((item) => {
+                return (
+                  <option value={item} key={item}>
+                    {item}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        </$PlayersFilter>
+      )}
       <DataGrid
         columns={columns}
         rows={rows}
-        className="fillGrid"
+        className={changeRoster ? 'fillModal' : 'fillGrid'}
         onRowClick={(val) => handleRowClick(val)}
       />
     </>

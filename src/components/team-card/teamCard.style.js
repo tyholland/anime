@@ -91,6 +91,10 @@ export const $TeamCardAffinity = styled.div`
   color: #000;
   display: flex;
   align-items: center;
+
+  &.duo {
+    display: block;
+  }
 `;
 
 export const $TeamCardPower = styled.div`

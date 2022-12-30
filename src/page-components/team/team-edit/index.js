@@ -1,14 +1,102 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import Button from 'Components/button';
 import { $TeamEditWrapper, $TeamEditBtn } from './teamEdit.style';
-import { useRouter } from 'next/router';
+import BackLink from 'Components/back-link';
+import ChangeCharacters from 'src/modals/change-character';
+import { updateTeam } from 'src/requests/team';
+import Metadata from 'Components/metadata';
 
-const TeamEdit = () => {
-  const router = useRouter();
+const TeamEdit = ({ players, teamData, teamId }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [playerRank, setPlayerRank] = useState(null);
+  const [field, setField] = useState(null);
+  const { team, teamName } = teamData;
+  const { week, points } = team;
+  const [playerList, setPlayerList] = useState({
+    captain: team.captain,
+    brawlerA: team.brawler_a,
+    brawlerB: team.brawler_b,
+    bsBrawler: team.bs_brawler,
+    bsSupport: team.bs_support,
+    support: team.support,
+    villain: team.villain,
+    battlefield: team.battlefield,
+    benchA: team.bench_a,
+    benchB: team.bench_b,
+    benchC: team.bench_c,
+    benchD: team.bench_d,
+    benchE: team.bench_e,
+  });
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const openModal = (rank) => {
+    let specificPlayers = players.filter((item) => item.category === rank);
+
+    if (rank === 'All') {
+      specificPlayers = players;
+    }
+
+    setPlayerRank(specificPlayers);
+    setIsModalOpen(true);
+  };
+
+  const handleBtn = (player, rank, fieldName) => {
+    if (!player.id) {
+      return (
+        <Button
+          btnText="Add"
+          btnTextColor="black"
+          btnColor="orange"
+          customBtnClass="small"
+          btnFunction={() => {
+            setField(fieldName);
+            openModal(rank);
+          }}
+        />
+      );
+    }
+
+    return (
+      <Button
+        btnText="Change"
+        btnTextColor="black"
+        btnColor="orange"
+        customBtnClass="small"
+        btnFunction={() => {
+          setField(fieldName);
+          openModal(rank);
+        }}
+      />
+    );
+  };
+
+  const updatePlayers = async (thePlayers) => {
+    try {
+      const payload = {
+        ...thePlayers,
+        points,
+        week,
+      };
+
+      await updateTeam(teamId, payload);
+      setPlayerList(thePlayers);
+      setIsModalOpen(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
+      <Metadata
+        title="Edit Team"
+        description={`Edit ${teamName}'s roster. Add new players or change current players.`}
+      />
+      <BackLink />
       <$GlobalContainer>
         <$GlobalTitle>Edit Team</$GlobalTitle>
         <$TeamEditWrapper>
@@ -16,7 +104,8 @@ const TeamEdit = () => {
             <div>Captain</div>
             <div>Brawler</div>
             <div>Brawler</div>
-            <div>Brawler Support</div>
+            <div>Duo - Brawler</div>
+            <div>Duo - Support</div>
             <div>Support</div>
             <div>Villain</div>
             <div>Battlefield</div>
@@ -27,230 +116,70 @@ const TeamEdit = () => {
             <div>Bench</div>
           </div>
           <div>
-            <div>Goku</div>
-            <div>Goku</div>
-            <div>Goku</div>
-            <div>Goku</div>
-            <div>Goku</div>
-            <div>Goku</div>
-            <div>Goku</div>
-            <div>Goku</div>
-            <div>Goku</div>
-            <div>Goku</div>
-            <div>Goku</div>
-            <div>Goku</div>
+            <div>{playerList.captain.name}</div>
+            <div>{playerList.brawlerA.name}</div>
+            <div>{playerList.brawlerB.name}</div>
+            <div>{playerList.bsBrawler.name}</div>
+            <div>{playerList.bsSupport.name}</div>
+            <div>{playerList.support.name}</div>
+            <div>{playerList.villain.name}</div>
+            <div>{playerList.battlefield.name}</div>
+            <div>{playerList.benchA.name}</div>
+            <div>{playerList.benchB.name}</div>
+            <div>{playerList.benchC.name}</div>
+            <div>{playerList.benchD.name}</div>
+            <div>{playerList.benchE.name}</div>
           </div>
           <div>
             <$TeamEditBtn>
-              <Button
-                btnText="Add"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
-              <Button
-                btnText="Change"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
+              {handleBtn(playerList.captain, 'Captain', 'captain')}
             </$TeamEditBtn>
             <$TeamEditBtn>
-              <Button
-                btnText="Add"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
-              <Button
-                btnText="Change"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
+              {handleBtn(playerList.brawlerA, 'Brawler', 'brawlerA')}
             </$TeamEditBtn>
             <$TeamEditBtn>
-              <Button
-                btnText="Add"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
-              <Button
-                btnText="Change"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
+              {handleBtn(playerList.brawlerB, 'Brawler', 'brawlerB')}
             </$TeamEditBtn>
             <$TeamEditBtn>
-              <Button
-                btnText="Add"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
-              <Button
-                btnText="Change"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
+              {handleBtn(playerList.bsBrawler, 'Brawler', 'bsBrawler')}
             </$TeamEditBtn>
             <$TeamEditBtn>
-              <Button
-                btnText="Add"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
-              <Button
-                btnText="Change"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
+              {handleBtn(playerList.bsSupport, 'Support', 'bsSupport')}
             </$TeamEditBtn>
             <$TeamEditBtn>
-              <Button
-                btnText="Add"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
-              <Button
-                btnText="Change"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
+              {handleBtn(playerList.support, 'Support', 'support')}
             </$TeamEditBtn>
             <$TeamEditBtn>
-              <Button
-                btnText="Add"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
-              <Button
-                btnText="Change"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
+              {handleBtn(playerList.villain, 'Villain', 'villain')}
             </$TeamEditBtn>
             <$TeamEditBtn>
-              <Button
-                btnText="Add"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
-              <Button
-                btnText="Change"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
+              {handleBtn(playerList.battlefield, 'Battlefield', 'battlefield')}
             </$TeamEditBtn>
             <$TeamEditBtn>
-              <Button
-                btnText="Add"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
-              <Button
-                btnText="Change"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
+              {handleBtn(playerList.benchA, 'All', 'benchA')}
             </$TeamEditBtn>
             <$TeamEditBtn>
-              <Button
-                btnText="Add"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
-              <Button
-                btnText="Change"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
+              {handleBtn(playerList.benchB, 'All', 'benchB')}
             </$TeamEditBtn>
             <$TeamEditBtn>
-              <Button
-                btnText="Add"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
-              <Button
-                btnText="Change"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
+              {handleBtn(playerList.benchC, 'All', 'benchC')}
             </$TeamEditBtn>
             <$TeamEditBtn>
-              <Button
-                btnText="Add"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
-              <Button
-                btnText="Change"
-                btnTextColor="black"
-                btnColor="orange"
-                customBtnClass="small"
-                redirect="/league/characters"
-              />
+              {handleBtn(playerList.benchD, 'All', 'benchD')}
+            </$TeamEditBtn>
+            <$TeamEditBtn>
+              {handleBtn(playerList.benchE, 'All', 'benchE')}
             </$TeamEditBtn>
           </div>
         </$TeamEditWrapper>
-        <$TeamEditBtn className="decision">
-          <Button
-            btnText="Save"
-            btnTextColor="black"
-            btnColor="orange"
-            customBtnClass="leagues"
-            redirect="/league/123"
-          />
-          <Button
-            btnText="Cancel"
-            btnTextColor="white"
-            btnColor="red"
-            customBtnClass="leagues"
-            btnFunction={() => router.back()}
-          />
-        </$TeamEditBtn>
+        <ChangeCharacters
+          players={playerRank}
+          modalIsOpen={isModalOpen}
+          closeModal={closeModal}
+          setPlayerList={updatePlayers}
+          playerList={playerList}
+          field={field}
+        />
       </$GlobalContainer>
     </>
   );

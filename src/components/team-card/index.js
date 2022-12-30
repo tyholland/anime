@@ -84,7 +84,7 @@ const TeamCard = ({ type = 'default', data }) => {
               <$TeamCardDuoSpace className="text noLink">-</$TeamCardDuoSpace>
             </$TeamCardCharacter>
           </$TeamCardCharacterWrapper>
-          <$TeamCardAffinity>
+          <$TeamCardAffinity className="duo">
             <$TeamCardDuoSpace className="noLink">-</$TeamCardDuoSpace>
             <$TeamCardDuoSpace className="noLink">-</$TeamCardDuoSpace>
           </$TeamCardAffinity>

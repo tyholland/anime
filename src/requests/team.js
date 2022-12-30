@@ -11,3 +11,14 @@ export const getTeam = async (leagueId, teamId) => {
 
   return await axiosClient(data);
 };
+
+export const updateTeam = async (teamId, payload) => {
+  const data = {
+    url: `${api}/team/${teamId}`,
+    method: 'put',
+    auth: null,
+    body: payload,
+  };
+
+  return await axiosClient(data);
+};
