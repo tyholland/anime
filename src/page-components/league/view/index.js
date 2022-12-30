@@ -5,6 +5,7 @@ import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 import { useAppContext } from 'src/hooks/context';
 import { getAllLeagues } from 'src/requests/league';
+import { addEvent } from 'Utils/amplitude';
 
 const ViewLeague = () => {
   const { currentUser } = useAppContext();
@@ -22,7 +23,10 @@ const ViewLeague = () => {
 
       setLeagueCard(details);
     } catch (err) {
-      console.log(err);
+      addEvent('Error', {
+        message: err,
+        description: 'Get all leagues',
+      });
     }
   };
 

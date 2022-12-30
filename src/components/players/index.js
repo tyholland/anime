@@ -151,42 +151,43 @@ const Players = ({
   return (
     <>
       <$PlayersStyles />
-      {!changeRoster && (
-        <$PlayersFilter>
-          <div>
-            <label>Filter by rank</label>
-            <select
-              onChange={(val) => handleRankFilter(val)}
-              defaultValue={rankArr[0] === rankName}
-            >
-              <option value="all">All</option>
-              {rankArr.map((item) => {
-                return (
-                  <option value={item} key={item}>
-                    {item}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-          <div>
-            <label>Filter by series</label>
-            <select
-              onChange={(val) => handleSeriesFilter(val)}
-              defaultValue={seriesArr[0] === seriesName}
-            >
-              <option value="all">All</option>
-              {seriesArr.map((item) => {
-                return (
-                  <option value={item} key={item}>
-                    {item}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-        </$PlayersFilter>
-      )}
+      {!changeRoster ||
+        (field.includes('bench') && (
+          <$PlayersFilter>
+            <div>
+              <label>Filter by rank</label>
+              <select
+                onChange={(val) => handleRankFilter(val)}
+                defaultValue={rankArr[0] === rankName}
+              >
+                <option value="all">All</option>
+                {rankArr.map((item) => {
+                  return (
+                    <option value={item} key={item}>
+                      {item}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <div>
+              <label>Filter by series</label>
+              <select
+                onChange={(val) => handleSeriesFilter(val)}
+                defaultValue={seriesArr[0] === seriesName}
+              >
+                <option value="all">All</option>
+                {seriesArr.map((item) => {
+                  return (
+                    <option value={item} key={item}>
+                      {item}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+          </$PlayersFilter>
+        ))}
       <DataGrid
         columns={columns}
         rows={rows}

@@ -9,6 +9,7 @@ import Select from 'Components/select';
 import { useAppContext } from 'src/hooks/context';
 import { useRouter } from 'next/router';
 import Metadata from 'Components/metadata';
+import { addEvent } from 'Utils/amplitude';
 
 const LeagueCreate = () => {
   const { currentUser } = useAppContext();
@@ -34,7 +35,10 @@ const LeagueCreate = () => {
 
       router.push(`/team/${leagueId}/${teamId}`);
     } catch (err) {
-      console.log(err);
+      addEvent('Error', {
+        message: err,
+        description: 'Create League',
+      });
     }
   };
 
