@@ -17,7 +17,7 @@ const ChangeCharacters = ({
     <MainModal modalIsOpen={modalIsOpen} closeModal={closeModal}>
       <$GlobalContainer className="grid leagueCharacter">
         <$GlobalTitle>Add Character</$GlobalTitle>
-        <div>Remaining Points: 9000</div>
+        <div>Remaining Points: {playerList.userPoints}</div>
         <div>Click on any character you want to change with</div>
         <Players
           data={players}

@@ -11,7 +11,7 @@ const TeamEdit = ({ players, teamData, teamId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playerRank, setPlayerRank] = useState(null);
   const [field, setField] = useState(null);
-  const { team, teamName } = teamData;
+  const { team, teamName, userPoints } = teamData;
   const { week, points } = team;
   const [playerList, setPlayerList] = useState({
     captain: team.captain,
@@ -27,6 +27,7 @@ const TeamEdit = ({ players, teamData, teamId }) => {
     benchC: team.bench_c,
     benchD: team.bench_d,
     benchE: team.bench_e,
+    userPoints,
   });
 
   const closeModal = () => {
