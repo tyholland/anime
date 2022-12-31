@@ -4,7 +4,9 @@ import SelectionCard from 'Components/selection-card/index.js';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 
-const LeagueDetails = () => {
+const LeagueDetails = ({ data, leagueId }) => {
+  const { teamId } = data[0];
+
   return (
     <>
       <Metadata
@@ -18,7 +20,7 @@ const LeagueDetails = () => {
             btnText="Team"
             btnTextColor="black"
             btnColor="orange"
-            redirect="/team/123"
+            redirect={`/team/${leagueId}/${teamId}`}
           />
           <SelectionCard
             btnText="Matchup"
