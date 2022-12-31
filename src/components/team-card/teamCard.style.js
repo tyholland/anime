@@ -47,6 +47,10 @@ export const $TeamCardDuoSpace = styled.div`
     cursor: default;
     font-weight: 700;
   }
+
+  &.duo {
+    display: flex;
+  }
 `;
 
 export const $TeamCardCharacterWrapper = styled.div`

@@ -115,7 +115,7 @@ const TeamCard = ({ type = 'default', data }) => {
           </Link>
         </$TeamCardCharacterWrapper>
         <$TeamCardAffinity className="duo">
-          <$TeamCardDuoSpace>
+          <$TeamCardDuoSpace className="duo">
             {!!brawler.affinity.length &&
               brawler.affinity.map((item) => {
                 return (
@@ -127,7 +127,7 @@ const TeamCard = ({ type = 'default', data }) => {
               })}
             {!brawler.affinity.length && <span>-</span>}
           </$TeamCardDuoSpace>
-          <$TeamCardDuoSpace>
+          <$TeamCardDuoSpace className="duo">
             {!!support.affinity.length &&
               support.affinity.map((item) => {
                 return (

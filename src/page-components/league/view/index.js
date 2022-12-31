@@ -24,7 +24,8 @@ const ViewLeague = () => {
       setLeagueCard(details);
     } catch (err) {
       addEvent('Error', {
-        message: err,
+        data: err.response.data,
+        status: err.response.status,
         description: 'Get all leagues',
       });
     }

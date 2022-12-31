@@ -33,3 +33,11 @@ export const $TeamEditBtn = styled.div`
     margin-top: 3%;
   }
 `;
+
+export const $TeamEditError = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2%;
+  color: red;
+  font-weight: 700;
+`;

@@ -5,7 +5,11 @@ import {
   $GlobalSubTitle,
 } from 'Styles/global.style.js';
 import Button from 'Components/button';
-import { $TeamEditWrapper, $TeamEditBtn } from './teamEdit.style';
+import {
+  $TeamEditWrapper,
+  $TeamEditBtn,
+  $TeamEditError,
+} from './teamEdit.style';
 import BackLink from 'Components/back-link';
 import ChangeCharacters from 'src/modals/change-character';
 import { updateTeam } from 'src/requests/team';
@@ -17,6 +21,7 @@ const TeamEdit = ({ players, teamData, teamId }) => {
   const [playerRank, setPlayerRank] = useState(null);
   const [field, setField] = useState(null);
   const [canChange, setCanChange] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
   const { team, teamName, userPoints } = teamData;
   const { week, points } = team;
   const [playerList, setPlayerList] = useState({
@@ -84,7 +89,7 @@ const TeamEdit = ({ players, teamData, teamId }) => {
           btnTextColor="white"
           btnColor="red"
           customBtnClass="small"
-          btnFunction={() => removeCharacter(fieldName)}
+          btnFunction={() => updatePlayers(emptyPlayer(fieldName))}
         />
       </>
     );
@@ -121,7 +126,20 @@ const TeamEdit = ({ players, teamData, teamId }) => {
     return defaultPoints - totalPoints;
   };
 
+  const emptyPlayer = (attr) => {
+    playerList[attr] = {
+      id: null,
+      name: null,
+      affinity: null,
+      points: null,
+    };
+
+    return playerList;
+  };
+
   const updatePlayers = async (thePlayers) => {
+    const totalPoints = getUserPoints(thePlayers);
+
     try {
       const payload = {
         ...thePlayers,
@@ -129,31 +147,25 @@ const TeamEdit = ({ players, teamData, teamId }) => {
         week,
       };
 
-      const totalPoints = getUserPoints(thePlayers);
+      await updateTeam(teamId, payload);
 
       thePlayers['userPoints'] = totalPoints;
 
-      await updateTeam(teamId, payload);
       setPlayerList(thePlayers);
       setIsModalOpen(false);
       setCanChange(true);
+      setErrorMsg(null);
     } catch (err) {
       addEvent('Error', {
-        message: err,
+        data: err.response.data,
+        status: err.response.status,
         description: 'Update Team',
       });
+      setErrorMsg(err.response.data.message);
+      setPlayerList(emptyPlayer(field));
+      setIsModalOpen(false);
+      setCanChange(true);
     }
-  };
-
-  const removeCharacter = (field) => {
-    playerList[field] = {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    };
-
-    updatePlayers(playerList);
   };
 
   useEffect(() => {
@@ -175,6 +187,7 @@ const TeamEdit = ({ players, teamData, teamId }) => {
         <$GlobalSubTitle>
           Remaining Points: {playerList.userPoints}
         </$GlobalSubTitle>
+        {!!errorMsg && <$TeamEditError>{errorMsg}</$TeamEditError>}
         <$TeamEditWrapper>
           <div className="position">
             <div>Captain</div>

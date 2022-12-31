@@ -183,7 +183,7 @@ export const $GlobalTitle = styled.div`
 `;
 
 export const $GlobalSubTitle = styled.div`
-  margin-bottom: 5%;
+  margin-bottom: 2%;
   font-size: 20px;
   text-align: center;
 `;
