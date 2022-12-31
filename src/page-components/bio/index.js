@@ -146,7 +146,7 @@ const Bio = ({ player }) => {
                 </$BioAffinity>
               </>
             )}
-            {isVillain && (
+            {isVillain && !!affinities.length && (
               <>
                 <$BioAttribute>
                   Damages Characters with these Element Affinities:
