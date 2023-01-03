@@ -10,7 +10,7 @@ const MainModal = ({ modalIsOpen, closeModal, children }) => {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      height: 650,
+      height: 570,
       width: 800,
     },
   };

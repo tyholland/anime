@@ -151,7 +151,7 @@ const Players = ({
   return (
     <>
       <$PlayersStyles />
-      {(!changeRoster || !!field.includes('bench')) && (
+      {!changeRoster && (
         <$PlayersFilter>
           <div>
             <label>Filter by rank</label>

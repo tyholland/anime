@@ -32,11 +32,6 @@ const TeamEdit = ({ players, teamData, teamId }) => {
     support: team.support,
     villain: team.villain,
     battlefield: team.battlefield,
-    benchA: team.bench_a,
-    benchB: team.bench_b,
-    benchC: team.bench_c,
-    benchD: team.bench_d,
-    benchE: team.bench_e,
     userPoints,
   });
 
@@ -106,11 +101,6 @@ const TeamEdit = ({ players, teamData, teamId }) => {
       updatedPlayers.support.id,
       updatedPlayers.villain.id,
       updatedPlayers.battlefield.id,
-      updatedPlayers.benchA.id,
-      updatedPlayers.benchB.id,
-      updatedPlayers.benchC.id,
-      updatedPlayers.benchD.id,
-      updatedPlayers.benchE.id,
     ];
     const characterIds = characterArr.filter((item) => !!item);
 
@@ -191,11 +181,6 @@ const TeamEdit = ({ players, teamData, teamId }) => {
             <div>Support</div>
             <div>Villain</div>
             <div>Battlefield</div>
-            <div>Bench</div>
-            <div>Bench</div>
-            <div>Bench</div>
-            <div>Bench</div>
-            <div>Bench</div>
           </div>
           <div>
             <div>{playerList.captain.name}</div>
@@ -206,11 +191,6 @@ const TeamEdit = ({ players, teamData, teamId }) => {
             <div>{playerList.support.name}</div>
             <div>{playerList.villain.name}</div>
             <div>{playerList.battlefield.name}</div>
-            <div>{playerList.benchA.name}</div>
-            <div>{playerList.benchB.name}</div>
-            <div>{playerList.benchC.name}</div>
-            <div>{playerList.benchD.name}</div>
-            <div>{playerList.benchE.name}</div>
           </div>
           <div>
             <$TeamEditBtn>{handleBtn('Captain', 'captain')}</$TeamEditBtn>
@@ -223,11 +203,6 @@ const TeamEdit = ({ players, teamData, teamId }) => {
             <$TeamEditBtn>
               {handleBtn('Battlefield', 'battlefield')}
             </$TeamEditBtn>
-            <$TeamEditBtn>{handleBtn('All', 'benchA')}</$TeamEditBtn>
-            <$TeamEditBtn>{handleBtn('All', 'benchB')}</$TeamEditBtn>
-            <$TeamEditBtn>{handleBtn('All', 'benchC')}</$TeamEditBtn>
-            <$TeamEditBtn>{handleBtn('All', 'benchD')}</$TeamEditBtn>
-            <$TeamEditBtn>{handleBtn('All', 'benchE')}</$TeamEditBtn>
           </div>
         </$TeamEditWrapper>
         <ChangeCharacters

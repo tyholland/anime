@@ -13,8 +13,7 @@ import {
 } from './teamCard.style.js';
 import { $GlobalCircle } from 'Styles/global.style.js';
 
-const TeamCard = ({ type = 'default', data }) => {
-  const isBench = type === 'Bench';
+const TeamCard = ({ data }) => {
   const {
     captain,
     brawler_a,
@@ -24,11 +23,6 @@ const TeamCard = ({ type = 'default', data }) => {
     support,
     villain,
     battlefield,
-    bench_a,
-    bench_b,
-    bench_c,
-    bench_d,
-    bench_e,
   } = data;
 
   const characterLink = (character) => {
@@ -67,7 +61,7 @@ const TeamCard = ({ type = 'default', data }) => {
             })}
           {!character.affinity.length && <span>-</span>}
         </$TeamCardAffinity>
-        <$TeamCardPower>{character.points}</$TeamCardPower>
+        <$TeamCardPower>{character.teamPoints}</$TeamCardPower>
       </>
     );
   };
@@ -142,10 +136,10 @@ const TeamCard = ({ type = 'default', data }) => {
         </$TeamCardAffinity>
         <$TeamCardPower>
           <$TeamCardDuoSpace className="right">
-            {brawler.points}
+            {brawler.teamPoints}
           </$TeamCardDuoSpace>
           <$TeamCardDuoSpace className="right">
-            {support.points}
+            {support.teamPoints}
           </$TeamCardDuoSpace>
         </$TeamCardPower>
       </>
@@ -156,49 +150,38 @@ const TeamCard = ({ type = 'default', data }) => {
     <>
       <$TeamCardSection className="header">
         <$TeamCardPosition className="none"></$TeamCardPosition>
-        <$TeamCardCharacterHeader>
-          {isBench ? type : 'Starters'}
-        </$TeamCardCharacterHeader>
+        <$TeamCardCharacterHeader>Starters</$TeamCardCharacterHeader>
         <$TeamCardAffinity>Affinity</$TeamCardAffinity>
         <$TeamCardPower>Points</$TeamCardPower>
       </$TeamCardSection>
       <$TeamCardSection>
-        <$TeamCardPosition>{isBench ? 'BN' : 'C'}</$TeamCardPosition>
-        {isBench && characterLink(bench_a)}
-        {!isBench && characterLink(captain)}
+        <$TeamCardPosition>{'C'}</$TeamCardPosition>
+        {characterLink(captain)}
       </$TeamCardSection>
       <$TeamCardSection>
-        <$TeamCardPosition>{isBench ? 'BN' : 'B'}</$TeamCardPosition>
-        {isBench && characterLink(bench_b)}
-        {!isBench && characterLink(brawler_a)}
+        <$TeamCardPosition>{'B'}</$TeamCardPosition>
+        {characterLink(brawler_a)}
       </$TeamCardSection>
       <$TeamCardSection>
-        <$TeamCardPosition>{isBench ? 'BN' : 'B'}</$TeamCardPosition>
-        {isBench && characterLink(bench_c)}
-        {!isBench && characterLink(brawler_b)}
-      </$TeamCardSection>
-      {!isBench && (
-        <$TeamCardSection>
-          <$TeamCardPosition className="duo">B/S</$TeamCardPosition>
-          {characterDouLink(bs_brawler, bs_support)}
-        </$TeamCardSection>
-      )}
-      <$TeamCardSection>
-        <$TeamCardPosition>{isBench ? 'BN' : 'S'}</$TeamCardPosition>
-        {isBench && characterLink(bench_d)}
-        {!isBench && characterLink(support)}
+        <$TeamCardPosition>{'B'}</$TeamCardPosition>
+        {characterLink(brawler_b)}
       </$TeamCardSection>
       <$TeamCardSection>
-        <$TeamCardPosition>{isBench ? 'BN' : 'V'}</$TeamCardPosition>
-        {isBench && characterLink(bench_e)}
-        {!isBench && characterLink(villain)}
+        <$TeamCardPosition className="duo">B/S</$TeamCardPosition>
+        {characterDouLink(bs_brawler, bs_support)}
       </$TeamCardSection>
-      {!isBench && (
-        <$TeamCardSection>
-          <$TeamCardPosition>BF</$TeamCardPosition>
-          {characterLink(battlefield)}
-        </$TeamCardSection>
-      )}
+      <$TeamCardSection>
+        <$TeamCardPosition>{'S'}</$TeamCardPosition>
+        {characterLink(support)}
+      </$TeamCardSection>
+      <$TeamCardSection>
+        <$TeamCardPosition>{'V'}</$TeamCardPosition>
+        {characterLink(villain)}
+      </$TeamCardSection>
+      <$TeamCardSection>
+        <$TeamCardPosition>BF</$TeamCardPosition>
+        {characterLink(battlefield)}
+      </$TeamCardSection>
     </>
   );
 };

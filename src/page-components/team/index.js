@@ -60,7 +60,6 @@ const Team = ({ data, leagueId, teamId }) => {
           <$TeamTotalText>Total</$TeamTotalText>
           <$TeamTotalAmount>{team.points}</$TeamTotalAmount>
         </$TeamTotal>
-        <TeamCard type="Bench" data={team} />
       </$GlobalContainer>
     </>
   );
