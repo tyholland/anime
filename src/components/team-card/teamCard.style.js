@@ -33,7 +33,6 @@ export const $TeamCardPosition = styled.div`
 
 export const $TeamCardDuoSpace = styled.div`
   padding: 5px 0 0 0;
-  cursor: pointer;
 
   &.right {
     text-align: right;
@@ -41,6 +40,7 @@ export const $TeamCardDuoSpace = styled.div`
 
   &.text {
     color: rgb(27, 5, 246);
+    cursor: pointer;
   }
 
   &.noLink {

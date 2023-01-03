@@ -160,7 +160,7 @@ const TeamCard = ({ type = 'default', data }) => {
           {isBench ? type : 'Starters'}
         </$TeamCardCharacterHeader>
         <$TeamCardAffinity>Affinity</$TeamCardAffinity>
-        <$TeamCardPower>Power Level</$TeamCardPower>
+        <$TeamCardPower>Points</$TeamCardPower>
       </$TeamCardSection>
       <$TeamCardSection>
         <$TeamCardPosition>{isBench ? 'BN' : 'C'}</$TeamCardPosition>
