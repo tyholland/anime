@@ -23,7 +23,6 @@ const TeamEdit = ({ players, teamData, teamId }) => {
   const [canChange, setCanChange] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const { team, teamName, userPoints } = teamData;
-  const { week, points } = team;
   const [playerList, setPlayerList] = useState({
     captain: team.captain,
     brawlerA: team.brawler_a,
@@ -141,13 +140,7 @@ const TeamEdit = ({ players, teamData, teamId }) => {
     const totalPoints = getUserPoints(thePlayers);
 
     try {
-      const payload = {
-        ...thePlayers,
-        points,
-        week,
-      };
-
-      await updateTeam(teamId, payload);
+      await updateTeam(teamId, thePlayers);
 
       thePlayers['userPoints'] = totalPoints;
 

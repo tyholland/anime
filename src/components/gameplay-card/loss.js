@@ -18,6 +18,7 @@ const Loss = () => {
         <div>
           Characters with the same weakness as the Villain's Affinity will lose
           points. The character will lose a percentage of the Villain's damage.
+          This doesn't apply to a Battlefield.
         </div>
       </$GameplayCardSection>
       <$GameplayCardSection>
@@ -34,6 +35,7 @@ const Loss = () => {
         <div>
           Characters in a specific Head-to-Head Battle can recieve damage. The
           character will lose the full amount of the User Voting power loss.
+          This doesn't apply to a Battlefield.
         </div>
       </$GameplayCardSection>
     </$GlobalContainer>

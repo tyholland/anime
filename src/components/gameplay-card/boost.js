@@ -22,7 +22,8 @@ const Boost = () => {
           Support character has two Affinities and the character has both of the
           same Affinities. Characters that are affected by this boost are
           Captains and Brawlers. However, Brawlers that are in the 2v2 Battle,
-          are not affected by a normal Support Character.
+          are not affected by a normal Support Character. This doesn't apply to
+          a Battlefield either.
         </div>
       </$GameplayCardSection>
       <$GameplayCardSection>
@@ -32,9 +33,8 @@ const Boost = () => {
           teamed up with. The Brawler will recieve a percentage of that Support
           character's power boost. The Brawler will also have the chance to
           recieve a double boost if the Support character has two Affinities and
-          the Brawler has both of the same Affinities. Captains and other
-          Brawlers, not in the 2v2 Battle, will not be affected by the Support
-          character in a 2v2 Battle.
+          the Brawler has both of the same Affinities. Characters not in the 2v2
+          Battle, will not be affected by the Support character in a 2v2 Battle.
         </div>
       </$GameplayCardSection>
       <$GameplayCardSection>
@@ -53,6 +53,7 @@ const Boost = () => {
         <div>
           Characters in a specific Head-to-Head Battle can recieve a boost. The
           character will recieve the full amount of the User Voting power boost.
+          This doesn't apply to a Battlefield.
         </div>
       </$GameplayCardSection>
     </$GlobalContainer>
