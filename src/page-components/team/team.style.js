@@ -8,8 +8,8 @@ export const $TeamTotal = styled.div`
 
 export const $TeamInfo = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const $TeamContent = styled.div`
@@ -50,8 +50,6 @@ export const $TeamTotalAmount = styled.div`
 
 export const $TeamBtnSection = styled.div`
   display: flex;
-  width: 100%;
-  margin-top: 2%;
 
   button {
     width: 140px !important;

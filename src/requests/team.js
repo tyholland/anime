@@ -12,9 +12,31 @@ export const getTeam = async (leagueId, teamId) => {
   return await axiosClient(data);
 };
 
+export const getTeamInfo = async (memberId) => {
+  const data = {
+    url: `${api}/team/info/${memberId}`,
+    method: 'get',
+    auth: null,
+    body: null,
+  };
+
+  return await axiosClient(data);
+};
+
 export const updateTeam = async (teamId, payload) => {
   const data = {
     url: `${api}/team/${teamId}`,
+    method: 'put',
+    auth: null,
+    body: payload,
+  };
+
+  return await axiosClient(data);
+};
+
+export const updateTeamName = async (memberId, payload) => {
+  const data = {
+    url: `${api}/team/name/${memberId}`,
     method: 'put',
     auth: null,
     body: payload,

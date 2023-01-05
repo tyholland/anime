@@ -16,7 +16,7 @@ import BackLink from 'Components/back-link/index.js';
 import Metadata from 'Components/metadata/index.js';
 
 const Team = ({ data, leagueId, teamId }) => {
-  const { teamName, team, leagueName } = data;
+  const { teamName, team, memberId } = data;
 
   return (
     <>
@@ -29,14 +29,15 @@ const Team = ({ data, leagueId, teamId }) => {
         <$TeamInfo>
           <$TeamContent>
             <$TeamName>{teamName}</$TeamName>
-            <$TeamLeague>{leagueName}</$TeamLeague>
+            <$TeamLeague>Week: {team.week}</$TeamLeague>
+            <$TeamLeague>Rank: 0-0</$TeamLeague>
           </$TeamContent>
           <$TeamBtnSection>
             <Button
               btnText="Team Info"
               btnColor="orange"
               btnTextColor="black"
-              redirect={`/team/info/${leagueId}/${teamId}`}
+              redirect={`/team/info/${memberId}`}
               customBtnClass="medium"
             />
             <Button
@@ -45,13 +46,6 @@ const Team = ({ data, leagueId, teamId }) => {
               btnColor="orange"
               customBtnClass="medium"
               redirect={`/team/edit/${leagueId}/${teamId}`}
-            />
-            <Button
-              btnText="Edit Lineup"
-              btnTextColor="black"
-              btnColor="orange"
-              customBtnClass="medium"
-              redirect="#"
             />
           </$TeamBtnSection>
         </$TeamInfo>

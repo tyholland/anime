@@ -1,12 +1,39 @@
 import React, { useState } from 'react';
-import { $TeamInfoContent, $TeamInfoTitle, $TeamInfoBtn, $TeamInfoStats, $TeamInfoWrapper } from './teamInfo.style.js';
+import {
+  $TeamInfoContent,
+  $TeamInfoTitle,
+  $TeamInfoBtn,
+  $TeamInfoStats,
+  $TeamInfoWrapper,
+} from './teamInfo.style.js';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import BackLink from 'Components/back-link/index.js';
+import { updateTeamName } from 'src/requests/team.js';
+import { addEvent } from 'Utils/amplitude.js';
 
-const TeamInfo = () => {
+const TeamInfo = ({ data }) => {
+  const { team_name, points, name, id } = data;
   const [edit, setEdit] = useState(false);
+  const [teamName, setTeamName] = useState(team_name);
+  const [changedName, setChangedName] = useState('');
+
+  const handleTeamNameChange = async () => {
+    try {
+      await updateTeamName(id, {
+        name: changedName,
+      });
+
+      setTeamName(changedName);
+    } catch (err) {
+      addEvent('Error', {
+        data: err.response.data,
+        status: err.response.status,
+        description: 'Change Team Name',
+      });
+    }
+  };
 
   return (
     <>
@@ -16,21 +43,25 @@ const TeamInfo = () => {
         <$TeamInfoWrapper>
           <div>
             <$TeamInfoTitle>Team Name:</$TeamInfoTitle>
-            { edit && (
-              <TextField placeholder="Enter Team Name" />
+            {edit && (
+              <TextField
+                placeholder="Enter Team Name"
+                onChange={setChangedName}
+              />
             )}
-            { !edit && (
-              <$TeamInfoContent>Jack Of All Trades</$TeamInfoContent>
-            )}
+            {!edit && <$TeamInfoContent>{teamName}</$TeamInfoContent>}
             <$TeamInfoBtn>
               <Button
                 btnText={edit ? 'Save' : 'Edit'}
                 btnTextColor="black"
                 btnColor="orange"
-                btnFunction={() => setEdit(!edit)}
+                btnFunction={() => {
+                  handleTeamNameChange();
+                  setEdit(!edit);
+                }}
                 customBtnClass="medium"
               />
-              { edit && (
+              {edit && (
                 <Button
                   btnText="Cancel"
                   btnTextColor="white"
@@ -42,8 +73,15 @@ const TeamInfo = () => {
             </$TeamInfoBtn>
           </div>
           <div>
-            <$TeamInfoStats><span>Record:</span> 4-1</$TeamInfoStats>
-            <$TeamInfoStats><span>Points Remaining:</span> 1000 pts</$TeamInfoStats>
+            <$TeamInfoStats>
+              <span>League:</span> {name}
+            </$TeamInfoStats>
+            <$TeamInfoStats>
+              <span>Record:</span> 0-0
+            </$TeamInfoStats>
+            <$TeamInfoStats>
+              <span>Points Remaining:</span> {points} pts
+            </$TeamInfoStats>
           </div>
         </$TeamInfoWrapper>
       </$GlobalContainer>
