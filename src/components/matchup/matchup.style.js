@@ -22,14 +22,30 @@ export const $MatchupSection = styled.div`
 
 export const $MatchupHeadliner = styled.div`
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 `;
 
-export const $MatchupCharacter = styled.div`
+export const $MatchupCharacterBtn = styled.button`
+  border: none;
+  background: transparent;
+  width: auto;
+  padding: 0;
+  text-align: left;
   margin: 5px 0 0 10%;
 
   &.reverse {
-    margin: 5px 10% 0 0;
     text-align: right;
+    margin: 5px 10% 0 0;
+  }
+
+  span {
+    color: rgb(27, 5, 246);
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
@@ -67,6 +83,10 @@ export const $MatchupPower = styled.button`
 export const $MatchupPowerText = styled.div`
   text-align: right;
   color: rgb(27, 5, 246);
+
+  &:hover {
+    text-decoration: underline;
+  }
 
   &.reverse {
     text-align: left;

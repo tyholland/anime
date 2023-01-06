@@ -13,8 +13,25 @@ const ChangeCharacters = ({
   playerList,
   field,
 }) => {
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      height: 570,
+      width: 800,
+    },
+  };
+
   return (
-    <MainModal modalIsOpen={modalIsOpen} closeModal={closeModal}>
+    <MainModal
+      modalIsOpen={modalIsOpen}
+      closeModal={closeModal}
+      styles={customStyles}
+    >
       <$GlobalContainer className="grid leagueCharacter">
         <div>Remaining Points: {playerList.userPoints}</div>
         <div>Click on any character you want to change with</div>
