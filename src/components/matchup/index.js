@@ -11,11 +11,38 @@ import {
 } from './matchup.style.js';
 import { $GlobalCircle } from 'Styles/global.style.js';
 
-const MatchUp = ({ isReverse }) => {
+const MatchUp = ({ isReverse, team }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const {
+    captain,
+    brawler_a,
+    brawler_b,
+    bs_brawler,
+    bs_support,
+    support,
+    villain,
+    battlefield,
+  } = team;
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
+  };
+
+  const getAffinities = (character) => {
+    return (
+      <$MatchupAffinity className={isReverse && 'reverse'}>
+        {!!character.affinity.length &&
+          character.affinity.map((item) => {
+            return (
+              <$GlobalCircle
+                key={item.type}
+                className={`team ${item.type}`}
+              ></$GlobalCircle>
+            );
+          })}
+        {!character.affinity.length && <span>-</span>}
+      </$MatchupAffinity>
+    );
   };
 
   return (
@@ -23,124 +50,111 @@ const MatchUp = ({ isReverse }) => {
       <$MatchupSection className={isReverse && 'reverse'}>
         <$MatchupHeadliner>
           <$MatchupCharacter className={isReverse && 'reverse'}>
-            Goku
+            {captain.name}
           </$MatchupCharacter>
-          <$MatchupAffinity className={ isReverse && 'reverse' }>
-            -
-          </$MatchupAffinity>
+          {getAffinities(captain)}
         </$MatchupHeadliner>
-        <$MatchupPower className={ isReverse && 'reverse' } onClick={toggleModal}>
-          <$MatchupPowerText className={ isReverse && 'reverse' }>
-            1500
+        <$MatchupPower className={isReverse && 'reverse'} onClick={toggleModal}>
+          <$MatchupPowerText className={isReverse && 'reverse'}>
+            {captain.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
       <$MatchupSection className={isReverse && 'reverse'}>
         <$MatchupHeadliner>
           <$MatchupCharacter className={isReverse && 'reverse'}>
-            Arthur
+            {brawler_a.name}
           </$MatchupCharacter>
-          <$MatchupAffinity className={ isReverse && 'reverse' }>
-            <$GlobalCircle className="fire"></$GlobalCircle>
-          </$MatchupAffinity>
+          {getAffinities(brawler_a)}
         </$MatchupHeadliner>
-        <$MatchupPower className={ isReverse && 'reverse' } onClick={toggleModal}>
-          <$MatchupPowerText className={ isReverse && 'reverse' }>
-            1250
+        <$MatchupPower className={isReverse && 'reverse'} onClick={toggleModal}>
+          <$MatchupPowerText className={isReverse && 'reverse'}>
+            {brawler_a.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
       <$MatchupSection className={isReverse && 'reverse'}>
         <$MatchupHeadliner>
           <$MatchupCharacter className={isReverse && 'reverse'}>
-            Genos
+            {brawler_b.name}
           </$MatchupCharacter>
-          <$MatchupAffinity className={ isReverse && 'reverse' }>
-            <$GlobalCircle className="fire"></$GlobalCircle>
-          </$MatchupAffinity>
+          {getAffinities(brawler_b)}
         </$MatchupHeadliner>
-        <$MatchupPower className={ isReverse && 'reverse' } onClick={toggleModal}>
-          <$MatchupPowerText className={ isReverse && 'reverse' }>
-            1250
+        <$MatchupPower className={isReverse && 'reverse'} onClick={toggleModal}>
+          <$MatchupPowerText className={isReverse && 'reverse'}>
+            {brawler_b.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
-      <$MatchupSection className={ `duo ${isReverse && 'reverse'}` }>
+      <$MatchupSection className={`duo ${isReverse && 'reverse'}`}>
         <$MatchupHeadliner>
           <$MatchupCharacter className={isReverse && 'reverse'}>
-            Lee
+            {bs_brawler.name}
           </$MatchupCharacter>
-          <$MatchupAffinity className={ isReverse && 'reverse' }>
-            -
-          </$MatchupAffinity>
+          {getAffinities(bs_brawler)}
         </$MatchupHeadliner>
-        <$MatchupPower className={ isReverse && 'reverse' } onClick={toggleModal}>
-          <$MatchupPowerText className={ isReverse && 'reverse' }>
-            1250
+        <$MatchupPower className={isReverse && 'reverse'} onClick={toggleModal}>
+          <$MatchupPowerText className={isReverse && 'reverse'}>
+            {bs_brawler.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
       <$MatchupSection className={isReverse && 'reverse'}>
         <$MatchupHeadliner>
           <$MatchupCharacter className={isReverse && 'reverse'}>
-            Tenten
+            {bs_support.name}
           </$MatchupCharacter>
-          <$MatchupAffinity className={ isReverse && 'reverse' }>
-            -
-          </$MatchupAffinity>
+          {getAffinities(bs_support)}
         </$MatchupHeadliner>
-        <$MatchupPower className={ isReverse && 'reverse' } onClick={toggleModal}>
-          <$MatchupPowerText className={ isReverse && 'reverse' }>
-            1000
+        <$MatchupPower className={isReverse && 'reverse'} onClick={toggleModal}>
+          <$MatchupPowerText className={isReverse && 'reverse'}>
+            {bs_support.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
       <$MatchupSection className={isReverse && 'reverse'}>
         <$MatchupHeadliner>
           <$MatchupCharacter className={isReverse && 'reverse'}>
-            Chad
+            {support.name}
           </$MatchupCharacter>
-          <$MatchupAffinity className={ isReverse && 'reverse' }>
-            -
-          </$MatchupAffinity>
+          {getAffinities(support)}
         </$MatchupHeadliner>
-        <$MatchupPower className={ isReverse && 'reverse' } onClick={toggleModal}>
-          <$MatchupPowerText className={ isReverse && 'reverse' }>
-            1000
+        <$MatchupPower className={isReverse && 'reverse'} onClick={toggleModal}>
+          <$MatchupPowerText className={isReverse && 'reverse'}>
+            {support.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
       <$MatchupSection className={isReverse && 'reverse'}>
         <$MatchupHeadliner>
           <$MatchupCharacter className={isReverse && 'reverse'}>
-            Sasori
+            {villain.name}
           </$MatchupCharacter>
-          <$MatchupAffinity className={ isReverse && 'reverse' }>
-            -
-          </$MatchupAffinity>
+          {getAffinities(villain)}
         </$MatchupHeadliner>
-        <$MatchupPower className={ isReverse && 'reverse' } onClick={toggleModal}>
-          <$MatchupPowerText className={ isReverse && 'reverse' }>
-            1250
+        <$MatchupPower className={isReverse && 'reverse'} onClick={toggleModal}>
+          <$MatchupPowerText className={isReverse && 'reverse'}>
+            {villain.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
       <$MatchupSection className={isReverse && 'reverse'}>
         <$MatchupHeadliner>
           <$MatchupCharacter className={isReverse && 'reverse'}>
-            Soul Society
+            {battlefield.name}
           </$MatchupCharacter>
-          <$MatchupAffinity className={ isReverse && 'reverse' }>
-            <$GlobalCircle className="arcane"></$GlobalCircle>
-          </$MatchupAffinity>
+          {getAffinities(battlefield)}
         </$MatchupHeadliner>
-        <$MatchupPower className={ isReverse && 'reverse' } onClick={toggleModal}>
-          <$MatchupPowerText className={ isReverse && 'reverse' }>
-            -
+        <$MatchupPower className={isReverse && 'reverse'} onClick={toggleModal}>
+          <$MatchupPowerText className={isReverse && 'reverse'}>
+            {battlefield.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
-      <CharacterStats setIsModalOpen={ setIsModalOpen } isModalOpen={ isModalOpen } />
+      <CharacterStats
+        setIsModalOpen={setIsModalOpen}
+        isModalOpen={isModalOpen}
+      />
     </$MatchupColumn>
   );
 };

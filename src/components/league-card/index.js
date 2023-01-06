@@ -7,7 +7,7 @@ import {
 } from './leagueCard.style';
 
 const LeagueCard = ({ data }) => {
-  const { name, team_name, leagueId, teamId } = data;
+  const { name, team_name, leagueId, teamId, matchupId } = data;
 
   return (
     <$LeagueCardWrapper>
@@ -35,7 +35,7 @@ const LeagueCard = ({ data }) => {
           btnTextColor="black"
           btnColor="orange"
           customBtnClass="leagues"
-          redirect="/matchup/123"
+          redirect={`/matchup/${matchupId}`}
         />
       </$LeagueCardSection>
     </$LeagueCardWrapper>

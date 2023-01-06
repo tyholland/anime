@@ -13,23 +13,23 @@ import {
 } from './viewMatchup.style';
 import BackLink from 'Components/back-link';
 
-const ViewMatchup = () => {
+const ViewMatchup = ({ team1, team2 }) => {
   return (
     <>
       <BackLink />
       <$GlobalContainer>
         <$ViewMatchupWrapper>
           <$ViewMatchupTeamContent>
-            <$ViewMatchupTeamName>Jack Of All Trades</$ViewMatchupTeamName>
-            <$ViewMatchupTeamTotal>9000</$ViewMatchupTeamTotal>
+            <$ViewMatchupTeamName>{team1.teamName}</$ViewMatchupTeamName>
+            <$ViewMatchupTeamTotal>{team1.team.points}</$ViewMatchupTeamTotal>
           </$ViewMatchupTeamContent>
           <$ViewMatchupTeamContent>
-            <$ViewMatchupTeamName>Z Fighters</$ViewMatchupTeamName>
-            <$ViewMatchupTeamTotal>9000</$ViewMatchupTeamTotal>
+            <$ViewMatchupTeamName>{team2.teamName}</$ViewMatchupTeamName>
+            <$ViewMatchupTeamTotal>{team2.team.points}</$ViewMatchupTeamTotal>
           </$ViewMatchupTeamContent>
         </$ViewMatchupWrapper>
         <$ViewMatchupTeamSplit>
-          <MatchUp isReverse={false} />
+          <MatchUp isReverse={false} team={team1.team} />
           <$ViewMatchupPositionColumn>
             <$ViewMatchupPositionSection>
               <$ViewMatchupPosition>C</$ViewMatchupPosition>
@@ -53,7 +53,7 @@ const ViewMatchup = () => {
               <$ViewMatchupPosition>BF</$ViewMatchupPosition>
             </$ViewMatchupPositionSection>
           </$ViewMatchupPositionColumn>
-          <MatchUp isReverse={true} />
+          <MatchUp isReverse={true} team={team2.team} />
         </$ViewMatchupTeamSplit>
       </$GlobalContainer>
     </>

@@ -35,12 +35,19 @@ export const $MatchupCharacter = styled.div`
 
 export const $MatchupAffinity = styled.div`
   margin: 15px 0 0 10%;
-  width: 25px;
+  width: auto;
+  display: flex;
+  flex-direction: row;
 
   &.reverse {
-    margin: 15px 5% 0 0;
+    margin: 15px 10% 0 0;
     position: relative;
-    right: -75%;
+    justify-content: end;
+
+    .team {
+      margin-right: 0;
+      margin-left: 5px;
+    }
   }
 `;
 
