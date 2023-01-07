@@ -41,6 +41,10 @@ export const $TeamCardDuoSpace = styled.div`
   &.text {
     color: rgb(27, 5, 246);
     cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &.noLink {
@@ -86,6 +90,10 @@ export const $TeamCardCharacter = styled.button`
 
 export const $TeamCardCharacterTxt = styled.span`
   color: rgb(27, 5, 246);
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const $TeamCardAffinity = styled.div`

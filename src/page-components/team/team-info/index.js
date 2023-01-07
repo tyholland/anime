@@ -12,6 +12,7 @@ import TextField from 'Components/text-field';
 import BackLink from 'Components/back-link/index.js';
 import { updateTeamName } from 'src/requests/team.js';
 import { addEvent } from 'Utils/amplitude.js';
+import Metadata from 'Components/metadata/index.js';
 
 const TeamInfo = ({ data }) => {
   const { team_name, points, name, id } = data;
@@ -38,6 +39,10 @@ const TeamInfo = ({ data }) => {
   return (
     <>
       <BackLink />
+      <Metadata
+        title="Team Info"
+        desciption="Information about your specific team. The team rank, the league your team is in, your reminaing points. Lastly you can update your team name."
+      />
       <$GlobalContainer>
         <$GlobalTitle>Team Info</$GlobalTitle>
         <$TeamInfoWrapper>

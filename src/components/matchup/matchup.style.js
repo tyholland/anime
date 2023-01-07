@@ -10,6 +10,7 @@ export const $MatchupSection = styled.div`
   align-items: center;
   border-bottom: 1px solid #000;
   height: 80px;
+  justify-content: space-between;
 
   &.duo {
     border: none;
@@ -32,11 +33,12 @@ export const $MatchupCharacterBtn = styled.button`
   background: transparent;
   width: auto;
   padding: 0;
-  text-align: left;
   margin: 5px 0 0 10%;
+  display: flex;
+  justify-content: start;
 
   &.reverse {
-    text-align: right;
+    justify-content: end;
     margin: 5px 10% 0 0;
   }
 
@@ -68,15 +70,14 @@ export const $MatchupAffinity = styled.div`
 `;
 
 export const $MatchupPower = styled.button`
-  width: 50%;
-  margin: 15px 0;
-  padding-right: 5%;
+  width: auto;
+  margin: 0 5% 0 0;
+  padding: 0;
   border: none;
   background: transparent;
 
   &.reverse {
-    padding-right: 0;
-    padding-left: 5%;
+    margin: 0 0 0 5%;
   }
 `;
 
@@ -90,5 +91,14 @@ export const $MatchupPowerText = styled.div`
 
   &.reverse {
     text-align: left;
+  }
+`;
+
+export const $MatchupCharacterBtnWrapper = styled.div`
+  display: flex;
+  justify-content: start;
+
+  &.reverse {
+    justify-content: end;
   }
 `;

@@ -8,6 +8,7 @@ import {
   $MatchupPowerText,
   $MatchupPower,
   $MatchupCharacterBtn,
+  $MatchupCharacterBtnWrapper,
 } from './matchup.style.js';
 import { $GlobalCircle } from 'Styles/global.style.js';
 import { useRouter } from 'next/router.js';
@@ -57,12 +58,14 @@ const MatchUp = ({ isReverse, team }) => {
     <$MatchupColumn>
       <$MatchupSection className={isReverse && 'reverse'}>
         <$MatchupHeadliner>
-          <$MatchupCharacterBtn
-            onClick={() => getProfile(captain.id)}
-            className={isReverse && 'reverse'}
-          >
-            <span>{captain.name}</span>
-          </$MatchupCharacterBtn>
+          <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+            <$MatchupCharacterBtn
+              onClick={() => getProfile(captain.id)}
+              className={isReverse && 'reverse'}
+            >
+              <span>{captain.name}</span>
+            </$MatchupCharacterBtn>
+          </$MatchupCharacterBtnWrapper>
           {getAffinities(captain)}
         </$MatchupHeadliner>
         <$MatchupPower
@@ -76,12 +79,14 @@ const MatchUp = ({ isReverse, team }) => {
       </$MatchupSection>
       <$MatchupSection className={isReverse && 'reverse'}>
         <$MatchupHeadliner>
-          <$MatchupCharacterBtn
-            onClick={() => getProfile(brawler_a.id)}
-            className={isReverse && 'reverse'}
-          >
-            <span>{brawler_a.name}</span>
-          </$MatchupCharacterBtn>
+          <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+            <$MatchupCharacterBtn
+              onClick={() => getProfile(brawler_a.id)}
+              className={isReverse && 'reverse'}
+            >
+              <span>{brawler_a.name}</span>
+            </$MatchupCharacterBtn>
+          </$MatchupCharacterBtnWrapper>
           {getAffinities(brawler_a)}
         </$MatchupHeadliner>
         <$MatchupPower
@@ -95,12 +100,14 @@ const MatchUp = ({ isReverse, team }) => {
       </$MatchupSection>
       <$MatchupSection className={isReverse && 'reverse'}>
         <$MatchupHeadliner>
-          <$MatchupCharacterBtn
-            onClick={() => getProfile(brawler_b.id)}
-            className={isReverse && 'reverse'}
-          >
-            <span>{brawler_b.name}</span>
-          </$MatchupCharacterBtn>
+          <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+            <$MatchupCharacterBtn
+              onClick={() => getProfile(brawler_b.id)}
+              className={isReverse && 'reverse'}
+            >
+              <span>{brawler_b.name}</span>
+            </$MatchupCharacterBtn>
+          </$MatchupCharacterBtnWrapper>
           {getAffinities(brawler_b)}
         </$MatchupHeadliner>
         <$MatchupPower
@@ -114,12 +121,14 @@ const MatchUp = ({ isReverse, team }) => {
       </$MatchupSection>
       <$MatchupSection className={`duo ${isReverse && 'reverse'}`}>
         <$MatchupHeadliner>
-          <$MatchupCharacterBtn
-            onClick={() => getProfile(bs_brawler.id)}
-            className={isReverse && 'reverse'}
-          >
-            <span>{bs_brawler.name}</span>
-          </$MatchupCharacterBtn>
+          <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+            <$MatchupCharacterBtn
+              onClick={() => getProfile(bs_brawler.id)}
+              className={isReverse && 'reverse'}
+            >
+              <span>{bs_brawler.name}</span>
+            </$MatchupCharacterBtn>
+          </$MatchupCharacterBtnWrapper>
           {getAffinities(bs_brawler)}
         </$MatchupHeadliner>
         <$MatchupPower
@@ -133,12 +142,14 @@ const MatchUp = ({ isReverse, team }) => {
       </$MatchupSection>
       <$MatchupSection className={isReverse && 'reverse'}>
         <$MatchupHeadliner>
-          <$MatchupCharacterBtn
-            onClick={() => getProfile(bs_support.id)}
-            className={isReverse && 'reverse'}
-          >
-            <span>{bs_support.name}</span>
-          </$MatchupCharacterBtn>
+          <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+            <$MatchupCharacterBtn
+              onClick={() => getProfile(bs_support.id)}
+              className={isReverse && 'reverse'}
+            >
+              <span>{bs_support.name}</span>
+            </$MatchupCharacterBtn>
+          </$MatchupCharacterBtnWrapper>
           {getAffinities(bs_support)}
         </$MatchupHeadliner>
         <$MatchupPower
@@ -152,12 +163,14 @@ const MatchUp = ({ isReverse, team }) => {
       </$MatchupSection>
       <$MatchupSection className={isReverse && 'reverse'}>
         <$MatchupHeadliner>
-          <$MatchupCharacterBtn
-            onClick={() => getProfile(support.id)}
-            className={isReverse && 'reverse'}
-          >
-            <span>{support.name}</span>
-          </$MatchupCharacterBtn>
+          <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+            <$MatchupCharacterBtn
+              onClick={() => getProfile(support.id)}
+              className={isReverse && 'reverse'}
+            >
+              <span>{support.name}</span>
+            </$MatchupCharacterBtn>
+          </$MatchupCharacterBtnWrapper>
           {getAffinities(support)}
         </$MatchupHeadliner>
         <$MatchupPower
@@ -171,12 +184,14 @@ const MatchUp = ({ isReverse, team }) => {
       </$MatchupSection>
       <$MatchupSection className={isReverse && 'reverse'}>
         <$MatchupHeadliner>
-          <$MatchupCharacterBtn
-            onClick={() => getProfile(villain.id)}
-            className={isReverse && 'reverse'}
-          >
-            <span>{villain.name}</span>
-          </$MatchupCharacterBtn>
+          <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+            <$MatchupCharacterBtn
+              onClick={() => getProfile(villain.id)}
+              className={isReverse && 'reverse'}
+            >
+              <span>{villain.name}</span>
+            </$MatchupCharacterBtn>
+          </$MatchupCharacterBtnWrapper>
           {getAffinities(villain)}
         </$MatchupHeadliner>
         <$MatchupPower
@@ -190,12 +205,14 @@ const MatchUp = ({ isReverse, team }) => {
       </$MatchupSection>
       <$MatchupSection className={isReverse && 'reverse'}>
         <$MatchupHeadliner>
-          <$MatchupCharacterBtn
-            onClick={() => getProfile(battlefield.id)}
-            className={isReverse && 'reverse'}
-          >
-            <span>{battlefield.name}</span>
-          </$MatchupCharacterBtn>
+          <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+            <$MatchupCharacterBtn
+              onClick={() => getProfile(battlefield.id)}
+              className={isReverse && 'reverse'}
+            >
+              <span>{battlefield.name}</span>
+            </$MatchupCharacterBtn>
+          </$MatchupCharacterBtnWrapper>
           {getAffinities(battlefield)}
         </$MatchupHeadliner>
         <$MatchupPower

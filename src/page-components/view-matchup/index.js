@@ -12,11 +12,16 @@ import {
   $ViewMatchupPositionColumn,
 } from './viewMatchup.style';
 import BackLink from 'Components/back-link';
+import Metadata from 'Components/metadata';
 
 const ViewMatchup = ({ team1, team2 }) => {
   return (
     <>
       <BackLink />
+      <Metadata
+        title={`Matchup between ${team1.teamName} and ${team2.teamName}`}
+        description="View matchups between teams. View individual character bios or view the stats for a specific character. Don't forget to start user votes for specific matchups."
+      />
       <$GlobalContainer>
         <$ViewMatchupWrapper>
           <$ViewMatchupTeamContent>
