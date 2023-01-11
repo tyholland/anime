@@ -5,7 +5,6 @@ export const getTeam = async (leagueId, teamId) => {
   const data = {
     url: `${api}/team/${leagueId}/${teamId}`,
     method: 'get',
-    auth: null,
     body: null,
   };
 
@@ -16,7 +15,6 @@ export const getTeamInfo = async (memberId) => {
   const data = {
     url: `${api}/team/info/${memberId}`,
     method: 'get',
-    auth: null,
     body: null,
   };
 
@@ -27,7 +25,6 @@ export const updateTeam = async (teamId, payload) => {
   const data = {
     url: `${api}/team/${teamId}`,
     method: 'put',
-    auth: null,
     body: payload,
   };
 
@@ -38,7 +35,6 @@ export const updateTeamName = async (memberId, payload) => {
   const data = {
     url: `${api}/team/name/${memberId}`,
     method: 'put',
-    auth: null,
     body: payload,
   };
 

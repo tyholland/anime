@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { $LoginOr, $LoginContentLinks, $LoginWrapper } from './login.style.js';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
@@ -7,10 +7,30 @@ import Metadata from 'Components/metadata/index.js';
 import { useRouter } from 'next/router.js';
 import { useAppContext } from 'src/hooks/context.js';
 import { redirectToAccount } from 'Utils/index.js';
+import { accountLogin } from 'src/requests/users.js';
+import { addEvent } from 'Utils/amplitude.js';
 
 const Login = () => {
   const router = useRouter();
-  const { currentUser } = useAppContext();
+  const { currentUser, updateCurrentUser } = useAppContext();
+  const [email, setEmail] = useState('');
+
+  const handleLogin = async () => {
+    try {
+      const user = await accountLogin({
+        email,
+        firebaseUID: '123',
+      });
+
+      updateCurrentUser(user);
+    } catch (err) {
+      addEvent('Error', {
+        data: err.response.data,
+        status: err.response.status,
+        description: 'Login',
+      });
+    }
+  };
 
   useEffect(() => {
     redirectToAccount(currentUser, router);
@@ -33,14 +53,18 @@ const Login = () => {
             redirect="/"
           />
           <$LoginOr>or</$LoginOr>
-          <TextField placeholder="Email" keyboard="email-address" />
+          <TextField
+            placeholder="Email"
+            keyboard="email-address"
+            onChange={setEmail}
+          />
           <TextField placeholder="Password" type="password" />
           <Button
             btnText="Login"
             btnTextColor="black"
             btnColor="orange"
             customBtnClass="medium"
-            redirect="/"
+            btnFunction={handleLogin}
           />
           <$LoginContentLinks>
             Forgot your password?

@@ -19,7 +19,7 @@ const Header = () => {
 
   useEffect(() => {
     updateLoginStatus();
-  }, []);
+  }, [currentUser]);
 
   return (
     <$HeaderContainer>

@@ -6,16 +6,21 @@ import Metadata from 'Components/metadata';
 import { useAppContext } from 'src/hooks/context';
 import { getAllLeagues } from 'src/requests/league';
 import { addEvent } from 'Utils/amplitude';
+import Error from 'PageComponents/error';
 
 const ViewLeague = () => {
   const { currentUser } = useAppContext();
   const [leagueCard, setLeagueCard] = useState(null);
 
   const getLeagues = async () => {
-    const { userId } = currentUser;
+    if (!currentUser) {
+      return;
+    }
+
+    const { user_id, accessToken } = currentUser;
 
     try {
-      const leagues = await getAllLeagues(userId);
+      const leagues = await getAllLeagues(user_id, accessToken);
 
       const details = leagues.map((item) => {
         return <LeagueCard key={item.team_name} data={item} />;
@@ -34,6 +39,10 @@ const ViewLeague = () => {
   useEffect(() => {
     getLeagues();
   }, []);
+
+  if (!leagueCard) {
+    return <Error />;
+  }
 
   return (
     <>

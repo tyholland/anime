@@ -5,7 +5,6 @@ export const getPlayers = async () => {
   const data = {
     url: `${api}/player`,
     method: 'get',
-    auth: null,
     body: null,
   };
 
@@ -16,7 +15,6 @@ export const getPlayer = async (playerId) => {
   const data = {
     url: `${api}/player/${playerId}`,
     method: 'get',
-    auth: null,
     body: null,
   };
 

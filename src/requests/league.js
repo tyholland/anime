@@ -5,7 +5,6 @@ export const createLeague = async (payload) => {
   const data = {
     url: `${api}/league/create`,
     method: 'post',
-    auth: null,
     body: payload,
   };
 
@@ -16,18 +15,17 @@ export const getLeague = async (leagueId) => {
   const data = {
     url: `${api}/league/${leagueId}`,
     method: 'get',
-    auth: null,
     body: null,
   };
 
   return await axiosClient(data);
 };
 
-export const getAllLeagues = async (userId) => {
+export const getAllLeagues = async (userId, token) => {
   const data = {
     url: `${api}/league/view/${userId}`,
     method: 'get',
-    auth: null,
+    token,
     body: null,
   };
 

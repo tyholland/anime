@@ -1,4 +1,3 @@
-import Affinities from 'Components/gameplay-card/affinities';
 import React from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
@@ -6,8 +5,26 @@ import { $GameplayStyles } from 'PageComponents/gameplay/gameplay.style';
 import MakeTeam from 'Components/gameplay-card/make-team';
 import Schedule from 'Components/gameplay-card/schedule';
 import Metadata from 'Components/metadata';
+import Button from 'Components/button';
+import { useAppContext } from 'src/hooks/context';
+import { addEvent } from 'Utils/amplitude';
 
 const Account = () => {
+  const { updateCurrentUser } = useAppContext();
+
+  const handleLogout = () => {
+    try {
+      window.localStorage.removeItem('abz.user');
+      updateCurrentUser(null);
+    } catch (err) {
+      addEvent('Error', {
+        data: err.response.data,
+        status: err.response.status,
+        description: 'Logout',
+      });
+    }
+  };
+
   return (
     <>
       <$GameplayStyles />
@@ -23,8 +40,14 @@ const Account = () => {
         <Collapsible trigger="Change Password" triggerTagName="div">
           <Schedule />
         </Collapsible>
-        <Collapsible trigger="Delete Account" triggerTagName="div">
-          <Affinities />
+        <Collapsible trigger="Log Out" triggerTagName="div">
+          Are you sure you want to logout?
+          <Button
+            btnText="Yes"
+            btnColor="orange"
+            btnTextColor="white"
+            btnFunction={handleLogout}
+          />
         </Collapsible>
       </$GlobalContainer>
     </>

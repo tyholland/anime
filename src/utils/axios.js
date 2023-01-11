@@ -1,15 +1,17 @@
 import axios from 'axios';
 
 export const axiosClient = async (data) => {
-  const { body, method, auth, url } = data;
+  const { body, method, url, token } = data;
 
   const options = {
     method,
     url,
   };
 
-  if (auth) {
-    options.headers.Authorization = `Bearer ${auth}`;
+  if (token) {
+    options.headers = {
+      Authorization: `Basic ${token}`,
+    };
   }
 
   if (body) {

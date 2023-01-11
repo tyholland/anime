@@ -5,7 +5,6 @@ export const getAccountInfo = async (userId) => {
   const data = {
     url: `${api}/users/${userId}`,
     method: 'get',
-    auth: null,
     body: null,
   };
 
@@ -16,7 +15,16 @@ export const addNewAccount = async (payload) => {
   const data = {
     url: `${api}/users/create`,
     method: 'post',
-    auth: null,
+    body: payload,
+  };
+
+  return await axiosClient(data);
+};
+
+export const accountLogin = async (payload) => {
+  const data = {
+    url: `${api}/users/login`,
+    method: 'post',
     body: payload,
   };
 

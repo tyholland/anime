@@ -5,7 +5,6 @@ export const getMatchUp = async (matchupId) => {
   const data = {
     url: `${api}/matchup/${matchupId}`,
     method: 'get',
-    auth: null,
     body: null,
   };
 
