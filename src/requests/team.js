@@ -3,7 +3,7 @@ const api = process.env.NEXT_PUBLIC_API;
 
 export const getTeam = async (leagueId, teamId) => {
   const data = {
-    url: `${api}/team/${leagueId}/${teamId}`,
+    url: `${api}/team/data/${leagueId}/${teamId}`,
     method: 'get',
     body: null,
   };

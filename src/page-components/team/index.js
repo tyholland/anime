@@ -14,7 +14,7 @@ import Button from 'Components/button';
 import TeamCard from 'Components/team-card';
 import BackLink from 'Components/back-link/index.js';
 import Metadata from 'Components/metadata/index.js';
-import Error from 'pages/404.js';
+import Error from 'PageComponents/error';
 import { getTeam } from 'src/requests/team.js';
 import { addEvent } from 'Utils/amplitude.js';
 import Loader from 'Components/loader/index.js';

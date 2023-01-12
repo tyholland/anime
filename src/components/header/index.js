@@ -11,10 +11,8 @@ const Header = () => {
   const [btnlink, setBtnlink] = useState('/login');
 
   const updateLoginStatus = () => {
-    if (currentUser) {
-      setBtnText('Account');
-      setBtnlink('/account');
-    }
+    setBtnText(currentUser ? 'Account' : 'Login');
+    setBtnlink(currentUser ? '/account' : '/login');
   };
 
   useEffect(() => {

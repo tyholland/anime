@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   $TeamInfoContent,
   $TeamInfoTitle,
@@ -10,20 +10,23 @@ import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import BackLink from 'Components/back-link/index.js';
-import { updateTeamName } from 'src/requests/team.js';
+import { getTeamInfo, updateTeamName } from 'src/requests/team.js';
 import { addEvent } from 'Utils/amplitude.js';
 import Metadata from 'Components/metadata/index.js';
 import { responseError } from 'Utils/index.js';
+import Loader from 'Components/loader/index.js';
+import Error from 'PageComponents/error';
 
-const TeamInfo = ({ data }) => {
-  const { team_name, points, name, id } = data;
+const TeamInfo = ({ memberId }) => {
   const [edit, setEdit] = useState(false);
-  const [teamName, setTeamName] = useState(team_name);
+  const [teamName, setTeamName] = useState(null);
   const [changedName, setChangedName] = useState('');
+  const [data, setData] = useState(null);
+  const [errorPage, setErrorPage] = useState(false);
 
   const handleTeamNameChange = async () => {
     try {
-      await updateTeamName(id, {
+      await updateTeamName(data.id, {
         name: changedName,
       });
 
@@ -32,6 +35,32 @@ const TeamInfo = ({ data }) => {
       addEvent('Error', responseError('Change Team Name'));
     }
   };
+
+  const getTeamData = async () => {
+    setErrorPage(false);
+    try {
+      const teamData = await getTeamInfo(memberId);
+      setData(teamData[0]);
+      setTeamName(teamData[0].team_name);
+    } catch (err) {
+      addEvent('Error', responseError('Get team data for info page'));
+      setErrorPage(true);
+    }
+  };
+
+  useEffect(() => {
+    if (!data) {
+      getTeamData();
+    }
+  }, [data]);
+
+  if (!data && !errorPage) {
+    return <Loader />;
+  }
+
+  if (errorPage && !data) {
+    return <Error />;
+  }
 
   return (
     <>
@@ -74,13 +103,13 @@ const TeamInfo = ({ data }) => {
           </div>
           <div>
             <$TeamInfoStats>
-              <span>League:</span> {name}
+              <span>League:</span> {data.name}
             </$TeamInfoStats>
             <$TeamInfoStats>
               <span>Record:</span> 0-0
             </$TeamInfoStats>
             <$TeamInfoStats>
-              <span>Points Remaining:</span> {points} pts
+              <span>Points Remaining:</span> {data.points} pts
             </$TeamInfoStats>
           </div>
         </$TeamInfoWrapper>

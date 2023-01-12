@@ -15,6 +15,8 @@ export const redirectToContinuePage = (router) => {
 
   if (Object.keys(path).includes('continue')) {
     router.push(`${path.continue}`);
+  } else {
+    router.push('/account');
   }
 };
 
