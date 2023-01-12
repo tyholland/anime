@@ -13,6 +13,7 @@ import BackLink from 'Components/back-link/index.js';
 import { updateTeamName } from 'src/requests/team.js';
 import { addEvent } from 'Utils/amplitude.js';
 import Metadata from 'Components/metadata/index.js';
+import { responseError } from 'Utils/index.js';
 
 const TeamInfo = ({ data }) => {
   const { team_name, points, name, id } = data;
@@ -28,11 +29,7 @@ const TeamInfo = ({ data }) => {
 
       setTeamName(changedName);
     } catch (err) {
-      addEvent('Error', {
-        data: err.response.data,
-        status: err.response.status,
-        description: 'Change Team Name',
-      });
+      addEvent('Error', responseError('Change Team Name'));
     }
   };
 

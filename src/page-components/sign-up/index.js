@@ -11,7 +11,8 @@ import { addNewAccount } from 'src/requests/users';
 import { useAppContext } from 'src/hooks/context';
 import { useRouter } from 'next/router';
 import Metadata from 'Components/metadata';
-import { redirectToAccount } from 'Utils/index';
+import { redirectToAccount, responseError } from 'Utils/index';
+import { addEvent } from 'Utils/amplitude';
 
 const SignUp = () => {
   const { updateCurrentUser, currentUser } = useAppContext();
@@ -38,7 +39,7 @@ const SignUp = () => {
 
       router.push('/league');
     } catch (error) {
-      console.log(error);
+      addEvent('Error', responseError('Sign up'));
     }
   };
 
