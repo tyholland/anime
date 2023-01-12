@@ -11,25 +11,33 @@ export const $Btn = styled.button`
     background-color: rgba(249, 128, 17, 0.8) !important;
   }
 
-  &.orange {
+  &.primary {
     background-color: rgb(249, 128, 17);
+
+    span {
+      color: #000;
+    }
   }
 
-  &.yellow {
-    background-color: rgb(250, 179, 28);
+  &.secondary {
+    background-color: #000;
+
+    span {
+      color: rgb(249, 128, 17);
+    }
   }
 
-  &.white {
+  &.cancel {
+    background-color: #cc0000;
+
+    span {
+      color: #fff;
+    }
+  }
+
+  &.google {
     background-color: #fff;
     border-color: #000;
-  }
-
-  &.black {
-    background-color: #000;
-  }
-
-  &.red {
-    background-color: #cc0000;
   }
 
   &.small {
@@ -94,20 +102,5 @@ export const $BtnText = styled.span`
   text-align: center;
   font-size: 20px;
   font-weight: 700;
-
-  &.white {
-    color: #fff;
-  }
-
-  &.black {
-    color: #000;
-  }
-
-  &.yellow {
-    color: rgb(250, 179, 28);
-  }
-
-  &.orange {
-    color: rgb(249, 128, 17);
-  }
+  color: #000;
 `;

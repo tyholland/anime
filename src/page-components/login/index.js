@@ -6,7 +6,11 @@ import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import Metadata from 'Components/metadata/index.js';
 import { useRouter } from 'next/router.js';
 import { useAppContext } from 'src/hooks/context.js';
-import { redirectToAccount } from 'Utils/index.js';
+import {
+  redirectToAccount,
+  redirectToContinuePage,
+  responseError,
+} from 'Utils/index.js';
 import { accountLogin } from 'src/requests/users.js';
 import { addEvent } from 'Utils/amplitude.js';
 
@@ -23,12 +27,10 @@ const Login = () => {
       });
 
       updateCurrentUser(user);
+
+      redirectToContinuePage(router);
     } catch (err) {
-      addEvent('Error', {
-        data: err.response.data,
-        status: err.response.status,
-        description: 'Login',
-      });
+      addEvent('Error', responseError('Login'));
     }
   };
 
@@ -47,8 +49,7 @@ const Login = () => {
           <$GlobalTitle>Login</$GlobalTitle>
           <Button
             btnText="Login with Google"
-            btnTextColor="black"
-            btnColor="white"
+            btnColor="google"
             customBtnClass="medium"
             redirect="/"
           />
@@ -61,8 +62,7 @@ const Login = () => {
           <TextField placeholder="Password" type="password" />
           <Button
             btnText="Login"
-            btnTextColor="black"
-            btnColor="orange"
+            btnColor="primary"
             customBtnClass="medium"
             btnFunction={handleLogin}
           />

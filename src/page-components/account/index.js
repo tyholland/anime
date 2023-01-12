@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import { $GameplayStyles } from 'PageComponents/gameplay/gameplay.style';
@@ -7,23 +7,20 @@ import Schedule from 'Components/gameplay-card/schedule';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
 import { useAppContext } from 'src/hooks/context';
-import { addEvent } from 'Utils/amplitude';
+import { redirectToLogin } from 'Utils/index';
+import { useRouter } from 'next/router';
 
 const Account = () => {
-  const { updateCurrentUser } = useAppContext();
+  const { deleteCurrentUser, currentUser } = useAppContext();
+  const router = useRouter();
 
   const handleLogout = () => {
-    try {
-      window.localStorage.removeItem('abz.user');
-      updateCurrentUser(null);
-    } catch (err) {
-      addEvent('Error', {
-        data: err.response.data,
-        status: err.response.status,
-        description: 'Logout',
-      });
-    }
+    deleteCurrentUser();
   };
+
+  useEffect(() => {
+    redirectToLogin(currentUser, router);
+  }, [currentUser]);
 
   return (
     <>
@@ -44,8 +41,8 @@ const Account = () => {
           Are you sure you want to logout?
           <Button
             btnText="Yes"
-            btnColor="orange"
-            btnTextColor="white"
+            btnColor="primary"
+            customBtnClass="small"
             btnFunction={handleLogout}
           />
         </Collapsible>

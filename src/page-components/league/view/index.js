@@ -7,6 +7,7 @@ import { useAppContext } from 'src/hooks/context';
 import { getAllLeagues } from 'src/requests/league';
 import { addEvent } from 'Utils/amplitude';
 import Error from 'PageComponents/error';
+import { responseError } from 'Utils/index';
 
 const ViewLeague = () => {
   const { currentUser } = useAppContext();
@@ -17,10 +18,10 @@ const ViewLeague = () => {
       return;
     }
 
-    const { user_id, accessToken } = currentUser;
+    const { user_id } = currentUser;
 
     try {
-      const leagues = await getAllLeagues(user_id, accessToken);
+      const leagues = await getAllLeagues(user_id);
 
       const details = leagues.map((item) => {
         return <LeagueCard key={item.team_name} data={item} />;
@@ -28,11 +29,7 @@ const ViewLeague = () => {
 
       setLeagueCard(details);
     } catch (err) {
-      addEvent('Error', {
-        data: err.response.data,
-        status: err.response.status,
-        description: 'Get all leagues',
-      });
+      addEvent('Error', responseError('Get all leagues'));
     }
   };
 

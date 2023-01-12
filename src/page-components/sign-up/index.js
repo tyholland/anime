@@ -57,8 +57,7 @@ const SignUp = () => {
           <$GlobalTitle>Sign Up</$GlobalTitle>
           <Button
             btnText="Sign Up with Google"
-            btnTextColor="black"
-            btnColor="white"
+            btnColor="google"
             customBtnClass="medium"
             redirect="/"
           />
@@ -72,10 +71,8 @@ const SignUp = () => {
           <TextField placeholder="Confirm password" type="password" />
           <Button
             btnText="Sign Up"
-            btnTextColor="black"
-            btnColor="orange"
+            btnColor="primary"
             customBtnClass="medium"
-            redirect="/"
             btnFunction={handleSignUp}
             isDisabled={isDisabled}
           />

@@ -34,7 +34,6 @@ const Header = () => {
         </$HeaderTitle>
         <Button
           btnText={btnText}
-          btnTextColor="black"
           redirect={btnlink}
           customBtnClass="small header text"
         />

@@ -23,8 +23,7 @@ const VoteMatchup = () => {
             <$VoteMatchupTeam>Jack Of All Trades</$VoteMatchupTeam>
             <Button
               btnText="Vote for Goku"
-              btnTextColor="black"
-              btnColor="orange"
+              btnColor="primary"
               customBtnClass="medium"
               btnFunction={() =>
                 alert('This functional hasn\'t been created yet')
@@ -43,8 +42,7 @@ const VoteMatchup = () => {
             <$VoteMatchupTeam>Z Fighters</$VoteMatchupTeam>
             <Button
               btnText="Vote for Sung Jin Woo"
-              btnTextColor="black"
-              btnColor="orange"
+              btnColor="primary"
               customBtnClass="medium"
               btnFunction={() =>
                 alert('This functional hasn\'t been created yet')

@@ -25,16 +25,5 @@ export const $SelectionCardText = styled.span`
   padding: 3% 4%;
   border-radius: 15px;
   width: min-content;
-
-  &.whiteText {
-    color: #fff;
-  }
-  
-  &.blackText {
-    color: #000;
-  }
-  
-  &.yellowText {
-    color: rgb(250, 179, 28);
-  }
-`;  
+  color: #000;
+`;

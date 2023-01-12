@@ -11,24 +11,9 @@ const League = () => {
         description="Join, Create or View all Leagues that you participant in"
       />
       <$GlobalContainer className="grid league">
-        <SelectionCard
-          btnText="Join League"
-          btnTextColor="black"
-          btnColor="orange"
-          redirect="/league/join"
-        />
-        <SelectionCard
-          btnText="Create League"
-          btnTextColor="black"
-          btnColor="orange"
-          redirect="/league/create"
-        />
-        <SelectionCard
-          btnText="View Leagues"
-          btnTextColor="black"
-          btnColor="orange"
-          redirect="/league/view"
-        />
+        <SelectionCard btnText="Join League" redirect="/league/join" />
+        <SelectionCard btnText="Create League" redirect="/league/create" />
+        <SelectionCard btnText="View Leagues" redirect="/league/view" />
       </$GlobalContainer>
     </>
   );

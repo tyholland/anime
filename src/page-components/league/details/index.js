@@ -18,40 +18,13 @@ const LeagueDetails = ({ data, leagueId }) => {
         <$GlobalContainer className="grid">
           <SelectionCard
             btnText="Team"
-            btnTextColor="black"
-            btnColor="orange"
             redirect={`/team/${leagueId}/${teamId}`}
           />
-          <SelectionCard
-            btnText="Matchup"
-            btnTextColor="black"
-            btnColor="orange"
-            redirect={`/matchup/${matchupId}`}
-          />
-          <SelectionCard
-            btnText="Schedule"
-            btnTextColor="black"
-            btnColor="orange"
-            redirect="/schedule"
-          />
-          <SelectionCard
-            btnText="Scoreboard"
-            btnTextColor="black"
-            btnColor="orange"
-            redirect="/scoreboard"
-          />
-          <SelectionCard
-            btnText="Standings"
-            btnTextColor="black"
-            btnColor="orange"
-            redirect="/standings"
-          />
-          <SelectionCard
-            btnText="Playoffs"
-            btnTextColor="black"
-            btnColor="orange"
-            redirect="/playoffs"
-          />
+          <SelectionCard btnText="Matchup" redirect={`/matchup/${matchupId}`} />
+          <SelectionCard btnText="Schedule" redirect="/schedule" />
+          <SelectionCard btnText="Scoreboard" redirect="/scoreboard" />
+          <SelectionCard btnText="Standings" redirect="/standings" />
+          <SelectionCard btnText="Playoffs" redirect="/playoffs" />
         </$GlobalContainer>
       </$GlobalWrapper>
     </>

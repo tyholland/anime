@@ -33,8 +33,7 @@ const ForgotPassword = (props) => {
       <TextField placeholder="Enter your email" keyboard="email-address" />
       <Button
         btnText="Get Temporary Password"
-        btnTextColor="black"
-        btnColor="orange"
+        btnColor="primary"
         redirect={toggleModal}
       />
       <Pressable onPress={() => props.setPage('SignIn')}>
@@ -50,8 +49,7 @@ const ForgotPassword = (props) => {
           <View style={modal.button}>
             <Button
               btnText="Close"
-              btnTextColor="white"
-              btnColor="red"
+              btnColor="cancel"
               redirect={() => props.setPage('SignIn')}
             />
           </View>

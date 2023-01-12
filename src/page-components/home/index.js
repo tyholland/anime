@@ -8,36 +8,11 @@ const Home = () => {
     <>
       <Metadata title="Home" description="Anime Brothaz Fantasy League" />
       <$GlobalContainer className="grid home">
-        <SelectionCard
-          btnText="Gameplay"
-          btnTextColor="black"
-          btnColor="orange"
-          redirect="/gameplay"
-        />
-        <SelectionCard
-          btnText="Join a League"
-          btnTextColor="black"
-          btnColor="orange"
-          redirect="/league/join"
-        />
-        <SelectionCard
-          btnText="Character List"
-          btnTextColor="black"
-          btnColor="orange"
-          redirect="/characters"
-        />
-        <SelectionCard
-          btnText="Matchup Voting"
-          btnTextColor="black"
-          btnColor="orange"
-          redirect="/matchup/vote"
-        />
-        <SelectionCard
-          btnText="Suggest Character"
-          btnTextColor="black"
-          btnColor="orange"
-          redirect="/suggest"
-        />
+        <SelectionCard btnText="Gameplay" redirect="/gameplay" />
+        <SelectionCard btnText="Join a League" redirect="/league/join" />
+        <SelectionCard btnText="Character List" redirect="/characters" />
+        <SelectionCard btnText="Matchup Voting" redirect="/matchup/vote" />
+        <SelectionCard btnText="Suggest Character" redirect="/suggest" />
       </$GlobalContainer>
     </>
   );

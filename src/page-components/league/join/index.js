@@ -20,8 +20,7 @@ const JoinLeague = () => {
           <TextField placeholder="Enter your league code" />
           <Button
             btnText="Enter League"
-            btnTextColor="black"
-            btnColor="orange"
+            btnColor="primary"
             redirect="/league/123"
             customBtnClass="medium"
           />

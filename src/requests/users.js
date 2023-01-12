@@ -15,6 +15,7 @@ export const addNewAccount = async (payload) => {
   const data = {
     url: `${api}/users/create`,
     method: 'post',
+    noCreds: true,
     body: payload,
   };
 
@@ -25,6 +26,7 @@ export const accountLogin = async (payload) => {
   const data = {
     url: `${api}/users/login`,
     method: 'post',
+    noCreds: true,
     body: payload,
   };
 

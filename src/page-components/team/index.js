@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   $TeamTotalText,
   $TeamTotalAmount,
@@ -14,45 +14,74 @@ import Button from 'Components/button';
 import TeamCard from 'Components/team-card';
 import BackLink from 'Components/back-link/index.js';
 import Metadata from 'Components/metadata/index.js';
+import Error from 'pages/404.js';
+import { getTeam } from 'src/requests/team.js';
+import { addEvent } from 'Utils/amplitude.js';
+import Loader from 'Components/loader/index.js';
+import { responseError } from 'Utils/index.js';
 
-const Team = ({ data, leagueId, teamId }) => {
-  const { teamName, team, memberId } = data;
+const Team = ({ leagueId, teamId }) => {
+  const [data, setData] = useState(null);
+  const [errorPage, setErrorPage] = useState(false);
+
+  const getTeamData = async () => {
+    setErrorPage(false);
+    try {
+      const data = await getTeam(leagueId, teamId);
+      setData(data);
+    } catch (err) {
+      addEvent('Error', responseError('Get Team info'));
+      setErrorPage(true);
+    }
+  };
+
+  useEffect(() => {
+    if (!data) {
+      getTeamData();
+    }
+  }, [data]);
+
+  if (!data && !errorPage) {
+    return <Loader />;
+  }
+
+  if (errorPage && !data) {
+    return <Error />;
+  }
 
   return (
     <>
       <Metadata
-        title={`${teamName}'s page`}
-        description={`Team page of ${teamName}. You can update/edit the roster. Edit your lineup for the week. As well as edit/view team info.`}
+        title={`${data.teamName}'s page`}
+        description={`Team page of ${data.teamName}. You can update/edit the roster. Edit your lineup for the week. As well as edit/view team info.`}
       />
       <BackLink />
       <$GlobalContainer>
         <$TeamInfo>
           <$TeamContent>
-            <$TeamName>{teamName}</$TeamName>
-            <$TeamLeague>Week: {team.week}</$TeamLeague>
+            <$TeamName>{data.teamName}</$TeamName>
+            <$TeamLeague>Week: {data.team.week}</$TeamLeague>
             <$TeamLeague>Rank: 0-0</$TeamLeague>
           </$TeamContent>
           <$TeamBtnSection>
             <Button
               btnText="Team Info"
-              btnColor="orange"
-              btnTextColor="black"
-              redirect={`/team/info/${memberId}`}
+              btnColor="primary"
+              redirect={`/team/info/${data.memberId}`}
               customBtnClass="medium"
             />
             <Button
               btnText="Edit Roster"
-              btnTextColor="black"
-              btnColor="orange"
+              btnColor="primary"
               customBtnClass="medium"
               redirect={`/team/edit/${leagueId}/${teamId}`}
             />
           </$TeamBtnSection>
         </$TeamInfo>
-        <TeamCard data={team} />
+        <TeamCard data={data.team} />
         <$TeamTotal>
           <$TeamTotalText>Total</$TeamTotalText>
-          <$TeamTotalAmount>{team.points}</$TeamTotalAmount>
+          <$TeamTotalAmount>{data.team.points}</$TeamTotalAmount>
         </$TeamTotal>
       </$GlobalContainer>
     </>

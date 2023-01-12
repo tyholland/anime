@@ -18,22 +18,19 @@ const LeagueCard = ({ data }) => {
       <$LeagueCardSection className="actions">
         <Button
           btnText="View League"
-          btnTextColor="black"
-          btnColor="orange"
+          btnColor="primary"
           customBtnClass="leagues"
           redirect={`/league/${leagueId}`}
         />
         <Button
           btnText="View Team"
-          btnTextColor="black"
-          btnColor="orange"
+          btnColor="primary"
           customBtnClass="leagues"
           redirect={`/team/${leagueId}/${teamId}`}
         />
         <Button
           btnText="View Matchup"
-          btnTextColor="black"
-          btnColor="orange"
+          btnColor="primary"
           customBtnClass="leagues"
           redirect={`/matchup/${matchupId}`}
         />

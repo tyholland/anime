@@ -51,8 +51,7 @@ const Suggest = () => {
               />
               <Button
                 btnText="Submit"
-                btnTextColor="black"
-                btnColor="orange"
+                btnColor="primary"
                 customBtnClass="medium"
                 btnFunction={handleSubmit}
                 isDisabled={isDisabled}

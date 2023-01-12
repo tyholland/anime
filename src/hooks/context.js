@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { deleteCookie, setCookie } from 'Utils/index';
 
 const AppContext = createContext();
 
@@ -27,14 +28,25 @@ export const AppWrapper = ({ children }) => {
       ...userInfo,
     };
 
+    setCookie(data.accessToken);
+
+    delete data.accessToken;
+
     setCurrentUser(data);
 
     window.localStorage.setItem('abz.user', JSON.stringify(data));
   };
 
+  const deleteCurrentUser = () => {
+    window.localStorage.removeItem('abz.user');
+    setCurrentUser(null);
+    deleteCookie();
+  };
+
   const sharedState = {
     currentUser,
     updateCurrentUser,
+    deleteCurrentUser,
   };
 
   return (

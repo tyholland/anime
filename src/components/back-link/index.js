@@ -8,10 +8,9 @@ const BackLink = () => {
   return (
     <Button
       btnText="&lt; Back"
-      btnTextColor="orange"
-      btnColor="black"
+      btnColor="secondary"
       customBtnClass="small"
-      btnFunction={ () => router.back() }
+      btnFunction={() => router.back()}
     />
   );
 };

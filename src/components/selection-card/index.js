@@ -1,19 +1,15 @@
 import Link from 'next/link.js';
 import React from 'react';
-import { $SelectionCardBlock, $SelectionCardText } from './selectionCard.style.js';
+import {
+  $SelectionCardBlock,
+  $SelectionCardText,
+} from './selectionCard.style.js';
 
-const SelectionCard = ({
-  btnColor,
-  btnText,
-  btnTextColor,
-  redirect,
-}) => {
+const SelectionCard = ({ btnText, redirect }) => {
   return (
     <Link href={redirect}>
-      <$SelectionCardBlock className={btnColor}>
-        <$SelectionCardText className={`${btnTextColor}Text`}>
-          {btnText}
-        </$SelectionCardText>
+      <$SelectionCardBlock>
+        <$SelectionCardText>{btnText}</$SelectionCardText>
       </$SelectionCardBlock>
     </Link>
   );

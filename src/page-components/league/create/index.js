@@ -10,6 +10,7 @@ import { useAppContext } from 'src/hooks/context';
 import { useRouter } from 'next/router';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
+import { responseError } from 'Utils/index';
 
 const LeagueCreate = () => {
   const { currentUser } = useAppContext();
@@ -35,11 +36,7 @@ const LeagueCreate = () => {
 
       router.push(`/team/${leagueId}/${teamId}`);
     } catch (err) {
-      addEvent('Error', {
-        data: err.response.data,
-        status: err.response.status,
-        description: 'Create League',
-      });
+      addEvent('Error', responseError('Create League'));
     }
   };
 
@@ -61,10 +58,8 @@ const LeagueCreate = () => {
           />
           <Button
             btnText="Create League"
-            btnTextColor="black"
-            btnColor="orange"
+            btnColor="primary"
             customBtnClass="medium"
-            redirect="/account"
             btnFunction={handleLeagueCreation}
             isDisabled={isDisabled}
           />

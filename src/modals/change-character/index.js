@@ -45,8 +45,7 @@ const ChangeCharacters = ({
         <Button
           btnFunction={closeModal}
           btnText="Cancel"
-          btnColor="red"
-          btnTextColor="white"
+          btnColor="cancel"
           customBtnClass="small"
         />
       </$GlobalContainer>

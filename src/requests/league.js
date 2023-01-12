@@ -21,11 +21,10 @@ export const getLeague = async (leagueId) => {
   return await axiosClient(data);
 };
 
-export const getAllLeagues = async (userId, token) => {
+export const getAllLeagues = async (userId) => {
   const data = {
     url: `${api}/league/view/${userId}`,
     method: 'get',
-    token,
     body: null,
   };
 

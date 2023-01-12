@@ -126,15 +126,13 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen, character }) => {
       <$CharacterStatsBtnWrapper>
         <Button
           btnText="Get Votes"
-          btnTextColor="black"
-          btnColor="orange"
+          btnColor="primary"
           customBtnClass="medium"
           btnFunction={shareEvent}
         />
         <Button
           btnText="Close"
-          btnTextColor="white"
-          btnColor="red"
+          btnColor="cancel"
           customBtnClass="medium"
           btnFunction={() => setIsModalOpen(!isModalOpen)}
         />

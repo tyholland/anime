@@ -58,8 +58,7 @@ const TeamInfo = ({ data }) => {
             <$TeamInfoBtn>
               <Button
                 btnText={edit ? 'Save' : 'Edit'}
-                btnTextColor="black"
-                btnColor="orange"
+                btnColor="primary"
                 btnFunction={() => {
                   handleTeamNameChange();
                   setEdit(!edit);
@@ -69,8 +68,7 @@ const TeamInfo = ({ data }) => {
               {edit && (
                 <Button
                   btnText="Cancel"
-                  btnTextColor="white"
-                  btnColor="red"
+                  btnColor="cancel"
                   btnFunction={() => setEdit(false)}
                   customBtnClass="medium"
                 />

@@ -15,6 +15,7 @@ import ChangeCharacters from 'src/modals/change-character';
 import { updateTeam } from 'src/requests/team';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
+import { responseError } from 'Utils/index';
 
 const TeamEdit = ({ players, teamData, teamId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,8 +56,7 @@ const TeamEdit = ({ players, teamData, teamId }) => {
       return (
         <Button
           btnText="Add"
-          btnTextColor="black"
-          btnColor="orange"
+          btnColor="primary"
           customBtnClass="small"
           btnFunction={() => {
             setField(fieldName);
@@ -70,8 +70,7 @@ const TeamEdit = ({ players, teamData, teamId }) => {
       <>
         <Button
           btnText="Change"
-          btnTextColor="black"
-          btnColor="orange"
+          btnColor="primary"
           customBtnClass="small"
           btnFunction={() => {
             setField(fieldName);
@@ -80,8 +79,7 @@ const TeamEdit = ({ players, teamData, teamId }) => {
         />
         <Button
           btnText="Remove"
-          btnTextColor="white"
-          btnColor="red"
+          btnColor="cancel"
           customBtnClass="small"
           btnFunction={() => updatePlayers(emptyPlayer(fieldName))}
         />
@@ -139,11 +137,7 @@ const TeamEdit = ({ players, teamData, teamId }) => {
       setCanChange(true);
       setErrorMsg(null);
     } catch (err) {
-      addEvent('Error', {
-        data: err.response.data,
-        status: err.response.status,
-        description: 'Update Team',
-      });
+      addEvent('Error', responseError('Update Team'));
       setErrorMsg(err.response.data.message);
       setPlayerList(emptyPlayer(field));
       setIsModalOpen(false);

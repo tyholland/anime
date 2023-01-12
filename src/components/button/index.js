@@ -5,7 +5,6 @@ import { $Btn, $BtnText } from './button.style.js';
 const Button = ({
   btnColor,
   btnText,
-  btnTextColor,
   redirect,
   customBtnClass,
   btnFunction,
@@ -18,7 +17,7 @@ const Button = ({
         onClick={() => btnFunction()}
         disabled={isDisabled}
       >
-        <$BtnText className={btnTextColor}>{btnText}</$BtnText>
+        <$BtnText>{btnText}</$BtnText>
       </$Btn>
     );
   }
@@ -29,7 +28,7 @@ const Button = ({
         className={`${btnColor} ${customBtnClass || ''}`}
         disabled={isDisabled}
       >
-        <$BtnText className={btnTextColor}>{btnText}</$BtnText>
+        <$BtnText>{btnText}</$BtnText>
       </$Btn>
     </Link>
   );
