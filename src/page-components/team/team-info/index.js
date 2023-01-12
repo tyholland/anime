@@ -86,7 +86,9 @@ const TeamInfo = ({ memberId }) => {
                 btnText={edit ? 'Save' : 'Edit'}
                 btnColor="primary"
                 btnFunction={() => {
-                  handleTeamNameChange();
+                  if (edit) {
+                    handleTeamNameChange();
+                  }
                   setEdit(!edit);
                 }}
                 customBtnClass="medium"

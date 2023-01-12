@@ -12,29 +12,22 @@ import {
 } from './teamEdit.style';
 import BackLink from 'Components/back-link';
 import ChangeCharacters from 'src/modals/change-character';
-import { updateTeam } from 'src/requests/team';
+import { getTeam, updateTeam } from 'src/requests/team';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
+import Loader from 'Components/loader';
+import Error from 'PageComponents/error';
 
-const TeamEdit = ({ players, teamData, teamId }) => {
+const TeamEdit = ({ players, teamId, leagueId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playerRank, setPlayerRank] = useState(null);
   const [field, setField] = useState(null);
   const [canChange, setCanChange] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
-  const { team, teamName, userPoints } = teamData;
-  const [playerList, setPlayerList] = useState({
-    captain: team.captain,
-    brawlerA: team.brawler_a,
-    brawlerB: team.brawler_b,
-    bsBrawler: team.bs_brawler,
-    bsSupport: team.bs_support,
-    support: team.support,
-    villain: team.villain,
-    battlefield: team.battlefield,
-    userPoints,
-  });
+  const [teamData, setTeamData] = useState(null);
+  const [playerList, setPlayerList] = useState(null);
+  const [errorPage, setErrorPage] = useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -145,6 +138,32 @@ const TeamEdit = ({ players, teamData, teamId }) => {
     }
   };
 
+  const getTeamData = async () => {
+    setErrorPage(false);
+
+    try {
+      const teamData = await getTeam(leagueId, teamId);
+      const { team, userPoints } = teamData;
+
+      setTeamData(teamData);
+      setPlayerList({
+        captain: team.captain,
+        brawlerA: team.brawler_a,
+        brawlerB: team.brawler_b,
+        bsBrawler: team.bs_brawler,
+        bsSupport: team.bs_support,
+        support: team.support,
+        villain: team.villain,
+        battlefield: team.battlefield,
+        userPoints,
+      });
+    } catch (err) {
+      console.log(err);
+      addEvent('Error', responseError('Get team edit data'));
+      setErrorPage(true);
+    }
+  };
+
   useEffect(() => {
     if (canChange) {
       setPlayerList(playerList);
@@ -152,11 +171,25 @@ const TeamEdit = ({ players, teamData, teamId }) => {
     }
   }, [canChange]);
 
+  useEffect(() => {
+    if (!teamData) {
+      getTeamData();
+    }
+  }, [teamData]);
+
+  if ((!teamData || !playerList) && !errorPage) {
+    return <Loader />;
+  }
+
+  if (errorPage && (!teamData || !playerList)) {
+    return <Error />;
+  }
+
   return (
     <>
       <Metadata
         title="Edit Team"
-        description={`Edit ${teamName}'s roster. Add new players or change current players.`}
+        description={`Edit ${teamData.teamName}'s roster. Add new players or change current players.`}
       />
       <BackLink />
       <$GlobalContainer>
