@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import { $GameplayStyles } from 'PageComponents/gameplay/gameplay.style';
@@ -7,20 +7,32 @@ import Schedule from 'Components/gameplay-card/schedule';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
 import { useAppContext } from 'src/hooks/context';
-import { redirectToLogin } from 'Utils/index';
 import { useRouter } from 'next/router';
+import Error from 'PageComponents/error';
 
 const Account = () => {
   const { deleteCurrentUser, currentUser } = useAppContext();
+  const [isLoggedIn, setIsLoggedIn] = useState(currentUser);
   const router = useRouter();
 
   const handleLogout = () => {
     deleteCurrentUser();
+    router.push('/');
+  };
+
+  const getPageStatus = () => {
+    setIsLoggedIn(currentUser);
   };
 
   useEffect(() => {
-    redirectToLogin(currentUser, router);
+    if (!currentUser) {
+      getPageStatus();
+    }
   }, [currentUser]);
+
+  if (!isLoggedIn) {
+    return <Error />;
+  }
 
   return (
     <>

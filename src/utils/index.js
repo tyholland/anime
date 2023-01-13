@@ -4,12 +4,6 @@ export const redirectToAccount = (currentUser, router) => {
   }
 };
 
-export const redirectToLogin = (currentUser, router) => {
-  if (!currentUser) {
-    router.push('/login');
-  }
-};
-
 export const redirectToContinuePage = (router) => {
   const path = router.query;
 

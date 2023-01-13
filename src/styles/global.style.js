@@ -180,6 +180,14 @@ export const $GlobalTitle = styled.div`
   font-size: 30px;
   text-align: center;
   position: relative;
+
+  &.home {
+    background: #ffffff;
+    width: 400px;
+    margin: 0 auto;
+    padding: 2%;
+    border-radius: 15px;
+  }
 `;
 
 export const $GlobalSubTitle = styled.div`
