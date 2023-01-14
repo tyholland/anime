@@ -8,16 +8,15 @@ import { getAllLeagues } from 'src/requests/league';
 import { addEvent } from 'Utils/amplitude';
 import Error from 'PageComponents/error';
 import { responseError } from 'Utils/index';
+import Loader from 'Components/loader';
 
 const ViewLeague = () => {
   const { currentUser } = useAppContext();
   const [leagueCard, setLeagueCard] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorPage, setErrorPage] = useState(false);
 
   const getLeagues = async () => {
-    if (!currentUser) {
-      return;
-    }
-
     const { user_id } = currentUser;
 
     try {
@@ -28,8 +27,10 @@ const ViewLeague = () => {
       });
 
       setLeagueCard(details);
+      setIsLoading(false);
     } catch (err) {
       addEvent('Error', responseError('Get all leagues'));
+      setErrorPage(true);
     }
   };
 
@@ -37,8 +38,12 @@ const ViewLeague = () => {
     getLeagues();
   }, []);
 
-  if (!leagueCard) {
+  if (errorPage) {
     return <Error />;
+  }
+
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (

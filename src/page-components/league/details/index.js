@@ -8,6 +8,7 @@ import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error';
 import { getLeague } from 'src/requests/league';
+import { getMatchUpFromTeamId } from 'src/requests/matchup';
 
 const LeagueDetails = ({ leagueId }) => {
   const [leagueData, setLeagueData] = useState(null);
@@ -17,8 +18,12 @@ const LeagueDetails = ({ leagueId }) => {
     setErrorPage(false);
     try {
       const data = await getLeague(leagueId);
+      const matchupData = await getMatchUpFromTeamId(data[0].teamId);
 
-      setLeagueData(data[0]);
+      setLeagueData({
+        ...data[0],
+        ...matchupData[0],
+      });
     } catch (err) {
       addEvent('Error', responseError('Get league details'));
       setErrorPage(true);
@@ -55,11 +60,28 @@ const LeagueDetails = ({ leagueId }) => {
           <SelectionCard
             btnText="Matchup"
             redirect={`/matchup/${leagueData.matchupId}`}
+            isDisabled={!leagueData.matchupId}
           />
-          <SelectionCard btnText="Schedule" redirect="/schedule" />
-          <SelectionCard btnText="Scoreboard" redirect="/scoreboard" />
-          <SelectionCard btnText="Standings" redirect="/standings" />
-          <SelectionCard btnText="Playoffs" redirect="/playoffs" />
+          <SelectionCard
+            btnText="Schedule"
+            redirect="/schedule"
+            isDisabled={true}
+          />
+          <SelectionCard
+            btnText="Scoreboard"
+            redirect="/scoreboard"
+            isDisabled={true}
+          />
+          <SelectionCard
+            btnText="Standings"
+            redirect="/standings"
+            isDisabled={true}
+          />
+          <SelectionCard
+            btnText="Playoffs"
+            redirect="/playoffs"
+            isDisabled={true}
+          />
         </$GlobalContainer>
       </$GlobalWrapper>
     </>

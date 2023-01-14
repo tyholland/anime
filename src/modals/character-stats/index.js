@@ -19,6 +19,7 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen, character }) => {
       position: 'relative',
       maxWidth: '500px',
       maxHeight: '600px',
+      borderRadius: 15,
     },
     overlay: {
       display: 'flex',

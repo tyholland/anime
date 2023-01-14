@@ -30,7 +30,7 @@ const LeagueCreate = () => {
     const payload = {
       name: leagueName,
       numTeams: teams,
-      userId: currentUser.userId,
+      userId: isLoggedIn.userId,
     };
 
     try {

@@ -7,23 +7,48 @@ import { $JoinLeagueWrapper } from './join.style';
 import Metadata from 'Components/metadata';
 import { useAppContext } from 'src/hooks/context';
 import Error from 'PageComponents/error';
+import { joinLeague } from 'src/requests/league';
+import { addEvent } from 'Utils/amplitude';
+import { responseError } from 'Utils/index';
+import { useRouter } from 'next/router';
+import Loader from 'Components/loader';
 
 const JoinLeague = () => {
   const { currentUser } = useAppContext();
-  const [isLoggedIn, setIsLoggedIn] = useState(currentUser);
+  const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [leagueId, setLeagueId] = useState(null);
+
+  const handleJoinLeague = async () => {
+    try {
+      await joinLeague(leagueId, {
+        user_id: isLoggedIn.user_id,
+      });
+
+      router.push(`/league/${leagueId}`);
+    } catch (error) {
+      addEvent('Error', responseError('Join League'));
+    }
+  };
 
   const getLoggedInStatus = () => {
     setIsLoggedIn(currentUser);
+    setIsLoading(false);
   };
 
   useEffect(() => {
-    if (!currentUser) {
+    if (!currentUser || !isLoggedIn) {
       getLoggedInStatus();
     }
   }, [currentUser]);
 
   if (!isLoggedIn) {
     return <Error />;
+  }
+
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (
@@ -36,12 +61,15 @@ const JoinLeague = () => {
       <$GlobalContainer className="join">
         <$GlobalTitle>Join League</$GlobalTitle>
         <$JoinLeagueWrapper>
-          <TextField placeholder="Enter your league code" />
+          <TextField
+            placeholder="Enter your league code"
+            onChange={setLeagueId}
+          />
           <Button
             btnText="Enter League"
             btnColor="primary"
-            redirect="/league/123"
             customBtnClass="medium"
+            btnFunction={handleJoinLeague}
           />
         </$JoinLeagueWrapper>
       </$GlobalContainer>

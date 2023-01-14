@@ -24,7 +24,7 @@ const Login = () => {
     try {
       const user = await accountLogin({
         email,
-        firebaseUID: '123',
+        firebaseUID: '789',
       });
 
       updateCurrentUser(user);

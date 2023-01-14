@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getMatchUpFromTeamId } from 'src/requests/matchup';
 import Button from '../button';
 import {
   $LeagueCardText,
@@ -7,7 +8,20 @@ import {
 } from './leagueCard.style';
 
 const LeagueCard = ({ data }) => {
-  const { name, team_name, leagueId, teamId, matchupId } = data;
+  const [matchupId, setMatchupId] = useState(null);
+  const { name, team_name, leagueId, teamId } = data;
+
+  const getMatchupData = async () => {
+    const matchupData = await getMatchUpFromTeamId(teamId);
+
+    setMatchupId(matchupData[0]?.id);
+  };
+
+  useEffect(() => {
+    if (!matchupId) {
+      getMatchupData();
+    }
+  }, [matchupId]);
 
   return (
     <$LeagueCardWrapper>
@@ -28,12 +42,14 @@ const LeagueCard = ({ data }) => {
           customBtnClass="leagues"
           redirect={`/team/${leagueId}/${teamId}`}
         />
-        <Button
-          btnText="View Matchup"
-          btnColor="primary"
-          customBtnClass="leagues"
-          redirect={`/matchup/${matchupId}`}
-        />
+        {matchupId && (
+          <Button
+            btnText="View Matchup"
+            btnColor="primary"
+            customBtnClass="leagues"
+            redirect={`/matchup/${matchupId}`}
+          />
+        )}
       </$LeagueCardSection>
     </$LeagueCardWrapper>
   );

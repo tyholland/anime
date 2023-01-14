@@ -11,6 +11,16 @@ export const createLeague = async (payload) => {
   return await axiosClient(data);
 };
 
+export const joinLeague = async (leagueId, payload) => {
+  const data = {
+    url: `${api}/league/join/${leagueId}`,
+    method: 'post',
+    body: payload,
+  };
+
+  return await axiosClient(data);
+};
+
 export const getLeague = async (leagueId) => {
   const data = {
     url: `${api}/league/${leagueId}`,

@@ -23,6 +23,7 @@ const ChangeCharacters = ({
       transform: 'translate(-50%, -50%)',
       height: 570,
       width: 800,
+      borderRadius: 15,
     },
   };
 

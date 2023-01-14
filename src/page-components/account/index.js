@@ -9,29 +9,37 @@ import Button from 'Components/button';
 import { useAppContext } from 'src/hooks/context';
 import { useRouter } from 'next/router';
 import Error from 'PageComponents/error';
+import Loader from 'Components/loader';
 
 const Account = () => {
   const { deleteCurrentUser, currentUser } = useAppContext();
-  const [isLoggedIn, setIsLoggedIn] = useState(currentUser);
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
   const handleLogout = () => {
+    setIsLoading(true);
     deleteCurrentUser();
     router.push('/');
   };
 
   const getLoggedInStatus = () => {
     setIsLoggedIn(currentUser);
+    setIsLoading(false);
   };
 
   useEffect(() => {
-    if (!currentUser) {
+    if (!currentUser || !isLoggedIn) {
       getLoggedInStatus();
     }
   }, [currentUser]);
 
   if (!isLoggedIn) {
     return <Error />;
+  }
+
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (
