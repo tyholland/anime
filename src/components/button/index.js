@@ -13,7 +13,7 @@ const Button = ({
   if (btnFunction) {
     return (
       <$Btn
-        className={`${btnColor} ${customBtnClass || ''}`}
+        className={`${btnColor || ''} ${customBtnClass || ''}`}
         onClick={() => btnFunction()}
         disabled={isDisabled}
       >
@@ -25,7 +25,7 @@ const Button = ({
   return (
     <Link href={redirect}>
       <$Btn
-        className={`${btnColor} ${customBtnClass || ''}`}
+        className={`${btnColor || ''} ${customBtnClass || ''}`}
         disabled={isDisabled}
       >
         <$BtnText>{btnText}</$BtnText>

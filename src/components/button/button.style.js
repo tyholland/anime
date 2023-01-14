@@ -93,7 +93,7 @@ export const $Btn = styled.button`
   }
 
   &.header {
-    margin: 0;
+    margin: 0 10px;
     width: 80px;
   }
 `;

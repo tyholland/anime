@@ -5,6 +5,7 @@ export const $HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  background-color: rgb(249, 128, 17);
 `;
 
 export const $HeaderTitle = styled.div`
@@ -16,6 +17,7 @@ export const $HeaderTitle = styled.div`
   img {
     width: 70px;
     height: auto;
+    cursor: pointer;
   }
 `;
 
@@ -23,5 +25,5 @@ export const $HeaderTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 1% 2% 0;
+  margin: 1% 2%;
 `;
