@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
@@ -11,9 +11,11 @@ import { useRouter } from 'next/router';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
+import Error from 'PageComponents/error';
 
 const LeagueCreate = () => {
   const { currentUser } = useAppContext();
+  const [isLoggedIn, setIsLoggedIn] = useState(currentUser);
   const [teams, setTeams] = useState('');
   const [leagueName, setLeagueName] = useState('');
   const options = ['6', '7', '8', '9', '10'];
@@ -39,6 +41,20 @@ const LeagueCreate = () => {
       addEvent('Error', responseError('Create League'));
     }
   };
+
+  const getLoggedInStatus = () => {
+    setIsLoggedIn(currentUser);
+  };
+
+  useEffect(() => {
+    if (!currentUser) {
+      getLoggedInStatus();
+    }
+  }, [currentUser]);
+
+  if (!isLoggedIn) {
+    return <Error />;
+  }
 
   return (
     <>

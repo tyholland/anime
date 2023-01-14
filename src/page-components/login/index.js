@@ -18,6 +18,7 @@ const Login = () => {
   const router = useRouter();
   const { currentUser, updateCurrentUser } = useAppContext();
   const [email, setEmail] = useState('');
+  const isDisabled = !email.length;
 
   const handleLogin = async () => {
     try {
@@ -65,6 +66,7 @@ const Login = () => {
             btnColor="primary"
             customBtnClass="medium"
             btnFunction={handleLogin}
+            isDisabled={isDisabled}
           />
           <$LoginContentLinks>
             Forgot your password?

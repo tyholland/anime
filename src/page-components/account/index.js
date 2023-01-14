@@ -20,13 +20,13 @@ const Account = () => {
     router.push('/');
   };
 
-  const getPageStatus = () => {
+  const getLoggedInStatus = () => {
     setIsLoggedIn(currentUser);
   };
 
   useEffect(() => {
     if (!currentUser) {
-      getPageStatus();
+      getLoggedInStatus();
     }
   }, [currentUser]);
 

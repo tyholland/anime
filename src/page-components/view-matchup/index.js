@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MatchUp from 'Components/matchup';
 import { $GlobalContainer } from 'Styles/global.style';
 import {
@@ -13,8 +13,50 @@ import {
 } from './viewMatchup.style';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
+import { getMatchUp } from 'src/requests/matchup';
+import { getTeam } from 'src/requests/team';
+import { addEvent } from 'Utils/amplitude';
+import { responseError } from 'Utils/index';
+import Loader from 'Components/loader';
+import Error from 'PageComponents/error';
 
-const ViewMatchup = ({ team1, team2 }) => {
+const ViewMatchup = ({ matchupId }) => {
+  const [team1, setTeam1] = useState(null);
+  const [team2, setTeam2] = useState(null);
+  const [errorPage, setErrorPage] = useState(null);
+
+  const getMatchUpData = async () => {
+    setErrorPage(false);
+    try {
+      const matchup = await getMatchUp(matchupId);
+
+      const { league_id, team_a, team_b } = matchup[0];
+
+      const teamOne = await getTeam(league_id, team_a);
+      const teamTwo = await getTeam(league_id, team_b);
+
+      setTeam1(teamOne);
+      setTeam2(teamTwo);
+    } catch (error) {
+      addEvent('Error', responseError('Get Matchup Data'));
+      setErrorPage(true);
+    }
+  };
+
+  useEffect(() => {
+    if (!team1 || !team2) {
+      getMatchUpData();
+    }
+  }, [team1, team2]);
+
+  if (!team1 && !team2 && !errorPage) {
+    return <Loader />;
+  }
+
+  if (errorPage && !team1 && !team2) {
+    return <Error />;
+  }
+
   return (
     <>
       <BackLink />
