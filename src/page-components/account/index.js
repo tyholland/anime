@@ -25,7 +25,7 @@ const Account = () => {
 
   const getLoggedInStatus = () => {
     setIsLoggedIn(currentUser);
-    setIsLoading(false);
+    setIsLoading(!currentUser);
   };
 
   useEffect(() => {

@@ -13,14 +13,17 @@ import {
 } from 'Utils/index.js';
 import { accountLogin } from 'src/requests/users.js';
 import { addEvent } from 'Utils/amplitude.js';
+import Loader from 'Components/loader/index.js';
 
 const Login = () => {
   const router = useRouter();
   const { currentUser, updateCurrentUser } = useAppContext();
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const isDisabled = !email.length;
 
   const handleLogin = async () => {
+    setIsLoading(true);
     try {
       const user = await accountLogin({
         email,
@@ -32,12 +35,17 @@ const Login = () => {
       redirectToContinuePage(router);
     } catch (err) {
       addEvent('Error', responseError('Login'));
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     redirectToAccount(currentUser, router);
   }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>

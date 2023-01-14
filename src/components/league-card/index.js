@@ -14,7 +14,7 @@ const LeagueCard = ({ data }) => {
   const getMatchupData = async () => {
     const matchupData = await getMatchUpFromTeamId(teamId);
 
-    setMatchupId(matchupData[0]?.id);
+    setMatchupId(matchupData[0]?.matchupId);
   };
 
   useEffect(() => {
