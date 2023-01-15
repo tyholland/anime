@@ -35,7 +35,7 @@ export const $Btn = styled.button`
     }
   }
 
-  &.google {
+  &.social {
     background-color: #fff;
     border-color: #000;
   }

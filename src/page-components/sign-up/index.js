@@ -5,7 +5,8 @@ import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import {
   $LoginContentLinks,
   $LoginWrapper,
-  $LoginOr,
+  $LoginSectionWrapper,
+  $LoginSection,
 } from 'PageComponents/login/login.style.js';
 import { addNewAccount } from 'src/requests/users';
 import { useAppContext } from 'src/hooks/context';
@@ -56,27 +57,41 @@ const SignUp = () => {
       <$GlobalContainer>
         <$LoginWrapper>
           <$GlobalTitle>Sign Up</$GlobalTitle>
-          <Button
-            btnText="Sign Up with Google"
-            btnColor="google"
-            customBtnClass="medium"
-            redirect="/"
-          />
-          <$LoginOr>or</$LoginOr>
-          <TextField
-            placeholder="Please enter a email"
-            keyboard="email-address"
-            onChange={setUserEmail}
-          />
-          <TextField placeholder="Please enter a password" type="password" />
-          <TextField placeholder="Confirm password" type="password" />
-          <Button
-            btnText="Sign Up"
-            btnColor="primary"
-            customBtnClass="medium"
-            btnFunction={handleSignUp}
-            isDisabled={isDisabled}
-          />
+          <$LoginSectionWrapper>
+            <$LoginSection>
+              <TextField
+                placeholder="Please enter a email"
+                keyboard="email-address"
+                onChange={setUserEmail}
+              />
+              <TextField
+                placeholder="Please enter a password"
+                type="password"
+              />
+              <TextField placeholder="Confirm password" type="password" />
+              <Button
+                btnText="Sign Up"
+                btnColor="primary"
+                customBtnClass="medium"
+                btnFunction={handleSignUp}
+                isDisabled={isDisabled}
+              />
+            </$LoginSection>
+            <$LoginSection>
+              <Button
+                btnText="Sign Up with Google"
+                btnColor="social"
+                customBtnClass="medium"
+                redirect="/"
+              />
+              <Button
+                btnText="Sign Up with Facebook"
+                btnColor="social"
+                customBtnClass="medium"
+                redirect="/"
+              />
+            </$LoginSection>
+          </$LoginSectionWrapper>
           <$LoginContentLinks>
             Already have an account?
             <Button btnText="Login" customBtnClass="text" redirect="/login" />

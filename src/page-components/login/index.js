@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { $LoginOr, $LoginContentLinks, $LoginWrapper } from './login.style.js';
+import {
+  $LoginContentLinks,
+  $LoginWrapper,
+  $LoginSectionWrapper,
+  $LoginSection,
+} from './login.style.js';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
@@ -56,26 +61,37 @@ const Login = () => {
       <$GlobalContainer>
         <$LoginWrapper>
           <$GlobalTitle>Login</$GlobalTitle>
-          <Button
-            btnText="Login with Google"
-            btnColor="google"
-            customBtnClass="medium"
-            redirect="/"
-          />
-          <$LoginOr>or</$LoginOr>
-          <TextField
-            placeholder="Email"
-            keyboard="email-address"
-            onChange={setEmail}
-          />
-          <TextField placeholder="Password" type="password" />
-          <Button
-            btnText="Login"
-            btnColor="primary"
-            customBtnClass="medium"
-            btnFunction={handleLogin}
-            isDisabled={isDisabled}
-          />
+          <$LoginSectionWrapper>
+            <$LoginSection>
+              <TextField
+                placeholder="Email"
+                keyboard="email-address"
+                onChange={setEmail}
+              />
+              <TextField placeholder="Password" type="password" />
+              <Button
+                btnText="Login"
+                btnColor="primary"
+                customBtnClass="medium"
+                btnFunction={handleLogin}
+                isDisabled={isDisabled}
+              />
+            </$LoginSection>
+            <$LoginSection>
+              <Button
+                btnText="Login with Google"
+                btnColor="social"
+                customBtnClass="medium"
+                redirect="/"
+              />
+              <Button
+                btnText="Login with Facebook"
+                btnColor="social"
+                customBtnClass="medium"
+                redirect="/"
+              />
+            </$LoginSection>
+          </$LoginSectionWrapper>
           <$LoginContentLinks>
             Forgot your password?
             <Button

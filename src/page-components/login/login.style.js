@@ -12,13 +12,23 @@ export const $LoginContentLinks = styled.div`
   width: 350px;
 `;
 
-export const $LoginOr = styled.div`
-  margin: 3% 0 2%;
-`;
-
 export const $LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+export const $LoginSectionWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5%;
+`;
+
+export const $LoginSection = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 5%;
 `;
