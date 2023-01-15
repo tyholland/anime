@@ -81,7 +81,7 @@ const Login = () => {
             <Button
               btnText="Reset password"
               customBtnClass="text"
-              redirect="/"
+              redirect="/forgot"
             />
           </$LoginContentLinks>
           <$LoginContentLinks>

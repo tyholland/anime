@@ -1,69 +1,72 @@
-import React, { useState } from 'react';
-import globalStyles from '../../../global.json';
-import modalStyles from '../../../modal.json';
+import React, { useEffect, useState } from 'react';
+import Button from 'Components/button';
+import TextField from 'Components/text-field';
+import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import {
-  StyleSheet,
-  View,
-  Pressable,
-  Text,
-  Platform,
-  Modal,
-} from 'react-native';
-import Button from '../../components/button';
-import TextField from '../../components/text-field';
-import PropTypes from 'prop-types';
+  $LoginContentLinks,
+  $LoginWrapper,
+} from 'PageComponents/login/login.style.js';
+import { addNewAccount } from 'src/requests/users';
+import { useAppContext } from 'src/hooks/context';
+import { useRouter } from 'next/router';
+import Metadata from 'Components/metadata';
+import { redirectToAccount, responseError } from 'Utils/index';
+import { addEvent } from 'Utils/amplitude';
 
-const ForgotPassword = (props) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const ForgotPassword = () => {
+  const { updateCurrentUser, currentUser } = useAppContext();
+  const router = useRouter();
+  const [userEmail, setUserEmail] = useState('');
+  const isDisabled = !userEmail.length;
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+  const handleForgotPwd = async () => {
+    try {
+      const user = await addNewAccount({
+        userEmail,
+        firebaseId: '123',
+      });
+
+      updateCurrentUser(user);
+
+      router.push('/login');
+    } catch (error) {
+      addEvent('Error', responseError('Forgot Password'));
+    }
   };
 
+  useEffect(() => {
+    redirectToAccount(currentUser, router);
+  }, []);
+
   return (
-    <View
-      style={[
-        global.container,
-        Platform.OS === 'ios'
-          ? global.iosHeaderBeginning
-          : global.androidHeaderBeginning,
-      ]}
-    >
-      <Text style={global.title}>Forgot Your Password</Text>
-      <TextField placeholder="Enter your email" keyboard="email-address" />
-      <Button
-        btnText="Get Temporary Password"
-        btnColor="primary"
-        redirect={toggleModal}
+    <>
+      <Metadata
+        title="Forgot Password"
+        description="Enter your email to get your password reset. Check your email for your temporary password."
       />
-      <Pressable onPress={() => props.setPage('SignIn')}>
-        <Text style={global.link}>Sign In</Text>
-      </Pressable>
-      <Modal animationType="slide" transparent={false} visible={isModalOpen}>
-        <View style={modal.container}>
-          <View style={modal.body}>
-            <Text style={modal.contentText}>
-              You will receive your new password via email in 48 hours.
-            </Text>
-          </View>
-          <View style={modal.button}>
-            <Button
-              btnText="Close"
-              btnColor="cancel"
-              redirect={() => props.setPage('SignIn')}
-            />
-          </View>
-        </View>
-      </Modal>
-    </View>
+      <$GlobalContainer>
+        <$LoginWrapper>
+          <$GlobalTitle>Forgot Password</$GlobalTitle>
+          <TextField
+            placeholder="Please enter a email"
+            keyboard="email-address"
+            onChange={setUserEmail}
+          />
+          <Button
+            btnText="Reset Password"
+            btnColor="primary"
+            customBtnClass="medium"
+            btnFunction={handleForgotPwd}
+            isDisabled={isDisabled}
+          />
+          <$LoginContentLinks>
+            Already have an account?
+            <Button btnText="Login" customBtnClass="text" redirect="/login" />
+          </$LoginContentLinks>
+        </$LoginWrapper>
+      </$GlobalContainer>
+    </>
   );
 };
-
-ForgotPassword.propTypes = {
-  setPage: PropTypes.func,
-};
-
-const global = StyleSheet.create(globalStyles);
-const modal = StyleSheet.create(modalStyles);
 
 export default ForgotPassword;
