@@ -9,13 +9,21 @@ import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error';
 import { getLeague } from 'src/requests/league';
 import { getMatchUpFromTeamId } from 'src/requests/matchup';
+import { useAppContext } from 'src/hooks/context';
 
 const LeagueDetails = ({ leagueId }) => {
+  const { currentUser } = useAppContext();
   const [leagueData, setLeagueData] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getLeagueInfo = async () => {
-    setErrorPage(false);
+    if (!currentUser) {
+      setIsLoading(false);
+      setErrorPage(true);
+      return;
+    }
+
     try {
       const data = await getLeague(leagueId);
       const matchupData = await getMatchUpFromTeamId(data[0].teamId);
@@ -24,9 +32,11 @@ const LeagueDetails = ({ leagueId }) => {
         ...data[0],
         ...matchupData[0],
       });
+      setIsLoading(false);
     } catch (err) {
       addEvent('Error', responseError('Get league details'));
       setErrorPage(true);
+      setIsLoading(false);
     }
   };
 
@@ -34,14 +44,14 @@ const LeagueDetails = ({ leagueId }) => {
     if (!leagueData) {
       getLeagueInfo();
     }
-  }, [leagueData]);
+  }, [leagueData, currentUser]);
 
-  if (!leagueData && !errorPage) {
-    return <Loader />;
+  if (errorPage) {
+    return <Error />;
   }
 
-  if (!leagueData && errorPage) {
-    return <Error />;
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (

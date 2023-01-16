@@ -37,12 +37,13 @@ const ViewLeague = () => {
     } catch (err) {
       addEvent('Error', responseError('Get all leagues'));
       setErrorPage(true);
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     getLeagues();
-  }, []);
+  }, [currentUser]);
 
   if (errorPage) {
     return <Error />;
