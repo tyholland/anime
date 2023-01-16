@@ -1,3 +1,4 @@
+import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 import Image from 'next/image';
 import React, { useState } from 'react';
@@ -47,6 +48,7 @@ const Credits = () => {
         title="Photo Credits"
         description="We give credit to all the photo creators that offer up their images to be used by others. For every image on our site, there is a reference to the person who created it."
       />
+      <BackLink />
       <$CreditsGlobalStyles />
       {getContentItems()}
       <ReactPaginate
