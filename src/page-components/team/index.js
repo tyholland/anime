@@ -19,19 +19,29 @@ import { getTeam } from 'src/requests/team.js';
 import { addEvent } from 'Utils/amplitude.js';
 import Loader from 'Components/loader/index.js';
 import { responseError } from 'Utils/index.js';
+import { useAppContext } from 'src/hooks/context.js';
 
 const Team = ({ leagueId, teamId }) => {
+  const { currentUser } = useAppContext();
   const [data, setData] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getTeamData = async () => {
-    setErrorPage(false);
+    if (!currentUser) {
+      setIsLoading(false);
+      setErrorPage(true);
+      return;
+    }
+
     try {
       const data = await getTeam(leagueId, teamId);
       setData(data);
+      setErrorPage(false);
     } catch (err) {
       addEvent('Error', responseError('Get Team info'));
       setErrorPage(true);
+      setErrorPage(false);
     }
   };
 
@@ -41,11 +51,11 @@ const Team = ({ leagueId, teamId }) => {
     }
   }, [data]);
 
-  if (!data && !errorPage) {
+  if (isLoading) {
     return <Loader />;
   }
 
-  if (errorPage && !data) {
+  if (errorPage) {
     return <Error />;
   }
 

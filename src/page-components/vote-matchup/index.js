@@ -29,6 +29,7 @@ const VoteMatchup = () => {
                 alert('This functional hasn\'t been created yet')
               }
             />
+            <div>Total Votes: 20</div>
           </$VoteMatchupSection>
           <$VoteMatchupSection>
             <$VoteMatchupVersus>VS</$VoteMatchupVersus>
@@ -48,6 +49,7 @@ const VoteMatchup = () => {
                 alert('This functional hasn\'t been created yet')
               }
             />
+            <div>Total Votes: 40</div>
           </$VoteMatchupSection>
         </$VoteMatchupWrapper>
       </$GlobalContainer>

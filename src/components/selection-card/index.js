@@ -6,11 +6,15 @@ import {
   $SelectionCardText,
 } from './selectionCard.style.js';
 
-const SelectionCard = ({ btnText, redirect, isDisabled }) => {
+const SelectionCard = ({ btnText, redirect, isDisabled, newTab }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const closeModal = () => {
     setModalIsOpen(false);
+  };
+
+  const handleOpenNewTab = (url) => {
+    window.open(url);
   };
 
   if (isDisabled) {
@@ -20,11 +24,19 @@ const SelectionCard = ({ btnText, redirect, isDisabled }) => {
           <$SelectionCardText>{btnText}</$SelectionCardText>
         </$SelectionCardBlock>
         <InvalidSelectionCard
-          message={`There is no ${btnText} setup right now`}
+          message={`${btnText} is currently unavailble at the moment`}
           closeModal={closeModal}
           modalIsOpen={modalIsOpen}
         />
       </>
+    );
+  }
+
+  if (newTab) {
+    return (
+      <$SelectionCardBlock onClick={() => handleOpenNewTab(redirect)}>
+        <$SelectionCardText>{btnText}</$SelectionCardText>
+      </$SelectionCardBlock>
     );
   }
 

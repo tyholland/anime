@@ -18,8 +18,10 @@ import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import Loader from 'Components/loader';
 import Error from 'PageComponents/error';
+import { useAppContext } from 'src/hooks/context';
 
 const TeamEdit = ({ players, teamId, leagueId }) => {
+  const { currentUser } = useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playerRank, setPlayerRank] = useState(null);
   const [field, setField] = useState(null);
@@ -28,6 +30,7 @@ const TeamEdit = ({ players, teamId, leagueId }) => {
   const [teamData, setTeamData] = useState(null);
   const [playerList, setPlayerList] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -139,7 +142,11 @@ const TeamEdit = ({ players, teamId, leagueId }) => {
   };
 
   const getTeamData = async () => {
-    setErrorPage(false);
+    if (!currentUser) {
+      setIsLoading(false);
+      setErrorPage(true);
+      return;
+    }
 
     try {
       const teamData = await getTeam(leagueId, teamId);
@@ -157,10 +164,12 @@ const TeamEdit = ({ players, teamId, leagueId }) => {
         battlefield: team.battlefield,
         userPoints,
       });
+      setIsLoading(false);
     } catch (err) {
       console.log(err);
       addEvent('Error', responseError('Get team edit data'));
       setErrorPage(true);
+      setIsLoading(false);
     }
   };
 
@@ -177,11 +186,11 @@ const TeamEdit = ({ players, teamId, leagueId }) => {
     }
   }, [teamData]);
 
-  if ((!teamData || !playerList) && !errorPage) {
+  if (isLoading) {
     return <Loader />;
   }
 
-  if (errorPage && (!teamData || !playerList)) {
+  if (errorPage) {
     return <Error />;
   }
 

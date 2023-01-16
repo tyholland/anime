@@ -19,14 +19,22 @@ import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import Loader from 'Components/loader';
 import Error from 'PageComponents/error';
+import { useAppContext } from 'src/hooks/context';
 
 const ViewMatchup = ({ matchupId }) => {
+  const { currentUser } = useAppContext();
   const [team1, setTeam1] = useState(null);
   const [team2, setTeam2] = useState(null);
   const [errorPage, setErrorPage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getMatchUpData = async () => {
-    setErrorPage(false);
+    if (!currentUser) {
+      setIsLoading(false);
+      setErrorPage(true);
+      return;
+    }
+
     try {
       const matchup = await getMatchUp(matchupId);
 
@@ -37,9 +45,11 @@ const ViewMatchup = ({ matchupId }) => {
 
       setTeam1(teamOne);
       setTeam2(teamTwo);
+      setIsLoading(false);
     } catch (error) {
       addEvent('Error', responseError('Get Matchup Data'));
       setErrorPage(true);
+      setIsLoading(false);
     }
   };
 
@@ -49,11 +59,11 @@ const ViewMatchup = ({ matchupId }) => {
     }
   }, [team1, team2]);
 
-  if (!team1 && !team2 && !errorPage) {
+  if (isLoading) {
     return <Loader />;
   }
 
-  if (errorPage && !team1 && !team2) {
+  if (errorPage) {
     return <Error />;
   }
 

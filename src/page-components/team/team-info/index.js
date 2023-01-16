@@ -16,13 +16,16 @@ import Metadata from 'Components/metadata/index.js';
 import { responseError } from 'Utils/index.js';
 import Loader from 'Components/loader/index.js';
 import Error from 'PageComponents/error';
+import { useAppContext } from 'src/hooks/context.js';
 
 const TeamInfo = ({ memberId }) => {
+  const { currentUser } = useAppContext();
   const [edit, setEdit] = useState(false);
   const [teamName, setTeamName] = useState(null);
   const [changedName, setChangedName] = useState('');
   const [data, setData] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleTeamNameChange = async () => {
     try {
@@ -37,14 +40,21 @@ const TeamInfo = ({ memberId }) => {
   };
 
   const getTeamData = async () => {
-    setErrorPage(false);
+    if (!currentUser) {
+      setIsLoading(false);
+      setErrorPage(true);
+      return;
+    }
+
     try {
       const teamData = await getTeamInfo(memberId);
       setData(teamData[0]);
       setTeamName(teamData[0].team_name);
+      setIsLoading(false);
     } catch (err) {
       addEvent('Error', responseError('Get team data for info page'));
       setErrorPage(true);
+      setIsLoading(false);
     }
   };
 
@@ -54,11 +64,11 @@ const TeamInfo = ({ memberId }) => {
     }
   }, [data]);
 
-  if (!data && !errorPage) {
+  if (isLoading) {
     return <Loader />;
   }
 
-  if (errorPage && !data) {
+  if (errorPage) {
     return <Error />;
   }
 
