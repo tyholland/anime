@@ -17,6 +17,12 @@ const ViewLeague = () => {
   const [errorPage, setErrorPage] = useState(false);
 
   const getLeagues = async () => {
+    if (!currentUser) {
+      setIsLoading(false);
+      setErrorPage(true);
+      return;
+    }
+
     const { user_id } = currentUser;
 
     try {
