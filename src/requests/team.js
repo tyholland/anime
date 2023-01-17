@@ -11,10 +11,11 @@ export const getTeam = async (leagueId, teamId, token) => {
   return await axiosClient(data);
 };
 
-export const getTeamInfo = async (memberId) => {
+export const getTeamInfo = async (memberId, token) => {
   const data = {
     url: `${api}/team/info/${memberId}`,
     method: 'get',
+    token,
   };
 
   return await axiosClient(data);

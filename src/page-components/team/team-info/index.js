@@ -10,26 +10,24 @@ import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import BackLink from 'Components/back-link/index.js';
-import { getTeamInfo, updateTeamName } from 'src/requests/team.js';
+import { updateTeamName } from 'src/requests/team.js';
 import { addEvent } from 'Utils/amplitude.js';
 import Metadata from 'Components/metadata/index.js';
 import { responseError } from 'Utils/index.js';
-import Loader from 'Components/loader/index.js';
 import Error from 'PageComponents/error';
 import { useAppContext } from 'src/hooks/context.js';
 
-const TeamInfo = ({ memberId }) => {
+const TeamInfo = ({ teamData }) => {
   const { currentUser } = useAppContext();
+  const { team_name, name, points, id } = teamData;
   const [edit, setEdit] = useState(false);
-  const [teamName, setTeamName] = useState(null);
+  const [teamName, setTeamName] = useState(team_name);
   const [changedName, setChangedName] = useState('');
-  const [data, setData] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   const handleTeamNameChange = async () => {
     try {
-      await updateTeamName(data.id, {
+      await updateTeamName(id, {
         name: changedName,
       });
 
@@ -39,34 +37,9 @@ const TeamInfo = ({ memberId }) => {
     }
   };
 
-  const getTeamData = async () => {
-    if (!currentUser) {
-      setIsLoading(false);
-      setErrorPage(true);
-      return;
-    }
-
-    try {
-      const teamData = await getTeamInfo(memberId);
-      setData(teamData[0]);
-      setTeamName(teamData[0].team_name);
-      setIsLoading(false);
-    } catch (err) {
-      addEvent('Error', responseError(err, 'Get team data for info page'));
-      setErrorPage(true);
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
-    if (!data) {
-      getTeamData();
-    }
-  }, [data]);
-
-  if (isLoading) {
-    return <Loader />;
-  }
+    setErrorPage(!currentUser);
+  }, [currentUser]);
 
   if (errorPage) {
     return <Error />;
@@ -115,13 +88,13 @@ const TeamInfo = ({ memberId }) => {
           </div>
           <div>
             <$TeamInfoStats>
-              <span>League:</span> {data.name}
+              <span>League:</span> {name}
             </$TeamInfoStats>
             <$TeamInfoStats>
               <span>Record:</span> 0-0
             </$TeamInfoStats>
             <$TeamInfoStats>
-              <span>Points Remaining:</span> {data.points} pts
+              <span>Points Remaining:</span> {points} pts
             </$TeamInfoStats>
           </div>
         </$TeamInfoWrapper>
