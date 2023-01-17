@@ -34,7 +34,7 @@ const LeagueDetails = ({ leagueId }) => {
       });
       setIsLoading(false);
     } catch (err) {
-      addEvent('Error', responseError('Get league details'));
+      addEvent('Error', responseError(err, 'Get league details'));
       setErrorPage(true);
       setIsLoading(false);
     }

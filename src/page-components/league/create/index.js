@@ -38,7 +38,7 @@ const LeagueCreate = () => {
 
       router.push(`/team/${leagueId}/${teamId}`);
     } catch (err) {
-      addEvent('Error', responseError('Create League'));
+      addEvent('Error', responseError(err, 'Create League'));
     }
   };
 

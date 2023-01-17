@@ -35,7 +35,7 @@ const ViewLeague = () => {
       setLeagueCard(details);
       setIsLoading(false);
     } catch (err) {
-      addEvent('Error', responseError('Get all leagues'));
+      addEvent('Error', responseError(err, 'Get all leagues'));
       setErrorPage(true);
       setIsLoading(false);
     }

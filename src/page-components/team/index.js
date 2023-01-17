@@ -37,11 +37,11 @@ const Team = ({ leagueId, teamId }) => {
     try {
       const data = await getTeam(leagueId, teamId);
       setData(data);
-      setErrorPage(false);
+      setIsLoading(false);
     } catch (err) {
       addEvent('Error', responseError('Get Team info'));
       setErrorPage(true);
-      setErrorPage(false);
+      setIsLoading(false);
     }
   };
 

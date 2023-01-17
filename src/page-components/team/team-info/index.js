@@ -35,7 +35,7 @@ const TeamInfo = ({ memberId }) => {
 
       setTeamName(changedName);
     } catch (err) {
-      addEvent('Error', responseError('Change Team Name'));
+      addEvent('Error', responseError(err, 'Change Team Name'));
     }
   };
 
@@ -52,7 +52,7 @@ const TeamInfo = ({ memberId }) => {
       setTeamName(teamData[0].team_name);
       setIsLoading(false);
     } catch (err) {
-      addEvent('Error', responseError('Get team data for info page'));
+      addEvent('Error', responseError(err, 'Get team data for info page'));
       setErrorPage(true);
       setIsLoading(false);
     }

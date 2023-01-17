@@ -30,7 +30,7 @@ const ForgotPassword = () => {
 
       router.push('/login');
     } catch (error) {
-      addEvent('Error', responseError('Forgot Password'));
+      addEvent('Error', responseError(error, 'Forgot Password'));
     }
   };
 

@@ -47,7 +47,7 @@ const ViewMatchup = ({ matchupId }) => {
       setTeam2(teamTwo);
       setIsLoading(false);
     } catch (error) {
-      addEvent('Error', responseError('Get Matchup Data'));
+      addEvent('Error', responseError(error, 'Get Matchup Data'));
       setErrorPage(true);
       setIsLoading(false);
     }

@@ -40,7 +40,7 @@ const SignUp = () => {
 
       router.push('/league');
     } catch (error) {
-      addEvent('Error', responseError('Sign up'));
+      addEvent('Error', responseError(error, 'Sign up'));
     }
   };
 

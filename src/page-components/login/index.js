@@ -39,7 +39,7 @@ const Login = () => {
 
       redirectToContinuePage(router);
     } catch (err) {
-      addEvent('Error', responseError('Login'));
+      addEvent('Error', responseError(err, 'Login'));
       setIsLoading(false);
     }
   };

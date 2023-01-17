@@ -28,7 +28,7 @@ const JoinLeague = () => {
 
       router.push(`/league/${leagueId}`);
     } catch (error) {
-      addEvent('Error', responseError('Join League'));
+      addEvent('Error', responseError(error, 'Join League'));
     }
   };
 

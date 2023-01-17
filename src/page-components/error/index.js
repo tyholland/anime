@@ -32,7 +32,7 @@ const Error = () => {
               <div>You need to login in order to view this page</div>
               <Button
                 btnText="Login"
-                redirect={`/login?continue=${router.pathname}`}
+                redirect={`/login?continue=${router.asPath}`}
                 btnColor="primary"
               />
             </>

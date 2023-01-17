@@ -133,7 +133,7 @@ const TeamEdit = ({ players, teamId, leagueId }) => {
       setCanChange(true);
       setErrorMsg(null);
     } catch (err) {
-      addEvent('Error', responseError('Update Team'));
+      addEvent('Error', responseError(err, 'Update Team'));
       setErrorMsg(err.response.data.message);
       setPlayerList(emptyPlayer(field));
       setIsModalOpen(false);
@@ -167,7 +167,7 @@ const TeamEdit = ({ players, teamId, leagueId }) => {
       setIsLoading(false);
     } catch (err) {
       console.log(err);
-      addEvent('Error', responseError('Get team edit data'));
+      addEvent('Error', responseError(err, 'Get team edit data'));
       setErrorPage(true);
       setIsLoading(false);
     }
