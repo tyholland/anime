@@ -1,10 +1,11 @@
 import { axiosClient } from 'Utils/axios';
 const api = process.env.NEXT_PUBLIC_API;
 
-export const getAccountInfo = async (userId) => {
+export const getAccountInfo = async (userId, token) => {
   const data = {
     url: `${api}/users/${userId}`,
     method: 'get',
+    token,
   };
 
   return await axiosClient(data);

@@ -15,7 +15,7 @@ import ChangeCharacters from 'src/modals/change-character';
 import { updateTeam } from 'src/requests/team';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
-import { responseError } from 'Utils/index';
+import { getCookie, responseError } from 'Utils/index';
 import Error from 'PageComponents/error';
 import { useAppContext } from 'src/hooks/context';
 
@@ -132,7 +132,7 @@ const TeamEdit = ({ players, teamData, teamId }) => {
     const totalPoints = getUserPoints(thePlayers);
 
     try {
-      await updateTeam(teamId, thePlayers);
+      await updateTeam(teamId, thePlayers, getCookie('token'));
 
       thePlayers['userPoints'] = totalPoints;
 

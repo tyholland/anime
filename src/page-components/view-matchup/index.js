@@ -16,7 +16,7 @@ import Metadata from 'Components/metadata';
 import { getMatchUp } from 'src/requests/matchup';
 import { getTeam } from 'src/requests/team';
 import { addEvent } from 'Utils/amplitude';
-import { responseError } from 'Utils/index';
+import { getCookie, responseError } from 'Utils/index';
 import Loader from 'Components/loader';
 import Error from 'PageComponents/error';
 import { useAppContext } from 'src/hooks/context';
@@ -36,7 +36,7 @@ const ViewMatchup = ({ matchupId }) => {
     }
 
     try {
-      const matchup = await getMatchUp(matchupId);
+      const matchup = await getMatchUp(matchupId, getCookie('token'));
 
       const { league_id, team_a, team_b } = matchup[0];
 

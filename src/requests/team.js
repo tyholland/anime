@@ -21,21 +21,23 @@ export const getTeamInfo = async (memberId, token) => {
   return await axiosClient(data);
 };
 
-export const updateTeam = async (teamId, payload) => {
+export const updateTeam = async (teamId, payload, token) => {
   const data = {
     url: `${api}/team/${teamId}`,
     method: 'put',
     body: payload,
+    token,
   };
 
   return await axiosClient(data);
 };
 
-export const updateTeamName = async (memberId, payload) => {
+export const updateTeamName = async (memberId, payload, token) => {
   const data = {
     url: `${api}/team/name/${memberId}`,
     method: 'put',
     body: payload,
+    token,
   };
 
   return await axiosClient(data);

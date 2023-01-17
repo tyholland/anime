@@ -13,7 +13,7 @@ import BackLink from 'Components/back-link/index.js';
 import { updateTeamName } from 'src/requests/team.js';
 import { addEvent } from 'Utils/amplitude.js';
 import Metadata from 'Components/metadata/index.js';
-import { responseError } from 'Utils/index.js';
+import { getCookie, responseError } from 'Utils/index.js';
 import Error from 'PageComponents/error';
 import { useAppContext } from 'src/hooks/context.js';
 
@@ -27,9 +27,13 @@ const TeamInfo = ({ teamData }) => {
 
   const handleTeamNameChange = async () => {
     try {
-      await updateTeamName(id, {
-        name: changedName,
-      });
+      await updateTeamName(
+        id,
+        {
+          name: changedName,
+        },
+        getCookie('token')
+      );
 
       setTeamName(changedName);
     } catch (err) {
