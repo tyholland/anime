@@ -15,9 +15,7 @@ export const getServerSideProps = async (context) => {
   }
 
   return {
-    props: {
-      isLoggedIn: true,
-    },
+    props: {},
   };
 };
 

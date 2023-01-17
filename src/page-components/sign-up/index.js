@@ -46,7 +46,7 @@ const SignUp = () => {
 
   useEffect(() => {
     redirectToAccount(currentUser, router);
-  }, []);
+  }, [currentUser]);
 
   return (
     <>

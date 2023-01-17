@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   $TeamInfoContent,
   $TeamInfoTitle,
@@ -14,16 +14,12 @@ import { updateTeamName } from 'src/requests/team.js';
 import { addEvent } from 'Utils/amplitude.js';
 import Metadata from 'Components/metadata/index.js';
 import { getCookie, responseError } from 'Utils/index.js';
-import Error from 'PageComponents/error';
-import { useAppContext } from 'src/hooks/context.js';
 
 const TeamInfo = ({ teamData }) => {
-  const { currentUser } = useAppContext();
   const { team_name, name, points, id } = teamData;
   const [edit, setEdit] = useState(false);
   const [teamName, setTeamName] = useState(team_name);
   const [changedName, setChangedName] = useState('');
-  const [errorPage, setErrorPage] = useState(false);
 
   const handleTeamNameChange = async () => {
     try {
@@ -40,14 +36,6 @@ const TeamInfo = ({ teamData }) => {
       addEvent('Error', responseError(err, 'Change Team Name'));
     }
   };
-
-  useEffect(() => {
-    setErrorPage(!currentUser);
-  }, [currentUser]);
-
-  if (errorPage) {
-    return <Error />;
-  }
 
   return (
     <>

@@ -1,23 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { $GlobalContainer, $GlobalWrapper } from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card/index.js';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
-import Error from 'PageComponents/error';
-import { useAppContext } from 'src/hooks/context';
 
 const LeagueDetails = ({ leagueId, leagueData }) => {
-  const { currentUser } = useAppContext();
-  const [errorPage, setErrorPage] = useState(false);
   const { teamId, matchupId } = leagueData;
-
-  useEffect(() => {
-    setErrorPage(!currentUser);
-  }, [currentUser]);
-
-  if (errorPage) {
-    return <Error />;
-  }
 
   return (
     <>

@@ -16,17 +16,13 @@ import { updateTeam } from 'src/requests/team';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
 import { getCookie, responseError } from 'Utils/index';
-import Error from 'PageComponents/error';
-import { useAppContext } from 'src/hooks/context';
 
 const TeamEdit = ({ players, teamData, teamId }) => {
-  const { currentUser } = useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playerRank, setPlayerRank] = useState(null);
   const [field, setField] = useState(null);
   const [canChange, setCanChange] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [errorPage, setErrorPage] = useState(false);
   const { team, userPoints, teamName } = teamData;
   const [playerList, setPlayerList] = useState({
     captain: team.captain,
@@ -155,14 +151,6 @@ const TeamEdit = ({ players, teamData, teamId }) => {
       setCanChange(false);
     }
   }, [canChange]);
-
-  useEffect(() => {
-    setErrorPage(!currentUser);
-  }, [currentUser]);
-
-  if (errorPage) {
-    return <Error />;
-  }
 
   return (
     <>

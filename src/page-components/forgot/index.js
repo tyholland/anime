@@ -36,7 +36,7 @@ const ForgotPassword = () => {
 
   useEffect(() => {
     redirectToAccount(currentUser, router);
-  }, []);
+  }, [currentUser]);
 
   return (
     <>

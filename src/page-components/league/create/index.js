@@ -11,9 +11,8 @@ import { useRouter } from 'next/router';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
 import { getCookie, responseError } from 'Utils/index';
-import Error from 'PageComponents/error';
 
-const LeagueCreate = ({ isLoggedIn }) => {
+const LeagueCreate = () => {
   const { currentUser } = useAppContext();
   const [teams, setTeams] = useState('');
   const [leagueName, setLeagueName] = useState('');
@@ -43,10 +42,6 @@ const LeagueCreate = ({ isLoggedIn }) => {
       addEvent('Error', responseError(err, 'Create League'));
     }
   };
-
-  if (!isLoggedIn) {
-    return <Error />;
-  }
 
   return (
     <>

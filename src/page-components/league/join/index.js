@@ -6,13 +6,12 @@ import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import { $JoinLeagueWrapper } from './join.style';
 import Metadata from 'Components/metadata';
 import { useAppContext } from 'src/hooks/context';
-import Error from 'PageComponents/error';
 import { joinLeague } from 'src/requests/league';
 import { addEvent } from 'Utils/amplitude';
 import { getCookie, responseError } from 'Utils/index';
 import { useRouter } from 'next/router';
 
-const JoinLeague = ({ isLoggedIn }) => {
+const JoinLeague = () => {
   const { currentUser } = useAppContext();
   const router = useRouter();
   const [leagueId, setLeagueId] = useState(null);
@@ -32,10 +31,6 @@ const JoinLeague = ({ isLoggedIn }) => {
       addEvent('Error', responseError(error, 'Join League'));
     }
   };
-
-  if (!isLoggedIn) {
-    return <Error />;
-  }
 
   return (
     <>
