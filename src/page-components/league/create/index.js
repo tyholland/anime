@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
@@ -10,12 +10,11 @@ import { useAppContext } from 'src/hooks/context';
 import { useRouter } from 'next/router';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
-import { responseError } from 'Utils/index';
+import { getCookie, responseError } from 'Utils/index';
 import Error from 'PageComponents/error';
 
-const LeagueCreate = () => {
+const LeagueCreate = ({ isLoggedIn }) => {
   const { currentUser } = useAppContext();
-  const [isLoggedIn, setIsLoggedIn] = useState(currentUser);
   const [teams, setTeams] = useState('');
   const [leagueName, setLeagueName] = useState('');
   const options = ['6', '7', '8', '9', '10'];
@@ -30,27 +29,20 @@ const LeagueCreate = () => {
     const payload = {
       name: leagueName,
       numTeams: teams,
-      userId: isLoggedIn.userId,
+      userId: currentUser.user_id,
     };
 
     try {
-      const { teamId, leagueId } = await createLeague(payload);
+      const { teamId, leagueId } = await createLeague(
+        payload,
+        getCookie('token')
+      );
 
       router.push(`/team/${leagueId}/${teamId}`);
     } catch (err) {
       addEvent('Error', responseError(err, 'Create League'));
     }
   };
-
-  const getLoggedInStatus = () => {
-    setIsLoggedIn(currentUser);
-  };
-
-  useEffect(() => {
-    if (!currentUser) {
-      getLoggedInStatus();
-    }
-  }, [currentUser]);
 
   if (!isLoggedIn) {
     return <Error />;

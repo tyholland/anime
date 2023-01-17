@@ -48,8 +48,8 @@ export const deleteCookie = () => {
 
 export const responseError = (err, description) => {
   return {
-    data: err.response?.data || err.message,
-    status: err.response?.status || err.request?.status,
+    data: err?.response?.data || err?.message,
+    status: err?.response?.status || err?.request?.status,
     description,
   };
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import BackLink from 'Components/back-link';
@@ -9,22 +9,23 @@ import { useAppContext } from 'src/hooks/context';
 import Error from 'PageComponents/error';
 import { joinLeague } from 'src/requests/league';
 import { addEvent } from 'Utils/amplitude';
-import { responseError } from 'Utils/index';
+import { getCookie, responseError } from 'Utils/index';
 import { useRouter } from 'next/router';
-import Loader from 'Components/loader';
 
-const JoinLeague = () => {
+const JoinLeague = ({ isLoggedIn }) => {
   const { currentUser } = useAppContext();
   const router = useRouter();
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [leagueId, setLeagueId] = useState(null);
 
   const handleJoinLeague = async () => {
     try {
-      await joinLeague(leagueId, {
-        user_id: isLoggedIn.user_id,
-      });
+      await joinLeague(
+        leagueId,
+        {
+          user_id: currentUser.user_id,
+        },
+        getCookie('token')
+      );
 
       router.push(`/league/${leagueId}`);
     } catch (error) {
@@ -32,23 +33,8 @@ const JoinLeague = () => {
     }
   };
 
-  const getLoggedInStatus = () => {
-    setIsLoggedIn(currentUser);
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    if (!currentUser || !isLoggedIn) {
-      getLoggedInStatus();
-    }
-  }, [currentUser]);
-
   if (!isLoggedIn) {
     return <Error />;
-  }
-
-  if (isLoading) {
-    return <Loader />;
   }
 
   return (

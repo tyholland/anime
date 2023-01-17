@@ -1,21 +1,23 @@
 import { axiosClient } from 'Utils/axios';
 const api = process.env.NEXT_PUBLIC_API;
 
-export const createLeague = async (payload) => {
+export const createLeague = async (payload, token) => {
   const data = {
     url: `${api}/league/create`,
     method: 'post',
     body: payload,
+    token,
   };
 
   return await axiosClient(data);
 };
 
-export const joinLeague = async (leagueId, payload) => {
+export const joinLeague = async (leagueId, payload, token) => {
   const data = {
     url: `${api}/league/join/${leagueId}`,
     method: 'post',
     body: payload,
+    token,
   };
 
   return await axiosClient(data);
