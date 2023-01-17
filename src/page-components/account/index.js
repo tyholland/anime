@@ -17,9 +17,9 @@ const Account = () => {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setIsLoading(true);
-    deleteCurrentUser();
+    await deleteCurrentUser();
     router.push('/');
   };
 

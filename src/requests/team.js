@@ -1,10 +1,11 @@
 import { axiosClient } from 'Utils/axios';
 const api = process.env.NEXT_PUBLIC_API;
 
-export const getTeam = async (leagueId, teamId) => {
+export const getTeam = async (leagueId, teamId, token) => {
   const data = {
     url: `${api}/team/data/${leagueId}/${teamId}`,
     method: 'get',
+    token,
   };
 
   return await axiosClient(data);

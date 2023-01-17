@@ -14,7 +14,6 @@ export const addNewAccount = async (payload) => {
   const data = {
     url: `${api}/users/create`,
     method: 'post',
-    noCreds: true,
     body: payload,
   };
 
@@ -25,8 +24,16 @@ export const accountLogin = async (payload) => {
   const data = {
     url: `${api}/users/login`,
     method: 'post',
-    noCreds: true,
     body: payload,
+  };
+
+  return await axiosClient(data);
+};
+
+export const accountLogout = async () => {
+  const data = {
+    url: `${api}/users/logout`,
+    method: 'get',
   };
 
   return await axiosClient(data);
