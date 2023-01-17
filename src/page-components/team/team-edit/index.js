@@ -166,7 +166,6 @@ const TeamEdit = ({ players, teamId, leagueId }) => {
       });
       setIsLoading(false);
     } catch (err) {
-      console.log(err);
       addEvent('Error', responseError(err, 'Get team edit data'));
       setErrorPage(true);
       setIsLoading(false);
