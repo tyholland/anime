@@ -5,7 +5,6 @@ export const getTeam = async (leagueId, teamId) => {
   const data = {
     url: `${api}/team/data/${leagueId}/${teamId}`,
     method: 'get',
-    body: null,
   };
 
   return await axiosClient(data);
@@ -15,7 +14,6 @@ export const getTeamInfo = async (memberId) => {
   const data = {
     url: `${api}/team/info/${memberId}`,
     method: 'get',
-    body: null,
   };
 
   return await axiosClient(data);

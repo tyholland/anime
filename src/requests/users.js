@@ -5,7 +5,6 @@ export const getAccountInfo = async (userId) => {
   const data = {
     url: `${api}/users/${userId}`,
     method: 'get',
-    body: null,
   };
 
   return await axiosClient(data);

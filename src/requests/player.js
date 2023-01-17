@@ -6,7 +6,6 @@ export const getPlayers = async () => {
     url: `${api}/player`,
     method: 'get',
     noCreds: true,
-    body: null,
   };
 
   return await axiosClient(data);
@@ -17,7 +16,6 @@ export const getPlayer = async (playerId) => {
     url: `${api}/player/${playerId}`,
     method: 'get',
     noCreds: true,
-    body: null,
   };
 
   return await axiosClient(data);
