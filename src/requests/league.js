@@ -21,19 +21,21 @@ export const joinLeague = async (leagueId, payload) => {
   return await axiosClient(data);
 };
 
-export const getLeague = async (leagueId) => {
+export const getLeague = async (leagueId, token) => {
   const data = {
     url: `${api}/league/${leagueId}`,
     method: 'get',
+    token,
   };
 
   return await axiosClient(data);
 };
 
-export const getAllLeagues = async (userId) => {
+export const getAllLeagues = async (token) => {
   const data = {
-    url: `${api}/league/view/${userId}`,
+    url: `${api}/league/view`,
     method: 'get',
+    token,
   };
 
   return await axiosClient(data);

@@ -3,55 +3,20 @@ import { $GlobalContainer, $GlobalWrapper } from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card/index.js';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
-import Loader from 'Components/loader';
-import { addEvent } from 'Utils/amplitude';
-import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error';
-import { getLeague } from 'src/requests/league';
-import { getMatchUpFromTeamId } from 'src/requests/matchup';
 import { useAppContext } from 'src/hooks/context';
 
-const LeagueDetails = ({ leagueId }) => {
+const LeagueDetails = ({ leagueId, leagueData }) => {
   const { currentUser } = useAppContext();
-  const [leagueData, setLeagueData] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const getLeagueInfo = async () => {
-    if (!currentUser) {
-      setIsLoading(false);
-      setErrorPage(true);
-      return;
-    }
-
-    try {
-      const data = await getLeague(leagueId);
-      const matchupData = await getMatchUpFromTeamId(data[0].teamId);
-
-      setLeagueData({
-        ...data[0],
-        ...matchupData[0],
-      });
-      setIsLoading(false);
-    } catch (err) {
-      addEvent('Error', responseError(err, 'Get league details'));
-      setErrorPage(true);
-      setIsLoading(false);
-    }
-  };
+  const { teamId, matchupId } = leagueData;
 
   useEffect(() => {
-    if (!leagueData) {
-      getLeagueInfo();
-    }
-  }, [leagueData, currentUser]);
+    setErrorPage(!currentUser);
+  }, [currentUser]);
 
   if (errorPage) {
     return <Error />;
-  }
-
-  if (isLoading) {
-    return <Loader />;
   }
 
   return (
@@ -65,12 +30,12 @@ const LeagueDetails = ({ leagueId }) => {
         <$GlobalContainer className="grid">
           <SelectionCard
             btnText="Team"
-            redirect={`/team/${leagueId}/${leagueData.teamId}`}
+            redirect={`/team/${leagueId}/${teamId}`}
           />
           <SelectionCard
             btnText="Matchup"
-            redirect={`/matchup/${leagueData.matchupId}`}
-            isDisabled={!leagueData.matchupId}
+            redirect={`/matchup/${matchupId}`}
+            isDisabled={!matchupId}
           />
           <SelectionCard
             btnText="Schedule"

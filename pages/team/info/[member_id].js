@@ -17,7 +17,7 @@ export const getServerSideProps = async (context) => {
       },
     };
   } catch (err) {
-    addEvent('Error', responseError(err, 'Failed to get team data'));
+    addEvent('Error', responseError(err, 'Failed to get team info data'));
 
     return {
       notFound: true,

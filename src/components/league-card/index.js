@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getMatchUpFromTeamId } from 'src/requests/matchup';
+import { getCookie } from 'Utils/index';
 import Button from '../button';
 import {
   $LeagueCardText,
@@ -12,7 +13,7 @@ const LeagueCard = ({ data }) => {
   const { name, team_name, leagueId, teamId } = data;
 
   const getMatchupData = async () => {
-    const matchupData = await getMatchUpFromTeamId(teamId);
+    const matchupData = await getMatchUpFromTeamId(teamId, getCookie('token'));
 
     setMatchupId(matchupData[0]?.matchupId);
   };

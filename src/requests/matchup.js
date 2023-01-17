@@ -10,10 +10,11 @@ export const getMatchUp = async (matchupId) => {
   return await axiosClient(data);
 };
 
-export const getMatchUpFromTeamId = async (teamId) => {
+export const getMatchUpFromTeamId = async (teamId, token) => {
   const data = {
     url: `${api}/matchup/team/${teamId}`,
     method: 'get',
+    token,
   };
 
   return await axiosClient(data);
