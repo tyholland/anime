@@ -36,22 +36,6 @@ export const getCookie = (cname) => {
   return '';
 };
 
-export const setCookie = (cvalue) => {
-  const d = new Date();
-  const exdays = 7;
-
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  let expires = 'expires=' + d.toUTCString();
-
-  document.cookie = `token=${cvalue}; ${expires}`;
-};
-
-export const deleteCookie = () => {
-  const currentToken = getCookie('token');
-
-  document.cookie = `token=${currentToken}; Max-Age=-99999999;`;
-};
-
 export const responseError = (err, description) => {
   return {
     data: err?.response?.data || err?.message,

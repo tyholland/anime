@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import { $GameplayStyles } from 'PageComponents/gameplay/gameplay.style';
@@ -11,18 +11,23 @@ import { useRouter } from 'next/router';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 
-const Account = ({ isLoggedIn }) => {
-  const { deleteCurrentUser } = useAppContext();
+const Account = () => {
+  const { deleteCurrentUser, currentUser } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
+  const [errorPage, setErrorPage] = useState(false);
   const router = useRouter();
 
   const handleLogout = async () => {
     setIsLoading(true);
-    deleteCurrentUser();
+    await deleteCurrentUser();
     router.push('/');
   };
 
-  if (!isLoggedIn) {
+  useEffect(() => {
+    setErrorPage(!currentUser);
+  }, [currentUser]);
+
+  if (errorPage) {
     return <Error />;
   }
 

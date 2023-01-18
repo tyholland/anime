@@ -30,3 +30,12 @@ export const accountLogin = async (payload) => {
 
   return await axiosClient(data);
 };
+
+export const accountLogout = async () => {
+  const data = {
+    url: `${api}/users/logout`,
+    method: 'post',
+  };
+
+  return await axiosClient(data);
+};
