@@ -16,7 +16,7 @@ import { redirectToAccount, responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 
 const SignUp = () => {
-  const { updateCurrentUser, currentUser } = useAppContext();
+  const { setInitialUser, currentUser } = useAppContext();
   const router = useRouter();
   const [userEmail, setUserEmail] = useState('');
   const isDisabled = !userEmail.length;
@@ -36,7 +36,7 @@ const SignUp = () => {
         firebaseId: '123',
       });
 
-      updateCurrentUser(user);
+      setInitialUser(user);
 
       router.push('/league');
     } catch (error) {

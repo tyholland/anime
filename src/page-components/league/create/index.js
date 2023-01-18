@@ -6,14 +6,12 @@ import { createLeague } from 'src/requests/league';
 import { $LeagueCreateWrapper } from './create.style';
 import BackLink from 'Components/back-link';
 import Select from 'Components/select';
-import { useAppContext } from 'src/hooks/context';
 import { useRouter } from 'next/router';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
 import { getCookie, responseError } from 'Utils/index';
 
 const LeagueCreate = () => {
-  const { currentUser } = useAppContext();
   const [teams, setTeams] = useState('');
   const [leagueName, setLeagueName] = useState('');
   const options = ['6', '7', '8', '9', '10'];
@@ -28,16 +26,12 @@ const LeagueCreate = () => {
     const payload = {
       name: leagueName,
       numTeams: teams,
-      userId: currentUser.user_id,
     };
 
     try {
-      const { teamId, leagueId } = await createLeague(
-        payload,
-        getCookie('token')
-      );
+      const { teamId } = await createLeague(payload, getCookie('token'));
 
-      router.push(`/team/${leagueId}/${teamId}`);
+      router.push(`/team/${teamId}`);
     } catch (err) {
       addEvent('Error', responseError(err, 'Create League'));
     }

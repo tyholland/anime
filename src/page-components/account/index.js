@@ -18,7 +18,7 @@ const Account = ({ isLoggedIn }) => {
 
   const handleLogout = async () => {
     setIsLoading(true);
-    await deleteCurrentUser();
+    deleteCurrentUser();
     router.push('/');
   };
 

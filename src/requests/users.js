@@ -1,9 +1,9 @@
 import { axiosClient } from 'Utils/axios';
 const api = process.env.NEXT_PUBLIC_API;
 
-export const getAccountInfo = async (userId, token) => {
+export const getAccountInfo = async (token) => {
   const data = {
-    url: `${api}/users/${userId}`,
+    url: `${api}/users`,
     method: 'get',
     token,
   };
@@ -26,15 +26,6 @@ export const accountLogin = async (payload) => {
     url: `${api}/users/login`,
     method: 'post',
     body: payload,
-  };
-
-  return await axiosClient(data);
-};
-
-export const accountLogout = async () => {
-  const data = {
-    url: `${api}/users/logout`,
-    method: 'get',
   };
 
   return await axiosClient(data);

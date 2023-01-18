@@ -3,16 +3,21 @@ import { $HeaderContainer, $HeaderTitle, $HeaderTop } from './header.style.js';
 import Image from 'next/image.js';
 import { useAppContext } from 'src/hooks/context.js';
 import Button from 'Components/button';
-import Link from 'next/link.js';
+import { useRouter } from 'next/router.js';
 
 const Header = () => {
   const { currentUser } = useAppContext();
+  const router = useRouter();
   const [btnText, setBtnText] = useState('Login');
   const [btnlink, setBtnlink] = useState('/login');
 
   const updateLoginStatus = () => {
     setBtnText(currentUser ? 'Account' : 'Login');
     setBtnlink(currentUser ? '/account' : '/login');
+  };
+
+  const handleHomeClick = () => {
+    router.push('/');
   };
 
   useEffect(() => {
@@ -23,14 +28,13 @@ const Header = () => {
     <$HeaderContainer>
       <$HeaderTop>
         <$HeaderTitle>
-          <Link href="/">
-            <Image
-              src="/assets/abz-logo.png"
-              width={70}
-              height={70}
-              alt="Anime Brothaz"
-            />
-          </Link>
+          <Image
+            src="/assets/abz-logo.png"
+            width={70}
+            height={70}
+            alt="Anime Brothaz"
+            onClick={handleHomeClick}
+          />
         </$HeaderTitle>
         <div>
           <Button

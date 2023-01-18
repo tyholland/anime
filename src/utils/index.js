@@ -45,7 +45,7 @@ export const setCookie = (cvalue) => {
 export const deleteCookie = () => {
   const currentToken = getCookie('token');
 
-  document.cookie = `token=${currentToken}; expires=Thu, 01 Jan 1970 00:00:00 UTC`;
+  document.cookie = `token=${currentToken}; Max-Age=-99999999;`;
 };
 
 export const responseError = (err, description) => {

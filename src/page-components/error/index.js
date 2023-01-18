@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 const Error = () => {
   const { currentUser } = useAppContext();
   const router = useRouter();
-  const [activeStatus, setActiveStatus] = useState(!!currentUser);
+  const [activeStatus, setActiveStatus] = useState(true);
 
   useEffect(() => {
     setActiveStatus(!!currentUser);

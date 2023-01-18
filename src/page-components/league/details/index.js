@@ -4,7 +4,7 @@ import SelectionCard from 'Components/selection-card/index.js';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 
-const LeagueDetails = ({ leagueId, leagueData }) => {
+const LeagueDetails = ({ leagueData }) => {
   const { teamId, matchupId } = leagueData;
 
   return (
@@ -16,10 +16,7 @@ const LeagueDetails = ({ leagueId, leagueData }) => {
       <$GlobalWrapper className="leagueDetail">
         <BackLink />
         <$GlobalContainer className="grid">
-          <SelectionCard
-            btnText="Team"
-            redirect={`/team/${leagueId}/${teamId}`}
-          />
+          <SelectionCard btnText="Team" redirect={`/team/${teamId}`} />
           <SelectionCard
             btnText="Matchup"
             redirect={`/matchup/${matchupId}`}

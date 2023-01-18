@@ -5,15 +5,14 @@ import { responseError } from 'Utils/index';
 
 export const getServerSideProps = async (context) => {
   const { query, req } = context;
-  const { league_id, team_id } = query;
+  const { team_id } = query;
   const { cookies } = req;
 
   try {
-    const teamData = await getTeam(league_id, team_id, cookies.token);
+    const teamData = await getTeam(team_id, cookies.token);
 
     return {
       props: {
-        leagueId: league_id,
         teamId: team_id,
         teamData,
       },

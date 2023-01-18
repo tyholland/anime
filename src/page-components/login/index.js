@@ -22,7 +22,7 @@ import Loader from 'Components/loader/index.js';
 
 const Login = () => {
   const router = useRouter();
-  const { currentUser, updateCurrentUser } = useAppContext();
+  const { currentUser, setInitialUser } = useAppContext();
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const isDisabled = !email.length;
@@ -35,7 +35,7 @@ const Login = () => {
         firebaseUID: '789',
       });
 
-      updateCurrentUser(user);
+      setInitialUser(user);
 
       redirectToContinuePage(router);
     } catch (err) {
@@ -46,7 +46,7 @@ const Login = () => {
 
   useEffect(() => {
     redirectToAccount(currentUser, router);
-  }, [currentUser]);
+  }, []);
 
   if (isLoading) {
     return <Loader />;

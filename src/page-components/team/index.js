@@ -15,7 +15,7 @@ import TeamCard from 'Components/team-card';
 import BackLink from 'Components/back-link/index.js';
 import Metadata from 'Components/metadata/index.js';
 
-const Team = ({ leagueId, teamId, teamData }) => {
+const Team = ({ teamId, teamData }) => {
   const { teamName, team, memberId } = teamData;
 
   return (
@@ -43,7 +43,7 @@ const Team = ({ leagueId, teamId, teamData }) => {
               btnText="Edit Roster"
               btnColor="primary"
               customBtnClass="medium"
-              redirect={`/team/edit/${leagueId}/${teamId}`}
+              redirect={`/team/edit/${teamId}`}
             />
           </$TeamBtnSection>
         </$TeamInfo>
