@@ -6,37 +6,20 @@ import {
   $LoginContentLinks,
   $LoginWrapper,
 } from 'PageComponents/login/login.style.js';
-import { addNewAccount } from 'src/requests/users';
 import { useAppContext } from 'src/hooks/context';
-import { useRouter } from 'next/router';
 import Metadata from 'Components/metadata';
-import { redirectToAccount, responseError } from 'Utils/index';
-import { addEvent } from 'Utils/amplitude';
+import { redirectToAccount } from 'Utils/index';
 
 const ForgotPassword = () => {
-  const { updateCurrentUser, currentUser } = useAppContext();
-  const router = useRouter();
+  const { currentUser } = useAppContext();
   const [userEmail, setUserEmail] = useState('');
   const isDisabled = !userEmail.length;
 
-  const handleForgotPwd = async () => {
-    try {
-      const user = await addNewAccount({
-        userEmail,
-        firebaseId: '123',
-      });
-
-      updateCurrentUser(user);
-
-      router.push('/login');
-    } catch (error) {
-      addEvent('Error', responseError(error, 'Forgot Password'));
-    }
-  };
+  const handleForgotPwd = async () => {};
 
   useEffect(() => {
-    redirectToAccount(currentUser, router);
-  }, [currentUser]);
+    redirectToAccount(currentUser);
+  }, []);
 
   return (
     <>

@@ -10,14 +10,12 @@ import {
 } from 'PageComponents/login/login.style.js';
 import { addNewAccount } from 'src/requests/users';
 import { useAppContext } from 'src/hooks/context';
-import { useRouter } from 'next/router';
 import Metadata from 'Components/metadata';
-import { redirectToAccount, responseError } from 'Utils/index';
+import { redirectToAccount, redirectUrl, responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 
 const SignUp = () => {
   const { setInitialUser, currentUser } = useAppContext();
-  const router = useRouter();
   const [userEmail, setUserEmail] = useState('');
   const isDisabled = !userEmail.length;
   // const [ password, setPassword ] = useState(null);
@@ -38,15 +36,15 @@ const SignUp = () => {
 
       setInitialUser(user);
 
-      router.push('/league');
+      redirectUrl('/league');
     } catch (error) {
       addEvent('Error', responseError(error, 'Sign up'));
     }
   };
 
   useEffect(() => {
-    redirectToAccount(currentUser, router);
-  }, [currentUser]);
+    redirectToAccount(currentUser);
+  }, []);
 
   return (
     <>

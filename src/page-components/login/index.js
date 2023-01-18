@@ -45,7 +45,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    redirectToAccount(currentUser, router);
+    redirectToAccount(currentUser);
   }, []);
 
   if (isLoading) {

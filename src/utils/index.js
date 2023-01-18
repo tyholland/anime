@@ -1,6 +1,10 @@
-export const redirectToAccount = (currentUser, router) => {
+export const redirectUrl = (url) => {
+  window.location.href = url;
+};
+
+export const redirectToAccount = (currentUser) => {
   if (currentUser) {
-    router.push('/account');
+    redirectUrl('/account');
   }
 };
 
@@ -8,9 +12,9 @@ export const redirectToContinuePage = (router) => {
   const path = router.query;
 
   if (Object.keys(path).includes('continue')) {
-    router.push(`${path.continue}`);
+    redirectUrl(`${path.continue}`);
   } else {
-    router.push('/account');
+    redirectUrl('/account');
   }
 };
 
