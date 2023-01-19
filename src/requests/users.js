@@ -39,3 +39,14 @@ export const accountLogout = async () => {
 
   return await axiosClient(data);
 };
+
+export const updateAccount = async (payload, token) => {
+  const data = {
+    url: `${api}/users`,
+    method: 'put',
+    body: payload,
+    token,
+  };
+
+  return await axiosClient(data);
+};

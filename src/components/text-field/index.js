@@ -1,7 +1,14 @@
 import React from 'react';
 import { $Input } from './text-field.style.js';
 
-const TextField = ({ placeholder, keyboard, type, onChange }) => {
+const TextField = ({
+  placeholder,
+  keyboard,
+  type,
+  onChange,
+  isDisabled = false,
+  inputVal = null,
+}) => {
   const isPassword = type === 'password';
 
   if (onChange) {
@@ -13,6 +20,18 @@ const TextField = ({ placeholder, keyboard, type, onChange }) => {
         textContentType={isPassword ? type : 'none'}
         secureTextEntry={isPassword}
         onChange={(input) => onChange(input.target.value)}
+      />
+    );
+  }
+
+  if (isDisabled) {
+    return (
+      <$Input
+        keyboardType={keyboard || 'default'}
+        autoCapitalize="none"
+        textContentType={'none'}
+        disabled={isDisabled}
+        value={inputVal}
       />
     );
   }
