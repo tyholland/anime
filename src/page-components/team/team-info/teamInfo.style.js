@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { FONT_COLOR_BLACK } from 'Styles/global.style';
 
 export const $TeamInfoContent = styled.div`
-  border: 1px solid #000;
+  border: 1px solid ${FONT_COLOR_BLACK};
   border-radius: 10px;
   height: 45px;
   padding: 0 10px;

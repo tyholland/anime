@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FONT_COLOR_BLACK } from 'Styles/global.style';
 
 export const $MatchupColumn = styled.div`
   width: 46%;
@@ -8,7 +9,7 @@ export const $MatchupSection = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid ${FONT_COLOR_BLACK};
   height: 80px;
   justify-content: space-between;
 

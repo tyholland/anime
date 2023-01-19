@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+import {
+  FONT_COLOR_BLACK,
+  FONT_COLOR_ORANGE,
+  FONT_COLOR_RED,
+  FONT_COLOR_WHITE,
+} from 'Styles/global.style';
 
 export const $Btn = styled.button`
   border-radius: 10px;
@@ -12,32 +18,32 @@ export const $Btn = styled.button`
   }
 
   &.primary {
-    background-color: rgb(249, 128, 17);
+    background-color: ${FONT_COLOR_ORANGE};
 
     span {
-      color: #000;
+      color: ${FONT_COLOR_BLACK};
     }
   }
 
   &.secondary {
-    background-color: #000;
+    background-color: ${FONT_COLOR_BLACK};
 
     span {
-      color: rgb(249, 128, 17);
+      color: ${FONT_COLOR_ORANGE};
     }
   }
 
   &.cancel {
-    background-color: #cc0000;
+    background-color: ${FONT_COLOR_RED};
 
     span {
-      color: #fff;
+      color: ${FONT_COLOR_WHITE};
     }
   }
 
   &.social {
-    background-color: #fff;
-    border-color: #000;
+    background-color: ${FONT_COLOR_WHITE};
+    border-color: ${FONT_COLOR_BLACK};
   }
 
   &.small {
@@ -45,7 +51,7 @@ export const $Btn = styled.button`
     padding: 5px 15px;
     position: relative;
     margin: 2% 0 0 2%;
-    border-color: #fff;
+    border-color: ${FONT_COLOR_WHITE};
 
     span {
       font-size: 12px;
@@ -102,5 +108,5 @@ export const $BtnText = styled.span`
   text-align: center;
   font-size: 20px;
   font-weight: 700;
-  color: #000;
+  color: ${FONT_COLOR_BLACK};
 `;

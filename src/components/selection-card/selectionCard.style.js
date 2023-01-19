@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import {
+  FONT_COLOR_BLACK,
+  FONT_COLOR_WHITE_TRANSPARENT,
+} from 'Styles/global.style';
 
 export const $SelectionCardBlock = styled.button`
   padding: 2%;
@@ -21,9 +25,9 @@ export const $SelectionCardText = styled.span`
   text-align: center;
   font-size: 30px;
   font-weight: 700;
-  background: #ffffff99;
+  background: ${FONT_COLOR_WHITE_TRANSPARENT};
   padding: 3% 4%;
   border-radius: 15px;
   width: min-content;
-  color: #000;
+  color: ${FONT_COLOR_BLACK};
 `;

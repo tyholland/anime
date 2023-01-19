@@ -1,5 +1,13 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
+export const FONT_COLOR_ORANGE = 'rgb(249, 128, 17)';
+export const FONT_COLOR_RED = '#cc0000';
+export const FONT_COLOR_WHITE = '#ffffff';
+export const FONT_COLOR_WHITE_TRANSPARENT = '#ffffff95';
+export const FONT_COLOR_BLACK = '#000000';
+
+export const MOBILE_VIEW = '@media only screen and (max-width: 414px)';
+
 export const $GlobalStyles = createGlobalStyle`
   body {
     margin: 0 auto;
@@ -172,7 +180,7 @@ export const $GlobalTitle = styled.div`
   position: relative;
 
   &.home {
-    background: #ffffff;
+    background: ${FONT_COLOR_WHITE};
     width: 400px;
     margin: 0 auto;
     padding: 2%;
@@ -187,13 +195,13 @@ export const $GlobalSubTitle = styled.div`
 `;
 
 export const $GlobalCircle = styled.div`
-  border: 1px solid #000;
+  border: 1px solid ${FONT_COLOR_BLACK};
   width: 14px;
   height: 14px;
   border-radius: 10px;
 
   &.fire {
-    background-color: #cc0000;
+    background-color: ${FONT_COLOR_RED};
   }
 
   &.arcane {
@@ -201,7 +209,7 @@ export const $GlobalCircle = styled.div`
   }
 
   &.darkness {
-    background-color: #000;
+    background-color: ${FONT_COLOR_BLACK};
     border: 1px solid #ccc;
   }
 
@@ -226,7 +234,7 @@ export const $GlobalCircle = styled.div`
   }
 
   &.celestrial {
-    background-color: #fff;
+    background-color: ${FONT_COLOR_WHITE};
   }
 
   &.noAffinity {

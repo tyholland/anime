@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FONT_COLOR_BLACK, FONT_COLOR_ORANGE } from 'Styles/global.style';
 
 export const $ViewMatchupWrapper = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ export const $ViewMatchupWrapper = styled.div`
 `;
 
 export const $ViewMatchupPositionSection = styled.div`
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid ${FONT_COLOR_BLACK};
   height: 80px;
 
   &.duo {
@@ -16,7 +17,7 @@ export const $ViewMatchupPositionSection = styled.div`
 `;
 
 export const $ViewMatchupTeamSplit = styled.div`
-  border-top: 1px solid #000;
+  border-top: 1px solid ${FONT_COLOR_BLACK};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -31,9 +32,9 @@ export const $ViewMatchupPositionColumn = styled.div`
 export const $ViewMatchupPosition = styled.div`
   width: 100%;
   font-weight: 600;
-  color: rgb(249, 128, 17);
+  color: ${FONT_COLOR_ORANGE};
   text-align: center;
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, 0.8);
   font-size: 14px;
   height: 100%;
   display: flex;
@@ -57,7 +58,7 @@ export const $ViewMatchupTeamName = styled.div`
 
 export const $ViewMatchupTeamTotal = styled.div`
   font-size: 14px;
-  color: rgba(0, 0, 0, .5);
+  color: rgba(0, 0, 0, 0.5);
   text-align: center;
   margin-top: 15px;
 `;
