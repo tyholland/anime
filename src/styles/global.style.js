@@ -164,16 +164,6 @@ export const $GlobalContainer = styled.div`
   }
 `;
 
-export const $GlobalLink = styled.div`
-  font-size: 16px;
-  line-height: 32px;
-  font-weight: 600;
-  margin-top: 30px;
-  text-align: center;
-  color: rgb(27, 5, 246);
-  text-decoration-line: underline;
-`;
-
 export const $GlobalTitle = styled.div`
   font-weight: 700;
   margin-bottom: 5%;
@@ -246,9 +236,4 @@ export const $GlobalCircle = styled.div`
   &.team {
     margin-right: 5px;
   }
-`;
-
-export const $GlobalCenterContent = styled.div`
-  margin-top: 35%;
-  margin-bottom: 50%;
 `;
