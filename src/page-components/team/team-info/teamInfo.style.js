@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_COLOR_BLACK } from 'Styles/global.style';
+import { FONT_COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
 
 export const $TeamInfoContent = styled.div`
   border: 1px solid ${FONT_COLOR_BLACK};
@@ -14,7 +14,7 @@ export const $TeamInfoContent = styled.div`
 
 export const $TeamInfoTitle = styled.div`
   font-size: 20px;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
 `;
 
 export const $TeamInfoBtn = styled.div`
@@ -28,7 +28,7 @@ export const $TeamInfoStats = styled.div`
   font-size: 20px;
 
   span {
-    font-weight: 700;
+    font-weight: ${FONT_WEIGHT_BOLD};
   }
 `;
 

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { FONT_WEIGHT_BOLD } from 'Styles/global.style';
 
 export const $LoginSplit = styled.div`
-  font-weight: 600;
+  font-weight: ${FONT_WEIGHT_BOLD};
   margin-top: 10px;
   text-align: center;
 `;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_COLOR_BLACK } from 'Styles/global.style';
+import { FONT_COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
 
 export const $TeamTotal = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ export const $TeamInfoTxt = styled.div`
 
 export const $TeamName = styled.div`
   font-size: 18px;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
 `;
 
 export const $TeamLeague = styled.div`
@@ -35,7 +35,7 @@ export const $TeamLeague = styled.div`
 export const $TeamTotalText = styled.div`
   width: 65%;
   margin: 15px 0 0 5px;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
   color: ${FONT_COLOR_BLACK};
   text-align: right;
 `;
@@ -45,7 +45,7 @@ export const $TeamTotalAmount = styled.div`
   text-align: right;
   margin: 15px 0;
   padding-right: 10px;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
   color: ${FONT_COLOR_BLACK};
 `;
 

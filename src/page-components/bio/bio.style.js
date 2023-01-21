@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FONT_WEIGHT_BOLD, FONT_WEIGHT_NORMAL } from 'Styles/global.style';
 
 export const $BioAffinity = styled.div`
   display: flex;
@@ -27,24 +28,24 @@ export const $BioAffinityText = styled.div`
 
 export const $BioTitle = styled.div`
   font-size: 30px;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
   margin-bottom: 5%;
 `;
 
 export const $BioSubTitle = styled.div`
   font-size: 18px;
   color: #999;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
   margin-bottom: 25px;
 
   span {
-    font-weight: 400;
+    font-weight: ${FONT_WEIGHT_NORMAL};
   }
 `;
 
 export const $BioAttribute = styled.div`
   font-size: 22px;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
 `;
 
 export const $BioSubAttribute = styled.div`

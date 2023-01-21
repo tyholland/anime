@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { FONT_COLOR_BLACK, FONT_COLOR_ORANGE } from 'Styles/global.style';
+import {
+  FONT_COLOR_BLACK,
+  FONT_COLOR_ORANGE,
+  FONT_WEIGHT_BOLD,
+} from 'Styles/global.style';
 
 export const $HeaderContainer = styled.div`
   width: 100%;
@@ -12,7 +16,7 @@ export const $HeaderContainer = styled.div`
 export const $HeaderTitle = styled.div`
   font-size: 20px;
   color: ${FONT_COLOR_BLACK};
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
   text-align: center;
 
   img {

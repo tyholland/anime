@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { FONT_COLOR_BLACK, FONT_COLOR_ORANGE } from 'Styles/global.style';
+import {
+  FONT_COLOR_BLACK,
+  FONT_COLOR_ORANGE,
+  FONT_WEIGHT_BOLD,
+} from 'Styles/global.style';
 
 export const $ViewMatchupWrapper = styled.div`
   display: flex;
@@ -31,7 +35,7 @@ export const $ViewMatchupPositionColumn = styled.div`
 
 export const $ViewMatchupPosition = styled.div`
   width: 100%;
-  font-weight: 600;
+  font-weight: ${FONT_WEIGHT_BOLD};
   color: ${FONT_COLOR_ORANGE};
   text-align: center;
   background-color: rgba(0, 0, 0, 0.8);
@@ -52,7 +56,7 @@ export const $ViewMatchupTeamContent = styled.div`
 
 export const $ViewMatchupTeamName = styled.div`
   font-size: 18px;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
   text-align: center;
 `;
 

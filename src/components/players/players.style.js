@@ -2,6 +2,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import {
   FONT_COLOR_BLACK,
   FONT_COLOR_WHITE_TRANSPARENT,
+  FONT_WEIGHT_BOLD,
 } from 'Styles/global.style';
 
 export const $PlayersStyles = createGlobalStyle`
@@ -28,7 +29,7 @@ export const $PlayersStyles = createGlobalStyle`
   }
 
   .fillGrid > div:hover {
-    font-weight: 700;
+    font-weight: ${FONT_WEIGHT_BOLD};
   }
 `;
 
@@ -49,7 +50,7 @@ export const $PlayersFilter = styled.div`
   }
 
   label {
-    font-weight: 700;
+    font-weight: ${FONT_WEIGHT_BOLD};
   }
 
   div {

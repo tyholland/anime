@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { FONT_COLOR_BLACK, FONT_COLOR_ORANGE } from 'Styles/global.style';
+import {
+  FONT_COLOR_BLACK,
+  FONT_COLOR_ORANGE,
+  FONT_WEIGHT_BOLD,
+} from 'Styles/global.style';
 
 export const $TeamCardSection = styled.div`
   display: flex;
@@ -17,7 +21,7 @@ export const $TeamCardSection = styled.div`
 export const $TeamCardPosition = styled.div`
   width: 5%;
   padding: 18px 0;
-  font-weight: 600;
+  font-weight: ${FONT_WEIGHT_BOLD};
   color: ${FONT_COLOR_ORANGE};
   text-align: center;
   font-size: 10px;
@@ -50,7 +54,7 @@ export const $TeamCardDuoSpace = styled.div`
 
   &.noLink {
     cursor: default;
-    font-weight: 700;
+    font-weight: ${FONT_WEIGHT_BOLD};
   }
 
   &.duo {
@@ -74,7 +78,7 @@ export const $TeamCardCharacterHeader = styled.div`
   text-align: left;
   width: 30%;
   margin: 15px 0 15px 7px;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
 `;
 
 export const $TeamCardCharacter = styled.button`
@@ -85,7 +89,7 @@ export const $TeamCardCharacter = styled.button`
 
   &.noLink {
     cursor: default;
-    font-weight: 700;
+    font-weight: ${FONT_WEIGHT_BOLD};
   }
 `;
 
@@ -100,7 +104,7 @@ export const $TeamCardCharacterTxt = styled.span`
 export const $TeamCardAffinity = styled.div`
   width: 30%;
   margin: 15px 0;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
   color: ${FONT_COLOR_BLACK};
   display: flex;
   align-items: center;
@@ -115,6 +119,6 @@ export const $TeamCardPower = styled.div`
   text-align: right;
   margin: 15px 0;
   padding-right: 10px;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
   color: ${FONT_COLOR_BLACK};
 `;

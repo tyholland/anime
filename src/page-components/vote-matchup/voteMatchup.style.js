@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { FONT_WEIGHT_BOLD } from 'Styles/global.style';
 
 export const $VoteMatchupCharacter = styled.div`
   font-size: 30px;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
 `;
 
 export const $VoteMatchupTeam = styled.div`
@@ -12,7 +13,7 @@ export const $VoteMatchupTeam = styled.div`
 
 export const $VoteMatchupVersus = styled.div`
   font-size: 20px;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
   margin: 40px 0;
   text-align: center;
 `;

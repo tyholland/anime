@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import { FONT_WEIGHT_BOLD } from 'Styles/global.style';
 
 export const $CreditsGlobalStyles = createGlobalStyle`
   ul {
@@ -34,6 +35,6 @@ export const $CreditsText = styled.div`
   margin-top: 2%;
 
   span {
-    font-weight: 700;
+    font-weight: ${FONT_WEIGHT_BOLD};
   }
 `;

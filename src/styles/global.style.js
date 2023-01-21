@@ -5,8 +5,10 @@ export const FONT_COLOR_RED = '#cc0000';
 export const FONT_COLOR_WHITE = '#ffffff';
 export const FONT_COLOR_WHITE_TRANSPARENT = '#ffffff95';
 export const FONT_COLOR_BLACK = '#000000';
+export const FONT_WEIGHT_BOLD = '700';
+export const FONT_WEIGHT_NORMAL = '400';
 
-export const MOBILE_VIEW = '@media only screen and (max-width: 414px)';
+export const MOBILE_VIEW = '@media only screen and (max-width: 960px)';
 
 export const $GlobalStyles = createGlobalStyle`
   body {
@@ -173,7 +175,7 @@ export const $GlobalContainer = styled.div`
 `;
 
 export const $GlobalTitle = styled.div`
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
   margin-bottom: 5%;
   font-size: 30px;
   text-align: center;

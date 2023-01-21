@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_COLOR_BLACK } from 'Styles/global.style';
+import { FONT_COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
 
 export const $CharacterStatsBtnWrapper = styled.div`
   display: flex;
@@ -39,7 +39,7 @@ export const $CharacterStatsLabel = styled.div`
   text-align: right;
   width: 48%;
   padding-right: 2%;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
   font-size: 20px;
 
   &.specific {

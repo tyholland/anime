@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_COLOR_BLACK } from 'Styles/global.style';
+import { FONT_COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
 
 export const $LeagueCardWrapper = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ export const $LeagueCardText = styled.div`
   font-size: 14px;
 
   &.league {
-    font-weight: 700;
+    font-weight: ${FONT_WEIGHT_BOLD};
     font-size: 16px;
   }
 `;

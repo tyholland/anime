@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FONT_WEIGHT_BOLD } from 'Styles/global.style';
 
 export const $GameplayCardSection = styled.div`
   margin-bottom: 20px;
@@ -20,14 +21,14 @@ export const $GameplayCardTitle = styled.div`
 
   &.bold {
     text-decoration: none;
-    font-weight: 700;
+    font-weight: ${FONT_WEIGHT_BOLD};
   }
 `;
 
 export const $GameplayCardHeader = styled.div`
   font-size: 16px;
   margin-bottom: 10px;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
 `;
 
 export const $GameplayCardWrapper = styled.div`

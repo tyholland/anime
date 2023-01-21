@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_COLOR_BLACK } from 'Styles/global.style';
+import { FONT_COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
 
 export const $TeamEditWrapper = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ export const $TeamEditWrapper = styled.div`
     width: 100%;
 
     &.position {
-      font-weight: 700;
+      font-weight: ${FONT_WEIGHT_BOLD};
     }
 
     div {
@@ -40,5 +40,5 @@ export const $TeamEditError = styled.div`
   justify-content: center;
   margin-bottom: 2%;
   color: red;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
 `;

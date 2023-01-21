@@ -4,6 +4,7 @@ import {
   FONT_COLOR_ORANGE,
   FONT_COLOR_RED,
   FONT_COLOR_WHITE,
+  FONT_WEIGHT_BOLD,
 } from 'Styles/global.style';
 
 export const $Btn = styled.button`
@@ -107,6 +108,6 @@ export const $Btn = styled.button`
 export const $BtnText = styled.span`
   text-align: center;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: ${FONT_WEIGHT_BOLD};
   color: ${FONT_COLOR_BLACK};
 `;
