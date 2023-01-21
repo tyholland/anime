@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { $HeaderContainer, $HeaderTitle, $HeaderTop } from './header.style.js';
+import {
+  $HeaderContainer,
+  $HeaderTitle,
+  $HeaderTop,
+  $HeaderMenu,
+} from './header.style.js';
 import Image from 'next/image.js';
 import { useAppContext } from 'src/hooks/context.js';
 import Button from 'Components/button';
 import { useRouter } from 'next/router.js';
+import MobileHeader from 'Components/mobile-header/index.js';
 
 const Header = () => {
   const { currentUser } = useAppContext();
@@ -36,7 +42,7 @@ const Header = () => {
             onClick={handleHomeClick}
           />
         </$HeaderTitle>
-        <div>
+        <$HeaderMenu>
           <Button
             btnText="League"
             redirect="/league"
@@ -57,7 +63,8 @@ const Header = () => {
             redirect={btnlink}
             customBtnClass="small header text"
           />
-        </div>
+        </$HeaderMenu>
+        <MobileHeader acct={btnText} acctLink={btnlink} />
       </$HeaderTop>
     </$HeaderContainer>
   );

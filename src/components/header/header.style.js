@@ -3,6 +3,7 @@ import {
   COLOR_BLACK,
   COLOR_ORANGE,
   FONT_WEIGHT_BOLD,
+  MOBILE_VIEW,
 } from 'Styles/global.style';
 
 export const $HeaderContainer = styled.div`
@@ -31,4 +32,12 @@ export const $HeaderTop = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 1% 2%;
+`;
+
+export const $HeaderMenu = styled.div`
+  display: block;
+
+  ${MOBILE_VIEW} {
+    display: none;
+  }
 `;

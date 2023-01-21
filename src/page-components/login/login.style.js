@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
+import { FONT_WEIGHT_BOLD, RESPONSIVE_VIEW } from 'Styles/global.style';
 
 export const $LoginSplit = styled.div`
   font-weight: ${FONT_WEIGHT_BOLD};
@@ -26,7 +26,7 @@ export const $LoginSectionWrapper = styled.div`
   justify-content: center;
   margin-bottom: 5%;
 
-  ${MOBILE_VIEW} {
+  ${RESPONSIVE_VIEW} {
     flex-direction: column;
     margin-bottom: 0;
   }
@@ -38,7 +38,7 @@ export const $LoginSection = styled.div`
   flex-direction: column;
   margin: 0 5%;
 
-  ${MOBILE_VIEW} {
+  ${RESPONSIVE_VIEW} {
     width: 100%;
     margin-bottom: 5%;
   }

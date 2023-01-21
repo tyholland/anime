@@ -10,7 +10,8 @@ export const COLOR_BLACK = '#000000';
 export const FONT_WEIGHT_BOLD = '700';
 export const FONT_WEIGHT_NORMAL = '400';
 
-export const MOBILE_VIEW = '@media only screen and (max-width: 960px)';
+export const RESPONSIVE_VIEW = '@media only screen and (max-width: 960px)';
+export const MOBILE_VIEW = '@media only screen and (max-width: 418px)';
 
 export const $GlobalStyles = createGlobalStyle`
   body {
@@ -19,7 +20,7 @@ export const $GlobalStyles = createGlobalStyle`
     max-width: 1200px;
     font-family: Arial, sans-serif;
 
-    ${MOBILE_VIEW} {
+    ${RESPONSIVE_VIEW} {
       min-width: auto;
       width: 100%;
     }
@@ -54,7 +55,7 @@ export const $GlobalWrapper = styled.div`
 export const $GlobalContainer = styled.div`
   padding: 2%;
 
-  ${MOBILE_VIEW} {
+  ${RESPONSIVE_VIEW} {
     padding: 5%;
   }
 
@@ -82,7 +83,7 @@ export const $GlobalContainer = styled.div`
       filter: grayscale(100%);
       min-height: 100vh;
 
-      ${MOBILE_VIEW} {
+      ${RESPONSIVE_VIEW} {
         min-height: calc(100vh - 69px);
         background-size: 100% 100%;
       }
@@ -106,7 +107,7 @@ export const $GlobalContainer = styled.div`
       filter: grayscale(100%);
       min-height: 100vh;
 
-      ${MOBILE_VIEW} {
+      ${RESPONSIVE_VIEW} {
         min-height: calc(100vh - 69px);
         background-size: 100% 100%;
       }
@@ -130,7 +131,7 @@ export const $GlobalContainer = styled.div`
       filter: grayscale(85%);
       min-height: 100vh;
 
-      ${MOBILE_VIEW} {
+      ${RESPONSIVE_VIEW} {
         min-height: calc(100vh - 69px);
         background-size: 100% 100%;
       }
@@ -154,7 +155,7 @@ export const $GlobalContainer = styled.div`
       filter: grayscale(100%);
       min-height: 100vh;
 
-      ${MOBILE_VIEW} {
+      ${RESPONSIVE_VIEW} {
         min-height: calc(100vh - 69px);
         background-size: 100% 100%;
       }
@@ -223,12 +224,12 @@ export const $GlobalTitle = styled.div`
     padding: 2%;
     border-radius: 15px;
 
-    ${MOBILE_VIEW} {
+    ${RESPONSIVE_VIEW} {
       width: 75%;
     }
   }
 
-  ${MOBILE_VIEW} {
+  ${RESPONSIVE_VIEW} {
     font-size: calc(100% + 8px);
   }
 `;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {
   COLOR_BLACK,
   FONT_WEIGHT_BOLD,
-  MOBILE_VIEW,
+  RESPONSIVE_VIEW,
 } from 'Styles/global.style';
 
 export const $LeagueCardWrapper = styled.div`
@@ -14,7 +14,7 @@ export const $LeagueCardWrapper = styled.div`
   width: 80%;
   margin: 0 auto;
 
-  ${MOBILE_VIEW} {
+  ${RESPONSIVE_VIEW} {
     width: 100%;
     flex-direction: column;
   }
@@ -39,7 +39,7 @@ export const $LeagueCardSection = styled.div`
     flex-wrap: wrap;
     width: 50%;
 
-    ${MOBILE_VIEW} {
+    ${RESPONSIVE_VIEW} {
       width: 100%;
       justify-content: center;
       margin-top: 3%;

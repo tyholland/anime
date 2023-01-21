@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
+import {
+  COLOR_BLACK,
+  FONT_WEIGHT_BOLD,
+  RESPONSIVE_VIEW,
+} from 'Styles/global.style';
 
 export const $TeamInfoContent = styled.div`
   border: 1px solid ${COLOR_BLACK};
@@ -35,4 +39,12 @@ export const $TeamInfoStats = styled.div`
 export const $TeamInfoWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
+
+  ${RESPONSIVE_VIEW} {
+    flex-direction: column;
+
+    > div {
+      margin-bottom: 10%;
+    }
+  }
 `;
