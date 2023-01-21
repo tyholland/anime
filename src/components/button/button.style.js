@@ -5,6 +5,7 @@ import {
   FONT_COLOR_RED,
   FONT_COLOR_WHITE,
   FONT_WEIGHT_BOLD,
+  MOBILE_VIEW,
 } from 'Styles/global.style';
 
 export const $Btn = styled.button`
@@ -76,6 +77,10 @@ export const $Btn = styled.button`
     margin: 10px;
     padding: 10px;
     width: 150px;
+
+    ${MOBILE_VIEW} {
+      width: 90px;
+    }
 
     span {
       font-size: 15px;

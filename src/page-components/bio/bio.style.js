@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { FONT_WEIGHT_BOLD, FONT_WEIGHT_NORMAL } from 'Styles/global.style';
+import {
+  FONT_WEIGHT_BOLD,
+  FONT_WEIGHT_NORMAL,
+  MOBILE_VIEW,
+} from 'Styles/global.style';
 
 export const $BioAffinity = styled.div`
   display: flex;
@@ -66,8 +70,17 @@ export const $BioWrapper = styled.div`
   width: 70%;
   margin: 0 auto;
 
+  ${MOBILE_VIEW} {
+    flex-direction: column;
+    width: 100%;
+  }
+
   > div {
     width: 40%;
     margin: 0 5%;
+
+    ${MOBILE_VIEW} {
+      width: 90%;
+    }
   }
 `;

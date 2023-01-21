@@ -3,6 +3,7 @@ import {
   FONT_COLOR_BLACK,
   FONT_COLOR_ORANGE,
   FONT_WEIGHT_BOLD,
+  MOBILE_VIEW,
 } from 'Styles/global.style';
 
 export const $TeamCardSection = styled.div`
@@ -66,6 +67,10 @@ export const $TeamCardCharacterWrapper = styled.div`
   width: 30%;
   margin: 15px 0 15px 5px;
 
+  ${MOBILE_VIEW} {
+    width: 60%;
+  }
+
   &.duo {
     display: flex;
     flex-direction: column;
@@ -79,6 +84,10 @@ export const $TeamCardCharacterHeader = styled.div`
   width: 30%;
   margin: 15px 0 15px 7px;
   font-weight: ${FONT_WEIGHT_BOLD};
+
+  ${MOBILE_VIEW} {
+    width: 68%;
+  }
 `;
 
 export const $TeamCardCharacter = styled.button`
@@ -93,8 +102,15 @@ export const $TeamCardCharacter = styled.button`
   }
 `;
 
-export const $TeamCardCharacterTxt = styled.span`
+export const $TeamCardCharacterTxt = styled.div`
   color: rgb(27, 5, 246);
+
+  ${MOBILE_VIEW} {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100px;
+    overflow: hidden;
+  }
 
   &:hover {
     text-decoration: underline;
@@ -109,8 +125,16 @@ export const $TeamCardAffinity = styled.div`
   display: flex;
   align-items: center;
 
+  ${MOBILE_VIEW} {
+    display: none;
+  }
+
   &.duo {
     display: block;
+
+    ${MOBILE_VIEW} {
+      display: none;
+    }
   }
 `;
 

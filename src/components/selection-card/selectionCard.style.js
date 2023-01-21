@@ -3,6 +3,7 @@ import {
   FONT_COLOR_BLACK,
   FONT_COLOR_WHITE_TRANSPARENT,
   FONT_WEIGHT_BOLD,
+  MOBILE_VIEW,
 } from 'Styles/global.style';
 
 export const $SelectionCardBlock = styled.button`
@@ -20,6 +21,11 @@ export const $SelectionCardBlock = styled.button`
   background-color: transparent;
   border: none;
   position: relative;
+
+  ${MOBILE_VIEW} {
+    width: 150px;
+    height: 150px;
+  }
 `;
 
 export const $SelectionCardText = styled.span`
@@ -31,4 +37,8 @@ export const $SelectionCardText = styled.span`
   border-radius: 15px;
   width: min-content;
   color: ${FONT_COLOR_BLACK};
+
+  ${MOBILE_VIEW} {
+    font-size: calc(100% + 8px);
+  }
 `;

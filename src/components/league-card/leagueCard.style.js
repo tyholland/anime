@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { FONT_COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
+import {
+  FONT_COLOR_BLACK,
+  FONT_WEIGHT_BOLD,
+  MOBILE_VIEW,
+} from 'Styles/global.style';
 
 export const $LeagueCardWrapper = styled.div`
   display: flex;
@@ -9,6 +13,11 @@ export const $LeagueCardWrapper = styled.div`
   align-items: center;
   width: 80%;
   margin: 0 auto;
+
+  ${MOBILE_VIEW} {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 export const $LeagueCardText = styled.div`
@@ -29,5 +38,11 @@ export const $LeagueCardSection = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     width: 50%;
+
+    ${MOBILE_VIEW} {
+      width: 100%;
+      justify-content: center;
+      margin-top: 3%;
+    }
   }
 `;

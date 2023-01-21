@@ -16,6 +16,11 @@ export const $GlobalStyles = createGlobalStyle`
     min-width: 960px;
     max-width: 1200px;
     font-family: Arial, sans-serif;
+
+    ${MOBILE_VIEW} {
+      min-width: auto;
+      width: 100%;
+    }
   }
 
   button {
@@ -47,6 +52,10 @@ export const $GlobalWrapper = styled.div`
 export const $GlobalContainer = styled.div`
   padding: 2%;
 
+  ${MOBILE_VIEW} {
+    padding: 5%;
+  }
+
   &.grid {
     display: flex;
     flex-wrap: wrap;
@@ -69,6 +78,12 @@ export const $GlobalContainer = styled.div`
       bottom: 0px;
       left: 0px;
       filter: grayscale(100%);
+      min-height: 100vh;
+
+      ${MOBILE_VIEW} {
+        min-height: calc(100vh - 69px);
+        background-size: 100% 100%;
+      }
     }
   }
 
@@ -87,12 +102,18 @@ export const $GlobalContainer = styled.div`
       bottom: 0px;
       left: 0px;
       filter: grayscale(100%);
+      min-height: 100vh;
+
+      ${MOBILE_VIEW} {
+        min-height: calc(100vh - 69px);
+        background-size: 100% 100%;
+      }
     }
   }
 
   &.league {
     position: relative;
-    height: 100vh;
+    height: auto;
 
     &::before {
       content: " ";
@@ -105,6 +126,12 @@ export const $GlobalContainer = styled.div`
       bottom: 0px;
       left: 0px;
       filter: grayscale(85%);
+      min-height: 100vh;
+
+      ${MOBILE_VIEW} {
+        min-height: calc(100vh - 69px);
+        background-size: 100% 100%;
+      }
     }
   }
 
@@ -123,6 +150,12 @@ export const $GlobalContainer = styled.div`
       bottom: 0px;
       left: 0px;
       filter: grayscale(100%);
+      min-height: 100vh;
+
+      ${MOBILE_VIEW} {
+        min-height: calc(100vh - 69px);
+        background-size: 100% 100%;
+      }
     }
   }
 
@@ -187,6 +220,14 @@ export const $GlobalTitle = styled.div`
     margin: 0 auto;
     padding: 2%;
     border-radius: 15px;
+
+    ${MOBILE_VIEW} {
+      width: 75%;
+    }
+  }
+
+  ${MOBILE_VIEW} {
+    font-size: calc(100% + 8px);
   }
 `;
 
