@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  FONT_COLOR_BLACK,
+  COLOR_BLACK,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
 } from 'Styles/global.style';
@@ -40,7 +40,7 @@ export const $TeamTotalText = styled.div`
   width: 65%;
   margin: 15px 0 15px 5px;
   font-weight: ${FONT_WEIGHT_BOLD};
-  color: ${FONT_COLOR_BLACK};
+  color: ${COLOR_BLACK};
   text-align: right;
 `;
 
@@ -50,7 +50,7 @@ export const $TeamTotalAmount = styled.div`
   margin: 15px 0;
   padding-right: 10px;
   font-weight: ${FONT_WEIGHT_BOLD};
-  color: ${FONT_COLOR_BLACK};
+  color: ${COLOR_BLACK};
 `;
 
 export const $TeamBtnSection = styled.div`

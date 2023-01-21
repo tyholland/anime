@@ -1,10 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
-import { FONT_COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
+import { COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
 
 export const $GameplayStyles = createGlobalStyle`
   .Collapsible {
     padding: 2%;
-    border: 1px solid ${FONT_COLOR_BLACK};
+    border: 1px solid ${COLOR_BLACK};
     border-bottom: none;
 
     div[role="button"] {
@@ -15,6 +15,6 @@ export const $GameplayStyles = createGlobalStyle`
   }
 
   .Collapsible:last-child {
-    border-bottom: 1px solid ${FONT_COLOR_BLACK};
+    border-bottom: 1px solid ${COLOR_BLACK};
   }
 `;

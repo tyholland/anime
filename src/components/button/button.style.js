@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import {
-  FONT_COLOR_BLACK,
-  FONT_COLOR_ORANGE,
-  FONT_COLOR_RED,
-  FONT_COLOR_WHITE,
+  COLOR_BLACK,
+  COLOR_ORANGE,
+  COLOR_ORANGE_DISABLED,
+  COLOR_RED,
+  COLOR_WHITE,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
 } from 'Styles/global.style';
@@ -16,36 +17,36 @@ export const $Btn = styled.button`
 
   &:disabled {
     cursor: not-allowed;
-    background-color: rgba(249, 128, 17, 0.8) !important;
+    background-color: ${COLOR_ORANGE_DISABLED} !important;
   }
 
   &.primary {
-    background-color: ${FONT_COLOR_ORANGE};
+    background-color: ${COLOR_ORANGE};
 
     span {
-      color: ${FONT_COLOR_BLACK};
+      color: ${COLOR_BLACK};
     }
   }
 
   &.secondary {
-    background-color: ${FONT_COLOR_BLACK};
+    background-color: ${COLOR_BLACK};
 
     span {
-      color: ${FONT_COLOR_ORANGE};
+      color: ${COLOR_ORANGE};
     }
   }
 
   &.cancel {
-    background-color: ${FONT_COLOR_RED};
+    background-color: ${COLOR_RED};
 
     span {
-      color: ${FONT_COLOR_WHITE};
+      color: ${COLOR_WHITE};
     }
   }
 
   &.social {
-    background-color: ${FONT_COLOR_WHITE};
-    border-color: ${FONT_COLOR_BLACK};
+    background-color: ${COLOR_WHITE};
+    border-color: ${COLOR_BLACK};
   }
 
   &.small {
@@ -53,7 +54,7 @@ export const $Btn = styled.button`
     padding: 5px 15px;
     position: relative;
     margin: 2% 0 0 2%;
-    border-color: ${FONT_COLOR_WHITE};
+    border-color: ${COLOR_WHITE};
 
     span {
       font-size: 12px;
@@ -114,5 +115,5 @@ export const $BtnText = styled.span`
   text-align: center;
   font-size: 20px;
   font-weight: ${FONT_WEIGHT_BOLD};
-  color: ${FONT_COLOR_BLACK};
+  color: ${COLOR_BLACK};
 `;

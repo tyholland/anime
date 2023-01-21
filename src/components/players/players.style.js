@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import {
-  FONT_COLOR_BLACK,
-  FONT_COLOR_WHITE_TRANSPARENT,
+  COLOR_BLACK,
+  COLOR_WHITE_TRANSPARENT,
   FONT_WEIGHT_BOLD,
 } from 'Styles/global.style';
 
@@ -11,9 +11,9 @@ export const $PlayersStyles = createGlobalStyle`
     grid-template-columns: 250px 150px 150px 250px !important;
     width: auto;
     height: 100vh;
-    --rdg-background-color: ${FONT_COLOR_WHITE_TRANSPARENT};
+    --rdg-background-color: ${COLOR_WHITE_TRANSPARENT};
     --rdg-header-background-color: rgb(249,128,17);
-    --rdg-color: ${FONT_COLOR_BLACK};
+    --rdg-color: ${COLOR_BLACK};
     --rdg-row-hover-background-color: rgba(249,128,17,.6);
     --rdg-row-selected-background-color: none;
     --rdg-row-selected-hover-background-color: none;

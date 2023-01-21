@@ -1,10 +1,12 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
-export const FONT_COLOR_ORANGE = 'rgb(249, 128, 17)';
-export const FONT_COLOR_RED = '#cc0000';
-export const FONT_COLOR_WHITE = '#ffffff';
-export const FONT_COLOR_WHITE_TRANSPARENT = '#ffffff95';
-export const FONT_COLOR_BLACK = '#000000';
+export const COLOR_ORANGE = 'rgb(249, 128, 17)';
+export const COLOR_ORANGE_DISABLED = 'rgba(249, 128, 17, 0.8)';
+export const COLOR_ORANGE_LIGHT = 'rgba(249, 128, 17, 0.3)';
+export const COLOR_RED = '#cc0000';
+export const COLOR_WHITE = '#ffffff';
+export const COLOR_WHITE_TRANSPARENT = '#ffffff95';
+export const COLOR_BLACK = '#000000';
 export const FONT_WEIGHT_BOLD = '700';
 export const FONT_WEIGHT_NORMAL = '400';
 
@@ -215,7 +217,7 @@ export const $GlobalTitle = styled.div`
   position: relative;
 
   &.home {
-    background: ${FONT_COLOR_WHITE};
+    background: ${COLOR_WHITE};
     width: 400px;
     margin: 0 auto;
     padding: 2%;
@@ -238,13 +240,13 @@ export const $GlobalSubTitle = styled.div`
 `;
 
 export const $GlobalCircle = styled.div`
-  border: 1px solid ${FONT_COLOR_BLACK};
+  border: 1px solid ${COLOR_BLACK};
   width: 14px;
   height: 14px;
   border-radius: 10px;
 
   &.fire {
-    background-color: ${FONT_COLOR_RED};
+    background-color: ${COLOR_RED};
   }
 
   &.arcane {
@@ -252,7 +254,7 @@ export const $GlobalCircle = styled.div`
   }
 
   &.darkness {
-    background-color: ${FONT_COLOR_BLACK};
+    background-color: ${COLOR_BLACK};
     border: 1px solid #ccc;
   }
 
@@ -277,7 +279,7 @@ export const $GlobalCircle = styled.div`
   }
 
   &.celestrial {
-    background-color: ${FONT_COLOR_WHITE};
+    background-color: ${COLOR_WHITE};
   }
 
   &.noAffinity {

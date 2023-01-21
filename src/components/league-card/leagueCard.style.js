@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  FONT_COLOR_BLACK,
+  COLOR_BLACK,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
 } from 'Styles/global.style';
@@ -8,7 +8,7 @@ import {
 export const $LeagueCardWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid ${FONT_COLOR_BLACK};
+  border-bottom: 2px solid ${COLOR_BLACK};
   padding: 3% 0;
   align-items: center;
   width: 80%;

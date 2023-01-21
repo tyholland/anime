@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_COLOR_WHITE } from 'Styles/global.style';
+import { COLOR_WHITE } from 'Styles/global.style';
 
 export const $ErrorContent = styled.div`
   position: relative;
@@ -9,7 +9,7 @@ export const $ErrorContent = styled.div`
   justify-content: center;
   width: 300px;
   font-size: 25px;
-  background-color: ${FONT_COLOR_WHITE};
+  background-color: ${COLOR_WHITE};
   border-radius: 10px;
   padding: 3%;
   top: 20%;

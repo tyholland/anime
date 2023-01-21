@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {
-  FONT_COLOR_BLACK,
-  FONT_COLOR_WHITE_TRANSPARENT,
+  COLOR_BLACK,
+  COLOR_WHITE_TRANSPARENT,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
 } from 'Styles/global.style';
@@ -32,11 +32,11 @@ export const $SelectionCardText = styled.span`
   text-align: center;
   font-size: 30px;
   font-weight: ${FONT_WEIGHT_BOLD};
-  background: ${FONT_COLOR_WHITE_TRANSPARENT};
+  background: ${COLOR_WHITE_TRANSPARENT};
   padding: 3% 4%;
   border-radius: 15px;
   width: min-content;
-  color: ${FONT_COLOR_BLACK};
+  color: ${COLOR_BLACK};
 
   ${MOBILE_VIEW} {
     font-size: calc(100% + 8px);

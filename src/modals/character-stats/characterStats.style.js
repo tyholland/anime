@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
+import { COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
 
 export const $CharacterStatsBtnWrapper = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ export const $CharacterStatsScoring = styled.div`
   margin-bottom: 20px;
 
   &.total {
-    border-top: 1px solid ${FONT_COLOR_BLACK};
+    border-top: 1px solid ${COLOR_BLACK};
     padding-top: 20px;
   }
 `;

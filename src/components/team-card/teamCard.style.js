@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import {
-  FONT_COLOR_BLACK,
-  FONT_COLOR_ORANGE,
+  COLOR_BLACK,
+  COLOR_ORANGE,
+  COLOR_ORANGE_LIGHT,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
 } from 'Styles/global.style';
@@ -10,10 +11,10 @@ export const $TeamCardSection = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 1px solid ${FONT_COLOR_BLACK};
+  border-bottom: 1px solid ${COLOR_BLACK};
 
   &.header {
-    background-color: rgba(249, 128, 17, 0.3);
+    background-color: ${COLOR_ORANGE_LIGHT};
     border-bottom: none;
     margin-top: 20px;
   }
@@ -23,7 +24,7 @@ export const $TeamCardPosition = styled.div`
   width: 5%;
   padding: 18px 0;
   font-weight: ${FONT_WEIGHT_BOLD};
-  color: ${FONT_COLOR_ORANGE};
+  color: ${COLOR_ORANGE};
   text-align: center;
   font-size: 10px;
   background-color: rgba(0, 0, 0, 0.8);
@@ -79,7 +80,7 @@ export const $TeamCardCharacterWrapper = styled.div`
 `;
 
 export const $TeamCardCharacterHeader = styled.div`
-  color: ${FONT_COLOR_BLACK};
+  color: ${COLOR_BLACK};
   text-align: left;
   width: 30%;
   margin: 15px 0 15px 7px;
@@ -91,7 +92,7 @@ export const $TeamCardCharacterHeader = styled.div`
 `;
 
 export const $TeamCardCharacter = styled.button`
-  color: ${FONT_COLOR_BLACK};
+  color: ${COLOR_BLACK};
   background: transparent;
   border: none;
   text-align: left;
@@ -121,7 +122,7 @@ export const $TeamCardAffinity = styled.div`
   width: 30%;
   margin: 15px 0;
   font-weight: ${FONT_WEIGHT_BOLD};
-  color: ${FONT_COLOR_BLACK};
+  color: ${COLOR_BLACK};
   display: flex;
   align-items: center;
 
@@ -144,5 +145,5 @@ export const $TeamCardPower = styled.div`
   margin: 15px 0;
   padding-right: 10px;
   font-weight: ${FONT_WEIGHT_BOLD};
-  color: ${FONT_COLOR_BLACK};
+  color: ${COLOR_BLACK};
 `;

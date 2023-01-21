@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {
-  FONT_COLOR_BLACK,
-  FONT_COLOR_ORANGE,
+  COLOR_BLACK,
+  COLOR_ORANGE,
   FONT_WEIGHT_BOLD,
 } from 'Styles/global.style';
 
@@ -10,12 +10,12 @@ export const $HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: ${FONT_COLOR_ORANGE};
+  background-color: ${COLOR_ORANGE};
 `;
 
 export const $HeaderTitle = styled.div`
   font-size: 20px;
-  color: ${FONT_COLOR_BLACK};
+  color: ${COLOR_BLACK};
   font-weight: ${FONT_WEIGHT_BOLD};
   text-align: center;
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
+import { COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
 
 export const $TeamEditWrapper = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ export const $TeamEditWrapper = styled.div`
       padding: 2% 0;
       display: flex;
       align-items: center;
-      border-bottom: 1px solid ${FONT_COLOR_BLACK};
+      border-bottom: 1px solid ${COLOR_BLACK};
       width: 100%;
     }
   }
