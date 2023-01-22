@@ -50,3 +50,13 @@ export const updateAccount = async (payload, token) => {
 
   return await axiosClient(data);
 };
+
+export const deleteAccount = async (token) => {
+  const data = {
+    url: `${api}/users`,
+    method: 'delete',
+    token,
+  };
+
+  return await axiosClient(data);
+};

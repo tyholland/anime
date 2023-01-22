@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import { $GameplayStyles } from 'PageComponents/gameplay/gameplay.style';
-import Schedule from 'Components/gameplay-card/schedule';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
 import { useAppContext } from 'src/hooks/context';
@@ -10,8 +9,14 @@ import { useRouter } from 'next/router';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 import TextField from 'Components/text-field';
-import { updateAccount } from 'src/requests/users';
-import { getCookie } from 'Utils/index';
+import { deleteAccount, updateAccount } from 'src/requests/users';
+import { getCookie, responseError } from 'Utils/index';
+import {
+  $AccountWrapper,
+  $AccountSectionRight,
+  $AccountSectionLabel,
+} from './account.style';
+import { addEvent } from 'Utils/amplitude';
 
 const Account = ({ account }) => {
   const { deleteCurrentUser, currentUser, updateCurrentUser } = useAppContext();
@@ -20,12 +25,18 @@ const Account = ({ account }) => {
   const [errorPage, setErrorPage] = useState(false);
   const [updatedUsername, setUpdatedUsername] = useState(username);
   const [edit, setEdit] = useState(!username);
+  const [pwd, setPwd] = useState(null);
+  const [confirmPwd, setConfirmPwd] = useState(null);
   const router = useRouter();
 
   const handleLogout = async () => {
-    setIsLoading(true);
-    await deleteCurrentUser();
-    router.push('/');
+    try {
+      setIsLoading(true);
+      await deleteCurrentUser();
+      router.push('/');
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to logout'));
+    }
   };
 
   const handleUsernameChange = async () => {
@@ -33,9 +44,31 @@ const Account = ({ account }) => {
       userName: updatedUsername,
     };
 
-    await updateAccount(userDetails, getCookie('token'));
+    try {
+      await updateAccount(userDetails, getCookie('token'));
+      updateCurrentUser(userDetails);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to change username'));
+    }
+  };
 
-    updateCurrentUser(userDetails);
+  const handleDeleteAccount = async () => {
+    try {
+      await deleteAccount(getCookie('token'));
+      handleLogout();
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to delete account'));
+    }
+  };
+
+  const handlePasswordChange = async () => {
+    const isCorrectPwds = pwd === confirmPwd;
+
+    if (isCorrectPwds) {
+      return;
+    }
+
+    // Submit firebase function to update password
   };
 
   useEffect(() => {
@@ -60,52 +93,78 @@ const Account = ({ account }) => {
       <$GlobalContainer>
         <$GlobalTitle>Account</$GlobalTitle>
         <Collapsible trigger="Profile" triggerTagName="div">
-          <div>
-            {edit && (
-              <TextField
-                placeholder="Enter Username"
-                onChange={setUpdatedUsername}
-              />
-            )}
-            {!edit && (
-              <TextField isDisabled={true} inputVal={updatedUsername} />
-            )}
+          <$AccountWrapper>
             <div>
-              <Button
-                btnText={edit ? 'Save' : 'Edit'}
-                btnColor="primary"
-                btnFunction={() => {
-                  if (edit) {
-                    handleUsernameChange();
-                  }
-                  setEdit(!edit);
-                }}
-                customBtnClass="small"
-              />
+              <$AccountSectionLabel>Username:</$AccountSectionLabel>
               {edit && (
-                <Button
-                  btnText="Cancel"
-                  btnColor="cancel"
-                  btnFunction={() => setEdit(false)}
-                  customBtnClass="small"
+                <TextField
+                  placeholder="Enter Username"
+                  onChange={setUpdatedUsername}
                 />
               )}
+              {!edit && (
+                <TextField isDisabled={true} inputVal={updatedUsername} />
+              )}
+              <div>
+                <Button
+                  btnText={edit ? 'Save' : 'Edit'}
+                  btnColor="primary"
+                  btnFunction={() => {
+                    if (edit) {
+                      handleUsernameChange();
+                    }
+                    setEdit(!edit);
+                  }}
+                  customBtnClass="medium"
+                />
+                {edit && (
+                  <Button
+                    btnText="Cancel"
+                    btnColor="cancel"
+                    btnFunction={() => setEdit(false)}
+                    customBtnClass="medium"
+                  />
+                )}
+              </div>
             </div>
-          </div>
-          <TextField isDisabled={true} inputVal={email} />
-          <div>Delete Account</div>
+            <$AccountSectionRight>
+              <$AccountSectionLabel>Email:</$AccountSectionLabel>
+              <TextField isDisabled={true} inputVal={email} />
+              <Button
+                btnText="Delete Account"
+                customBtnClass="text"
+                btnFunction={handleDeleteAccount}
+              />
+            </$AccountSectionRight>
+          </$AccountWrapper>
         </Collapsible>
         <Collapsible trigger="Change Password" triggerTagName="div">
-          <Schedule />
+          <$AccountWrapper className="column">
+            <div>
+              <TextField placeholder="Enter Password" onChange={setPwd} />
+              <TextField
+                placeholder="Confirm Password"
+                onChange={setConfirmPwd}
+              />
+            </div>
+            <Button
+              btnText="Submit"
+              btnColor="primary"
+              customBtnClass="medium"
+              btnFunction={handlePasswordChange}
+            />
+          </$AccountWrapper>
         </Collapsible>
         <Collapsible trigger="Log Out" triggerTagName="div">
-          Are you sure you want to logout?
-          <Button
-            btnText="Yes"
-            btnColor="primary"
-            customBtnClass="small"
-            btnFunction={handleLogout}
-          />
+          <$AccountWrapper className="column">
+            <div>Are you sure you want to logout?</div>
+            <Button
+              btnText="Yes"
+              btnColor="primary"
+              customBtnClass="medium"
+              btnFunction={handleLogout}
+            />
+          </$AccountWrapper>
         </Collapsible>
       </$GlobalContainer>
     </>

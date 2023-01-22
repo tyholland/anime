@@ -1,5 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import { accountLogout } from 'src/requests/users';
+import { addEvent } from 'Utils/amplitude';
+import { responseError } from 'Utils/index';
 
 const AppContext = createContext();
 
@@ -44,9 +46,13 @@ export const AppWrapper = ({ children }) => {
   };
 
   const deleteCurrentUser = async () => {
-    window.localStorage.removeItem('abz.user');
-    setCurrentUser(null);
-    await accountLogout();
+    try {
+      await accountLogout();
+      window.localStorage.removeItem('abz.user');
+      setCurrentUser(null);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to delete current user'));
+    }
   };
 
   const sharedState = {
