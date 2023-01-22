@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {
   FONT_WEIGHT_BOLD,
   FONT_WEIGHT_NORMAL,
-  RESPONSIVE_VIEW,
+  MOBILE_VIEW,
 } from 'Styles/global.style';
 
 export const $BioAffinity = styled.div`
@@ -70,7 +70,7 @@ export const $BioWrapper = styled.div`
   width: 70%;
   margin: 0 auto;
 
-  ${RESPONSIVE_VIEW} {
+  ${MOBILE_VIEW} {
     flex-direction: column;
     width: 100%;
   }
@@ -79,7 +79,7 @@ export const $BioWrapper = styled.div`
     width: 40%;
     margin: 0 5%;
 
-    ${RESPONSIVE_VIEW} {
+    ${MOBILE_VIEW} {
       width: 90%;
     }
   }

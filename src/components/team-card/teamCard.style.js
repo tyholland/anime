@@ -4,7 +4,7 @@ import {
   COLOR_ORANGE,
   COLOR_ORANGE_LIGHT,
   FONT_WEIGHT_BOLD,
-  RESPONSIVE_VIEW,
+  MOBILE_VIEW,
 } from 'Styles/global.style';
 
 export const $TeamCardSection = styled.div`
@@ -68,7 +68,7 @@ export const $TeamCardCharacterWrapper = styled.div`
   width: 30%;
   margin: 15px 0 15px 5px;
 
-  ${RESPONSIVE_VIEW} {
+  ${MOBILE_VIEW} {
     width: 60%;
   }
 
@@ -86,7 +86,7 @@ export const $TeamCardCharacterHeader = styled.div`
   margin: 15px 0 15px 7px;
   font-weight: ${FONT_WEIGHT_BOLD};
 
-  ${RESPONSIVE_VIEW} {
+  ${MOBILE_VIEW} {
     width: 68%;
   }
 `;
@@ -106,7 +106,7 @@ export const $TeamCardCharacter = styled.button`
 export const $TeamCardCharacterTxt = styled.div`
   color: rgb(27, 5, 246);
 
-  ${RESPONSIVE_VIEW} {
+  ${MOBILE_VIEW} {
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100px;
@@ -126,14 +126,14 @@ export const $TeamCardAffinity = styled.div`
   display: flex;
   align-items: center;
 
-  ${RESPONSIVE_VIEW} {
+  ${MOBILE_VIEW} {
     display: none;
   }
 
   &.duo {
     display: block;
 
-    ${RESPONSIVE_VIEW} {
+    ${MOBILE_VIEW} {
       display: none;
     }
   }

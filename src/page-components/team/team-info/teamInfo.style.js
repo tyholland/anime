@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {
   COLOR_BLACK,
   FONT_WEIGHT_BOLD,
-  RESPONSIVE_VIEW,
+  MOBILE_VIEW,
 } from 'Styles/global.style';
 
 export const $TeamInfoContent = styled.div`
@@ -40,7 +40,7 @@ export const $TeamInfoWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
 
-  ${RESPONSIVE_VIEW} {
+  ${MOBILE_VIEW} {
     flex-direction: column;
 
     > div {

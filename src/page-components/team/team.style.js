@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {
   COLOR_BLACK,
   FONT_WEIGHT_BOLD,
-  RESPONSIVE_VIEW,
+  MOBILE_VIEW,
 } from 'Styles/global.style';
 
 export const $TeamTotal = styled.div`
@@ -56,7 +56,7 @@ export const $TeamTotalAmount = styled.div`
 export const $TeamBtnSection = styled.div`
   display: flex;
 
-  ${RESPONSIVE_VIEW} {
+  ${MOBILE_VIEW} {
     flex-direction: column;
   }
 

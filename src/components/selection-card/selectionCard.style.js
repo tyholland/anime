@@ -3,6 +3,7 @@ import {
   COLOR_BLACK,
   COLOR_WHITE_TRANSPARENT,
   FONT_WEIGHT_BOLD,
+  MOBILE_VIEW,
   RESPONSIVE_VIEW,
 } from 'Styles/global.style';
 
@@ -23,6 +24,11 @@ export const $SelectionCardBlock = styled.button`
   position: relative;
 
   ${RESPONSIVE_VIEW} {
+    width: 215px;
+    height: 215px;
+  }
+
+  ${MOBILE_VIEW} {
     width: 150px;
     height: 150px;
   }
@@ -39,6 +45,10 @@ export const $SelectionCardText = styled.span`
   color: ${COLOR_BLACK};
 
   ${RESPONSIVE_VIEW} {
+    font-size: calc(100% + 16px);
+  }
+
+  ${MOBILE_VIEW} {
     font-size: calc(100% + 8px);
   }
 `;

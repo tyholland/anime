@@ -6,6 +6,7 @@ import {
   COLOR_RED,
   COLOR_WHITE,
   FONT_WEIGHT_BOLD,
+  MOBILE_VIEW,
   RESPONSIVE_VIEW,
 } from 'Styles/global.style';
 
@@ -80,6 +81,10 @@ export const $Btn = styled.button`
     width: 150px;
 
     ${RESPONSIVE_VIEW} {
+      width: 130px;
+    }
+
+    ${MOBILE_VIEW} {
       width: 90px;
     }
 
