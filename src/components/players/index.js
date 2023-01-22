@@ -36,6 +36,20 @@ const Players = ({
       name: 'Anime Series',
     },
   ];
+  const mobileColumns = [
+    {
+      key: 'fullName',
+      name: 'Name',
+    },
+    {
+      key: 'rank',
+      name: 'Rank',
+    },
+    {
+      key: 'power',
+      name: 'Power Level',
+    },
+  ];
 
   const getCharacters = async () => {
     const playerArr = [];
@@ -153,7 +167,7 @@ const Players = ({
       <$PlayersStyles />
       {!changeRoster && (
         <$PlayersFilter>
-          <div>
+          <div className="rankFilter">
             <label>Filter by rank</label>
             <select
               onChange={(val) => handleRankFilter(val)}
@@ -169,7 +183,7 @@ const Players = ({
               })}
             </select>
           </div>
-          <div>
+          <div className="seriesFilter">
             <label>Filter by series</label>
             <select
               onChange={(val) => handleSeriesFilter(val)}
@@ -187,12 +201,22 @@ const Players = ({
           </div>
         </$PlayersFilter>
       )}
-      <DataGrid
-        columns={columns}
-        rows={rows}
-        className={changeRoster ? 'fillModal' : 'fillGrid'}
-        onRowClick={(val) => handleRowClick(val)}
-      />
+      <div className="desktopGrid">
+        <DataGrid
+          columns={columns}
+          rows={rows}
+          className={changeRoster ? 'fillModal' : 'fillGrid'}
+          onRowClick={(val) => handleRowClick(val)}
+        />
+      </div>
+      <div className="mobileGrid">
+        <DataGrid
+          columns={mobileColumns}
+          rows={rows}
+          className={changeRoster ? 'fillModal' : 'fillGrid'}
+          onRowClick={(val) => handleRowClick(val)}
+        />
+      </div>
     </>
   );
 };

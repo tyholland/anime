@@ -3,7 +3,7 @@ import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import BackLink from 'Components/back-link';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
-import { $JoinLeagueWrapper } from './join.style';
+import { $JoinLeagueWrapper, $JoinLeagueImg } from './join.style';
 import Metadata from 'Components/metadata';
 import { joinLeague } from 'src/requests/league';
 import { addEvent } from 'Utils/amplitude';
@@ -31,19 +31,22 @@ const JoinLeague = () => {
         description="Join an ABZ League and see if you can create the ultimate team and win the league"
       />
       <BackLink />
-      <$GlobalContainer className="join">
+      <$GlobalContainer>
         <$GlobalTitle>Join League</$GlobalTitle>
         <$JoinLeagueWrapper>
-          <TextField
-            placeholder="Enter your league code"
-            onChange={setLeagueId}
-          />
-          <Button
-            btnText="Enter League"
-            btnColor="primary"
-            customBtnClass="medium"
-            btnFunction={handleJoinLeague}
-          />
+          <div>
+            <TextField
+              placeholder="Enter your league code"
+              onChange={setLeagueId}
+            />
+            <Button
+              btnText="Enter League"
+              btnColor="primary"
+              customBtnClass="medium"
+              btnFunction={handleJoinLeague}
+            />
+          </div>
+          <$JoinLeagueImg src="/assets/background/vegito.png" alt="Vegito" />
         </$JoinLeagueWrapper>
       </$GlobalContainer>
     </>

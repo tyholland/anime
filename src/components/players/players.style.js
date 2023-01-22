@@ -3,6 +3,7 @@ import {
   COLOR_BLACK,
   COLOR_WHITE_TRANSPARENT,
   FONT_WEIGHT_BOLD,
+  MOBILE_VIEW,
 } from 'Styles/global.style';
 
 export const $PlayersStyles = createGlobalStyle`
@@ -31,6 +32,25 @@ export const $PlayersStyles = createGlobalStyle`
   .fillGrid > div:hover {
     font-weight: ${FONT_WEIGHT_BOLD};
   }
+
+  .mobileGrid {
+    display: none;
+  }
+
+  ${MOBILE_VIEW} {
+    .desktopGrid {
+      display: none;
+    }
+
+    .mobileGrid {
+      display: block;
+    }
+
+    .fillGrid,
+    .fillModal {
+      grid-template-columns: 180px 80px 80px 0px !important;
+    }
+  }
 `;
 
 export const $PlayersFilter = styled.div`
@@ -53,7 +73,16 @@ export const $PlayersFilter = styled.div`
     font-weight: ${FONT_WEIGHT_BOLD};
   }
 
-  div {
+  .rankFilter,
+  .seriesFilter {
     width: 40%;
+  }
+
+  ${MOBILE_VIEW} {
+    width: 100%;
+
+    .seriesFilter {
+      display: none;
+    }
   }
 `;

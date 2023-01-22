@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLOR_BLACK } from 'Styles/global.style';
+import { COLOR_BLACK, MOBILE_VIEW } from 'Styles/global.style';
 
 export const $MatchupColumn = styled.div`
   width: 46%;
@@ -38,17 +38,37 @@ export const $MatchupCharacterBtn = styled.button`
   display: flex;
   justify-content: start;
 
-  &.reverse {
-    justify-content: end;
-    margin: 5px 10% 0 0;
-  }
-
   span {
     color: rgb(27, 5, 246);
 
     &:hover {
       text-decoration: underline;
     }
+
+    ${MOBILE_VIEW} {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 83px;
+      text-align: left;
+    }
+  }
+
+  &.reverse {
+    justify-content: end;
+    margin: 5px 10% 0 0;
+
+    span {
+      text-align: right;
+    }
+
+    ${MOBILE_VIEW} {
+      margin: 0;
+    }
+  }
+
+  ${MOBILE_VIEW} {
+    margin: 0;
   }
 `;
 
@@ -67,6 +87,10 @@ export const $MatchupAffinity = styled.div`
       margin-right: 0;
       margin-left: 5px;
     }
+  }
+
+  ${MOBILE_VIEW} {
+    display: none;
   }
 `;
 

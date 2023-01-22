@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_WEIGHT_BOLD } from 'Styles/global.style';
+import { FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
 
 export const $VoteMatchupCharacter = styled.div`
   font-size: 30px;
@@ -23,6 +23,10 @@ export const $VoteMatchupWrapper = styled.div`
   align-items: center;
   justify-content: space-evenly;
   margin-top: 3%;
+
+  ${MOBILE_VIEW} {
+    flex-direction: column;
+  }
 `;
 
 export const $VoteMatchupSection = styled.div`

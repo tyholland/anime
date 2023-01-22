@@ -19,7 +19,7 @@ const MobileHeader = ({ acct, acctLink }) => {
   };
 
   const handleBtnClick = (url) => {
-    setIsMenuOpen(false);
+    handleCloseMenu();
     router.push(url);
   };
 

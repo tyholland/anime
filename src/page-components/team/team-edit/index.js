@@ -9,6 +9,8 @@ import {
   $TeamEditWrapper,
   $TeamEditBtn,
   $TeamEditError,
+  $TeamEditGrid,
+  $TeamEditSection,
 } from './teamEdit.style';
 import BackLink from 'Components/back-link';
 import ChangeCharacters from 'src/modals/change-character';
@@ -166,27 +168,53 @@ const TeamEdit = ({ players, teamData, teamId }) => {
         </$GlobalSubTitle>
         {!!errorMsg && <$TeamEditError>{errorMsg}</$TeamEditError>}
         <$TeamEditWrapper>
-          <div className="position">
-            <div>Captain</div>
-            <div>Brawler</div>
-            <div>Brawler</div>
-            <div>Duo - Brawler</div>
-            <div>Duo - Support</div>
-            <div>Support</div>
-            <div>Villain</div>
-            <div>Battlefield</div>
-          </div>
-          <div>
-            <div>{playerList.captain.name}</div>
-            <div>{playerList.brawlerA.name}</div>
-            <div>{playerList.brawlerB.name}</div>
-            <div>{playerList.bsBrawler.name}</div>
-            <div>{playerList.bsSupport.name}</div>
-            <div>{playerList.support.name}</div>
-            <div>{playerList.villain.name}</div>
-            <div>{playerList.battlefield.name}</div>
-          </div>
-          <div>
+          <$TeamEditGrid className="desktop">
+            <$TeamEditSection>Captain</$TeamEditSection>
+            <$TeamEditSection>Brawler</$TeamEditSection>
+            <$TeamEditSection>Brawler</$TeamEditSection>
+            <$TeamEditSection>Duo - Brawler</$TeamEditSection>
+            <$TeamEditSection>Duo - Support</$TeamEditSection>
+            <$TeamEditSection>Support</$TeamEditSection>
+            <$TeamEditSection>Villain</$TeamEditSection>
+            <$TeamEditSection>Battlefield</$TeamEditSection>
+          </$TeamEditGrid>
+          <$TeamEditGrid className="mobile">
+            <$TeamEditSection>C</$TeamEditSection>
+            <$TeamEditSection>B</$TeamEditSection>
+            <$TeamEditSection>B</$TeamEditSection>
+            <$TeamEditSection>Duo - B</$TeamEditSection>
+            <$TeamEditSection>Duo - S</$TeamEditSection>
+            <$TeamEditSection>S</$TeamEditSection>
+            <$TeamEditSection>V</$TeamEditSection>
+            <$TeamEditSection>BF</$TeamEditSection>
+          </$TeamEditGrid>
+          <$TeamEditGrid>
+            <$TeamEditSection>
+              <div>{playerList.captain.name}</div>
+            </$TeamEditSection>
+            <$TeamEditSection>
+              <div>{playerList.brawlerA.name}</div>
+            </$TeamEditSection>
+            <$TeamEditSection>
+              <div>{playerList.brawlerB.name}</div>
+            </$TeamEditSection>
+            <$TeamEditSection>
+              <div>{playerList.bsBrawler.name}</div>
+            </$TeamEditSection>
+            <$TeamEditSection>
+              <div>{playerList.bsSupport.name}</div>
+            </$TeamEditSection>
+            <$TeamEditSection>
+              <div>{playerList.support.name}</div>
+            </$TeamEditSection>
+            <$TeamEditSection>
+              <div>{playerList.villain.name}</div>
+            </$TeamEditSection>
+            <$TeamEditSection>
+              <div>{playerList.battlefield.name}</div>
+            </$TeamEditSection>
+          </$TeamEditGrid>
+          <$TeamEditGrid>
             <$TeamEditBtn>{handleBtn('Captain', 'captain')}</$TeamEditBtn>
             <$TeamEditBtn>{handleBtn('Brawler', 'brawlerA')}</$TeamEditBtn>
             <$TeamEditBtn>{handleBtn('Brawler', 'brawlerB')}</$TeamEditBtn>
@@ -197,7 +225,7 @@ const TeamEdit = ({ players, teamData, teamId }) => {
             <$TeamEditBtn>
               {handleBtn('Battlefield', 'battlefield')}
             </$TeamEditBtn>
-          </div>
+          </$TeamEditGrid>
         </$TeamEditWrapper>
         <ChangeCharacters
           players={playerRank}

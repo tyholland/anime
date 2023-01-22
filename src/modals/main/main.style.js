@@ -9,5 +9,9 @@ export const $MainGlobalStyles = createGlobalStyle`
       padding: 5% !important;
       border-radius: 0 !important;
     }
+
+    .ReactModal__Overlay {
+      z-index: 2;
+    }
   }
 `;

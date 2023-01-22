@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { FONT_WEIGHT_BOLD } from 'Styles/global.style';
+import { FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
 
 export const $CreditsGlobalStyles = createGlobalStyle`
   ul {
@@ -13,6 +13,10 @@ export const $CreditsGlobalStyles = createGlobalStyle`
       a {
         cursor: pointer;
       }
+    }
+
+    ${MOBILE_VIEW} {
+      padding: 0;
     }
   }
 `;

@@ -48,6 +48,10 @@ export const $GlobalWrapper = styled.div`
       bottom: 0px;
       left: 0px;
       filter: grayscale(100%);
+
+      ${RESPONSIVE_VIEW} {
+        min-height: calc(100vh - 69px);
+      }
     }
   }
 `;
@@ -200,13 +204,10 @@ export const $GlobalContainer = styled.div`
       bottom: 0px;
       left: 0px;
     }
-  }
 
-  &.join {
-    background-image: url(/assets/background/vegito.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: bottom right;
+    ${MOBILE_VIEW} {
+      padding: 0;
+    }
   }
 `;
 
