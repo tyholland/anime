@@ -31,3 +31,12 @@ export const createMatchupVotes = async (matchupId, payload, token) => {
 
   return await axiosClient(data);
 };
+
+export const getMatchupVotes = async (voteId) => {
+  const data = {
+    url: `${api}/matchup/votes/${voteId}`,
+    method: 'get',
+  };
+
+  return await axiosClient(data);
+};

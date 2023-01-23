@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLOR_BLACK, MOBILE_VIEW } from 'Styles/global.style';
+import { COLOR_BLACK, MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
 
 export const $MatchupColumn = styled.div`
   width: 46%;
@@ -45,7 +45,7 @@ export const $MatchupCharacterBtn = styled.button`
       text-decoration: underline;
     }
 
-    ${MOBILE_VIEW} {
+    ${RESPONSIVE_VIEW} {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;

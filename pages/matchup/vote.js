@@ -1,3 +1,3 @@
-import VoteMatchup from 'PageComponents/vote-matchup';
+import AllVoteMatchups from 'PageComponents/all-vote-matchups';
 
-export default VoteMatchup;
+export default AllVoteMatchups;
