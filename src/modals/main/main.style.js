@@ -1,7 +1,14 @@
 import { createGlobalStyle } from 'styled-components';
-import { MOBILE_VIEW } from 'Styles/global.style';
+import { MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
 
 export const $MainGlobalStyles = createGlobalStyle`
+  ${RESPONSIVE_VIEW} {
+    .ReactModal__Content {
+      width: 85% !important;
+      height: auto !important;
+    }
+  }
+
   ${MOBILE_VIEW} {
     .ReactModal__Content {
       width: 90% !important;

@@ -3,6 +3,7 @@ import {
   COLOR_BLACK,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
+  RESPONSIVE_VIEW,
 } from 'Styles/global.style';
 
 export const $LeagueCardWrapper = styled.div`
@@ -38,6 +39,10 @@ export const $LeagueCardSection = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     width: 50%;
+
+    ${RESPONSIVE_VIEW} {
+      width: 55%;
+    }
 
     ${MOBILE_VIEW} {
       width: 100%;

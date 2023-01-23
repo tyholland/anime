@@ -8,38 +8,53 @@ import {
   $CharacterStatsLabel,
 } from './characterStats.style';
 import MainModal from '../main';
+import { createMatchupVotes } from 'src/requests/matchup';
+import { useRouter } from 'next/router';
+import { getCookie, responseError } from 'Utils/index';
+import { addEvent } from 'Utils/amplitude';
 
 const CharacterStats = ({ isModalOpen, setIsModalOpen, character }) => {
-  const shareEvent = async () => {
-    alert('This is a test');
-  };
-
+  const router = useRouter();
   const customStyles = {
     content: {
-      position: 'relative',
-      maxWidth: '500px',
-      maxHeight: '600px',
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      width: 500,
+      height: 600,
       borderRadius: 15,
     },
-    overlay: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
   };
 
   if (!character) {
     return;
   }
 
-  const { name, matchPoints, damage, boost, originalPower, teamPoints } =
+  const { name, matchPoints, damage, boost, originalPower, teamPoints, rank } =
     character;
   const boostTotal = teamPoints - originalPower;
   const damageTotal = teamPoints - matchPoints;
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleVotes = async () => {
+    const { query } = router;
+    const payload = {
+      rank,
+    };
+
+    try {
+      await createMatchupVotes(query?.matchup_id, payload, getCookie('token'));
+      closeModal();
+    } catch (err) {
+      addEvent('Error', responseError('Failed to create matchup voting'));
+    }
+  };
 
   return (
     <MainModal
@@ -129,7 +144,7 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen, character }) => {
           btnText="Get Votes"
           btnColor="primary"
           customBtnClass="medium"
-          btnFunction={shareEvent}
+          btnFunction={handleVotes}
         />
         <Button
           btnText="Close"

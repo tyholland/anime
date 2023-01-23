@@ -205,7 +205,7 @@ export const $GlobalContainer = styled.div`
       left: 0px;
     }
 
-    ${MOBILE_VIEW} {
+    ${RESPONSIVE_VIEW} {
       padding: 0;
     }
   }

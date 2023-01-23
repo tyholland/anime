@@ -20,3 +20,14 @@ export const getMatchUpFromTeamId = async (teamId, token) => {
 
   return await axiosClient(data);
 };
+
+export const createMatchupVotes = async (matchupId, payload, token) => {
+  const data = {
+    url: `${api}/matchup/vote/${matchupId}`,
+    method: 'post',
+    body: payload,
+    token,
+  };
+
+  return await axiosClient(data);
+};
