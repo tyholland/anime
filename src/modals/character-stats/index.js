@@ -49,8 +49,12 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen, character }) => {
     };
 
     try {
-      await createMatchupVotes(query?.matchup_id, payload, getCookie('token'));
-      closeModal();
+      const newMatchup = await createMatchupVotes(
+        query?.matchup_id,
+        payload,
+        getCookie('token')
+      );
+      router.push(`/matchup/vote/${newMatchup.matchupVoteId}`);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to create matchup voting'));
     }
