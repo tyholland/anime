@@ -42,3 +42,23 @@ export const $MatchupVotingImage = styled.img`
   margin-bottom: 2%;
   filter: grayscale(100);
 `;
+
+export const $MatchupVotingShare = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+
+  .title {
+    font-size: 20px;
+    font-weight: ${FONT_WEIGHT_BOLD};
+    margin-bottom: 2%;
+  }
+
+  .btns {
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+  }
+`;

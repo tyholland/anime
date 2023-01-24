@@ -5,6 +5,7 @@ import MatchupVoting from 'Components/matchup-voting';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import { getPlayer } from 'src/requests/player';
+import Metadata from 'Components/metadata';
 
 const AllVoteMatchups = ({ playerOne, playerTwo, allMatchupVotes }) => {
   const totalMatchups = allMatchupVotes.length - 1;
@@ -39,6 +40,10 @@ const AllVoteMatchups = ({ playerOne, playerTwo, allMatchupVotes }) => {
   return (
     <>
       <BackLink />
+      <Metadata
+        title={'All Matchup Voting'}
+        description={'Vote on various matchups between characters in every rank. Your vote can help give the individual fighter that extra boost they need to win their matchup.'}
+      />
       <$GlobalContainer>
         <MatchupVoting
           changeMatchup={getVotingMatchup}
