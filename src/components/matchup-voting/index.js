@@ -9,7 +9,7 @@ import {
 } from './matchupVoting.style.js';
 import Button from 'Components/button';
 
-const MatchupVoting = ({ playerA, playerB, matchup }) => {
+const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
   const { player_a_count, player_b_count, leagueName } = matchup;
 
   return (
@@ -46,6 +46,16 @@ const MatchupVoting = ({ playerA, playerB, matchup }) => {
           <div>Total Votes: {player_b_count}</div>
         </$MatchupVotingSection>
       </$MatchupVotingWrapper>
+      {!!changeMatchup && (
+        <$MatchupVotingWrapper>
+          <Button
+            btnText="Next Matchup"
+            btnColor="secondary"
+            customBtnClass="medium"
+            btnFunction={changeMatchup}
+          />
+        </$MatchupVotingWrapper>
+      )}
     </>
   );
 };
