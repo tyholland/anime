@@ -17,7 +17,7 @@ const TextField = ({
         placeholder={placeholder}
         keyboardType={keyboard || 'default'}
         autoCapitalize="none"
-        textContentType={isPassword ? type : 'none'}
+        type={isPassword ? type : 'none'}
         secureTextEntry={isPassword}
         onChange={(input) => onChange(input.target.value)}
       />
@@ -41,8 +41,8 @@ const TextField = ({
       placeholder={placeholder}
       keyboardType={keyboard || 'default'}
       autoCapitalize="none"
-      textContentType={isPassword ? type : 'none'}
       secureTextEntry={isPassword}
+      type={isPassword ? type : 'none'}
     />
   );
 };

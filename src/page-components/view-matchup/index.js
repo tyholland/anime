@@ -14,7 +14,7 @@ import {
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 
-const ViewMatchup = ({ team1, team2 }) => {
+const ViewMatchup = ({ team1, team2, score1, score2 }) => {
   return (
     <>
       <BackLink />
@@ -26,11 +26,11 @@ const ViewMatchup = ({ team1, team2 }) => {
         <$ViewMatchupWrapper>
           <$ViewMatchupTeamContent>
             <$ViewMatchupTeamName>{team1.teamName}</$ViewMatchupTeamName>
-            <$ViewMatchupTeamTotal>{team1.team.points}</$ViewMatchupTeamTotal>
+            <$ViewMatchupTeamTotal>{score1}</$ViewMatchupTeamTotal>
           </$ViewMatchupTeamContent>
           <$ViewMatchupTeamContent>
             <$ViewMatchupTeamName>{team2.teamName}</$ViewMatchupTeamName>
-            <$ViewMatchupTeamTotal>{team2.team.points}</$ViewMatchupTeamTotal>
+            <$ViewMatchupTeamTotal>{score2}</$ViewMatchupTeamTotal>
           </$ViewMatchupTeamContent>
         </$ViewMatchupWrapper>
         <$ViewMatchupTeamSplit>
