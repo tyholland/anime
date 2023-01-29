@@ -70,6 +70,19 @@ export const $GlobalContainer = styled.div`
     justify-content: center;
   }
 
+  &.invalid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2%;
+
+    button {
+      margin-left: 0;
+    }
+  }
+
   &.home {
     position: relative;
     height: auto;

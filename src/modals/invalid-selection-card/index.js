@@ -3,7 +3,7 @@ import { $GlobalContainer } from 'Styles/global.style';
 import 'react-data-grid/lib/styles.css';
 import MainModal from '../main';
 import Button from 'Components/button';
-import { $InvalidSelectionCard } from './invalidSelectionCard.style';
+import { $InvalidSelectionCardMsg } from './invalidSelectionCard.style';
 
 const InvalidSelectionCard = ({ message, modalIsOpen, closeModal }) => {
   const customStyles = {
@@ -26,8 +26,8 @@ const InvalidSelectionCard = ({ message, modalIsOpen, closeModal }) => {
       closeModal={closeModal}
       styles={customStyles}
     >
-      <$GlobalContainer className="grid">
-        <$InvalidSelectionCard>{message}</$InvalidSelectionCard>
+      <$GlobalContainer className="invalid">
+        <$InvalidSelectionCardMsg>{message}</$InvalidSelectionCardMsg>
         <Button
           btnFunction={closeModal}
           btnText="Close"
