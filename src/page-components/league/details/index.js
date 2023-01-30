@@ -4,7 +4,7 @@ import SelectionCard from 'Components/selection-card/index.js';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 
-const LeagueDetails = ({ leagueData }) => {
+const LeagueDetails = ({ leagueId, leagueData }) => {
   const { teamId, matchupId } = leagueData;
 
   return (
@@ -24,8 +24,8 @@ const LeagueDetails = ({ leagueData }) => {
           />
           <SelectionCard
             btnText="Schedule"
-            redirect="/schedule"
-            isDisabled={true}
+            redirect={`/schedule/${leagueId}`}
+            isDisabled={!matchupId}
           />
           <SelectionCard
             btnText="Scoreboard"

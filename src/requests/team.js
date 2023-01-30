@@ -52,3 +52,13 @@ export const updateTeamName = async (memberId, payload, token) => {
 
   return await axiosClient(data);
 };
+
+export const getSchedule = async (leagueId, token) => {
+  const data = {
+    url: `${api}/team/schedule/${leagueId}`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};

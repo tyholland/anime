@@ -26,7 +26,7 @@ const InvalidSelectionCard = ({ message, modalIsOpen, closeModal }) => {
       closeModal={closeModal}
       styles={customStyles}
     >
-      <$GlobalContainer className="invalid">
+      <$GlobalContainer className="grid invalid">
         <$InvalidSelectionCardMsg>{message}</$InvalidSelectionCardMsg>
         <Button
           btnFunction={closeModal}

@@ -70,11 +70,12 @@ export const $GlobalContainer = styled.div`
     justify-content: center;
   }
 
+  &.schedule {
+    flex-direction: column;
+    align-items: center;
+  }
+
   &.invalid {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: center;
     flex-direction: column;
     padding: 2%;
 
