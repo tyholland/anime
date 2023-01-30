@@ -18,6 +18,16 @@ import Metadata from 'Components/metadata/index.js';
 const Team = ({ teamId, teamData }) => {
   const { teamName, team, memberId } = teamData;
 
+  const totalPoints =
+    team.captain.teamPoints +
+    team.brawler_a.teamPoints +
+    team.brawler_b.teamPoints +
+    team.bs_brawler.teamPoints +
+    team.bs_support.teamPoints +
+    team.support.teamPoints +
+    team.villain.teamPoints +
+    team.battlefield.teamPoints;
+
   return (
     <>
       <Metadata
@@ -50,7 +60,7 @@ const Team = ({ teamId, teamData }) => {
         <TeamCard data={team} />
         <$TeamTotal>
           <$TeamTotalText>Total</$TeamTotalText>
-          <$TeamTotalAmount>{team.points}</$TeamTotalAmount>
+          <$TeamTotalAmount>{totalPoints}</$TeamTotalAmount>
         </$TeamTotal>
       </$GlobalContainer>
     </>
