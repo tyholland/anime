@@ -115,6 +115,8 @@ export const $GlobalContainer = styled.div`
   }
 
   &.notFound {
+    height: 100vh;
+
     &::before {
       background-image: url(/assets/background/deku-allmight.jpg);
     }
