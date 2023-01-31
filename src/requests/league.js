@@ -51,3 +51,13 @@ export const getScoreboard = async (leagueId, token) => {
 
   return await axiosClient(data);
 };
+
+export const getStandings = async (leagueId, token) => {
+  const data = {
+    url: `${api}/league/standings/${leagueId}`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};
