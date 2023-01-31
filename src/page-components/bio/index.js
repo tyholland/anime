@@ -148,9 +148,7 @@ const Bio = ({ player }) => {
             )}
             {isVillain && !!affinities.length && (
               <>
-                <$BioAttribute>
-                  Damages Characters with these Element Affinities:
-                </$BioAttribute>
+                <$BioAttribute>Damages these weaknesses:</$BioAttribute>
                 <$BioAffinity className="down">
                   {affinities.map((item) => (
                     <$BioAffinity className="right" key={item.type}>
@@ -163,9 +161,7 @@ const Bio = ({ player }) => {
             )}
             {isSupport && !!affinities.length && (
               <>
-                <$BioAttribute>
-                  Boosts Characters with these Element Affinities:
-                </$BioAttribute>
+                <$BioAttribute>Gives boost to:</$BioAttribute>
                 <$BioAffinity className="down">
                   {affinities.map((item) => (
                     <$BioAffinity className="right" key={item.type}>
@@ -178,9 +174,7 @@ const Bio = ({ player }) => {
             )}
             {isBattlefield && (
               <>
-                <$BioAttribute>
-                  Boosts Characters with these Element Affinities:
-                </$BioAttribute>
+                <$BioAttribute>Gives boost to:</$BioAttribute>
                 <$BioAffinity className="down">
                   {affinities.map((item) => (
                     <$BioAffinity className="right" key={item.type}>
@@ -190,9 +184,15 @@ const Bio = ({ player }) => {
                   ))}
                 </$BioAffinity>
                 {power_loss > 0 && (
-                  <$BioAttribute>
-                    Damages Characters with No Affinities
-                  </$BioAttribute>
+                  <>
+                    <$BioAttribute>Damages these weaknesses:</$BioAttribute>
+                    <$BioAffinity className="down">
+                      <$BioAffinity className="right">
+                        <$GlobalCircle className="noAffinity"></$GlobalCircle>
+                        <$BioAffinityText>No Affinity</$BioAffinityText>
+                      </$BioAffinity>
+                    </$BioAffinity>
+                  </>
                 )}
               </>
             )}

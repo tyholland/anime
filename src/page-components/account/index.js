@@ -58,7 +58,10 @@ const Account = () => {
 
   useEffect(() => {
     setErrorPage(!currentUser);
-    setEmail(currentUser.email);
+
+    if (currentUser) {
+      setEmail(currentUser.email);
+    }
   }, [currentUser]);
 
   if (errorPage) {
