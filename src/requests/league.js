@@ -41,3 +41,13 @@ export const getAllLeagues = async (token) => {
 
   return await axiosClient(data);
 };
+
+export const getScoreboard = async (leagueId, token) => {
+  const data = {
+    url: `${api}/league/scoreboard/${leagueId}`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};
