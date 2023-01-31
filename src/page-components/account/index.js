@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 import TextField from 'Components/text-field';
-import { deleteAccount, updateAccount } from 'src/requests/users';
+import { deleteAccount } from 'src/requests/users';
 import { getCookie, responseError } from 'Utils/index';
 import {
   $AccountWrapper,
@@ -18,13 +18,11 @@ import {
 } from './account.style';
 import { addEvent } from 'Utils/amplitude';
 
-const Account = ({ account }) => {
-  const { deleteCurrentUser, currentUser, updateCurrentUser } = useAppContext();
-  const { username, email } = account;
+const Account = () => {
+  const { deleteCurrentUser, currentUser } = useAppContext();
+  const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorPage, setErrorPage] = useState(false);
-  const [updatedUsername, setUpdatedUsername] = useState(username);
-  const [edit, setEdit] = useState(!username);
   const [pwd, setPwd] = useState(null);
   const [confirmPwd, setConfirmPwd] = useState(null);
   const router = useRouter();
@@ -36,19 +34,6 @@ const Account = ({ account }) => {
       router.push('/');
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to logout'));
-    }
-  };
-
-  const handleUsernameChange = async () => {
-    const userDetails = {
-      userName: updatedUsername,
-    };
-
-    try {
-      await updateAccount(userDetails, getCookie('token'));
-      updateCurrentUser(userDetails);
-    } catch (err) {
-      addEvent('Error', responseError(err, 'Failed to change username'));
     }
   };
 
@@ -73,6 +58,7 @@ const Account = ({ account }) => {
 
   useEffect(() => {
     setErrorPage(!currentUser);
+    setEmail(currentUser.email);
   }, [currentUser]);
 
   if (errorPage) {
@@ -94,39 +80,6 @@ const Account = ({ account }) => {
         <$GlobalTitle>Account</$GlobalTitle>
         <Collapsible trigger="Profile" triggerTagName="div">
           <$AccountWrapper>
-            <div>
-              <$AccountSectionLabel>Username:</$AccountSectionLabel>
-              {edit && (
-                <TextField
-                  placeholder="Enter Username"
-                  onChange={setUpdatedUsername}
-                />
-              )}
-              {!edit && (
-                <TextField isDisabled={true} inputVal={updatedUsername} />
-              )}
-              <div>
-                <Button
-                  btnText={edit ? 'Save' : 'Edit'}
-                  btnColor="primary"
-                  btnFunction={() => {
-                    if (edit) {
-                      handleUsernameChange();
-                    }
-                    setEdit(!edit);
-                  }}
-                  customBtnClass="medium"
-                />
-                {edit && (
-                  <Button
-                    btnText="Cancel"
-                    btnColor="cancel"
-                    btnFunction={() => setEdit(false)}
-                    customBtnClass="medium"
-                  />
-                )}
-              </div>
-            </div>
             <$AccountSectionRight>
               <$AccountSectionLabel>Email:</$AccountSectionLabel>
               <TextField isDisabled={true} inputVal={email} />
@@ -141,9 +94,9 @@ const Account = ({ account }) => {
         <Collapsible trigger="Change Password" triggerTagName="div">
           <$AccountWrapper className="column">
             <div>
-              <TextField placeholder="Enter Password" onChange={setPwd} />
+              <TextField placeholder="Enter New Password" onChange={setPwd} />
               <TextField
-                placeholder="Confirm Password"
+                placeholder="Confirm New Password"
                 onChange={setConfirmPwd}
               />
             </div>

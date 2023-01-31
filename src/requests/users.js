@@ -1,16 +1,6 @@
 import { axiosClient } from 'Utils/axios';
 const api = process.env.NEXT_PUBLIC_API;
 
-export const getAccountInfo = async (token) => {
-  const data = {
-    url: `${api}/users`,
-    method: 'get',
-    token,
-  };
-
-  return await axiosClient(data);
-};
-
 export const addNewAccount = async (payload) => {
   const data = {
     url: `${api}/users/create`,
@@ -35,17 +25,6 @@ export const accountLogout = async () => {
   const data = {
     url: `${api}/users/logout`,
     method: 'post',
-  };
-
-  return await axiosClient(data);
-};
-
-export const updateAccount = async (payload, token) => {
-  const data = {
-    url: `${api}/users`,
-    method: 'put',
-    body: payload,
-    token,
   };
 
   return await axiosClient(data);
