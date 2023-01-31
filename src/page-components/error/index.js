@@ -21,7 +21,7 @@ const Error = () => {
         title="Page Not Found"
         description="This page does not exist. Please view another page"
       />
-      <$GlobalContainer className="grid notFound">
+      <$GlobalContainer className="grid bgImage notFound">
         <$ErrorContent>
           {!activeStatus && (
             <>

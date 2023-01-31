@@ -13,7 +13,7 @@ const Character = ({ players }) => {
         description="View all the characters available to play in the ABZ Fantasy League. Click on a character to view the profile"
       />
       <BackLink />
-      <$GlobalContainer className="grid character">
+      <$GlobalContainer className="grid bgImage character">
         <$GlobalTitle>All Characters</$GlobalTitle>
         <Players data={players} />
       </$GlobalContainer>

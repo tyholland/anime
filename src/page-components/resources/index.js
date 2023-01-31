@@ -10,7 +10,7 @@ const Resources = () => {
         title="Resources"
         description="Learn about everything Anime Brothaz. Look at our social media pages on instagram, facebook, tiktok, and twitter. Watch and listen to our podcast and youtube videos."
       />
-      <$GlobalContainer className="grid resource">
+      <$GlobalContainer className="grid bgImage resource">
         <SelectionCard redirect="/credits" btnText="Photo Credit" />
         <SelectionCard
           redirect="https://www.buzzsprout.com/1260827"

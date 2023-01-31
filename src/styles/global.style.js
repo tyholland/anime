@@ -84,7 +84,7 @@ export const $GlobalContainer = styled.div`
     }
   }
 
-  &.home {
+  &.bgImage {
     position: relative;
     height: auto;
 
@@ -108,95 +108,40 @@ export const $GlobalContainer = styled.div`
     }
   }
 
-  &.notFound {
-    position: relative;
-    height: 100vh;
-
+  &.home {
     &::before {
-      content: " ";
-      background-image: url(/assets/background/deku-allmight.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      bottom: 0px;
-      left: 0px;
-      filter: grayscale(100%);
-      min-height: 100vh;
+      background-image: url(/assets/background/itachi.png);
+    }
+  }
 
-      ${RESPONSIVE_VIEW} {
-        min-height: calc(100vh - 69px);
-        background-size: 100% 100%;
-      }
+  &.notFound {
+    &::before {
+      background-image: url(/assets/background/deku-allmight.jpg);
     }
   }
 
   &.league {
-    position: relative;
-    height: auto;
-
     &::before {
-      content: " ";
       background-image: url(/assets/background/naruto-rasengan.png);
-      background-size: cover;
-      background-repeat: no-repeat;
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      bottom: 0px;
-      left: 0px;
       filter: grayscale(85%);
-      min-height: 100vh;
-
-      ${RESPONSIVE_VIEW} {
-        min-height: calc(100vh - 69px);
-        background-size: 100% 100%;
-      }
     }
   }
 
   &.resource {
-    position: relative;
-    height: auto;
-
     &::before {
-      content: " ";
       background-image: url(/assets/background/kakashi-sharigan.png);
-      background-size: cover;
-      background-repeat: no-repeat;
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      bottom: 0px;
-      left: 0px;
-      filter: grayscale(100%);
-      min-height: 100vh;
-
-      ${RESPONSIVE_VIEW} {
-        min-height: calc(100vh - 69px);
-        background-size: 100% 100%;
-      }
     }
   }
 
   &.character {
-    position: relative;
-    height: auto;
     align-items: center;
     flex-direction: column;
 
     &::before {
-      content: " ";
       background-image: url(/assets/background/young-goku.jpeg);
       background-size: contain;
-      background-repeat: no-repeat;
-      position: absolute;
       top: 15%;
-      right: 0px;
-      bottom: 0px;
-      left: 0px;
-      filter: grayscale(100%);
+      min-height: auto;
     }
   }
 
