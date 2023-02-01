@@ -249,4 +249,10 @@ export const photoCredits = [
     creator: '@die_grafiktheke',
     platform: 'pixabay.com',
   },
+  {
+    image: '/assets/icons/share-icon.png',
+    name: 'Share Icon',
+    creator: '@azadaquib',
+    platform: 'pixabay.com',
+  },
 ];

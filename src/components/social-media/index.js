@@ -1,3 +1,5 @@
+import Button from 'Components/button';
+import Image from 'next/image';
 import React from 'react';
 import {
   EmailShareButton,
@@ -6,6 +8,8 @@ import {
   TwitterShareButton,
 } from 'react-share';
 import { EmailIcon, FacebookIcon, RedditIcon, TwitterIcon } from 'react-share';
+import { addEvent } from 'Utils/amplitude';
+import { responseError } from 'Utils/index';
 import { $SocialMediaWrapper } from './socialMedial.style';
 
 const SocialMedia = ({
@@ -16,6 +20,22 @@ const SocialMedia = ({
   pageTitle,
   description,
 }) => {
+  const isMobileShare = typeof navigator !== 'undefined' && navigator.share;
+
+  const handleMobileShare = async () => {
+    const shareData = {
+      title,
+      text: description,
+      url,
+    };
+
+    try {
+      await navigator.share(shareData);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to utilize mobile share'));
+    }
+  };
+
   return (
     <>
       <$SocialMediaWrapper>
@@ -33,6 +53,16 @@ const SocialMedia = ({
           <RedditShareButton url={url} title={title}>
             <RedditIcon size={50} round={true} />
           </RedditShareButton>
+          {isMobileShare && (
+            <Button btnColor="share" btnFunction={handleMobileShare}>
+              <Image
+                src="/assets/icons/share-icon.png"
+                width={100}
+                height={100}
+                alt="Share Icon"
+              />
+            </Button>
+          )}
         </div>
       </$SocialMediaWrapper>
     </>

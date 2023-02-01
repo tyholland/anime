@@ -17,6 +17,6 @@ export const $SocialMediaWrapper = styled.div`
   .btns {
     display: flex;
     justify-content: space-around;
-    width: 30%;
+    width: calc(35% + 10px);
   }
 `;

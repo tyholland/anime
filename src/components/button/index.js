@@ -9,8 +9,20 @@ const Button = ({
   customBtnClass,
   btnFunction,
   isDisabled = false,
+  children,
 }) => {
   if (btnFunction) {
+    if (children) {
+      return (
+        <$Btn
+          className={`${btnColor || ''} ${customBtnClass || ''}`}
+          onClick={() => btnFunction()}
+          disabled={isDisabled}
+        >
+          {children}
+        </$Btn>
+      );
+    }
     return (
       <$Btn
         className={`${btnColor || ''} ${customBtnClass || ''}`}
