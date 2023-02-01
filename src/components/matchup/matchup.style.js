@@ -23,7 +23,7 @@ export const $MatchupSection = styled.div`
 `;
 
 export const $MatchupHeadliner = styled.div`
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -34,7 +34,7 @@ export const $MatchupCharacterBtn = styled.button`
   background: transparent;
   width: auto;
   padding: 0;
-  margin: 5px 0 0 10%;
+  margin: 5px 0 0 5%;
   display: flex;
   justify-content: start;
 
@@ -56,7 +56,7 @@ export const $MatchupCharacterBtn = styled.button`
 
   &.reverse {
     justify-content: end;
-    margin: 5px 10% 0 0;
+    margin: 5px 5% 0 0;
 
     span {
       text-align: right;
@@ -73,13 +73,13 @@ export const $MatchupCharacterBtn = styled.button`
 `;
 
 export const $MatchupAffinity = styled.div`
-  margin: 15px 0 0 10%;
+  margin: 15px 0 0 5%;
   width: auto;
   display: flex;
   flex-direction: row;
 
   &.reverse {
-    margin: 15px 10% 0 0;
+    margin: 15px 5% 0 0;
     position: relative;
     justify-content: end;
 
