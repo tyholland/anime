@@ -12,11 +12,15 @@ import { useRouter } from 'next/router';
 
 const JoinLeague = () => {
   const router = useRouter();
-  const [leagueId, setLeagueId] = useState(null);
+  const [leagueHash, setLeagueHash] = useState(null);
 
   const handleJoinLeague = async () => {
+    const payload = {
+      hash: leagueHash,
+    };
+
     try {
-      await joinLeague(leagueId, getCookie('token'));
+      const { leagueId } = await joinLeague(payload, getCookie('token'));
 
       router.push(`/league/${leagueId}`);
     } catch (error) {
@@ -37,7 +41,7 @@ const JoinLeague = () => {
           <div>
             <TextField
               placeholder="Enter your league code"
-              onChange={setLeagueId}
+              onChange={setLeagueHash}
             />
             <Button
               btnText="Enter League"
