@@ -7,6 +7,7 @@ import Select from 'Components/select';
 import { addEvent } from 'Utils/amplitude';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
+import SocialMedia from 'Components/social-media';
 
 const Suggest = () => {
   const [player, setPlayer] = useState('');
@@ -15,6 +16,7 @@ const Suggest = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const options = ['Captain', 'Brawler', 'Support', 'Villain', 'Battlefield'];
+  let pathname = '';
 
   const handleSubmit = async () => {
     addEvent('Suggest Character', {
@@ -25,6 +27,10 @@ const Suggest = () => {
 
     setIsSubmitted(true);
   };
+
+  if (typeof window !== 'undefined') {
+    pathname = window.location.href;
+  }
 
   useEffect(() => {
     setIsDisabled(!player.length || !series.length || !rank.length);
@@ -60,6 +66,20 @@ const Suggest = () => {
           )}
           {isSubmitted && <div>Thank you for your suggestion!</div>}
         </$LoginWrapper>
+        <SocialMedia
+          pageTitle="Tell Your Friends"
+          title="Suggest a new character for the ABZ Fantasy League"
+          description="ABZ wants to know what character you want to have on your team."
+          singleHashtag="#abzFantasyLeague"
+          pluralHashtags={[
+            'abz',
+            'abzFantasyLeague',
+            'animebrothaz',
+            'abzSuggestCharacter',
+            'animebrothazSuggestion',
+          ]}
+          url={pathname}
+        />
       </$GlobalContainer>
     </>
   );
