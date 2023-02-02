@@ -3,9 +3,11 @@ import { $GlobalContainer, $GlobalWrapper } from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card/index.js';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
+import { useAppContext } from 'src/hooks/context';
 
 const LeagueDetails = ({ leagueId, leagueData }) => {
-  const { teamId, matchupId } = leagueData;
+  const { currentUser } = useAppContext();
+  const { teamId, matchupId, creator_id } = leagueData;
 
   return (
     <>
@@ -16,6 +18,13 @@ const LeagueDetails = ({ leagueId, leagueData }) => {
       <$GlobalWrapper className="leagueDetail">
         <BackLink />
         <$GlobalContainer className="grid">
+          {currentUser.user_id === creator_id && (
+            <SelectionCard
+              btnText="Admin Settings"
+              redirect={'/league/admin'}
+              isDisabled={true}
+            />
+          )}
           <SelectionCard btnText="Team" redirect={`/team/${teamId}`} />
           <SelectionCard
             btnText="Matchup"
