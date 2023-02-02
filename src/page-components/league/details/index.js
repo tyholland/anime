@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { $GlobalContainer, $GlobalWrapper } from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card/index.js';
 import BackLink from 'Components/back-link';
@@ -8,6 +8,11 @@ import { useAppContext } from 'src/hooks/context';
 const LeagueDetails = ({ leagueId, leagueData }) => {
   const { currentUser } = useAppContext();
   const { teamId, matchupId, creator_id } = leagueData;
+  const [account, setAccount] = useState(null);
+
+  useEffect(() => {
+    setAccount(currentUser);
+  }, [currentUser]);
 
   return (
     <>
@@ -18,7 +23,7 @@ const LeagueDetails = ({ leagueId, leagueData }) => {
       <$GlobalWrapper className="leagueDetail">
         <BackLink />
         <$GlobalContainer className="grid">
-          {currentUser.user_id === creator_id && (
+          {account?.user_id === creator_id && (
             <SelectionCard
               btnText="Admin Settings"
               redirect={'/league/admin'}
