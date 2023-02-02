@@ -16,7 +16,7 @@ import Metadata from 'Components/metadata/index.js';
 import { getCookie, responseError } from 'Utils/index.js';
 
 const TeamInfo = ({ teamData }) => {
-  const { team_name, name, points, id } = teamData;
+  const { team_name, name, points, id, rank } = teamData;
   const [edit, setEdit] = useState(false);
   const [teamName, setTeamName] = useState(team_name);
   const [changedName, setChangedName] = useState('');
@@ -88,7 +88,7 @@ const TeamInfo = ({ teamData }) => {
               <span>League:</span> {name}
             </$TeamInfoStats>
             <$TeamInfoStats>
-              <span>Record:</span> 0-0
+              <span>Record:</span> {`${rank.win}-${rank.loss}`}
             </$TeamInfoStats>
             <$TeamInfoStats>
               <span>Points Remaining:</span> {points} pts

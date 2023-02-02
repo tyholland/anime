@@ -15,7 +15,7 @@ import TeamCard from 'Components/team-card';
 import BackLink from 'Components/back-link/index.js';
 import Metadata from 'Components/metadata/index.js';
 
-const Team = ({ teamId, teamData }) => {
+const Team = ({ teamId, teamData, rank }) => {
   const { teamName, team, memberId } = teamData;
 
   const totalPoints =
@@ -40,7 +40,7 @@ const Team = ({ teamId, teamData }) => {
           <$TeamContent>
             <$TeamName>{teamName}</$TeamName>
             <$TeamLeague>Week: {team.week}</$TeamLeague>
-            <$TeamLeague>Rank: 0-0</$TeamLeague>
+            <$TeamLeague>Rank: {`${rank.win}-${rank.loss}`}</$TeamLeague>
           </$TeamContent>
           <$TeamBtnSection>
             <Button

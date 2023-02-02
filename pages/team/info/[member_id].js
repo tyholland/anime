@@ -13,7 +13,7 @@ export const getServerSideProps = async (context) => {
 
     return {
       props: {
-        teamData: teamData[0],
+        teamData,
       },
     };
   } catch (err) {
