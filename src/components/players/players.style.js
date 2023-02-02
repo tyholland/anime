@@ -78,11 +78,23 @@ export const $PlayersFilter = styled.div`
     width: 40%;
   }
 
+  input {
+    margin-top: 0;
+    height: 25px;
+    padding: 5px 10px;
+  }
+
   ${MOBILE_VIEW} {
     width: 100%;
 
     .seriesFilter {
       display: none;
+    }
+
+    .rankFilter {
+      display: flex;
+      width: 90%;
+      margin: 3% 0;
     }
   }
 `;

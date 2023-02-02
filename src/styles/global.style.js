@@ -142,7 +142,7 @@ export const $GlobalContainer = styled.div`
     &::before {
       background-image: url(/assets/background/young-goku.jpeg);
       background-size: contain;
-      top: 15%;
+      top: 22%;
       min-height: auto;
     }
   }

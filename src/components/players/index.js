@@ -3,6 +3,7 @@ import 'react-data-grid/lib/styles.css';
 import DataGrid from 'react-data-grid';
 import { useRouter } from 'next/router';
 import { $PlayersFilter, $PlayersStyles } from './players.style';
+import TextField from 'Components/text-field';
 
 const Players = ({
   data,
@@ -18,6 +19,7 @@ const Players = ({
   const [rankArr, setRankArr] = useState([]);
   const [seriesName, setSeriesName] = useState('all');
   const [rankName, setRankName] = useState('all');
+  const [searchWord, setSearchWord] = useState(null);
   const columns = [
     {
       key: 'fullName',
@@ -108,20 +110,52 @@ const Players = ({
 
       if (seriesName !== 'all') {
         playersList = data.filter((item) => {
+          if (searchWord) {
+            return (
+              item.series === seriesName &&
+              item.full_name.toLowerCase().includes(searchWord.toLowerCase())
+            );
+          }
+
           return item.series === seriesName;
         });
+
+        setListOfPlayers(playersList);
+        return;
       }
 
-      setListOfPlayers(playersList);
-      return;
+      if (searchWord) {
+        playersList = data.filter((item) => {
+          return item.full_name
+            .toLowerCase()
+            .includes(searchWord.toLowerCase());
+        });
+
+        setListOfPlayers(playersList);
+        return;
+      }
     }
 
     let playersList = data.filter((item) => {
+      if (searchWord) {
+        return (
+          item.category === e.target.value &&
+          item.full_name.toLowerCase().includes(searchWord.toLowerCase())
+        );
+      }
       return item.category === e.target.value;
     });
 
     if (seriesName !== 'all') {
       playersList = data.filter((item) => {
+        if (searchWord) {
+          return (
+            item.category === e.target.value &&
+            item.series === seriesName &&
+            item.full_name.toLowerCase().includes(searchWord.toLowerCase())
+          );
+        }
+
         return item.category === e.target.value && item.series === seriesName;
       });
     }
@@ -137,23 +171,66 @@ const Players = ({
 
       if (rankName !== 'all') {
         playersList = data.filter((item) => {
+          if (searchWord) {
+            return (
+              item.category === rankName &&
+              item.full_name.toLowerCase().includes(searchWord.toLowerCase())
+            );
+          }
+
           return item.category === rankName;
         });
+
+        setListOfPlayers(playersList);
+        return;
       }
 
-      setListOfPlayers(playersList);
-      return;
+      if (searchWord) {
+        playersList = data.filter((item) => {
+          return item.full_name
+            .toLowerCase()
+            .includes(searchWord.toLowerCase());
+        });
+
+        setListOfPlayers(playersList);
+        return;
+      }
     }
 
     let playersList = data.filter((item) => {
+      if (searchWord) {
+        return (
+          item.series === e.target.value &&
+          item.full_name.toLowerCase().includes(searchWord.toLowerCase())
+        );
+      }
+
       return item.series === e.target.value;
     });
 
     if (rankName !== 'all') {
       playersList = data.filter((item) => {
+        if (searchWord) {
+          return (
+            item.series === e.target.value &&
+            item.category === rankName &&
+            item.full_name.toLowerCase().includes(searchWord.toLowerCase())
+          );
+        }
+
         return item.series === e.target.value && item.category === rankName;
       });
     }
+
+    setListOfPlayers(playersList);
+  };
+
+  const handleSearchWord = (search) => {
+    setSearchWord(search);
+
+    const playersList = data.filter((item) => {
+      return item.full_name.toLowerCase().includes(search.toLowerCase());
+    });
 
     setListOfPlayers(playersList);
   };
@@ -166,40 +243,48 @@ const Players = ({
     <>
       <$PlayersStyles />
       {!changeRoster && (
-        <$PlayersFilter>
-          <div className="rankFilter">
-            <label>Filter by rank</label>
-            <select
-              onChange={(val) => handleRankFilter(val)}
-              defaultValue={rankArr[0] === rankName}
-            >
-              <option value="all">All</option>
-              {rankArr.map((item) => {
-                return (
-                  <option value={item} key={item}>
-                    {item}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-          <div className="seriesFilter">
-            <label>Filter by series</label>
-            <select
-              onChange={(val) => handleSeriesFilter(val)}
-              defaultValue={seriesArr[0] === seriesName}
-            >
-              <option value="all">All</option>
-              {seriesArr.map((item) => {
-                return (
-                  <option value={item} key={item}>
-                    {item}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-        </$PlayersFilter>
+        <>
+          <$PlayersFilter>
+            <TextField
+              placeholder="Search for character..."
+              onChange={(val) => handleSearchWord(val)}
+            />
+          </$PlayersFilter>
+          <$PlayersFilter>
+            <div className="rankFilter">
+              <label>Filter by rank</label>
+              <select
+                onChange={(val) => handleRankFilter(val)}
+                defaultValue={rankArr[0] === rankName}
+              >
+                <option value="all">All</option>
+                {rankArr.map((item) => {
+                  return (
+                    <option value={item} key={item}>
+                      {item}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <div className="seriesFilter">
+              <label>Filter by series</label>
+              <select
+                onChange={(val) => handleSeriesFilter(val)}
+                defaultValue={seriesArr[0] === seriesName}
+              >
+                <option value="all">All</option>
+                {seriesArr.map((item) => {
+                  return (
+                    <option value={item} key={item}>
+                      {item}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+          </$PlayersFilter>
+        </>
       )}
       <div className="desktopGrid">
         <DataGrid
