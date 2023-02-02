@@ -22,6 +22,10 @@ const JoinLeague = () => {
     try {
       const { leagueId } = await joinLeague(payload, getCookie('token'));
 
+      addEvent('Join League', {
+        league: leagueHash,
+      });
+
       router.push(`/league/${leagueId}`);
     } catch (error) {
       addEvent('Error', responseError(error, 'Join League'));

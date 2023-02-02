@@ -31,6 +31,11 @@ const TeamInfo = ({ teamData }) => {
         getCookie('token')
       );
 
+      addEvent('Change Team Name', {
+        previous: team_name,
+        new: changedName,
+      });
+
       setTeamName(changedName);
     } catch (err) {
       addEvent('Error', responseError(err, 'Change Team Name'));

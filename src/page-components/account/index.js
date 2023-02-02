@@ -31,6 +31,7 @@ const Account = () => {
     try {
       setIsLoading(true);
       await deleteCurrentUser();
+      addEvent('Account logout');
       router.push('/');
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to logout'));
@@ -40,6 +41,7 @@ const Account = () => {
   const handleDeleteAccount = async () => {
     try {
       await deleteAccount(getCookie('token'));
+      addEvent('Account deleted');
       handleLogout();
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to delete account'));
@@ -54,6 +56,7 @@ const Account = () => {
     }
 
     // Submit firebase function to update password
+    addEvent('Account password change');
   };
 
   useEffect(() => {

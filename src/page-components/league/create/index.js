@@ -31,6 +31,10 @@ const LeagueCreate = () => {
     try {
       const { teamId } = await createLeague(payload, getCookie('token'));
 
+      addEvent('League Created', {
+        name: leagueName,
+      });
+
       router.push(`/team/${teamId}`);
     } catch (err) {
       addEvent('Error', responseError(err, 'Create League'));

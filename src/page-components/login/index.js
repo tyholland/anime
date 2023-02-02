@@ -29,6 +29,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     setIsLoading(true);
+
     try {
       const user = await accountLogin({
         email,
@@ -36,6 +37,8 @@ const Login = () => {
       });
 
       setInitialUser(user);
+
+      addEvent('Account login');
 
       redirectToContinuePage(router);
     } catch (err) {

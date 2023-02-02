@@ -63,6 +63,9 @@ const TeamEdit = ({ players, teamData, teamId }) => {
           btnFunction={() => {
             setField(fieldName);
             openModal(rank);
+            addEvent('Team Roster', {
+              action: 'add',
+            });
           }}
         />
       );
@@ -77,13 +80,21 @@ const TeamEdit = ({ players, teamData, teamId }) => {
           btnFunction={() => {
             setField(fieldName);
             openModal(rank);
+            addEvent('Team Roster', {
+              action: 'change',
+            });
           }}
         />
         <Button
           btnText="Remove"
           btnColor="cancel"
           customBtnClass="small"
-          btnFunction={() => updatePlayers(emptyPlayer(fieldName))}
+          btnFunction={() => {
+            updatePlayers(emptyPlayer(fieldName));
+            addEvent('Team Roster', {
+              action: 'remove',
+            });
+          }}
         />
       </>
     );
@@ -135,16 +146,15 @@ const TeamEdit = ({ players, teamData, teamId }) => {
       thePlayers['userPoints'] = totalPoints;
 
       setPlayerList(thePlayers);
-      setIsModalOpen(false);
-      setCanChange(true);
       setErrorMsg(null);
     } catch (err) {
       addEvent('Error', responseError(err, 'Update Team'));
       setErrorMsg(err.response.data.message);
       setPlayerList(emptyPlayer(field));
-      setIsModalOpen(false);
-      setCanChange(true);
     }
+
+    setIsModalOpen(false);
+    setCanChange(true);
   };
 
   useEffect(() => {

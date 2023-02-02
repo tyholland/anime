@@ -36,6 +36,8 @@ const SignUp = () => {
 
       setInitialUser(user);
 
+      addEvent('Account sign-up');
+
       redirectUrl('/league');
     } catch (error) {
       addEvent('Error', responseError(error, 'Sign up'));
