@@ -35,12 +35,18 @@ const LeagueCard = ({ data }) => {
   return (
     <$LeagueCardWrapper>
       <$LeagueCardSection>
-        <$LeagueCardText className="league">{name}</$LeagueCardText>
-        <$LeagueCardText>{team_name}</$LeagueCardText>
+        <$LeagueCardText>
+          <span>League: </span>
+          {name}
+        </$LeagueCardText>
+        <$LeagueCardText>
+          <span>Team: </span>
+          {team_name}
+        </$LeagueCardText>
       </$LeagueCardSection>
       <$LeagueCardSection className="actions">
         <Button
-          btnText="View League"
+          btnText="League"
           btnColor="primary"
           customBtnClass="leagues"
           redirect={`/league/${leagueId}`}

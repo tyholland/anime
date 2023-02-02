@@ -23,11 +23,10 @@ export const $LeagueCardWrapper = styled.div`
 
 export const $LeagueCardText = styled.div`
   margin: 5px 0;
-  font-size: 14px;
+  font-size: 16px;
 
-  &.league {
+  span {
     font-weight: ${FONT_WEIGHT_BOLD};
-    font-size: 16px;
   }
 `;
 
