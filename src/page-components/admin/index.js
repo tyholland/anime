@@ -25,14 +25,15 @@ const Admin = () => {
     origin = window.location.origin;
   }
 
-  const handleNumTeams = (e) => {
+  const handleNumTeams = (val) => {
     // update number of teams
-    setTeamNum(e.target.value);
+    setTeamNum(val);
+    setEditNum(false);
   };
 
-  const handleLeagueName = (e) => {
+  const handleLeagueName = () => {
     // update league name
-    setLeagueName(e.target.value);
+    setEditLeague(false);
   };
 
   const handleDeleteLeague = () => {
@@ -89,7 +90,12 @@ const Admin = () => {
                 <>
                   <TextField
                     placeholder="League Name"
-                    onChange={handleLeagueName}
+                    onChange={setLeagueName}
+                  />
+                  <Button
+                    btnText="Save"
+                    btnFunction={handleLeagueName}
+                    customBtnClass="text edit"
                   />
                   <Button
                     btnText="Cancel"
