@@ -10,9 +10,9 @@ export const getServerSideProps = async (context) => {
   const { cookies } = req;
 
   try {
-    const matchup = await getMatchUp(matchup_id, cookies.token);
+    const results = await getMatchUp(matchup_id, cookies.token);
 
-    const { team_a, team_b, score_a, score_b } = matchup[0];
+    const { team_a, team_b, score_a, score_b } = results.matchup;
 
     const team1 = await getMatchupTeam(team_a, cookies.token);
     const team2 = await getMatchupTeam(team_b, cookies.token);
@@ -24,6 +24,7 @@ export const getServerSideProps = async (context) => {
         team2,
         score1: score_a,
         score2: score_b,
+        votes: results.votes,
       },
     };
   } catch (err) {

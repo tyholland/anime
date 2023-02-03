@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 import { getCookie, responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 
-const CharacterStats = ({ isModalOpen, setIsModalOpen, character }) => {
+const CharacterStats = ({ isModalOpen, setIsModalOpen, character, votes }) => {
   const router = useRouter();
   const customStyles = {
     content: {
@@ -37,6 +37,7 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen, character }) => {
     character;
   const boostTotal = teamPoints - originalPower;
   const damageTotal = teamPoints - matchPoints;
+  const activeVoting = votes.filter((vote) => vote.rank === rank);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -150,12 +151,22 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen, character }) => {
         <$CharacterStatsPoints>{matchPoints}</$CharacterStatsPoints>
       </$CharacterStatsScoring>
       <$CharacterStatsBtnWrapper>
-        <Button
-          btnText="Get Votes"
-          btnColor="primary"
-          customBtnClass="medium"
-          btnFunction={handleVotes}
-        />
+        {!!activeVoting.length && (
+          <Button
+            btnText="View Voting Status"
+            btnColor="primary"
+            customBtnClass="medium"
+            redirect={`/matchup/vote/${activeVoting[0].id}`}
+          />
+        )}
+        {!activeVoting.length && (
+          <Button
+            btnText="Get Votes"
+            btnColor="primary"
+            customBtnClass="medium"
+            btnFunction={handleVotes}
+          />
+        )}
         <Button
           btnText="Close"
           btnColor="cancel"

@@ -13,7 +13,7 @@ import {
 import { $GlobalCircle } from 'Styles/global.style.js';
 import { useRouter } from 'next/router.js';
 
-const MatchUp = ({ isReverse, team }) => {
+const MatchUp = ({ isReverse, team, votes }) => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [characterStats, setCharacterStats] = useState(null);
@@ -228,6 +228,7 @@ const MatchUp = ({ isReverse, team }) => {
         setIsModalOpen={setIsModalOpen}
         isModalOpen={isModalOpen}
         character={characterStats}
+        votes={votes}
       />
     </$MatchupColumn>
   );

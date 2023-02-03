@@ -14,7 +14,7 @@ import {
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 
-const ViewMatchup = ({ team1, team2, score1, score2 }) => {
+const ViewMatchup = ({ team1, team2, score1, score2, votes }) => {
   return (
     <>
       <BackLink />
@@ -34,7 +34,7 @@ const ViewMatchup = ({ team1, team2, score1, score2 }) => {
           </$ViewMatchupTeamContent>
         </$ViewMatchupWrapper>
         <$ViewMatchupTeamSplit>
-          <MatchUp isReverse={false} team={team1.team} />
+          <MatchUp isReverse={false} team={team1.team} votes={votes} />
           <$ViewMatchupPositionColumn>
             <$ViewMatchupPositionSection>
               <$ViewMatchupPosition>C</$ViewMatchupPosition>
@@ -58,7 +58,7 @@ const ViewMatchup = ({ team1, team2, score1, score2 }) => {
               <$ViewMatchupPosition>BF</$ViewMatchupPosition>
             </$ViewMatchupPositionSection>
           </$ViewMatchupPositionColumn>
-          <MatchUp isReverse={true} team={team2.team} />
+          <MatchUp isReverse={true} team={team2.team} votes={votes} />
         </$ViewMatchupTeamSplit>
       </$GlobalContainer>
     </>
