@@ -9,6 +9,7 @@ import Error from 'PageComponents/error';
 import TextField from 'Components/text-field';
 import { $AdminWrapper, $AdminSection } from './admin.style';
 import Select from 'Components/select';
+import SocialMedia from 'Components/social-media';
 
 const Admin = () => {
   const { currentUser } = useAppContext();
@@ -18,6 +19,11 @@ const Admin = () => {
   const [leagueName, setLeagueName] = useState('Gangsta');
   const [teamNum, setTeamNum] = useState(10);
   const options = ['6', '7', '8', '9', '10'];
+  let origin = '';
+
+  if (typeof window !== 'undefined') {
+    origin = window.location.origin;
+  }
 
   const handleNumTeams = (e) => {
     // update number of teams
@@ -113,7 +119,46 @@ const Admin = () => {
           </$AdminWrapper>
         </Collapsible>
         <Collapsible trigger="Teams" triggerTagName="div">
-          <$AdminWrapper className="column"></$AdminWrapper>
+          <$AdminWrapper className="column">
+            <ol>
+              <li>Team 1</li>
+              <li>Team 2</li>
+              <li>Team 3</li>
+              <li>Team 4</li>
+              <li>Team 5</li>
+              <li>Team 6</li>
+              {teamNum === 7 && <li>Team 7</li>}
+              {teamNum === 8 && (
+                <>
+                  <li>Team 7</li>
+                  <li>Team 8</li>
+                </>
+              )}
+              {teamNum === 9 && (
+                <>
+                  <li>Team 7</li>
+                  <li>Team 8</li>
+                  <li>Team 9</li>
+                </>
+              )}
+              {teamNum === 10 && (
+                <>
+                  <li>Team 7</li>
+                  <li>Team 8</li>
+                  <li></li>
+                  <li></li>
+                </>
+              )}
+            </ol>
+            <SocialMedia
+              pageTitle="Invite friends to Join League"
+              title={'Join my ABZ Fantasy League. League code: '}
+              description="Build your ultimate anime team"
+              singleHashtag="#abzFantasyLeague"
+              pluralHashtags={['abz', 'abzFantasyLeague', 'animebrothaz']}
+              url={`${origin}/league/join`}
+            />
+          </$AdminWrapper>
         </Collapsible>
       </$GlobalContainer>
     </>

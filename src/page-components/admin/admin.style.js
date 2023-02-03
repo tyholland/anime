@@ -12,13 +12,8 @@ export const $AdminWrapper = styled.div`
     font-size: 18px;
     align-items: center;
 
-    button {
-      width: 20%;
-      margin-top: 3%;
-    }
-
-    input {
-      width: 50%;
+    ol {
+      width: 90%;
     }
   }
 `;
