@@ -9,12 +9,15 @@ import { joinLeague } from 'src/requests/league';
 import { addEvent } from 'Utils/amplitude';
 import { getCookie, responseError } from 'Utils/index';
 import { useRouter } from 'next/router';
+import ErrorMsg from 'Components/error-msg';
 
 const JoinLeague = () => {
   const router = useRouter();
   const [leagueHash, setLeagueHash] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const handleJoinLeague = async () => {
+    setErrorMsg(null);
     const payload = {
       hash: leagueHash,
     };
@@ -29,6 +32,7 @@ const JoinLeague = () => {
       router.push(`/league/${leagueId}`);
     } catch (error) {
       addEvent('Error', responseError(error, 'Join League'));
+      setErrorMsg(error.response.data.message);
     }
   };
 
@@ -41,7 +45,7 @@ const JoinLeague = () => {
       <BackLink />
       <$GlobalContainer>
         <$GlobalTitle>Join League</$GlobalTitle>
-        <$JoinLeagueWrapper>
+        <$JoinLeagueWrapper className={errorMsg && 'spacing'}>
           <div>
             <TextField
               placeholder="Enter your league code"
@@ -53,6 +57,7 @@ const JoinLeague = () => {
               customBtnClass="medium"
               btnFunction={handleJoinLeague}
             />
+            {errorMsg && <ErrorMsg msg={errorMsg} />}
           </div>
           <$JoinLeagueImg src="/assets/background/vegito.png" alt="Vegito" />
         </$JoinLeagueWrapper>

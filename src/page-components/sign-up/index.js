@@ -13,21 +13,29 @@ import { useAppContext } from 'src/hooks/context';
 import Metadata from 'Components/metadata';
 import { redirectToAccount, redirectUrl, responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
+import ErrorMsg from 'Components/error-msg';
 
 const SignUp = () => {
   const { setInitialUser, currentUser } = useAppContext();
   const [userEmail, setUserEmail] = useState('');
-  const isDisabled = !userEmail.length;
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(true);
   // const [ password, setPassword ] = useState(null);
   // const [ confirmPwd, setConfirmPwd ] = useState(null);
 
+  const handleDisabledState = (val) => {
+    setUserEmail(val);
+    setIsDisabled(!val.length);
+  };
+
   /*******
    * Add check for all the input fields being empty
-   * Add check for email field not being an email
    * Add check for password fields not matching
    *******/
 
   const handleSignUp = async () => {
+    setErrorMsg(null);
+
     try {
       const user = await addNewAccount({
         userEmail,
@@ -41,6 +49,8 @@ const SignUp = () => {
       redirectUrl('/league');
     } catch (error) {
       addEvent('Error', responseError(error, 'Sign up'));
+      setErrorMsg(error.response.data.message);
+      setIsDisabled(true);
     }
   };
 
@@ -57,12 +67,13 @@ const SignUp = () => {
       <$GlobalContainer>
         <$LoginWrapper>
           <$GlobalTitle>Sign Up</$GlobalTitle>
+          {errorMsg && <ErrorMsg msg={errorMsg} />}
           <$LoginSectionWrapper>
             <$LoginSection>
               <TextField
                 placeholder="Please enter a email"
                 keyboard="email-address"
-                onChange={setUserEmail}
+                onChange={handleDisabledState}
               />
               <TextField
                 placeholder="Please enter a password"

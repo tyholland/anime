@@ -62,3 +62,34 @@ export const getStandings = async (leagueId, token) => {
 
   return await axiosClient(data);
 };
+
+export const deleteLeague = async (leagueId, token) => {
+  const data = {
+    url: `${api}/league/${leagueId}`,
+    method: 'delete',
+    token,
+  };
+
+  return await axiosClient(data);
+};
+
+export const getLeagueAdminData = async (token) => {
+  const data = {
+    url: `${api}/league/admin/settings`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};
+
+export const updateLeague = async (leagueId, payload, token) => {
+  const data = {
+    url: `${api}/league/${leagueId}`,
+    method: 'put',
+    body: payload,
+    token,
+  };
+
+  return await axiosClient(data);
+};

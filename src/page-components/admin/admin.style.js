@@ -1,11 +1,15 @@
 import styled from 'styled-components';
-import { FONT_WEIGHT_NORMAL } from 'Styles/global.style';
+import { FONT_WEIGHT_NORMAL, MOBILE_VIEW } from 'Styles/global.style';
 
 export const $AdminWrapper = styled.div`
   display: flex;
   width: 95%;
   margin: 3% auto;
   flex-wrap: wrap;
+
+  ${MOBILE_VIEW} {
+    flex:direction: column;
+  }
 
   &.column {
     flex-direction: column;
@@ -22,6 +26,11 @@ export const $AdminSection = styled.div`
   width: 50%;
   display: flex;
   align-items: center;
+
+  ${MOBILE_VIEW} {
+    margin-bottom: 5%;
+    width: 100%;
+  }
 
   button {
     text-align: right;

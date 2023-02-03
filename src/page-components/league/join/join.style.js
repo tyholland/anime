@@ -10,6 +10,12 @@ export const $JoinLeagueWrapper = styled.div`
     text-align: center;
   }
 
+  &.spacing {
+    button {
+      margin-bottom: 5%;
+    }
+  }
+
   ${MOBILE_VIEW} {
     flex-direction: column;
   }

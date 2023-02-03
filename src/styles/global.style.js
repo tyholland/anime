@@ -4,6 +4,7 @@ export const COLOR_ORANGE = 'rgb(249, 128, 17)';
 export const COLOR_ORANGE_DISABLED = 'rgba(249, 128, 17, 0.8)';
 export const COLOR_ORANGE_LIGHT = 'rgba(249, 128, 17, 0.3)';
 export const COLOR_RED = '#cc0000';
+export const COLOR_RED_ERROR = '#cc000080';
 export const COLOR_WHITE = '#ffffff';
 export const COLOR_WHITE_TRANSPARENT = '#ffffff95';
 export const COLOR_BLACK = '#000000';

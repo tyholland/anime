@@ -32,14 +32,6 @@ export const $TeamEditBtn = styled.div`
   }
 `;
 
-export const $TeamEditError = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2%;
-  color: red;
-  font-weight: ${FONT_WEIGHT_BOLD};
-`;
-
 export const $TeamEditGrid = styled.div`
   width: 100%;
 

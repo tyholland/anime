@@ -19,16 +19,24 @@ import {
 import { accountLogin } from 'src/requests/users.js';
 import { addEvent } from 'Utils/amplitude.js';
 import Loader from 'Components/loader/index.js';
+import ErrorMsg from 'Components/error-msg/index.js';
 
 const Login = () => {
   const router = useRouter();
   const { currentUser, setInitialUser } = useAppContext();
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const isDisabled = !email.length;
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const handleDisabledState = (val) => {
+    setEmail(val);
+    setIsDisabled(!val.length);
+  };
 
   const handleLogin = async () => {
     setIsLoading(true);
+    setErrorMsg(null);
 
     try {
       const user = await accountLogin({
@@ -44,6 +52,8 @@ const Login = () => {
     } catch (err) {
       addEvent('Error', responseError(err, 'Login'));
       setIsLoading(false);
+      setErrorMsg(err.response.data.message);
+      setIsDisabled(true);
     }
   };
 
@@ -64,12 +74,13 @@ const Login = () => {
       <$GlobalContainer>
         <$LoginWrapper>
           <$GlobalTitle>Login</$GlobalTitle>
+          {errorMsg && <ErrorMsg msg={errorMsg} />}
           <$LoginSectionWrapper>
             <$LoginSection>
               <TextField
                 placeholder="Email"
                 keyboard="email-address"
-                onChange={setEmail}
+                onChange={handleDisabledState}
               />
               <TextField placeholder="Password" type="password" />
               <Button

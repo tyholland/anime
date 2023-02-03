@@ -8,7 +8,6 @@ import Button from 'Components/button';
 import {
   $TeamEditWrapper,
   $TeamEditBtn,
-  $TeamEditError,
   $TeamEditGrid,
   $TeamEditSection,
 } from './teamEdit.style';
@@ -18,6 +17,7 @@ import { updateTeam } from 'src/requests/team';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
 import { getCookie, responseError } from 'Utils/index';
+import ErrorMsg from 'Components/error-msg';
 
 const TeamEdit = ({ players, teamData, teamId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -176,7 +176,7 @@ const TeamEdit = ({ players, teamData, teamId }) => {
         <$GlobalSubTitle>
           Remaining Points: {playerList.userPoints}
         </$GlobalSubTitle>
-        {!!errorMsg && <$TeamEditError>{errorMsg}</$TeamEditError>}
+        {!!errorMsg && <ErrorMsg msg={errorMsg} />}
         <$TeamEditWrapper>
           <$TeamEditGrid className="desktop">
             <$TeamEditSection>Captain</$TeamEditSection>

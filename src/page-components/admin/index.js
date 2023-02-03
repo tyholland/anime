@@ -10,34 +10,81 @@ import TextField from 'Components/text-field';
 import { $AdminWrapper, $AdminSection } from './admin.style';
 import Select from 'Components/select';
 import SocialMedia from 'Components/social-media';
+import { deleteLeague, updateLeague } from 'src/requests/league';
+import { getCookie, responseError } from 'Utils/index';
+import { addEvent } from 'Utils/amplitude';
+import ErrorMsg from 'Components/error-msg';
+import BackLink from 'Components/back-link';
 
-const Admin = () => {
+const Admin = ({ league, teams }) => {
   const { currentUser } = useAppContext();
+  const { id, num_teams, name, hash } = league;
   const [errorPage, setErrorPage] = useState(false);
   const [editNum, setEditNum] = useState(false);
   const [editLeague, setEditLeague] = useState(false);
-  const [leagueName, setLeagueName] = useState('Gangsta');
-  const [teamNum, setTeamNum] = useState(10);
+  const [leagueName, setLeagueName] = useState(name);
+  const [teamNum, setTeamNum] = useState(num_teams);
+  const [errorMsg, setErrorMsg] = useState(null);
   const options = ['6', '7', '8', '9', '10'];
   let origin = '';
+
+  const missingTeams = [];
+
+  if (teams.length < num_teams) {
+    const remainingTeams = num_teams - teams.length;
+
+    for (let index = 0; index < remainingTeams; index++) {
+      missingTeams.push(index);
+    }
+  }
 
   if (typeof window !== 'undefined') {
     origin = window.location.origin;
   }
 
-  const handleNumTeams = (val) => {
-    // update number of teams
-    setTeamNum(val);
-    setEditNum(false);
+  const handleNumTeams = async (val) => {
+    const payload = {
+      name: leagueName,
+      teams: val,
+      isActive: 1,
+    };
+
+    try {
+      await updateLeague(id, payload, getCookie('token'));
+      setTeamNum(val);
+      setEditNum(false);
+    } catch (err) {
+      addEvent(
+        'Error',
+        responseError(err, 'failed to update league number of teams')
+      );
+    }
   };
 
-  const handleLeagueName = () => {
-    // update league name
-    setEditLeague(false);
+  const handleLeagueName = async () => {
+    const payload = {
+      name: leagueName,
+      teams: teamNum,
+      isActive: 1,
+    };
+
+    try {
+      await updateLeague(id, payload, getCookie('token'));
+      setEditLeague(false);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'failed to update league name'));
+    }
   };
 
-  const handleDeleteLeague = () => {
-    // delete league
+  const handleDeleteLeague = async () => {
+    setErrorMsg(null);
+
+    try {
+      await deleteLeague(id, getCookie('token'));
+    } catch (err) {
+      addEvent('Error', responseError(err, 'failed to delete league'));
+      setErrorMsg(err.response.data.message);
+    }
   };
 
   useEffect(() => {
@@ -50,6 +97,7 @@ const Admin = () => {
 
   return (
     <>
+      <BackLink />
       <$GameplayStyles />
       <Metadata
         title="Admin Settings"
@@ -57,6 +105,7 @@ const Admin = () => {
       />
       <$GlobalContainer>
         <$GlobalTitle>Admin Settings</$GlobalTitle>
+        {errorMsg && <ErrorMsg msg={errorMsg} />}
         <Collapsible trigger="Basic" triggerTagName="div">
           <$AdminWrapper>
             <$AdminSection>
@@ -99,7 +148,10 @@ const Admin = () => {
                   />
                   <Button
                     btnText="Cancel"
-                    btnFunction={() => setEditLeague(false)}
+                    btnFunction={() => {
+                      setEditLeague(false);
+                      setLeagueName(name);
+                    }}
                     customBtnClass="text edit"
                   />
                 </>
@@ -127,43 +179,23 @@ const Admin = () => {
         <Collapsible trigger="Teams" triggerTagName="div">
           <$AdminWrapper className="column">
             <ol>
-              <li>Team 1</li>
-              <li>Team 2</li>
-              <li>Team 3</li>
-              <li>Team 4</li>
-              <li>Team 5</li>
-              <li>Team 6</li>
-              {teamNum === 7 && <li>Team 7</li>}
-              {teamNum === 8 && (
-                <>
-                  <li>Team 7</li>
-                  <li>Team 8</li>
-                </>
-              )}
-              {teamNum === 9 && (
-                <>
-                  <li>Team 7</li>
-                  <li>Team 8</li>
-                  <li>Team 9</li>
-                </>
-              )}
-              {teamNum === 10 && (
-                <>
-                  <li>Team 7</li>
-                  <li>Team 8</li>
-                  <li></li>
-                  <li></li>
-                </>
-              )}
+              {teams.map((team) => {
+                return <li key={team.id}>{team.team_name}</li>;
+              })}
+              {missingTeams?.map((index) => {
+                return <li key={index}></li>;
+              })}
             </ol>
-            <SocialMedia
-              pageTitle="Invite friends to Join League"
-              title={'Join my ABZ Fantasy League. League code: '}
-              description="Build your ultimate anime team"
-              singleHashtag="#abzFantasyLeague"
-              pluralHashtags={['abz', 'abzFantasyLeague', 'animebrothaz']}
-              url={`${origin}/league/join`}
-            />
+            {teams.length !== num_teams && (
+              <SocialMedia
+                pageTitle="Invite friends to Join League"
+                title={`Join my ABZ Fantasy League. League code: ${hash}`}
+                description="Build your ultimate anime team"
+                singleHashtag="#abzFantasyLeague"
+                pluralHashtags={['abz', 'abzFantasyLeague', 'animebrothaz']}
+                url={`${origin}/league/join`}
+              />
+            )}
           </$AdminWrapper>
         </Collapsible>
       </$GlobalContainer>
