@@ -49,3 +49,14 @@ export const getAllMatchupVotes = async () => {
 
   return await axiosClient(data);
 };
+
+export const addVotes = async (payload, token) => {
+  const data = {
+    url: `${api}/matchup/add`,
+    method: 'put',
+    body: payload,
+    token,
+  };
+
+  return await axiosClient(data);
+};

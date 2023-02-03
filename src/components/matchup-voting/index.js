@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   $MatchupVotingCharacter,
   $MatchupVotingTeam,
@@ -9,9 +9,16 @@ import {
 } from './matchupVoting.style.js';
 import Button from 'Components/button';
 import SocialMedia from 'Components/social-media/index.js';
+import { addVotes } from 'src/requests/matchup.js';
+import { getCookie, responseError } from 'Utils/index.js';
+import { addEvent } from 'Utils/amplitude.js';
+import ErrorMsg from 'Components/error-msg/index.js';
 
 const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
   const { player_a_count, player_b_count, leagueName, id } = matchup;
+  const [playerACount, setPlayerACount] = useState(player_a_count);
+  const [playerBCount, setPlayerBCount] = useState(player_b_count);
+  const [errorMsg, setErrorMsg] = useState(null);
   let pathname = '';
   const socialTitle = `Matchup of the week: ${playerA.name} vs ${playerB.name}`;
 
@@ -21,9 +28,29 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
       : window.location.href;
   }
 
+  const handleAddingVotes = async (player, playerCount) => {
+    setErrorMsg(null);
+    const payload = {
+      voteId: id,
+      votedFor: player,
+      playerCount,
+    };
+
+    try {
+      const { votes } = await addVotes(payload, getCookie('token'));
+
+      playerCount === 'player_a_count'
+        ? setPlayerACount(votes)
+        : setPlayerBCount(votes);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to add votes'));
+      setErrorMsg(err.response.data.message);
+    }
+  };
+
   return (
     <>
-      <$MatchupVotingWrapper>
+      <$MatchupVotingWrapper className={errorMsg && 'spacing'}>
         <$MatchupVotingSection>
           <$MatchupVotingImage src="/assets/profile/unknown.png" alt="Goku" />
           <$MatchupVotingCharacter>{playerA.full_name}</$MatchupVotingCharacter>
@@ -32,9 +59,9 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
             btnText={`Vote for ${playerA.name}`}
             btnColor="primary"
             customBtnClass="medium"
-            btnFunction={() => alert('This functional hasn\'t been created yet')}
+            btnFunction={() => handleAddingVotes(playerA.id, 'player_a_count')}
           />
-          <div>Total Votes: {player_a_count}</div>
+          <div>Total Votes: {playerACount}</div>
         </$MatchupVotingSection>
         <$MatchupVotingSection>
           <$MatchupVotingVersus>VS</$MatchupVotingVersus>
@@ -50,11 +77,12 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
             btnText={`Vote for ${playerB.name}`}
             btnColor="primary"
             customBtnClass="medium"
-            btnFunction={() => alert('This functional hasn\'t been created yet')}
+            btnFunction={() => handleAddingVotes(playerB.id, 'player_b_count')}
           />
-          <div>Total Votes: {player_b_count}</div>
+          <div>Total Votes: {playerBCount}</div>
         </$MatchupVotingSection>
       </$MatchupVotingWrapper>
+      {errorMsg && <ErrorMsg msg={errorMsg} />}
       <SocialMedia
         pageTitle={changeMatchup ? 'Share Matchup' : 'Get Votes'}
         title={socialTitle}

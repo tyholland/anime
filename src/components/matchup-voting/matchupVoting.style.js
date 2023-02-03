@@ -24,6 +24,10 @@ export const $MatchupVotingWrapper = styled.div`
   justify-content: space-evenly;
   margin-top: 3%;
 
+  &.spacing {
+    margin-bottom: 3%;
+  }
+
   ${MOBILE_VIEW} {
     flex-direction: column;
   }
