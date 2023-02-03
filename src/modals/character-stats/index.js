@@ -56,7 +56,7 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen, character, votes }) => {
         getCookie('token')
       );
 
-      addEvent('Matchup Voting', {
+      addEvent('Start Matchup Voting', {
         matchupId: query?.matchup_id,
         rank,
       });

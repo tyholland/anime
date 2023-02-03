@@ -32,7 +32,7 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
     setErrorMsg(null);
     const payload = {
       voteId: id,
-      votedFor: player,
+      votedFor: player.id,
       playerCount,
     };
 
@@ -42,6 +42,11 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
       playerCount === 'player_a_count'
         ? setPlayerACount(votes)
         : setPlayerBCount(votes);
+
+      addEvent('Matchup Voting', {
+        votedFor: player.full_name,
+        totalVotes: votes,
+      });
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to add votes'));
       setErrorMsg(err.response.data.message);
@@ -59,7 +64,7 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
             btnText={`Vote for ${playerA.name}`}
             btnColor="primary"
             customBtnClass="medium"
-            btnFunction={() => handleAddingVotes(playerA.id, 'player_a_count')}
+            btnFunction={() => handleAddingVotes(playerA, 'player_a_count')}
           />
           <div>Total Votes: {playerACount}</div>
         </$MatchupVotingSection>
@@ -77,7 +82,7 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
             btnText={`Vote for ${playerB.name}`}
             btnColor="primary"
             customBtnClass="medium"
-            btnFunction={() => handleAddingVotes(playerB.id, 'player_b_count')}
+            btnFunction={() => handleAddingVotes(playerB, 'player_b_count')}
           />
           <div>Total Votes: {playerBCount}</div>
         </$MatchupVotingSection>
