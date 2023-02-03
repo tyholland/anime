@@ -24,11 +24,7 @@ const LeagueDetails = ({ leagueId, leagueData }) => {
         <BackLink />
         <$GlobalContainer className="grid">
           {account?.user_id === creator_id && (
-            <SelectionCard
-              btnText="Admin Settings"
-              redirect={'/league/admin'}
-              isDisabled={true}
-            />
+            <SelectionCard btnText="Admin Settings" redirect="/league/admin" />
           )}
           <SelectionCard btnText="Team" redirect={`/team/${teamId}`} />
           <SelectionCard

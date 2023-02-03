@@ -112,6 +112,12 @@ export const $Btn = styled.button`
     }
   }
 
+  &.edit {
+    & span {
+      color: #06c;
+    }
+  }
+
   &.text {
     background: transparent;
     border-radius: 0;
