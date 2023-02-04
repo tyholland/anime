@@ -46,3 +46,7 @@ export const $MatchupVotingImage = styled.img`
   margin-bottom: 2%;
   filter: grayscale(100);
 `;
+
+export const $MatchupVotingTotal = styled.div`
+  margin-top: 5%;
+`;

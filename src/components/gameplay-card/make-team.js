@@ -14,7 +14,7 @@ const MakeTeam = () => {
         Each battlefield will be worth the available points.
       </$GameplayCardSection>
       <$GameplayCardSection>
-        The league will start on the first Monday following all the teams being
+        The league will start on the first Sunday following all the teams being
         added. An email will be sent to the league announcing the start date.
       </$GameplayCardSection>
       <$GameplayCardSection>

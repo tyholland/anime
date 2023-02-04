@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
@@ -14,15 +14,20 @@ import { getCookie, responseError } from 'Utils/index';
 const LeagueCreate = () => {
   const [teams, setTeams] = useState('');
   const [leagueName, setLeagueName] = useState('');
+  const [isDisabled, setIsDisabled] = useState(true);
   const options = ['6', '7', '8', '9', '10'];
-  const isDisabled = !teams.length || !leagueName.length;
   const router = useRouter();
 
   const handleTeamSelect = (val) => {
     setTeams(val);
   };
 
+  const handleLeagueName = (val) => {
+    setLeagueName(val);
+  };
+
   const handleLeagueCreation = async () => {
+    setIsDisabled(true);
     const payload = {
       name: leagueName,
       numTeams: teams,
@@ -38,8 +43,13 @@ const LeagueCreate = () => {
       router.push(`/team/${teamId}`);
     } catch (err) {
       addEvent('Error', responseError(err, 'Create League'));
+      setIsDisabled(true);
     }
   };
+
+  useEffect(() => {
+    setIsDisabled(!teams.length || !leagueName.length);
+  }, [teams, leagueName]);
 
   return (
     <>
@@ -51,7 +61,7 @@ const LeagueCreate = () => {
       <$GlobalContainer>
         <$LeagueCreateWrapper>
           <$GlobalTitle>Create a League</$GlobalTitle>
-          <TextField placeholder="League Name" onChange={setLeagueName} />
+          <TextField placeholder="League Name" onChange={handleLeagueName} />
           <Select
             defaultVal="Number of Teams"
             onChange={handleTeamSelect}

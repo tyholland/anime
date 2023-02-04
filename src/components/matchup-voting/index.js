@@ -6,6 +6,7 @@ import {
   $MatchupVotingWrapper,
   $MatchupVotingSection,
   $MatchupVotingImage,
+  $MatchupVotingTotal,
 } from './matchupVoting.style.js';
 import Button from 'Components/button';
 import SocialMedia from 'Components/social-media/index.js';
@@ -66,7 +67,7 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
             customBtnClass="medium"
             btnFunction={() => handleAddingVotes(playerA, 'player_a_count')}
           />
-          <div>Total Votes: {playerACount}</div>
+          <$MatchupVotingTotal>Total Votes: {playerACount}</$MatchupVotingTotal>
         </$MatchupVotingSection>
         <$MatchupVotingSection>
           <$MatchupVotingVersus>VS</$MatchupVotingVersus>
@@ -84,7 +85,7 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
             customBtnClass="medium"
             btnFunction={() => handleAddingVotes(playerB, 'player_b_count')}
           />
-          <div>Total Votes: {playerBCount}</div>
+          <$MatchupVotingTotal>Total Votes: {playerBCount}</$MatchupVotingTotal>
         </$MatchupVotingSection>
       </$MatchupVotingWrapper>
       {errorMsg && <ErrorMsg msg={errorMsg} />}

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MOBILE_VIEW } from 'Styles/global.style';
+import { MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
 
 export const $JoinLeagueWrapper = styled.div`
   display: flex;
@@ -8,6 +8,15 @@ export const $JoinLeagueWrapper = styled.div`
 
   > div {
     text-align: center;
+    width: 35%;
+
+    ${RESPONSIVE_VIEW} {
+      width: 50%;
+    }
+
+    ${MOBILE_VIEW} {
+      width: 100%;
+    }
   }
 
   &.spacing {

@@ -14,14 +14,18 @@ import { updateTeamName } from 'src/requests/team.js';
 import { addEvent } from 'Utils/amplitude.js';
 import Metadata from 'Components/metadata/index.js';
 import { getCookie, responseError } from 'Utils/index.js';
+import ErrorMsg from 'Components/error-msg/index.js';
 
 const TeamInfo = ({ teamData }) => {
   const { team_name, name, points, id, rank } = teamData;
   const [edit, setEdit] = useState(false);
   const [teamName, setTeamName] = useState(team_name);
   const [changedName, setChangedName] = useState('');
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const handleTeamNameChange = async () => {
+    setErrorMsg(null);
+
     try {
       await updateTeamName(
         id,
@@ -39,6 +43,7 @@ const TeamInfo = ({ teamData }) => {
       setTeamName(changedName);
     } catch (err) {
       addEvent('Error', responseError(err, 'Change Team Name'));
+      setErrorMsg(err.response.data.message);
     }
   };
 
@@ -62,12 +67,14 @@ const TeamInfo = ({ teamData }) => {
             )}
             {!edit && <$TeamInfoContent>{teamName}</$TeamInfoContent>}
             <$TeamInfoBtn>
+              {errorMsg && <ErrorMsg msg={errorMsg} />}
               <Button
                 btnText={edit ? 'Save' : 'Edit'}
                 btnColor="primary"
                 btnFunction={() => {
                   if (edit) {
                     handleTeamNameChange();
+                    return;
                   }
                   setEdit(!edit);
                 }}
@@ -77,7 +84,10 @@ const TeamInfo = ({ teamData }) => {
                 <Button
                   btnText="Cancel"
                   btnColor="cancel"
-                  btnFunction={() => setEdit(false)}
+                  btnFunction={() => {
+                    setEdit(false);
+                    setErrorMsg(null);
+                  }}
                   customBtnClass="medium"
                 />
               )}

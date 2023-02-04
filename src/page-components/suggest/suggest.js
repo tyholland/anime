@@ -14,7 +14,7 @@ const Suggest = () => {
   const [series, setSeries] = useState('');
   const [rank, setRank] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
   const options = ['Captain', 'Brawler', 'Support', 'Villain', 'Battlefield'];
   let pathname = '';
 

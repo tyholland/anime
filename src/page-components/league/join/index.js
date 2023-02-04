@@ -15,8 +15,10 @@ const JoinLeague = () => {
   const router = useRouter();
   const [leagueHash, setLeagueHash] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const handleJoinLeague = async () => {
+    setIsDisabled(true);
     setErrorMsg(null);
     const payload = {
       hash: leagueHash,
@@ -33,7 +35,13 @@ const JoinLeague = () => {
     } catch (error) {
       addEvent('Error', responseError(error, 'Join League'));
       setErrorMsg(error.response.data.message);
+      setIsDisabled(true);
     }
+  };
+
+  const handleLeagueHash = (val) => {
+    setIsDisabled(false);
+    setLeagueHash(val);
   };
 
   return (
@@ -49,13 +57,14 @@ const JoinLeague = () => {
           <div>
             <TextField
               placeholder="Enter your league code"
-              onChange={setLeagueHash}
+              onChange={handleLeagueHash}
             />
             <Button
               btnText="Enter League"
               btnColor="primary"
               customBtnClass="medium"
               btnFunction={handleJoinLeague}
+              isDisabled={isDisabled}
             />
             {errorMsg && <ErrorMsg msg={errorMsg} />}
           </div>
