@@ -50,7 +50,10 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
       });
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to add votes'));
-      setErrorMsg(err.response.data.message);
+      const nonUserMsg = 'Please login, in order to vote on this matchup.';
+      err.response.status === 401
+        ? setErrorMsg(nonUserMsg)
+        : setErrorMsg(err.response.data.message);
     }
   };
 
