@@ -41,9 +41,11 @@ const TeamInfo = ({ teamData }) => {
       });
 
       setTeamName(changedName);
+      setEdit(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Change Team Name'));
       setErrorMsg(err.response.data.message);
+      setEdit(true);
     }
   };
 
@@ -76,7 +78,7 @@ const TeamInfo = ({ teamData }) => {
                     handleTeamNameChange();
                     return;
                   }
-                  setEdit(!edit);
+                  setEdit(true);
                 }}
                 customBtnClass="medium"
               />
