@@ -34,6 +34,7 @@ const SocialMedia = ({
 
       addEvent('Social Share', {
         platform: 'mobile device',
+        title,
       });
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to utilize mobile share'));
@@ -43,6 +44,7 @@ const SocialMedia = ({
   const handleTracking = (platform) => {
     addEvent('Social Share', {
       platform,
+      title,
     });
   };
 
