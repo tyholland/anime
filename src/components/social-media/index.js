@@ -31,9 +31,19 @@ const SocialMedia = ({
 
     try {
       await navigator.share(shareData);
+
+      addEvent('Social Share', {
+        platform: 'mobile device',
+      });
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to utilize mobile share'));
     }
+  };
+
+  const handleTracking = (platform) => {
+    addEvent('Social Share', {
+      platform,
+    });
   };
 
   return (
@@ -41,16 +51,35 @@ const SocialMedia = ({
       <$SocialMediaWrapper>
         <div className="title">{pageTitle}</div>
         <div className="btns">
-          <FacebookShareButton url={url} quote={title} hashtag={singleHashtag}>
+          <FacebookShareButton
+            url={url}
+            quote={title}
+            hashtag={singleHashtag}
+            onShareWindowClose={() => handleTracking('facebook')}
+          >
             <FacebookIcon size={50} round={true} />
           </FacebookShareButton>
-          <TwitterShareButton url={url} title={title} hashtags={pluralHashtags}>
+          <TwitterShareButton
+            url={url}
+            title={title}
+            hashtags={pluralHashtags}
+            onShareWindowClose={() => handleTracking('twitter')}
+          >
             <TwitterIcon size={50} round={true} />
           </TwitterShareButton>
-          <EmailShareButton url={url} subject={title} body={description}>
+          <EmailShareButton
+            url={url}
+            subject={title}
+            body={description}
+            onShareWindowClose={() => handleTracking('email')}
+          >
             <EmailIcon size={50} round={true} />
           </EmailShareButton>
-          <RedditShareButton url={url} title={title}>
+          <RedditShareButton
+            url={url}
+            title={title}
+            onShareWindowClose={() => handleTracking('reddit')}
+          >
             <RedditIcon size={50} round={true} />
           </RedditShareButton>
           {isMobileShare && (
