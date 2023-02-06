@@ -93,3 +93,14 @@ export const updateLeague = async (leagueId, payload, token) => {
 
   return await axiosClient(data);
 };
+
+export const removeTeamFromLeague = async (memberId, payload, token) => {
+  const data = {
+    url: `${api}/league/remove/${memberId}`,
+    method: 'delete',
+    body: payload,
+    token,
+  };
+
+  return await axiosClient(data);
+};

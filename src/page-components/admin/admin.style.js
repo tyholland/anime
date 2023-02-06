@@ -20,6 +20,18 @@ export const $AdminWrapper = styled.div`
       width: 90%;
     }
   }
+
+  .team {
+    margin-bottom: 2%;
+    
+    button {
+      margin-left: 5%;
+
+      span {
+        font-size: 12px;
+      }
+    }
+  }
 `;
 
 export const $AdminSection = styled.div`
