@@ -49,8 +49,8 @@ const LeagueDetails = ({ leagueId, leagueData }) => {
           />
           <SelectionCard
             btnText="Playoffs"
-            redirect="/playoffs"
-            isDisabled={true}
+            redirect={`/playoffs/${leagueId}`}
+            isDisabled={!matchupId}
           />
         </$GlobalContainer>
       </$GlobalWrapper>
