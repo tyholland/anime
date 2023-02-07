@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { COLOR_BLACK, MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
+import {
+  COLOR_BLACK,
+  FONT_WEIGHT_BOLD,
+  MOBILE_VIEW,
+  RESPONSIVE_VIEW,
+} from 'Styles/global.style';
 
 export const $GameContainerWrapper = styled.div`
   margin-bottom: 2%;
@@ -47,4 +52,9 @@ export const $GameContainerTeamName = styled.div`
   ${MOBILE_VIEW} {
     width: 210px;
   }
+`;
+
+export const $GameContainerGame = styled.div`
+  margin-bottom: 2%;
+  font-weight: ${FONT_WEIGHT_BOLD};
 `;

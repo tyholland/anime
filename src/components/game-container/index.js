@@ -4,14 +4,16 @@ import {
   $GameContainerWrapper,
   $GameContainerTeamContainer,
   $GameContainerTeamName,
+  $GameContainerGame,
 } from './gameContainer.style';
 
-const GameContainer = ({ game }) => {
+const GameContainer = ({ game, gameNum = null }) => {
   const { teamA, teamB, scoreA, scoreB } = game;
 
   return (
     <$GameContainerWrapper key={teamA}>
       <$GameContainerTeamContainer>
+        {!!gameNum && <$GameContainerGame>Game {gameNum}</$GameContainerGame>}
         <$GameContainerTeamSection>
           <$GameContainerTeamName>{teamA}</$GameContainerTeamName>
           <div>{scoreA}</div>

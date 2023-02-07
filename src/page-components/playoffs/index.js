@@ -37,14 +37,14 @@ const Playoffs = () => {
 
   const semis = [
     {
-      teamA: '#1 seed',
+      teamA: 'Winner of Game #1',
       teamB: 'Winner of Game #2',
       scoreA: 0,
       scoreB: 0,
     },
     {
       teamA: 'Winner of Game #3',
-      teamB: '#2 seed',
+      teamB: 'Winner of Game #4',
       scoreA: 0,
       scoreB: 0,
     },
@@ -70,15 +70,27 @@ const Playoffs = () => {
       <$GlobalContainer>
         <Collapsible trigger="First Round" triggerTagName="div">
           <$PlayoffsWrapper>
-            {roundOne.map((game) => {
-              return <GameContainer game={game} key={game.teamA} />;
+            {roundOne.map((game, index) => {
+              return (
+                <GameContainer
+                  game={game}
+                  gameNum={index + 1}
+                  key={game.teamA}
+                />
+              );
             })}
           </$PlayoffsWrapper>
         </Collapsible>
         <Collapsible trigger="Semi-Finals" triggerTagName="div">
           <$PlayoffsWrapper>
-            {semis.map((game) => {
-              return <GameContainer game={game} key={game.teamA} />;
+            {semis.map((game, index) => {
+              return (
+                <GameContainer
+                  game={game}
+                  gameNum={index + 5}
+                  key={game.teamA}
+                />
+              );
             })}
           </$PlayoffsWrapper>
         </Collapsible>
