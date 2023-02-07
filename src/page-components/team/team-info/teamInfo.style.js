@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {
   COLOR_BLACK,
   FONT_WEIGHT_BOLD,
+  FONT_WEIGHT_NORMAL,
   MOBILE_VIEW,
 } from 'Styles/global.style';
 
@@ -42,6 +43,7 @@ export const $TeamInfoStats = styled.div`
 
     span {
       font-size: 14px !important;
+      font-weight: ${FONT_WEIGHT_NORMAL};
     }
   }
 `;
