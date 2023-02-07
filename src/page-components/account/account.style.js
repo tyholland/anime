@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MOBILE_VIEW } from 'Styles/global.style';
 
 export const $AccountWrapper = styled.div`
   display: flex;
@@ -28,12 +29,16 @@ export const $AccountWrapper = styled.div`
     align-items: center;
 
     button {
-      width: 20%;
+      width: auto;
       margin-top: 3%;
     }
 
     input {
       width: 50%;
+
+      ${MOBILE_VIEW} {
+        width: 90%;
+      }
     }
   }
 `;
