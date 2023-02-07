@@ -23,18 +23,23 @@ const Account = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorPage, setErrorPage] = useState(false);
+  const [logoutTrigger, setLogoutTrigger] = useState(false);
   const [pwd, setPwd] = useState(null);
   const [confirmPwd, setConfirmPwd] = useState(null);
   const router = useRouter();
 
   const handleLogout = async () => {
+    setIsLoading(true);
+    setLogoutTrigger(true);
+
     try {
-      setIsLoading(true);
       await deleteCurrentUser();
       addEvent('Account logout');
       router.push('/');
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to logout'));
+      setIsLoading(false);
+      setLogoutTrigger(false);
     }
   };
 
@@ -60,7 +65,9 @@ const Account = () => {
   };
 
   useEffect(() => {
-    setErrorPage(!currentUser);
+    if (!logoutTrigger) {
+      setErrorPage(!currentUser);
+    }
 
     if (currentUser) {
       setEmail(currentUser.email);
