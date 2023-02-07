@@ -52,8 +52,8 @@ const Boost = () => {
         <$GameplayCardTitle>User Voting</$GameplayCardTitle>
         <div>
           Characters in a specific Head-to-Head Battle can recieve a boost. The
-          character will recieve the full amount of the User Voting power boost.
-          This doesn't apply to a Battlefield.
+          character will recieve a 250% power boost. This doesn't apply to a
+          Battlefield.
         </div>
       </$GameplayCardSection>
     </$GlobalContainer>

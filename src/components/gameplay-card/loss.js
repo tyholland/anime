@@ -34,8 +34,8 @@ const Loss = () => {
         <$GameplayCardTitle>User Voting</$GameplayCardTitle>
         <div>
           Characters in a specific Head-to-Head Battle can recieve damage. The
-          character will lose the full amount of the User Voting power loss.
-          This doesn't apply to a Battlefield.
+          character will get a 150% power loss. This doesn't apply to a
+          Battlefield.
         </div>
       </$GameplayCardSection>
     </$GlobalContainer>
