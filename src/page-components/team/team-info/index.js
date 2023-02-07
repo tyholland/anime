@@ -10,14 +10,16 @@ import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import BackLink from 'Components/back-link/index.js';
-import { updateTeamName } from 'src/requests/team.js';
+import { removeTeam, updateTeamName } from 'src/requests/team.js';
 import { addEvent } from 'Utils/amplitude.js';
 import Metadata from 'Components/metadata/index.js';
 import { getCookie, responseError } from 'Utils/index.js';
 import ErrorMsg from 'Components/error-msg/index.js';
+import { useRouter } from 'next/router.js';
 
 const TeamInfo = ({ teamData }) => {
-  const { team_name, name, points, id, rank } = teamData;
+  const router = useRouter();
+  const { team_name, name, points, id, rank, league_id } = teamData;
   const [edit, setEdit] = useState(false);
   const [teamName, setTeamName] = useState(team_name);
   const [changedName, setChangedName] = useState('');
@@ -49,6 +51,19 @@ const TeamInfo = ({ teamData }) => {
     }
   };
 
+  const handleRemoveTeam = async () => {
+    setErrorMsg(null);
+
+    try {
+      await removeTeam(league_id, getCookie('token'));
+
+      router.push('/league');
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to remove team'));
+      setErrorMsg(err.response.data.message);
+    }
+  };
+
   return (
     <>
       <BackLink />
@@ -58,6 +73,7 @@ const TeamInfo = ({ teamData }) => {
       />
       <$GlobalContainer>
         <$GlobalTitle>Team Info</$GlobalTitle>
+        {errorMsg && <ErrorMsg msg={errorMsg} />}
         <$TeamInfoWrapper>
           <div>
             <$TeamInfoTitle>Team Name:</$TeamInfoTitle>
@@ -69,7 +85,6 @@ const TeamInfo = ({ teamData }) => {
             )}
             {!edit && <$TeamInfoContent>{teamName}</$TeamInfoContent>}
             <$TeamInfoBtn>
-              {errorMsg && <ErrorMsg msg={errorMsg} />}
               <Button
                 btnText={edit ? 'Save' : 'Edit'}
                 btnColor="primary"
@@ -104,6 +119,13 @@ const TeamInfo = ({ teamData }) => {
             </$TeamInfoStats>
             <$TeamInfoStats>
               <span>Points Remaining:</span> {points} pts
+            </$TeamInfoStats>
+            <$TeamInfoStats>
+              <Button
+                btnText="Remove team"
+                btnFunction={handleRemoveTeam}
+                customBtnClass="text"
+              />
             </$TeamInfoStats>
           </div>
         </$TeamInfoWrapper>

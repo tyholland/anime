@@ -34,6 +34,16 @@ export const $TeamInfoStats = styled.div`
   span {
     font-weight: ${FONT_WEIGHT_BOLD};
   }
+
+  button {
+    display: flex;
+    justify-content: flex-end;
+    width: 100% !important;
+
+    span {
+      font-size: 14px !important;
+    }
+  }
 `;
 
 export const $TeamInfoWrapper = styled.div`

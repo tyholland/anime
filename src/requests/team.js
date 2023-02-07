@@ -62,3 +62,13 @@ export const getSchedule = async (leagueId, token) => {
 
   return await axiosClient(data);
 };
+
+export const removeTeam = async (leagueId, token) => {
+  const data = {
+    url: `${api}/team/${leagueId}`,
+    method: 'delete',
+    token,
+  };
+
+  return await axiosClient(data);
+};
