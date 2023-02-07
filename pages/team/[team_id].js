@@ -17,6 +17,7 @@ export const getServerSideProps = async (context) => {
         teamId: team_id,
         teamData,
         rank: teamInfo.rank,
+        leagueWeek: teamInfo.leagueWeek,
       },
     };
   } catch (err) {

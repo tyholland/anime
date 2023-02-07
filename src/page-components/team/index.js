@@ -15,8 +15,9 @@ import TeamCard from 'Components/team-card';
 import BackLink from 'Components/back-link/index.js';
 import Metadata from 'Components/metadata/index.js';
 
-const Team = ({ teamId, teamData, rank }) => {
+const Team = ({ teamId, teamData, rank, leagueWeek }) => {
   const { teamName, team, memberId } = teamData;
+  const isPastWeek = team.week < leagueWeek;
 
   const totalPoints =
     team.captain.teamPoints +
@@ -39,23 +40,25 @@ const Team = ({ teamId, teamData, rank }) => {
         <$TeamInfo>
           <$TeamContent>
             <$TeamName>{teamName}</$TeamName>
-            <$TeamLeague>Week: {team.week}</$TeamLeague>
+            {!isPastWeek && <$TeamLeague>Week: {team.week}</$TeamLeague>}
             <$TeamLeague>Rank: {`${rank.win}-${rank.loss}`}</$TeamLeague>
           </$TeamContent>
-          <$TeamBtnSection>
-            <Button
-              btnText="Team Info"
-              btnColor="primary"
-              redirect={`/team/info/${memberId}`}
-              customBtnClass="medium"
-            />
-            <Button
-              btnText="Edit Roster"
-              btnColor="primary"
-              customBtnClass="medium"
-              redirect={`/team/edit/${teamId}`}
-            />
-          </$TeamBtnSection>
+          {!isPastWeek && (
+            <$TeamBtnSection>
+              <Button
+                btnText="Team Info"
+                btnColor="primary"
+                redirect={`/team/info/${memberId}`}
+                customBtnClass="medium"
+              />
+              <Button
+                btnText="Edit Roster"
+                btnColor="primary"
+                customBtnClass="medium"
+                redirect={`/team/edit/${teamId}`}
+              />
+            </$TeamBtnSection>
+          )}
         </$TeamInfo>
         <TeamCard data={team} />
         <$TeamTotal>
