@@ -104,3 +104,13 @@ export const removeTeamFromLeague = async (memberId, payload, token) => {
 
   return await axiosClient(data);
 };
+
+export const getPlayoffs = async (leagueId, token) => {
+  const data = {
+    url: `${api}/league/playoffs/${leagueId}`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};

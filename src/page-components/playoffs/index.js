@@ -7,8 +7,10 @@ import { $GlobalContainer } from 'Styles/global.style';
 import { $GameplayStyles } from 'PageComponents/gameplay/gameplay.style';
 import { $PlayoffsWrapper } from './playoffs.style';
 
-const Playoffs = () => {
-  const roundOne = [
+const Playoffs = ({ schedule }) => {
+  const { firstRound, semis, finals } = schedule;
+
+  const defaultFirstRound = [
     {
       teamA: '#1 seed',
       teamB: 'Bye',
@@ -35,7 +37,7 @@ const Playoffs = () => {
     },
   ];
 
-  const semis = [
+  const defaultSemis = [
     {
       teamA: 'Winner of Game #1',
       teamB: 'Winner of Game #2',
@@ -50,7 +52,7 @@ const Playoffs = () => {
     },
   ];
 
-  const finals = [
+  const defaultFinals = [
     {
       teamA: 'Winner of Game #5',
       teamB: 'Winner of Game #6',
@@ -58,6 +60,10 @@ const Playoffs = () => {
       scoreB: 0,
     },
   ];
+
+  const round1 = firstRound.length ? firstRound : defaultFirstRound;
+  const round2 = semis.length ? semis : defaultSemis;
+  const round3 = finals.length ? finals : defaultFinals;
 
   return (
     <>
@@ -70,7 +76,7 @@ const Playoffs = () => {
       <$GlobalContainer>
         <Collapsible trigger="First Round" triggerTagName="div">
           <$PlayoffsWrapper>
-            {roundOne.map((game, index) => {
+            {round1.map((game, index) => {
               return (
                 <GameContainer
                   game={game}
@@ -83,7 +89,7 @@ const Playoffs = () => {
         </Collapsible>
         <Collapsible trigger="Semi-Finals" triggerTagName="div">
           <$PlayoffsWrapper>
-            {semis.map((game, index) => {
+            {round2.map((game, index) => {
               return (
                 <GameContainer
                   game={game}
@@ -96,7 +102,7 @@ const Playoffs = () => {
         </Collapsible>
         <Collapsible trigger="Finals" triggerTagName="div">
           <$PlayoffsWrapper>
-            {finals.map((game) => {
+            {round3.map((game) => {
               return <GameContainer game={game} key={game.teamA} />;
             })}
           </$PlayoffsWrapper>
