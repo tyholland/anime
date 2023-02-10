@@ -22,6 +22,14 @@ export const getServerSideProps = async () => {
       },
     };
   } catch (err) {
+    if (err.response.status === 400) {
+      return {
+        props: {
+          allMatchupVotes: [],
+        },
+      };
+    }
+
     addEvent('Error', responseError(err, 'Failed to get all voting matchups'));
 
     return {

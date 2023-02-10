@@ -31,6 +31,7 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
 
   const handleAddingVotes = async (player, playerCount) => {
     setErrorMsg(null);
+
     const payload = {
       voteId: id,
       votedFor: player.id,
