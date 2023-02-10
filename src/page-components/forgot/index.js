@@ -8,14 +8,31 @@ import {
 } from 'PageComponents/login/login.style.js';
 import { useAppContext } from 'src/hooks/context';
 import Metadata from 'Components/metadata';
-import { redirectToAccount } from 'Utils/index';
+import { redirectToAccount, responseError } from 'Utils/index';
+import { addEvent } from 'Utils/amplitude';
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 
 const ForgotPassword = () => {
   const { currentUser } = useAppContext();
   const [userEmail, setUserEmail] = useState('');
-  const isDisabled = !userEmail.length;
+  const [isDisabled, setIsDisabled] = useState(null);
 
-  const handleForgotPwd = async () => {};
+  const handleEmail = (val) => {
+    setUserEmail(val);
+    setIsDisabled(!val.length);
+  };
+
+  const handleForgotPwd = async () => {
+    try {
+      const auth = getAuth();
+      await sendPasswordResetEmail(auth, userEmail);
+    } catch (err) {
+      addEvent(
+        'Error',
+        responseError(err, 'Failed to send forgot password email')
+      );
+    }
+  };
 
   useEffect(() => {
     redirectToAccount(currentUser);
@@ -33,7 +50,7 @@ const ForgotPassword = () => {
           <TextField
             placeholder="Please enter a email"
             keyboard="email-address"
-            onChange={setUserEmail}
+            onChange={handleEmail}
           />
           <Button
             btnText="Reset Password"
