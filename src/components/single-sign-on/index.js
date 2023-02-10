@@ -5,6 +5,7 @@ import {
   getAuth,
   signInWithRedirect,
   getRedirectResult,
+  FacebookAuthProvider,
 } from 'firebase/auth';
 import { addEvent } from 'Utils/amplitude';
 import {
@@ -17,7 +18,7 @@ import { accountLogin, addNewAccount } from 'src/requests/users';
 import { useAppContext } from 'src/hooks/context';
 import Loader from 'Components/loader';
 
-const SingleSignOn = ({ buttonText = 'Login' }) => {
+const SingleSignOn = ({ buttonText = 'Login', setError }) => {
   const router = useRouter();
   const { setInitialUser } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +30,17 @@ const SingleSignOn = ({ buttonText = 'Login' }) => {
     try {
       await signInWithRedirect(auth, provider);
     } catch (err) {
-      addEvent('Error', responseError(err, 'Failed to sign in with redirect'));
+      addEvent('Error', responseError(err, 'Failed google sso'));
+    }
+  };
+
+  const handleFacebook = async () => {
+    const provider = new FacebookAuthProvider();
+    const auth = getAuth();
+    try {
+      await signInWithRedirect(auth, provider);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed facebook sso'));
     }
   };
 
@@ -46,7 +57,7 @@ const SingleSignOn = ({ buttonText = 'Login' }) => {
 
       setIsLoading(true);
 
-      const isLogin = firebaseUser?.operationType === 'signIn';
+      const isLogin = buttonText === 'Login';
       const eventName = isLogin ? 'Account login' : 'Account sign-up';
 
       const user = isLogin
@@ -69,10 +80,12 @@ const SingleSignOn = ({ buttonText = 'Login' }) => {
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get SSO user data'));
       setIsLoading(false);
+
+      !err.response
+        ? setError(err.message)
+        : setError(err.response.data.message);
     }
   };
-
-  // const handleFacebook = () => {};
 
   useEffect(() => {
     if (!currentUser) {
@@ -92,12 +105,12 @@ const SingleSignOn = ({ buttonText = 'Login' }) => {
         customBtnClass="medium"
         btnFunction={handleGoogle}
       />
-      {/* <Button
+      <Button
         btnText={`${buttonText} with Facebook`}
         btnColor="social"
         customBtnClass="medium"
-        redirect="/"
-      /> */}
+        btnFunction={handleFacebook}
+      />
     </>
   );
 };

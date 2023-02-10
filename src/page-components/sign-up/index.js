@@ -115,7 +115,7 @@ const SignUp = () => {
               />
             </$LoginSection>
             <$LoginSection>
-              <SingleSignOn buttonText="Sign up" />
+              <SingleSignOn buttonText="Sign up" setError={setErrorMsg} />
             </$LoginSection>
           </$LoginSectionWrapper>
           <$LoginContentLinks>

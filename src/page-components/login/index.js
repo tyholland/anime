@@ -119,7 +119,7 @@ const Login = () => {
               />
             </$LoginSection>
             <$LoginSection>
-              <SingleSignOn />
+              <SingleSignOn setError={setErrorMsg} />
             </$LoginSection>
           </$LoginSectionWrapper>
           <$LoginContentLinks>
