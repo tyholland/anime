@@ -28,6 +28,7 @@ const Account = () => {
   const [pwd, setPwd] = useState('');
   const [confirmPwd, setConfirmPwd] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
+  const [auth, setAuth] = useState(getAuth());
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -35,7 +36,6 @@ const Account = () => {
     setLogoutTrigger(true);
 
     try {
-      const auth = getAuth();
       await signOut(auth);
       await deleteCurrentUser();
       addEvent('Account logout');
@@ -49,7 +49,6 @@ const Account = () => {
 
   const handleDeleteAccount = async () => {
     try {
-      const auth = getAuth();
       const user = auth.currentUser;
 
       await deleteUser(user);
@@ -80,7 +79,6 @@ const Account = () => {
     }
 
     try {
-      const auth = getAuth();
       const user = auth.currentUser;
 
       await updatePassword(user, pwd);
@@ -99,6 +97,12 @@ const Account = () => {
       setEmail(currentUser.email);
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    if (!auth) {
+      setAuth(getAuth());
+    }
+  }, [auth]);
 
   if (errorPage) {
     return <Error />;
