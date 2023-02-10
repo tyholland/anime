@@ -25,9 +25,19 @@ const SignUp = () => {
   const [password, setPassword] = useState(null);
   const [confirmPwd, setConfirmPwd] = useState(null);
 
-  const handleDisabledState = (val) => {
+  const handleSetEmail = (val) => {
     setUserEmail(val);
-    setIsDisabled(!val.length);
+    setIsDisabled(!val.length || !password.length || !confirmPwd.length);
+  };
+
+  const handleSetPassword = (val) => {
+    setPassword(val);
+    setIsDisabled(!val.length || !userEmail.length || !confirmPwd.length);
+  };
+
+  const handleSetConfirmPwd = (val) => {
+    setConfirmPwd(val);
+    setIsDisabled(!val.length || !password.length || !userEmail.length);
   };
 
   const handleSignUp = async () => {
@@ -84,17 +94,17 @@ const SignUp = () => {
               <TextField
                 placeholder="Please enter a email"
                 keyboard="email-address"
-                onChange={handleDisabledState}
+                onChange={handleSetEmail}
               />
               <TextField
                 placeholder="Please enter a password"
                 type="password"
-                onChange={setPassword}
+                onChange={handleSetPassword}
               />
               <TextField
                 placeholder="Confirm password"
                 type="password"
-                onChange={setConfirmPwd}
+                onChange={handleSetConfirmPwd}
               />
               <Button
                 btnText="Sign Up"

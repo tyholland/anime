@@ -36,12 +36,12 @@ const Login = () => {
 
   const handleEmail = (val) => {
     setEmail(val);
-    setIsDisabled(!val.length || !password);
+    setIsDisabled(!val.length || !password.length);
   };
 
   const handlePassword = (val) => {
     setPassword(val);
-    setIsDisabled(!val.length || !email);
+    setIsDisabled(!val.length || !email.length);
   };
 
   const handleLogin = async () => {

@@ -17,7 +17,7 @@ import {
   $AccountSectionLabel,
 } from './account.style';
 import { addEvent } from 'Utils/amplitude';
-import { getAuth, signOut } from 'firebase/auth';
+import { getAuth, signOut, updatePassword } from 'firebase/auth';
 
 const Account = () => {
   const { deleteCurrentUser, currentUser } = useAppContext();
@@ -27,6 +27,7 @@ const Account = () => {
   const [logoutTrigger, setLogoutTrigger] = useState(false);
   const [pwd, setPwd] = useState(null);
   const [confirmPwd, setConfirmPwd] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(true);
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -56,15 +57,32 @@ const Account = () => {
     }
   };
 
+  const handleSetPwd = (val) => {
+    setPwd(val);
+    setIsDisabled(!val.length || !confirmPwd.length);
+  };
+
+  const handleSetConfirmPwd = (val) => {
+    setConfirmPwd(val);
+    setIsDisabled(!val.length || !pwd.length);
+  };
+
   const handlePasswordChange = async () => {
     const isCorrectPwds = pwd === confirmPwd;
 
-    if (isCorrectPwds) {
+    if (!isCorrectPwds) {
       return;
     }
 
-    // Submit firebase function to update password
-    addEvent('Account password change');
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      await updatePassword(user, pwd);
+      addEvent('Account password change');
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to change passwords'));
+    }
   };
 
   useEffect(() => {
@@ -110,16 +128,20 @@ const Account = () => {
         <Collapsible trigger="Change Password" triggerTagName="div">
           <$AccountWrapper className="column">
             <div>
-              <TextField placeholder="Enter New Password" onChange={setPwd} />
+              <TextField
+                placeholder="Enter New Password"
+                onChange={handleSetPwd}
+              />
               <TextField
                 placeholder="Confirm New Password"
-                onChange={setConfirmPwd}
+                onChange={handleSetConfirmPwd}
               />
             </div>
             <Button
               btnText="Submit"
               btnColor="primary"
               customBtnClass="medium"
+              isDisabled={isDisabled}
               btnFunction={handlePasswordChange}
             />
           </$AccountWrapper>
