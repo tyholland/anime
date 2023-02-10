@@ -17,7 +17,7 @@ import {
   $AccountSectionLabel,
 } from './account.style';
 import { addEvent } from 'Utils/amplitude';
-import { getAuth, signOut, updatePassword } from 'firebase/auth';
+import { getAuth, signOut, updatePassword, deleteUser } from 'firebase/auth';
 
 const Account = () => {
   const { deleteCurrentUser, currentUser } = useAppContext();
@@ -49,7 +49,12 @@ const Account = () => {
 
   const handleDeleteAccount = async () => {
     try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      await deleteUser(user);
       await deleteAccount(getCookie('token'));
+
       addEvent('Account deleted');
       handleLogout();
     } catch (err) {
