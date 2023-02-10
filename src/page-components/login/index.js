@@ -20,6 +20,8 @@ import { accountLogin } from 'src/requests/users.js';
 import { addEvent } from 'Utils/amplitude.js';
 import Loader from 'Components/loader/index.js';
 import ErrorMsg from 'Components/error-msg/index.js';
+import SingleSignOn from 'Components/single-sign-on/index.js';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
   const router = useRouter();
@@ -27,11 +29,19 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [password, setPassword] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
+  const pwdErrorMsg = 'Firebase: Error (auth/wrong-password).';
+  const emailErrorMsg = 'Firebase: Error (auth/user-not-found).';
 
-  const handleDisabledState = (val) => {
+  const handleEmail = (val) => {
     setEmail(val);
-    setIsDisabled(!val.length);
+    setIsDisabled(!val.length || !password);
+  };
+
+  const handlePassword = (val) => {
+    setPassword(val);
+    setIsDisabled(!val.length || !email);
   };
 
   const handleLogin = async () => {
@@ -39,20 +49,33 @@ const Login = () => {
     setErrorMsg(null);
 
     try {
+      const auth = getAuth();
+      const firebaseUser = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
       const user = await accountLogin({
         email,
-        firebaseUID: '789',
+        firebaseUID: firebaseUser.user.uid,
       });
 
       setInitialUser(user);
 
-      addEvent('Account login');
+      addEvent('Account login', {
+        provider: firebaseUser.user.providerData[0].providerId,
+      });
 
       redirectToContinuePage(router);
     } catch (err) {
       addEvent('Error', responseError(err, 'Login'));
       setIsLoading(false);
-      setErrorMsg(err.response.data.message);
+
+      err.message === pwdErrorMsg || err.message === emailErrorMsg
+        ? setErrorMsg('Email and/or password is incorrect')
+        : setErrorMsg(err.response.data.message);
+
       setIsDisabled(true);
     }
   };
@@ -80,9 +103,13 @@ const Login = () => {
               <TextField
                 placeholder="Email"
                 keyboard="email-address"
-                onChange={handleDisabledState}
+                onChange={handleEmail}
               />
-              <TextField placeholder="Password" type="password" />
+              <TextField
+                placeholder="Password"
+                type="password"
+                onChange={handlePassword}
+              />
               <Button
                 btnText="Login"
                 btnColor="primary"
@@ -92,18 +119,7 @@ const Login = () => {
               />
             </$LoginSection>
             <$LoginSection>
-              <Button
-                btnText="Login with Google"
-                btnColor="social"
-                customBtnClass="medium"
-                redirect="/"
-              />
-              <Button
-                btnText="Login with Facebook"
-                btnColor="social"
-                customBtnClass="medium"
-                redirect="/"
-              />
+              <SingleSignOn />
             </$LoginSection>
           </$LoginSectionWrapper>
           <$LoginContentLinks>

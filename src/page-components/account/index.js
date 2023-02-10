@@ -17,6 +17,7 @@ import {
   $AccountSectionLabel,
 } from './account.style';
 import { addEvent } from 'Utils/amplitude';
+import { getAuth, signOut } from 'firebase/auth';
 
 const Account = () => {
   const { deleteCurrentUser, currentUser } = useAppContext();
@@ -33,6 +34,8 @@ const Account = () => {
     setLogoutTrigger(true);
 
     try {
+      const auth = getAuth();
+      await signOut(auth);
       await deleteCurrentUser();
       addEvent('Account logout');
       router.push('/');

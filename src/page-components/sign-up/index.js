@@ -14,37 +14,48 @@ import Metadata from 'Components/metadata';
 import { redirectToAccount, redirectUrl, responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 import ErrorMsg from 'Components/error-msg';
+import SingleSignOn from 'Components/single-sign-on';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const SignUp = () => {
   const { setInitialUser, currentUser } = useAppContext();
   const [userEmail, setUserEmail] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
-  // const [ password, setPassword ] = useState(null);
-  // const [ confirmPwd, setConfirmPwd ] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [confirmPwd, setConfirmPwd] = useState(null);
 
   const handleDisabledState = (val) => {
     setUserEmail(val);
     setIsDisabled(!val.length);
   };
 
-  /*******
-   * Add check for all the input fields being empty
-   * Add check for password fields not matching
-   *******/
-
   const handleSignUp = async () => {
     setErrorMsg(null);
 
+    if (password !== confirmPwd) {
+      setErrorMsg('Passwords do not match');
+      return;
+    }
+
     try {
+      const auth = getAuth();
+      const firebaseUser = await createUserWithEmailAndPassword(
+        auth,
+        userEmail,
+        password
+      );
+
       const user = await addNewAccount({
         userEmail,
-        firebaseId: '789',
+        firebaseId: firebaseUser.user.uid,
       });
 
       setInitialUser(user);
 
-      addEvent('Account sign-up');
+      addEvent('Account sign-up', {
+        provider: firebaseUser.user.providerData[0].providerId,
+      });
 
       redirectUrl('/league');
     } catch (error) {
@@ -78,8 +89,13 @@ const SignUp = () => {
               <TextField
                 placeholder="Please enter a password"
                 type="password"
+                onChange={setPassword}
               />
-              <TextField placeholder="Confirm password" type="password" />
+              <TextField
+                placeholder="Confirm password"
+                type="password"
+                onChange={setConfirmPwd}
+              />
               <Button
                 btnText="Sign Up"
                 btnColor="primary"
@@ -89,18 +105,7 @@ const SignUp = () => {
               />
             </$LoginSection>
             <$LoginSection>
-              <Button
-                btnText="Sign Up with Google"
-                btnColor="social"
-                customBtnClass="medium"
-                redirect="/"
-              />
-              <Button
-                btnText="Sign Up with Facebook"
-                btnColor="social"
-                customBtnClass="medium"
-                redirect="/"
-              />
+              <SingleSignOn buttonText="Sign up" />
             </$LoginSection>
           </$LoginSectionWrapper>
           <$LoginContentLinks>
