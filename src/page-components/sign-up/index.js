@@ -22,8 +22,8 @@ const SignUp = () => {
   const [userEmail, setUserEmail] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
-  const [password, setPassword] = useState(null);
-  const [confirmPwd, setConfirmPwd] = useState(null);
+  const [password, setPassword] = useState('');
+  const [confirmPwd, setConfirmPwd] = useState('');
 
   const handleSetEmail = (val) => {
     setUserEmail(val);

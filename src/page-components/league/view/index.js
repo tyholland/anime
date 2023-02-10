@@ -3,6 +3,11 @@ import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import LeagueCard from 'Components/league-card';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
+import Button from 'Components/button';
+import {
+  $ViewLeagueEmptyTitle,
+  $ViewLeagueEmptyBtnWrapper,
+} from './view.style';
 
 const ViewLeague = ({ leagues }) => {
   const leagueCard = leagues.map((item) => {
@@ -18,7 +23,28 @@ const ViewLeague = ({ leagues }) => {
       <BackLink />
       <$GlobalContainer>
         <$GlobalTitle>All Leagues</$GlobalTitle>
-        {leagueCard}
+        {!!leagues.length && leagueCard}
+        {!leagues.length && (
+          <>
+            <$ViewLeagueEmptyTitle>
+              You are not apart of any leagues at the moment
+            </$ViewLeagueEmptyTitle>
+            <$ViewLeagueEmptyBtnWrapper>
+              <Button
+                btnText="Join a League"
+                redirect="/league/join"
+                btnColor="primary"
+                customBtnClass="medium"
+              />
+              <Button
+                btnText="Create a League"
+                redirect="/league/create"
+                btnColor="primary"
+                customBtnClass="medium"
+              />
+            </$ViewLeagueEmptyBtnWrapper>
+          </>
+        )}
       </$GlobalContainer>
     </>
   );

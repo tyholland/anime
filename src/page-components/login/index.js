@@ -29,7 +29,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const pwdErrorMsg = 'Firebase: Error (auth/wrong-password).';
   const emailErrorMsg = 'Firebase: Error (auth/user-not-found).';

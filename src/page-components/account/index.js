@@ -25,8 +25,8 @@ const Account = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorPage, setErrorPage] = useState(false);
   const [logoutTrigger, setLogoutTrigger] = useState(false);
-  const [pwd, setPwd] = useState(null);
-  const [confirmPwd, setConfirmPwd] = useState(null);
+  const [pwd, setPwd] = useState('');
+  const [confirmPwd, setConfirmPwd] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const router = useRouter();
 
