@@ -4,13 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "eslint": "eslint .",
     "eslint-fix": "eslint . --fix",
     "stylelint": "stylelint src/styles/*.style.js, src/page-components/**/*.style.js, src/page-components/**/**/*.style.js, src/components/**/*.style.js",
-    "clean": "rm -rf node_modules && yarn",
-    "prepare": "husky install"
+    "clean": "rm -rf node_modules && yarn"
   },
   "dependencies": {
     "@amplitude/analytics-browser": "^1.6.4",
@@ -39,7 +38,6 @@
   "devDependencies": {
     "eslint": "^8.30.0",
     "eslint-config-next": "12.3.0",
-    "eslint-plugin-react": "^7.31.11",
-    "husky": "^8.0.0"
+    "eslint-plugin-react": "^7.31.11"
   }
 }

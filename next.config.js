@@ -2,8 +2,11 @@
 
 module.exports = {
   compiler: {
-    styledComponents: true
+    styledComponents: true,
   },
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    unoptimized: true,
+  },
 };
