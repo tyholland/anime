@@ -13,30 +13,58 @@ import {
 } from './teamEdit.style';
 import BackLink from 'Components/back-link';
 import ChangeCharacters from 'src/modals/change-character';
-import { updateTeam } from 'src/requests/team';
+import { getTeam, updateTeam } from 'src/requests/team';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
 import { getCookie, responseError } from 'Utils/index';
 import ErrorMsg from 'Components/error-msg';
+import { useRouter } from 'next/router';
+import { getPlayers } from 'src/requests/player';
+import Error from 'PageComponents/error';
+import Loader from 'Components/loader';
 
-const TeamEdit = ({ players, teamData, teamId }) => {
+const TeamEdit = () => {
+  const router = useRouter();
+  const [players, setPlayers] = useState(null);
+  const [teamId, setTeamId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playerRank, setPlayerRank] = useState(null);
   const [field, setField] = useState(null);
   const [canChange, setCanChange] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
-  const { team, userPoints, teamName } = teamData;
-  const [playerList, setPlayerList] = useState({
-    captain: team.captain,
-    brawlerA: team.brawler_a,
-    brawlerB: team.brawler_b,
-    bsBrawler: team.bs_brawler,
-    bsSupport: team.bs_support,
-    support: team.support,
-    villain: team.villain,
-    battlefield: team.battlefield,
-    userPoints,
-  });
+  const [playerList, setPlayerList] = useState(null);
+  const [errorPage, setErrorPage] = useState(false);
+
+  const handleTeamData = async () => {
+    const { team_id } = router.query;
+
+    try {
+      const players = await getPlayers();
+      const teamData = await getTeam(team_id, getCookie('token'));
+
+      const { team, userPoints } = teamData;
+
+      setPlayerList({
+        captain: team.captain,
+        brawlerA: team.brawler_a,
+        brawlerB: team.brawler_b,
+        bsBrawler: team.bs_brawler,
+        bsSupport: team.bs_support,
+        support: team.support,
+        villain: team.villain,
+        battlefield: team.battlefield,
+        userPoints,
+      });
+      setPlayers(players);
+      setTeamId(team_id);
+    } catch (err) {
+      addEvent(
+        'Error',
+        responseError(err, 'Failed to get team data and character data')
+      );
+      setErrorPage(true);
+    }
+  };
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -164,87 +192,102 @@ const TeamEdit = ({ players, teamData, teamId }) => {
     }
   }, [canChange]);
 
+  useEffect(() => {
+    if (Object.keys(router.query).length) {
+      handleTeamData();
+    }
+  }, [router.query]);
+
+  if (errorPage) {
+    return <Error />;
+  }
+
   return (
     <>
       <Metadata
         title="Edit Team"
-        description={`Edit ${teamName}'s roster. Add new players or change current players.`}
+        description="Edit team's roster. Add new players or change current players."
       />
       <BackLink />
       <$GlobalContainer>
         <$GlobalTitle>Edit Team</$GlobalTitle>
-        <$GlobalSubTitle>
-          Remaining Points: {playerList.userPoints}
-        </$GlobalSubTitle>
-        {!!errorMsg && <ErrorMsg msg={errorMsg} />}
-        <$TeamEditWrapper>
-          <$TeamEditGrid className="desktop">
-            <$TeamEditSection>Captain</$TeamEditSection>
-            <$TeamEditSection>Brawler</$TeamEditSection>
-            <$TeamEditSection>Brawler</$TeamEditSection>
-            <$TeamEditSection>Duo - Brawler</$TeamEditSection>
-            <$TeamEditSection>Duo - Support</$TeamEditSection>
-            <$TeamEditSection>Support</$TeamEditSection>
-            <$TeamEditSection>Villain</$TeamEditSection>
-            <$TeamEditSection>Battlefield</$TeamEditSection>
-          </$TeamEditGrid>
-          <$TeamEditGrid className="mobile">
-            <$TeamEditSection>C</$TeamEditSection>
-            <$TeamEditSection>B</$TeamEditSection>
-            <$TeamEditSection>B</$TeamEditSection>
-            <$TeamEditSection>Duo - B</$TeamEditSection>
-            <$TeamEditSection>Duo - S</$TeamEditSection>
-            <$TeamEditSection>S</$TeamEditSection>
-            <$TeamEditSection>V</$TeamEditSection>
-            <$TeamEditSection>BF</$TeamEditSection>
-          </$TeamEditGrid>
-          <$TeamEditGrid>
-            <$TeamEditSection>
-              <div>{playerList.captain.name}</div>
-            </$TeamEditSection>
-            <$TeamEditSection>
-              <div>{playerList.brawlerA.name}</div>
-            </$TeamEditSection>
-            <$TeamEditSection>
-              <div>{playerList.brawlerB.name}</div>
-            </$TeamEditSection>
-            <$TeamEditSection>
-              <div>{playerList.bsBrawler.name}</div>
-            </$TeamEditSection>
-            <$TeamEditSection>
-              <div>{playerList.bsSupport.name}</div>
-            </$TeamEditSection>
-            <$TeamEditSection>
-              <div>{playerList.support.name}</div>
-            </$TeamEditSection>
-            <$TeamEditSection>
-              <div>{playerList.villain.name}</div>
-            </$TeamEditSection>
-            <$TeamEditSection>
-              <div>{playerList.battlefield.name}</div>
-            </$TeamEditSection>
-          </$TeamEditGrid>
-          <$TeamEditGrid>
-            <$TeamEditBtn>{handleBtn('Captain', 'captain')}</$TeamEditBtn>
-            <$TeamEditBtn>{handleBtn('Brawler', 'brawlerA')}</$TeamEditBtn>
-            <$TeamEditBtn>{handleBtn('Brawler', 'brawlerB')}</$TeamEditBtn>
-            <$TeamEditBtn>{handleBtn('Brawler', 'bsBrawler')}</$TeamEditBtn>
-            <$TeamEditBtn>{handleBtn('Support', 'bsSupport')}</$TeamEditBtn>
-            <$TeamEditBtn>{handleBtn('Support', 'support')}</$TeamEditBtn>
-            <$TeamEditBtn>{handleBtn('Villain', 'villain')}</$TeamEditBtn>
-            <$TeamEditBtn>
-              {handleBtn('Battlefield', 'battlefield')}
-            </$TeamEditBtn>
-          </$TeamEditGrid>
-        </$TeamEditWrapper>
-        <ChangeCharacters
-          players={playerRank}
-          modalIsOpen={isModalOpen}
-          closeModal={closeModal}
-          setPlayerList={updatePlayers}
-          playerList={playerList}
-          field={field}
-        />
+        {!playerList && <Loader />}
+        {playerList && (
+          <>
+            <$GlobalSubTitle>
+              Remaining Points: {playerList.userPoints}
+            </$GlobalSubTitle>
+            {!!errorMsg && <ErrorMsg msg={errorMsg} />}
+            <$TeamEditWrapper>
+              <$TeamEditGrid className="desktop">
+                <$TeamEditSection>Captain</$TeamEditSection>
+                <$TeamEditSection>Brawler</$TeamEditSection>
+                <$TeamEditSection>Brawler</$TeamEditSection>
+                <$TeamEditSection>Duo - Brawler</$TeamEditSection>
+                <$TeamEditSection>Duo - Support</$TeamEditSection>
+                <$TeamEditSection>Support</$TeamEditSection>
+                <$TeamEditSection>Villain</$TeamEditSection>
+                <$TeamEditSection>Battlefield</$TeamEditSection>
+              </$TeamEditGrid>
+              <$TeamEditGrid className="mobile">
+                <$TeamEditSection>C</$TeamEditSection>
+                <$TeamEditSection>B</$TeamEditSection>
+                <$TeamEditSection>B</$TeamEditSection>
+                <$TeamEditSection>Duo - B</$TeamEditSection>
+                <$TeamEditSection>Duo - S</$TeamEditSection>
+                <$TeamEditSection>S</$TeamEditSection>
+                <$TeamEditSection>V</$TeamEditSection>
+                <$TeamEditSection>BF</$TeamEditSection>
+              </$TeamEditGrid>
+              <$TeamEditGrid>
+                <$TeamEditSection>
+                  <div>{playerList.captain.name}</div>
+                </$TeamEditSection>
+                <$TeamEditSection>
+                  <div>{playerList.brawlerA.name}</div>
+                </$TeamEditSection>
+                <$TeamEditSection>
+                  <div>{playerList.brawlerB.name}</div>
+                </$TeamEditSection>
+                <$TeamEditSection>
+                  <div>{playerList.bsBrawler.name}</div>
+                </$TeamEditSection>
+                <$TeamEditSection>
+                  <div>{playerList.bsSupport.name}</div>
+                </$TeamEditSection>
+                <$TeamEditSection>
+                  <div>{playerList.support.name}</div>
+                </$TeamEditSection>
+                <$TeamEditSection>
+                  <div>{playerList.villain.name}</div>
+                </$TeamEditSection>
+                <$TeamEditSection>
+                  <div>{playerList.battlefield.name}</div>
+                </$TeamEditSection>
+              </$TeamEditGrid>
+              <$TeamEditGrid>
+                <$TeamEditBtn>{handleBtn('Captain', 'captain')}</$TeamEditBtn>
+                <$TeamEditBtn>{handleBtn('Brawler', 'brawlerA')}</$TeamEditBtn>
+                <$TeamEditBtn>{handleBtn('Brawler', 'brawlerB')}</$TeamEditBtn>
+                <$TeamEditBtn>{handleBtn('Brawler', 'bsBrawler')}</$TeamEditBtn>
+                <$TeamEditBtn>{handleBtn('Support', 'bsSupport')}</$TeamEditBtn>
+                <$TeamEditBtn>{handleBtn('Support', 'support')}</$TeamEditBtn>
+                <$TeamEditBtn>{handleBtn('Villain', 'villain')}</$TeamEditBtn>
+                <$TeamEditBtn>
+                  {handleBtn('Battlefield', 'battlefield')}
+                </$TeamEditBtn>
+              </$TeamEditGrid>
+            </$TeamEditWrapper>
+            <ChangeCharacters
+              players={playerRank}
+              modalIsOpen={isModalOpen}
+              closeModal={closeModal}
+              setPlayerList={updatePlayers}
+              playerList={playerList}
+              field={field}
+            />
+          </>
+        )}
       </$GlobalContainer>
     </>
   );

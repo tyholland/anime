@@ -54,7 +54,7 @@ const SpecificVoteMatchup = () => {
         description="Vote on this matchup between two characters. Your vote can help give the individual fighter that extra boost they need to win their matchup."
       />
       <$GlobalContainer>
-        {hasMatchup && <Loader />}
+        {!hasMatchup && <Loader />}
         {hasMatchup && (
           <MatchupVoting
             playerA={playerA}

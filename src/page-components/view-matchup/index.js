@@ -71,7 +71,7 @@ const ViewMatchup = () => {
         description="View matchups between teams. View individual character bios or view the stats for a specific character. Don't forget to start user votes for specific matchups."
       />
       <$GlobalContainer>
-        {hasMatchup && <Loader />}
+        {!hasMatchup && <Loader />}
         {hasMatchup && (
           <>
             <$ViewMatchupWrapper>

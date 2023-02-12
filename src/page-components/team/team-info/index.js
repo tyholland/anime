@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   $TeamInfoContent,
   $TeamInfoTitle,
@@ -10,27 +10,30 @@ import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import BackLink from 'Components/back-link/index.js';
-import { removeTeam, updateTeamName } from 'src/requests/team.js';
+import { getTeamInfo, removeTeam, updateTeamName } from 'src/requests/team.js';
 import { addEvent } from 'Utils/amplitude.js';
 import Metadata from 'Components/metadata/index.js';
 import { getCookie, responseError } from 'Utils/index.js';
 import ErrorMsg from 'Components/error-msg/index.js';
 import { useRouter } from 'next/router.js';
+import Loader from 'Components/loader/index.js';
+import Error from 'PageComponents/error/index.js';
 
-const TeamInfo = ({ teamData }) => {
+const TeamInfo = () => {
   const router = useRouter();
-  const { team_name, name, points, id, rank, league_id } = teamData;
   const [edit, setEdit] = useState(false);
-  const [teamName, setTeamName] = useState(team_name);
+  const [teamData, setTeamData] = useState(null);
+  const [teamName, setTeamName] = useState(null);
   const [changedName, setChangedName] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
+  const [errorPage, setErrorPage] = useState(false);
 
   const handleTeamNameChange = async () => {
     setErrorMsg(null);
 
     try {
       await updateTeamName(
-        id,
+        teamData.id,
         {
           name: changedName,
         },
@@ -38,7 +41,7 @@ const TeamInfo = ({ teamData }) => {
       );
 
       addEvent('Change Team Name', {
-        previous: team_name,
+        previous: teamName,
         new: changedName,
       });
 
@@ -55,7 +58,7 @@ const TeamInfo = ({ teamData }) => {
     setErrorMsg(null);
 
     try {
-      await removeTeam(league_id, getCookie('token'));
+      await removeTeam(teamData.league_id, getCookie('token'));
 
       router.push('/league');
     } catch (err) {
@@ -63,6 +66,31 @@ const TeamInfo = ({ teamData }) => {
       setErrorMsg(err.response.data.message);
     }
   };
+
+  const handleTeamInfo = async () => {
+    const { member_id } = router.query;
+
+    try {
+      const teamData = await getTeamInfo(member_id, getCookie('token'));
+      const { team_name } = teamData;
+
+      setTeamName(team_name);
+      setTeamData(teamData);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to get team info data'));
+      setErrorPage(true);
+    }
+  };
+
+  useEffect(() => {
+    if (Object.keys(router.query).length) {
+      handleTeamInfo();
+    }
+  }, [router.query]);
+
+  if (errorPage) {
+    return <Error />;
+  }
 
   return (
     <>
@@ -74,61 +102,65 @@ const TeamInfo = ({ teamData }) => {
       <$GlobalContainer>
         <$GlobalTitle>Team Info</$GlobalTitle>
         {errorMsg && <ErrorMsg msg={errorMsg} />}
-        <$TeamInfoWrapper>
-          <div>
-            <$TeamInfoTitle>Team Name:</$TeamInfoTitle>
-            {edit && (
-              <TextField
-                placeholder="Enter Team Name"
-                onChange={setChangedName}
-              />
-            )}
-            {!edit && <$TeamInfoContent>{teamName}</$TeamInfoContent>}
-            <$TeamInfoBtn>
-              <Button
-                btnText={edit ? 'Save' : 'Edit'}
-                btnColor="primary"
-                btnFunction={() => {
-                  if (edit) {
-                    handleTeamNameChange();
-                    return;
-                  }
-                  setEdit(true);
-                }}
-                customBtnClass="medium"
-              />
+        {!teamData && <Loader />}
+        {teamData && (
+          <$TeamInfoWrapper>
+            <div>
+              <$TeamInfoTitle>Team Name:</$TeamInfoTitle>
               {edit && (
+                <TextField
+                  placeholder="Enter Team Name"
+                  onChange={setChangedName}
+                />
+              )}
+              {!edit && <$TeamInfoContent>{teamName}</$TeamInfoContent>}
+              <$TeamInfoBtn>
                 <Button
-                  btnText="Cancel"
-                  btnColor="cancel"
+                  btnText={edit ? 'Save' : 'Edit'}
+                  btnColor="primary"
                   btnFunction={() => {
-                    setEdit(false);
-                    setErrorMsg(null);
+                    if (edit) {
+                      handleTeamNameChange();
+                      return;
+                    }
+                    setEdit(true);
                   }}
                   customBtnClass="medium"
                 />
-              )}
-            </$TeamInfoBtn>
-          </div>
-          <div>
-            <$TeamInfoStats>
-              <span>League:</span> {name}
-            </$TeamInfoStats>
-            <$TeamInfoStats>
-              <span>Record:</span> {`${rank.win}-${rank.loss}`}
-            </$TeamInfoStats>
-            <$TeamInfoStats>
-              <span>Points Remaining:</span> {points} pts
-            </$TeamInfoStats>
-            <$TeamInfoStats>
-              <Button
-                btnText="Remove team"
-                btnFunction={handleRemoveTeam}
-                customBtnClass="text"
-              />
-            </$TeamInfoStats>
-          </div>
-        </$TeamInfoWrapper>
+                {edit && (
+                  <Button
+                    btnText="Cancel"
+                    btnColor="cancel"
+                    btnFunction={() => {
+                      setEdit(false);
+                      setErrorMsg(null);
+                    }}
+                    customBtnClass="medium"
+                  />
+                )}
+              </$TeamInfoBtn>
+            </div>
+            <div>
+              <$TeamInfoStats>
+                <span>League:</span> {teamData.name}
+              </$TeamInfoStats>
+              <$TeamInfoStats>
+                <span>Record:</span>{' '}
+                {`${teamData.rank.win}-${teamData.rank.loss}`}
+              </$TeamInfoStats>
+              <$TeamInfoStats>
+                <span>Points Remaining:</span> {teamData.points} pts
+              </$TeamInfoStats>
+              <$TeamInfoStats>
+                <Button
+                  btnText="Remove team"
+                  btnFunction={handleRemoveTeam}
+                  customBtnClass="text"
+                />
+              </$TeamInfoStats>
+            </div>
+          </$TeamInfoWrapper>
+        )}
       </$GlobalContainer>
     </>
   );
