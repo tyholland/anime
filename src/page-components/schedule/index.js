@@ -1,7 +1,12 @@
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
-import React from 'react';
+import { useRouter } from 'next/router';
+import Error from 'PageComponents/error';
+import React, { useEffect, useState } from 'react';
+import { getSchedule } from 'src/requests/team';
 import { $GlobalContainer } from 'Styles/global.style';
+import { addEvent } from 'Utils/amplitude';
+import { getCookie, responseError } from 'Utils/index';
 import {
   $ScheduleTeamSection,
   $ScheduleWrapper,
@@ -9,7 +14,34 @@ import {
   $ScheduleTeamName,
 } from './schedule.style';
 
-const Schedule = ({ games }) => {
+const Schedule = () => {
+  const router = useRouter();
+  const [games, setGames] = useState(null);
+  const [errorPage, setErrorPage] = useState(false);
+
+  const handleSchedule = async () => {
+    const { league_id } = router.query;
+
+    try {
+      const games = await getSchedule(league_id, getCookie('token'));
+
+      setGames(games);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to get game schedule'));
+      setErrorPage(true);
+    }
+  };
+
+  useEffect(() => {
+    if (Object.keys(router.query).length) {
+      handleSchedule();
+    }
+  }, [router.query]);
+
+  if (errorPage) {
+    return <Error />;
+  }
+
   return (
     <>
       <BackLink />
@@ -18,7 +50,7 @@ const Schedule = ({ games }) => {
         description="View your teams schedule for the regular season. See who you play, what the score of the matchup was and more."
       />
       <$GlobalContainer className="grid schedule">
-        {games.map((game) => {
+        {games?.map((game) => {
           const { week, teamA, teamB, scoreA, scoreB } = game;
 
           return (

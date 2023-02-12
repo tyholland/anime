@@ -13,7 +13,7 @@ const Character = () => {
   const [players, setPlayers] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
 
-  const displayAllPlayers = async () => {
+  const handleAllPlayers = async () => {
     try {
       const allPlayers = await getPlayers();
 
@@ -25,7 +25,7 @@ const Character = () => {
   };
 
   useEffect(() => {
-    displayAllPlayers();
+    handleAllPlayers();
   }, []);
 
   if (errorPage) {

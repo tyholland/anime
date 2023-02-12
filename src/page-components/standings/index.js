@@ -1,7 +1,12 @@
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
-import React from 'react';
+import { useRouter } from 'next/router';
+import Error from 'PageComponents/error';
+import React, { useEffect, useState } from 'react';
+import { getStandings } from 'src/requests/league';
 import { $GlobalContainer } from 'Styles/global.style';
+import { addEvent } from 'Utils/amplitude';
+import { getCookie, responseError } from 'Utils/index';
 import {
   $StandingsTeamSection,
   $StandingsWrapper,
@@ -9,7 +14,34 @@ import {
   $StandingsTeamName,
 } from './standings.style';
 
-const Standings = ({ games }) => {
+const Standings = () => {
+  const router = useRouter();
+  const [games, setGames] = useState(null);
+  const [errorPage, setErrorPage] = useState(false);
+
+  const handleStandings = async () => {
+    const { league_id } = router.query;
+
+    try {
+      const games = await getStandings(league_id, getCookie('token'));
+
+      setGames(games);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to get the standings'));
+      setErrorPage(true);
+    }
+  };
+
+  useEffect(() => {
+    if (Object.keys(router.query).length) {
+      handleStandings();
+    }
+  }, [router.query]);
+
+  if (errorPage) {
+    return <Error />;
+  }
+
   return (
     <>
       <BackLink />
@@ -18,7 +50,7 @@ const Standings = ({ games }) => {
         description="View the league standings. See how all the teams are ranked amongst each other."
       />
       <$GlobalContainer className="grid schedule">
-        {games.map((game, index) => {
+        {games?.map((game, index) => {
           const { team, win, loss } = game;
 
           return (

@@ -1,15 +1,18 @@
 import BackLink from 'Components/back-link';
 import GameContainer from 'Components/game-container';
 import Metadata from 'Components/metadata';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Collapsible from 'react-collapsible';
 import { $GlobalContainer } from 'Styles/global.style';
 import { $GameplayStyles } from 'PageComponents/gameplay/gameplay.style';
 import { $PlayoffsWrapper } from './playoffs.style';
+import { useRouter } from 'next/router';
+import { getPlayoffs } from 'src/requests/league';
+import { addEvent } from 'Utils/amplitude';
+import { getCookie, responseError } from 'Utils/index';
+import Error from 'PageComponents/error';
 
-const Playoffs = ({ schedule }) => {
-  const { firstRound, semis, finals } = schedule;
-
+const Playoffs = () => {
   const defaultFirstRound = [
     {
       teamA: '#1 seed',
@@ -61,9 +64,39 @@ const Playoffs = ({ schedule }) => {
     },
   ];
 
-  const round1 = firstRound.length ? firstRound : defaultFirstRound;
-  const round2 = semis.length ? semis : defaultSemis;
-  const round3 = finals.length ? finals : defaultFinals;
+  const router = useRouter();
+  const [round1, setRound1] = useState(defaultFirstRound);
+  const [round2, setRound2] = useState(defaultSemis);
+  const [round3, setRound3] = useState(defaultFinals);
+  const [errorPage, setErrorPage] = useState(false);
+
+  const handlePlayoffSchedule = async () => {
+    const { league_id } = router.query;
+
+    try {
+      const { firstRound, semis, finals } = await getPlayoffs(
+        league_id,
+        getCookie('token')
+      );
+
+      if (firstRound.length) setRound1(firstRound);
+      if (semis.length) setRound2(semis);
+      if (finals.length) setRound3(finals);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to get playoffs schedule'));
+      setErrorPage(true);
+    }
+  };
+
+  useEffect(() => {
+    if (Object.keys(router.query).length) {
+      handlePlayoffSchedule();
+    }
+  }, [router.query]);
+
+  if (errorPage) {
+    return <Error />;
+  }
 
   return (
     <>

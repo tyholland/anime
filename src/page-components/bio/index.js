@@ -25,7 +25,7 @@ const Bio = () => {
   const [isFighter, setIsFighter] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
 
-  const displayPlayerInfo = async () => {
+  const handlePlayerInfo = async () => {
     const { query } = router;
 
     try {
@@ -116,7 +116,7 @@ const Bio = () => {
 
   useEffect(() => {
     if (Object.keys(router.query).length) {
-      displayPlayerInfo();
+      handlePlayerInfo();
     }
   }, [router.query]);
 

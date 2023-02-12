@@ -17,7 +17,7 @@ const ViewLeague = () => {
   const [leagueCard, setLeagueCard] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
 
-  const displayAllLeagues = async () => {
+  const handleAllLeagues = async () => {
     try {
       const leagues = await getAllLeagues(getCookie('token'));
       const card = leagues.map((item) => {
@@ -32,7 +32,7 @@ const ViewLeague = () => {
   };
 
   useEffect(() => {
-    displayAllLeagues();
+    handleAllLeagues();
   }, []);
 
   if (errorPage) {
