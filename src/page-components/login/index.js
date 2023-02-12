@@ -84,10 +84,6 @@ const Login = () => {
     redirectToAccount(currentUser);
   }, []);
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
     <>
       <Metadata
@@ -98,46 +94,51 @@ const Login = () => {
         <$LoginWrapper>
           <$GlobalTitle>Login</$GlobalTitle>
           {errorMsg && <ErrorMsg msg={errorMsg} />}
-          <$LoginSectionWrapper>
-            <$LoginSection>
-              <TextField
-                placeholder="Email"
-                keyboard="email-address"
-                onChange={handleEmail}
-              />
-              <TextField
-                placeholder="Password"
-                type="password"
-                onChange={handlePassword}
-              />
-              <Button
-                btnText="Login"
-                btnColor="primary"
-                customBtnClass="medium"
-                btnFunction={handleLogin}
-                isDisabled={isDisabled}
-              />
-            </$LoginSection>
-            <$LoginSection>
-              <SingleSignOn setError={setErrorMsg} />
-            </$LoginSection>
-          </$LoginSectionWrapper>
-          <$LoginContentLinks>
-            Forgot your password?
-            <Button
-              btnText="Reset password"
-              customBtnClass="text"
-              redirect="/forgot"
-            />
-          </$LoginContentLinks>
-          <$LoginContentLinks>
-            Don't have an account?
-            <Button
-              btnText="Sign Up"
-              customBtnClass="text small"
-              redirect="/sign-up"
-            />
-          </$LoginContentLinks>
+          {isLoading && <Loader />}
+          {!isLoading && (
+            <>
+              <$LoginSectionWrapper>
+                <$LoginSection>
+                  <TextField
+                    placeholder="Email"
+                    keyboard="email-address"
+                    onChange={handleEmail}
+                  />
+                  <TextField
+                    placeholder="Password"
+                    type="password"
+                    onChange={handlePassword}
+                  />
+                  <Button
+                    btnText="Login"
+                    btnColor="primary"
+                    customBtnClass="medium"
+                    btnFunction={handleLogin}
+                    isDisabled={isDisabled}
+                  />
+                </$LoginSection>
+                <$LoginSection>
+                  <SingleSignOn setError={setErrorMsg} />
+                </$LoginSection>
+              </$LoginSectionWrapper>
+              <$LoginContentLinks>
+                Forgot your password?
+                <Button
+                  btnText="Reset password"
+                  customBtnClass="text"
+                  redirect="/forgot"
+                />
+              </$LoginContentLinks>
+              <$LoginContentLinks>
+                Don't have an account?
+                <Button
+                  btnText="Sign Up"
+                  customBtnClass="text small"
+                  redirect="/sign-up"
+                />
+              </$LoginContentLinks>
+            </>
+          )}
         </$LoginWrapper>
       </$GlobalContainer>
     </>

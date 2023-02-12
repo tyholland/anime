@@ -108,10 +108,6 @@ const Account = () => {
     return <Error />;
   }
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
     <>
       <$GameplayStyles />
@@ -121,51 +117,56 @@ const Account = () => {
       />
       <$GlobalContainer>
         <$GlobalTitle>Account</$GlobalTitle>
-        <Collapsible trigger="Profile" triggerTagName="div">
-          <$AccountWrapper>
-            <$AccountSectionRight>
-              <$AccountSectionLabel>Email:</$AccountSectionLabel>
-              <TextField isDisabled={true} inputVal={email} />
-              <Button
-                btnText="Delete Account"
-                customBtnClass="text"
-                btnFunction={handleDeleteAccount}
-              />
-            </$AccountSectionRight>
-          </$AccountWrapper>
-        </Collapsible>
-        <Collapsible trigger="Change Password" triggerTagName="div">
-          <$AccountWrapper className="column">
-            <div>
-              <TextField
-                placeholder="Enter New Password"
-                onChange={handleSetPwd}
-              />
-              <TextField
-                placeholder="Confirm New Password"
-                onChange={handleSetConfirmPwd}
-              />
-            </div>
-            <Button
-              btnText="Submit"
-              btnColor="primary"
-              customBtnClass="medium"
-              isDisabled={isDisabled}
-              btnFunction={handlePasswordChange}
-            />
-          </$AccountWrapper>
-        </Collapsible>
-        <Collapsible trigger="Log Out" triggerTagName="div">
-          <$AccountWrapper className="column">
-            <div>Are you sure you want to logout?</div>
-            <Button
-              btnText="Yes"
-              btnColor="primary"
-              customBtnClass="medium"
-              btnFunction={handleLogout}
-            />
-          </$AccountWrapper>
-        </Collapsible>
+        {isLoading && <Loader />}
+        {!isLoading && (
+          <>
+            <Collapsible trigger="Profile" triggerTagName="div">
+              <$AccountWrapper>
+                <$AccountSectionRight>
+                  <$AccountSectionLabel>Email:</$AccountSectionLabel>
+                  <TextField isDisabled={true} inputVal={email} />
+                  <Button
+                    btnText="Delete Account"
+                    customBtnClass="text"
+                    btnFunction={handleDeleteAccount}
+                  />
+                </$AccountSectionRight>
+              </$AccountWrapper>
+            </Collapsible>
+            <Collapsible trigger="Change Password" triggerTagName="div">
+              <$AccountWrapper className="column">
+                <div>
+                  <TextField
+                    placeholder="Enter New Password"
+                    onChange={handleSetPwd}
+                  />
+                  <TextField
+                    placeholder="Confirm New Password"
+                    onChange={handleSetConfirmPwd}
+                  />
+                </div>
+                <Button
+                  btnText="Submit"
+                  btnColor="primary"
+                  customBtnClass="medium"
+                  isDisabled={isDisabled}
+                  btnFunction={handlePasswordChange}
+                />
+              </$AccountWrapper>
+            </Collapsible>
+            <Collapsible trigger="Log Out" triggerTagName="div">
+              <$AccountWrapper className="column">
+                <div>Are you sure you want to logout?</div>
+                <Button
+                  btnText="Yes"
+                  btnColor="primary"
+                  customBtnClass="medium"
+                  btnFunction={handleLogout}
+                />
+              </$AccountWrapper>
+            </Collapsible>
+          </>
+        )}
       </$GlobalContainer>
     </>
   );

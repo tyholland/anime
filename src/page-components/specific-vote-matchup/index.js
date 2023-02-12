@@ -1,9 +1,52 @@
+import Loader from 'Components/loader';
 import MatchupVoting from 'Components/matchup-voting';
 import Metadata from 'Components/metadata';
-import React from 'react';
+import { useRouter } from 'next/router';
+import Error from 'PageComponents/error';
+import React, { useEffect, useState } from 'react';
+import { getMatchupVotes } from 'src/requests/matchup';
+import { getPlayer } from 'src/requests/player';
 import { $GlobalContainer } from 'Styles/global.style.js';
+import { addEvent } from 'Utils/amplitude';
+import { responseError } from 'Utils/index';
 
-const SpecificVoteMatchup = ({ playerA, playerB, matchupVotes }) => {
+const SpecificVoteMatchup = () => {
+  const router = useRouter();
+  const [matchupVotes, setMatchupVotes] = useState(null);
+  const [playerA, setPlayerA] = useState(null);
+  const [playerB, setPlayerB] = useState(null);
+  const [errorPage, setErrorPage] = useState(false);
+  const hasMatchup = !!matchupVotes && !!playerA && !!playerB;
+
+  const handleVotingData = async () => {
+    const { vote_id } = router.query;
+
+    try {
+      const matchupVotes = await getMatchupVotes(vote_id);
+      const { player_a_id, player_b_id } = matchupVotes;
+
+      const playerA = await getPlayer(player_a_id);
+      const playerB = await getPlayer(player_b_id);
+
+      setMatchupVotes(matchupVotes);
+      setPlayerA(playerA);
+      setPlayerB(playerB);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to get voting matchup'));
+      setErrorPage(true);
+    }
+  };
+
+  useEffect(() => {
+    if (Object.keys(router.query).length) {
+      handleVotingData();
+    }
+  }, [router.query]);
+
+  if (errorPage) {
+    return <Error />;
+  }
+
   return (
     <>
       <Metadata
@@ -11,11 +54,14 @@ const SpecificVoteMatchup = ({ playerA, playerB, matchupVotes }) => {
         description="Vote on this matchup between two characters. Your vote can help give the individual fighter that extra boost they need to win their matchup."
       />
       <$GlobalContainer>
-        <MatchupVoting
-          playerA={playerA}
-          playerB={playerB}
-          matchup={matchupVotes}
-        />
+        {hasMatchup && <Loader />}
+        {hasMatchup && (
+          <MatchupVoting
+            playerA={playerA}
+            playerB={playerB}
+            matchup={matchupVotes}
+          />
+        )}
       </$GlobalContainer>
     </>
   );
