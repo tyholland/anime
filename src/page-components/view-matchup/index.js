@@ -19,7 +19,7 @@ const ViewMatchup = ({ team1, team2, score1, score2, votes }) => {
     <>
       <BackLink />
       <Metadata
-        title={`Matchup between ${team1.teamName} and ${team2.teamName}`}
+        title="Matchup"
         description="View matchups between teams. View individual character bios or view the stats for a specific character. Don't forget to start user votes for specific matchups."
       />
       <$GlobalContainer>

@@ -127,8 +127,8 @@ const Bio = () => {
   return (
     <>
       <Metadata
-        title={player?.full_name}
-        description={`Profile for ${player?.full_name}. Lists all their affinities, weaknesses, and series.`}
+        title="Character Bio"
+        description={'Profile for each individual character. Lists all their affinities, weaknesses, and series.'}
       />
       <BackLink />
       <$GlobalContainer>

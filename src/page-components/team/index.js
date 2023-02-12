@@ -32,8 +32,8 @@ const Team = ({ teamId, teamData, rank, leagueWeek }) => {
   return (
     <>
       <Metadata
-        title={`${teamName}'s page`}
-        description={`Team page of ${teamName}. You can update/edit the roster. Edit your lineup for the week. As well as edit/view team info.`}
+        title="Team page"
+        description={'Page for each individual team. You can update/edit the roster. Edit your lineup for the week. As well as edit/view team info.'}
       />
       <BackLink />
       <$GlobalContainer>

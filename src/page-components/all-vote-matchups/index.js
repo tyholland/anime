@@ -45,10 +45,8 @@ const AllVoteMatchups = ({ playerOne, playerTwo, allMatchupVotes }) => {
     <>
       <BackLink />
       <Metadata
-        title={'All Matchup Voting'}
-        description={
-          'Vote on various matchups between characters in every rank. Your vote can help give the individual fighter that extra boost they need to win their matchup.'
-        }
+        title="All Matchup Voting"
+        description="Vote on various matchups between characters in every rank. Your vote can help give the individual fighter that extra boost they need to win their matchup."
       />
       <$GlobalContainer>
         {!!isMatchupsAvailable.length && (
