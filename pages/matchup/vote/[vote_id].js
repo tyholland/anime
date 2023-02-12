@@ -4,7 +4,7 @@ import { getPlayer } from 'src/requests/player';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
   const { query } = context;
   const { vote_id } = query;
 

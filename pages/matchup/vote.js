@@ -4,7 +4,7 @@ import { getPlayer } from 'src/requests/player';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   try {
     const allMatchupVotes = await getAllMatchupVotes();
 

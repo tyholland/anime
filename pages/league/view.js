@@ -3,7 +3,7 @@ import { getAllLeagues } from 'src/requests/league';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
   const { req } = context;
   const { cookies } = req;
 

@@ -15,6 +15,7 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
+  "ignorePatterns": ["out/*"],
   "rules": {
     "semi": ["error", "always"],
     "quotes": ["error", "single"],

@@ -1,9 +1,9 @@
-import TeamInfo from 'PageComponents/team/team-info';
-import { getTeamInfo } from 'src/requests/team';
-import { addEvent } from 'Utils/amplitude';
-import { responseError } from 'Utils/index';
+import TeamInfo from "PageComponents/team/team-info";
+import { getTeamInfo } from "src/requests/team";
+import { addEvent } from "Utils/amplitude";
+import { responseError } from "Utils/index";
 
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
   const { query, req } = context;
   const { member_id } = query;
   const { cookies } = req;
@@ -17,7 +17,7 @@ export const getServerSideProps = async (context) => {
       },
     };
   } catch (err) {
-    addEvent('Error', responseError(err, 'Failed to get team info data'));
+    addEvent("Error", responseError(err, "Failed to get team info data"));
 
     return {
       notFound: true,
