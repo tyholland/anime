@@ -12,6 +12,7 @@ import Select from 'Components/select';
 import SocialMedia from 'Components/social-media';
 import {
   deleteLeague,
+  getLeagueAdminData,
   removeTeamFromLeague,
   updateLeague,
 } from 'src/requests/league';
@@ -19,29 +20,21 @@ import { getCookie, responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 import ErrorMsg from 'Components/error-msg';
 import BackLink from 'Components/back-link';
+import Loader from 'Components/loader';
 
-const Admin = ({ league, teams }) => {
+const Admin = () => {
   const { currentUser } = useAppContext();
-  const { id, num_teams, name, hash, week } = league;
   const [errorPage, setErrorPage] = useState(false);
   const [editNum, setEditNum] = useState(false);
   const [editLeague, setEditLeague] = useState(false);
-  const [leagueName, setLeagueName] = useState(name);
-  const [teamNum, setTeamNum] = useState(num_teams);
-  const [teamNames, setTeamNames] = useState(teams);
+  const [leagueName, setLeagueName] = useState(null);
+  const [teamNum, setTeamNum] = useState(null);
+  const [teamNames, setTeamNames] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [league, setLeague] = useState(null);
+  const [missingTeams, setMissingTeams] = useState([]);
   const options = ['6', '7', '8', '9', '10'];
   let origin = '';
-
-  const missingTeams = [];
-
-  if (teamNames.length < num_teams) {
-    const remainingTeams = num_teams - teamNames.length;
-
-    for (let index = 0; index < remainingTeams; index++) {
-      missingTeams.push(index);
-    }
-  }
 
   if (typeof window !== 'undefined') {
     origin = window.location.origin;
@@ -55,7 +48,7 @@ const Admin = ({ league, teams }) => {
     };
 
     try {
-      await updateLeague(id, payload, getCookie('token'));
+      await updateLeague(league.id, payload, getCookie('token'));
       setTeamNum(val);
       setEditNum(false);
     } catch (err) {
@@ -74,7 +67,7 @@ const Admin = ({ league, teams }) => {
     };
 
     try {
-      await updateLeague(id, payload, getCookie('token'));
+      await updateLeague(league.id, payload, getCookie('token'));
       setEditLeague(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'failed to update league name'));
@@ -85,7 +78,7 @@ const Admin = ({ league, teams }) => {
     setErrorMsg(null);
 
     try {
-      await deleteLeague(id, getCookie('token'));
+      await deleteLeague(league.id, getCookie('token'));
     } catch (err) {
       addEvent('Error', responseError(err, 'failed to delete league'));
       setErrorMsg(err.response.data.message);
@@ -96,7 +89,7 @@ const Admin = ({ league, teams }) => {
     setErrorMsg(null);
 
     const payload = {
-      leagueId: id,
+      leagueId: league.id,
     };
 
     try {
@@ -113,9 +106,39 @@ const Admin = ({ league, teams }) => {
     }
   };
 
+  const handleLeagueAdmin = async () => {
+    try {
+      const leagueData = await getLeagueAdminData(getCookie('token'));
+      const { league, teams } = leagueData;
+      const { num_teams, name } = league;
+      const missingTeams = [];
+
+      if (teams.length < num_teams) {
+        const remainingTeams = num_teams - teams.length;
+
+        for (let index = 0; index < remainingTeams; index++) {
+          missingTeams.push(index);
+        }
+      }
+
+      setTeamNames(teams);
+      setLeague(league);
+      setTeamNum(num_teams);
+      setLeagueName(name);
+      setMissingTeams(missingTeams);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to league admin data'));
+      setErrorPage(true);
+    }
+  };
+
   useEffect(() => {
     setErrorPage(!currentUser);
   }, [currentUser]);
+
+  useEffect(() => {
+    handleLeagueAdmin();
+  }, []);
 
   if (errorPage) {
     return <Error />;
@@ -132,109 +155,114 @@ const Admin = ({ league, teams }) => {
       <$GlobalContainer>
         <$GlobalTitle>Admin Settings</$GlobalTitle>
         {errorMsg && <ErrorMsg msg={errorMsg} />}
-        <Collapsible trigger="Basic" triggerTagName="div">
-          <$AdminWrapper>
-            <$AdminSection>
-              {editNum && (
-                <>
-                  <Select
-                    defaultVal="Number of Teams"
-                    onChange={handleNumTeams}
-                    options={options}
-                  />
-                  <Button
-                    btnText="Cancel"
-                    btnFunction={() => setEditNum(false)}
-                    customBtnClass="text edit"
-                  />
-                </>
-              )}
-              {!editNum && (
-                <>
-                  <div>Number of Teams: {teamNum}</div>
-                  <Button
-                    btnText="Edit"
-                    btnFunction={() => setEditNum(true)}
-                    customBtnClass="small text edit"
-                  />
-                </>
-              )}
-            </$AdminSection>
-            <$AdminSection>
-              {editLeague && (
-                <>
-                  <TextField
-                    placeholder="League Name"
-                    onChange={setLeagueName}
-                  />
-                  <Button
-                    btnText="Save"
-                    btnFunction={handleLeagueName}
-                    customBtnClass="text edit"
-                  />
-                  <Button
-                    btnText="Cancel"
-                    btnFunction={() => {
-                      setEditLeague(false);
-                      setLeagueName(name);
-                    }}
-                    customBtnClass="text edit"
-                  />
-                </>
-              )}
-              {!editLeague && (
-                <>
-                  <div>League Name: {leagueName}</div>
-                  <Button
-                    btnText="Edit"
-                    btnFunction={() => setEditLeague(true)}
-                    customBtnClass="text edit"
-                  />
-                </>
-              )}
-            </$AdminSection>
-            <$AdminSection className="delete">
-              <Button
-                btnText="Delete League"
-                btnFunction={handleDeleteLeague}
-                customBtnClass="text"
-              />
-            </$AdminSection>
-          </$AdminWrapper>
-        </Collapsible>
-        <Collapsible trigger="Teams" triggerTagName="div">
-          <$AdminWrapper className="column">
-            <ol>
-              {teamNames.map((team) => {
-                return (
-                  <li key={team.id} className="team">
-                    {team.team_name}
-                    {week === -1 && (
+        {!league && <Loader />}
+        {league && (
+          <>
+            <Collapsible trigger="Basic" triggerTagName="div">
+              <$AdminWrapper>
+                <$AdminSection>
+                  {editNum && (
+                    <>
+                      <Select
+                        defaultVal="Number of Teams"
+                        onChange={handleNumTeams}
+                        options={options}
+                      />
                       <Button
-                        btnText="Remove"
-                        btnFunction={() => handleRemoveTeam(team.id)}
+                        btnText="Cancel"
+                        btnFunction={() => setEditNum(false)}
                         customBtnClass="text edit"
                       />
-                    )}
-                  </li>
-                );
-              })}
-              {missingTeams?.map((index) => {
-                return <li key={index}></li>;
-              })}
-            </ol>
-            {teamNames.length !== num_teams && (
-              <SocialMedia
-                pageTitle="Invite friends to Join League"
-                title={`Join my ABZ Fantasy League. League code: ${hash}`}
-                description="Build your ultimate anime team"
-                singleHashtag="#abzFantasyLeague"
-                pluralHashtags={['abz', 'abzFantasyLeague', 'animebrothaz']}
-                url={`${origin}/league/join`}
-              />
-            )}
-          </$AdminWrapper>
-        </Collapsible>
+                    </>
+                  )}
+                  {!editNum && (
+                    <>
+                      <div>Number of Teams: {teamNum}</div>
+                      <Button
+                        btnText="Edit"
+                        btnFunction={() => setEditNum(true)}
+                        customBtnClass="small text edit"
+                      />
+                    </>
+                  )}
+                </$AdminSection>
+                <$AdminSection>
+                  {editLeague && (
+                    <>
+                      <TextField
+                        placeholder="League Name"
+                        onChange={setLeagueName}
+                      />
+                      <Button
+                        btnText="Save"
+                        btnFunction={handleLeagueName}
+                        customBtnClass="text edit"
+                      />
+                      <Button
+                        btnText="Cancel"
+                        btnFunction={() => {
+                          setEditLeague(false);
+                          setLeagueName(leagueName);
+                        }}
+                        customBtnClass="text edit"
+                      />
+                    </>
+                  )}
+                  {!editLeague && (
+                    <>
+                      <div>League Name: {leagueName}</div>
+                      <Button
+                        btnText="Edit"
+                        btnFunction={() => setEditLeague(true)}
+                        customBtnClass="text edit"
+                      />
+                    </>
+                  )}
+                </$AdminSection>
+                <$AdminSection className="delete">
+                  <Button
+                    btnText="Delete League"
+                    btnFunction={handleDeleteLeague}
+                    customBtnClass="text"
+                  />
+                </$AdminSection>
+              </$AdminWrapper>
+            </Collapsible>
+            <Collapsible trigger="Teams" triggerTagName="div">
+              <$AdminWrapper className="column">
+                <ol>
+                  {teamNames.map((team) => {
+                    return (
+                      <li key={team.id} className="team">
+                        {team.team_name}
+                        {league.week === -1 && (
+                          <Button
+                            btnText="Remove"
+                            btnFunction={() => handleRemoveTeam(team.id)}
+                            customBtnClass="text edit"
+                          />
+                        )}
+                      </li>
+                    );
+                  })}
+                  {missingTeams?.map((index) => {
+                    return <li key={index}></li>;
+                  })}
+                </ol>
+                {teamNames.length !== teamNum && (
+                  <SocialMedia
+                    pageTitle="Invite friends to Join League"
+                    title={`Join my ABZ Fantasy League. League code: ${league.hash}`}
+                    description="Build your ultimate anime team"
+                    singleHashtag="#abzFantasyLeague"
+                    pluralHashtags={['abz', 'abzFantasyLeague', 'animebrothaz']}
+                    url={`${origin}/league/join`}
+                  />
+                )}
+              </$AdminWrapper>
+            </Collapsible>
+          </>
+        )}
       </$GlobalContainer>
     </>
   );
