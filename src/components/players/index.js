@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import "react-data-grid/lib/styles.css";
-import DataGrid from "react-data-grid";
-import { useRouter } from "next/router";
-import { $PlayersFilter, $PlayersStyles } from "./players.style";
-import TextField from "Components/text-field";
+import React, { useEffect, useState } from 'react';
+import 'react-data-grid/lib/styles.css';
+import DataGrid from 'react-data-grid';
+import { useRouter } from 'next/router';
+import { $PlayersFilter, $PlayersStyles } from './players.style';
+import TextField from 'Components/text-field';
 
 const Players = ({
   data,
@@ -17,39 +17,39 @@ const Players = ({
   const [listOfPlayers, setListOfPlayers] = useState(data);
   const [seriesArr, setSeriesArr] = useState([]);
   const [rankArr, setRankArr] = useState([]);
-  const [seriesName, setSeriesName] = useState("all");
-  const [rankName, setRankName] = useState("all");
+  const [seriesName, setSeriesName] = useState('all');
+  const [rankName, setRankName] = useState('all');
   const [searchWord, setSearchWord] = useState(null);
   const columns = [
     {
-      key: "fullName",
-      name: "Name",
+      key: 'fullName',
+      name: 'Name',
     },
     {
-      key: "rank",
-      name: "Rank",
+      key: 'rank',
+      name: 'Rank',
     },
     {
-      key: "power",
-      name: "Power Level",
+      key: 'power',
+      name: 'Power Level',
     },
     {
-      key: "series",
-      name: "Anime Series",
+      key: 'series',
+      name: 'Anime Series',
     },
   ];
   const mobileColumns = [
     {
-      key: "fullName",
-      name: "Name",
+      key: 'fullName',
+      name: 'Name',
     },
     {
-      key: "rank",
-      name: "Rank",
+      key: 'rank',
+      name: 'Rank',
     },
     {
-      key: "power",
-      name: "Power Level",
+      key: 'power',
+      name: 'Power Level',
     },
   ];
 
@@ -105,10 +105,10 @@ const Players = ({
   const handleRankFilter = (e) => {
     setRankName(e.target.value);
 
-    if (e.target.value === "all") {
+    if (e.target.value === 'all') {
       let playersList = data;
 
-      if (seriesName !== "all") {
+      if (seriesName !== 'all') {
         playersList = data.filter((item) => {
           if (searchWord) {
             return (
@@ -146,7 +146,7 @@ const Players = ({
       return item.category === e.target.value;
     });
 
-    if (seriesName !== "all") {
+    if (seriesName !== 'all') {
       playersList = data.filter((item) => {
         if (searchWord) {
           return (
@@ -166,10 +166,10 @@ const Players = ({
   const handleSeriesFilter = (e) => {
     setSeriesName(e.target.value);
 
-    if (e.target.value === "all") {
+    if (e.target.value === 'all') {
       let playersList = data;
 
-      if (rankName !== "all") {
+      if (rankName !== 'all') {
         playersList = data.filter((item) => {
           if (searchWord) {
             return (
@@ -208,7 +208,7 @@ const Players = ({
       return item.series === e.target.value;
     });
 
-    if (rankName !== "all") {
+    if (rankName !== 'all') {
       playersList = data.filter((item) => {
         if (searchWord) {
           return (
@@ -294,7 +294,7 @@ const Players = ({
         <DataGrid
           columns={columns}
           rows={rows}
-          className={changeRoster ? "fillModal" : "fillGrid"}
+          className={changeRoster ? 'fillModal' : 'fillGrid'}
           onRowClick={(val) => handleRowClick(val)}
         />
       </div>
@@ -302,7 +302,7 @@ const Players = ({
         <DataGrid
           columns={mobileColumns}
           rows={rows}
-          className={changeRoster ? "fillModal" : "fillGrid"}
+          className={changeRoster ? 'fillModal' : 'fillGrid'}
           onRowClick={(val) => handleRowClick(val)}
         />
       </div>

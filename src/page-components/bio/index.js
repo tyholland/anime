@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import BackLink from "Components/back-link";
-import { $GlobalContainer, $GlobalCircle } from "Styles/global.style.js";
+import React, { useEffect, useState } from 'react';
+import BackLink from 'Components/back-link';
+import { $GlobalContainer, $GlobalCircle } from 'Styles/global.style.js';
 import {
   $BioAffinity,
   $BioAffinityText,
@@ -10,13 +10,13 @@ import {
   $BioSubAttribute,
   $BioImage,
   $BioWrapper,
-} from "./bio.style";
-import Metadata from "Components/metadata";
-import { getPlayer } from "src/requests/player";
-import { useRouter } from "next/router";
-import Error from "PageComponents/error";
-import { addEvent } from "Utils/amplitude";
-import { responseError } from "Utils/index";
+} from './bio.style';
+import Metadata from 'Components/metadata';
+import { getPlayer } from 'src/requests/player';
+import { useRouter } from 'next/router';
+import Error from 'PageComponents/error';
+import { addEvent } from 'Utils/amplitude';
+import { responseError } from 'Utils/index';
 
 const Bio = () => {
   const router = useRouter();
@@ -44,58 +44,58 @@ const Bio = () => {
         ice,
         no_affinity,
       } = character[0];
-      const isVillain = category === "Villain";
-      const isBattlefield = category === "Battlefield";
-      const isSupport = category === "Support";
+      const isVillain = category === 'Villain';
+      const isBattlefield = category === 'Battlefield';
+      const isSupport = category === 'Support';
       const affinitiesTypes = [
         {
-          type: "Fire",
-          class: "fire",
+          type: 'Fire',
+          class: 'fire',
           value: fire,
         },
         {
-          type: "Water",
-          class: "water",
+          type: 'Water',
+          class: 'water',
           value: water,
         },
         {
-          type: "Wind",
-          class: "wind",
+          type: 'Wind',
+          class: 'wind',
           value: wind,
         },
         {
-          type: "Earth",
-          class: "earth",
+          type: 'Earth',
+          class: 'earth',
           value: earth,
         },
         {
-          type: "Arcane",
-          class: "arcane",
+          type: 'Arcane',
+          class: 'arcane',
           value: arcane,
         },
         {
-          type: "Electric",
-          class: "electric",
+          type: 'Electric',
+          class: 'electric',
           value: electric,
         },
         {
-          type: "Celestrial",
-          class: "celestrial",
+          type: 'Celestrial',
+          class: 'celestrial',
           value: celestrial,
         },
         {
-          type: "Darkness",
-          class: "darkness",
+          type: 'Darkness',
+          class: 'darkness',
           value: darkness,
         },
         {
-          type: "Ice",
-          class: "ice",
+          type: 'Ice',
+          class: 'ice',
           value: ice,
         },
         {
-          type: "No Affinity",
-          class: "noAffinity",
+          type: 'No Affinity',
+          class: 'noAffinity',
           value: no_affinity,
         },
       ];
@@ -109,13 +109,13 @@ const Bio = () => {
       setIsFighter(!isVillain && !isBattlefield && !isSupport);
       setAffinities(affinity);
     } catch (err) {
-      addEvent("Error", responseError(err, "Failed to load character"));
+      addEvent('Error', responseError(err, 'Failed to load character'));
       setErrorPage(true);
     }
   };
 
   useEffect(() => {
-    if (!!Object.keys(router.query).length) {
+    if (Object.keys(router.query).length) {
       displayPlayerInfo();
     }
   }, [router.query]);
@@ -158,7 +158,7 @@ const Bio = () => {
                 </$BioAffinity>
               </>
             )}
-            {!(!player?.weakness || player?.weakness === "None") && (
+            {!(!player?.weakness || player?.weakness === 'None') && (
               <>
                 <$BioAttribute>Element Weakness:</$BioAttribute>
                 <$BioAffinity className="last">
@@ -171,7 +171,7 @@ const Bio = () => {
                 </$BioAffinity>
               </>
             )}
-            {player?.category === "Villain" && !!affinities?.length && (
+            {player?.category === 'Villain' && !!affinities?.length && (
               <>
                 <$BioAttribute>Damages these weaknesses:</$BioAttribute>
                 <$BioAffinity className="down">
@@ -184,7 +184,7 @@ const Bio = () => {
                 </$BioAffinity>
               </>
             )}
-            {player?.category === "Support" && !!affinities?.length && (
+            {player?.category === 'Support' && !!affinities?.length && (
               <>
                 <$BioAttribute>Gives boost to:</$BioAttribute>
                 <$BioAffinity className="down">
@@ -197,7 +197,7 @@ const Bio = () => {
                 </$BioAffinity>
               </>
             )}
-            {player?.category === "Battlefield" && (
+            {player?.category === 'Battlefield' && (
               <>
                 <$BioAttribute>Gives boost to:</$BioAttribute>
                 <$BioAffinity className="down">
