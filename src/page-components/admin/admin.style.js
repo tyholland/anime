@@ -74,4 +74,13 @@ export const $AdminSection = styled.div`
       }
     }
   }
+
+  &.start {
+    justify-content: center;
+    width: 100%;
+
+    button {
+      text-align: center;
+    }
+  }
 `;

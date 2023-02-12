@@ -114,3 +114,14 @@ export const getPlayoffs = async (leagueId, token) => {
 
   return await axiosClient(data);
 };
+
+export const startLeague = async (payload, token) => {
+  const data = {
+    url: `${api}/league/start`,
+    method: 'post',
+    body: payload,
+    token,
+  };
+
+  return await axiosClient(data);
+};

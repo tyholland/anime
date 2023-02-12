@@ -14,6 +14,7 @@ import {
   deleteLeague,
   getLeagueAdminData,
   removeTeamFromLeague,
+  startLeague,
   updateLeague,
 } from 'src/requests/league';
 import { getCookie, responseError } from 'Utils/index';
@@ -33,6 +34,7 @@ const Admin = () => {
   const [errorMsg, setErrorMsg] = useState(null);
   const [league, setLeague] = useState(null);
   const [missingTeams, setMissingTeams] = useState([]);
+  const [isLeagueDisabled, setIsLeagueDisabled] = useState(true);
   const options = ['6', '7', '8', '9', '10'];
   let origin = '';
 
@@ -74,6 +76,19 @@ const Admin = () => {
     }
   };
 
+  const handleLeagueStart = async () => {
+    const payload = {
+      leagueId: league.id,
+    };
+
+    try {
+      await startLeague(payload, getCookie('token'));
+      setIsLeagueDisabled(true);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'failed to update league name'));
+    }
+  };
+
   const handleDeleteLeague = async () => {
     setErrorMsg(null);
 
@@ -110,7 +125,9 @@ const Admin = () => {
     try {
       const leagueData = await getLeagueAdminData(getCookie('token'));
       const { league, teams } = leagueData;
-      const { num_teams, name } = league;
+      const { num_teams, name, week } = league;
+      const inactiveLeague = teams.length < num_teams || week === -1;
+      const activeLeague = !inactiveLeague || week >= 0;
       const missingTeams = [];
 
       if (teams.length < num_teams) {
@@ -126,6 +143,7 @@ const Admin = () => {
       setTeamNum(num_teams);
       setLeagueName(name);
       setMissingTeams(missingTeams);
+      setIsLeagueDisabled(inactiveLeague || activeLeague);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to league admin data'));
       setErrorPage(true);
@@ -224,6 +242,15 @@ const Admin = () => {
                     btnText="Delete League"
                     btnFunction={handleDeleteLeague}
                     customBtnClass="text"
+                  />
+                </$AdminSection>
+                <$AdminSection className="start">
+                  <Button
+                    btnText="Start League"
+                    btnFunction={handleLeagueStart}
+                    btnColor="primary"
+                    isDisabled={isLeagueDisabled}
+                    customBtnClass="medium"
                   />
                 </$AdminSection>
               </$AdminWrapper>
