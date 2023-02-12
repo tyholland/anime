@@ -9,7 +9,8 @@
     "eslint": "eslint .",
     "eslint-fix": "eslint . --fix",
     "stylelint": "stylelint src/styles/*.style.js, src/page-components/**/*.style.js, src/page-components/**/**/*.style.js, src/components/**/*.style.js",
-    "clean": "rm -rf node_modules && yarn"
+    "clean": "rm -rf node_modules && yarn",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@amplitude/analytics-browser": "^1.6.4",
@@ -17,6 +18,7 @@
     "axios": "^1.2.0",
     "eslint-config-prettier": "^8.5.0",
     "firebase": "^9.17.1",
+    "husky": "^8.0.3",
     "next": "12.3.0",
     "postcss-syntax": "^0.36.2",
     "prettier": "^2.7.1",
