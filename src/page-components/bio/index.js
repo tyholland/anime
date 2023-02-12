@@ -1,6 +1,6 @@
-import React from 'react';
-import BackLink from 'Components/back-link';
-import { $GlobalContainer, $GlobalCircle } from 'Styles/global.style.js';
+import React, { useEffect, useState } from "react";
+import BackLink from "Components/back-link";
+import { $GlobalContainer, $GlobalCircle } from "Styles/global.style.js";
 import {
   $BioAffinity,
   $BioAffinityText,
@@ -10,121 +10,146 @@ import {
   $BioSubAttribute,
   $BioImage,
   $BioWrapper,
-} from './bio.style';
-import Metadata from 'Components/metadata';
+} from "./bio.style";
+import Metadata from "Components/metadata";
+import { getPlayer } from "src/requests/player";
+import { useRouter } from "next/router";
+import Error from "PageComponents/error";
+import { addEvent } from "Utils/amplitude";
+import { responseError } from "Utils/index";
 
-const Bio = ({ player }) => {
-  const {
-    full_name,
-    series,
-    category,
-    fire,
-    water,
-    wind,
-    earth,
-    arcane,
-    electric,
-    celestrial,
-    darkness,
-    ice,
-    power_level,
-    weakness,
-    image_url,
-    power_loss,
-    no_affinity,
-  } = player[0];
+const Bio = () => {
+  const router = useRouter();
+  const [player, setPlayer] = useState(null);
+  const [affinities, setAffinities] = useState(null);
+  const [isFighter, setIsFighter] = useState(null);
+  const [errorPage, setErrorPage] = useState(false);
 
-  const noWeakness = !weakness || weakness === 'None';
-  const isVillain = category === 'Villain';
-  const isBattlefield = category === 'Battlefield';
-  const isSupport = category === 'Support';
-  const isFighter = !isVillain && !isBattlefield && !isSupport;
+  const displayPlayerInfo = async () => {
+    const { query } = router;
 
-  const affinitiesTypes = [
-    {
-      type: 'Fire',
-      class: 'fire',
-      value: fire,
-    },
-    {
-      type: 'Water',
-      class: 'water',
-      value: water,
-    },
-    {
-      type: 'Wind',
-      class: 'wind',
-      value: wind,
-    },
-    {
-      type: 'Earth',
-      class: 'earth',
-      value: earth,
-    },
-    {
-      type: 'Arcane',
-      class: 'arcane',
-      value: arcane,
-    },
-    {
-      type: 'Electric',
-      class: 'electric',
-      value: electric,
-    },
-    {
-      type: 'Celestrial',
-      class: 'celestrial',
-      value: celestrial,
-    },
-    {
-      type: 'Darkness',
-      class: 'darkness',
-      value: darkness,
-    },
-    {
-      type: 'Ice',
-      class: 'ice',
-      value: ice,
-    },
-    {
-      type: 'No Affinity',
-      class: 'noAffinity',
-      value: no_affinity,
-    },
-  ];
+    try {
+      const character = await getPlayer(query.character);
 
-  const affinities = affinitiesTypes.filter((item) => {
-    if (!!item.value && item.value > 0) {
-      return item;
+      const {
+        category,
+        fire,
+        water,
+        wind,
+        earth,
+        arcane,
+        electric,
+        celestrial,
+        darkness,
+        ice,
+        no_affinity,
+      } = character[0];
+      const isVillain = category === "Villain";
+      const isBattlefield = category === "Battlefield";
+      const isSupport = category === "Support";
+      const affinitiesTypes = [
+        {
+          type: "Fire",
+          class: "fire",
+          value: fire,
+        },
+        {
+          type: "Water",
+          class: "water",
+          value: water,
+        },
+        {
+          type: "Wind",
+          class: "wind",
+          value: wind,
+        },
+        {
+          type: "Earth",
+          class: "earth",
+          value: earth,
+        },
+        {
+          type: "Arcane",
+          class: "arcane",
+          value: arcane,
+        },
+        {
+          type: "Electric",
+          class: "electric",
+          value: electric,
+        },
+        {
+          type: "Celestrial",
+          class: "celestrial",
+          value: celestrial,
+        },
+        {
+          type: "Darkness",
+          class: "darkness",
+          value: darkness,
+        },
+        {
+          type: "Ice",
+          class: "ice",
+          value: ice,
+        },
+        {
+          type: "No Affinity",
+          class: "noAffinity",
+          value: no_affinity,
+        },
+      ];
+      const affinity = affinitiesTypes.filter((item) => {
+        if (!!item.value && item.value > 0) {
+          return item;
+        }
+      });
+
+      setPlayer(character[0]);
+      setIsFighter(!isVillain && !isBattlefield && !isSupport);
+      setAffinities(affinity);
+    } catch (err) {
+      addEvent("Error", responseError(err, "Failed to load character"));
+      setErrorPage(true);
     }
-  });
+  };
+
+  useEffect(() => {
+    if (!!Object.keys(router.query).length) {
+      displayPlayerInfo();
+    }
+  }, [router.query]);
+
+  if (errorPage) {
+    return <Error />;
+  }
 
   return (
     <>
       <Metadata
-        title={full_name}
-        description={`Profile for ${full_name}. Lists all their affinities, weaknesses, and series.`}
+        title={player?.full_name}
+        description={`Profile for ${player?.full_name}. Lists all their affinities, weaknesses, and series.`}
       />
       <BackLink />
       <$GlobalContainer>
         <$BioWrapper>
           <div>
-            <$BioImage src={image_url} alt={full_name} />
-            <$BioTitle>{full_name}</$BioTitle>
+            <$BioImage src={player?.image_url} alt={player?.full_name} />
+            <$BioTitle>{player?.full_name}</$BioTitle>
             <$BioSubTitle>
-              Anime Series: <span>{series}</span>
+              Anime Series: <span>{player?.series}</span>
             </$BioSubTitle>
           </div>
           <div>
             <$BioAttribute>Rank:</$BioAttribute>
-            <$BioSubAttribute>{category}</$BioSubAttribute>
+            <$BioSubAttribute>{player?.category}</$BioSubAttribute>
             <$BioAttribute>Power Level:</$BioAttribute>
-            <$BioSubAttribute>{power_level}</$BioSubAttribute>
+            <$BioSubAttribute>{player?.power_level}</$BioSubAttribute>
             {isFighter && (
               <>
                 <$BioAttribute>Element Affinity:</$BioAttribute>
                 <$BioAffinity className="down">
-                  {affinities.map((item) => (
+                  {affinities?.map((item) => (
                     <$BioAffinity className="right" key={item.type}>
                       <$GlobalCircle className={item.class}></$GlobalCircle>
                       <$BioAffinityText>{item.type}</$BioAffinityText>
@@ -133,24 +158,24 @@ const Bio = ({ player }) => {
                 </$BioAffinity>
               </>
             )}
-            {!noWeakness && (
+            {!(!player?.weakness || player?.weakness === "None") && (
               <>
                 <$BioAttribute>Element Weakness:</$BioAttribute>
                 <$BioAffinity className="last">
                   <$BioAffinity>
                     <$GlobalCircle
-                      className={weakness.toLowerCase()}
+                      className={player?.weakness.toLowerCase()}
                     ></$GlobalCircle>
-                    <$BioAffinityText>{weakness}</$BioAffinityText>
+                    <$BioAffinityText>{player?.weakness}</$BioAffinityText>
                   </$BioAffinity>
                 </$BioAffinity>
               </>
             )}
-            {isVillain && !!affinities.length && (
+            {player?.category === "Villain" && !!affinities?.length && (
               <>
                 <$BioAttribute>Damages these weaknesses:</$BioAttribute>
                 <$BioAffinity className="down">
-                  {affinities.map((item) => (
+                  {affinities?.map((item) => (
                     <$BioAffinity className="right" key={item.type}>
                       <$GlobalCircle className={item.class}></$GlobalCircle>
                       <$BioAffinityText>{item.type}</$BioAffinityText>
@@ -159,11 +184,11 @@ const Bio = ({ player }) => {
                 </$BioAffinity>
               </>
             )}
-            {isSupport && !!affinities.length && (
+            {player?.category === "Support" && !!affinities?.length && (
               <>
                 <$BioAttribute>Gives boost to:</$BioAttribute>
                 <$BioAffinity className="down">
-                  {affinities.map((item) => (
+                  {affinities?.map((item) => (
                     <$BioAffinity className="right" key={item.type}>
                       <$GlobalCircle className={item.class}></$GlobalCircle>
                       <$BioAffinityText>{item.type}</$BioAffinityText>
@@ -172,18 +197,18 @@ const Bio = ({ player }) => {
                 </$BioAffinity>
               </>
             )}
-            {isBattlefield && (
+            {player?.category === "Battlefield" && (
               <>
                 <$BioAttribute>Gives boost to:</$BioAttribute>
                 <$BioAffinity className="down">
-                  {affinities.map((item) => (
+                  {affinities?.map((item) => (
                     <$BioAffinity className="right" key={item.type}>
                       <$GlobalCircle className={item.class}></$GlobalCircle>
                       <$BioAffinityText>{item.type}</$BioAffinityText>
                     </$BioAffinity>
                   ))}
                 </$BioAffinity>
-                {power_loss > 0 && (
+                {player?.power_loss > 0 && (
                   <>
                     <$BioAttribute>Damages these weaknesses:</$BioAttribute>
                     <$BioAffinity className="down">
