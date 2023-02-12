@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export",
+    "dev": "env-cmd -f .env.development next dev",
+    "build": "env-cmd -f .env.production next build && next export",
     "start": "next start",
     "eslint": "eslint .",
     "eslint-fix": "eslint . --fix",
@@ -16,6 +16,7 @@
     "@amplitude/analytics-browser": "^1.6.4",
     "@stylelint/postcss-css-in-js": "^0.38.0",
     "axios": "^1.2.0",
+    "env-cmd": "^10.1.0",
     "eslint-config-prettier": "^8.5.0",
     "firebase": "^9.17.1",
     "husky": "^8.0.3",

@@ -19,6 +19,10 @@ export const redirectToContinuePage = (router) => {
 };
 
 export const getCookie = (cname) => {
+  if (typeof document === 'undefined') {
+    return;
+  }
+
   let name = cname + '=';
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(';');
