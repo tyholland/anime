@@ -24,3 +24,11 @@ export const $SocialMediaWrapper = styled.div`
     width: calc(35% + 10px);
   }
 `;
+
+export const $SocialMediaMobileDevice = styled.div`
+  display: none;
+
+  ${MOBILE_VIEW} {
+    display: block;
+  }
+`;

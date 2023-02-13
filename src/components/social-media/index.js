@@ -1,6 +1,6 @@
 import Button from 'Components/button';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -8,9 +8,13 @@ import {
   TwitterShareButton,
 } from 'react-share';
 import { EmailIcon, FacebookIcon, RedditIcon, TwitterIcon } from 'react-share';
+import Notification from 'src/modals/notification';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
-import { $SocialMediaWrapper } from './socialMedial.style';
+import {
+  $SocialMediaWrapper,
+  $SocialMediaMobileDevice,
+} from './socialMedial.style';
 
 const SocialMedia = ({
   url,
@@ -20,7 +24,7 @@ const SocialMedia = ({
   pageTitle,
   description,
 }) => {
-  const isMobileShare = typeof navigator !== 'undefined' && navigator.share;
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleMobileShare = async () => {
     const shareData = {
@@ -41,11 +45,16 @@ const SocialMedia = ({
     }
   };
 
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   const handleTracking = (platform) => {
     addEvent('Social Share', {
       platform,
       title,
     });
+    setModalIsOpen(true);
   };
 
   return (
@@ -84,7 +93,7 @@ const SocialMedia = ({
           >
             <RedditIcon size={50} round={true} />
           </RedditShareButton>
-          {isMobileShare && (
+          <$SocialMediaMobileDevice>
             <Button btnColor="share" btnFunction={handleMobileShare}>
               <Image
                 src="/assets/icons/share-icon.png"
@@ -93,8 +102,13 @@ const SocialMedia = ({
                 alt="Share Icon"
               />
             </Button>
-          )}
+          </$SocialMediaMobileDevice>
         </div>
+        <Notification
+          message="Mobile share is unavailable"
+          closeModal={closeModal}
+          modalIsOpen={modalIsOpen}
+        />
       </$SocialMediaWrapper>
     </>
   );

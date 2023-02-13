@@ -1,6 +1,6 @@
 import Link from 'next/link.js';
 import React, { useState } from 'react';
-import InvalidSelectionCard from 'src/modals/invalid-selection-card/index.js';
+import Notification from 'src/modals/notification/index.js';
 import {
   $SelectionCardBlock,
   $SelectionCardText,
@@ -23,7 +23,7 @@ const SelectionCard = ({ btnText, redirect, isDisabled, newTab }) => {
         <$SelectionCardBlock onClick={() => setModalIsOpen(true)}>
           <$SelectionCardText>{btnText}</$SelectionCardText>
         </$SelectionCardBlock>
-        <InvalidSelectionCard
+        <Notification
           message={`${btnText} is currently unavailble at the moment`}
           closeModal={closeModal}
           modalIsOpen={modalIsOpen}

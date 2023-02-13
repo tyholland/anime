@@ -3,9 +3,9 @@ import { $GlobalContainer } from 'Styles/global.style';
 import 'react-data-grid/lib/styles.css';
 import MainModal from '../main';
 import Button from 'Components/button';
-import { $InvalidSelectionCardMsg } from './invalidSelectionCard.style';
+import { $NotificationMsg } from './Notification.style';
 
-const InvalidSelectionCard = ({ message, modalIsOpen, closeModal }) => {
+const Notification = ({ message, modalIsOpen, closeModal }) => {
   const customStyles = {
     content: {
       top: '50%',
@@ -27,7 +27,7 @@ const InvalidSelectionCard = ({ message, modalIsOpen, closeModal }) => {
       styles={customStyles}
     >
       <$GlobalContainer className="grid invalid">
-        <$InvalidSelectionCardMsg>{message}</$InvalidSelectionCardMsg>
+        <$NotificationMsg>{message}</$NotificationMsg>
         <Button
           btnFunction={closeModal}
           btnText="Close"
@@ -39,4 +39,4 @@ const InvalidSelectionCard = ({ message, modalIsOpen, closeModal }) => {
   );
 };
 
-export default InvalidSelectionCard;
+export default Notification;
