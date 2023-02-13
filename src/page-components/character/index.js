@@ -8,6 +8,7 @@ import Error from 'PageComponents/error';
 import { getPlayers } from 'src/requests/player';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
+import Loader from 'Components/loader';
 
 const Character = () => {
   const [players, setPlayers] = useState(null);
@@ -41,7 +42,8 @@ const Character = () => {
       <BackLink />
       <$GlobalContainer className="grid bgImage character">
         <$GlobalTitle>All Characters</$GlobalTitle>
-        <Players data={players} />
+        {!players && <Loader />}
+        {players && <Players data={players} />}
       </$GlobalContainer>
     </>
   );
