@@ -17,6 +17,7 @@ import { useRouter } from 'next/router';
 import Error from 'PageComponents/error';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
+import Loader from 'Components/loader';
 
 const Bio = () => {
   const router = useRouter();
@@ -128,101 +129,106 @@ const Bio = () => {
     <>
       <Metadata
         title="Character Bio"
-        description={'Profile for each individual character. Lists all their affinities, weaknesses, and series.'}
+        description={
+          'Profile for each individual character. Lists all their affinities, weaknesses, and series.'
+        }
       />
       <BackLink />
       <$GlobalContainer>
-        <$BioWrapper>
-          <div>
-            <$BioImage src={player?.image_url} alt={player?.full_name} />
-            <$BioTitle>{player?.full_name}</$BioTitle>
-            <$BioSubTitle>
-              Anime Series: <span>{player?.series}</span>
-            </$BioSubTitle>
-          </div>
-          <div>
-            <$BioAttribute>Rank:</$BioAttribute>
-            <$BioSubAttribute>{player?.category}</$BioSubAttribute>
-            <$BioAttribute>Power Level:</$BioAttribute>
-            <$BioSubAttribute>{player?.power_level}</$BioSubAttribute>
-            {isFighter && (
-              <>
-                <$BioAttribute>Element Affinity:</$BioAttribute>
-                <$BioAffinity className="down">
-                  {affinities?.map((item) => (
-                    <$BioAffinity className="right" key={item.type}>
-                      <$GlobalCircle className={item.class}></$GlobalCircle>
-                      <$BioAffinityText>{item.type}</$BioAffinityText>
-                    </$BioAffinity>
-                  ))}
-                </$BioAffinity>
-              </>
-            )}
-            {!(!player?.weakness || player?.weakness === 'None') && (
-              <>
-                <$BioAttribute>Element Weakness:</$BioAttribute>
-                <$BioAffinity className="last">
-                  <$BioAffinity>
-                    <$GlobalCircle
-                      className={player?.weakness.toLowerCase()}
-                    ></$GlobalCircle>
-                    <$BioAffinityText>{player?.weakness}</$BioAffinityText>
-                  </$BioAffinity>
-                </$BioAffinity>
-              </>
-            )}
-            {player?.category === 'Villain' && !!affinities?.length && (
-              <>
-                <$BioAttribute>Damages these weaknesses:</$BioAttribute>
-                <$BioAffinity className="down">
-                  {affinities?.map((item) => (
-                    <$BioAffinity className="right" key={item.type}>
-                      <$GlobalCircle className={item.class}></$GlobalCircle>
-                      <$BioAffinityText>{item.type}</$BioAffinityText>
-                    </$BioAffinity>
-                  ))}
-                </$BioAffinity>
-              </>
-            )}
-            {player?.category === 'Support' && !!affinities?.length && (
-              <>
-                <$BioAttribute>Gives boost to:</$BioAttribute>
-                <$BioAffinity className="down">
-                  {affinities?.map((item) => (
-                    <$BioAffinity className="right" key={item.type}>
-                      <$GlobalCircle className={item.class}></$GlobalCircle>
-                      <$BioAffinityText>{item.type}</$BioAffinityText>
-                    </$BioAffinity>
-                  ))}
-                </$BioAffinity>
-              </>
-            )}
-            {player?.category === 'Battlefield' && (
-              <>
-                <$BioAttribute>Gives boost to:</$BioAttribute>
-                <$BioAffinity className="down">
-                  {affinities?.map((item) => (
-                    <$BioAffinity className="right" key={item.type}>
-                      <$GlobalCircle className={item.class}></$GlobalCircle>
-                      <$BioAffinityText>{item.type}</$BioAffinityText>
-                    </$BioAffinity>
-                  ))}
-                </$BioAffinity>
-                {player?.power_loss > 0 && (
-                  <>
-                    <$BioAttribute>Damages these weaknesses:</$BioAttribute>
-                    <$BioAffinity className="down">
-                      <$BioAffinity className="right">
-                        <$GlobalCircle className="noAffinity"></$GlobalCircle>
-                        <$BioAffinityText>No Affinity</$BioAffinityText>
+        {!player && <Loader />}
+        {player && (
+          <$BioWrapper>
+            <div>
+              <$BioImage src={player.image_url} alt={player.full_name} />
+              <$BioTitle>{player.full_name}</$BioTitle>
+              <$BioSubTitle>
+                Anime Series: <span>{player.series}</span>
+              </$BioSubTitle>
+            </div>
+            <div>
+              <$BioAttribute>Rank:</$BioAttribute>
+              <$BioSubAttribute>{player.category}</$BioSubAttribute>
+              <$BioAttribute>Power Level:</$BioAttribute>
+              <$BioSubAttribute>{player.power_level}</$BioSubAttribute>
+              {isFighter && (
+                <>
+                  <$BioAttribute>Element Affinity:</$BioAttribute>
+                  <$BioAffinity className="down">
+                    {affinities?.map((item) => (
+                      <$BioAffinity className="right" key={item.type}>
+                        <$GlobalCircle className={item.class}></$GlobalCircle>
+                        <$BioAffinityText>{item.type}</$BioAffinityText>
                       </$BioAffinity>
+                    ))}
+                  </$BioAffinity>
+                </>
+              )}
+              {!(!player.weakness || player.weakness === 'None') && (
+                <>
+                  <$BioAttribute>Element Weakness:</$BioAttribute>
+                  <$BioAffinity className="last">
+                    <$BioAffinity>
+                      <$GlobalCircle
+                        className={player.weakness.toLowerCase()}
+                      ></$GlobalCircle>
+                      <$BioAffinityText>{player.weakness}</$BioAffinityText>
                     </$BioAffinity>
-                  </>
-                )}
-              </>
-            )}
-          </div>
-        </$BioWrapper>
+                  </$BioAffinity>
+                </>
+              )}
+              {player.category === 'Villain' && !!affinities?.length && (
+                <>
+                  <$BioAttribute>Damages these weaknesses:</$BioAttribute>
+                  <$BioAffinity className="down">
+                    {affinities?.map((item) => (
+                      <$BioAffinity className="right" key={item.type}>
+                        <$GlobalCircle className={item.class}></$GlobalCircle>
+                        <$BioAffinityText>{item.type}</$BioAffinityText>
+                      </$BioAffinity>
+                    ))}
+                  </$BioAffinity>
+                </>
+              )}
+              {player.category === 'Support' && !!affinities?.length && (
+                <>
+                  <$BioAttribute>Gives boost to:</$BioAttribute>
+                  <$BioAffinity className="down">
+                    {affinities?.map((item) => (
+                      <$BioAffinity className="right" key={item.type}>
+                        <$GlobalCircle className={item.class}></$GlobalCircle>
+                        <$BioAffinityText>{item.type}</$BioAffinityText>
+                      </$BioAffinity>
+                    ))}
+                  </$BioAffinity>
+                </>
+              )}
+              {player.category === 'Battlefield' && (
+                <>
+                  <$BioAttribute>Gives boost to:</$BioAttribute>
+                  <$BioAffinity className="down">
+                    {affinities?.map((item) => (
+                      <$BioAffinity className="right" key={item.type}>
+                        <$GlobalCircle className={item.class}></$GlobalCircle>
+                        <$BioAffinityText>{item.type}</$BioAffinityText>
+                      </$BioAffinity>
+                    ))}
+                  </$BioAffinity>
+                  {player.power_loss > 0 && (
+                    <>
+                      <$BioAttribute>Damages these weaknesses:</$BioAttribute>
+                      <$BioAffinity className="down">
+                        <$BioAffinity className="right">
+                          <$GlobalCircle className="noAffinity"></$GlobalCircle>
+                          <$BioAffinityText>No Affinity</$BioAffinityText>
+                        </$BioAffinity>
+                      </$BioAffinity>
+                    </>
+                  )}
+                </>
+              )}
+            </div>
+          </$BioWrapper>
+        )}
       </$GlobalContainer>
     </>
   );

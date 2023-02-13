@@ -44,11 +44,11 @@
         "destination": "/suggest.html"
       },
       {
-        "source": "/bio/[charcter]",
-        "destination": "/bio/[charcter].html"
+        "source": "/bio/:character",
+        "destination": "/bio/[character].html"
       },
       {
-        "source": "/league/[league_id]",
+        "source": "/league/:league_id",
         "destination": "/league/[league_id].html"
       },
       {
@@ -68,11 +68,11 @@
         "destination": "/league/view.html"
       },
       {
-        "source": "/matchup/vote/[vote_id]",
+        "source": "/matchup/vote/:vote_id",
         "destination": "/matchup/vote/[vote_id].html"
       },
       {
-        "source": "/matchup/[matchup_id]",
+        "source": "/matchup/:matchup_id",
         "destination": "/matchup/[matchup_id].html"
       },
       {
@@ -80,31 +80,31 @@
         "destination": "/matchup/vote.html"
       },
       {
-        "source": "/playoffs/[league_id]",
+        "source": "/playoffs/:league_id",
         "destination": "/playoffs/[league_id].html"
       },
       {
-        "source": "/scoreboard/[league_id]",
+        "source": "/scoreboard/:league_id",
         "destination": "/scoreboard/[league_id].html"
       },
       {
-        "source": "/standings/[league_id]",
+        "source": "/standings/:league_id",
         "destination": "/standings/[league_id].html"
       },
       {
-        "source": "/schedule/[league_id]",
+        "source": "/schedule/:league_id",
         "destination": "/schedule/[league_id].html"
       },
       {
-        "source": "/team/edit/[team_id]",
+        "source": "/team/edit/:team_id",
         "destination": "/team/edit/[team_id].html"
       },
       {
-        "source": "/team/info/[member_id]",
+        "source": "/team/info/:member_id",
         "destination": "/team/info/[member_id].html"
       },
       {
-        "source": "/team/[team_id]",
+        "source": "/team/:team_id",
         "destination": "/team/[team_id].html"
       }
     ]
