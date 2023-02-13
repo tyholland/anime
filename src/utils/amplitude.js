@@ -1,14 +1,11 @@
-import { init } from '@amplitude/analytics-browser';
+import { init, track } from '@amplitude/analytics-browser';
 
 init(process.env.NEXT_PUBLIC_AMPLITUDE_KEY);
 
 export const addEvent = (event, properties) => {
-  // if (!properties) {
-  //   track(event);
-  // }
+  if (!properties) {
+    track(event);
+  }
 
-  // track(event, properties);
-
-  console.log('event:', event);
-  console.log('props:', properties);
+  track(event, properties);
 };
