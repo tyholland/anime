@@ -52,8 +52,8 @@
         "destination": "/league/[league_id].html"
       },
       {
-        "source": "/league/admin",
-        "destination": "/league/admin.html"
+        "source": "/league/admin/:league_id",
+        "destination": "/league/admin/[league_id].html"
       },
       {
         "source": "/league/create",

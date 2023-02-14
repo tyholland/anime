@@ -36,13 +36,13 @@ const LeagueCreate = () => {
     };
 
     try {
-      const { teamId } = await createLeague(payload, getCookie('token'));
+      const { leagueId } = await createLeague(payload, getCookie('token'));
 
       addEvent('League Created', {
         name: leagueName,
       });
 
-      router.push(`/team/${teamId}`);
+      router.push(`/league/admin/${leagueId}`);
     } catch (err) {
       addEvent('Error', responseError(err, 'Create League'));
       setIsDisabled(true);
