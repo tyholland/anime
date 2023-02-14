@@ -73,9 +73,9 @@ export const deleteLeague = async (leagueId, token) => {
   return await axiosClient(data);
 };
 
-export const getLeagueAdminData = async (token) => {
+export const getLeagueAdminData = async (leagueId, token) => {
   const data = {
-    url: `${api}/league/admin/settings`,
+    url: `${api}/league/admin/settings/${leagueId}`,
     method: 'get',
     token,
   };

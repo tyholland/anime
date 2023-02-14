@@ -6,13 +6,9 @@ export const $AdminWrapper = styled.div`
   width: 95%;
   margin: 3% auto;
   flex-wrap: wrap;
-
-  ${MOBILE_VIEW} {
-    flex:direction: column;
-  }
+  flex-direction: column;
 
   &.column {
-    flex-direction: column;
     font-size: 18px;
     align-items: center;
 
@@ -23,7 +19,7 @@ export const $AdminWrapper = styled.div`
 
   .team {
     margin-bottom: 2%;
-    
+
     button {
       margin-left: 5%;
 
@@ -38,6 +34,7 @@ export const $AdminSection = styled.div`
   width: 50%;
   display: flex;
   align-items: center;
+  margin-bottom: 2%;
 
   ${MOBILE_VIEW} {
     margin-bottom: 5%;
@@ -81,6 +78,7 @@ export const $AdminSection = styled.div`
 
     button {
       text-align: center;
+      margin: 3% 0 0 !important;
     }
   }
 `;

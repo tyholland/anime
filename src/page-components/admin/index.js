@@ -22,8 +22,10 @@ import { addEvent } from 'Utils/amplitude';
 import ErrorMsg from 'Components/error-msg';
 import BackLink from 'Components/back-link';
 import Loader from 'Components/loader';
+import { useRouter } from 'next/router';
 
 const Admin = () => {
+  const router = useRouter();
   const { currentUser } = useAppContext();
   const [errorPage, setErrorPage] = useState(false);
   const [editNum, setEditNum] = useState(false);
@@ -122,8 +124,13 @@ const Admin = () => {
   };
 
   const handleLeagueAdmin = async () => {
+    const { league_id } = router.query;
+
     try {
-      const leagueData = await getLeagueAdminData(getCookie('token'));
+      const leagueData = await getLeagueAdminData(
+        league_id,
+        getCookie('token')
+      );
       const { league, teams } = leagueData;
       const { num_teams, name, week } = league;
       const inactiveLeague = teams.length < num_teams || week === -1;
@@ -155,8 +162,10 @@ const Admin = () => {
   }, [currentUser]);
 
   useEffect(() => {
-    handleLeagueAdmin();
-  }, []);
+    if (Object.keys(router.query).length) {
+      handleLeagueAdmin();
+    }
+  }, [router.query]);
 
   if (errorPage) {
     return <Error />;
@@ -237,13 +246,6 @@ const Admin = () => {
                     </>
                   )}
                 </$AdminSection>
-                <$AdminSection className="delete">
-                  <Button
-                    btnText="Delete League"
-                    btnFunction={handleDeleteLeague}
-                    customBtnClass="text"
-                  />
-                </$AdminSection>
                 <$AdminSection className="start">
                   <Button
                     btnText="Start League"
@@ -251,6 +253,13 @@ const Admin = () => {
                     btnColor="primary"
                     isDisabled={isLeagueDisabled}
                     customBtnClass="medium"
+                  />
+                </$AdminSection>
+                <$AdminSection className="delete">
+                  <Button
+                    btnText="Delete League"
+                    btnFunction={handleDeleteLeague}
+                    customBtnClass="text"
                   />
                 </$AdminSection>
               </$AdminWrapper>

@@ -72,7 +72,7 @@ const LeagueDetails = () => {
             {account?.user_id === leagueData.creator_id && (
               <SelectionCard
                 btnText="Admin Settings"
-                redirect="/league/admin"
+                redirect={`/league/admin/${leagueId}`}
               />
             )}
             <SelectionCard
