@@ -259,4 +259,16 @@ export const photoCredits = [
     creator: '@azadaquib',
     platform: 'pixabay.com',
   },
+  {
+    image: '/assets/profile/gohan.svg',
+    name: 'Gohan',
+    creator: '@Stban',
+    platform: 'freesvg.org',
+  },
+  {
+    image: '/assets/profile/edward-elric.svg',
+    name: 'Edward Elric',
+    creator: '@Stban',
+    platform: 'freesvg.org',
+  },
 ];

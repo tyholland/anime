@@ -23,7 +23,10 @@ const Credits = () => {
   };
 
   const getContentItems = () => {
-    const currentItems = photoCredits.slice(itemOffset, endOffset);
+    const photos = photoCredits.sort((a, b) => {
+      return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+    });
+    const currentItems = photos.slice(itemOffset, endOffset);
 
     return (
       <$CreditsWrapper>

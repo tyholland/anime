@@ -42,7 +42,7 @@ const LeagueCreate = () => {
         name: leagueName,
       });
 
-      router.push(`/league/admin/${leagueId}`);
+      router.push(`/league/${leagueId}`);
     } catch (err) {
       addEvent('Error', responseError(err, 'Create League'));
       setIsDisabled(true);
