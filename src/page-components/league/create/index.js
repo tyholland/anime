@@ -10,7 +10,6 @@ import { useRouter } from 'next/router';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
 import { getCookie, responseError } from 'Utils/index';
-import Error from 'PageComponents/error';
 
 const LeagueCreate = () => {
   const [teams, setTeams] = useState('');
@@ -18,7 +17,6 @@ const LeagueCreate = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const options = ['6', '7', '8', '9', '10'];
   const router = useRouter();
-  const cookie = getCookie('token');
 
   const handleTeamSelect = (val) => {
     setTeams(val);
@@ -52,10 +50,6 @@ const LeagueCreate = () => {
   useEffect(() => {
     setIsDisabled(!teams.length || !leagueName.length);
   }, [teams, leagueName]);
-
-  if (!cookie) {
-    return <Error />;
-  }
 
   return (
     <>

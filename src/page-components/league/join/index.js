@@ -10,14 +10,12 @@ import { addEvent } from 'Utils/amplitude';
 import { getCookie, responseError } from 'Utils/index';
 import { useRouter } from 'next/router';
 import ErrorMsg from 'Components/error-msg';
-import Error from 'PageComponents/error';
 
 const JoinLeague = () => {
   const router = useRouter();
   const [leagueHash, setLeagueHash] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
-  const cookie = getCookie('token');
 
   const handleJoinLeague = async () => {
     setIsDisabled(true);
@@ -45,10 +43,6 @@ const JoinLeague = () => {
     setIsDisabled(false);
     setLeagueHash(val);
   };
-
-  if (!cookie) {
-    return <Error />;
-  }
 
   return (
     <>
