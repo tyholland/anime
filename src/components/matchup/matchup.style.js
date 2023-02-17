@@ -1,5 +1,12 @@
 import styled from 'styled-components';
-import { COLOR_BLACK, MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
+import {
+  COLOR_BLACK,
+  COLOR_BLUE,
+  COLOR_RED,
+  FONT_WEIGHT_BOLD,
+  MOBILE_VIEW,
+  RESPONSIVE_VIEW,
+} from 'Styles/global.style';
 
 export const $MatchupColumn = styled.div`
   width: 46%;
@@ -38,8 +45,8 @@ export const $MatchupCharacterBtn = styled.button`
   display: flex;
   justify-content: start;
 
-  span {
-    color: rgb(27, 5, 246);
+  > span {
+    color: ${COLOR_BLUE};
 
     &:hover {
       text-decoration: underline;
@@ -50,7 +57,7 @@ export const $MatchupCharacterBtn = styled.button`
       overflow: hidden;
       white-space: nowrap;
       width: 83px;
-      text-align: left;
+      display: flex;
     }
   }
 
@@ -58,8 +65,8 @@ export const $MatchupCharacterBtn = styled.button`
     justify-content: end;
     margin: 5px 5% 0 0;
 
-    span {
-      text-align: right;
+    > span {
+      justify-content: flex-end;
     }
 
     ${MOBILE_VIEW} {
@@ -108,7 +115,7 @@ export const $MatchupPower = styled.button`
 
 export const $MatchupPowerText = styled.div`
   text-align: right;
-  color: rgb(27, 5, 246);
+  color: ${COLOR_BLUE};
 
   &:hover {
     text-decoration: underline;
@@ -126,4 +133,10 @@ export const $MatchupCharacterBtnWrapper = styled.div`
   &.reverse {
     justify-content: end;
   }
+`;
+
+export const $MatchupAsterik = styled.span`
+  color: ${COLOR_RED};
+  margin-right: 5px;
+  font-weight: ${FONT_WEIGHT_BOLD};
 `;
