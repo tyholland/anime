@@ -16,13 +16,15 @@ import BackLink from 'Components/back-link/index.js';
 import Metadata from 'Components/metadata/index.js';
 import { useRouter } from 'next/router.js';
 import Error from 'PageComponents/error/index.js';
-import { getCookie, responseError } from 'Utils/index.js';
+import { responseError } from 'Utils/index.js';
 import { getTeam, getTeamInfo } from 'src/requests/team.js';
 import Loader from 'Components/loader/index.js';
 import { addEvent } from 'Utils/amplitude.js';
+import { useAppContext } from 'src/hooks/context.js';
 
 const Team = () => {
   const router = useRouter();
+  const { currentUser } = useAppContext();
   const [teamId, setTeamId] = useState(null);
   const [teamData, setTeamData] = useState(null);
   const [rank, setRank] = useState(null);
@@ -34,9 +36,9 @@ const Team = () => {
     const { team_id } = router.query;
 
     try {
-      const teamData = await getTeam(team_id, getCookie('__session'));
+      const teamData = await getTeam(team_id, currentUser.token);
       const { team, memberId } = teamData;
-      const teamInfo = await getTeamInfo(memberId, getCookie('__session'));
+      const teamInfo = await getTeamInfo(memberId, currentUser.token);
 
       const totalPoints =
         team.captain.teamPoints +

@@ -16,15 +16,17 @@ import ChangeCharacters from 'src/modals/change-character';
 import { getTeam, updateTeam } from 'src/requests/team';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
-import { getCookie, responseError } from 'Utils/index';
+import { responseError } from 'Utils/index';
 import ErrorMsg from 'Components/error-msg';
 import { useRouter } from 'next/router';
 import { getPlayers } from 'src/requests/player';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
+import { useAppContext } from 'src/hooks/context';
 
 const TeamEdit = () => {
   const router = useRouter();
+  const { currentUser } = useAppContext();
   const [players, setPlayers] = useState(null);
   const [teamId, setTeamId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,7 +42,7 @@ const TeamEdit = () => {
 
     try {
       const players = await getPlayers();
-      const teamData = await getTeam(team_id, getCookie('__session'));
+      const teamData = await getTeam(team_id, currentUser.token);
 
       const { team, userPoints } = teamData;
 
@@ -169,7 +171,7 @@ const TeamEdit = () => {
     const totalPoints = getUserPoints(thePlayers);
 
     try {
-      await updateTeam(teamId, thePlayers, getCookie('__session'));
+      await updateTeam(teamId, thePlayers, currentUser.token);
 
       thePlayers['userPoints'] = totalPoints;
 

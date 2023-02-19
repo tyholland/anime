@@ -11,11 +11,13 @@ import {
 import Button from 'Components/button';
 import SocialMedia from 'Components/social-media/index.js';
 import { addVotes } from 'src/requests/matchup.js';
-import { getCookie, responseError } from 'Utils/index.js';
+import { responseError } from 'Utils/index.js';
 import { addEvent } from 'Utils/amplitude.js';
 import ErrorMsg from 'Components/error-msg/index.js';
+import { useAppContext } from 'src/hooks/context.js';
 
 const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
+  const { currentUser } = useAppContext();
   const { player_a_count, player_b_count, leagueName, id } = matchup;
   const [playerACount, setPlayerACount] = useState(player_a_count);
   const [playerBCount, setPlayerBCount] = useState(player_b_count);
@@ -39,7 +41,7 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
     };
 
     try {
-      const { votes } = await addVotes(payload, getCookie('__session'));
+      const { votes } = await addVotes(payload, currentUser.token);
 
       playerCount === 'player_a_count'
         ? setPlayerACount(votes)

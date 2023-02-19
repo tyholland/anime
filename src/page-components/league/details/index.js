@@ -4,7 +4,7 @@ import SelectionCard from 'Components/selection-card/index.js';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 import { useAppContext } from 'src/hooks/context';
-import { getCookie, responseError } from 'Utils/index';
+import { responseError } from 'Utils/index';
 import { useRouter } from 'next/router';
 import { getLeague } from 'src/requests/league';
 import { getMatchUpFromTeamId } from 'src/requests/matchup';
@@ -24,10 +24,10 @@ const LeagueDetails = () => {
     const { league_id } = router.query;
 
     try {
-      const data = await getLeague(league_id, getCookie('__session'));
+      const data = await getLeague(league_id, currentUser.token);
       const matchupData = await getMatchUpFromTeamId(
         data[0].teamId,
-        getCookie('__session')
+        currentUser.token
       );
 
       setLeagueId(league_id);

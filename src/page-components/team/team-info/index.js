@@ -13,14 +13,16 @@ import BackLink from 'Components/back-link/index.js';
 import { getTeamInfo, removeTeam, updateTeamName } from 'src/requests/team.js';
 import { addEvent } from 'Utils/amplitude.js';
 import Metadata from 'Components/metadata/index.js';
-import { getCookie, responseError } from 'Utils/index.js';
+import { responseError } from 'Utils/index.js';
 import ErrorMsg from 'Components/error-msg/index.js';
 import { useRouter } from 'next/router.js';
 import Loader from 'Components/loader/index.js';
 import Error from 'PageComponents/error/index.js';
+import { useAppContext } from 'src/hooks/context.js';
 
 const TeamInfo = () => {
   const router = useRouter();
+  const { currentUser } = useAppContext();
   const [edit, setEdit] = useState(false);
   const [teamData, setTeamData] = useState(null);
   const [teamName, setTeamName] = useState(null);
@@ -37,7 +39,7 @@ const TeamInfo = () => {
         {
           name: changedName,
         },
-        getCookie('__session')
+        currentUser.token
       );
 
       addEvent('Change Team Name', {
@@ -58,7 +60,7 @@ const TeamInfo = () => {
     setErrorMsg(null);
 
     try {
-      await removeTeam(teamData.league_id, getCookie('__session'));
+      await removeTeam(teamData.league_id, currentUser.token);
 
       router.push('/league');
     } catch (err) {
@@ -71,7 +73,7 @@ const TeamInfo = () => {
     const { member_id } = router.query;
 
     try {
-      const teamData = await getTeamInfo(member_id, getCookie('__session'));
+      const teamData = await getTeamInfo(member_id, currentUser.token);
       const { team_name } = teamData;
 
       setTeamName(team_name);

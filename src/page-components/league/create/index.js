@@ -9,10 +9,12 @@ import Select from 'Components/select';
 import { useRouter } from 'next/router';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
-import { getCookie, responseError } from 'Utils/index';
+import { responseError } from 'Utils/index';
 import ErrorMsg from 'Components/error-msg';
+import { useAppContext } from 'src/hooks/context';
 
 const LeagueCreate = () => {
+  const { currentUser } = useAppContext();
   const [teams, setTeams] = useState('');
   const [leagueName, setLeagueName] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
@@ -36,7 +38,7 @@ const LeagueCreate = () => {
     };
 
     try {
-      const { leagueId } = await createLeague(payload, getCookie('__session'));
+      const { leagueId } = await createLeague(payload, currentUser.token);
 
       addEvent('League Created', {
         name: leagueName,

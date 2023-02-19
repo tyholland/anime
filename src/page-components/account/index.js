@@ -10,7 +10,7 @@ import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 import TextField from 'Components/text-field';
 import { deleteAccount } from 'src/requests/users';
-import { getCookie, responseError } from 'Utils/index';
+import { responseError } from 'Utils/index';
 import {
   $AccountWrapper,
   $AccountSectionRight,
@@ -52,7 +52,7 @@ const Account = () => {
       const user = auth.currentUser;
 
       await deleteUser(user);
-      await deleteAccount(getCookie('__session'));
+      await deleteAccount(currentUser.token);
 
       addEvent('Account deleted');
       handleLogout();

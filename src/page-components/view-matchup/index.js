@@ -13,16 +13,18 @@ import {
 } from './viewMatchup.style';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
-import { getCookie, responseError } from 'Utils/index';
+import { responseError } from 'Utils/index';
 import { useRouter } from 'next/router';
 import { addEvent } from 'Utils/amplitude';
 import { getMatchUp } from 'src/requests/matchup';
 import { getMatchupTeam } from 'src/requests/team';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
+import { useAppContext } from 'src/hooks/context';
 
 const ViewMatchup = () => {
   const router = useRouter();
+  const { currentUser } = useAppContext();
   const [team1, setTeam1] = useState(null);
   const [team2, setTeam2] = useState(null);
   const [score1, setScore1] = useState(null);
@@ -35,12 +37,12 @@ const ViewMatchup = () => {
     const { matchup_id } = router.query;
 
     try {
-      const results = await getMatchUp(matchup_id, getCookie('__session'));
+      const results = await getMatchUp(matchup_id, currentUser.token);
 
       const { team_a, team_b, score_a, score_b } = results.matchup;
 
-      const team1 = await getMatchupTeam(team_a, getCookie('__session'));
-      const team2 = await getMatchupTeam(team_b, getCookie('__session'));
+      const team1 = await getMatchupTeam(team_a, currentUser.token);
+      const team2 = await getMatchupTeam(team_b, currentUser.token);
 
       setTeam1(team1);
       setTeam2(team2);

@@ -3,10 +3,11 @@ import Metadata from 'Components/metadata';
 import { useRouter } from 'next/router';
 import Error from 'PageComponents/error';
 import React, { useEffect, useState } from 'react';
+import { useAppContext } from 'src/hooks/context';
 import { getStandings } from 'src/requests/league';
 import { $GlobalContainer } from 'Styles/global.style';
 import { addEvent } from 'Utils/amplitude';
-import { getCookie, responseError } from 'Utils/index';
+import { responseError } from 'Utils/index';
 import {
   $StandingsTeamSection,
   $StandingsWrapper,
@@ -16,6 +17,7 @@ import {
 
 const Standings = () => {
   const router = useRouter();
+  const { currentUser } = useAppContext();
   const [games, setGames] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
 
@@ -23,7 +25,7 @@ const Standings = () => {
     const { league_id } = router.query;
 
     try {
-      const games = await getStandings(league_id, getCookie('__session'));
+      const games = await getStandings(league_id, currentUser.token);
 
       setGames(games);
     } catch (err) {

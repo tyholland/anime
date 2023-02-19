@@ -10,10 +10,12 @@ import {
 import MainModal from '../main';
 import { createMatchupVotes } from 'src/requests/matchup';
 import { useRouter } from 'next/router';
-import { getCookie, responseError } from 'Utils/index';
+import { responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
+import { useAppContext } from 'src/hooks/context';
 
 const CharacterStats = ({ isModalOpen, setIsModalOpen, character, votes }) => {
+  const { currentUser } = useAppContext();
   const router = useRouter();
   const customStyles = {
     content: {
@@ -53,7 +55,7 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen, character, votes }) => {
       const newMatchup = await createMatchupVotes(
         query?.matchup_id,
         payload,
-        getCookie('__session')
+        currentUser.token
       );
 
       addEvent('Start Matchup Voting', {

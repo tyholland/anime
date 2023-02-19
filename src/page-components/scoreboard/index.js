@@ -4,13 +4,15 @@ import Metadata from 'Components/metadata';
 import { useRouter } from 'next/router';
 import Error from 'PageComponents/error';
 import React, { useEffect, useState } from 'react';
+import { useAppContext } from 'src/hooks/context';
 import { getScoreboard } from 'src/requests/league';
 import { $GlobalContainer } from 'Styles/global.style';
 import { addEvent } from 'Utils/amplitude';
-import { getCookie, responseError } from 'Utils/index';
+import { responseError } from 'Utils/index';
 
 const Scoreboard = () => {
   const router = useRouter();
+  const { currentUser } = useAppContext();
   const [games, setGames] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
 
@@ -18,7 +20,7 @@ const Scoreboard = () => {
     const { league_id } = router.query;
 
     try {
-      const games = await getScoreboard(league_id, getCookie('__session'));
+      const games = await getScoreboard(league_id, currentUser.token);
 
       setGames(games);
     } catch (err) {

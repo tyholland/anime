@@ -9,8 +9,9 @@ import { $PlayoffsWrapper } from './playoffs.style';
 import { useRouter } from 'next/router';
 import { getPlayoffs } from 'src/requests/league';
 import { addEvent } from 'Utils/amplitude';
-import { getCookie, responseError } from 'Utils/index';
+import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error';
+import { useAppContext } from 'src/hooks/context';
 
 const Playoffs = () => {
   const defaultFirstRound = [
@@ -65,6 +66,7 @@ const Playoffs = () => {
   ];
 
   const router = useRouter();
+  const { currentUser } = useAppContext();
   const [round1, setRound1] = useState(defaultFirstRound);
   const [round2, setRound2] = useState(defaultSemis);
   const [round3, setRound3] = useState(defaultFinals);
@@ -76,7 +78,7 @@ const Playoffs = () => {
     try {
       const { firstRound, semis, finals } = await getPlayoffs(
         league_id,
-        getCookie('__session')
+        currentUser.token
       );
 
       if (firstRound.length) setRound1(firstRound);

@@ -8,18 +8,20 @@ import {
   $ViewLeagueEmptyTitle,
   $ViewLeagueEmptyBtnWrapper,
 } from './view.style';
-import { getCookie, responseError } from 'Utils/index';
+import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error';
 import { addEvent } from 'Utils/amplitude';
 import { getAllLeagues } from 'src/requests/league';
+import { useAppContext } from 'src/hooks/context';
 
 const ViewLeague = () => {
+  const { currentUser } = useAppContext();
   const [leagueCard, setLeagueCard] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
 
   const handleAllLeagues = async () => {
     try {
-      const leagues = await getAllLeagues(getCookie('__session'));
+      const leagues = await getAllLeagues(currentUser.token);
       const card = leagues.map((item) => {
         return <LeagueCard key={item.team_name} data={item} />;
       });

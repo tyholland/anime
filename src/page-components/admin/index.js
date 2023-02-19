@@ -17,7 +17,7 @@ import {
   startLeague,
   updateLeague,
 } from 'src/requests/league';
-import { getCookie, responseError } from 'Utils/index';
+import { responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 import ErrorMsg from 'Components/error-msg';
 import BackLink from 'Components/back-link';
@@ -52,7 +52,7 @@ const Admin = () => {
     };
 
     try {
-      await updateLeague(league.id, payload, getCookie('__session'));
+      await updateLeague(league.id, payload, currentUser.token);
       setTeamNum(val);
       setEditNum(false);
     } catch (err) {
@@ -71,7 +71,7 @@ const Admin = () => {
     };
 
     try {
-      await updateLeague(league.id, payload, getCookie('__session'));
+      await updateLeague(league.id, payload, currentUser.token);
       setEditLeague(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'failed to update league name'));
@@ -84,7 +84,7 @@ const Admin = () => {
     };
 
     try {
-      await startLeague(payload, getCookie('__session'));
+      await startLeague(payload, currentUser.token);
       setIsLeagueDisabled(true);
     } catch (err) {
       addEvent('Error', responseError(err, 'failed to update league name'));
@@ -95,7 +95,7 @@ const Admin = () => {
     setErrorMsg(null);
 
     try {
-      await deleteLeague(league.id, getCookie('__session'));
+      await deleteLeague(league.id, currentUser.token);
     } catch (err) {
       addEvent('Error', responseError(err, 'failed to delete league'));
       setErrorMsg(err.response.data.message);
@@ -113,7 +113,7 @@ const Admin = () => {
       const { teams } = await removeTeamFromLeague(
         memberId,
         payload,
-        getCookie('__session')
+        currentUser.token
       );
 
       setTeamNames(teams);
@@ -127,10 +127,7 @@ const Admin = () => {
     const { league_id } = router.query;
 
     try {
-      const leagueData = await getLeagueAdminData(
-        league_id,
-        getCookie('__session')
-      );
+      const leagueData = await getLeagueAdminData(league_id, currentUser.token);
       const { league, teams } = leagueData;
       const { num_teams, name, week } = league;
       const inactiveLeague = teams.length < num_teams || week === -1;

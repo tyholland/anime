@@ -7,12 +7,14 @@ import { $JoinLeagueWrapper, $JoinLeagueImg } from './join.style';
 import Metadata from 'Components/metadata';
 import { joinLeague } from 'src/requests/league';
 import { addEvent } from 'Utils/amplitude';
-import { getCookie, responseError } from 'Utils/index';
+import { responseError } from 'Utils/index';
 import { useRouter } from 'next/router';
 import ErrorMsg from 'Components/error-msg';
+import { useAppContext } from 'src/hooks/context';
 
 const JoinLeague = () => {
   const router = useRouter();
+  const { currentUser } = useAppContext();
   const [leagueHash, setLeagueHash] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -25,7 +27,7 @@ const JoinLeague = () => {
     };
 
     try {
-      const { leagueId } = await joinLeague(payload, getCookie('__session'));
+      const { leagueId } = await joinLeague(payload, currentUser.token);
 
       addEvent('Join League', {
         league: leagueHash,

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useAppContext } from 'src/hooks/context';
 import { getMatchUpFromTeamId } from 'src/requests/matchup';
 import { addEvent } from 'Utils/amplitude';
-import { getCookie, responseError } from 'Utils/index';
+import { responseError } from 'Utils/index';
 import Button from '../button';
 import {
   $LeagueCardText,
@@ -11,14 +12,12 @@ import {
 
 const LeagueCard = ({ data }) => {
   const [matchupId, setMatchupId] = useState(null);
+  const { currentUser } = useAppContext();
   const { name, team_name, leagueId, teamId } = data;
 
   const getMatchupData = async () => {
     try {
-      const matchupData = await getMatchUpFromTeamId(
-        teamId,
-        getCookie('__session')
-      );
+      const matchupData = await getMatchUpFromTeamId(teamId, currentUser.token);
 
       setMatchupId(matchupData[0]?.matchupId);
     } catch (err) {
