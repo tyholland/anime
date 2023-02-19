@@ -67,6 +67,7 @@ const LeagueCreate = () => {
       <$GlobalContainer>
         <$LeagueCreateWrapper>
           <$GlobalTitle>Create a League</$GlobalTitle>
+          {errorMsg && <ErrorMsg msg={errorMsg} />}
           <TextField placeholder="League Name" onChange={handleLeagueName} />
           <Select
             defaultVal="Number of Teams"
@@ -80,7 +81,6 @@ const LeagueCreate = () => {
             btnFunction={handleLeagueCreation}
             isDisabled={isDisabled}
           />
-          {errorMsg && <ErrorMsg msg={errorMsg} />}
         </$LeagueCreateWrapper>
       </$GlobalContainer>
     </>
