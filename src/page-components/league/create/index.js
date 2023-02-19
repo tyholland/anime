@@ -10,11 +10,13 @@ import { useRouter } from 'next/router';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
 import { getCookie, responseError } from 'Utils/index';
+import ErrorMsg from 'Components/error-msg';
 
 const LeagueCreate = () => {
   const [teams, setTeams] = useState('');
   const [leagueName, setLeagueName] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
+  const [errorMsg, setErrorMsg] = useState(null);
   const options = ['6', '7', '8', '9', '10'];
   const router = useRouter();
 
@@ -43,6 +45,10 @@ const LeagueCreate = () => {
       router.push(`/league/${leagueId}`);
     } catch (err) {
       addEvent('Error', responseError(err, 'Create League'));
+      const nonUserMsg = 'Please login, in order to create a league.';
+      err.response.status === 401
+        ? setErrorMsg(nonUserMsg)
+        : setErrorMsg(err.response.data.message);
       setIsDisabled(true);
     }
   };
@@ -74,6 +80,7 @@ const LeagueCreate = () => {
             btnFunction={handleLeagueCreation}
             isDisabled={isDisabled}
           />
+          {errorMsg && <ErrorMsg msg={errorMsg} />}
         </$LeagueCreateWrapper>
       </$GlobalContainer>
     </>
