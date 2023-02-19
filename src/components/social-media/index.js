@@ -28,8 +28,8 @@ const SocialMedia = ({
 
   const handleMobileShare = async () => {
     const shareData = {
-      title,
-      text: description,
+      title: description,
+      text: title,
       url,
     };
 
