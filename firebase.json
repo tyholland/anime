@@ -104,8 +104,8 @@
         "destination": "/team/info/[member_id].html"
       },
       {
-        "source": "/team/:team_id",
-        "destination": "/team/[team_id].html"
+        "source": "/team",
+        "destination": "/team.html"
       }
     ]
   }

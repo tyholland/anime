@@ -53,7 +53,7 @@ const Team = () => {
       setTeamId(team_id);
       setRank(teamInfo.rank);
       setIsPastWeek(team.week < teamInfo.leagueWeek);
-      setTotalPoints(totalPoints);
+      setTotalPoints(totalPoints || 0);
       setTeamData(teamData);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get team data'));
