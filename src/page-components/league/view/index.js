@@ -48,8 +48,8 @@ const ViewLeague = () => {
       <BackLink />
       <$GlobalContainer>
         <$GlobalTitle>All Leagues</$GlobalTitle>
-        {!!leagueCard && leagueCard}
-        {!leagueCard && (
+        {!!leagueCard?.length && leagueCard}
+        {!leagueCard?.length && (
           <>
             <$ViewLeagueEmptyTitle>
               You are not apart of any leagues at the moment
