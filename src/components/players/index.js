@@ -99,7 +99,7 @@ const Players = ({
       return;
     }
 
-    router.push(`/bio/${item.id}`);
+    router.push(`/bio?character=${item.id}`);
   };
 
   const handleRankFilter = (e) => {

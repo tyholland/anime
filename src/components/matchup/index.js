@@ -52,7 +52,7 @@ const MatchUp = ({ isReverse, team, votes }) => {
   };
 
   const getProfile = (id) => {
-    router.push(`/bio/${id}`);
+    router.push(`/bio?character=${id}`);
   };
 
   const getCharacterName = (player, rank) => {

@@ -48,7 +48,7 @@ const LeagueCard = ({ data }) => {
           btnText="League"
           btnColor="primary"
           customBtnClass="leagues"
-          redirect={`/league/${leagueId}`}
+          redirect={`/league?league_id=${leagueId}`}
         />
         <Button
           btnText="View Team"
@@ -61,7 +61,7 @@ const LeagueCard = ({ data }) => {
             btnText="View Matchup"
             btnColor="primary"
             customBtnClass="leagues"
-            redirect={`/matchup/${matchupId}`}
+            redirect={`/matchup?matchup_id=${matchupId}`}
           />
         )}
       </$LeagueCardSection>

@@ -63,7 +63,7 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen, character, votes }) => {
         rank,
       });
 
-      router.push(`/matchup/vote/${newMatchup.matchupVoteId}`);
+      router.push(`/matchup/vote?vote_id=${newMatchup.matchupVoteId}`);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to create matchup voting'));
     }
@@ -158,7 +158,7 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen, character, votes }) => {
             btnText="View Voting Status"
             btnColor="primary"
             customBtnClass="medium"
-            redirect={`/matchup/vote/${activeVoting[0].id}`}
+            redirect={`/matchup/vote?vote_id=${activeVoting[0].id}`}
           />
         )}
         {!activeVoting.length && (

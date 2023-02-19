@@ -43,7 +43,7 @@ const TeamCard = ({ data }) => {
     return (
       <>
         <$TeamCardCharacterWrapper>
-          <Link href={`/bio/${character.id}`}>
+          <Link href={`/bio?character=${character.id}`}>
             <$TeamCardCharacter>
               <$TeamCardCharacterTxt>{character.name}</$TeamCardCharacterTxt>
             </$TeamCardCharacter>
@@ -93,14 +93,14 @@ const TeamCard = ({ data }) => {
     return (
       <>
         <$TeamCardCharacterWrapper className="duo">
-          <Link href={`/bio/${brawler.id}`}>
+          <Link href={`/bio?character=${brawler.id}`}>
             <$TeamCardCharacter>
               <$TeamCardDuoSpace className="text">
                 {brawler.name}
               </$TeamCardDuoSpace>
             </$TeamCardCharacter>
           </Link>
-          <Link href={`/bio/${support.id}`}>
+          <Link href={`/bio?character=${support.id}`}>
             <$TeamCardCharacter>
               <$TeamCardDuoSpace className="text">
                 {support.name}

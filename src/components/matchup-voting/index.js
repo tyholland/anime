@@ -27,7 +27,7 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
 
   if (typeof window !== 'undefined') {
     pathname = changeMatchup
-      ? `${window.location.origin}/matchup/vote/${id}`
+      ? `${window.location.origin}/matchup/vote?vote_id=${id}`
       : window.location.href;
   }
 

@@ -95,14 +95,14 @@ const Team = () => {
                   <Button
                     btnText="Team Info"
                     btnColor="primary"
-                    redirect={`/team/info/${teamData.memberId}`}
+                    redirect={`/team/info?member_id=${teamData.memberId}`}
                     customBtnClass="medium"
                   />
                   <Button
                     btnText="Edit Roster"
                     btnColor="primary"
                     customBtnClass="medium"
-                    redirect={`/team/edit/${teamId}`}
+                    redirect={`/team/edit?team_id=${teamId}`}
                   />
                 </$TeamBtnSection>
               )}

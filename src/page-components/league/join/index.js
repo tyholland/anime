@@ -33,7 +33,7 @@ const JoinLeague = () => {
         league: leagueHash,
       });
 
-      router.push(`/league/${leagueId}`);
+      router.push(`/league?league_id=${leagueId}`);
     } catch (error) {
       addEvent('Error', responseError(error, 'Join League'));
       const nonUserMsg = 'Please login, in order to join a league.';

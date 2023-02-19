@@ -44,16 +44,16 @@
         "destination": "/suggest.html"
       },
       {
-        "source": "/bio/:character",
-        "destination": "/bio/[character].html"
+        "source": "/bio",
+        "destination": "/bio.html"
       },
       {
-        "source": "/league/:league_id",
-        "destination": "/league/[league_id].html"
+        "source": "/league",
+        "destination": "/league.html"
       },
       {
-        "source": "/league/admin/:league_id",
-        "destination": "/league/admin/[league_id].html"
+        "source": "/league/admin",
+        "destination": "/league/admin.html"
       },
       {
         "source": "/league/create",
@@ -68,40 +68,40 @@
         "destination": "/league/view.html"
       },
       {
-        "source": "/matchup/vote/:vote_id",
-        "destination": "/matchup/vote/[vote_id].html"
+        "source": "/matchup/vote",
+        "destination": "/matchup/vote.html"
       },
       {
-        "source": "/matchup/:matchup_id",
-        "destination": "/matchup/[matchup_id].html"
+        "source": "/matchup",
+        "destination": "/matchup.html"
       },
       {
         "source": "/matchup/vote",
         "destination": "/matchup/vote.html"
       },
       {
-        "source": "/playoffs/:league_id",
-        "destination": "/playoffs/[league_id].html"
+        "source": "/playoffs",
+        "destination": "/playoffs.html"
       },
       {
-        "source": "/scoreboard/:league_id",
-        "destination": "/scoreboard/[league_id].html"
+        "source": "/scoreboard",
+        "destination": "/scoreboard.html"
       },
       {
-        "source": "/standings/:league_id",
-        "destination": "/standings/[league_id].html"
+        "source": "/standings",
+        "destination": "/standings.html"
       },
       {
-        "source": "/schedule/:league_id",
-        "destination": "/schedule/[league_id].html"
+        "source": "/schedule",
+        "destination": "/schedule.html"
       },
       {
-        "source": "/team/edit/:team_id",
-        "destination": "/team/edit/[team_id].html"
+        "source": "/team/edit",
+        "destination": "/team/edit.html"
       },
       {
-        "source": "/team/info/:member_id",
-        "destination": "/team/info/[member_id].html"
+        "source": "/team/info",
+        "destination": "/team/info.html"
       },
       {
         "source": "/team",

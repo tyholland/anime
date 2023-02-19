@@ -72,36 +72,36 @@ const LeagueDetails = () => {
             {account?.user_id === leagueData.creator_id && (
               <SelectionCard
                 btnText="Admin Settings"
-                redirect={`/league/admin/${leagueId}`}
+                redirect={`/league/admin?league_id=${leagueId}`}
               />
             )}
             <SelectionCard
               btnText="Team"
-              redirect={`/team/${leagueData.teamId}`}
+              redirect={`/team?team_id=${leagueData.teamId}`}
             />
             <SelectionCard
               btnText="Matchup"
-              redirect={`/matchup/${leagueData.matchupId}`}
+              redirect={`/matchup?matchup_id=${leagueData.matchupId}`}
               isDisabled={!leagueData.matchupId}
             />
             <SelectionCard
               btnText="Schedule"
-              redirect={`/schedule/${leagueId}`}
+              redirect={`/schedule?league_id=${leagueId}`}
               isDisabled={!leagueData.matchupId}
             />
             <SelectionCard
               btnText="Scoreboard"
-              redirect={`/scoreboard/${leagueId}`}
+              redirect={`/scoreboard?league_id=${leagueId}`}
               isDisabled={!leagueData.matchupId}
             />
             <SelectionCard
               btnText="Standings"
-              redirect={`/standings/${leagueId}`}
+              redirect={`/standings?league_id=${leagueId}`}
               isDisabled={!leagueData.matchupId}
             />
             <SelectionCard
               btnText="Playoffs"
-              redirect={`/playoffs/${leagueId}`}
+              redirect={`/playoffs?league_id=${leagueId}`}
               isDisabled={!leagueData.matchupId}
             />
           </$GlobalContainer>
