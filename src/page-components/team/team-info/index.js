@@ -37,7 +37,7 @@ const TeamInfo = () => {
         {
           name: changedName,
         },
-        getCookie('token')
+        getCookie('__session')
       );
 
       addEvent('Change Team Name', {
@@ -58,7 +58,7 @@ const TeamInfo = () => {
     setErrorMsg(null);
 
     try {
-      await removeTeam(teamData.league_id, getCookie('token'));
+      await removeTeam(teamData.league_id, getCookie('__session'));
 
       router.push('/league');
     } catch (err) {
@@ -71,7 +71,7 @@ const TeamInfo = () => {
     const { member_id } = router.query;
 
     try {
-      const teamData = await getTeamInfo(member_id, getCookie('token'));
+      const teamData = await getTeamInfo(member_id, getCookie('__session'));
       const { team_name } = teamData;
 
       setTeamName(team_name);

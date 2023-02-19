@@ -36,7 +36,7 @@ const LeagueCreate = () => {
     };
 
     try {
-      const { leagueId } = await createLeague(payload, getCookie('token'));
+      const { leagueId } = await createLeague(payload, getCookie('__session'));
 
       addEvent('League Created', {
         name: leagueName,

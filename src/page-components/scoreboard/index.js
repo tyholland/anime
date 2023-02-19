@@ -18,7 +18,7 @@ const Scoreboard = () => {
     const { league_id } = router.query;
 
     try {
-      const games = await getScoreboard(league_id, getCookie('token'));
+      const games = await getScoreboard(league_id, getCookie('__session'));
 
       setGames(games);
     } catch (err) {

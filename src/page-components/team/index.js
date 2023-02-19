@@ -34,9 +34,9 @@ const Team = () => {
     const { team_id } = router.query;
 
     try {
-      const teamData = await getTeam(team_id, getCookie('token'));
+      const teamData = await getTeam(team_id, getCookie('__session'));
       const { team, memberId } = teamData;
-      const teamInfo = await getTeamInfo(memberId, getCookie('token'));
+      const teamInfo = await getTeamInfo(memberId, getCookie('__session'));
 
       const totalPoints =
         team.captain.teamPoints +

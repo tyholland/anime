@@ -39,7 +39,7 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
     };
 
     try {
-      const { votes } = await addVotes(payload, getCookie('token'));
+      const { votes } = await addVotes(payload, getCookie('__session'));
 
       playerCount === 'player_a_count'
         ? setPlayerACount(votes)

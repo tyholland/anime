@@ -40,7 +40,7 @@ const TeamEdit = () => {
 
     try {
       const players = await getPlayers();
-      const teamData = await getTeam(team_id, getCookie('token'));
+      const teamData = await getTeam(team_id, getCookie('__session'));
 
       const { team, userPoints } = teamData;
 
@@ -169,7 +169,7 @@ const TeamEdit = () => {
     const totalPoints = getUserPoints(thePlayers);
 
     try {
-      await updateTeam(teamId, thePlayers, getCookie('token'));
+      await updateTeam(teamId, thePlayers, getCookie('__session'));
 
       thePlayers['userPoints'] = totalPoints;
 

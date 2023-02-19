@@ -76,7 +76,7 @@ const Playoffs = () => {
     try {
       const { firstRound, semis, finals } = await getPlayoffs(
         league_id,
-        getCookie('token')
+        getCookie('__session')
       );
 
       if (firstRound.length) setRound1(firstRound);

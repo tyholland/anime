@@ -52,7 +52,7 @@ const Admin = () => {
     };
 
     try {
-      await updateLeague(league.id, payload, getCookie('token'));
+      await updateLeague(league.id, payload, getCookie('__session'));
       setTeamNum(val);
       setEditNum(false);
     } catch (err) {
@@ -71,7 +71,7 @@ const Admin = () => {
     };
 
     try {
-      await updateLeague(league.id, payload, getCookie('token'));
+      await updateLeague(league.id, payload, getCookie('__session'));
       setEditLeague(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'failed to update league name'));
@@ -84,7 +84,7 @@ const Admin = () => {
     };
 
     try {
-      await startLeague(payload, getCookie('token'));
+      await startLeague(payload, getCookie('__session'));
       setIsLeagueDisabled(true);
     } catch (err) {
       addEvent('Error', responseError(err, 'failed to update league name'));
@@ -95,7 +95,7 @@ const Admin = () => {
     setErrorMsg(null);
 
     try {
-      await deleteLeague(league.id, getCookie('token'));
+      await deleteLeague(league.id, getCookie('__session'));
     } catch (err) {
       addEvent('Error', responseError(err, 'failed to delete league'));
       setErrorMsg(err.response.data.message);
@@ -113,7 +113,7 @@ const Admin = () => {
       const { teams } = await removeTeamFromLeague(
         memberId,
         payload,
-        getCookie('token')
+        getCookie('__session')
       );
 
       setTeamNames(teams);
@@ -129,7 +129,7 @@ const Admin = () => {
     try {
       const leagueData = await getLeagueAdminData(
         league_id,
-        getCookie('token')
+        getCookie('__session')
       );
       const { league, teams } = leagueData;
       const { num_teams, name, week } = league;

@@ -25,7 +25,7 @@ const JoinLeague = () => {
     };
 
     try {
-      const { leagueId } = await joinLeague(payload, getCookie('token'));
+      const { leagueId } = await joinLeague(payload, getCookie('__session'));
 
       addEvent('Join League', {
         league: leagueHash,

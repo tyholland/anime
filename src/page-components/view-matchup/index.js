@@ -35,12 +35,12 @@ const ViewMatchup = () => {
     const { matchup_id } = router.query;
 
     try {
-      const results = await getMatchUp(matchup_id, getCookie('token'));
+      const results = await getMatchUp(matchup_id, getCookie('__session'));
 
       const { team_a, team_b, score_a, score_b } = results.matchup;
 
-      const team1 = await getMatchupTeam(team_a, getCookie('token'));
-      const team2 = await getMatchupTeam(team_b, getCookie('token'));
+      const team1 = await getMatchupTeam(team_a, getCookie('__session'));
+      const team2 = await getMatchupTeam(team_b, getCookie('__session'));
 
       setTeam1(team1);
       setTeam2(team2);

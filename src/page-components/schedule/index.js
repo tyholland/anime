@@ -23,7 +23,7 @@ const Schedule = () => {
     const { league_id } = router.query;
 
     try {
-      const games = await getSchedule(league_id, getCookie('token'));
+      const games = await getSchedule(league_id, getCookie('__session'));
 
       setGames(games);
     } catch (err) {

@@ -19,7 +19,7 @@ const ViewLeague = () => {
 
   const handleAllLeagues = async () => {
     try {
-      const leagues = await getAllLeagues(getCookie('token'));
+      const leagues = await getAllLeagues(getCookie('__session'));
       const card = leagues.map((item) => {
         return <LeagueCard key={item.team_name} data={item} />;
       });

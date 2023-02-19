@@ -53,7 +53,7 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen, character, votes }) => {
       const newMatchup = await createMatchupVotes(
         query?.matchup_id,
         payload,
-        getCookie('token')
+        getCookie('__session')
       );
 
       addEvent('Start Matchup Voting', {

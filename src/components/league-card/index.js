@@ -17,7 +17,7 @@ const LeagueCard = ({ data }) => {
     try {
       const matchupData = await getMatchUpFromTeamId(
         teamId,
-        getCookie('token')
+        getCookie('__session')
       );
 
       setMatchupId(matchupData[0]?.matchupId);
