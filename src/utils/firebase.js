@@ -17,7 +17,7 @@ const setupFirebase = () => {
 
 export const firebaseApp = () => {
   if (firebaseConfig) {
-    return initializeApp(firebaseConfig);
+    return;
   }
 
   return setupFirebase();

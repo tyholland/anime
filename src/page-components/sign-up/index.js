@@ -16,6 +16,7 @@ import { addEvent } from 'Utils/amplitude';
 import ErrorMsg from 'Components/error-msg';
 import SingleSignOn from 'Components/single-sign-on';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { $SignUpPolicy } from './signUp.style';
 
 const SignUp = () => {
   const { setInitialUser, currentUser } = useAppContext();
@@ -106,6 +107,17 @@ const SignUp = () => {
                 type="password"
                 onChange={handleSetConfirmPwd}
               />
+              <$SignUpPolicy>
+                By signing up, you acknowledge that you have read and understood
+                the
+                <Button
+                  btnText="Privacy Policy"
+                  btnColor="primary"
+                  customBtnClass="medium text"
+                  redirect="/policy"
+                />
+                .
+              </$SignUpPolicy>
               <Button
                 btnText="Sign Up"
                 btnColor="primary"
