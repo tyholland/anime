@@ -288,7 +288,7 @@ const Admin = () => {
                 {teamNames.length !== teamNum && (
                   <SocialMedia
                     pageTitle="Invite friends to Join League"
-                    title={`Join my ABZ Fantasy League. League code: ${league.hash}`}
+                    title={`Join my Anime Fantasy League. League code: ${league.hash}`}
                     description="Build your ultimate anime team"
                     singleHashtag="#abzFantasyLeague"
                     pluralHashtags={['abz', 'abzFantasyLeague', 'animebrothaz']}

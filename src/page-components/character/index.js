@@ -37,7 +37,7 @@ const Character = () => {
     <>
       <Metadata
         title="Characters"
-        description="View all the characters available to play in the ABZ Fantasy League. Click on a character to view the profile"
+        description="View all the characters available to play in the Anime Fantasy League. Click on a character to view the profile"
       />
       <BackLink />
       <$GlobalContainer className="grid bgImage character">

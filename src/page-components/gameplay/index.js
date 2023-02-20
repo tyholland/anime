@@ -16,7 +16,7 @@ const Gameplay = () => {
       <$GameplayStyles />
       <Metadata
         title="Gameplay"
-        description="Read about all the rules of the ABZ Fantasy League. See how the regular season is split up and then the playoffs."
+        description="Read about all the rules of the Anime Fantasy League. See how the regular season is split up and then the playoffs."
       />
       <$GlobalContainer>
         <$GlobalTitle>Gameplay</$GlobalTitle>

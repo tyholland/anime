@@ -90,7 +90,7 @@ const Login = () => {
     <>
       <Metadata
         title="Login"
-        description="Login to the ABZ Fantasy League. Use Google SSO or login with your email and password"
+        description="Login to the Anime Fantasy League. Use Google SSO or login with your email and password"
       />
       <$GlobalContainer>
         <$LoginWrapper>

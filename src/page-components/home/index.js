@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <Metadata title="Home" description="Anime Brothaz Fantasy League" />
       <$GlobalContainer className="bgImage home">
-        <$GlobalTitle className="home">ABZ Fantasy League</$GlobalTitle>
+        <$GlobalTitle className="home">Anime Fantasy League</$GlobalTitle>
         <$GlobalContainer className="grid">
           <SelectionCard btnText="Gameplay" redirect="/gameplay" />
           <SelectionCard btnText="Join a League" redirect="/league/join" />

@@ -44,7 +44,7 @@ const Suggest = () => {
     <>
       <Metadata
         title="Suggest a Character"
-        description="Suggest a character to be added to the ABZ Fantasy League. Provide the characters name, anime series, and the character rank"
+        description="Suggest a character to be added to the Anime Fantasy League. Provide the characters name, anime series, and the character rank"
       />
       <BackLink />
       <$GlobalContainer>
@@ -72,7 +72,7 @@ const Suggest = () => {
         </$LoginWrapper>
         <SocialMedia
           pageTitle="Tell Your Friends"
-          title="Suggest a new character for the ABZ Fantasy League"
+          title="Suggest a new character for the Anime Fantasy League"
           description="ABZ wants to know what character you want to have on your team."
           singleHashtag="#abzFantasyLeague"
           pluralHashtags={[
