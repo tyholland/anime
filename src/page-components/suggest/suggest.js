@@ -8,6 +8,7 @@ import { addEvent } from 'Utils/amplitude';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 import SocialMedia from 'Components/social-media';
+import Loader from 'Components/loader';
 
 const Suggest = () => {
   const [player, setPlayer] = useState('');
@@ -15,10 +16,13 @@ const Suggest = () => {
   const [rank, setRank] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const options = ['Captain', 'Brawler', 'Support', 'Villain', 'Battlefield'];
   let pathname = '';
 
   const handleSubmit = async () => {
+    setIsLoading(true);
+
     addEvent('Suggest Character', {
       character: player,
       series,
@@ -56,7 +60,7 @@ const Suggest = () => {
                 options={options}
               />
               <Button
-                btnText="Submit"
+                btnText={isLoading ? <Loader isSmall={true} /> : 'Submit'}
                 btnColor="primary"
                 customBtnClass="medium"
                 btnFunction={handleSubmit}

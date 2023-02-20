@@ -22,6 +22,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
   const router = useRouter();
   const { setInitialUser } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
   const handleGoogle = async () => {
@@ -56,6 +57,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
       }
 
       setIsLoading(true);
+      setIsDisabled(true);
 
       const isLogin = buttonText === 'Login';
       const eventName = isLogin ? 'Account login' : 'Account sign-up';
@@ -80,6 +82,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get SSO user data'));
       setIsLoading(false);
+      setIsDisabled(false);
 
       !err.response
         ? setError(err.message)
@@ -93,23 +96,25 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
     }
   }, [currentUser]);
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
     <>
       <Button
-        btnText={`${buttonText} with Google`}
+        btnText={
+          isLoading ? <Loader isSmall={true} /> : `${buttonText} with Google`
+        }
         btnColor="social"
         customBtnClass="medium"
         btnFunction={handleGoogle}
+        isDisabled={isDisabled}
       />
       <Button
-        btnText={`${buttonText} with Facebook`}
+        btnText={
+          isLoading ? <Loader isSmall={true} /> : `${buttonText} with Facebook`
+        }
         btnColor="social"
         customBtnClass="medium"
         btnFunction={handleFacebook}
+        isDisabled={isDisabled}
       />
     </>
   );

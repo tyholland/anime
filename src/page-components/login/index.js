@@ -47,6 +47,7 @@ const Login = () => {
   const handleLogin = async () => {
     setIsLoading(true);
     setErrorMsg(null);
+    setIsDisabled(true);
 
     try {
       const auth = getAuth();
@@ -71,6 +72,7 @@ const Login = () => {
     } catch (err) {
       addEvent('Error', responseError(err, 'Login'));
       setIsLoading(false);
+      setIsDisabled(false);
 
       err.message === pwdErrorMsg || err.message === emailErrorMsg
         ? setErrorMsg('Email and/or password is incorrect')
@@ -94,51 +96,48 @@ const Login = () => {
         <$LoginWrapper>
           <$GlobalTitle>Login</$GlobalTitle>
           {errorMsg && <ErrorMsg msg={errorMsg} />}
-          {isLoading && <Loader />}
-          {!isLoading && (
-            <>
-              <$LoginSectionWrapper>
-                <$LoginSection>
-                  <TextField
-                    placeholder="Email"
-                    keyboard="email-address"
-                    onChange={handleEmail}
-                  />
-                  <TextField
-                    placeholder="Password"
-                    type="password"
-                    onChange={handlePassword}
-                  />
-                  <Button
-                    btnText="Login"
-                    btnColor="primary"
-                    customBtnClass="medium"
-                    btnFunction={handleLogin}
-                    isDisabled={isDisabled}
-                  />
-                </$LoginSection>
-                <$LoginSection>
-                  <SingleSignOn setError={setErrorMsg} />
-                </$LoginSection>
-              </$LoginSectionWrapper>
-              <$LoginContentLinks>
-                Forgot your password?
-                <Button
-                  btnText="Reset password"
-                  customBtnClass="text"
-                  redirect="/forgot"
+          <>
+            <$LoginSectionWrapper>
+              <$LoginSection>
+                <TextField
+                  placeholder="Email"
+                  keyboard="email-address"
+                  onChange={handleEmail}
                 />
-              </$LoginContentLinks>
-              <$LoginContentLinks>
-                Don't have an account?
-                <Button
-                  btnText="Sign Up"
-                  customBtnClass="text small"
-                  redirect="/sign-up"
+                <TextField
+                  placeholder="Password"
+                  type="password"
+                  onChange={handlePassword}
                 />
-              </$LoginContentLinks>
-            </>
-          )}
+                <Button
+                  btnText={isLoading ? <Loader isSmall={true} /> : 'Login'}
+                  btnColor="primary"
+                  customBtnClass="medium"
+                  btnFunction={handleLogin}
+                  isDisabled={isDisabled}
+                />
+              </$LoginSection>
+              <$LoginSection>
+                <SingleSignOn setError={setErrorMsg} />
+              </$LoginSection>
+            </$LoginSectionWrapper>
+            <$LoginContentLinks>
+              Forgot your password?
+              <Button
+                btnText="Reset password"
+                customBtnClass="text"
+                redirect="/forgot"
+              />
+            </$LoginContentLinks>
+            <$LoginContentLinks>
+              Don't have an account?
+              <Button
+                btnText="Sign Up"
+                customBtnClass="text small"
+                redirect="/sign-up"
+              />
+            </$LoginContentLinks>
+          </>
         </$LoginWrapper>
       </$GlobalContainer>
     </>

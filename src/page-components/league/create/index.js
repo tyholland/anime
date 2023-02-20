@@ -12,6 +12,7 @@ import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import ErrorMsg from 'Components/error-msg';
 import { useAppContext } from 'src/hooks/context';
+import Loader from 'Components/loader';
 
 const LeagueCreate = () => {
   const { currentUser } = useAppContext();
@@ -19,6 +20,7 @@ const LeagueCreate = () => {
   const [leagueName, setLeagueName] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const options = ['6', '7', '8', '9', '10'];
   const router = useRouter();
 
@@ -32,6 +34,8 @@ const LeagueCreate = () => {
 
   const handleLeagueCreation = async () => {
     setIsDisabled(true);
+    setIsLoading(true);
+
     const payload = {
       name: leagueName,
       numTeams: teams,
@@ -52,6 +56,7 @@ const LeagueCreate = () => {
         ? setErrorMsg(nonUserMsg)
         : setErrorMsg(err.response.data.message);
       setIsDisabled(true);
+      setIsLoading(false);
     }
   };
 
@@ -77,7 +82,7 @@ const LeagueCreate = () => {
             options={options}
           />
           <Button
-            btnText="Create League"
+            btnText={isLoading ? <Loader isSmall={true} /> : 'Create League'}
             btnColor="primary"
             customBtnClass="medium"
             btnFunction={handleLeagueCreation}

@@ -24,7 +24,7 @@ const SelectionCard = ({ btnText, redirect, isDisabled, newTab }) => {
           <$SelectionCardText>{btnText}</$SelectionCardText>
         </$SelectionCardBlock>
         <Notification
-          message={`${btnText} is currently unavailble at the moment`}
+          message="Your league has started yet. This will be active after your league has started."
           closeModal={closeModal}
           modalIsOpen={modalIsOpen}
         />

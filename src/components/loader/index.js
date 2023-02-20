@@ -1,11 +1,19 @@
 import React from 'react';
-import FadeLoader from 'react-spinners/FadeLoader';
+import PacmanLoader from 'react-spinners/PacmanLoader';
 import { $LoaderWrapper } from './loader.style';
 
-const Loader = () => {
+const Loader = ({ isSmall = false }) => {
+  if (isSmall) {
+    return (
+      <$LoaderWrapper className="small">
+        <PacmanLoader size={10} />
+      </$LoaderWrapper>
+    );
+  }
+
   return (
     <$LoaderWrapper>
-      <FadeLoader />
+      <PacmanLoader />
     </$LoaderWrapper>
   );
 };

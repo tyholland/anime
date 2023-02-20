@@ -29,6 +29,7 @@ const Team = () => {
   const [teamData, setTeamData] = useState(null);
   const [rank, setRank] = useState(null);
   const [isPastWeek, setIsPastWeek] = useState(null);
+  const [hideWeek, setHideWeek] = useState(null);
   const [totalPoints, setTotalPoints] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
 
@@ -55,6 +56,7 @@ const Team = () => {
       setIsPastWeek(team.week < teamInfo.leagueWeek);
       setTotalPoints(totalPoints || 0);
       setTeamData(teamData);
+      setHideWeek(team.week < 1);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get team data'));
       setErrorPage(true);
@@ -85,9 +87,10 @@ const Team = () => {
             <$TeamInfo>
               <$TeamContent>
                 <$TeamName>{teamData.teamName}</$TeamName>
-                {!isPastWeek && (
-                  <$TeamLeague>Week: {teamData.team.week}</$TeamLeague>
-                )}
+                {hideWeek ||
+                  (!isPastWeek && (
+                    <$TeamLeague>Week: {teamData.team.week}</$TeamLeague>
+                  ))}
                 <$TeamLeague>Rank: {`${rank.win}-${rank.loss}`}</$TeamLeague>
               </$TeamContent>
               {!isPastWeek && (

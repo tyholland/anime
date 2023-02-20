@@ -11,6 +11,7 @@ import { responseError } from 'Utils/index';
 import { useRouter } from 'next/router';
 import ErrorMsg from 'Components/error-msg';
 import { useAppContext } from 'src/hooks/context';
+import Loader from 'Components/loader';
 
 const JoinLeague = () => {
   const router = useRouter();
@@ -18,10 +19,13 @@ const JoinLeague = () => {
   const [leagueHash, setLeagueHash] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleJoinLeague = async () => {
     setIsDisabled(true);
+    setIsLoading(true);
     setErrorMsg(null);
+
     const payload = {
       hash: leagueHash,
     };
@@ -41,6 +45,7 @@ const JoinLeague = () => {
         ? setErrorMsg(nonUserMsg)
         : setErrorMsg(error.response.data.message);
       setIsDisabled(true);
+      setIsLoading(false);
     }
   };
 
@@ -66,7 +71,7 @@ const JoinLeague = () => {
               maxLength={11}
             />
             <Button
-              btnText="Enter League"
+              btnText={isLoading ? <Loader isSmall={true} /> : 'Enter League'}
               btnColor="primary"
               customBtnClass="medium"
               btnFunction={handleJoinLeague}

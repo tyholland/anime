@@ -18,12 +18,15 @@ import {
 } from './account.style';
 import { addEvent } from 'Utils/amplitude';
 import { getAuth, signOut, updatePassword, deleteUser } from 'firebase/auth';
+import ErrorMsg from 'Components/error-msg';
 
 const Account = () => {
   const { deleteCurrentUser, currentUser } = useAppContext();
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isPwdLoading, setIsPwdLoading] = useState(false);
   const [errorPage, setErrorPage] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(false);
   const [logoutTrigger, setLogoutTrigger] = useState(false);
   const [pwd, setPwd] = useState('');
   const [confirmPwd, setConfirmPwd] = useState('');
@@ -75,8 +78,12 @@ const Account = () => {
     const isCorrectPwds = pwd === confirmPwd;
 
     if (!isCorrectPwds) {
+      setErrorMsg('Passwords do not match');
       return;
     }
+
+    setIsPwdLoading(true);
+    setIsDisabled(true);
 
     try {
       const user = auth.currentUser;
@@ -85,6 +92,7 @@ const Account = () => {
       addEvent('Account password change');
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to change passwords'));
+      setIsPwdLoading(false);
     }
   };
 
@@ -136,6 +144,7 @@ const Account = () => {
             <Collapsible trigger="Change Password" triggerTagName="div">
               <$AccountWrapper className="column">
                 <div>
+                  {errorMsg && <ErrorMsg msg={errorMsg} />}
                   <TextField
                     placeholder="Enter New Password"
                     onChange={handleSetPwd}
@@ -146,7 +155,7 @@ const Account = () => {
                   />
                 </div>
                 <Button
-                  btnText="Submit"
+                  btnText={isPwdLoading ? <Loader isSmall={true} /> : 'Submit'}
                   btnColor="primary"
                   customBtnClass="medium"
                   isDisabled={isDisabled}

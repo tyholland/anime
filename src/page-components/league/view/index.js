@@ -13,13 +13,17 @@ import Error from 'PageComponents/error';
 import { addEvent } from 'Utils/amplitude';
 import { getAllLeagues } from 'src/requests/league';
 import { useAppContext } from 'src/hooks/context';
+import Loader from 'Components/loader';
 
 const ViewLeague = () => {
   const { currentUser } = useAppContext();
   const [leagueCard, setLeagueCard] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleAllLeagues = async () => {
+    setIsLoading(true);
+
     try {
       const leagues = await getAllLeagues(currentUser?.token);
       const card = leagues.map((item) => {
@@ -27,9 +31,11 @@ const ViewLeague = () => {
       });
 
       setLeagueCard(card);
+      setIsLoading(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get all leagues view'));
       setErrorPage(true);
+      setIsLoading(false);
     }
   };
 
@@ -50,8 +56,9 @@ const ViewLeague = () => {
       <BackLink />
       <$GlobalContainer>
         <$GlobalTitle>All Leagues</$GlobalTitle>
-        {!!leagueCard?.length && leagueCard}
-        {!leagueCard?.length && (
+        {isLoading && <Loader />}
+        {!!leagueCard?.length && !isLoading && leagueCard}
+        {!leagueCard?.length && !isLoading && (
           <>
             <$ViewLeagueEmptyTitle>
               You are not apart of any leagues at the moment
