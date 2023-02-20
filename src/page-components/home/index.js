@@ -13,7 +13,7 @@ const Home = () => {
           <SelectionCard btnText="Gameplay" redirect="/gameplay" />
           <SelectionCard btnText="Join a League" redirect="/league/join" />
           <SelectionCard btnText="Character List" redirect="/characters" />
-          <SelectionCard btnText="Matchup Voting" redirect="/matchup/vote" />
+          <SelectionCard btnText="Matchup Voting" redirect="/matchup/all" />
           <SelectionCard btnText="Suggest Character" redirect="/suggest" />
         </$GlobalContainer>
       </$GlobalContainer>

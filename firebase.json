@@ -76,8 +76,8 @@
         "destination": "/matchup.html"
       },
       {
-        "source": "/matchup/vote",
-        "destination": "/matchup/vote.html"
+        "source": "/matchup/all",
+        "destination": "/matchup/all.html"
       },
       {
         "source": "/playoffs",
