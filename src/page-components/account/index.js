@@ -52,7 +52,7 @@ const Account = () => {
       const user = auth.currentUser;
 
       await deleteUser(user);
-      await deleteAccount(currentUser.token);
+      await deleteAccount(currentUser?.token);
 
       addEvent('Account deleted');
       handleLogout();

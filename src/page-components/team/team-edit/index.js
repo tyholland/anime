@@ -42,7 +42,7 @@ const TeamEdit = () => {
 
     try {
       const players = await getPlayers();
-      const teamData = await getTeam(team_id, currentUser.token);
+      const teamData = await getTeam(team_id, currentUser?.token);
 
       const { team, userPoints } = teamData;
 
@@ -171,7 +171,7 @@ const TeamEdit = () => {
     const totalPoints = getUserPoints(thePlayers);
 
     try {
-      await updateTeam(teamId, thePlayers, currentUser.token);
+      await updateTeam(teamId, thePlayers, currentUser?.token);
 
       thePlayers['userPoints'] = totalPoints;
 

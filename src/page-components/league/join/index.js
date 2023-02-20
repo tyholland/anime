@@ -27,7 +27,7 @@ const JoinLeague = () => {
     };
 
     try {
-      const { leagueId } = await joinLeague(payload, currentUser.token);
+      const { leagueId } = await joinLeague(payload, currentUser?.token);
 
       addEvent('Join League', {
         league: leagueHash,
@@ -37,7 +37,7 @@ const JoinLeague = () => {
     } catch (error) {
       addEvent('Error', responseError(error, 'Join League'));
       const nonUserMsg = 'Please login, in order to join a league.';
-      error.response.status === 401
+      error.response?.status === 401
         ? setErrorMsg(nonUserMsg)
         : setErrorMsg(error.response.data.message);
       setIsDisabled(true);
@@ -63,6 +63,7 @@ const JoinLeague = () => {
             <TextField
               placeholder="Enter your league code"
               onChange={handleLeagueHash}
+              maxLength={11}
             />
             <Button
               btnText="Enter League"

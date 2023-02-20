@@ -38,7 +38,7 @@ const LeagueCreate = () => {
     };
 
     try {
-      const { leagueId } = await createLeague(payload, currentUser.token);
+      const { leagueId } = await createLeague(payload, currentUser?.token);
 
       addEvent('League Created', {
         name: leagueName,

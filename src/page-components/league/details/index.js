@@ -24,10 +24,10 @@ const LeagueDetails = () => {
     const { league_id } = router.query;
 
     try {
-      const data = await getLeague(league_id, currentUser.token);
+      const data = await getLeague(league_id, currentUser?.token);
       const matchupData = await getMatchUpFromTeamId(
         data[0].teamId,
-        currentUser.token
+        currentUser?.token
       );
 
       setLeagueId(league_id);

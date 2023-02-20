@@ -25,7 +25,7 @@ const Schedule = () => {
     const { league_id } = router.query;
 
     try {
-      const games = await getSchedule(league_id, currentUser.token);
+      const games = await getSchedule(league_id, currentUser?.token);
 
       setGames(games);
     } catch (err) {

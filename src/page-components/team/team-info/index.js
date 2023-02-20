@@ -39,7 +39,7 @@ const TeamInfo = () => {
         {
           name: changedName,
         },
-        currentUser.token
+        currentUser?.token
       );
 
       addEvent('Change Team Name', {
@@ -60,7 +60,7 @@ const TeamInfo = () => {
     setErrorMsg(null);
 
     try {
-      await removeTeam(teamData.league_id, currentUser.token);
+      await removeTeam(teamData.league_id, currentUser?.token);
 
       router.push('/league');
     } catch (err) {
@@ -73,7 +73,7 @@ const TeamInfo = () => {
     const { member_id } = router.query;
 
     try {
-      const teamData = await getTeamInfo(member_id, currentUser.token);
+      const teamData = await getTeamInfo(member_id, currentUser?.token);
       const { team_name } = teamData;
 
       setTeamName(team_name);

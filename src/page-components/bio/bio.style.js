@@ -59,7 +59,6 @@ export const $BioSubAttribute = styled.div`
 
 export const $BioImage = styled.img`
   width: 100%;
-  filter: grayscale(100);
   margin-bottom: 10%;
 `;
 

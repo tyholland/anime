@@ -21,7 +21,7 @@ const ViewLeague = () => {
 
   const handleAllLeagues = async () => {
     try {
-      const leagues = await getAllLeagues(currentUser.token);
+      const leagues = await getAllLeagues(currentUser?.token);
       const card = leagues.map((item) => {
         return <LeagueCard key={item.team_name} data={item} />;
       });

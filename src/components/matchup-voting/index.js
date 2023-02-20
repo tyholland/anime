@@ -41,7 +41,7 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
     };
 
     try {
-      const { votes } = await addVotes(payload, currentUser.token);
+      const { votes } = await addVotes(payload, currentUser?.token);
 
       playerCount === 'player_a_count'
         ? setPlayerACount(votes)

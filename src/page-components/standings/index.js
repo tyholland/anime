@@ -25,7 +25,7 @@ const Standings = () => {
     const { league_id } = router.query;
 
     try {
-      const games = await getStandings(league_id, currentUser.token);
+      const games = await getStandings(league_id, currentUser?.token);
 
       setGames(games);
     } catch (err) {

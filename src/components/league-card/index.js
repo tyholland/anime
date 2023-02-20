@@ -17,7 +17,10 @@ const LeagueCard = ({ data }) => {
 
   const getMatchupData = async () => {
     try {
-      const matchupData = await getMatchUpFromTeamId(teamId, currentUser.token);
+      const matchupData = await getMatchUpFromTeamId(
+        teamId,
+        currentUser?.token
+      );
 
       setMatchupId(matchupData[0]?.matchupId);
     } catch (err) {

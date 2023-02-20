@@ -78,7 +78,7 @@ const Playoffs = () => {
     try {
       const { firstRound, semis, finals } = await getPlayoffs(
         league_id,
-        currentUser.token
+        currentUser?.token
       );
 
       if (firstRound.length) setRound1(firstRound);
