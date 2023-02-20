@@ -18,7 +18,7 @@ const AllVoteMatchups = () => {
   const [playerB, setPlayerB] = useState(null);
   const [matchup, setMatchup] = useState(null);
   const [isMatchupsAvailable, setIsMatchupsAvailable] = useState(null);
-  const [emptyPage, setEmptyPage] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [count, setCount] = useState(0);
   const [errorPage, setErrorPage] = useState(false);
 
@@ -46,6 +46,8 @@ const AllVoteMatchups = () => {
   };
 
   const handleAllMatchups = async () => {
+    setIsLoading(true);
+
     try {
       const allMatchupVotes = await getAllMatchupVotes();
 
@@ -60,11 +62,11 @@ const AllVoteMatchups = () => {
       setMatchup(allMatchupVotes[totalLength]);
       setTotalMatchups(totalLength);
       setIsMatchupsAvailable(allMatchupVotes);
-      setEmptyPage(false);
+      setIsLoading(false);
     } catch (err) {
       if (err.response.status === 400) {
         setMatchup([]);
-        setEmptyPage(false);
+        setIsLoading(false);
         return;
       }
 
@@ -92,8 +94,8 @@ const AllVoteMatchups = () => {
         description="Vote on various matchups between characters in every rank. Your vote can help give the individual fighter that extra boost they need to win their matchup."
       />
       <$GlobalContainer>
-        {!isMatchupsAvailable && <Loader />}
-        {!!isMatchupsAvailable?.length && (
+        {isLoading && <Loader />}
+        {!!isMatchupsAvailable && (
           <MatchupVoting
             changeMatchup={getVotingMatchup}
             playerA={playerA}
@@ -101,7 +103,7 @@ const AllVoteMatchups = () => {
             matchup={matchup}
           />
         )}
-        {!emptyPage && !isMatchupsAvailable?.length && (
+        {!isMatchupsAvailable && (
           <$AllVoteMatchupsEmptyWrapper>
             <div className="title">
               There are no available matchups to vote on
