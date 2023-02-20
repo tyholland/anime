@@ -11,8 +11,10 @@ import { $AllVoteMatchupsEmptyWrapper } from './allVoteMatchups.style';
 import { getAllMatchupVotes } from 'src/requests/matchup';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
+import { useAppContext } from 'src/hooks/context';
 
 const AllVoteMatchups = () => {
+  const { currentUser } = useAppContext();
   const [totalMatchups, setTotalMatchups] = useState(null);
   const [playerA, setPlayerA] = useState(null);
   const [playerB, setPlayerB] = useState(null);
@@ -49,17 +51,17 @@ const AllVoteMatchups = () => {
     setIsLoading(true);
 
     try {
-      const allMatchupVotes = await getAllMatchupVotes();
+      const allMatchupVotes = await getAllMatchupVotes({ currentUser });
 
       const totalLength = allMatchupVotes.length - 1;
-      const { player_a_id, player_b_id } = allMatchupVotes[totalLength];
+      const { player_a_id, player_b_id } = allMatchupVotes[0];
 
       const playerOne = await getPlayer(player_a_id);
       const playerTwo = await getPlayer(player_b_id);
 
       setPlayerA(playerOne[0]);
       setPlayerB(playerTwo[0]);
-      setMatchup(allMatchupVotes[totalLength]);
+      setMatchup(allMatchupVotes[0]);
       setTotalMatchups(totalLength);
       setIsMatchupsAvailable(allMatchupVotes);
       setIsLoading(false);
@@ -95,15 +97,16 @@ const AllVoteMatchups = () => {
       />
       <$GlobalContainer>
         {isLoading && <Loader />}
-        {!!isMatchupsAvailable && !isLoading && (
+        {!!isMatchupsAvailable?.length && !isLoading && (
           <MatchupVoting
+            isChangeable={true}
             changeMatchup={getVotingMatchup}
-            playerA={playerA}
-            playerB={playerB}
+            userPlayerA={playerA}
+            userPlayerB={playerB}
             matchup={matchup}
           />
         )}
-        {!isMatchupsAvailable && !isLoading && (
+        {!isMatchupsAvailable?.length && !isLoading && (
           <$AllVoteMatchupsEmptyWrapper>
             <div className="title">
               There are no available matchups to vote on

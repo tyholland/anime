@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   $MatchupVotingCharacter,
   $MatchupVotingTeam,
@@ -15,19 +15,28 @@ import { responseError } from 'Utils/index.js';
 import { addEvent } from 'Utils/amplitude.js';
 import ErrorMsg from 'Components/error-msg/index.js';
 import { useAppContext } from 'src/hooks/context.js';
+import Loader from 'Components/loader/index.js';
 
-const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
+const MatchupVoting = ({
+  userPlayerA,
+  userPlayerB,
+  matchup,
+  changeMatchup,
+  isChangeable = false,
+}) => {
   const { currentUser } = useAppContext();
-  const { player_a_count, player_b_count, leagueName, id } = matchup;
-  const [playerACount, setPlayerACount] = useState(player_a_count);
-  const [playerBCount, setPlayerBCount] = useState(player_b_count);
+  const [playerACount, setPlayerACount] = useState(null);
+  const [playerBCount, setPlayerBCount] = useState(null);
+  const [playerA, setPlayerA] = useState(null);
+  const [playerB, setPlayerB] = useState(null);
+  const [voteId, setVoteId] = useState(null);
+  const [leagueName, setLeagueName] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   let pathname = '';
-  const socialTitle = `Matchup of the week: ${playerA.name} vs ${playerB.name}`;
 
   if (typeof window !== 'undefined') {
-    pathname = changeMatchup
-      ? `${window.location.origin}/matchup/vote?vote_id=${id}`
+    pathname = isChangeable
+      ? `${window.location.origin}/matchup/vote?vote_id=${matchup.id}`
       : window.location.href;
   }
 
@@ -35,7 +44,7 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
     setErrorMsg(null);
 
     const payload = {
-      voteId: id,
+      voteId,
       votedFor: player.id,
       playerCount,
     };
@@ -60,11 +69,33 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
     }
   };
 
+  const handleMatchup = (matchup) => {
+    const { player_a_count, player_b_count, leagueName, id } = matchup;
+
+    setPlayerA(userPlayerA);
+    setPlayerB(userPlayerB);
+    setPlayerACount(player_a_count);
+    setPlayerBCount(player_b_count);
+    setLeagueName(leagueName);
+    setVoteId(id);
+  };
+
+  useEffect(() => {
+    handleMatchup(matchup);
+  }, [matchup]);
+
+  if (!playerA) {
+    return <Loader />;
+  }
+
   return (
     <>
       <$MatchupVotingWrapper className={errorMsg && 'spacing'}>
         <$MatchupVotingSection>
-          <$MatchupVotingImage src="/assets/profile/unknown.png" alt="Goku" />
+          <$MatchupVotingImage
+            src={playerA.image_url}
+            alt={playerA.full_name}
+          />
           <$MatchupVotingCharacter>{playerA.full_name}</$MatchupVotingCharacter>
           <$MatchupVotingTeam>{leagueName}</$MatchupVotingTeam>
           <Button
@@ -80,8 +111,8 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
         </$MatchupVotingSection>
         <$MatchupVotingSection>
           <$MatchupVotingImage
-            src="/assets/profile/unknown.png"
-            alt="Sung Jin Woo"
+            src={playerB.image_url}
+            alt={playerB.full_name}
           />
           <$MatchupVotingCharacter>{playerB.full_name}</$MatchupVotingCharacter>
           <$MatchupVotingTeam>{leagueName}</$MatchupVotingTeam>
@@ -96,14 +127,14 @@ const MatchupVoting = ({ playerA, playerB, matchup, changeMatchup }) => {
       </$MatchupVotingWrapper>
       {errorMsg && <ErrorMsg msg={errorMsg} />}
       <SocialMedia
-        pageTitle={changeMatchup ? 'Share Matchup' : 'Get Votes'}
-        title={socialTitle}
+        pageTitle={isChangeable ? 'Share Matchup' : 'Get Votes'}
+        title={`Matchup of the week: ${playerA.name} vs ${playerB.name}`}
         description={`Click the link to vote on the matchup of the week: ${playerA.name} vs ${playerB.name}...`}
         singleHashtag="#abzFantasyLeague"
         pluralHashtags={['abz', 'abzFantasyLeague', 'animebrothaz']}
         url={pathname}
       />
-      {!!changeMatchup && (
+      {!!isChangeable && (
         <$MatchupVotingWrapper>
           <Button
             btnText="Next Matchup"

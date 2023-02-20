@@ -58,7 +58,7 @@ const SignUp = () => {
       );
 
       const user = await addNewAccount({
-        userEmail,
+        email: userEmail,
         firebaseId: firebaseUser.user.uid,
       });
 

@@ -29,8 +29,8 @@ const SpecificVoteMatchup = () => {
       const playerB = await getPlayer(player_b_id);
 
       setMatchupVotes(matchupVotes);
-      setPlayerA(playerA);
-      setPlayerB(playerB);
+      setPlayerA(playerA[0]);
+      setPlayerB(playerB[0]);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get voting matchup'));
       setErrorPage(true);
@@ -57,8 +57,8 @@ const SpecificVoteMatchup = () => {
         {!hasMatchup && <Loader />}
         {hasMatchup && (
           <MatchupVoting
-            playerA={playerA}
-            playerB={playerB}
+            userPlayerA={playerA}
+            userPlayerB={playerB}
             matchup={matchupVotes}
           />
         )}

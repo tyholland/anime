@@ -59,7 +59,7 @@ const Login = () => {
 
       const user = await accountLogin({
         email,
-        firebaseUID: firebaseUser.user.uid,
+        firebaseId: firebaseUser.user.uid,
       });
 
       setInitialUser(user);
