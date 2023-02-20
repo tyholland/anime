@@ -21,6 +21,16 @@ export const accountLogin = async (payload) => {
   return await axiosClient(data);
 };
 
+export const accountExists = async (payload) => {
+  const data = {
+    url: `${api}/users/exists`,
+    method: 'put',
+    body: payload,
+  };
+
+  return await axiosClient(data);
+};
+
 export const accountLogout = async () => {
   const data = {
     url: `${api}/users/logout`,

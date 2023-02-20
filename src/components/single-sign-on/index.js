@@ -14,7 +14,7 @@ import {
   responseError,
 } from 'Utils/index';
 import { useRouter } from 'next/router';
-import { accountLogin, addNewAccount } from 'src/requests/users';
+import { accountExists, accountLogin, addNewAccount } from 'src/requests/users';
 import { useAppContext } from 'src/hooks/context';
 import Loader from 'Components/loader';
 
@@ -61,16 +61,15 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
 
       const isLogin = buttonText === 'Login';
       const eventName = isLogin ? 'Account login' : 'Account sign-up';
+      const payload = {
+        email: firebaseUser?.user.email,
+        firebaseId: firebaseUser?.user.uid,
+      };
+      const { exists } = await accountExists(payload);
 
-      const user = isLogin
-        ? await accountLogin({
-          email: firebaseUser?.user.email,
-          firebaseUID: firebaseUser?.user.uid,
-        })
-        : await addNewAccount({
-          userEmail: firebaseUser?.user.email,
-          firebaseId: firebaseUser?.user.uid,
-        });
+      const user = exists
+        ? await accountLogin(payload)
+        : await addNewAccount(payload);
 
       setInitialUser(user);
 
