@@ -95,7 +95,7 @@ const AllVoteMatchups = () => {
       />
       <$GlobalContainer>
         {isLoading && <Loader />}
-        {!!isMatchupsAvailable && (
+        {!!isMatchupsAvailable && !isLoading && (
           <MatchupVoting
             changeMatchup={getVotingMatchup}
             playerA={playerA}
@@ -103,7 +103,7 @@ const AllVoteMatchups = () => {
             matchup={matchup}
           />
         )}
-        {!isMatchupsAvailable && (
+        {!isMatchupsAvailable && !isLoading && (
           <$AllVoteMatchupsEmptyWrapper>
             <div className="title">
               There are no available matchups to vote on
