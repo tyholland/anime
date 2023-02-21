@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {
   COLOR_BLACK,
+  COLOR_BLACK_DISABLED,
   COLOR_ORANGE,
   COLOR_ORANGE_DISABLED,
   COLOR_ORANGE_LIGHT,
@@ -16,11 +17,6 @@ export const $Btn = styled.button`
   padding: 3%;
   margin-top: 10px;
   width: 100%;
-
-  &:disabled {
-    cursor: not-allowed;
-    background-color: ${COLOR_ORANGE_DISABLED} !important;
-  }
 
   &.primary {
     background-color: ${COLOR_ORANGE};
@@ -49,6 +45,14 @@ export const $Btn = styled.button`
   &.social {
     background-color: ${COLOR_WHITE};
     border-color: ${COLOR_BLACK};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > span {
+      margin-left: 2%;
+      font-weight: ${FONT_WEIGHT_BOLD};
+    }
   }
 
   &.share {
@@ -138,6 +142,19 @@ export const $Btn = styled.button`
   &.header {
     margin: 0 10px;
     width: 80px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+
+    &.primary {
+      background-color: ${COLOR_ORANGE_DISABLED} !important;
+    }
+
+    &.social {
+      background-color: ${COLOR_BLACK_DISABLED} !important;
+      border-color: ${COLOR_BLACK_DISABLED} !important;
+    }
   }
 `;
 

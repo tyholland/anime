@@ -17,6 +17,8 @@ import { useRouter } from 'next/router';
 import { accountExists, accountLogin, addNewAccount } from 'src/requests/users';
 import { useAppContext } from 'src/hooks/context';
 import Loader from 'Components/loader';
+import Image from 'next/image';
+import { FacebookIcon } from 'react-share';
 
 const SingleSignOn = ({ buttonText = 'Login', setError }) => {
   const router = useRouter();
@@ -98,23 +100,40 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
   return (
     <>
       <Button
-        btnText={
-          isLoading ? <Loader isSmall={true} /> : `${buttonText} with Google`
-        }
         btnColor="social"
         customBtnClass="medium"
         btnFunction={handleGoogle}
         isDisabled={isDisabled}
-      />
+      >
+        {isLoading ? (
+          <Loader isSmall={true} />
+        ) : (
+          <>
+            <Image
+              src="/assets/icons/google-icon.png"
+              width={20}
+              height={20}
+              alt="Google Icon"
+            />
+            <span>{`${buttonText} with Google`}</span>
+          </>
+        )}
+      </Button>
       <Button
-        btnText={
-          isLoading ? <Loader isSmall={true} /> : `${buttonText} with Facebook`
-        }
         btnColor="social"
         customBtnClass="medium"
         btnFunction={handleFacebook}
         isDisabled={isDisabled}
-      />
+      >
+        {isLoading ? (
+          <Loader isSmall={true} />
+        ) : (
+          <>
+            <FacebookIcon size={20} round={true} />
+            <span>{`${buttonText} with Facebook`}</span>
+          </>
+        )}
+      </Button>
     </>
   );
 };

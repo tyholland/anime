@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_WEIGHT_BOLD } from 'Styles/global.style';
+import { FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
 
 export const $GameplayCardSection = styled.div`
   margin-bottom: 20px;
@@ -35,8 +35,12 @@ export const $GameplayCardWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-evenly;
-  width: 65%;
+  width: 75%;
   margin: 0 auto;
+
+  ${MOBILE_VIEW} {
+    width: 100%;
+  }
 
   div {
     width: 100%;

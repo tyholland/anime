@@ -249,4 +249,10 @@ export const photoCredits = [
     creator: '@Stban',
     platform: 'freesvg.org',
   },
+  {
+    image: '/assets/icons/google-icon.png',
+    name: 'Google Icon',
+    creator: '@Clovis_Cheminot',
+    platform: 'pixabay.com',
+  },
 ];
