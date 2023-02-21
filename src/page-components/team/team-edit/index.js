@@ -243,28 +243,60 @@ const TeamEdit = () => {
               </$TeamEditGrid>
               <$TeamEditGrid>
                 <$TeamEditSection>
-                  <div>{playerList.captain.name}</div>
+                  <Button
+                    btnText={playerList.captain.name}
+                    redirect={`/bio?character=${playerList.captain.id}`}
+                    customBtnClass="text edit"
+                  />
                 </$TeamEditSection>
                 <$TeamEditSection>
-                  <div>{playerList.brawlerA.name}</div>
+                  <Button
+                    btnText={playerList.brawlerA.name}
+                    redirect={`/bio?character=${playerList.brawlerA.id}`}
+                    customBtnClass="text edit"
+                  />
                 </$TeamEditSection>
                 <$TeamEditSection>
-                  <div>{playerList.brawlerB.name}</div>
+                  <Button
+                    btnText={playerList.brawlerB.name}
+                    redirect={`/bio?character=${playerList.brawlerB.id}`}
+                    customBtnClass="text edit"
+                  />
                 </$TeamEditSection>
                 <$TeamEditSection>
-                  <div>{playerList.bsBrawler.name}</div>
+                  <Button
+                    btnText={playerList.bsBrawler.name}
+                    redirect={`/bio?character=${playerList.bsBrawler.id}`}
+                    customBtnClass="text edit"
+                  />
                 </$TeamEditSection>
                 <$TeamEditSection>
-                  <div>{playerList.bsSupport.name}</div>
+                  <Button
+                    btnText={playerList.bsSupport.name}
+                    redirect={`/bio?character=${playerList.bsSupport.id}`}
+                    customBtnClass="text edit"
+                  />
                 </$TeamEditSection>
                 <$TeamEditSection>
-                  <div>{playerList.support.name}</div>
+                  <Button
+                    btnText={playerList.support.name}
+                    redirect={`/bio?character=${playerList.support.id}`}
+                    customBtnClass="text edit"
+                  />
                 </$TeamEditSection>
                 <$TeamEditSection>
-                  <div>{playerList.villain.name}</div>
+                  <Button
+                    btnText={playerList.villain.name}
+                    redirect={`/bio?character=${playerList.villain.id}`}
+                    customBtnClass="text edit"
+                  />
                 </$TeamEditSection>
                 <$TeamEditSection>
-                  <div>{playerList.battlefield.name}</div>
+                  <Button
+                    btnText={playerList.battlefield.name}
+                    redirect={`/bio?character=${playerList.battlefield.id}`}
+                    customBtnClass="text edit"
+                  />
                 </$TeamEditSection>
               </$TeamEditGrid>
               <$TeamEditGrid>

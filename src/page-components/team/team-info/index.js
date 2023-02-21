@@ -113,6 +113,7 @@ const TeamInfo = () => {
                 <TextField
                   placeholder="Enter Team Name"
                   onChange={setChangedName}
+                  maxLength={15}
                 />
               )}
               {!edit && <$TeamInfoContent>{teamName}</$TeamInfoContent>}

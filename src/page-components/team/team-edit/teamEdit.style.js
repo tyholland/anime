@@ -62,11 +62,12 @@ export const $TeamEditSection = styled.div`
   border-bottom: 1px solid ${COLOR_BLACK};
   width: 100%;
 
-  > div {
+  > button {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    width: 150px;
+    width: 150px !important;
+    text-align: left;
   }
 
   ${MOBILE_VIEW} {
