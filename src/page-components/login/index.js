@@ -72,7 +72,6 @@ const Login = () => {
     } catch (err) {
       addEvent('Error', responseError(err, 'Login'));
       setIsLoading(false);
-      setIsDisabled(false);
 
       err.message === pwdErrorMsg || err.message === emailErrorMsg
         ? setErrorMsg('Email and/or password is incorrect')

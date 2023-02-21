@@ -25,6 +25,7 @@ const SignUp = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [password, setPassword] = useState('');
   const [confirmPwd, setConfirmPwd] = useState('');
+  const userErrorMsg = 'Firebase: Error (auth/email-already-in-use).';
 
   const handleSetEmail = (val) => {
     setUserEmail(val);
@@ -43,6 +44,7 @@ const SignUp = () => {
 
   const handleSignUp = async () => {
     setErrorMsg(null);
+    setIsDisabled(true);
 
     if (password !== confirmPwd) {
       setErrorMsg('Passwords do not match');
@@ -71,7 +73,11 @@ const SignUp = () => {
       redirectUrl('/league');
     } catch (error) {
       addEvent('Error', responseError(error, 'Sign up'));
-      setErrorMsg(error.response.data.message);
+
+      error.message === userErrorMsg
+        ? setErrorMsg('Email already exists')
+        : setErrorMsg(error.response.data.message);
+
       setIsDisabled(true);
     }
   };
