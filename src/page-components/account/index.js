@@ -15,6 +15,7 @@ import {
   $AccountWrapper,
   $AccountSectionRight,
   $AccountSectionLabel,
+  $AccountPwdSuccess,
 } from './account.style';
 import { addEvent } from 'Utils/amplitude';
 import { getAuth, signOut, updatePassword, deleteUser } from 'firebase/auth';
@@ -31,6 +32,7 @@ const Account = () => {
   const [pwd, setPwd] = useState('');
   const [confirmPwd, setConfirmPwd] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
+  const [pwdSuccess, setPwdSuccess] = useState(false);
   const [auth, setAuth] = useState(getAuth());
   const router = useRouter();
 
@@ -90,6 +92,12 @@ const Account = () => {
 
       await updatePassword(user, pwd);
       addEvent('Account password change');
+      setIsPwdLoading(false);
+      setPwdSuccess(true);
+
+      setTimeout(() => {
+        setPwdSuccess(false);
+      }, 3000);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to change passwords'));
       setIsPwdLoading(false);
@@ -148,10 +156,12 @@ const Account = () => {
                   <TextField
                     placeholder="Enter New Password"
                     onChange={handleSetPwd}
+                    type="password"
                   />
                   <TextField
                     placeholder="Confirm New Password"
                     onChange={handleSetConfirmPwd}
+                    type="password"
                   />
                 </div>
                 <Button
@@ -161,6 +171,11 @@ const Account = () => {
                   isDisabled={isDisabled}
                   btnFunction={handlePasswordChange}
                 />
+                {pwdSuccess && (
+                  <$AccountPwdSuccess>
+                    Your password has successfully been changed
+                  </$AccountPwdSuccess>
+                )}
               </$AccountWrapper>
             </Collapsible>
             <Collapsible trigger="Log Out" triggerTagName="div">

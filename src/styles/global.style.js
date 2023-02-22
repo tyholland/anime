@@ -4,7 +4,8 @@ export const COLOR_ORANGE = 'rgb(249, 128, 17)';
 export const COLOR_ORANGE_DISABLED = 'rgba(249, 128, 17, 0.8)';
 export const COLOR_ORANGE_LIGHT = 'rgba(249, 128, 17, 0.3)';
 export const COLOR_RED = '#cc0000';
-export const COLOR_RED_ERROR = '#cc000080';
+export const COLOR_SUCCESS = '#4BB543';
+export const COLOR_ERROR = '#cc000080';
 export const COLOR_WHITE = '#ffffff';
 export const COLOR_WHITE_TRANSPARENT = '#ffffff95';
 export const COLOR_BLACK = '#000000';
@@ -93,7 +94,7 @@ export const $GlobalContainer = styled.div`
 
     &::before {
       content: " ";
-      background-image: url(/assets/background/itachi.png);
+      background-image: url(/assets/background/itachi.jpg);
       background-size: cover;
       background-repeat: no-repeat;
       position: absolute;
@@ -113,7 +114,7 @@ export const $GlobalContainer = styled.div`
 
   &.home {
     &::before {
-      background-image: url(/assets/background/itachi.png);
+      background-image: url(/assets/background/itachi.jpg);
     }
   }
 
@@ -127,14 +128,14 @@ export const $GlobalContainer = styled.div`
 
   &.league {
     &::before {
-      background-image: url(/assets/background/naruto-rasengan.png);
+      background-image: url(/assets/background/naruto-rasengan.jpg);
       filter: grayscale(85%);
     }
   }
 
   &.resource {
     &::before {
-      background-image: url(/assets/background/kakashi-sharigan.png);
+      background-image: url(/assets/background/kakashi-sharigan.jpg);
     }
   }
 
@@ -158,7 +159,7 @@ export const $GlobalContainer = styled.div`
 
     &::before {
       content: " ";
-      background-image: url(/assets/background/saitama.png);
+      background-image: url(/assets/background/saitama.jpg);
       background-size: 250px;
       background-repeat: no-repeat;
       background-position: center;

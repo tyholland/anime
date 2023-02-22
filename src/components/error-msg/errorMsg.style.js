@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { COLOR_RED_ERROR, MOBILE_VIEW } from 'Styles/global.style';
+import { COLOR_ERROR, MOBILE_VIEW } from 'Styles/global.style';
 
 export const $ErrorMsgWrapper = styled.div`
-  background: ${COLOR_RED_ERROR};
+  background: ${COLOR_ERROR};
   border-radius: 10px;
   padding: 3%;
   width: 300px;

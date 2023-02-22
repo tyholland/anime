@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { MOBILE_VIEW } from 'Styles/global.style';
+import {
+  COLOR_SUCCESS,
+  FONT_WEIGHT_BOLD,
+  MOBILE_VIEW,
+} from 'Styles/global.style';
 
 export const $AccountWrapper = styled.div`
   display: flex;
@@ -29,7 +33,7 @@ export const $AccountWrapper = styled.div`
     align-items: center;
 
     button {
-      width: auto;
+      width: 200px;
       margin-top: 3%;
     }
 
@@ -56,4 +60,10 @@ export const $AccountSectionLabel = styled.div`
   margin: 0 auto;
   font-size: 16px;
   font-weight: bold;
+`;
+
+export const $AccountPwdSuccess = styled.div`
+  color: ${COLOR_SUCCESS};
+  font-weight: ${FONT_WEIGHT_BOLD};
+  margin-top: 3%;
 `;
