@@ -178,7 +178,7 @@ const Bio = () => {
               )}
               {player.category === 'Villain' && !!affinities?.length && (
                 <>
-                  <$BioAttribute>Damages these weaknesses:</$BioAttribute>
+                  <$BioAttribute>Element Affinity:</$BioAttribute>
                   <$BioAffinity className="down">
                     {affinities?.map((item) => (
                       <$BioAffinity className="right" key={item.type}>
@@ -187,11 +187,15 @@ const Bio = () => {
                       </$BioAffinity>
                     ))}
                   </$BioAffinity>
+                  <div>
+                    Damage is given to characters that have one of the same
+                    affinities as a weakness.
+                  </div>
                 </>
               )}
               {player.category === 'Support' && !!affinities?.length && (
                 <>
-                  <$BioAttribute>Gives boost to:</$BioAttribute>
+                  <$BioAttribute>Element Affinity:</$BioAttribute>
                   <$BioAffinity className="down">
                     {affinities?.map((item) => (
                       <$BioAffinity className="right" key={item.type}>
@@ -200,6 +204,10 @@ const Bio = () => {
                       </$BioAffinity>
                     ))}
                   </$BioAffinity>
+                  <div>
+                    Boost is given to characters that have one or all the same
+                    affinities.
+                  </div>
                 </>
               )}
               {player.category === 'Battlefield' && (
