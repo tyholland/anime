@@ -125,7 +125,7 @@ export const $TeamCardCharacterTxt = styled.div`
   ${MOBILE_VIEW} {
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 150px;
+    width: 200px;
     overflow: hidden;
   }
 

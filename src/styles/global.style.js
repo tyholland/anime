@@ -254,5 +254,11 @@ export const $GlobalCircle = styled.div`
 
   &.team {
     margin-right: 5px;
+
+    ${MOBILE_VIEW} {
+      margin: 2px 2px 0;
+      width: 10px;
+      height: 10px;
+    }
   }
 `;

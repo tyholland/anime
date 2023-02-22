@@ -57,7 +57,7 @@ export const $MatchupCharacterBtn = styled.button`
       overflow: hidden;
       white-space: nowrap;
       width: 83px;
-      display: flex;
+      text-align: left;
     }
   }
 
@@ -67,10 +67,14 @@ export const $MatchupCharacterBtn = styled.button`
 
     > span {
       justify-content: flex-end;
+
+      ${RESPONSIVE_VIEW} {
+        text-align: right;
+      }
     }
 
     ${MOBILE_VIEW} {
-      margin: 0;
+      margin: 0 6% 0;
     }
   }
 
@@ -97,7 +101,7 @@ export const $MatchupAffinity = styled.div`
   }
 
   ${MOBILE_VIEW} {
-    display: none;
+    flex-wrap: wrap;
   }
 `;
 
@@ -132,6 +136,10 @@ export const $MatchupCharacterBtnWrapper = styled.div`
 
   &.reverse {
     justify-content: end;
+  }
+
+  ${MOBILE_VIEW} {
+    margin-left: 6%;
   }
 `;
 
