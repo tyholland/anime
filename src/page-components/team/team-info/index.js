@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  $TeamInfoContent,
-  $TeamInfoTitle,
-  $TeamInfoBtn,
-  $TeamInfoStats,
-  $TeamInfoWrapper,
-} from './teamInfo.style.js';
+import { $TeamInfoStats, $TeamInfoWrapper } from './teamInfo.style.js';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
@@ -107,41 +101,42 @@ const TeamInfo = () => {
         {!teamData && <Loader />}
         {teamData && (
           <$TeamInfoWrapper>
-            <div>
-              <$TeamInfoTitle>Team Name:</$TeamInfoTitle>
+            <div className="editName">
               {edit && (
-                <TextField
-                  placeholder="Enter Team Name"
-                  onChange={setChangedName}
-                  maxLength={15}
-                />
-              )}
-              {!edit && <$TeamInfoContent>{teamName}</$TeamInfoContent>}
-              <$TeamInfoBtn>
-                <Button
-                  btnText={edit ? 'Save' : 'Edit'}
-                  btnColor="primary"
-                  btnFunction={() => {
-                    if (edit) {
-                      handleTeamNameChange();
-                      return;
-                    }
-                    setEdit(true);
-                  }}
-                  customBtnClass="medium"
-                />
-                {edit && (
+                <>
+                  <TextField
+                    placeholder="Enter Team Name"
+                    onChange={setChangedName}
+                    maxLength={15}
+                  />
+                  <Button
+                    btnText="Save"
+                    btnFunction={handleTeamNameChange}
+                    customBtnClass="text edit"
+                  />
                   <Button
                     btnText="Cancel"
-                    btnColor="cancel"
                     btnFunction={() => {
                       setEdit(false);
                       setErrorMsg(null);
+                      setChangedName(teamName);
                     }}
-                    customBtnClass="medium"
+                    customBtnClass="text edit"
                   />
-                )}
-              </$TeamInfoBtn>
+                </>
+              )}
+              {!edit && (
+                <>
+                  <$TeamInfoStats>
+                    <span>Team Name:</span> {teamName}
+                  </$TeamInfoStats>
+                  <Button
+                    btnText="Edit"
+                    btnFunction={() => setEdit(true)}
+                    customBtnClass="text edit"
+                  />
+                </>
+              )}
             </div>
             <div>
               <$TeamInfoStats>

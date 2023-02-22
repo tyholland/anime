@@ -1,32 +1,9 @@
 import styled from 'styled-components';
 import {
-  COLOR_BLACK,
   FONT_WEIGHT_BOLD,
   FONT_WEIGHT_NORMAL,
   MOBILE_VIEW,
 } from 'Styles/global.style';
-
-export const $TeamInfoContent = styled.div`
-  border: 1px solid ${COLOR_BLACK};
-  border-radius: 10px;
-  height: 45px;
-  padding: 0 10px;
-  margin-top: 15px;
-  font-size: 20px;
-  width: 330px;
-  line-height: 45px;
-`;
-
-export const $TeamInfoTitle = styled.div`
-  font-size: 20px;
-  font-weight: ${FONT_WEIGHT_BOLD};
-`;
-
-export const $TeamInfoBtn = styled.div`
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-`;
 
 export const $TeamInfoStats = styled.div`
   margin-bottom: 10%;
@@ -57,6 +34,24 @@ export const $TeamInfoWrapper = styled.div`
 
     > div {
       margin-bottom: 10%;
+    }
+  }
+
+  .editName {
+    display: flex;
+    width: 45%;
+    justify-content: space-around;
+    height: 30px;
+    align-items: center;
+    margin-top: 1%;
+
+    > div,
+    input {
+      margin: 0;
+    }
+
+    button {
+      display: flex;
     }
   }
 `;
