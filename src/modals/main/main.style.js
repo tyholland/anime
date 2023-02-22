@@ -26,7 +26,7 @@ export const $MainGlobalStyles = createGlobalStyle`
     }
 
     .ReactModal__Body--open {
-      overflow-y: hidden;
+      overflow: hidden;
     }
   }
 `;
