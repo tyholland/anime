@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {
+  COLOR_BLACK,
   COLOR_ORANGE,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
@@ -23,6 +24,7 @@ export const $MobileHeaderContainer = styled.div`
     font-size: 14px !important;
     font-weight: ${FONT_WEIGHT_BOLD};
     position: relative !important;
+    color: ${COLOR_BLACK};
   }
 
   .bm-overlay {

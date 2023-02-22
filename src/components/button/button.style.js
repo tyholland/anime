@@ -52,6 +52,7 @@ export const $Btn = styled.button`
     > span {
       margin-left: 2%;
       font-weight: ${FONT_WEIGHT_BOLD};
+      color: ${COLOR_BLACK};
     }
   }
 
