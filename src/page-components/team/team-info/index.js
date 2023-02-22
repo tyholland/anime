@@ -112,7 +112,7 @@ const TeamInfo = () => {
                   <Button
                     btnText="Save"
                     btnFunction={handleTeamNameChange}
-                    customBtnClass="text edit"
+                    customBtnClass="text edit change"
                   />
                   <Button
                     btnText="Cancel"
@@ -121,7 +121,7 @@ const TeamInfo = () => {
                       setErrorMsg(null);
                       setChangedName(teamName);
                     }}
-                    customBtnClass="text edit"
+                    customBtnClass="text edit change"
                   />
                 </>
               )}

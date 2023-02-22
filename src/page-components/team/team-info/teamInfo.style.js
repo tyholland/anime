@@ -40,18 +40,29 @@ export const $TeamInfoWrapper = styled.div`
   .editName {
     display: flex;
     width: 45%;
-    justify-content: space-around;
+    justify-content: flex-start;
     height: 30px;
     align-items: center;
-    margin-top: 1%;
 
-    > div,
-    input {
+    > div {
       margin: 0;
+    }
+
+    input {
+      margin: 6% 0 0 0;
     }
 
     button {
       display: flex;
+      margin: 2px 0 0 5%;
+
+      &.change {
+        margin-top: 6%;
+      }
+    }
+
+    ${MOBILE_VIEW} {
+      width: 100%;
     }
   }
 `;
