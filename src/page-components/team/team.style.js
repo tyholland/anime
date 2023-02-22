@@ -48,7 +48,7 @@ export const $TeamTotalText = styled.div`
 export const $TeamTotalAmount = styled.div`
   width: 30%;
   text-align: right;
-  margin: 15px 0;
+  margin: 15px 0 15px -3px;
   padding-right: 10px;
   font-weight: ${FONT_WEIGHT_BOLD};
   color: ${COLOR_BLACK};

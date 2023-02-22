@@ -10,6 +10,7 @@ import {
   $TeamCardDuoSpace,
   $TeamCardCharacterWrapper,
   $TeamCardCharacterHeader,
+  $TeamCardNameAffinity,
 } from './teamCard.style.js';
 import { $GlobalCircle } from 'Styles/global.style.js';
 
@@ -29,12 +30,14 @@ const TeamCard = ({ data }) => {
     if (!character.id) {
       return (
         <>
-          <$TeamCardCharacterWrapper>
-            <$TeamCardCharacter className="noLink">
-              <$TeamCardCharacterTxt>-</$TeamCardCharacterTxt>
-            </$TeamCardCharacter>
-          </$TeamCardCharacterWrapper>
-          <$TeamCardAffinity>-</$TeamCardAffinity>
+          <$TeamCardNameAffinity>
+            <$TeamCardCharacterWrapper>
+              <$TeamCardCharacter className="noLink">
+                <$TeamCardCharacterTxt>-</$TeamCardCharacterTxt>
+              </$TeamCardCharacter>
+            </$TeamCardCharacterWrapper>
+            <$TeamCardAffinity className="affinity">-</$TeamCardAffinity>
+          </$TeamCardNameAffinity>
           <$TeamCardPower>-</$TeamCardPower>
         </>
       );
@@ -42,25 +45,27 @@ const TeamCard = ({ data }) => {
 
     return (
       <>
-        <$TeamCardCharacterWrapper>
-          <Link href={`/bio?character=${character.id}`}>
-            <$TeamCardCharacter>
-              <$TeamCardCharacterTxt>{character.name}</$TeamCardCharacterTxt>
-            </$TeamCardCharacter>
-          </Link>
-        </$TeamCardCharacterWrapper>
-        <$TeamCardAffinity>
-          {!!character.affinity.length &&
-            character.affinity.map((item) => {
-              return (
-                <$GlobalCircle
-                  key={item.type}
-                  className={`team ${item.type}`}
-                ></$GlobalCircle>
-              );
-            })}
-          {!character.affinity.length && <span>-</span>}
-        </$TeamCardAffinity>
+        <$TeamCardNameAffinity>
+          <$TeamCardCharacterWrapper>
+            <Link href={`/bio?character=${character.id}`}>
+              <$TeamCardCharacter>
+                <$TeamCardCharacterTxt>{character.name}</$TeamCardCharacterTxt>
+              </$TeamCardCharacter>
+            </Link>
+          </$TeamCardCharacterWrapper>
+          <$TeamCardAffinity className="affinity">
+            {!!character.affinity.length &&
+              character.affinity.map((item) => {
+                return (
+                  <$GlobalCircle
+                    key={item.type}
+                    className={`team ${item.type}`}
+                  ></$GlobalCircle>
+                );
+              })}
+            {!character.affinity.length && <span>-</span>}
+          </$TeamCardAffinity>
+        </$TeamCardNameAffinity>
         <$TeamCardPower>{character.teamPoints}</$TeamCardPower>
       </>
     );
@@ -70,21 +75,39 @@ const TeamCard = ({ data }) => {
     if (!brawler.id && !support.id) {
       return (
         <>
-          <$TeamCardCharacterWrapper className="duo">
-            <$TeamCardCharacter className="noLink">
-              <$TeamCardDuoSpace className="text noLink">-</$TeamCardDuoSpace>
-            </$TeamCardCharacter>
-            <$TeamCardCharacter className="noLink">
-              <$TeamCardDuoSpace className="text noLink">-</$TeamCardDuoSpace>
-            </$TeamCardCharacter>
-          </$TeamCardCharacterWrapper>
-          <$TeamCardAffinity className="duo">
-            <$TeamCardDuoSpace className="noLink">-</$TeamCardDuoSpace>
-            <$TeamCardDuoSpace className="noLink">-</$TeamCardDuoSpace>
-          </$TeamCardAffinity>
-          <$TeamCardPower>
-            <$TeamCardDuoSpace className="right noLink">-</$TeamCardDuoSpace>
-            <$TeamCardDuoSpace className="right noLink">-</$TeamCardDuoSpace>
+          <$TeamCardNameAffinity className="duo">
+            <div className="section">
+              <$TeamCardCharacterWrapper className="duo">
+                <$TeamCardCharacter className="noLink">
+                  <$TeamCardDuoSpace className="text noLink">
+                    -
+                  </$TeamCardDuoSpace>
+                </$TeamCardCharacter>
+              </$TeamCardCharacterWrapper>
+              <$TeamCardAffinity className="duo">
+                <$TeamCardDuoSpace className="noLink">-</$TeamCardDuoSpace>
+              </$TeamCardAffinity>
+            </div>
+            <div className="section">
+              <$TeamCardCharacterWrapper className="duo">
+                <$TeamCardCharacter className="noLink">
+                  <$TeamCardDuoSpace className="text noLink">
+                    -
+                  </$TeamCardDuoSpace>
+                </$TeamCardCharacter>
+              </$TeamCardCharacterWrapper>
+              <$TeamCardAffinity className="duo">
+                <$TeamCardDuoSpace className="noLink">-</$TeamCardDuoSpace>
+              </$TeamCardAffinity>
+            </div>
+          </$TeamCardNameAffinity>
+          <$TeamCardPower className="duo">
+            <$TeamCardDuoSpace className="right noLink points">
+              -
+            </$TeamCardDuoSpace>
+            <$TeamCardDuoSpace className="right noLink points">
+              -
+            </$TeamCardDuoSpace>
           </$TeamCardPower>
         </>
       );
@@ -92,53 +115,61 @@ const TeamCard = ({ data }) => {
 
     return (
       <>
-        <$TeamCardCharacterWrapper className="duo">
-          <Link href={`/bio?character=${brawler.id}`}>
-            <$TeamCardCharacter>
-              <$TeamCardDuoSpace className="text">
-                {brawler.name}
+        <$TeamCardNameAffinity className="duo">
+          <div className="section">
+            <$TeamCardCharacterWrapper className="duo">
+              <Link href={`/bio?character=${brawler.id}`}>
+                <$TeamCardCharacter>
+                  <$TeamCardDuoSpace className="text">
+                    {brawler.name}
+                  </$TeamCardDuoSpace>
+                </$TeamCardCharacter>
+              </Link>
+            </$TeamCardCharacterWrapper>
+            <$TeamCardDuoSpace className="duo">
+              {!!brawler.affinity.length &&
+                brawler.affinity.map((item) => {
+                  return (
+                    <$GlobalCircle
+                      key={item.type}
+                      className={`team ${item.type}`}
+                    ></$GlobalCircle>
+                  );
+                })}
+              {!brawler.affinity.length && <span>-</span>}
+            </$TeamCardDuoSpace>
+          </div>
+          <div className="section">
+            <$TeamCardCharacterWrapper className="duo">
+              <Link href={`/bio?character=${support.id}`}>
+                <$TeamCardCharacter>
+                  <$TeamCardDuoSpace className="text">
+                    {support.name}
+                  </$TeamCardDuoSpace>
+                </$TeamCardCharacter>
+              </Link>
+            </$TeamCardCharacterWrapper>
+            <$TeamCardAffinity className="duo">
+              <$TeamCardDuoSpace>
+                {!!support.affinity.length &&
+                  support.affinity.map((item) => {
+                    return (
+                      <$GlobalCircle
+                        key={item.type}
+                        className={`team ${item.type}`}
+                      ></$GlobalCircle>
+                    );
+                  })}
+                {!support.affinity.length && <span>-</span>}
               </$TeamCardDuoSpace>
-            </$TeamCardCharacter>
-          </Link>
-          <Link href={`/bio?character=${support.id}`}>
-            <$TeamCardCharacter>
-              <$TeamCardDuoSpace className="text">
-                {support.name}
-              </$TeamCardDuoSpace>
-            </$TeamCardCharacter>
-          </Link>
-        </$TeamCardCharacterWrapper>
-        <$TeamCardAffinity className="duo">
-          <$TeamCardDuoSpace className="duo">
-            {!!brawler.affinity.length &&
-              brawler.affinity.map((item) => {
-                return (
-                  <$GlobalCircle
-                    key={item.type}
-                    className={`team ${item.type}`}
-                  ></$GlobalCircle>
-                );
-              })}
-            {!brawler.affinity.length && <span>-</span>}
-          </$TeamCardDuoSpace>
-          <$TeamCardDuoSpace className="duo">
-            {!!support.affinity.length &&
-              support.affinity.map((item) => {
-                return (
-                  <$GlobalCircle
-                    key={item.type}
-                    className={`team ${item.type}`}
-                  ></$GlobalCircle>
-                );
-              })}
-            {!support.affinity.length && <span>-</span>}
-          </$TeamCardDuoSpace>
-        </$TeamCardAffinity>
-        <$TeamCardPower>
-          <$TeamCardDuoSpace className="right">
+            </$TeamCardAffinity>
+          </div>
+        </$TeamCardNameAffinity>
+        <$TeamCardPower className="duo">
+          <$TeamCardDuoSpace className="right points">
             {brawler.teamPoints}
           </$TeamCardDuoSpace>
-          <$TeamCardDuoSpace className="right">
+          <$TeamCardDuoSpace className="right points">
             {support.teamPoints}
           </$TeamCardDuoSpace>
         </$TeamCardPower>

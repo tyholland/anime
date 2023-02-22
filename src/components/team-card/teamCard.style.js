@@ -35,12 +35,17 @@ export const $TeamCardPosition = styled.div`
   }
 
   &.duo {
-    padding: 36px 0;
+    padding: 37px 0;
+
+    ${MOBILE_VIEW} {
+      padding: 55px 0;
+    }
   }
 `;
 
 export const $TeamCardDuoSpace = styled.div`
-  padding: 5px 0 0 0;
+  padding: 5px 0;
+  display: flex;
 
   &.right {
     text-align: right;
@@ -62,21 +67,31 @@ export const $TeamCardDuoSpace = styled.div`
 
   &.duo {
     display: flex;
+
+    ${MOBILE_VIEW} {
+      margin-left: 5px;
+      padding-left: 6px;
+    }
+  }
+
+  &.points {
+    ${MOBILE_VIEW} {
+      padding: 10px 0 17px;
+    }
   }
 `;
 
 export const $TeamCardCharacterWrapper = styled.div`
-  width: 30%;
+  width: 50%;
   margin: 15px 0 15px 5px;
 
   ${MOBILE_VIEW} {
     width: 60%;
+    margin: 0;
   }
 
   &.duo {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0 20px 5px;
+    margin: 0 0 0 5px;
   }
 `;
 
@@ -133,9 +148,24 @@ export const $TeamCardAffinity = styled.div`
 
   &.duo {
     display: block;
+    margin: 0;
+    width: 50%;
 
     ${MOBILE_VIEW} {
-      display: none;
+      margin-left: 5px;
+      padding-left: 6px;
+      width: 100%;
+    }
+  }
+
+  &.affinity {
+    display: flex;
+    width: 45%;
+
+    ${MOBILE_VIEW} {
+      margin: 5px 0 0;
+      padding: 0 6px 2px;
+      width: 100%;
     }
   }
 `;
@@ -147,4 +177,33 @@ export const $TeamCardPower = styled.div`
   padding-right: 10px;
   font-weight: ${FONT_WEIGHT_BOLD};
   color: ${COLOR_BLACK};
+
+  &.duo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+`;
+
+export const $TeamCardNameAffinity = styled.div`
+  display: flex;
+  width: 60%;
+
+  ${MOBILE_VIEW} {
+    flex-direction: column;
+  }
+
+  &.duo {
+    flex-direction: column;
+  }
+
+  .section {
+    display: flex;
+    align-items: center;
+
+    ${MOBILE_VIEW} {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
 `;
