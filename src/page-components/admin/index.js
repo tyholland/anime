@@ -54,6 +54,18 @@ const Admin = () => {
     try {
       await updateLeague(league.id, payload, currentUser?.token);
       setTeamNum(val);
+
+      const missingTeams = [];
+
+      if (teamNames.length < val) {
+        const remainingTeams = val - teamNames.length;
+
+        for (let index = 0; index < remainingTeams; index++) {
+          missingTeams.push(index);
+        }
+      }
+
+      setMissingTeams(missingTeams);
       setEditNum(false);
     } catch (err) {
       addEvent(
@@ -64,6 +76,8 @@ const Admin = () => {
   };
 
   const handleLeagueName = async () => {
+    setErrorMsg(null);
+
     const payload = {
       name: leagueName,
       teams: teamNum,
@@ -75,6 +89,8 @@ const Admin = () => {
       setEditLeague(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'failed to update league name'));
+      setErrorMsg(err.response.data.message);
+      setEditLeague(true);
     }
   };
 
@@ -229,6 +245,7 @@ const Admin = () => {
                         btnText="Cancel"
                         btnFunction={() => {
                           setEditLeague(false);
+                          setErrorMsg(null);
                           setLeagueName(leagueName);
                         }}
                         customBtnClass="text edit"
