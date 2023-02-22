@@ -22,10 +22,11 @@ export const $MainGlobalStyles = createGlobalStyle`
 
     .ReactModal__Overlay {
       z-index: 2;
+      height: 100vh;
     }
 
-    body {
-      overflow-x: hidden;
+    .ReactModal__Body--open {
+      overflow-y: hidden;
     }
   }
 `;
