@@ -1,5 +1,5 @@
 import Link from 'next/link.js';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   $TeamCardSection,
   $TeamCardPosition,
@@ -13,8 +13,12 @@ import {
   $TeamCardNameAffinity,
 } from './teamCard.style.js';
 import { $GlobalCircle } from 'Styles/global.style.js';
+import CharacterStats from 'src/modals/character-stats/index.js';
+import Button from 'Components/button/index.js';
 
 const TeamCard = ({ data }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [characterStats, setCharacterStats] = useState(null);
   const {
     captain,
     brawler_a,
@@ -25,6 +29,11 @@ const TeamCard = ({ data }) => {
     villain,
     battlefield,
   } = data;
+
+  const toggleModal = (character) => {
+    setIsModalOpen(!isModalOpen);
+    setCharacterStats(character);
+  };
 
   const characterLink = (character) => {
     if (!character.id) {
@@ -66,7 +75,13 @@ const TeamCard = ({ data }) => {
             {!character.affinity.length && <span>-</span>}
           </$TeamCardAffinity>
         </$TeamCardNameAffinity>
-        <$TeamCardPower>{character.teamPoints}</$TeamCardPower>
+        <$TeamCardPower>
+          <Button
+            btnText={character.teamPoints}
+            customBtnClass="text edit"
+            btnFunction={() => toggleModal(character)}
+          />
+        </$TeamCardPower>
       </>
     );
   };
@@ -167,10 +182,18 @@ const TeamCard = ({ data }) => {
         </$TeamCardNameAffinity>
         <$TeamCardPower className="duo">
           <$TeamCardDuoSpace className="right points">
-            {brawler.teamPoints}
+            <Button
+              btnText={brawler.teamPoints}
+              customBtnClass="text edit"
+              btnFunction={() => toggleModal(brawler)}
+            />
           </$TeamCardDuoSpace>
           <$TeamCardDuoSpace className="right points">
-            {support.teamPoints}
+            <Button
+              btnText={support.teamPoints}
+              customBtnClass="text edit"
+              btnFunction={() => toggleModal(support)}
+            />
           </$TeamCardDuoSpace>
         </$TeamCardPower>
       </>
@@ -213,6 +236,13 @@ const TeamCard = ({ data }) => {
         <$TeamCardPosition>BF</$TeamCardPosition>
         {characterLink(battlefield)}
       </$TeamCardSection>
+      <CharacterStats
+        setIsModalOpen={setIsModalOpen}
+        isModalOpen={isModalOpen}
+        character={characterStats}
+        votes={[]}
+        isMatchupPage={false}
+      />
     </>
   );
 };

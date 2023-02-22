@@ -14,7 +14,13 @@ import { responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 import { useAppContext } from 'src/hooks/context';
 
-const CharacterStats = ({ isModalOpen, setIsModalOpen, character, votes }) => {
+const CharacterStats = ({
+  isModalOpen,
+  setIsModalOpen,
+  character,
+  votes,
+  isMatchupPage = true,
+}) => {
   const { currentUser } = useAppContext();
   const router = useRouter();
   const customStyles = {
@@ -114,46 +120,52 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen, character, votes }) => {
           {boost.voting}
         </$CharacterStatsPoints>
       </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel>Damage</$CharacterStatsLabel>
-        <$CharacterStatsPoints>- {damageTotal}</$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel className="specific">
-          Weekly Affinity
-        </$CharacterStatsLabel>
-        <$CharacterStatsPoints className="specific">
-          {damage.week}
-        </$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel className="specific">
-          Villain
-        </$CharacterStatsLabel>
-        <$CharacterStatsPoints className="specific">
-          {damage.villain}
-        </$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel className="specific">
-          Battlefield
-        </$CharacterStatsLabel>
-        <$CharacterStatsPoints className="specific">
-          {damage.battlefield}
-        </$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel className="specific">Voting</$CharacterStatsLabel>
-        <$CharacterStatsPoints className="specific">
-          {damage.voting}
-        </$CharacterStatsPoints>
-      </$CharacterStatsScoring>
+      {isMatchupPage && (
+        <>
+          <$CharacterStatsScoring>
+            <$CharacterStatsLabel>Damage</$CharacterStatsLabel>
+            <$CharacterStatsPoints>- {damageTotal}</$CharacterStatsPoints>
+          </$CharacterStatsScoring>
+          <$CharacterStatsScoring>
+            <$CharacterStatsLabel className="specific">
+              Weekly Affinity
+            </$CharacterStatsLabel>
+            <$CharacterStatsPoints className="specific">
+              {damage.week}
+            </$CharacterStatsPoints>
+          </$CharacterStatsScoring>
+          <$CharacterStatsScoring>
+            <$CharacterStatsLabel className="specific">
+              Villain
+            </$CharacterStatsLabel>
+            <$CharacterStatsPoints className="specific">
+              {damage.villain}
+            </$CharacterStatsPoints>
+          </$CharacterStatsScoring>
+          <$CharacterStatsScoring>
+            <$CharacterStatsLabel className="specific">
+              Battlefield
+            </$CharacterStatsLabel>
+            <$CharacterStatsPoints className="specific">
+              {damage.battlefield}
+            </$CharacterStatsPoints>
+          </$CharacterStatsScoring>
+          <$CharacterStatsScoring>
+            <$CharacterStatsLabel className="specific">
+              Voting
+            </$CharacterStatsLabel>
+            <$CharacterStatsPoints className="specific">
+              {damage.voting}
+            </$CharacterStatsPoints>
+          </$CharacterStatsScoring>
+        </>
+      )}
       <$CharacterStatsScoring className="total">
         <$CharacterStatsLabel>Total Points</$CharacterStatsLabel>
         <$CharacterStatsPoints>{matchPoints}</$CharacterStatsPoints>
       </$CharacterStatsScoring>
       <$CharacterStatsBtnWrapper>
-        {!!activeVoting.length && (
+        {!!activeVoting.length && isMatchupPage && (
           <Button
             btnText="View Voting Status"
             btnColor="primary"
@@ -161,7 +173,7 @@ const CharacterStats = ({ isModalOpen, setIsModalOpen, character, votes }) => {
             redirect={`/matchup/vote?vote_id=${activeVoting[0].id}`}
           />
         )}
-        {!activeVoting.length && (
+        {!activeVoting.length && isMatchupPage && (
           <Button
             btnText="Get Votes"
             btnColor="primary"
