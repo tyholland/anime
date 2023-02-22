@@ -9,6 +9,10 @@ export const $MainGlobalStyles = createGlobalStyle`
       height: auto !important;
       width: auto !important;
     }
+
+    body {
+      overflow-x: hidden;
+    }
   }
 
   ${MOBILE_VIEW} {
