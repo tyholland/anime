@@ -50,6 +50,10 @@ export const $TeamInfoWrapper = styled.div`
 
     input {
       margin: 6% 0 0 0;
+
+      ${MOBILE_VIEW} {
+        width: 45%;
+      }
     }
 
     button {
