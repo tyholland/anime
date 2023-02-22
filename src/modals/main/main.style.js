@@ -9,10 +9,6 @@ export const $MainGlobalStyles = createGlobalStyle`
       height: auto !important;
       width: auto !important;
     }
-
-    body {
-      overflow-x: hidden;
-    }
   }
 
   ${MOBILE_VIEW} {
@@ -26,6 +22,10 @@ export const $MainGlobalStyles = createGlobalStyle`
 
     .ReactModal__Overlay {
       z-index: 2;
+    }
+
+    body {
+      overflow-x: hidden;
     }
   }
 `;
