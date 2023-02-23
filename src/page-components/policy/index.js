@@ -1,5 +1,5 @@
 import React from 'react';
-import { $GlobalContainer } from 'Styles/global.style';
+import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import Metadata from 'Components/metadata';
 import { $PolicySection } from './policy.style';
 
@@ -11,6 +11,7 @@ const Policy = () => {
         description="Privacy policy for the ABZ Anime Fantasy League"
       />
       <$GlobalContainer>
+        <$GlobalTitle>Privacy Policy</$GlobalTitle>
         <$PolicySection>
           This privacy policy sets out how the Anime Fantasy League website and
           its owners uses and protects any information that you give the Anime
