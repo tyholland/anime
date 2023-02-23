@@ -37,7 +37,7 @@ const Admin = () => {
   const [league, setLeague] = useState(null);
   const [missingTeams, setMissingTeams] = useState([]);
   const [isLeagueDisabled, setIsLeagueDisabled] = useState(true);
-  const options = ['6', '7', '8', '9', '10'];
+  const options = ['6', '8', '10'];
   let origin = '';
 
   if (typeof window !== 'undefined') {

@@ -21,7 +21,7 @@ const LeagueCreate = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const options = ['6', '7', '8', '9', '10'];
+  const options = ['6', '8', '10'];
   const router = useRouter();
 
   const handleTeamSelect = (val) => {

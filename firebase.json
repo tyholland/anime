@@ -106,6 +106,10 @@
       {
         "source": "/team",
         "destination": "/team.html"
+      },
+      {
+        "source": "/policy",
+        "destination": "/policy.html"
       }
     ]
   }
