@@ -99,9 +99,7 @@ const TeamCard = ({ data }) => {
                   </$TeamCardDuoSpace>
                 </$TeamCardCharacter>
               </$TeamCardCharacterWrapper>
-              <$TeamCardAffinity className="duo">
-                <$TeamCardDuoSpace className="noLink">-</$TeamCardDuoSpace>
-              </$TeamCardAffinity>
+              <$TeamCardDuoSpace className="duo noLink">-</$TeamCardDuoSpace>
             </div>
             <div className="section">
               <$TeamCardCharacterWrapper className="duo">
@@ -111,9 +109,7 @@ const TeamCard = ({ data }) => {
                   </$TeamCardDuoSpace>
                 </$TeamCardCharacter>
               </$TeamCardCharacterWrapper>
-              <$TeamCardAffinity className="duo">
-                <$TeamCardDuoSpace className="noLink">-</$TeamCardDuoSpace>
-              </$TeamCardAffinity>
+              <$TeamCardDuoSpace className="duo noLink">-</$TeamCardDuoSpace>
             </div>
           </$TeamCardNameAffinity>
           <$TeamCardPower className="duo">
@@ -164,20 +160,18 @@ const TeamCard = ({ data }) => {
                 </$TeamCardCharacter>
               </Link>
             </$TeamCardCharacterWrapper>
-            <$TeamCardAffinity className="duo">
-              <$TeamCardDuoSpace>
-                {!!support.affinity.length &&
-                  support.affinity.map((item) => {
-                    return (
-                      <$GlobalCircle
-                        key={item.type}
-                        className={`team ${item.type}`}
-                      ></$GlobalCircle>
-                    );
-                  })}
-                {!support.affinity.length && <span>-</span>}
-              </$TeamCardDuoSpace>
-            </$TeamCardAffinity>
+            <$TeamCardDuoSpace className="duo">
+              {!!support.affinity.length &&
+                support.affinity.map((item) => {
+                  return (
+                    <$GlobalCircle
+                      key={item.type}
+                      className={`team ${item.type}`}
+                    ></$GlobalCircle>
+                  );
+                })}
+              {!support.affinity.length && <span>-</span>}
+            </$TeamCardDuoSpace>
           </div>
         </$TeamCardNameAffinity>
         <$TeamCardPower className="duo">
