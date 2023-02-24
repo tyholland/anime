@@ -6,23 +6,19 @@ const MakeTeam = () => {
   return (
     <$GlobalContainer>
       <$GameplayCardSection>
-        All users will have a max limit of 9000 points. The users can use those
-        points to add characters and battlefields to their team.
+        Each user is allowed a maximum limit of 9000 points which they can use
+        to acquire characters and battlefields for their team. Each character's
+        worth is based on their original power level, while each battlefield is
+        worth a certain number of points. Once all teams have been added, the
+        league will begin on the first Sunday, and an email will be sent to the
+        league to announce the start date.
       </$GameplayCardSection>
       <$GameplayCardSection>
-        Each character will be worth whatever their original power level is.
-        Each battlefield will be worth the available points.
-      </$GameplayCardSection>
-      <$GameplayCardSection>
-        The league will start on the first Sunday following all the teams being
-        added. An email will be sent to the league announcing the start date.
-      </$GameplayCardSection>
-      <$GameplayCardSection>
-        Some teams have the same characters. However the power levels of those
-        same characters will vary depending on the vote system, support buffers,
-        battlefield buffers, and villain debuffers. Weekly elemental affinities
-        will have the same effect for a specific character no matter whose team
-        they are on.
+        Some teams may have the same characters, but the power levels of those
+        characters will vary based on the vote system, support buffers,
+        battlefield buffers, and villain debuffers. Additionally, weekly
+        elemental affinities will have the same effect on a specific character,
+        regardless of which team they are on.
       </$GameplayCardSection>
     </$GlobalContainer>
   );

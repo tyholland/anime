@@ -8,52 +8,52 @@ const Boost = () => {
       <$GameplayCardSection>
         <$GameplayCardTitle>Weekly Element Affinity</$GameplayCardTitle>
         <div>
-          Characters with the same Affinity as the Weekly Element Affinity will
-          receive a boost. The character will receive a percentage of the Weekly
-          Element Affinity power boost.
+          If a character has the same affinity as the weekly element affinity,
+          they will receive a power boost. This boost will be a percentage of
+          the power boost provided by the weekly element affinity.
         </div>
       </$GameplayCardSection>
       <$GameplayCardSection>
         <$GameplayCardTitle>Support Character</$GameplayCardTitle>
         <div>
-          Support characters can boost allied characters. An allied character
-          will receive a percentage of the Support character's power boost.
-          Characters will also have the chance to receive a double boost if the
-          Support character has two Affinities and the character has both of the
-          same Affinities. Characters that are affected by this boost are
-          Captains and Brawlers. However, Brawlers that are in the 2v2 Battle,
-          are not affected by a normal Support Character. This doesn't apply to
-          a Battlefield either.
+          Support characters can provide a power boost to allied characters,
+          which is a percentage of the support character's boost. If a support
+          character has two affinities, and the character they are supporting
+          shares both affinities, that character has the chance to receive a
+          double boost. This boost applies to Captains and Brawlers, except for
+          Brawlers in the 2v2 Battle, who are not affected by a normal support
+          character. Additionally, the boost does not apply to a battlefield.
         </div>
       </$GameplayCardSection>
       <$GameplayCardSection>
         <$GameplayCardTitle>Support Character in 2v2 Battle</$GameplayCardTitle>
         <div>
-          Support characters in a 2v2 Battle can only boost the Brawler they are
-          teamed up with. The Brawler will receive a percentage of that Support
-          character's power boost. The Brawler will also have the chance to
-          receive a double boost if the Support character has two Affinities and
-          the Brawler has both of the same Affinities. Characters not in the 2v2
-          Battle, will not be affected by the Support character in a 2v2 Battle.
+          In a 2v2 battle, support characters can only provide a power boost to
+          the brawler they are teamed up with, and this boost is a percentage of
+          the support character's power boost. If the support character has two
+          affinities, and the brawler shares both affinities, the brawler has
+          the chance to receive a double boost. Characters who are not in the
+          2v2 battle will not be affected by the support character in a 2v2
+          battle.
         </div>
       </$GameplayCardSection>
       <$GameplayCardSection>
         <$GameplayCardTitle>Battlefield</$GameplayCardTitle>
         <div>
-          Characters with the same Affinity as the Battlefield will receive a
-          boost. A Battlefield can also boost an allied character without an
-          Affinity. The character will receive a percentage of the Battlefield
-          power boost. Characters will also have the chance to receive a double
-          boost if the Battlefield has two Affinities and the character has both
-          of the same Affinities.
+          If a character has the same affinity as the battlefield, they will
+          receive a boost. Additionally, a battlefield can boost an allied
+          character without an affinity. This boost will be a percentage of the
+          battlefield's power boost. If a battlefield has two affinities and a
+          character shares both affinities, that character has the chance to
+          receive a double boost.
         </div>
       </$GameplayCardSection>
       <$GameplayCardSection>
         <$GameplayCardTitle>User Voting</$GameplayCardTitle>
         <div>
-          Characters in a specific Head-to-Head Battle can receive a boost. The
-          character will receive a 250% power boost. This doesn't apply to a
-          Battlefield.
+          In a specific head-to-head battle, characters involved in the battle
+          can receive a 250% power boost. However, this boost does not apply to
+          a battlefield.
         </div>
       </$GameplayCardSection>
     </$GlobalContainer>

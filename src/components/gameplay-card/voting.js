@@ -7,15 +7,30 @@ const Voting = () => {
     <$GlobalContainer>
       <$GameplayCardSection>
         <$GameplayCardTitle>Initiate User Voting</$GameplayCardTitle>
-        <div>Team A can initiate User Voting by going to their Matchup. Then clicking on a character's points, that'll open up that characters point break down. Then they can click the button to get votes. After User Voting has been initiated, then team B can not initiate their own User Voting for the same Head-to-Head Battle.</div>
+        <div>
+          To initiate user voting, Team A should go to their matchup and click
+          on a character's points, which will open up that character's point
+          breakdown. Then, they can click the button to get votes. Once user
+          voting has been initiated, Team B cannot initiate their own user
+          voting for the same head-to-head battle.
+        </div>
       </$GameplayCardSection>
       <$GameplayCardSection>
-        <$GameplayCardTitle>Can the other team get User Voting?</$GameplayCardTitle>
-        <div>Team B can use that same User Voting initiated by team A to get their character to win the Head-to-Head Battle. If team B gets more votes, that will result in team A losing points and team B gaining points.</div>
+        <$GameplayCardTitle>
+          Can the other team get User Voting?
+        </$GameplayCardTitle>
+        <div>
+          Team B can utilize the user voting initiated by Team A to increase
+          their chances of winning the head-to-head battle. If Team B receives
+          more votes, Team A will lose points while Team B will gain points.
+        </div>
       </$GameplayCardSection>
       <$GameplayCardSection>
         <$GameplayCardTitle>What about a Tie in Voting</$GameplayCardTitle>
-        <div>In the event of a tie in User Voting. Neither team gains or loses and points.</div>
+        <div>
+          If there is a tie in user voting, neither team will gain or lose any
+          points.
+        </div>
       </$GameplayCardSection>
     </$GlobalContainer>
   );
