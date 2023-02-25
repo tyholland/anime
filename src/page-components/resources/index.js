@@ -12,11 +12,7 @@ const Resources = () => {
       />
       <$GlobalContainer className="grid bgImage resource">
         <SelectionCard redirect="/credits" btnText="Photo Credit" />
-        <SelectionCard
-          redirect="https://www.buzzsprout.com/1260827"
-          btnText="Podcast"
-          newTab={true}
-        />
+        <SelectionCard redirect="/podcast" btnText="Podcast" />
         <SelectionCard
           redirect="https://youtube.com/channel/UC6ZyoS8aagLeSq2CldEGfXw?sub_confirmation=1"
           btnText="Youtube Videos"

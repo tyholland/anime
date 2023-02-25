@@ -110,6 +110,10 @@
       {
         "source": "/policy",
         "destination": "/policy.html"
+      },
+      {
+        "source": "/podcast",
+        "destination": "/podcast.html"
       }
     ]
   }
