@@ -16,7 +16,7 @@ export const $FooterContainer = styled.div`
 
   ${MOBILE_VIEW} {
     flex-direction: column;
-    padding: 3%;
+    padding: 5% 3%;
     width: 94%;
   }
 `;

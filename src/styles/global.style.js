@@ -101,7 +101,7 @@ export const $GlobalContainer = styled.div`
     > button {
       margin: 0;
     }
-    
+
     &::before {
       background-image: url(/assets/background/goku-kamehameha.jpeg);\
     }
@@ -115,6 +115,10 @@ export const $GlobalContainer = styled.div`
 
   &.notFound {
     height: 100vh;
+
+    ${MOBILE_VIEW} {
+      height: 0;
+    }
 
     &::before {
       background-image: url(/assets/background/deku-allmight.jpg);
