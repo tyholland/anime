@@ -27,12 +27,12 @@ const Policy = () => {
           <ul>
             <li>IP Address Browser name, version, etc...</li>
             <li>
-              Upon signing into the website, your google and facebook account
-              information
+              Upon signing into the website, your google and/or facebook email
+              address.
             </li>
             <li>
-              Any information you enter into the website, such as Anime Fantasy
-              lineup picks.
+              Any information you enter into the website, such as your Anime
+              Fantasy lineup picks.
             </li>
           </ul>
         </$PolicySection>
