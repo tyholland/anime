@@ -27,14 +27,6 @@ const ChangeCharacters = ({
     },
   };
 
-  const unusedPlayers = players?.filter((player) => {
-    if (Object.values(playerList).some((list) => list.id === player.id)) {
-      return;
-    }
-
-    return player;
-  });
-
   return (
     <MainModal
       modalIsOpen={modalIsOpen}
@@ -45,7 +37,7 @@ const ChangeCharacters = ({
         <div>Remaining Points: {playerList.userPoints}</div>
         <div>Click on any character you want to change with</div>
         <Players
-          data={unusedPlayers}
+          data={players}
           changeRoster={true}
           setPlayerList={setPlayerList}
           playerList={playerList}

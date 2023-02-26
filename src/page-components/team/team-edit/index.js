@@ -19,7 +19,7 @@ import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import ErrorMsg from 'Components/error-msg';
 import { useRouter } from 'next/router';
-import { getUseablePlayers } from 'src/requests/player';
+import { getPlayers, getUseablePlayers } from 'src/requests/player';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 import { useAppContext } from 'src/hooks/context';
@@ -28,6 +28,7 @@ const TeamEdit = () => {
   const router = useRouter();
   const { currentUser } = useAppContext();
   const [players, setPlayers] = useState(null);
+  const [allPlayers, setAllPlayers] = useState(null);
   const [teamId, setTeamId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playerRank, setPlayerRank] = useState(null);
@@ -42,6 +43,7 @@ const TeamEdit = () => {
 
     try {
       const players = await getUseablePlayers(team_id, currentUser?.token);
+      const allCharacters = await getPlayers();
       const teamData = await getTeam(team_id, currentUser?.token);
 
       const { team, userPoints } = teamData;
@@ -58,6 +60,7 @@ const TeamEdit = () => {
         userPoints,
       });
       setPlayers(players);
+      setAllPlayers(allCharacters);
       setTeamId(team_id);
     } catch (err) {
       addEvent(
@@ -145,7 +148,7 @@ const TeamEdit = () => {
     ];
     const characterIds = characterArr.filter((item) => !!item);
 
-    const characterDetails = players.filter((item) => {
+    const characterDetails = allPlayers.filter((item) => {
       return characterIds.includes(item.id);
     });
 
