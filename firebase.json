@@ -32,10 +32,6 @@
         "destination": "/login.html"
       },
       {
-        "source": "/resources",
-        "destination": "/resources.html"
-      },
-      {
         "source": "/sign-up",
         "destination": "/sign-up.html"
       },
