@@ -1,10 +1,13 @@
 import React from 'react';
-import { $GlobalContainer } from 'Styles/global.style';
-import { $GameplayCardSection, $GameplayCardTitle } from './gameplayCard.style';
+import {
+  $GameplayCardSection,
+  $GameplayCardTitle,
+  $GameplayCardContainer,
+} from './gameplayCard.style';
 
 const Voting = () => {
   return (
-    <$GlobalContainer>
+    <$GameplayCardContainer>
       <$GameplayCardSection>
         <$GameplayCardTitle>Initiate User Voting</$GameplayCardTitle>
         <div>
@@ -32,7 +35,7 @@ const Voting = () => {
           points.
         </div>
       </$GameplayCardSection>
-    </$GlobalContainer>
+    </$GameplayCardContainer>
   );
 };
 

@@ -4,7 +4,6 @@ import {
   COLOR_BLACK_DISABLED,
   COLOR_ORANGE,
   COLOR_ORANGE_DISABLED,
-  COLOR_ORANGE_LIGHT,
   COLOR_RED,
   COLOR_WHITE,
   FONT_WEIGHT_BOLD,
@@ -57,21 +56,12 @@ export const $Btn = styled.button`
   }
 
   &.share {
-    background-color: ${COLOR_ORANGE_LIGHT};
+    background-color: ${COLOR_WHITE};
     border: none;
-    border-radius: 35px;
+    border-radius: 0;
     width: 50px;
     height: 50px;
-    padding: 0;
     margin: 0;
-
-    img {
-      width: auto !important;
-      height: 27px !important;
-      top: -15px !important;
-      position: relative !important;
-      right: 2px !important;
-    }
   }
 
   &.small {

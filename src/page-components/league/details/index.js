@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { $GlobalContainer, $GlobalWrapper } from 'Styles/global.style';
+import { $GlobalContainer } from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card/index.js';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
@@ -64,11 +64,11 @@ const LeagueDetails = () => {
         title="League Details"
         description="View all league details including your team, matchup, schedule, scoreboard, standing, and the playoffs"
       />
-      <$GlobalWrapper className="leagueDetail">
-        <BackLink />
-        {!leagueData && <Loader />}
-        {leagueData && (
-          <$GlobalContainer className="grid">
+      {!leagueData && <Loader />}
+      {leagueData && (
+        <$GlobalContainer className="bgImage leagueDetail">
+          <BackLink />
+          <div className="buttonGrid">
             {account?.user_id === leagueData.creator_id && (
               <SelectionCard
                 btnText="Admin Settings"
@@ -104,9 +104,9 @@ const LeagueDetails = () => {
               redirect={`/playoffs?league_id=${leagueId}`}
               isDisabled={!leagueData.matchupId}
             />
-          </$GlobalContainer>
-        )}
-      </$GlobalWrapper>
+          </div>
+        </$GlobalContainer>
+      )}
     </>
   );
 };

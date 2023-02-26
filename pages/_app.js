@@ -4,6 +4,7 @@ import { AppWrapper } from 'src/hooks/context';
 import { useEffect } from 'react';
 import { addEvent } from 'Utils/amplitude';
 import { firebaseApp } from 'Utils/firebase';
+import Footer from 'Components/footer';
 
 const MyApp = ({ Component, pageProps, router }) => {
   firebaseApp();
@@ -27,6 +28,7 @@ const MyApp = ({ Component, pageProps, router }) => {
       <$GlobalStyles />
       <Header />
       <Component {...pageProps} />
+      <Footer />
     </AppWrapper>
   );
 };

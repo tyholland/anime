@@ -10,10 +10,12 @@ const League = () => {
         title="League"
         description="Join, Create or View all Leagues that you participant in"
       />
-      <$GlobalContainer className="grid bgImage league">
-        <SelectionCard btnText="Join League" redirect="/league/join" />
-        <SelectionCard btnText="Create League" redirect="/league/create" />
-        <SelectionCard btnText="View Leagues" redirect="/league/view" />
+      <$GlobalContainer className="bgImage league">
+        <div className="buttonGrid">
+          <SelectionCard btnText="Join League" redirect="/league/join" />
+          <SelectionCard btnText="Create League" redirect="/league/create" />
+          <SelectionCard btnText="View Leagues" redirect="/league/view" />
+        </div>
       </$GlobalContainer>
     </>
   );

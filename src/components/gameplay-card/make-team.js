@@ -1,10 +1,12 @@
 import React from 'react';
-import { $GlobalContainer } from 'Styles/global.style';
-import { $GameplayCardSection } from './gameplayCard.style';
+import {
+  $GameplayCardSection,
+  $GameplayCardContainer,
+} from './gameplayCard.style';
 
 const MakeTeam = () => {
   return (
-    <$GlobalContainer>
+    <$GameplayCardContainer>
       <$GameplayCardSection>
         Each user is allowed a maximum limit of 9000 points which they can use
         to acquire characters and battlefields for their team. Each character's
@@ -20,7 +22,7 @@ const MakeTeam = () => {
         elemental affinities will have the same effect on a specific character,
         regardless of which team they are on.
       </$GameplayCardSection>
-    </$GlobalContainer>
+    </$GameplayCardContainer>
   );
 };
 

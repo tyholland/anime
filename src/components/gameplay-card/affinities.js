@@ -1,15 +1,15 @@
 import React from 'react';
-import { $GlobalContainer } from 'Styles/global.style';
 import {
   $GameplayCardSection,
   $GameplayCardTitle,
   $GameplayCardHeader,
   $GameplayCardWrapper,
+  $GameplayCardContainer,
 } from './gameplayCard.style';
 
 const Affinities = () => {
   return (
-    <$GlobalContainer>
+    <$GameplayCardContainer>
       <$GameplayCardWrapper>
         <div>
           <$GameplayCardHeader>Regular Season</$GameplayCardHeader>
@@ -95,7 +95,7 @@ const Affinities = () => {
           </$GameplayCardSection>
         </div>
       </$GameplayCardWrapper>
-    </$GlobalContainer>
+    </$GameplayCardContainer>
   );
 };
 

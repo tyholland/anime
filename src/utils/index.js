@@ -232,9 +232,9 @@ export const photoCredits = [
     platform: 'pixabay.com',
   },
   {
-    image: '/assets/icons/share-icon.png',
+    image: '/assets/icons/share-icon.jpg',
     name: 'Share Icon',
-    creator: '@azadaquib',
+    creator: '@IO-Images',
     platform: 'pixabay.com',
   },
   {
@@ -253,6 +253,36 @@ export const photoCredits = [
     image: '/assets/icons/google-icon.png',
     name: 'Google Icon',
     creator: '@Clovis_Cheminot',
+    platform: 'pixabay.com',
+  },
+  {
+    image: '/assets/icons/youtube-icon.png',
+    name: 'Youtube Icon',
+    creator: '@joshborup',
+    platform: 'pixabay.com',
+  },
+  {
+    image: '/assets/icons/twitter-icon.png',
+    name: 'Twitter Icon',
+    creator: '@joshborup',
+    platform: 'pixabay.com',
+  },
+  {
+    image: '/assets/icons/facebook-icon.png',
+    name: 'Facebook Icon',
+    creator: '@joshborup',
+    platform: 'pixabay.com',
+  },
+  {
+    image: '/assets/icons/instagram-icon.png',
+    name: 'Instagram Icon',
+    creator: '@joshborup',
+    platform: 'pixabay.com',
+  },
+  {
+    image: '/assets/icons/tiktok-icon.png',
+    name: 'Tiktok Icon',
+    creator: '@Sayyid96',
     platform: 'pixabay.com',
   },
 ];

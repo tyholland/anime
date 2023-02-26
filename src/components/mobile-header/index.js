@@ -44,8 +44,8 @@ const MobileHeader = ({ acct, acctLink }) => {
           customBtnClass="small header text"
         />
         <Button
-          btnText="Resources"
-          btnFunction={() => handleBtnClick('/resources')}
+          btnText="Podcast"
+          btnFunction={() => handleBtnClick('/podcast')}
           customBtnClass="small header text"
         />
         <Button

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
+import {
+  FONT_WEIGHT_BOLD,
+  MOBILE_VIEW,
+  RESPONSIVE_VIEW,
+} from 'Styles/global.style';
 
 export const $GameplayCardSection = styled.div`
   margin-bottom: 20px;
@@ -45,5 +49,13 @@ export const $GameplayCardWrapper = styled.div`
   div {
     width: 100%;
     line-height: 20px;
+  }
+`;
+
+export const $GameplayCardContainer = styled.div`
+  padding: 2%;
+
+  ${RESPONSIVE_VIEW} {
+    padding: 3%;
   }
 `;

@@ -36,35 +36,12 @@ export const $GlobalStyles = createGlobalStyle`
   }
 `;
 
-export const $GlobalWrapper = styled.div`
-  &.leagueDetail {
-    position: relative;
-    height: auto;
-
-    &::before {
-      content: " ";
-      background-image: url(/assets/background/goku-kamehameha.jpeg);
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      bottom: 0px;
-      left: 0px;
-      filter: grayscale(100%);
-
-      ${RESPONSIVE_VIEW} {
-        min-height: calc(100vh - 69px);
-      }
-    }
-  }
-`;
-
 export const $GlobalContainer = styled.div`
   padding: 2%;
 
   ${RESPONSIVE_VIEW} {
-    padding: 5%;
+    padding: 5% 3%;
+    min-height: 70vh;
   }
 
   &.grid {
@@ -74,9 +51,17 @@ export const $GlobalContainer = styled.div`
     justify-content: center;
   }
 
+  .buttonGrid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
   &.schedule {
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
   }
 
   &.invalid {
@@ -106,9 +91,19 @@ export const $GlobalContainer = styled.div`
       min-height: 100vh;
 
       ${RESPONSIVE_VIEW} {
-        min-height: calc(100vh - 69px);
+        min-height: 0;
         background-size: 100% 100%;
       }
+    }
+  }
+
+  &.leagueDetail {
+    > button {
+      margin: 0;
+    }
+    
+    &::before {
+      background-image: url(/assets/background/goku-kamehameha.jpeg);\
     }
   }
 

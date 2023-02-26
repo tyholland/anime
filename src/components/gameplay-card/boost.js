@@ -1,10 +1,13 @@
 import React from 'react';
-import { $GlobalContainer } from 'Styles/global.style';
-import { $GameplayCardSection, $GameplayCardTitle } from './gameplayCard.style';
+import {
+  $GameplayCardSection,
+  $GameplayCardTitle,
+  $GameplayCardContainer,
+} from './gameplayCard.style';
 
 const Boost = () => {
   return (
-    <$GlobalContainer>
+    <$GameplayCardContainer>
       <$GameplayCardSection>
         <$GameplayCardTitle>Weekly Element Affinity</$GameplayCardTitle>
         <div>
@@ -56,7 +59,7 @@ const Boost = () => {
           a battlefield.
         </div>
       </$GameplayCardSection>
-    </$GlobalContainer>
+    </$GameplayCardContainer>
   );
 };
 

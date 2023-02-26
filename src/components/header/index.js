@@ -54,8 +54,8 @@ const Header = () => {
             customBtnClass="small header text"
           />
           <Button
-            btnText="Resources"
-            redirect="/resources"
+            btnText="Podcast"
+            redirect="/podcast"
             customBtnClass="small header text"
           />
           <Button

@@ -16,7 +16,7 @@ export const $TeamInfoStats = styled.div`
   button {
     display: flex;
     justify-content: flex-end;
-    width: 100% !important;
+    width: 98% !important;
 
     span {
       font-size: 14px !important;

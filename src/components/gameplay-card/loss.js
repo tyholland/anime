@@ -1,10 +1,13 @@
 import React from 'react';
-import { $GlobalContainer } from 'Styles/global.style';
-import { $GameplayCardSection, $GameplayCardTitle } from './gameplayCard.style';
+import {
+  $GameplayCardSection,
+  $GameplayCardTitle,
+  $GameplayCardContainer,
+} from './gameplayCard.style';
 
 const Loss = () => {
   return (
-    <$GlobalContainer>
+    <$GameplayCardContainer>
       <$GameplayCardSection>
         <$GameplayCardTitle>Weekly Element Affinity</$GameplayCardTitle>
         <div>
@@ -39,7 +42,7 @@ const Loss = () => {
           battlefield.
         </div>
       </$GameplayCardSection>
-    </$GlobalContainer>
+    </$GameplayCardContainer>
   );
 };
 
