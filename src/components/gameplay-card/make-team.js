@@ -15,13 +15,6 @@ const MakeTeam = () => {
         league will begin on the first Sunday, and an email will be sent to the
         league to announce the start date.
       </$GameplayCardSection>
-      <$GameplayCardSection>
-        Some teams may have the same characters, but the power levels of those
-        characters will vary based on the vote system, support buffers,
-        battlefield buffers, and villain debuffers. Additionally, weekly
-        elemental affinities will have the same effect on a specific character,
-        regardless of which team they are on.
-      </$GameplayCardSection>
     </$GameplayCardContainer>
   );
 };

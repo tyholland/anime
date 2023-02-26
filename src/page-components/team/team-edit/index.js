@@ -19,7 +19,7 @@ import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import ErrorMsg from 'Components/error-msg';
 import { useRouter } from 'next/router';
-import { getPlayers } from 'src/requests/player';
+import { getUseablePlayers } from 'src/requests/player';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 import { useAppContext } from 'src/hooks/context';
@@ -41,7 +41,7 @@ const TeamEdit = () => {
     const { team_id } = router.query;
 
     try {
-      const players = await getPlayers();
+      const players = await getUseablePlayers(team_id, currentUser?.token);
       const teamData = await getTeam(team_id, currentUser?.token);
 
       const { team, userPoints } = teamData;
@@ -172,10 +172,12 @@ const TeamEdit = () => {
 
     try {
       await updateTeam(teamId, thePlayers, currentUser?.token);
+      const players = await getUseablePlayers(teamId, currentUser?.token);
 
       thePlayers['userPoints'] = totalPoints;
 
       setPlayerList(thePlayers);
+      setPlayers(players);
       setErrorMsg(null);
     } catch (err) {
       addEvent('Error', responseError(err, 'Update Team'));

@@ -18,3 +18,13 @@ export const getPlayer = async (playerId) => {
 
   return await axiosClient(data);
 };
+
+export const getUseablePlayers = async (teamId, token) => {
+  const data = {
+    url: `${api}/player/select/${teamId}`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};
