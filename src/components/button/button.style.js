@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {
   COLOR_BLACK,
   COLOR_BLACK_DISABLED,
+  COLOR_GREY,
   COLOR_ORANGE,
   COLOR_ORANGE_DISABLED,
   COLOR_RED,
@@ -62,6 +63,20 @@ export const $Btn = styled.button`
     width: 50px;
     height: 50px;
     margin: 0;
+  }
+
+  &.readMore {
+    background-color: ${COLOR_GREY};
+    width: auto;
+    padding: 3px 5px;
+    position: relative;
+    margin: 0;
+    border-color: ${COLOR_WHITE};
+
+    span {
+      font-size: 11px;
+      color: ${COLOR_BLACK};
+    }
   }
 
   &.small {

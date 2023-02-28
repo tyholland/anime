@@ -10,6 +10,7 @@ export const COLOR_WHITE = '#ffffff';
 export const COLOR_WHITE_TRANSPARENT = '#ffffff95';
 export const COLOR_BLACK = '#000000';
 export const COLOR_BLACK_DISABLED = '#00000010';
+export const COLOR_GREY = '#CDCDCD';
 export const COLOR_BLUE = 'rgb(27, 5, 246)';
 export const FONT_WEIGHT_BOLD = '700';
 export const FONT_WEIGHT_NORMAL = '400';
