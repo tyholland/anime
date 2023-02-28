@@ -21,12 +21,10 @@ const Footer = () => {
             <Link href="mailto:animebrothaz3@gmail.com">Contact Us</Link>
           </div>
           <div>
-            <Link
-              href="http://paypal.me/animebrothaz"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Support ABZ
+            <Link href="http://paypal.me/animebrothaz">
+              <a target="_blank" rel="noreferrer">
+                Support ABZ
+              </a>
             </Link>
           </div>
           <div>
