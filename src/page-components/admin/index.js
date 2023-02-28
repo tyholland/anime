@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
+import {
+  $GlobalContainer,
+  $GlobalTitle,
+  $CollapsibleStyles,
+} from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
-import { $GameplayStyles } from 'PageComponents/gameplay/gameplay.style';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
 import { useAppContext } from 'src/hooks/context';
@@ -190,7 +193,7 @@ const Admin = () => {
   return (
     <>
       <BackLink />
-      <$GameplayStyles />
+      <$CollapsibleStyles />
       <Metadata
         title="Admin Settings"
         description="League Admin settings. You can change the number of teams in the league or the league name."

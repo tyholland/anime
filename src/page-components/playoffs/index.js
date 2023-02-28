@@ -3,8 +3,7 @@ import GameContainer from 'Components/game-container';
 import Metadata from 'Components/metadata';
 import React, { useEffect, useState } from 'react';
 import Collapsible from 'react-collapsible';
-import { $GlobalContainer } from 'Styles/global.style';
-import { $GameplayStyles } from 'PageComponents/gameplay/gameplay.style';
+import { $GlobalContainer, $CollapsibleStyles } from 'Styles/global.style';
 import { $PlayoffsWrapper } from './playoffs.style';
 import { useRouter } from 'next/router';
 import { getPlayoffs } from 'src/requests/league';
@@ -103,7 +102,7 @@ const Playoffs = () => {
   return (
     <>
       <BackLink />
-      <$GameplayStyles />
+      <$CollapsibleStyles />
       <Metadata
         title="League Playoffs"
         description="View the league playoffs. Be one of the top 6 teams in the league and compete for the championship."

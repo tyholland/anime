@@ -19,7 +19,6 @@ export const $ErrorContent = styled.div`
   }
 
   div {
-    margin-bottom: 10px;
     width: 100%;
   }
 `;

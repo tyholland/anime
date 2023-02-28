@@ -261,3 +261,21 @@ export const $GlobalCircle = styled.div`
     }
   }
 `;
+
+export const $CollapsibleStyles = createGlobalStyle`
+  .Collapsible {
+    padding: 2%;
+    border: 1px solid ${COLOR_BLACK};
+    border-bottom: none;
+
+    div[role="button"] {
+      font-weight: ${FONT_WEIGHT_BOLD};
+      font-size: 18px;
+      cursor: pointer;
+    }
+  }
+
+  .Collapsible:last-child {
+    border-bottom: 1px solid ${COLOR_BLACK};
+  }
+`;

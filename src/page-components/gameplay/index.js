@@ -3,9 +3,12 @@ import Boost from 'Components/gameplay-card/boost';
 import Loss from 'Components/gameplay-card/loss';
 import Voting from 'Components/gameplay-card/voting';
 import React from 'react';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
+import {
+  $GlobalContainer,
+  $GlobalTitle,
+  $CollapsibleStyles,
+} from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
-import { $GameplayStyles } from './gameplay.style';
 import MakeTeam from 'Components/gameplay-card/make-team';
 import Schedule from 'Components/gameplay-card/schedule';
 import Metadata from 'Components/metadata';
@@ -13,7 +16,7 @@ import Metadata from 'Components/metadata';
 const Gameplay = () => {
   return (
     <>
-      <$GameplayStyles />
+      <$CollapsibleStyles />
       <Metadata
         title="Gameplay"
         description="Read about all the rules of the Anime Fantasy League. See how the regular season is split up and then the playoffs."
