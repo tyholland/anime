@@ -23,6 +23,7 @@ import { getPlayers, getUseablePlayers } from 'src/requests/player';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 import { useAppContext } from 'src/hooks/context';
+import NotUser from 'Components/not-user';
 
 const TeamEdit = () => {
   const router = useRouter();
@@ -37,6 +38,7 @@ const TeamEdit = () => {
   const [errorMsg, setErrorMsg] = useState(null);
   const [playerList, setPlayerList] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
+  const [account, setAccount] = useState(null);
 
   const handleTeamData = async () => {
     const { team_id } = router.query;
@@ -193,6 +195,10 @@ const TeamEdit = () => {
   };
 
   useEffect(() => {
+    setAccount(currentUser);
+  }, [currentUser]);
+
+  useEffect(() => {
     if (canChange) {
       setPlayerList(playerList);
       setCanChange(false);
@@ -200,10 +206,10 @@ const TeamEdit = () => {
   }, [canChange]);
 
   useEffect(() => {
-    if (Object.keys(router.query).length) {
+    if (Object.keys(router.query).length && !!account) {
       handleTeamData();
     }
-  }, [router.query]);
+  }, [router.query, account]);
 
   if (errorPage) {
     return <Error />;
@@ -215,119 +221,138 @@ const TeamEdit = () => {
         title="Edit Team"
         description="Edit team's roster. Add new players or change current players."
       />
-      <BackLink />
-      <$GlobalContainer>
-        <$GlobalTitle>Edit Team</$GlobalTitle>
-        {!playerList && <Loader />}
-        {playerList && (
-          <>
-            <$GlobalSubTitle>
-              Remaining Points: {playerList.userPoints}
-            </$GlobalSubTitle>
-            {!!errorMsg && <ErrorMsg msg={errorMsg} />}
-            <$TeamEditWrapper>
-              <$TeamEditGrid className="desktop">
-                <$TeamEditSection>Captain</$TeamEditSection>
-                <$TeamEditSection>Brawler</$TeamEditSection>
-                <$TeamEditSection>Brawler</$TeamEditSection>
-                <$TeamEditSection>Duo - Brawler</$TeamEditSection>
-                <$TeamEditSection>Duo - Support</$TeamEditSection>
-                <$TeamEditSection>Support</$TeamEditSection>
-                <$TeamEditSection>Villain</$TeamEditSection>
-                <$TeamEditSection>Battlefield</$TeamEditSection>
-              </$TeamEditGrid>
-              <$TeamEditGrid className="mobile">
-                <$TeamEditSection>C</$TeamEditSection>
-                <$TeamEditSection>B</$TeamEditSection>
-                <$TeamEditSection>B</$TeamEditSection>
-                <$TeamEditSection>Duo - B</$TeamEditSection>
-                <$TeamEditSection>Duo - S</$TeamEditSection>
-                <$TeamEditSection>S</$TeamEditSection>
-                <$TeamEditSection>V</$TeamEditSection>
-                <$TeamEditSection>BF</$TeamEditSection>
-              </$TeamEditGrid>
-              <$TeamEditGrid>
-                <$TeamEditSection>
-                  <Button
-                    btnText={playerList.captain.name}
-                    redirect={`/bio?character=${playerList.captain.id}`}
-                    customBtnClass="text edit"
-                  />
-                </$TeamEditSection>
-                <$TeamEditSection>
-                  <Button
-                    btnText={playerList.brawlerA.name}
-                    redirect={`/bio?character=${playerList.brawlerA.id}`}
-                    customBtnClass="text edit"
-                  />
-                </$TeamEditSection>
-                <$TeamEditSection>
-                  <Button
-                    btnText={playerList.brawlerB.name}
-                    redirect={`/bio?character=${playerList.brawlerB.id}`}
-                    customBtnClass="text edit"
-                  />
-                </$TeamEditSection>
-                <$TeamEditSection>
-                  <Button
-                    btnText={playerList.bsBrawler.name}
-                    redirect={`/bio?character=${playerList.bsBrawler.id}`}
-                    customBtnClass="text edit"
-                  />
-                </$TeamEditSection>
-                <$TeamEditSection>
-                  <Button
-                    btnText={playerList.bsSupport.name}
-                    redirect={`/bio?character=${playerList.bsSupport.id}`}
-                    customBtnClass="text edit"
-                  />
-                </$TeamEditSection>
-                <$TeamEditSection>
-                  <Button
-                    btnText={playerList.support.name}
-                    redirect={`/bio?character=${playerList.support.id}`}
-                    customBtnClass="text edit"
-                  />
-                </$TeamEditSection>
-                <$TeamEditSection>
-                  <Button
-                    btnText={playerList.villain.name}
-                    redirect={`/bio?character=${playerList.villain.id}`}
-                    customBtnClass="text edit"
-                  />
-                </$TeamEditSection>
-                <$TeamEditSection>
-                  <Button
-                    btnText={playerList.battlefield.name}
-                    redirect={`/bio?character=${playerList.battlefield.id}`}
-                    customBtnClass="text edit"
-                  />
-                </$TeamEditSection>
-              </$TeamEditGrid>
-              <$TeamEditGrid>
-                <$TeamEditBtn>{handleBtn('Captain', 'captain')}</$TeamEditBtn>
-                <$TeamEditBtn>{handleBtn('Brawler', 'brawlerA')}</$TeamEditBtn>
-                <$TeamEditBtn>{handleBtn('Brawler', 'brawlerB')}</$TeamEditBtn>
-                <$TeamEditBtn>{handleBtn('Brawler', 'bsBrawler')}</$TeamEditBtn>
-                <$TeamEditBtn>{handleBtn('Support', 'bsSupport')}</$TeamEditBtn>
-                <$TeamEditBtn>{handleBtn('Support', 'support')}</$TeamEditBtn>
-                <$TeamEditBtn>{handleBtn('Villain', 'villain')}</$TeamEditBtn>
-                <$TeamEditBtn>
-                  {handleBtn('Battlefield', 'battlefield')}
-                </$TeamEditBtn>
-              </$TeamEditGrid>
-            </$TeamEditWrapper>
-            <ChangeCharacters
-              players={playerRank}
-              modalIsOpen={isModalOpen}
-              closeModal={closeModal}
-              setPlayerList={updatePlayers}
-              playerList={playerList}
-              field={field}
-            />
-          </>
-        )}
-      </$GlobalContainer>
+      {!account && <NotUser />}
+      {account && (
+        <>
+          <BackLink />
+          <$GlobalContainer>
+            <$GlobalTitle>Edit Team</$GlobalTitle>
+            {!playerList && <Loader />}
+            {playerList && (
+              <>
+                <$GlobalSubTitle>
+                  Remaining Points: {playerList.userPoints}
+                </$GlobalSubTitle>
+                {!!errorMsg && <ErrorMsg msg={errorMsg} />}
+                <$TeamEditWrapper>
+                  <$TeamEditGrid className="desktop">
+                    <$TeamEditSection>Captain</$TeamEditSection>
+                    <$TeamEditSection>Brawler</$TeamEditSection>
+                    <$TeamEditSection>Brawler</$TeamEditSection>
+                    <$TeamEditSection>Duo - Brawler</$TeamEditSection>
+                    <$TeamEditSection>Duo - Support</$TeamEditSection>
+                    <$TeamEditSection>Support</$TeamEditSection>
+                    <$TeamEditSection>Villain</$TeamEditSection>
+                    <$TeamEditSection>Battlefield</$TeamEditSection>
+                  </$TeamEditGrid>
+                  <$TeamEditGrid className="mobile">
+                    <$TeamEditSection>C</$TeamEditSection>
+                    <$TeamEditSection>B</$TeamEditSection>
+                    <$TeamEditSection>B</$TeamEditSection>
+                    <$TeamEditSection>Duo - B</$TeamEditSection>
+                    <$TeamEditSection>Duo - S</$TeamEditSection>
+                    <$TeamEditSection>S</$TeamEditSection>
+                    <$TeamEditSection>V</$TeamEditSection>
+                    <$TeamEditSection>BF</$TeamEditSection>
+                  </$TeamEditGrid>
+                  <$TeamEditGrid>
+                    <$TeamEditSection>
+                      <Button
+                        btnText={playerList.captain.name}
+                        redirect={`/bio?character=${playerList.captain.id}`}
+                        customBtnClass="text edit"
+                      />
+                    </$TeamEditSection>
+                    <$TeamEditSection>
+                      <Button
+                        btnText={playerList.brawlerA.name}
+                        redirect={`/bio?character=${playerList.brawlerA.id}`}
+                        customBtnClass="text edit"
+                      />
+                    </$TeamEditSection>
+                    <$TeamEditSection>
+                      <Button
+                        btnText={playerList.brawlerB.name}
+                        redirect={`/bio?character=${playerList.brawlerB.id}`}
+                        customBtnClass="text edit"
+                      />
+                    </$TeamEditSection>
+                    <$TeamEditSection>
+                      <Button
+                        btnText={playerList.bsBrawler.name}
+                        redirect={`/bio?character=${playerList.bsBrawler.id}`}
+                        customBtnClass="text edit"
+                      />
+                    </$TeamEditSection>
+                    <$TeamEditSection>
+                      <Button
+                        btnText={playerList.bsSupport.name}
+                        redirect={`/bio?character=${playerList.bsSupport.id}`}
+                        customBtnClass="text edit"
+                      />
+                    </$TeamEditSection>
+                    <$TeamEditSection>
+                      <Button
+                        btnText={playerList.support.name}
+                        redirect={`/bio?character=${playerList.support.id}`}
+                        customBtnClass="text edit"
+                      />
+                    </$TeamEditSection>
+                    <$TeamEditSection>
+                      <Button
+                        btnText={playerList.villain.name}
+                        redirect={`/bio?character=${playerList.villain.id}`}
+                        customBtnClass="text edit"
+                      />
+                    </$TeamEditSection>
+                    <$TeamEditSection>
+                      <Button
+                        btnText={playerList.battlefield.name}
+                        redirect={`/bio?character=${playerList.battlefield.id}`}
+                        customBtnClass="text edit"
+                      />
+                    </$TeamEditSection>
+                  </$TeamEditGrid>
+                  <$TeamEditGrid>
+                    <$TeamEditBtn>
+                      {handleBtn('Captain', 'captain')}
+                    </$TeamEditBtn>
+                    <$TeamEditBtn>
+                      {handleBtn('Brawler', 'brawlerA')}
+                    </$TeamEditBtn>
+                    <$TeamEditBtn>
+                      {handleBtn('Brawler', 'brawlerB')}
+                    </$TeamEditBtn>
+                    <$TeamEditBtn>
+                      {handleBtn('Brawler', 'bsBrawler')}
+                    </$TeamEditBtn>
+                    <$TeamEditBtn>
+                      {handleBtn('Support', 'bsSupport')}
+                    </$TeamEditBtn>
+                    <$TeamEditBtn>
+                      {handleBtn('Support', 'support')}
+                    </$TeamEditBtn>
+                    <$TeamEditBtn>
+                      {handleBtn('Villain', 'villain')}
+                    </$TeamEditBtn>
+                    <$TeamEditBtn>
+                      {handleBtn('Battlefield', 'battlefield')}
+                    </$TeamEditBtn>
+                  </$TeamEditGrid>
+                </$TeamEditWrapper>
+                <ChangeCharacters
+                  players={playerRank}
+                  modalIsOpen={isModalOpen}
+                  closeModal={closeModal}
+                  setPlayerList={updatePlayers}
+                  playerList={playerList}
+                  field={field}
+                />
+              </>
+            )}
+          </$GlobalContainer>
+        </>
+      )}
     </>
   );
 };

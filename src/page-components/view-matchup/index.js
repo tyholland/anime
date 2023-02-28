@@ -21,6 +21,7 @@ import { getMatchupTeam } from 'src/requests/team';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 import { useAppContext } from 'src/hooks/context';
+import NotUser from 'Components/not-user';
 
 const ViewMatchup = () => {
   const router = useRouter();
@@ -31,6 +32,7 @@ const ViewMatchup = () => {
   const [score2, setScore2] = useState(null);
   const [votes, setVotes] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
+  const [account, setAccount] = useState(null);
   const hasMatchup = !!team1 && !!team2 && !!score1 && !!score2 && !!votes;
 
   const handleMatchupData = async () => {
@@ -56,10 +58,14 @@ const ViewMatchup = () => {
   };
 
   useEffect(() => {
-    if (Object.keys(router.query).length) {
+    setAccount(currentUser);
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (Object.keys(router.query).length && !!account) {
       handleMatchupData();
     }
-  }, [router.query]);
+  }, [router.query, account]);
 
   if (errorPage) {
     return <Error />;
@@ -67,57 +73,66 @@ const ViewMatchup = () => {
 
   return (
     <>
-      <BackLink />
       <Metadata
         title="Matchup"
         description="View matchups between teams. View individual character bios or view the stats for a specific character. Don't forget to start user votes for specific matchups."
       />
-      <$GlobalContainer>
-        {!hasMatchup && <Loader />}
-        {hasMatchup && (
-          <>
-            <$ViewMatchupWrapper>
-              <$ViewMatchupTeamContent>
-                <$ViewMatchupTeamName>{team1.teamName}</$ViewMatchupTeamName>
-                <$ViewMatchupTeamTotal>{score1}</$ViewMatchupTeamTotal>
-              </$ViewMatchupTeamContent>
-              <$ViewMatchupTeamContent>
-                <$ViewMatchupTeamName>{team2.teamName}</$ViewMatchupTeamName>
-                <$ViewMatchupTeamTotal>{score2}</$ViewMatchupTeamTotal>
-              </$ViewMatchupTeamContent>
-            </$ViewMatchupWrapper>
-            <$ViewMatchupTeamSplit>
-              <MatchUp isReverse={false} team={team1.team} votes={votes} />
-              <$ViewMatchupPositionColumn>
-                <$ViewMatchupPositionSection>
-                  <$ViewMatchupPosition>C</$ViewMatchupPosition>
-                </$ViewMatchupPositionSection>
-                <$ViewMatchupPositionSection>
-                  <$ViewMatchupPosition>B</$ViewMatchupPosition>
-                </$ViewMatchupPositionSection>
-                <$ViewMatchupPositionSection>
-                  <$ViewMatchupPosition>B</$ViewMatchupPosition>
-                </$ViewMatchupPositionSection>
-                <$ViewMatchupPositionSection className="duo">
-                  <$ViewMatchupPosition className="duo">
-                    B/S
-                  </$ViewMatchupPosition>
-                </$ViewMatchupPositionSection>
-                <$ViewMatchupPositionSection>
-                  <$ViewMatchupPosition>S</$ViewMatchupPosition>
-                </$ViewMatchupPositionSection>
-                <$ViewMatchupPositionSection>
-                  <$ViewMatchupPosition>V</$ViewMatchupPosition>
-                </$ViewMatchupPositionSection>
-                <$ViewMatchupPositionSection>
-                  <$ViewMatchupPosition>BF</$ViewMatchupPosition>
-                </$ViewMatchupPositionSection>
-              </$ViewMatchupPositionColumn>
-              <MatchUp isReverse={true} team={team2.team} votes={votes} />
-            </$ViewMatchupTeamSplit>
-          </>
-        )}
-      </$GlobalContainer>
+      {!account && <NotUser />}
+      {account && (
+        <>
+          <BackLink />
+          <$GlobalContainer>
+            {!hasMatchup && <Loader />}
+            {hasMatchup && (
+              <>
+                <$ViewMatchupWrapper>
+                  <$ViewMatchupTeamContent>
+                    <$ViewMatchupTeamName>
+                      {team1.teamName}
+                    </$ViewMatchupTeamName>
+                    <$ViewMatchupTeamTotal>{score1}</$ViewMatchupTeamTotal>
+                  </$ViewMatchupTeamContent>
+                  <$ViewMatchupTeamContent>
+                    <$ViewMatchupTeamName>
+                      {team2.teamName}
+                    </$ViewMatchupTeamName>
+                    <$ViewMatchupTeamTotal>{score2}</$ViewMatchupTeamTotal>
+                  </$ViewMatchupTeamContent>
+                </$ViewMatchupWrapper>
+                <$ViewMatchupTeamSplit>
+                  <MatchUp isReverse={false} team={team1.team} votes={votes} />
+                  <$ViewMatchupPositionColumn>
+                    <$ViewMatchupPositionSection>
+                      <$ViewMatchupPosition>C</$ViewMatchupPosition>
+                    </$ViewMatchupPositionSection>
+                    <$ViewMatchupPositionSection>
+                      <$ViewMatchupPosition>B</$ViewMatchupPosition>
+                    </$ViewMatchupPositionSection>
+                    <$ViewMatchupPositionSection>
+                      <$ViewMatchupPosition>B</$ViewMatchupPosition>
+                    </$ViewMatchupPositionSection>
+                    <$ViewMatchupPositionSection className="duo">
+                      <$ViewMatchupPosition className="duo">
+                        B/S
+                      </$ViewMatchupPosition>
+                    </$ViewMatchupPositionSection>
+                    <$ViewMatchupPositionSection>
+                      <$ViewMatchupPosition>S</$ViewMatchupPosition>
+                    </$ViewMatchupPositionSection>
+                    <$ViewMatchupPositionSection>
+                      <$ViewMatchupPosition>V</$ViewMatchupPosition>
+                    </$ViewMatchupPositionSection>
+                    <$ViewMatchupPositionSection>
+                      <$ViewMatchupPosition>BF</$ViewMatchupPosition>
+                    </$ViewMatchupPositionSection>
+                  </$ViewMatchupPositionColumn>
+                  <MatchUp isReverse={true} team={team2.team} votes={votes} />
+                </$ViewMatchupTeamSplit>
+              </>
+            )}
+          </$GlobalContainer>
+        </>
+      )}
     </>
   );
 };

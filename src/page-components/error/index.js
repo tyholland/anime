@@ -9,13 +9,13 @@ const Error = () => {
     <>
       <Metadata
         title="Page Not Found"
-        description="This page does not exist. Please view another page"
+        description="This page is not a valid page. Please view another page"
       />
       <$GlobalContainer className="bgImage notFound">
         <$ErrorContent>
           <div>
-            Unfortunately, the URL that you have entered does not exist.
-            Although this page does not exist, we have plenty of other things to
+            Unfortunately, the URL that you have entered is not a valid page.
+            Although this page is not valid, we have plenty of other things to
             do on our site, such as creating a league. Once you create your
             league, invite all your friends and battle your teams against one
             another. You can also create a bracket of characters that you would

@@ -11,6 +11,7 @@ import { getMatchUpFromTeamId } from 'src/requests/matchup';
 import { addEvent } from 'Utils/amplitude';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
+import NotUser from 'Components/not-user';
 
 const LeagueDetails = () => {
   const router = useRouter();
@@ -49,10 +50,10 @@ const LeagueDetails = () => {
   }, [currentUser]);
 
   useEffect(() => {
-    if (Object.keys(router.query).length) {
+    if (Object.keys(router.query).length && !!account) {
       handleLeagueData();
     }
-  }, [router.query]);
+  }, [router.query, account]);
 
   if (errorPage) {
     return <Error />;
@@ -64,47 +65,52 @@ const LeagueDetails = () => {
         title="League Details"
         description="View all league details including your team, matchup, schedule, scoreboard, standing, and the playoffs"
       />
-      {!leagueData && <Loader />}
-      {leagueData && (
+      {!account && <NotUser />}
+      {account && (
         <$GlobalContainer className="bgImage leagueDetail">
-          <BackLink />
-          <div className="buttonGrid">
-            {account?.user_id === leagueData.creator_id && (
-              <SelectionCard
-                btnText="Admin Settings"
-                redirect={`/league/admin?league_id=${leagueId}`}
-              />
-            )}
-            <SelectionCard
-              btnText="Team"
-              redirect={`/team?team_id=${leagueData.teamId}`}
-            />
-            <SelectionCard
-              btnText="Matchup"
-              redirect={`/matchup?matchup_id=${leagueData.matchupId}`}
-              isDisabled={!leagueData.matchupId}
-            />
-            <SelectionCard
-              btnText="Schedule"
-              redirect={`/schedule?league_id=${leagueId}`}
-              isDisabled={!leagueData.matchupId}
-            />
-            <SelectionCard
-              btnText="Scoreboard"
-              redirect={`/scoreboard?league_id=${leagueId}`}
-              isDisabled={!leagueData.matchupId}
-            />
-            <SelectionCard
-              btnText="Standings"
-              redirect={`/standings?league_id=${leagueId}`}
-              isDisabled={!leagueData.matchupId}
-            />
-            <SelectionCard
-              btnText="Playoffs"
-              redirect={`/playoffs?league_id=${leagueId}`}
-              isDisabled={!leagueData.matchupId}
-            />
-          </div>
+          {!leagueData && <Loader />}
+          {leagueData && (
+            <>
+              <BackLink />
+              <div className="buttonGrid">
+                {account?.user_id === leagueData.creator_id && (
+                  <SelectionCard
+                    btnText="Admin Settings"
+                    redirect={`/league/admin?league_id=${leagueId}`}
+                  />
+                )}
+                <SelectionCard
+                  btnText="Team"
+                  redirect={`/team?team_id=${leagueData.teamId}`}
+                />
+                <SelectionCard
+                  btnText="Matchup"
+                  redirect={`/matchup?matchup_id=${leagueData.matchupId}`}
+                  isDisabled={!leagueData.matchupId}
+                />
+                <SelectionCard
+                  btnText="Schedule"
+                  redirect={`/schedule?league_id=${leagueId}`}
+                  isDisabled={!leagueData.matchupId}
+                />
+                <SelectionCard
+                  btnText="Scoreboard"
+                  redirect={`/scoreboard?league_id=${leagueId}`}
+                  isDisabled={!leagueData.matchupId}
+                />
+                <SelectionCard
+                  btnText="Standings"
+                  redirect={`/standings?league_id=${leagueId}`}
+                  isDisabled={!leagueData.matchupId}
+                />
+                <SelectionCard
+                  btnText="Playoffs"
+                  redirect={`/playoffs?league_id=${leagueId}`}
+                  isDisabled={!leagueData.matchupId}
+                />
+              </div>
+            </>
+          )}
         </$GlobalContainer>
       )}
     </>

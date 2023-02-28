@@ -14,10 +14,12 @@ import { addEvent } from 'Utils/amplitude';
 import { getAllLeagues } from 'src/requests/league';
 import { useAppContext } from 'src/hooks/context';
 import Loader from 'Components/loader';
+import NotUser from 'Components/not-user';
 
 const ViewLeague = () => {
   const { currentUser } = useAppContext();
   const [leagueCard, setLeagueCard] = useState(null);
+  const [account, setAccount] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -40,8 +42,14 @@ const ViewLeague = () => {
   };
 
   useEffect(() => {
-    handleAllLeagues();
-  }, []);
+    setAccount(currentUser);
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (account) {
+      handleAllLeagues();
+    }
+  }, [account]);
 
   if (errorPage) {
     return <Error />;
@@ -53,33 +61,38 @@ const ViewLeague = () => {
         title="View Leagues"
         description="View all the Leagues that you are participating in. You can view your specific team for the league, view the specific weeks matchup, and all league details"
       />
-      <BackLink />
-      <$GlobalContainer>
-        <$GlobalTitle>All Leagues</$GlobalTitle>
-        {isLoading && <Loader />}
-        {!!leagueCard?.length && !isLoading && leagueCard}
-        {!leagueCard?.length && !isLoading && (
-          <>
-            <$ViewLeagueEmptyTitle>
-              You are not apart of any leagues at the moment
-            </$ViewLeagueEmptyTitle>
-            <$ViewLeagueEmptyBtnWrapper>
-              <Button
-                btnText="Join a League"
-                redirect="/league/join"
-                btnColor="primary"
-                customBtnClass="medium"
-              />
-              <Button
-                btnText="Create a League"
-                redirect="/league/create"
-                btnColor="primary"
-                customBtnClass="medium"
-              />
-            </$ViewLeagueEmptyBtnWrapper>
-          </>
-        )}
-      </$GlobalContainer>
+      {!account && <NotUser />}
+      {account && (
+        <>
+          <BackLink />
+          <$GlobalContainer>
+            <$GlobalTitle>All Leagues</$GlobalTitle>
+            {isLoading && <Loader />}
+            {!!leagueCard?.length && !isLoading && leagueCard}
+            {!leagueCard?.length && !isLoading && (
+              <>
+                <$ViewLeagueEmptyTitle>
+                  You are not apart of any leagues at the moment
+                </$ViewLeagueEmptyTitle>
+                <$ViewLeagueEmptyBtnWrapper>
+                  <Button
+                    btnText="Join a League"
+                    redirect="/league/join"
+                    btnColor="primary"
+                    customBtnClass="medium"
+                  />
+                  <Button
+                    btnText="Create a League"
+                    redirect="/league/create"
+                    btnColor="primary"
+                    customBtnClass="medium"
+                  />
+                </$ViewLeagueEmptyBtnWrapper>
+              </>
+            )}
+          </$GlobalContainer>
+        </>
+      )}
     </>
   );
 };

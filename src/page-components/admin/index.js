@@ -26,11 +26,13 @@ import ErrorMsg from 'Components/error-msg';
 import BackLink from 'Components/back-link';
 import Loader from 'Components/loader';
 import { useRouter } from 'next/router';
+import NotUser from 'Components/not-user';
 
 const Admin = () => {
   const router = useRouter();
   const { currentUser } = useAppContext();
   const [errorPage, setErrorPage] = useState(false);
+  const [notLoggedIn, setNotLoggedIn] = useState(false);
   const [editNum, setEditNum] = useState(false);
   const [editLeague, setEditLeague] = useState(false);
   const [leagueName, setLeagueName] = useState(null);
@@ -177,14 +179,14 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    setErrorPage(!currentUser);
+    setNotLoggedIn(!currentUser);
   }, [currentUser]);
 
   useEffect(() => {
-    if (Object.keys(router.query).length) {
+    if (Object.keys(router.query).length && !!currentUser) {
       handleLeagueAdmin();
     }
-  }, [router.query]);
+  }, [router.query, currentUser]);
 
   if (errorPage) {
     return <Error />;
@@ -192,134 +194,143 @@ const Admin = () => {
 
   return (
     <>
-      <BackLink />
       <$CollapsibleStyles />
       <Metadata
         title="Admin Settings"
         description="League Admin settings. You can change the number of teams in the league or the league name."
       />
-      <$GlobalContainer>
-        <$GlobalTitle>Admin Settings</$GlobalTitle>
-        {errorMsg && <ErrorMsg msg={errorMsg} />}
-        {!league && <Loader />}
-        {league && (
-          <>
-            <Collapsible trigger="Basic" triggerTagName="div">
-              <$AdminWrapper>
-                <$AdminSection>
-                  {editNum && (
-                    <>
-                      <Select
-                        defaultVal="Number of Teams"
-                        onChange={handleNumTeams}
-                        options={options}
-                      />
-                      <Button
-                        btnText="Cancel"
-                        btnFunction={() => setEditNum(false)}
-                        customBtnClass="text edit"
-                      />
-                    </>
-                  )}
-                  {!editNum && (
-                    <>
-                      <div>Number of Teams: {teamNum}</div>
-                      <Button
-                        btnText="Edit"
-                        btnFunction={() => setEditNum(true)}
-                        customBtnClass="small text edit"
-                      />
-                    </>
-                  )}
-                </$AdminSection>
-                <$AdminSection>
-                  {editLeague && (
-                    <>
-                      <TextField
-                        placeholder="League Name"
-                        onChange={setLeagueName}
-                      />
-                      <Button
-                        btnText="Save"
-                        btnFunction={handleLeagueName}
-                        customBtnClass="text edit"
-                      />
-                      <Button
-                        btnText="Cancel"
-                        btnFunction={() => {
-                          setEditLeague(false);
-                          setErrorMsg(null);
-                          setLeagueName(leagueName);
-                        }}
-                        customBtnClass="text edit"
-                      />
-                    </>
-                  )}
-                  {!editLeague && (
-                    <>
-                      <div>League Name: {leagueName}</div>
-                      <Button
-                        btnText="Edit"
-                        btnFunction={() => setEditLeague(true)}
-                        customBtnClass="text edit"
-                      />
-                    </>
-                  )}
-                </$AdminSection>
-                <$AdminSection className="start">
-                  <Button
-                    btnText="Start League"
-                    btnFunction={handleLeagueStart}
-                    btnColor="primary"
-                    isDisabled={isLeagueDisabled}
-                    customBtnClass="medium"
-                  />
-                </$AdminSection>
-                <$AdminSection className="delete">
-                  <Button
-                    btnText="Delete League"
-                    btnFunction={handleDeleteLeague}
-                    customBtnClass="text"
-                  />
-                </$AdminSection>
-              </$AdminWrapper>
-            </Collapsible>
-            <Collapsible trigger="Teams" triggerTagName="div">
-              <$AdminWrapper className="column">
-                <ol>
-                  {teamNames.map((team) => {
-                    return (
-                      <li key={team.id} className="team">
-                        {team.team_name}
-                        {league.week === -1 && (
+      {notLoggedIn && <NotUser />}
+      {!notLoggedIn && (
+        <>
+          <BackLink />
+          <$GlobalContainer>
+            <$GlobalTitle>Admin Settings</$GlobalTitle>
+            {errorMsg && <ErrorMsg msg={errorMsg} />}
+            {!league && <Loader />}
+            {league && (
+              <>
+                <Collapsible trigger="Basic" triggerTagName="div">
+                  <$AdminWrapper>
+                    <$AdminSection>
+                      {editNum && (
+                        <>
+                          <Select
+                            defaultVal="Number of Teams"
+                            onChange={handleNumTeams}
+                            options={options}
+                          />
                           <Button
-                            btnText="Remove"
-                            btnFunction={() => handleRemoveTeam(team.id)}
+                            btnText="Cancel"
+                            btnFunction={() => setEditNum(false)}
                             customBtnClass="text edit"
                           />
-                        )}
-                      </li>
-                    );
-                  })}
-                  {missingTeams?.map((index) => {
-                    return <li key={index}></li>;
-                  })}
-                </ol>
-                {teamNames.length !== teamNum && (
-                  <SocialMedia
-                    pageTitle="Invite friends to Join League"
-                    title={`Join my Anime Fantasy League. League code: ${league.hash}`}
-                    description="Build your ultimate anime team"
-                    singleHashtag="#abzFantasyLeague"
-                    pluralHashtags={['abz', 'abzFantasyLeague', 'animebrothaz']}
-                    url={`${origin}/league/join`}
-                  />
-                )}
-              </$AdminWrapper>
-            </Collapsible>
-          </>
-        )}
-      </$GlobalContainer>
+                        </>
+                      )}
+                      {!editNum && (
+                        <>
+                          <div>Number of Teams: {teamNum}</div>
+                          <Button
+                            btnText="Edit"
+                            btnFunction={() => setEditNum(true)}
+                            customBtnClass="small text edit"
+                          />
+                        </>
+                      )}
+                    </$AdminSection>
+                    <$AdminSection>
+                      {editLeague && (
+                        <>
+                          <TextField
+                            placeholder="League Name"
+                            onChange={setLeagueName}
+                          />
+                          <Button
+                            btnText="Save"
+                            btnFunction={handleLeagueName}
+                            customBtnClass="text edit"
+                          />
+                          <Button
+                            btnText="Cancel"
+                            btnFunction={() => {
+                              setEditLeague(false);
+                              setErrorMsg(null);
+                              setLeagueName(leagueName);
+                            }}
+                            customBtnClass="text edit"
+                          />
+                        </>
+                      )}
+                      {!editLeague && (
+                        <>
+                          <div>League Name: {leagueName}</div>
+                          <Button
+                            btnText="Edit"
+                            btnFunction={() => setEditLeague(true)}
+                            customBtnClass="text edit"
+                          />
+                        </>
+                      )}
+                    </$AdminSection>
+                    <$AdminSection className="start">
+                      <Button
+                        btnText="Start League"
+                        btnFunction={handleLeagueStart}
+                        btnColor="primary"
+                        isDisabled={isLeagueDisabled}
+                        customBtnClass="medium"
+                      />
+                    </$AdminSection>
+                    <$AdminSection className="delete">
+                      <Button
+                        btnText="Delete League"
+                        btnFunction={handleDeleteLeague}
+                        customBtnClass="text"
+                      />
+                    </$AdminSection>
+                  </$AdminWrapper>
+                </Collapsible>
+                <Collapsible trigger="Teams" triggerTagName="div">
+                  <$AdminWrapper className="column">
+                    <ol>
+                      {teamNames.map((team) => {
+                        return (
+                          <li key={team.id} className="team">
+                            {team.team_name}
+                            {league.week === -1 && (
+                              <Button
+                                btnText="Remove"
+                                btnFunction={() => handleRemoveTeam(team.id)}
+                                customBtnClass="text edit"
+                              />
+                            )}
+                          </li>
+                        );
+                      })}
+                      {missingTeams?.map((index) => {
+                        return <li key={index}></li>;
+                      })}
+                    </ol>
+                    {teamNames.length !== teamNum && (
+                      <SocialMedia
+                        pageTitle="Invite friends to Join League"
+                        title={`Join my Anime Fantasy League. League code: ${league.hash}`}
+                        description="Build your ultimate anime team"
+                        singleHashtag="#abzFantasyLeague"
+                        pluralHashtags={[
+                          'abz',
+                          'abzFantasyLeague',
+                          'animebrothaz',
+                        ]}
+                        url={`${origin}/league/join`}
+                      />
+                    )}
+                  </$AdminWrapper>
+                </Collapsible>
+              </>
+            )}
+          </$GlobalContainer>
+        </>
+      )}
     </>
   );
 };

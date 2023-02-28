@@ -11,6 +11,7 @@ import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error';
 import { useAppContext } from 'src/hooks/context';
+import NotUser from 'Components/not-user';
 
 const Playoffs = () => {
   const defaultFirstRound = [
@@ -70,6 +71,7 @@ const Playoffs = () => {
   const [round2, setRound2] = useState(defaultSemis);
   const [round3, setRound3] = useState(defaultFinals);
   const [errorPage, setErrorPage] = useState(false);
+  const [account, setAccount] = useState(null);
 
   const handlePlayoffSchedule = async () => {
     const { league_id } = router.query;
@@ -90,10 +92,14 @@ const Playoffs = () => {
   };
 
   useEffect(() => {
-    if (Object.keys(router.query).length) {
+    setAccount(currentUser);
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (Object.keys(router.query).length && !!account) {
       handlePlayoffSchedule();
     }
-  }, [router.query]);
+  }, [router.query, account]);
 
   if (errorPage) {
     return <Error />;
@@ -101,47 +107,52 @@ const Playoffs = () => {
 
   return (
     <>
-      <BackLink />
       <$CollapsibleStyles />
       <Metadata
         title="League Playoffs"
         description="View the league playoffs. Be one of the top 6 teams in the league and compete for the championship."
       />
-      <$GlobalContainer>
-        <Collapsible trigger="First Round" triggerTagName="div">
-          <$PlayoffsWrapper>
-            {round1.map((game, index) => {
-              return (
-                <GameContainer
-                  game={game}
-                  gameNum={index + 1}
-                  key={game.teamA}
-                />
-              );
-            })}
-          </$PlayoffsWrapper>
-        </Collapsible>
-        <Collapsible trigger="Semi-Finals" triggerTagName="div">
-          <$PlayoffsWrapper>
-            {round2.map((game, index) => {
-              return (
-                <GameContainer
-                  game={game}
-                  gameNum={index + 5}
-                  key={game.teamA}
-                />
-              );
-            })}
-          </$PlayoffsWrapper>
-        </Collapsible>
-        <Collapsible trigger="Finals" triggerTagName="div">
-          <$PlayoffsWrapper>
-            {round3.map((game) => {
-              return <GameContainer game={game} key={game.teamA} />;
-            })}
-          </$PlayoffsWrapper>
-        </Collapsible>
-      </$GlobalContainer>
+      {!account && <NotUser />}
+      {account && (
+        <>
+          <BackLink />
+          <$GlobalContainer>
+            <Collapsible trigger="First Round" triggerTagName="div">
+              <$PlayoffsWrapper>
+                {round1.map((game, index) => {
+                  return (
+                    <GameContainer
+                      game={game}
+                      gameNum={index + 1}
+                      key={game.teamA}
+                    />
+                  );
+                })}
+              </$PlayoffsWrapper>
+            </Collapsible>
+            <Collapsible trigger="Semi-Finals" triggerTagName="div">
+              <$PlayoffsWrapper>
+                {round2.map((game, index) => {
+                  return (
+                    <GameContainer
+                      game={game}
+                      gameNum={index + 5}
+                      key={game.teamA}
+                    />
+                  );
+                })}
+              </$PlayoffsWrapper>
+            </Collapsible>
+            <Collapsible trigger="Finals" triggerTagName="div">
+              <$PlayoffsWrapper>
+                {round3.map((game) => {
+                  return <GameContainer game={game} key={game.teamA} />;
+                })}
+              </$PlayoffsWrapper>
+            </Collapsible>
+          </$GlobalContainer>
+        </>
+      )}
     </>
   );
 };

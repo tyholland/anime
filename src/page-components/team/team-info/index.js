@@ -13,6 +13,7 @@ import { useRouter } from 'next/router.js';
 import Loader from 'Components/loader/index.js';
 import Error from 'PageComponents/error/index.js';
 import { useAppContext } from 'src/hooks/context.js';
+import NotUser from 'Components/not-user/index.js';
 
 const TeamInfo = () => {
   const router = useRouter();
@@ -23,6 +24,7 @@ const TeamInfo = () => {
   const [changedName, setChangedName] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
+  const [account, setAccount] = useState(null);
 
   const handleTeamNameChange = async () => {
     setErrorMsg(null);
@@ -79,10 +81,14 @@ const TeamInfo = () => {
   };
 
   useEffect(() => {
-    if (Object.keys(router.query).length) {
+    setAccount(currentUser);
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (Object.keys(router.query).length && !!account) {
       handleTeamInfo();
     }
-  }, [router.query]);
+  }, [router.query, account]);
 
   if (errorPage) {
     return <Error />;
@@ -90,76 +96,81 @@ const TeamInfo = () => {
 
   return (
     <>
-      <BackLink />
       <Metadata
         title="Team Info"
         desciption="Information about your specific team. The team rank, the league your team is in, your reminaing points. Lastly you can update your team name."
       />
-      <$GlobalContainer>
-        <$GlobalTitle>Team Info</$GlobalTitle>
-        {errorMsg && <ErrorMsg msg={errorMsg} />}
-        {!teamData && <Loader />}
-        {teamData && (
-          <$TeamInfoWrapper>
-            <div className="editName">
-              {edit && (
-                <>
-                  <TextField
-                    placeholder="Enter Team Name"
-                    onChange={setChangedName}
-                    maxLength={15}
-                  />
-                  <Button
-                    btnText="Save"
-                    btnFunction={handleTeamNameChange}
-                    customBtnClass="text edit change"
-                  />
-                  <Button
-                    btnText="Cancel"
-                    btnFunction={() => {
-                      setEdit(false);
-                      setErrorMsg(null);
-                      setChangedName(teamName);
-                    }}
-                    customBtnClass="text edit change"
-                  />
-                </>
-              )}
-              {!edit && (
-                <>
+      {!account && <NotUser />}
+      {account && (
+        <>
+          <BackLink />
+          <$GlobalContainer>
+            <$GlobalTitle>Team Info</$GlobalTitle>
+            {errorMsg && <ErrorMsg msg={errorMsg} />}
+            {!teamData && <Loader />}
+            {teamData && (
+              <$TeamInfoWrapper>
+                <div className="editName">
+                  {edit && (
+                    <>
+                      <TextField
+                        placeholder="Enter Team Name"
+                        onChange={setChangedName}
+                        maxLength={15}
+                      />
+                      <Button
+                        btnText="Save"
+                        btnFunction={handleTeamNameChange}
+                        customBtnClass="text edit change"
+                      />
+                      <Button
+                        btnText="Cancel"
+                        btnFunction={() => {
+                          setEdit(false);
+                          setErrorMsg(null);
+                          setChangedName(teamName);
+                        }}
+                        customBtnClass="text edit change"
+                      />
+                    </>
+                  )}
+                  {!edit && (
+                    <>
+                      <$TeamInfoStats>
+                        <span>Team Name:</span> {teamName}
+                      </$TeamInfoStats>
+                      <Button
+                        btnText="Edit"
+                        btnFunction={() => setEdit(true)}
+                        customBtnClass="text edit"
+                      />
+                    </>
+                  )}
+                </div>
+                <div>
                   <$TeamInfoStats>
-                    <span>Team Name:</span> {teamName}
+                    <span>League:</span> {teamData.name}
                   </$TeamInfoStats>
-                  <Button
-                    btnText="Edit"
-                    btnFunction={() => setEdit(true)}
-                    customBtnClass="text edit"
-                  />
-                </>
-              )}
-            </div>
-            <div>
-              <$TeamInfoStats>
-                <span>League:</span> {teamData.name}
-              </$TeamInfoStats>
-              <$TeamInfoStats>
-                <span>Record:</span>{' '}
-                {`${teamData.rank.win}-${teamData.rank.loss}`}
-              </$TeamInfoStats>
-              <$TeamInfoStats>
-                <span>Points Remaining:</span> {teamData.points} pts
-              </$TeamInfoStats>
-              <$TeamInfoStats>
-                <Button
-                  btnText="Remove team"
-                  btnFunction={handleRemoveTeam}
-                  customBtnClass="text"
-                />
-              </$TeamInfoStats>
-            </div>
-          </$TeamInfoWrapper>
-        )}
-      </$GlobalContainer>
+                  <$TeamInfoStats>
+                    <span>Record:</span>{' '}
+                    {`${teamData.rank.win}-${teamData.rank.loss}`}
+                  </$TeamInfoStats>
+                  <$TeamInfoStats>
+                    <span>Points Remaining:</span> {teamData.points} pts
+                  </$TeamInfoStats>
+                  <$TeamInfoStats>
+                    <Button
+                      btnText="Remove team"
+                      btnFunction={handleRemoveTeam}
+                      customBtnClass="text"
+                    />
+                  </$TeamInfoStats>
+                </div>
+              </$TeamInfoWrapper>
+            )}
+          </$GlobalContainer>
+        </>
+      )}
     </>
   );
 };

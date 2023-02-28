@@ -21,6 +21,7 @@ import { getTeam, getTeamInfo } from 'src/requests/team.js';
 import Loader from 'Components/loader/index.js';
 import { addEvent } from 'Utils/amplitude.js';
 import { useAppContext } from 'src/hooks/context.js';
+import NotUser from 'Components/not-user/index.js';
 
 const Team = () => {
   const router = useRouter();
@@ -32,6 +33,7 @@ const Team = () => {
   const [hideWeek, setHideWeek] = useState(null);
   const [totalPoints, setTotalPoints] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
+  const [account, setAccount] = useState(null);
 
   const handleTeam = async () => {
     const { team_id } = router.query;
@@ -64,10 +66,14 @@ const Team = () => {
   };
 
   useEffect(() => {
-    if (Object.keys(router.query).length) {
+    setAccount(currentUser);
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (Object.keys(router.query).length && !!account) {
       handleTeam();
     }
-  }, [router.query]);
+  }, [router.query, account]);
 
   if (errorPage) {
     return <Error />;
@@ -79,45 +85,52 @@ const Team = () => {
         title="Team page"
         description="Page for each individual team. You can update/edit the roster. Edit your lineup for the week. As well as edit/view team info."
       />
-      <BackLink />
-      <$GlobalContainer>
-        {!teamData && <Loader />}
-        {teamData && (
-          <>
-            <$TeamInfo>
-              <$TeamContent>
-                <$TeamName>{teamData.teamName}</$TeamName>
-                {hideWeek ||
-                  (!isPastWeek && (
-                    <$TeamLeague>Week: {teamData.team.week}</$TeamLeague>
-                  ))}
-                <$TeamLeague>Rank: {`${rank.win}-${rank.loss}`}</$TeamLeague>
-              </$TeamContent>
-              {!isPastWeek && (
-                <$TeamBtnSection>
-                  <Button
-                    btnText="Team Info"
-                    btnColor="primary"
-                    redirect={`/team/info?member_id=${teamData.memberId}`}
-                    customBtnClass="medium"
-                  />
-                  <Button
-                    btnText="Edit Roster"
-                    btnColor="primary"
-                    customBtnClass="medium"
-                    redirect={`/team/edit?team_id=${teamId}`}
-                  />
-                </$TeamBtnSection>
-              )}
-            </$TeamInfo>
-            <TeamCard data={teamData.team} />
-            <$TeamTotal>
-              <$TeamTotalText>Total</$TeamTotalText>
-              <$TeamTotalAmount>{totalPoints}</$TeamTotalAmount>
-            </$TeamTotal>
-          </>
-        )}
-      </$GlobalContainer>
+      {!account && <NotUser />}
+      {account && (
+        <>
+          <BackLink />
+          <$GlobalContainer>
+            {!teamData && <Loader />}
+            {teamData && (
+              <>
+                <$TeamInfo>
+                  <$TeamContent>
+                    <$TeamName>{teamData.teamName}</$TeamName>
+                    {hideWeek ||
+                      (!isPastWeek && (
+                        <$TeamLeague>Week: {teamData.team.week}</$TeamLeague>
+                      ))}
+                    <$TeamLeague>
+                      Rank: {`${rank.win}-${rank.loss}`}
+                    </$TeamLeague>
+                  </$TeamContent>
+                  {!isPastWeek && (
+                    <$TeamBtnSection>
+                      <Button
+                        btnText="Team Info"
+                        btnColor="primary"
+                        redirect={`/team/info?member_id=${teamData.memberId}`}
+                        customBtnClass="medium"
+                      />
+                      <Button
+                        btnText="Edit Roster"
+                        btnColor="primary"
+                        customBtnClass="medium"
+                        redirect={`/team/edit?team_id=${teamId}`}
+                      />
+                    </$TeamBtnSection>
+                  )}
+                </$TeamInfo>
+                <TeamCard data={teamData.team} />
+                <$TeamTotal>
+                  <$TeamTotalText>Total</$TeamTotalText>
+                  <$TeamTotalAmount>{totalPoints}</$TeamTotalAmount>
+                </$TeamTotal>
+              </>
+            )}
+          </$GlobalContainer>
+        </>
+      )}
     </>
   );
 };
