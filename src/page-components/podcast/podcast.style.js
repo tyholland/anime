@@ -6,13 +6,14 @@ export const $PodcastService = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   ${MOBILE_VIEW} {
     margin-bottom: 10%;
   }
 
   button {
-    margin: 0 !important;
+    margin: 2% 0 0 !important;
 
     ${MOBILE_VIEW} {
       width: 250px !important;
@@ -27,4 +28,8 @@ export const $PodcastService = styled.div`
       }
     }
   }
+`;
+
+export const $PodcastDescript = styled.div`
+  margin-bottom: 2%;
 `;

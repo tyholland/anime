@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
-import { $PodcastService } from './podcast.style';
+import { $PodcastService, $PodcastDescript } from './podcast.style';
 
 const Podcast = () => {
   const getPodcastScript = () => {
@@ -37,13 +37,29 @@ const Podcast = () => {
       <$GlobalContainer>
         <$GlobalTitle>Podcast</$GlobalTitle>
         <$PodcastService>
+          <div>
+            If you prefer to use your own podcast service/application, feel free
+            to click the link below. It will take you to a page where you can
+            choose your favorite podcast application, and then you can listen to
+            all the ABZ podcast episodes that are available. Be sure to listen
+            to episode 1 if you are new to the ABZ podcast channel.
+          </div>
           <Button
-            btnText="ABZ podcast on your favorite applications"
+            btnText="All Podcast Apps"
             btnColor="primary"
             customBtnClass="small"
             btnFunction={goToSharePage}
           />
         </$PodcastService>
+        <$PodcastDescript>
+          The ABZ podcast is recorded by the Brothaz (DiscipleDashni, QuietJams,
+          and TySoFly), who get together to discuss a wide variety of topics
+          within the anime community. Topics can range from, but are not limited
+          to, the latest episodes, manga chapters, favorite characters, and so
+          on. You can listen to all the ABZ podcast episodes here and now. We
+          have an abundance of episodes to choose from, ranging from 30 minutes
+          to an hour. Enjoy!
+        </$PodcastDescript>
         <div id="buzzsprout-large-player"></div>
       </$GlobalContainer>
     </>
