@@ -3,8 +3,7 @@ import Button from 'Components/button';
 import {
   GoogleAuthProvider,
   getAuth,
-  signInWithRedirect,
-  getRedirectResult,
+  signInWithPopup,
   FacebookAuthProvider,
 } from 'firebase/auth';
 import { addEvent } from 'Utils/amplitude';
@@ -31,7 +30,9 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
     try {
-      await signInWithRedirect(auth, provider);
+      const firebaseUser = await signInWithPopup(auth, provider);
+
+      setCurrentUser(firebaseUser);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed google sso'));
     }
@@ -41,31 +42,24 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
     const provider = new FacebookAuthProvider();
     const auth = getAuth();
     try {
-      await signInWithRedirect(auth, provider);
+      const firebaseUser = await signInWithPopup(auth, provider);
+
+      setCurrentUser(firebaseUser);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed facebook sso'));
     }
   };
 
-  const handleRedirect = async () => {
-    const auth = getAuth();
-
+  const handleLogin = async () => {
     try {
-      const firebaseUser = await getRedirectResult(auth);
-      setCurrentUser(firebaseUser);
-
-      if (!firebaseUser) {
-        return;
-      }
-
       setIsLoading(true);
       setIsDisabled(true);
 
       const isLogin = buttonText === 'Login';
       const eventName = isLogin ? 'Account login' : 'Account sign-up';
       const payload = {
-        email: firebaseUser?.user.email,
-        firebaseId: firebaseUser?.user.uid,
+        email: currentUser?.user.email,
+        firebaseId: currentUser?.user.uid,
       };
       const { exists } = await accountExists(payload);
 
@@ -76,7 +70,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
       setInitialUser(user);
 
       addEvent(eventName, {
-        provider: firebaseUser?.user.providerData[0].providerId,
+        provider: currentUser?.user.providerData[0].providerId,
       });
 
       isLogin ? redirectToContinuePage(router) : redirectUrl('/league');
@@ -92,8 +86,8 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
   };
 
   useEffect(() => {
-    if (!currentUser) {
-      handleRedirect();
+    if (currentUser) {
+      handleLogin();
     }
   }, [currentUser]);
 
