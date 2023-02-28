@@ -15,6 +15,11 @@ const MakeTeam = () => {
         league will begin on the first Sunday, and an email will be sent to the
         league to announce the start date.
       </$GameplayCardSection>
+      <$GameplayCardSection>
+        If you don't see a specific character in the list when selecting a
+        character, it most likely means that the character is already assigned
+        to another team. You will need to choose a different character.
+      </$GameplayCardSection>
     </$GameplayCardContainer>
   );
 };
