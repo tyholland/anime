@@ -115,11 +115,9 @@ export const $GlobalContainer = styled.div`
   }
 
   &.notFound {
-    height: 100vh;
-
-    ${MOBILE_VIEW} {
-      height: 0;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &::before {
       background-image: url(/assets/background/deku-allmight.jpg);

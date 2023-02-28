@@ -6,7 +6,6 @@ import Metadata from 'Components/metadata';
 import Button from 'Components/button';
 import { useAppContext } from 'src/hooks/context';
 import { useRouter } from 'next/router';
-import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 import TextField from 'Components/text-field';
 import { deleteAccount } from 'src/requests/users';
@@ -20,13 +19,14 @@ import {
 import { addEvent } from 'Utils/amplitude';
 import { getAuth, signOut, updatePassword, deleteUser } from 'firebase/auth';
 import ErrorMsg from 'Components/error-msg';
+import NotUser from 'Components/not-user';
 
 const Account = () => {
   const { deleteCurrentUser, currentUser } = useAppContext();
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isPwdLoading, setIsPwdLoading] = useState(false);
-  const [errorPage, setErrorPage] = useState(false);
+  const [notLoggedIn, setNotLoggedIn] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
   const [logoutTrigger, setLogoutTrigger] = useState(false);
   const [pwd, setPwd] = useState('');
@@ -106,7 +106,7 @@ const Account = () => {
 
   useEffect(() => {
     if (!logoutTrigger) {
-      setErrorPage(!currentUser);
+      setNotLoggedIn(!currentUser);
     }
 
     if (currentUser) {
@@ -120,10 +120,6 @@ const Account = () => {
     }
   }, [auth]);
 
-  if (errorPage) {
-    return <Error />;
-  }
-
   return (
     <>
       <$GameplayStyles />
@@ -131,67 +127,72 @@ const Account = () => {
         title="Account"
         description="Look at your profile, update username, and your password. Delete your account if you must."
       />
-      <$GlobalContainer>
-        <$GlobalTitle>Account</$GlobalTitle>
-        {isLoading && <Loader />}
-        {!isLoading && (
-          <>
-            <Collapsible trigger="Profile" triggerTagName="div">
-              <$AccountWrapper>
-                <$AccountSectionRight>
-                  <$AccountSectionLabel>Email:</$AccountSectionLabel>
-                  <TextField isDisabled={true} inputVal={email} />
+      {notLoggedIn && <NotUser />}
+      {!notLoggedIn && (
+        <$GlobalContainer>
+          <$GlobalTitle>Account</$GlobalTitle>
+          {isLoading && <Loader />}
+          {!isLoading && (
+            <>
+              <Collapsible trigger="Profile" triggerTagName="div">
+                <$AccountWrapper>
+                  <$AccountSectionRight>
+                    <$AccountSectionLabel>Email:</$AccountSectionLabel>
+                    <TextField isDisabled={true} inputVal={email} />
+                    <Button
+                      btnText="Delete Account"
+                      customBtnClass="text"
+                      btnFunction={handleDeleteAccount}
+                    />
+                  </$AccountSectionRight>
+                </$AccountWrapper>
+              </Collapsible>
+              <Collapsible trigger="Change Password" triggerTagName="div">
+                <$AccountWrapper className="column">
+                  <div>
+                    {errorMsg && <ErrorMsg msg={errorMsg} />}
+                    <TextField
+                      placeholder="Enter New Password"
+                      onChange={handleSetPwd}
+                      type="password"
+                    />
+                    <TextField
+                      placeholder="Confirm New Password"
+                      onChange={handleSetConfirmPwd}
+                      type="password"
+                    />
+                  </div>
                   <Button
-                    btnText="Delete Account"
-                    customBtnClass="text"
-                    btnFunction={handleDeleteAccount}
+                    btnText={
+                      isPwdLoading ? <Loader isSmall={true} /> : 'Submit'
+                    }
+                    btnColor="primary"
+                    customBtnClass="medium"
+                    isDisabled={isDisabled}
+                    btnFunction={handlePasswordChange}
                   />
-                </$AccountSectionRight>
-              </$AccountWrapper>
-            </Collapsible>
-            <Collapsible trigger="Change Password" triggerTagName="div">
-              <$AccountWrapper className="column">
-                <div>
-                  {errorMsg && <ErrorMsg msg={errorMsg} />}
-                  <TextField
-                    placeholder="Enter New Password"
-                    onChange={handleSetPwd}
-                    type="password"
+                  {pwdSuccess && (
+                    <$AccountPwdSuccess>
+                      Your password has successfully been changed
+                    </$AccountPwdSuccess>
+                  )}
+                </$AccountWrapper>
+              </Collapsible>
+              <Collapsible trigger="Log Out" triggerTagName="div">
+                <$AccountWrapper className="column">
+                  <div>Are you sure you want to logout?</div>
+                  <Button
+                    btnText="Yes"
+                    btnColor="primary"
+                    customBtnClass="medium"
+                    btnFunction={handleLogout}
                   />
-                  <TextField
-                    placeholder="Confirm New Password"
-                    onChange={handleSetConfirmPwd}
-                    type="password"
-                  />
-                </div>
-                <Button
-                  btnText={isPwdLoading ? <Loader isSmall={true} /> : 'Submit'}
-                  btnColor="primary"
-                  customBtnClass="medium"
-                  isDisabled={isDisabled}
-                  btnFunction={handlePasswordChange}
-                />
-                {pwdSuccess && (
-                  <$AccountPwdSuccess>
-                    Your password has successfully been changed
-                  </$AccountPwdSuccess>
-                )}
-              </$AccountWrapper>
-            </Collapsible>
-            <Collapsible trigger="Log Out" triggerTagName="div">
-              <$AccountWrapper className="column">
-                <div>Are you sure you want to logout?</div>
-                <Button
-                  btnText="Yes"
-                  btnColor="primary"
-                  customBtnClass="medium"
-                  btnFunction={handleLogout}
-                />
-              </$AccountWrapper>
-            </Collapsible>
-          </>
-        )}
-      </$GlobalContainer>
+                </$AccountWrapper>
+              </Collapsible>
+            </>
+          )}
+        </$GlobalContainer>
+      )}
     </>
   );
 };
