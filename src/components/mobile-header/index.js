@@ -40,7 +40,7 @@ const MobileHeader = ({ acct, acctLink }) => {
         />
         <Button
           btnText="Bracket"
-          btnFunction={() => handleBtnClick('/bracket')}
+          btnFunction={() => handleBtnClick('/bracket/view')}
           customBtnClass="small header text"
         />
         <Button

@@ -36,7 +36,7 @@ const Error = () => {
           />
           <Button
             btnText="Create a Bracket"
-            redirect="/bracket"
+            redirect="/bracket/create"
             btnColor="primary"
             customBtnClass="medium"
           />

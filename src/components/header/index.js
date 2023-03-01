@@ -50,7 +50,7 @@ const Header = () => {
           />
           <Button
             btnText="Bracket"
-            redirect="/bracket"
+            redirect="/bracket/view"
             customBtnClass="small header text"
           />
           <Button

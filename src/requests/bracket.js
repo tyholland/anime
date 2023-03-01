@@ -22,3 +22,22 @@ export const addVotes = async (payload, token) => {
 
   return await axiosClient(data);
 };
+
+export const getBracket = async (bracketId) => {
+  const data = {
+    url: `${api}/bracket/${bracketId}`,
+    method: 'get',
+  };
+
+  return await axiosClient(data);
+};
+
+export const getAllBrackets = async (token) => {
+  const data = {
+    url: `${api}/bracket/all/items`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};
