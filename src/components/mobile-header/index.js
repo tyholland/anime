@@ -39,8 +39,8 @@ const MobileHeader = ({ acct, acctLink }) => {
           customBtnClass="small header text"
         />
         <Button
-          btnText="Gameplay"
-          btnFunction={() => handleBtnClick('/gameplay')}
+          btnText="Bracket"
+          btnFunction={() => handleBtnClick('/bracket')}
           customBtnClass="small header text"
         />
         <Button
