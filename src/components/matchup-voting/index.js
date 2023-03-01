@@ -135,7 +135,7 @@ const MatchupVoting = ({
         url={pathname}
       />
       {!!isChangeable && (
-        <$MatchupVotingWrapper>
+        <$MatchupVotingWrapper className="btn">
           <Button
             btnText="Next Matchup"
             btnColor="secondary"

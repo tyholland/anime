@@ -27,6 +27,7 @@ import BackLink from 'Components/back-link';
 import Loader from 'Components/loader';
 import { useRouter } from 'next/router';
 import NotUser from 'Components/not-user';
+import ReadMore from 'Components/read-more';
 
 const Admin = () => {
   const router = useRouter();
@@ -44,6 +45,8 @@ const Admin = () => {
   const [isLeagueDisabled, setIsLeagueDisabled] = useState(true);
   const options = ['6', '8', '10'];
   let origin = '';
+  const message =
+    'Water is a dynamic and versatile element that many heroes and villains in the game can wield to great effect. However, its weakness lies in electricity, making users who master water vulnerable to attacks by electric-based characters. Water is a force to be reckoned with in battles, possessing the ability to adapt to various situations and environments. While they may need to be cautious of electric-based opponents, water users will never shy away from any opponent, as they can just wash them away with a flood.';
 
   if (typeof window !== 'undefined') {
     origin = window.location.origin;
@@ -199,7 +202,7 @@ const Admin = () => {
         title="Admin Settings"
         description="League Admin settings. You can change the number of teams in the league or the league name."
       />
-      {notLoggedIn && <NotUser />}
+      {notLoggedIn && <NotUser message={message} />}
       {!notLoggedIn && (
         <>
           <BackLink />
@@ -328,6 +331,7 @@ const Admin = () => {
                 </Collapsible>
               </>
             )}
+            <ReadMore>{message}</ReadMore>
           </$GlobalContainer>
         </>
       )}

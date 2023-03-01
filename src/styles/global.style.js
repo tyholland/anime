@@ -40,6 +40,7 @@ export const $GlobalStyles = createGlobalStyle`
 
 export const $GlobalContainer = styled.div`
   padding: 2%;
+  position: relative;
 
   ${RESPONSIVE_VIEW} {
     padding: 5% 3%;

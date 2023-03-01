@@ -18,6 +18,7 @@ import Error from 'PageComponents/error';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import Loader from 'Components/loader';
+import ReadMore from 'Components/read-more';
 
 const Bio = () => {
   const router = useRouter();
@@ -237,6 +238,7 @@ const Bio = () => {
             </div>
           </$BioWrapper>
         )}
+        <ReadMore />
       </$GlobalContainer>
     </>
   );

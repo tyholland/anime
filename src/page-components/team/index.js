@@ -22,6 +22,7 @@ import Loader from 'Components/loader/index.js';
 import { addEvent } from 'Utils/amplitude.js';
 import { useAppContext } from 'src/hooks/context.js';
 import NotUser from 'Components/not-user/index.js';
+import ReadMore from 'Components/read-more/index.js';
 
 const Team = () => {
   const router = useRouter();
@@ -128,6 +129,7 @@ const Team = () => {
                 </$TeamTotal>
               </>
             )}
+            <ReadMore />
           </$GlobalContainer>
         </>
       )}

@@ -3,6 +3,7 @@ import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
 import { $PodcastService, $PodcastDescript } from './podcast.style';
+import ReadMore from 'Components/read-more';
 
 const Podcast = () => {
   const getPodcastScript = () => {
@@ -51,6 +52,7 @@ const Podcast = () => {
             btnFunction={goToSharePage}
           />
         </$PodcastService>
+        <div id="buzzsprout-large-player"></div>
         <$PodcastDescript>
           The ABZ podcast is recorded by the Brothaz (DiscipleDashni, QuietJams,
           and TySoFly), who get together to discuss a wide variety of topics
@@ -60,7 +62,7 @@ const Podcast = () => {
           have an abundance of episodes to choose from, ranging from 30 minutes
           to an hour. Enjoy!
         </$PodcastDescript>
-        <div id="buzzsprout-large-player"></div>
+        <ReadMore />
       </$GlobalContainer>
     </>
   );

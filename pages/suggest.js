@@ -1,3 +1,3 @@
-import Suggest from 'PageComponents/suggest/suggest';
+import Suggest from 'PageComponents/suggest';
 
 export default Suggest;

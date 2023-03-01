@@ -9,6 +9,7 @@ import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 import SocialMedia from 'Components/social-media';
 import Loader from 'Components/loader';
+import ReadMore from 'Components/read-more';
 
 const Suggest = () => {
   const [player, setPlayer] = useState('');
@@ -84,6 +85,16 @@ const Suggest = () => {
           ]}
           url={pathname}
         />
+        <ReadMore>
+          Fire is a powerful elemental force that is harnessed by many heroes
+          and villains in the game. Its weakness lies in water, making it
+          vulnerable to attacks by water-based characters. Fire is a reliable
+          and formidable element to wield in battles. The fire element is known
+          to have access to devastating attacks and abilities that can turn the
+          tide of any battle, and in this league, it is no different. As long as
+          they are careful to avoid water-based opponents, flame users can
+          surely lead a team to victory.
+        </ReadMore>
       </$GlobalContainer>
     </>
   );

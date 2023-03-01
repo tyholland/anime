@@ -3,7 +3,8 @@ import { COLOR_GREY, MOBILE_VIEW } from 'Styles/global.style';
 
 export const $ReadMoreWrapper = styled.div`
   position: absolute;
-  bottom: 30px;
+  bottom: 2%;
+  left: 2%;
 `;
 
 export const $ReadMoreContent = styled.div`

@@ -72,6 +72,7 @@ export const $BioWrapper = styled.div`
   ${MOBILE_VIEW} {
     flex-direction: column;
     width: 100%;
+    margin-bottom: 10%;
   }
 
   > div {

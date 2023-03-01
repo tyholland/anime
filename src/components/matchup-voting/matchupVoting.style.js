@@ -28,6 +28,12 @@ export const $MatchupVotingWrapper = styled.div`
     margin-bottom: 3%;
   }
 
+  &.btn {
+    ${MOBILE_VIEW} {
+      margin-bottom: 10%;
+    }
+  }
+
   ${MOBILE_VIEW} {
     flex-direction: column;
   }

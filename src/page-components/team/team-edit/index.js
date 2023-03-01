@@ -24,6 +24,7 @@ import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 import { useAppContext } from 'src/hooks/context';
 import NotUser from 'Components/not-user';
+import ReadMore from 'Components/read-more';
 
 const TeamEdit = () => {
   const router = useRouter();
@@ -350,6 +351,7 @@ const TeamEdit = () => {
                 />
               </>
             )}
+            <ReadMore />
           </$GlobalContainer>
         </>
       )}

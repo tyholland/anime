@@ -118,39 +118,41 @@ const Playoffs = () => {
         <>
           <BackLink />
           <$GlobalContainer>
-            <Collapsible trigger="First Round" triggerTagName="div">
-              <$PlayoffsWrapper>
-                {round1.map((game, index) => {
-                  return (
-                    <GameContainer
-                      game={game}
-                      gameNum={index + 1}
-                      key={game.teamA}
-                    />
-                  );
-                })}
-              </$PlayoffsWrapper>
-            </Collapsible>
-            <Collapsible trigger="Semi-Finals" triggerTagName="div">
-              <$PlayoffsWrapper>
-                {round2.map((game, index) => {
-                  return (
-                    <GameContainer
-                      game={game}
-                      gameNum={index + 5}
-                      key={game.teamA}
-                    />
-                  );
-                })}
-              </$PlayoffsWrapper>
-            </Collapsible>
-            <Collapsible trigger="Finals" triggerTagName="div">
-              <$PlayoffsWrapper>
-                {round3.map((game) => {
-                  return <GameContainer game={game} key={game.teamA} />;
-                })}
-              </$PlayoffsWrapper>
-            </Collapsible>
+            <div>
+              <Collapsible trigger="First Round" triggerTagName="div">
+                <$PlayoffsWrapper>
+                  {round1.map((game, index) => {
+                    return (
+                      <GameContainer
+                        game={game}
+                        gameNum={index + 1}
+                        key={game.teamA}
+                      />
+                    );
+                  })}
+                </$PlayoffsWrapper>
+              </Collapsible>
+              <Collapsible trigger="Semi-Finals" triggerTagName="div">
+                <$PlayoffsWrapper>
+                  {round2.map((game, index) => {
+                    return (
+                      <GameContainer
+                        game={game}
+                        gameNum={index + 5}
+                        key={game.teamA}
+                      />
+                    );
+                  })}
+                </$PlayoffsWrapper>
+              </Collapsible>
+              <Collapsible trigger="Finals" triggerTagName="div">
+                <$PlayoffsWrapper>
+                  {round3.map((game) => {
+                    return <GameContainer game={game} key={game.teamA} />;
+                  })}
+                </$PlayoffsWrapper>
+              </Collapsible>
+            </div>
             <ReadMore />
           </$GlobalContainer>
         </>

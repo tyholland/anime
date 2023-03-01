@@ -31,5 +31,5 @@ export const $PodcastService = styled.div`
 `;
 
 export const $PodcastDescript = styled.div`
-  margin-bottom: 2%;
+  margin-bottom: 10%;
 `;

@@ -14,6 +14,7 @@ import Loader from 'Components/loader/index.js';
 import Error from 'PageComponents/error/index.js';
 import { useAppContext } from 'src/hooks/context.js';
 import NotUser from 'Components/not-user/index.js';
+import ReadMore from 'Components/read-more/index.js';
 
 const TeamInfo = () => {
   const router = useRouter();
@@ -168,6 +169,7 @@ const TeamInfo = () => {
                 </div>
               </$TeamInfoWrapper>
             )}
+            <ReadMore />
           </$GlobalContainer>
         </>
       )}
