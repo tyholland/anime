@@ -15,6 +15,7 @@ import { getAllLeagues } from 'src/requests/league';
 import { useAppContext } from 'src/hooks/context';
 import Loader from 'Components/loader';
 import NotUser from 'Components/not-user';
+import ReadMore from 'Components/read-more';
 
 const ViewLeague = () => {
   const { currentUser } = useAppContext();
@@ -90,6 +91,7 @@ const ViewLeague = () => {
                 </$ViewLeagueEmptyBtnWrapper>
               </>
             )}
+            <ReadMore />
           </$GlobalContainer>
         </>
       )}

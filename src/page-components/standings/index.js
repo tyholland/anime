@@ -1,6 +1,7 @@
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 import NotUser from 'Components/not-user';
+import ReadMore from 'Components/read-more';
 import { useRouter } from 'next/router';
 import Error from 'PageComponents/error';
 import React, { useEffect, useState } from 'react';
@@ -76,6 +77,7 @@ const Standings = () => {
                 </$StandingsWrapper>
               );
             })}
+            <ReadMore />
           </$GlobalContainer>
         </>
       )}

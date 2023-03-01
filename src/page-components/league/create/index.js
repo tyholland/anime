@@ -13,6 +13,7 @@ import { responseError } from 'Utils/index';
 import ErrorMsg from 'Components/error-msg';
 import { useAppContext } from 'src/hooks/context';
 import Loader from 'Components/loader';
+import ReadMore from 'Components/read-more';
 
 const LeagueCreate = () => {
   const { currentUser } = useAppContext();
@@ -89,6 +90,7 @@ const LeagueCreate = () => {
             isDisabled={isDisabled}
           />
         </$LeagueCreateWrapper>
+        <ReadMore />
       </$GlobalContainer>
     </>
   );

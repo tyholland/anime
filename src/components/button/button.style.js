@@ -70,7 +70,7 @@ export const $Btn = styled.button`
     width: auto;
     padding: 3px 5px;
     position: relative;
-    margin: 2% 0 0;
+    margin: 1% 0 0;
     border-color: ${COLOR_WHITE};
 
     span {

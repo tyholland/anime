@@ -1,17 +1,23 @@
 import styled from 'styled-components';
-import { COLOR_WHITE } from 'Styles/global.style';
+import { COLOR_GREY } from 'Styles/global.style';
 
 export const $ReadMoreWrapper = styled.div`
-  position: relative;
+  position: absolute;
+  bottom: 30px;
 `;
 
 export const $ReadMoreContent = styled.div`
   display: none;
-  background: ${COLOR_WHITE};
-  margin-top: 1%;
+  background: ${COLOR_GREY};
   padding: 1%;
+  width: 50%;
+  border-radius: 10px;
 
   &.show {
     display: block;
   }
+`;
+
+export const $ReadMoreNews = styled.div`
+  margin-bottom: 2%;
 `;

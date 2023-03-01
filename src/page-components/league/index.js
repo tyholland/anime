@@ -2,6 +2,7 @@ import React from 'react';
 import { $GlobalContainer } from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card';
 import Metadata from 'Components/metadata';
+import ReadMore from 'Components/read-more';
 
 const League = () => {
   return (
@@ -16,6 +17,7 @@ const League = () => {
           <SelectionCard btnText="Create League" redirect="/league/create" />
           <SelectionCard btnText="View Leagues" redirect="/league/view" />
         </div>
+        <ReadMore />
       </$GlobalContainer>
     </>
   );

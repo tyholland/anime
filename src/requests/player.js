@@ -28,3 +28,12 @@ export const getUseablePlayers = async (teamId, token) => {
 
   return await axiosClient(data);
 };
+
+export const getAnimeNews = async () => {
+  const data = {
+    url: `${api}/player/anime/news`,
+    method: 'get',
+  };
+
+  return await axiosClient(data);
+};

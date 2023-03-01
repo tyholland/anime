@@ -2,6 +2,7 @@ import React from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card';
 import Metadata from 'Components/metadata';
+import ReadMore from 'Components/read-more';
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
             <SelectionCard btnText="Suggest Character" redirect="/suggest" />
           </div>
         </$GlobalContainer>
+        <ReadMore />
       </$GlobalContainer>
     </>
   );

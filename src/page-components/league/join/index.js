@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import ErrorMsg from 'Components/error-msg';
 import { useAppContext } from 'src/hooks/context';
 import Loader from 'Components/loader';
+import ReadMore from 'Components/read-more';
 
 const JoinLeague = () => {
   const router = useRouter();
@@ -81,6 +82,7 @@ const JoinLeague = () => {
           </div>
           <$JoinLeagueImg src="/assets/background/vegito.jpg" alt="Vegito" />
         </$JoinLeagueWrapper>
+        <ReadMore />
       </$GlobalContainer>
     </>
   );

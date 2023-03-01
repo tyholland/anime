@@ -12,6 +12,7 @@ import { addEvent } from 'Utils/amplitude';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 import NotUser from 'Components/not-user';
+import ReadMore from 'Components/read-more';
 
 const LeagueDetails = () => {
   const router = useRouter();
@@ -111,6 +112,7 @@ const LeagueDetails = () => {
               </div>
             </>
           )}
+          <ReadMore />
         </$GlobalContainer>
       )}
     </>

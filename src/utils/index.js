@@ -26,6 +26,10 @@ export const responseError = (err, description) => {
   };
 };
 
+export const randomInt = () => {
+  return Math.floor(Math.random() * 50);
+};
+
 export const photoCredits = [
   {
     image: '/assets/background/deku-allmight.jpg',

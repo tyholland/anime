@@ -12,6 +12,7 @@ import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error';
 import { useAppContext } from 'src/hooks/context';
 import NotUser from 'Components/not-user';
+import ReadMore from 'Components/read-more';
 
 const Playoffs = () => {
   const defaultFirstRound = [
@@ -150,6 +151,7 @@ const Playoffs = () => {
                 })}
               </$PlayoffsWrapper>
             </Collapsible>
+            <ReadMore />
           </$GlobalContainer>
         </>
       )}
