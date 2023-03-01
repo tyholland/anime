@@ -69,7 +69,7 @@ export const $TeamCardDuoSpace = styled.div`
     display: flex;
 
     ${MOBILE_VIEW} {
-      margin-left: 5px;
+      margin-left: 0;
       padding-left: 6px;
     }
   }
@@ -92,6 +92,10 @@ export const $TeamCardCharacterWrapper = styled.div`
 
   &.duo {
     margin: 0 0 0 5px;
+
+    ${MOBILE_VIEW} {
+      margin: 0;
+    }
   }
 `;
 
