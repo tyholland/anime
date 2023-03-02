@@ -83,7 +83,7 @@ export const $GlobalContainer = styled.div`
     &::before {
       content: " ";
       background-image: url(/assets/background/itachi.jpg);
-      background-size: cover;
+      background-size: 100% 100%;
       background-repeat: no-repeat;
       position: absolute;
       top: 0px;
@@ -91,10 +91,9 @@ export const $GlobalContainer = styled.div`
       bottom: 0px;
       left: 0px;
       filter: grayscale(100%);
-      min-height: 100vh;
+      min-height: 0;
 
       ${RESPONSIVE_VIEW} {
-        min-height: 0;
         background-size: 100% 100%;
       }
     }
