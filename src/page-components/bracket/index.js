@@ -1,62 +1,70 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Metadata from 'Components/metadata';
 import TournamentBracket from 'react-svg-tournament-bracket';
+import { getBracket } from 'src/requests/bracket';
+import { useRouter } from 'next/router';
+import { addEvent } from 'Utils/amplitude';
+import { responseError } from 'Utils/index';
 
 const Bracket = () => {
-  const matches = [
-    {
-      homeTeamName: 'Team A',
-      awayTeamName: 'Team B',
-      round: 1,
-      matchNumber: 1,
-    },
-    {
-      homeTeamName: 'Team C',
-      awayTeamName: 'Team D',
-      round: 1,
-      matchNumber: 2,
-    },
-    {
-      homeTeamName: 'Team E',
-      awayTeamName: 'Team F',
-      round: 1,
-      matchNumber: 3,
-    },
-    {
-      homeTeamName: 'Team G',
-      awayTeamName: 'Team H',
-      round: 1,
-      matchNumber: 4,
-    },
-    {
-      homeTeamName: 'Winner Match 1',
-      awayTeamName: 'Winner Match 2',
-      round: 2,
-      matchNumber: 5,
-    },
-    {
-      homeTeamName: 'Winner Match 3',
-      awayTeamName: 'Winner Match 4',
-      round: 2,
-      matchNumber: 6,
-    },
-    {
-      homeTeamName: 'Winner Match 5',
-      awayTeamName: 'Winner Match 6',
-      round: 3,
-      matchNumber: 7,
-    },
-  ];
+  const router = useRouter();
+  const [matches, setMatches] = useState(null);
+  const winWidth = typeof window !== 'undefined' && window.innerWidth;
+
+  const handleBracketDisplay = async () => {
+    const { bracket_id } = router.query;
+
+    try {
+      const { allMatches } = await getBracket(bracket_id);
+
+      setMatches(allMatches);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to get bracket data'));
+    }
+  };
+
+  const handleMatchDisplay = (match) => {
+    const { awayTeamName, awayTeamScore, homeTeamName, homeTeamScore } = match;
+
+    console.log(
+      `${homeTeamName} vs ${awayTeamName} (${homeTeamScore} - ${awayTeamScore})`
+    );
+  };
+
+  const handleVotes = (match, team) => {
+    const teamName = match[`${team}TeamName`];
+    const teamId = match[`${team}TeamId`];
+    const score = match[`${team}TeamScore`];
+
+    console.log(`${teamName} - id: ${teamId} - score: ${score}`);
+  };
+
+  useEffect(() => {
+    if (Object.keys(router.query).length) {
+      handleBracketDisplay();
+    }
+  }, [router.query]);
 
   return (
     <>
       <Metadata
-        title="View Leagues"
+        title="Bracket"
         description="View all the Leagues that you are participating in. You can view your specific team for the league, view the specific weeks matchup, and all league details"
       />
-      <div>
-        <TournamentBracket matches={matches} width={900} />
-      </div>
+      {matches && (
+        <div>
+          <TournamentBracket
+            matches={matches}
+            width={winWidth - 30}
+            height={1100}
+            disableStrictBracketSizing={true}
+            hidePKs={true}
+            orientation="portrait"
+            onSelectMatch={(match) => handleMatchDisplay(match)}
+            onSelectTeam={(match, team) => handleVotes(match, team)}
+          />
+        </div>
+      )}
     </>
   );
 };

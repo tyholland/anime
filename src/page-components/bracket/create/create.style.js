@@ -9,11 +9,16 @@ export const $BracketCreateSection = styled.div`
   border-bottom: 1px solid ${COLOR_BLACK};
   padding-bottom: 1%;
   margin: 0 auto 1%;
+
+  .space {
+    width: 10%;
+  }
 `;
 
 export const $BracketCreatePlayer = styled.div`
   display: flex;
   align-items: center;
+  width: 40%;
 
   > button {
     text-overflow: ellipsis;

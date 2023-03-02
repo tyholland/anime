@@ -12,6 +12,7 @@ const ChangeCharacters = ({
   setPlayerList,
   playerList,
   field,
+  isBracket = false,
 }) => {
   const customStyles = {
     content: {
@@ -34,8 +35,11 @@ const ChangeCharacters = ({
       styles={customStyles}
     >
       <$GlobalContainer className="grid leagueCharacter">
-        <div>Remaining Points: {playerList.userPoints}</div>
-        <div>Click on any character you want to change with</div>
+        {!isBracket && <div>Remaining Points: {playerList.userPoints}</div>}
+        <div>
+          Click on any character you want to{' '}
+          {isBracket ? 'add.' : 'change with.'}
+        </div>
         <Players
           data={players}
           changeRoster={true}

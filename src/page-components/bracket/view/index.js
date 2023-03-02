@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
-import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
 import {
@@ -73,7 +72,6 @@ const ViewBrackets = () => {
       {!account && <NotUser />}
       {account && (
         <>
-          <BackLink />
           <$GlobalContainer>
             <$GlobalTitle>All Brackets</$GlobalTitle>
             {isLoading && <Loader />}

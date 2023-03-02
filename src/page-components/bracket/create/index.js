@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  $GlobalContainer,
-  $GlobalTitle,
-  $GlobalSubTitle,
-} from 'Styles/global.style.js';
+import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
 import Button from 'Components/button';
 import {
   $BracketCreateSection,
@@ -184,9 +180,12 @@ const BracketCreate = () => {
   const handleAllPlayers = async () => {
     try {
       const allCharacters = await getPlayers();
+      const players = allCharacters.filter(
+        (char) => char.category !== 'Battlefield'
+      );
 
-      setPlayers(allCharacters);
-      setAllPlayers(allCharacters);
+      setPlayers(players);
+      setAllPlayers(players);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get all characters'));
       setErrorPage(true);
@@ -322,9 +321,8 @@ const BracketCreate = () => {
           <$GlobalContainer>
             <$GlobalTitle>Create your Bracket</$GlobalTitle>
             <$BracketCreateWrapper>
-              <$GlobalSubTitle>Round 1</$GlobalSubTitle>
               <$BracketCreateSection>
-                <div>Game 1</div>
+                <div className="space">Game 1</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player1.name}
@@ -333,7 +331,13 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player1')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
+                <div className="space">vs</div>
+                <$BracketCreatePlayer>
+                  <div>Bye</div>
+                </$BracketCreatePlayer>
+              </$BracketCreateSection>
+              <$BracketCreateSection>
+                <div className="space">Game 2</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player2.name}
@@ -342,9 +346,7 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player2')}</div>
                 </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div>Game 2</div>
+                <div className="space">vs</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player3.name}
@@ -353,7 +355,9 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player3')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
+              </$BracketCreateSection>
+              <$BracketCreateSection>
+                <div className="space">Game 3</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player4.name}
@@ -362,9 +366,7 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player4')}</div>
                 </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div>Game 3</div>
+                <div className="space">vs</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player5.name}
@@ -373,7 +375,9 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player5')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
+              </$BracketCreateSection>
+              <$BracketCreateSection>
+                <div className="space">Game 4</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player6.name}
@@ -382,9 +386,7 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player6')}</div>
                 </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div>Game 4</div>
+                <div className="space">vs</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player7.name}
@@ -393,7 +395,9 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player7')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
+              </$BracketCreateSection>
+              <$BracketCreateSection>
+                <div className="space">Game 5</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player8.name}
@@ -402,9 +406,7 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player8')}</div>
                 </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div>Game 5</div>
+                <div className="space">vs</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player9.name}
@@ -413,7 +415,9 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player9')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
+              </$BracketCreateSection>
+              <$BracketCreateSection>
+                <div className="space">Game 6</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player10.name}
@@ -422,9 +426,7 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player10')}</div>
                 </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div>Game 6</div>
+                <div className="space">vs</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player11.name}
@@ -433,7 +435,9 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player11')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
+              </$BracketCreateSection>
+              <$BracketCreateSection>
+                <div className="space">Game 7</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player12.name}
@@ -442,9 +446,13 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player12')}</div>
                 </$BracketCreatePlayer>
+                <div className="space">vs</div>
+                <$BracketCreatePlayer>
+                  <div>Bye</div>
+                </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
-                <div>Game 7</div>
+                <div className="space">Game 8</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player13.name}
@@ -453,7 +461,13 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player13')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
+                <div className="space">vs</div>
+                <$BracketCreatePlayer>
+                  <div>Bye</div>
+                </$BracketCreatePlayer>
+              </$BracketCreateSection>
+              <$BracketCreateSection>
+                <div className="space">Game 9</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player14.name}
@@ -462,9 +476,7 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player14')}</div>
                 </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div>Game 8</div>
+                <div className="space">vs</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player15.name}
@@ -473,7 +485,9 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player15')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
+              </$BracketCreateSection>
+              <$BracketCreateSection>
+                <div className="space">Game 10</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player16.name}
@@ -482,12 +496,7 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player16')}</div>
                 </$BracketCreatePlayer>
-              </$BracketCreateSection>
-            </$BracketCreateWrapper>
-            <$BracketCreateWrapper>
-              <$GlobalSubTitle>Round 2</$GlobalSubTitle>
-              <$BracketCreateSection>
-                <div>Game 9</div>
+                <div className="space">vs</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player17.name}
@@ -496,13 +505,9 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player17')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
-                <$BracketCreatePlayer>
-                  <div>Game 1 winner</div>
-                </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
-                <div>Game 10</div>
+                <div className="space">Game 11</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player18.name}
@@ -511,13 +516,7 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player18')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
-                <$BracketCreatePlayer>
-                  <div>Game 2 winner</div>
-                </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div>Game 11</div>
+                <div className="space">vs</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player19.name}
@@ -526,13 +525,9 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player19')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
-                <$BracketCreatePlayer>
-                  <div>Game 3 winner</div>
-                </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
-                <div>Game 12</div>
+                <div className="space">Game 12</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player20.name}
@@ -541,13 +536,7 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player20')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
-                <$BracketCreatePlayer>
-                  <div>Game 4 winner</div>
-                </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div>Game 13</div>
+                <div className="space">vs</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player21.name}
@@ -556,13 +545,9 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player21')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
-                <$BracketCreatePlayer>
-                  <div>Game 5 winner</div>
-                </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
-                <div>Game 14</div>
+                <div className="space">Game 13</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player22.name}
@@ -571,13 +556,7 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player22')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
-                <$BracketCreatePlayer>
-                  <div>Game 6 winner</div>
-                </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div>Game 15</div>
+                <div className="space">vs</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player23.name}
@@ -586,13 +565,9 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player23')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
-                <$BracketCreatePlayer>
-                  <div>Game 7 winner</div>
-                </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
-                <div>Game 16</div>
+                <div className="space">Game 14</div>
                 <$BracketCreatePlayer>
                   <Button
                     btnText={playerList.player24.name}
@@ -601,9 +576,9 @@ const BracketCreate = () => {
                   />
                   <div className="actionBtn">{handleBtn('player24')}</div>
                 </$BracketCreatePlayer>
-                <div>vs</div>
+                <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <div>Game 8 winner</div>
+                  <div>Bye</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
             </$BracketCreateWrapper>
@@ -623,6 +598,7 @@ const BracketCreate = () => {
               setPlayerList={updatePlayers}
               playerList={playerList}
               field={field}
+              isBracket={true}
             />
             <ReadMore />
           </$GlobalContainer>
