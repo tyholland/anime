@@ -5,11 +5,22 @@ import { getBracket } from 'src/requests/bracket';
 import { useRouter } from 'next/router';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
+import { useAppContext } from 'src/hooks/context';
+import { addVotes } from 'src/requests/bracket';
+import { $BracketWrapper } from './bracket.style';
 
 const Bracket = () => {
   const router = useRouter();
+  const { currentUser } = useAppContext();
   const [matches, setMatches] = useState(null);
-  const winWidth = typeof window !== 'undefined' && window.innerWidth;
+  const [winWidth, setWinWidth] = useState(0);
+
+  if (typeof window !== 'undefined') {
+    if (!winWidth) {
+      setWinWidth(window.innerWidth);
+    }
+    window.onresize = () => setWinWidth(window.innerWidth);
+  }
 
   const handleBracketDisplay = async () => {
     const { bracket_id } = router.query;
@@ -31,19 +42,33 @@ const Bracket = () => {
     );
   };
 
-  const handleVotes = (match, team) => {
-    const teamName = match[`${team}TeamName`];
-    const teamId = match[`${team}TeamId`];
+  const handleVotes = async (match, team) => {
+    const playerId = match[`${team}TeamId`];
     const score = match[`${team}TeamScore`];
+    const payload = {
+      voteId: match.voteId,
+      votedFor: playerId,
+      playerCount: team === 'home' ? 'player_a_count' : 'player_b_count',
+    };
 
-    console.log(`${teamName} - id: ${teamId} - score: ${score}`);
+    try {
+      await addVotes(payload, currentUser?.token);
+
+      const updateMatch = matches.findIndex(
+        (obj) => obj.matchNumber == match.matchNumber
+      );
+
+      matches[updateMatch][`${team}TeamScore`] = score + 1;
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to add votes'));
+    }
   };
 
   useEffect(() => {
-    if (Object.keys(router.query).length) {
+    if (Object.keys(router.query).length && !matches) {
       handleBracketDisplay();
     }
-  }, [router.query]);
+  }, [router.query, winWidth]);
 
   return (
     <>
@@ -52,18 +77,18 @@ const Bracket = () => {
         description="View all the Leagues that you are participating in. You can view your specific team for the league, view the specific weeks matchup, and all league details"
       />
       {matches && (
-        <div>
+        <$BracketWrapper>
           <TournamentBracket
             matches={matches}
             width={winWidth > 1200 ? 1170 : winWidth - 30}
-            height={1100}
+            height={1200}
             disableStrictBracketSizing={true}
             hidePKs={true}
             orientation={winWidth < 900 ? 'portrait' : 'landscape'}
             onSelectMatch={(match) => handleMatchDisplay(match)}
             onSelectTeam={(match, team) => handleVotes(match, team)}
           />
-        </div>
+        </$BracketWrapper>
       )}
     </>
   );
