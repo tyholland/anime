@@ -55,11 +55,11 @@ const Bracket = () => {
         <div>
           <TournamentBracket
             matches={matches}
-            width={winWidth - 30}
+            width={winWidth > 1200 ? 1170 : winWidth - 30}
             height={1100}
             disableStrictBracketSizing={true}
             hidePKs={true}
-            orientation="portrait"
+            orientation={winWidth < 900 ? 'portrait' : 'landscape'}
             onSelectMatch={(match) => handleMatchDisplay(match)}
             onSelectTeam={(match, team) => handleVotes(match, team)}
           />
