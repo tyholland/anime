@@ -324,11 +324,7 @@ const BracketCreate = () => {
               <$BracketCreateSection>
                 <div className="space">Game 1</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player1.name}
-                    redirect={`/bio?character=${playerList.player1.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player1.name}</div>
                   <div className="actionBtn">{handleBtn('player1')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
@@ -339,111 +335,67 @@ const BracketCreate = () => {
               <$BracketCreateSection>
                 <div className="space">Game 2</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player2.name}
-                    redirect={`/bio?character=${playerList.player2.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player2.name}</div>
                   <div className="actionBtn">{handleBtn('player2')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player3.name}
-                    redirect={`/bio?character=${playerList.player3.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player3.name}</div>
                   <div className="actionBtn">{handleBtn('player3')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Game 3</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player4.name}
-                    redirect={`/bio?character=${playerList.player4.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player4.name}</div>
                   <div className="actionBtn">{handleBtn('player4')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player5.name}
-                    redirect={`/bio?character=${playerList.player5.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player5.name}</div>
                   <div className="actionBtn">{handleBtn('player5')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Game 4</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player6.name}
-                    redirect={`/bio?character=${playerList.player6.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player6.name}</div>
                   <div className="actionBtn">{handleBtn('player6')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player7.name}
-                    redirect={`/bio?character=${playerList.player7.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player7.name}</div>
                   <div className="actionBtn">{handleBtn('player7')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Game 5</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player8.name}
-                    redirect={`/bio?character=${playerList.player8.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player8.name}</div>
                   <div className="actionBtn">{handleBtn('player8')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player9.name}
-                    redirect={`/bio?character=${playerList.player9.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player9.name}</div>
                   <div className="actionBtn">{handleBtn('player9')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Game 6</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player10.name}
-                    redirect={`/bio?character=${playerList.player10.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player10.name}</div>
                   <div className="actionBtn">{handleBtn('player10')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player11.name}
-                    redirect={`/bio?character=${playerList.player11.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player11.name}</div>
                   <div className="actionBtn">{handleBtn('player11')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Game 7</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player12.name}
-                    redirect={`/bio?character=${playerList.player12.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player12.name}</div>
                   <div className="actionBtn">{handleBtn('player12')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
@@ -454,11 +406,7 @@ const BracketCreate = () => {
               <$BracketCreateSection>
                 <div className="space">Game 8</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player13.name}
-                    redirect={`/bio?character=${playerList.player13.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player13.name}</div>
                   <div className="actionBtn">{handleBtn('player13')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
@@ -469,111 +417,67 @@ const BracketCreate = () => {
               <$BracketCreateSection>
                 <div className="space">Game 9</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player14.name}
-                    redirect={`/bio?character=${playerList.player14.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player14.name}</div>
                   <div className="actionBtn">{handleBtn('player14')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player15.name}
-                    redirect={`/bio?character=${playerList.player15.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player15.name}</div>
                   <div className="actionBtn">{handleBtn('player15')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Game 10</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player16.name}
-                    redirect={`/bio?character=${playerList.player16.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player16.name}</div>
                   <div className="actionBtn">{handleBtn('player16')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player17.name}
-                    redirect={`/bio?character=${playerList.player17.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player17.name}</div>
                   <div className="actionBtn">{handleBtn('player17')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Game 11</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player18.name}
-                    redirect={`/bio?character=${playerList.player18.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player18.name}</div>
                   <div className="actionBtn">{handleBtn('player18')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player19.name}
-                    redirect={`/bio?character=${playerList.player19.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player19.name}</div>
                   <div className="actionBtn">{handleBtn('player19')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Game 12</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player20.name}
-                    redirect={`/bio?character=${playerList.player20.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player20.name}</div>
                   <div className="actionBtn">{handleBtn('player20')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player21.name}
-                    redirect={`/bio?character=${playerList.player21.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player21.name}</div>
                   <div className="actionBtn">{handleBtn('player21')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Game 13</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player22.name}
-                    redirect={`/bio?character=${playerList.player22.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player22.name}</div>
                   <div className="actionBtn">{handleBtn('player22')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player23.name}
-                    redirect={`/bio?character=${playerList.player23.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player23.name}</div>
                   <div className="actionBtn">{handleBtn('player23')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Game 14</div>
                 <$BracketCreatePlayer>
-                  <Button
-                    btnText={playerList.player24.name}
-                    redirect={`/bio?character=${playerList.player24.id}`}
-                    customBtnClass="text edit"
-                  />
+                  <div>{playerList.player24.name}</div>
                   <div className="actionBtn">{handleBtn('player24')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>

@@ -18,7 +18,8 @@ export const $BracketCreateSection = styled.div`
 export const $BracketCreatePlayer = styled.div`
   display: flex;
   align-items: center;
-  width: 40%;
+  width: 33%;
+  justify-content: space-between;
 
   > button {
     text-overflow: ellipsis;
