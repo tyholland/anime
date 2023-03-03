@@ -11,6 +11,7 @@ import { $BracketWrapper, $BracketContainer } from './bracket.style';
 import SocialMedia from 'Components/social-media';
 import Notification from 'src/modals/notification';
 import { $GlobalTitle } from 'Styles/global.style';
+import Error from 'PageComponents/error';
 
 const Bracket = () => {
   const router = useRouter();
@@ -19,6 +20,7 @@ const Bracket = () => {
   const [winWidth, setWinWidth] = useState(0);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState(null);
+  const [errorPage, setErrorPage] = useState(null);
   let pathname = '';
 
   if (typeof window !== 'undefined') {
@@ -43,6 +45,7 @@ const Bracket = () => {
       setMatches(allMatches);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get bracket data'));
+      setErrorPage(true);
     }
   };
 
@@ -98,6 +101,10 @@ const Bracket = () => {
       handleBracketDisplay();
     }
   }, [router.query, winWidth]);
+
+  if (errorPage) {
+    return <Error />;
+  }
 
   return (
     <>
