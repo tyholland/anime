@@ -70,6 +70,7 @@ export const $GlobalContainer = styled.div`
   &.invalid {
     flex-direction: column;
     padding: 2%;
+    min-height: 0;
 
     button {
       margin-left: 0;
@@ -196,6 +197,16 @@ export const $GlobalTitle = styled.div`
 
   ${RESPONSIVE_VIEW} {
     font-size: calc(100% + 8px);
+  }
+
+  &.bracket {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      margin: 0 0 0 3%;
+    }
   }
 `;
 

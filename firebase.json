@@ -118,6 +118,10 @@
       {
         "source": "/bracket/view",
         "destination": "/bracket/view.html"
+      },
+      {
+        "source": "/bracket",
+        "destination": "/bracket.html"
       }
     ]
   }

@@ -66,14 +66,22 @@ const ViewBrackets = () => {
   return (
     <>
       <Metadata
-        title="View Leagues"
-        description="View all the Leagues that you are participating in. You can view your specific team for the league, view the specific weeks matchup, and all league details"
+        title="View Brackets"
+        description="View all your brackets that you have created. Also decide to create a new bracket. Never can have enough brackets."
       />
       {!account && <NotUser />}
       {account && (
         <>
           <$GlobalContainer>
-            <$GlobalTitle>All Brackets</$GlobalTitle>
+            <$GlobalTitle className="bracket">
+              All Brackets
+              <Button
+                btnText="Add New"
+                btnColor="secondary"
+                redirect="/bracket/create"
+                customBtnClass="small"
+              />
+            </$GlobalTitle>
             {isLoading && <Loader />}
             {!!bracketList?.length && !isLoading && bracketList}
             {!bracketList?.length && !isLoading && (

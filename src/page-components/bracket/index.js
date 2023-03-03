@@ -7,20 +7,32 @@ import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import { useAppContext } from 'src/hooks/context';
 import { addVotes } from 'src/requests/bracket';
-import { $BracketWrapper } from './bracket.style';
+import { $BracketWrapper, $BracketContainer } from './bracket.style';
+import SocialMedia from 'Components/social-media';
+import Notification from 'src/modals/notification';
+import { $GlobalTitle } from 'Styles/global.style';
 
 const Bracket = () => {
   const router = useRouter();
   const { currentUser } = useAppContext();
   const [matches, setMatches] = useState(null);
   const [winWidth, setWinWidth] = useState(0);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalMsg, setModalMsg] = useState(null);
+  let pathname = '';
 
   if (typeof window !== 'undefined') {
+    pathname = window.location.href;
+
     if (!winWidth) {
       setWinWidth(window.innerWidth);
     }
     window.onresize = () => setWinWidth(window.innerWidth);
   }
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   const handleBracketDisplay = async () => {
     const { bracket_id } = router.query;
@@ -35,11 +47,18 @@ const Bracket = () => {
   };
 
   const handleMatchDisplay = (match) => {
-    const { awayTeamName, awayTeamScore, homeTeamName, homeTeamScore } = match;
+    const {
+      awayTeamName,
+      awayTeamScore,
+      homeTeamName,
+      homeTeamScore,
+      matchNumber,
+    } = match;
 
-    console.log(
-      `${homeTeamName} vs ${awayTeamName} (${homeTeamScore} - ${awayTeamScore})`
-    );
+    const message = `Matchup #${matchNumber} between ${homeTeamName} and ${awayTeamName}. ${homeTeamName} has ${homeTeamScore} votes. ${awayTeamName} has ${awayTeamScore} votes.`;
+
+    setModalMsg(message);
+    setModalIsOpen(true);
   };
 
   const handleVotes = async (match, team) => {
@@ -51,6 +70,14 @@ const Bracket = () => {
       playerCount: team === 'home' ? 'player_a_count' : 'player_b_count',
     };
 
+    if (!match.voteId) {
+      setModalMsg(
+        `Round ${match.round} has not started yet. Voting is disabled until the round ${match.round} starts`
+      );
+      setModalIsOpen(true);
+      return;
+    }
+
     try {
       await addVotes(payload, currentUser?.token);
 
@@ -61,6 +88,8 @@ const Bracket = () => {
       matches[updateMatch][`${team}TeamScore`] = score + 1;
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to add votes'));
+      setModalMsg(err.response.data.message);
+      setModalIsOpen(true);
     }
   };
 
@@ -74,22 +103,42 @@ const Bracket = () => {
     <>
       <Metadata
         title="Bracket"
-        description="View all the Leagues that you are participating in. You can view your specific team for the league, view the specific weeks matchup, and all league details"
+        description="Your ABZ Bracket shows all the head-to-head matchups that you want people to vote on. Share your bracket will all your friends or on your social media accounts."
       />
-      {matches && (
-        <$BracketWrapper>
-          <TournamentBracket
-            matches={matches}
-            width={winWidth > 1200 ? 1170 : winWidth - 30}
-            height={1200}
-            disableStrictBracketSizing={true}
-            hidePKs={true}
-            orientation={winWidth < 900 ? 'portrait' : 'landscape'}
-            onSelectMatch={(match) => handleMatchDisplay(match)}
-            onSelectTeam={(match, team) => handleVotes(match, team)}
-          />
-        </$BracketWrapper>
-      )}
+      <$BracketContainer>
+        <$GlobalTitle>Bracket</$GlobalTitle>
+        {matches && (
+          <>
+            <$BracketWrapper>
+              <TournamentBracket
+                matches={matches}
+                width={winWidth > 1200 ? 1170 : winWidth - 30}
+                height={1200}
+                disableStrictBracketSizing={true}
+                hidePKs={true}
+                orientation={winWidth < 900 ? 'portrait' : 'landscape'}
+                onSelectMatch={(match) => handleMatchDisplay(match)}
+                onSelectTeam={(match, team) => handleVotes(match, team)}
+              />
+            </$BracketWrapper>
+            <$BracketWrapper>
+              <SocialMedia
+                pageTitle="ABZ Bracket"
+                title="Anime Bracket matchups"
+                description="Bracket features some great anime head-to-head matchups"
+                singleHashtag="#abzBracket"
+                pluralHashtags={['abz', 'abzBracket', 'animebrothaz']}
+                url={pathname}
+              />
+            </$BracketWrapper>
+            <Notification
+              message={modalMsg}
+              closeModal={closeModal}
+              modalIsOpen={modalIsOpen}
+            />
+          </>
+        )}
+      </$BracketContainer>
     </>
   );
 };
