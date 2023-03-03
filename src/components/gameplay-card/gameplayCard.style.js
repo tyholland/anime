@@ -31,7 +31,7 @@ export const $GameplayCardTitle = styled.div`
 
 export const $GameplayCardHeader = styled.div`
   font-size: 16px;
-  margin-bottom: 10px;
+  margin: 5% 0;
   font-weight: ${FONT_WEIGHT_BOLD};
 `;
 

@@ -10,88 +10,81 @@ import {
 const Affinities = () => {
   return (
     <$GameplayCardContainer>
+      <div>
+        <strong>Affinities</strong>: Fire, Water, Earth, Wind, Arcane, Darkness,
+        Celestial, Ice, Eletric, No Affinity
+      </div>
+      <div>
+        <strong>Affinities Combos</strong>: Wind & Water, Darkness & Ice, Arcane
+        & Fire
+      </div>
       <$GameplayCardWrapper>
         <div>
           <$GameplayCardHeader>Regular Season</$GameplayCardHeader>
           <$GameplayCardSection>
             <$GameplayCardTitle className="bold">
-              Week 1 - Fire
+              Week 1 - Random Affinity or Combo
             </$GameplayCardTitle>
-            <div>Power Boost: 250%</div>
           </$GameplayCardSection>
           <$GameplayCardSection>
             <$GameplayCardTitle className="bold">
-              Week 2 - Water
+              Week 2 - Random Affinity or Combo
             </$GameplayCardTitle>
-            <div>Power Boost: 300%</div>
           </$GameplayCardSection>
           <$GameplayCardSection>
             <$GameplayCardTitle className="bold">
-              Week 3 - Earth
+              Week 3 - Random Affinity or Combo
             </$GameplayCardTitle>
-            <div>Power Boost: 300%</div>
           </$GameplayCardSection>
           <$GameplayCardSection>
             <$GameplayCardTitle className="bold">
-              Week 4 - Wind
+              Week 4 - Random Affinity or Combo
             </$GameplayCardTitle>
-            <div>Power Boost: 250%</div>
           </$GameplayCardSection>
           <$GameplayCardSection>
             <$GameplayCardTitle className="bold">
-              Week 5 - Arcane
+              Week 5 - Random Affinity or Combo
             </$GameplayCardTitle>
-            <div>Power Boost: 200%</div>
           </$GameplayCardSection>
           <$GameplayCardSection>
             <$GameplayCardTitle className="bold">
-              Week 6 - Darkness
+              Week 6 - Random Affinity or Combo
             </$GameplayCardTitle>
-            <div>Power Boost: 250%</div>
           </$GameplayCardSection>
           <$GameplayCardSection>
             <$GameplayCardTitle className="bold">
-              Week 7 - Celestial
+              Week 7 - Random Affinity or Combo
             </$GameplayCardTitle>
-            <div>Power Boost: 300%</div>
           </$GameplayCardSection>
           <$GameplayCardSection>
             <$GameplayCardTitle className="bold">
-              Week 8 - Ice
+              Week 8 - Random Affinity or Combo
             </$GameplayCardTitle>
-            <div>Power Boost: 300%</div>
           </$GameplayCardSection>
           <$GameplayCardSection>
             <$GameplayCardTitle className="bold">
-              Week 9 - Electric
+              Week 9 - Random Affinity or Combo
             </$GameplayCardTitle>
-            <div>Power Boost: 250%</div>
           </$GameplayCardSection>
         </div>
         <div>
           <$GameplayCardHeader>Playoffs (first round)</$GameplayCardHeader>
           <$GameplayCardSection className="indent">
             <$GameplayCardTitle className="bold">
-              Week 10 - Hurricane
+              Week 10 - Random Affinity or Combo
             </$GameplayCardTitle>
-            <div>Wind Boost: 250%</div>
-            <div>Water Boost: 300%</div>
           </$GameplayCardSection>
           <$GameplayCardHeader>Semi-Finals (second round)</$GameplayCardHeader>
           <$GameplayCardSection className="indent">
             <$GameplayCardTitle className="bold">
-              Week 11 - ShadowFrost
+              Week 11 - Random Affinity or Combo
             </$GameplayCardTitle>
-            <div>Darkness Boost: 250%</div>
-            <div>Ice Boost: 300%</div>
           </$GameplayCardSection>
           <$GameplayCardHeader>Finals</$GameplayCardHeader>
           <$GameplayCardSection className="indent">
             <$GameplayCardTitle className="bold">
-              Week 12 - Mana Blaze
+              Week 12 - Random Affinity or Combo
             </$GameplayCardTitle>
-            <div>Arcane Boost: 200%</div>
-            <div>Fire Boost: 250%</div>
           </$GameplayCardSection>
         </div>
       </$GameplayCardWrapper>
