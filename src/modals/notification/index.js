@@ -26,7 +26,7 @@ const Notification = ({ message, modalIsOpen, closeModal }) => {
       closeModal={closeModal}
       styles={customStyles}
     >
-      <$GlobalContainer className="grid invalid">
+      <$GlobalContainer className="invalid">
         <$NotificationMsg>{message}</$NotificationMsg>
         <Button
           btnFunction={closeModal}

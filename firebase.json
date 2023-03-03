@@ -110,6 +110,18 @@
       {
         "source": "/podcast",
         "destination": "/podcast.html"
+      },
+      {
+        "source": "/bracket/create",
+        "destination": "/bracket/create.html"
+      },
+      {
+        "source": "/bracket/view",
+        "destination": "/bracket/view.html"
+      },
+      {
+        "source": "/bracket",
+        "destination": "/bracket.html"
       }
     ]
   }

@@ -41,10 +41,10 @@ export const $GlobalStyles = createGlobalStyle`
 export const $GlobalContainer = styled.div`
   padding: 2%;
   position: relative;
+  min-height: 70vh;
 
   ${RESPONSIVE_VIEW} {
     padding: 5% 3%;
-    min-height: 70vh;
   }
 
   &.grid {
@@ -70,6 +70,7 @@ export const $GlobalContainer = styled.div`
   &.invalid {
     flex-direction: column;
     padding: 2%;
+    min-height: 0;
 
     button {
       margin-left: 0;
@@ -83,7 +84,7 @@ export const $GlobalContainer = styled.div`
     &::before {
       content: " ";
       background-image: url(/assets/background/itachi.jpg);
-      background-size: cover;
+      background-size: 100% 100%;
       background-repeat: no-repeat;
       position: absolute;
       top: 0px;
@@ -91,10 +92,9 @@ export const $GlobalContainer = styled.div`
       bottom: 0px;
       left: 0px;
       filter: grayscale(100%);
-      min-height: 100vh;
+      min-height: 0;
 
       ${RESPONSIVE_VIEW} {
-        min-height: 0;
         background-size: 100% 100%;
       }
     }
@@ -197,6 +197,16 @@ export const $GlobalTitle = styled.div`
 
   ${RESPONSIVE_VIEW} {
     font-size: calc(100% + 8px);
+  }
+
+  &.bracket {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      margin: 0 0 0 3%;
+    }
   }
 `;
 

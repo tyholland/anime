@@ -189,8 +189,8 @@ const Bio = () => {
                     ))}
                   </$BioAffinity>
                   <div>
-                    Damage is given to characters that have one of the same
-                    affinities as a weakness.
+                    Damage is given to characters that have at least one of
+                    these affinities as a weakness.
                   </div>
                 </>
               )}
@@ -206,7 +206,7 @@ const Bio = () => {
                     ))}
                   </$BioAffinity>
                   <div>
-                    Boost is given to characters that have one or all the same
+                    Boost is given to characters that have one or all of these
                     affinities.
                   </div>
                 </>
@@ -222,17 +222,10 @@ const Bio = () => {
                       </$BioAffinity>
                     ))}
                   </$BioAffinity>
-                  {player.power_loss > 0 && (
-                    <>
-                      <$BioAttribute>Damages these weaknesses:</$BioAttribute>
-                      <$BioAffinity className="down">
-                        <$BioAffinity className="right">
-                          <$GlobalCircle className="noAffinity"></$GlobalCircle>
-                          <$BioAffinityText>No Affinity</$BioAffinityText>
-                        </$BioAffinity>
-                      </$BioAffinity>
-                    </>
-                  )}
+                  <div>
+                    Damage is given to characters that have at least one of
+                    these affinities as a weakness.
+                  </div>
                 </>
               )}
             </div>

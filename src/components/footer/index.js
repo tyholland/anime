@@ -37,6 +37,9 @@ const Footer = () => {
             <Link href="/policy">Privacy Policy</Link>
           </div>
           <div>
+            <Link href="/gameplay">Gameplay</Link>
+          </div>
+          <div>
             <Link href="/credits">Photo Credit</Link>
           </div>
         </$FooterLinks>

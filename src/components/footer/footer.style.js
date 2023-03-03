@@ -11,7 +11,7 @@ export const $FooterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: ${COLOR_ORANGE};
-  padding: 5%;
+  padding: 4% 5% 2%;
   align-items: flex-start;
 
   ${MOBILE_VIEW} {

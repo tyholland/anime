@@ -49,8 +49,8 @@ const Header = () => {
             customBtnClass="small header text"
           />
           <Button
-            btnText="Gameplay"
-            redirect="/gameplay"
+            btnText="Bracket"
+            redirect="/bracket/view"
             customBtnClass="small header text"
           />
           <Button

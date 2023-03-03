@@ -12,7 +12,10 @@ const Home = () => {
         <$GlobalTitle className="home">Anime Fantasy League</$GlobalTitle>
         <$GlobalContainer>
           <div className="buttonGrid">
-            <SelectionCard btnText="Gameplay" redirect="/gameplay" />
+            <SelectionCard
+              btnText="Create Bracket"
+              redirect="/bracket/create"
+            />
             <SelectionCard btnText="Join a League" redirect="/league/join" />
             <SelectionCard btnText="Character List" redirect="/characters" />
             <SelectionCard btnText="Matchup Voting" redirect="/matchup/all" />
