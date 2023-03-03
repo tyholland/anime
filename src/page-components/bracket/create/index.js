@@ -282,6 +282,10 @@ const BracketCreate = () => {
       );
       setPlayerList(emptyPlayersList);
 
+      addEvent('Create Bracket', {
+        bracketId,
+      });
+
       router.push(`/bracket?bracket_id=${bracketId}`);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to create bracket'));

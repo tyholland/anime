@@ -89,6 +89,11 @@ const Bracket = () => {
       );
 
       matches[updateMatch][`${team}TeamScore`] = score + 1;
+
+      addEvent('Bracket Voting', {
+        votedFor: match[`${team}TeamName`],
+        totalVotes: score + 1,
+      });
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to add votes'));
       setModalMsg(err.response.data.message);
