@@ -63,18 +63,50 @@ const Schedule = () => {
           <BackLink />
           <$GlobalContainer className="grid schedule">
             {games?.map((game) => {
-              const { week, teamA, teamB, scoreA, scoreB } = game;
+              const { week, teamA, teamB, scoreA, scoreB, match } = game;
+              const activeGames = games.filter(
+                (match) => match.scoreA !== 0 && match.scoreB !== 0
+              );
+              const isOldWeek = activeGames.length > week;
+              const highlight = activeGames.length >= week;
+
+              const isWinner = (team) => {
+                const winner =
+                  team === teamA ? scoreA > scoreB : scoreB > scoreA;
+
+                return isOldWeek ? winner : false;
+              };
+
+              const handleClick = () => {
+                if (!highlight) {
+                  return;
+                }
+
+                router.push(`/matchup?matchup_id=${match}`);
+              };
 
               return (
-                <$ScheduleWrapper key={week}>
+                <$ScheduleWrapper
+                  key={week}
+                  className={!highlight && 'noHighlight'}
+                  onClick={handleClick}
+                >
                   <div>Week {week}:</div>
                   <$ScheduleTeamContainer>
                     <$ScheduleTeamSection>
-                      <$ScheduleTeamName>{teamA}</$ScheduleTeamName>
+                      <$ScheduleTeamName
+                        className={isWinner(teamA) && 'winner'}
+                      >
+                        {teamA}
+                      </$ScheduleTeamName>
                       <div>{scoreA}</div>
                     </$ScheduleTeamSection>
                     <$ScheduleTeamSection>
-                      <$ScheduleTeamName>{teamB}</$ScheduleTeamName>
+                      <$ScheduleTeamName
+                        className={isWinner(teamB) && 'winner'}
+                      >
+                        {teamB}
+                      </$ScheduleTeamName>
                       <div>{scoreB}</div>
                     </$ScheduleTeamSection>
                   </$ScheduleTeamContainer>

@@ -13,6 +13,7 @@ export const COLOR_BLACK_DISABLED = '#00000010';
 export const COLOR_GREY = '#CDCDCD';
 export const COLOR_GREY_LIGHT = '#CDCDCD80';
 export const COLOR_BLUE = 'rgb(27, 5, 246)';
+export const COLOR_BLUE_HOVER = '#0066cc';
 export const FONT_WEIGHT_BOLD = '700';
 export const FONT_WEIGHT_NORMAL = '400';
 

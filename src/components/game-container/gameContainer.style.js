@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import {
   COLOR_BLACK,
+  COLOR_BLUE_HOVER,
+  COLOR_WHITE,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
   RESPONSIVE_VIEW,
 } from 'Styles/global.style';
 
-export const $GameContainerWrapper = styled.div`
+export const $GameContainerWrapper = styled.button`
   margin-bottom: 2%;
   padding: 2%;
   display: flex;
@@ -15,6 +17,12 @@ export const $GameContainerWrapper = styled.div`
   width: 50%;
   border: 1px solid ${COLOR_BLACK};
   border-radius: 10px;
+  background: ${COLOR_WHITE};
+
+  &:hover {
+    color: ${COLOR_BLUE_HOVER};
+    font-weight: ${FONT_WEIGHT_BOLD};
+  }
 
   ${RESPONSIVE_VIEW} {
     width: 65%;
@@ -37,6 +45,7 @@ export const $GameContainerTeamContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  font-size: 16px;
 `;
 
 export const $GameContainerTeamName = styled.div`
@@ -44,6 +53,7 @@ export const $GameContainerTeamName = styled.div`
   white-space: nowrap;
   overflow: hidden;
   width: 300px;
+  text-align: left;
 
   ${RESPONSIVE_VIEW} {
     width: 250px;

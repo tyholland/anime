@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {
   COLOR_BLACK,
-  COLOR_BLUE,
+  COLOR_BLUE_HOVER,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
 } from 'Styles/global.style';
@@ -23,7 +23,7 @@ export const $TeamContent = styled.div`
 `;
 
 export const $TeamInfoTxt = styled.div`
-  color: ${COLOR_BLUE};
+  color: ${COLOR_BLUE_HOVER};
   text-align: right;
 `;
 

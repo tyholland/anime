@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {
   COLOR_BLACK,
-  COLOR_BLUE,
+  COLOR_BLUE_HOVER,
   COLOR_ORANGE,
   COLOR_ORANGE_LIGHT,
   FONT_WEIGHT_BOLD,
@@ -52,7 +52,7 @@ export const $TeamCardDuoSpace = styled.div`
   }
 
   &.text {
-    color: ${COLOR_BLUE};
+    color: ${COLOR_BLUE_HOVER};
     cursor: pointer;
 
     &:hover {
@@ -124,7 +124,7 @@ export const $TeamCardCharacter = styled.button`
 `;
 
 export const $TeamCardCharacterTxt = styled.div`
-  color: ${COLOR_BLUE};
+  color: ${COLOR_BLUE_HOVER};
 
   ${MOBILE_VIEW} {
     text-overflow: ellipsis;

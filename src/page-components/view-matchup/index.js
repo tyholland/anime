@@ -33,6 +33,7 @@ const ViewMatchup = () => {
   const [votes, setVotes] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
   const [account, setAccount] = useState(null);
+  const [isActive, setIsActive] = useState(null);
   const hasMatchup = !!team1 && !!team2 && !!score1 && !!score2 && !!votes;
 
   const handleMatchupData = async () => {
@@ -41,7 +42,7 @@ const ViewMatchup = () => {
     try {
       const results = await getMatchUp(matchup_id, currentUser?.token);
 
-      const { team_a, team_b, score_a, score_b } = results.matchup;
+      const { team_a, team_b, score_a, score_b, active } = results.matchup;
 
       const team1 = await getMatchupTeam(team_a, currentUser?.token);
       const team2 = await getMatchupTeam(team_b, currentUser?.token);
@@ -51,6 +52,7 @@ const ViewMatchup = () => {
       setScore1(score_a);
       setScore2(score_b);
       setVotes(results.votes);
+      setIsActive(active);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get matchup'));
       setErrorPage(true);
@@ -100,7 +102,13 @@ const ViewMatchup = () => {
                   </$ViewMatchupTeamContent>
                 </$ViewMatchupWrapper>
                 <$ViewMatchupTeamSplit>
-                  <MatchUp isReverse={false} team={team1.team} votes={votes} />
+                  <MatchUp
+                    isReverse={false}
+                    team={team1.team}
+                    votes={votes}
+                    userId={team1.memberId}
+                    isActive={isActive}
+                  />
                   <$ViewMatchupPositionColumn>
                     <$ViewMatchupPositionSection>
                       <$ViewMatchupPosition>C</$ViewMatchupPosition>
@@ -126,7 +134,13 @@ const ViewMatchup = () => {
                       <$ViewMatchupPosition>BF</$ViewMatchupPosition>
                     </$ViewMatchupPositionSection>
                   </$ViewMatchupPositionColumn>
-                  <MatchUp isReverse={true} team={team2.team} votes={votes} />
+                  <MatchUp
+                    isReverse={true}
+                    team={team2.team}
+                    votes={votes}
+                    userId={team2.memberId}
+                    isActive={isActive}
+                  />
                 </$ViewMatchupTeamSplit>
               </>
             )}

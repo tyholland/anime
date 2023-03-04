@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import {
   $GameContainerTeamSection,
@@ -8,10 +9,15 @@ import {
 } from './gameContainer.style';
 
 const GameContainer = ({ game, gameNum = null }) => {
-  const { teamA, teamB, scoreA, scoreB } = game;
+  const { teamA, teamB, scoreA, scoreB, match } = game;
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/matchup?matchup_id=${match}`);
+  };
 
   return (
-    <$GameContainerWrapper key={teamA}>
+    <$GameContainerWrapper key={teamA} onClick={handleClick}>
       <$GameContainerTeamContainer>
         {!!gameNum && <$GameContainerGame>Game {gameNum}</$GameContainerGame>}
         <$GameContainerTeamSection>

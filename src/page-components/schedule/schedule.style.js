@@ -1,14 +1,36 @@
 import styled from 'styled-components';
-import { COLOR_BLACK, MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
+import {
+  COLOR_BLACK,
+  COLOR_BLUE_HOVER,
+  COLOR_WHITE,
+  FONT_WEIGHT_BOLD,
+  MOBILE_VIEW,
+  RESPONSIVE_VIEW,
+} from 'Styles/global.style';
 
-export const $ScheduleWrapper = styled.div`
+export const $ScheduleWrapper = styled.button`
   margin-bottom: 2%;
   padding-bottom: 2%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   width: 50%;
+  border: none;
   border-bottom: 1px solid ${COLOR_BLACK};
+  background: ${COLOR_WHITE};
+
+  > div {
+    font-size: 16px;
+  }
+
+  &:hover {
+    color: ${COLOR_BLUE_HOVER};
+  }
+
+  &.noHighlight:hover {
+    color: ${COLOR_BLACK};
+    cursor: default;
+  }
 
   ${RESPONSIVE_VIEW} {
     width: 65%;
@@ -37,6 +59,7 @@ export const $ScheduleTeamName = styled.div`
   white-space: nowrap;
   overflow: hidden;
   width: 180px;
+  text-align: left;
 
   ${RESPONSIVE_VIEW} {
     width: 150px;
@@ -44,5 +67,9 @@ export const $ScheduleTeamName = styled.div`
 
   ${MOBILE_VIEW} {
     width: 110px;
+  }
+
+  &.winner {
+    font-weight: ${FONT_WEIGHT_BOLD};
   }
 `;

@@ -20,6 +20,8 @@ const CharacterStats = ({
   character,
   votes,
   isMatchupPage = true,
+  userId = null,
+  isActive = null,
 }) => {
   const { currentUser } = useAppContext();
   const router = useRouter();
@@ -46,6 +48,8 @@ const CharacterStats = ({
   const boostTotal = teamPoints - originalPower;
   const damageTotal = teamPoints - matchPoints;
   const activeVoting = votes.filter((vote) => vote.rank === rank);
+  const canVote =
+    currentUser.user_id === userId && isMatchupPage && isActive > 0;
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -165,7 +169,7 @@ const CharacterStats = ({
         <$CharacterStatsPoints>{matchPoints}</$CharacterStatsPoints>
       </$CharacterStatsScoring>
       <$CharacterStatsBtnWrapper>
-        {!!activeVoting.length && isMatchupPage && (
+        {!!activeVoting.length && canVote && (
           <Button
             btnText="View Voting Status"
             btnColor="primary"
@@ -173,7 +177,7 @@ const CharacterStats = ({
             redirect={`/matchup/vote?vote_id=${activeVoting[0].id}`}
           />
         )}
-        {!activeVoting.length && isMatchupPage && (
+        {!activeVoting.length && canVote && (
           <Button
             btnText="Get Votes"
             btnColor="primary"

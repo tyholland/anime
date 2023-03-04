@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {
   COLOR_BLACK,
-  COLOR_BLUE,
+  COLOR_BLUE_HOVER,
   COLOR_RED,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
@@ -46,7 +46,7 @@ export const $MatchupCharacterBtn = styled.button`
   justify-content: start;
 
   > span {
-    color: ${COLOR_BLUE};
+    color: ${COLOR_BLUE_HOVER};
 
     &:hover {
       text-decoration: underline;
@@ -119,7 +119,7 @@ export const $MatchupPower = styled.button`
 
 export const $MatchupPowerText = styled.div`
   text-align: right;
-  color: ${COLOR_BLUE};
+  color: ${COLOR_BLUE_HOVER};
 
   &:hover {
     text-decoration: underline;
