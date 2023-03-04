@@ -12,6 +12,7 @@ import Collapsible from 'react-collapsible';
 import MakeTeam from 'Components/gameplay-card/make-team';
 import Schedule from 'Components/gameplay-card/schedule';
 import Metadata from 'Components/metadata';
+import BracketCard from 'Components/gameplay-card/bracket-card';
 
 const Gameplay = () => {
   return (
@@ -40,6 +41,9 @@ const Gameplay = () => {
         </Collapsible>
         <Collapsible trigger="Voting Rules" triggerTagName="div">
           <Voting />
+        </Collapsible>
+        <Collapsible trigger="Bracket" triggerTagName="div">
+          <BracketCard />
         </Collapsible>
       </$GlobalContainer>
     </>

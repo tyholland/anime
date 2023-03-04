@@ -73,7 +73,7 @@ const ViewBrackets = () => {
       {account && (
         <>
           <$GlobalContainer>
-            <$GlobalTitle className="bracket">
+            <$GlobalTitle className="bracketView">
               All Brackets
               <Button
                 btnText="Add New"

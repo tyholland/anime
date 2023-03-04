@@ -199,6 +199,7 @@ export const $GlobalTitle = styled.div`
     font-size: calc(100% + 8px);
   }
 
+  &.bracketView,
   &.bracket {
     display: flex;
     justify-content: center;
@@ -206,6 +207,14 @@ export const $GlobalTitle = styled.div`
 
     button {
       margin: 0 0 0 3%;
+    }
+  }
+
+  &.bracket {
+    margin-bottom: 0;
+
+    ${MOBILE_VIEW} {
+      margin-bottom: 5%;
     }
   }
 `;
