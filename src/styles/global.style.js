@@ -218,12 +218,31 @@ export const $GlobalTitle = styled.div`
       margin-bottom: 5%;
     }
   }
+
+  &.matchup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2%;
+
+    ${MOBILE_VIEW} {
+      margin-bottom: 5%;
+    }
+
+    button {
+      margin: 0 0 0 1%;
+    }
+  }
 `;
 
 export const $GlobalSubTitle = styled.div`
   margin-bottom: 2%;
   font-size: 20px;
   text-align: center;
+
+  &.matchup {
+    font-size: 16px;
+  }
 `;
 
 export const $GlobalCircle = styled.div`

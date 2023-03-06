@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import MatchUp from 'Components/matchup';
-import { $GlobalContainer } from 'Styles/global.style';
+import {
+  $GlobalContainer,
+  $GlobalTitle,
+  $GlobalSubTitle,
+} from 'Styles/global.style';
 import {
   $ViewMatchupWrapper,
   $ViewMatchupPositionSection,
@@ -22,6 +26,8 @@ import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 import { useAppContext } from 'src/hooks/context';
 import NotUser from 'Components/not-user';
+import Button from 'Components/button';
+import Notification from 'src/modals/notification';
 
 const ViewMatchup = () => {
   const router = useRouter();
@@ -34,6 +40,8 @@ const ViewMatchup = () => {
   const [errorPage, setErrorPage] = useState(false);
   const [account, setAccount] = useState(null);
   const [isActive, setIsActive] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalMsg, setModalMsg] = useState(null);
   const hasMatchup = !!team1 && !!team2 && !!score1 && !!score2 && !!votes;
 
   const handleMatchupData = async () => {
@@ -57,6 +65,17 @@ const ViewMatchup = () => {
       addEvent('Error', responseError(err, 'Failed to get matchup'));
       setErrorPage(true);
     }
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const handleModal = () => {
+    setModalMsg(
+      'The weekly affinity will be a random affinity or a combination of affinities. It will be applied every Sunday. Depending on what the affinity is, it could determine whether your team wins or loses.'
+    );
+    setModalIsOpen(true);
   };
 
   useEffect(() => {
@@ -84,9 +103,24 @@ const ViewMatchup = () => {
         <>
           <BackLink />
           <$GlobalContainer>
+            <$GlobalTitle className="matchup">
+              Matchup
+              <Button
+                btnText="?"
+                btnColor="secondary"
+                btnFunction={handleModal}
+                customBtnClass="small"
+              />
+            </$GlobalTitle>
             {!hasMatchup && <Loader />}
             {hasMatchup && (
               <>
+                <$GlobalSubTitle className="matchup">
+                  Weekly Affinity:
+                  {team1.team.activeAffinity === 0
+                    ? ' Unknown'
+                    : ` ${team1.team.affinity}`}
+                </$GlobalSubTitle>
                 <$ViewMatchupWrapper>
                   <$ViewMatchupTeamContent>
                     <$ViewMatchupTeamName>
@@ -144,6 +178,11 @@ const ViewMatchup = () => {
                 </$ViewMatchupTeamSplit>
               </>
             )}
+            <Notification
+              message={modalMsg}
+              modalIsOpen={modalIsOpen}
+              closeModal={closeModal}
+            />
           </$GlobalContainer>
         </>
       )}
