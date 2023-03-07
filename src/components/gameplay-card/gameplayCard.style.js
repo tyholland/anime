@@ -40,7 +40,7 @@ export const $GameplayCardWrapper = styled.div`
   align-items: flex-start;
   justify-content: space-evenly;
   width: 75%;
-  margin: 0 auto;
+  margin: 2% auto 5%;
 
   ${MOBILE_VIEW} {
     width: 100%;
