@@ -211,7 +211,7 @@ const Admin = () => {
             {errorMsg && <ErrorMsg msg={errorMsg} />}
             {!league && <Loader />}
             {league && (
-              <>
+              <div>
                 <Collapsible trigger="Basic" triggerTagName="div">
                   <$AdminWrapper>
                     <$AdminSection>
@@ -329,7 +329,7 @@ const Admin = () => {
                     )}
                   </$AdminWrapper>
                 </Collapsible>
-              </>
+              </div>
             )}
             <ReadMore>{message}</ReadMore>
           </$GlobalContainer>

@@ -122,12 +122,6 @@ export const photoCredits = [
     platform: 'pixabay.com',
   },
   {
-    image: '/assets/profile/goku.webp',
-    name: 'Goku',
-    creator: '@Felixmh',
-    platform: 'pixabay.com',
-  },
-  {
     image: '/assets/profile/hinata.webp',
     name: 'Hinata',
     creator: '@iwhydog',
@@ -137,12 +131,6 @@ export const photoCredits = [
     image: '/assets/profile/kakashi.webp',
     name: 'Kakashi',
     creator: '@HtcHnm',
-    platform: 'pixabay.com',
-  },
-  {
-    image: '/assets/profile/krillin.webp',
-    name: 'Krillin',
-    creator: '@HiteshHtSharma',
     platform: 'pixabay.com',
   },
   {
@@ -224,12 +212,6 @@ export const photoCredits = [
     platform: 'pixabay.com',
   },
   {
-    image: '/assets/profile/vegeta.webp',
-    name: 'Vegeta',
-    creator: '@GDj',
-    platform: 'pixabay.com',
-  },
-  {
     image: '/assets/profile/zoro.webp',
     name: 'Zoro',
     creator: '@die_grafiktheke',
@@ -240,12 +222,6 @@ export const photoCredits = [
     name: 'Share Icon',
     creator: '@IO-Images',
     platform: 'pixabay.com',
-  },
-  {
-    image: '/assets/profile/gohan.svg',
-    name: 'Gohan',
-    creator: '@Stban',
-    platform: 'freesvg.org',
   },
   {
     image: '/assets/profile/edward-elric.svg',
