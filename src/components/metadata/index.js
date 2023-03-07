@@ -6,6 +6,7 @@ const Metadata = ({ title, description }) => {
   const host = process.env.NEXT_PUBLIC_URL;
   const { pathname } = useRouter();
   const img = `${host}/assets/abz-logo.png`;
+  const router = useRouter();
 
   return (
     <Head>
@@ -30,6 +31,7 @@ const Metadata = ({ title, description }) => {
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="short icon" href="/favicon.ico" />
+      <link rel="canonical" href={`${host}${router.asPath}`} />
     </Head>
   );
 };
