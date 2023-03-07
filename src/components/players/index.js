@@ -134,6 +134,9 @@ const Players = ({
         setListOfPlayers(playersList);
         return;
       }
+
+      setListOfPlayers(playersList);
+      return;
     }
 
     let playersList = data.filter((item) => {
@@ -195,6 +198,9 @@ const Players = ({
         setListOfPlayers(playersList);
         return;
       }
+
+      setListOfPlayers(playersList);
+      return;
     }
 
     let playersList = data.filter((item) => {
