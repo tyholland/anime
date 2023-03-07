@@ -30,10 +30,11 @@ export const $FooterSection = styled.div`
   }
 
   div {
-    margin-bottom: 3%;
+    margin-bottom: 5%;
+    font-size: 16px;
 
     ${MOBILE_VIEW} {
-      margin-bottom: 2%;
+      margin-bottom: 8%;
     }
   }
 
@@ -71,6 +72,6 @@ export const $FooterLinks = styled.div`
 
   .title {
     font-weight: ${FONT_WEIGHT_BOLD};
-    font-size: 16px;
+    font-size: 18px;
   }
 `;
