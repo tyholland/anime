@@ -8,5 +8,6 @@ module.exports = {
   swcMinify: true,
   images: {
     minimumCacheTTL: 259200,
+    unoptimized: true,
   },
 };
