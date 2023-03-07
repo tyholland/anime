@@ -55,7 +55,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
       setIsLoading(true);
       setIsDisabled(true);
 
-      const isLogin = buttonText === 'Login';
+      const isLogin = currentUser?.operationType === 'signIn';
       const eventName = isLogin ? 'Account login' : 'Account sign-up';
       const payload = {
         email: currentUser?.user.email,
