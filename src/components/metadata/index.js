@@ -5,7 +5,7 @@ import React from 'react';
 const Metadata = ({ title, description }) => {
   const host = process.env.NEXT_PUBLIC_URL;
   const { pathname } = useRouter();
-  const img = `${host}/assets/abz-logo.png`;
+  const img = `${host}/assets/abz-logo.webp`;
   const router = useRouter();
 
   return (

@@ -84,7 +84,7 @@ export const $GlobalContainer = styled.div`
 
     &::before {
       content: " ";
-      background-image: url(/assets/background/itachi.jpg);
+      background-image: url(/assets/background/itachi.webp);
       background-size: 100% 100%;
       background-repeat: no-repeat;
       position: absolute;
@@ -107,13 +107,13 @@ export const $GlobalContainer = styled.div`
     }
 
     &::before {
-      background-image: url(/assets/background/goku-kamehameha.jpeg);\
+      background-image: url(/assets/background/goku-kamehameha.webp);
     }
   }
 
   &.home {
     &::before {
-      background-image: url(/assets/background/itachi.jpg);
+      background-image: url(/assets/background/itachi.webp);
     }
   }
 
@@ -123,20 +123,20 @@ export const $GlobalContainer = styled.div`
     align-items: center;
 
     &::before {
-      background-image: url(/assets/background/deku-allmight.jpg);
+      background-image: url(/assets/background/deku-allmight.webp);
     }
   }
 
   &.league {
     &::before {
-      background-image: url(/assets/background/naruto-rasengan.jpg);
+      background-image: url(/assets/background/naruto-rasengan.webp);
       filter: grayscale(85%);
     }
   }
 
   &.resource {
     &::before {
-      background-image: url(/assets/background/kakashi-sharigan.jpg);
+      background-image: url(/assets/background/kakashi-sharigan.webp);
     }
   }
 
@@ -145,7 +145,7 @@ export const $GlobalContainer = styled.div`
     flex-direction: column;
 
     &::before {
-      background-image: url(/assets/background/young-goku.jpeg);
+      background-image: url(/assets/background/young-goku.webp);
       background-size: contain;
       top: 22%;
       min-height: auto;
@@ -160,7 +160,7 @@ export const $GlobalContainer = styled.div`
 
     &::before {
       content: " ";
-      background-image: url(/assets/background/saitama.jpg);
+      background-image: url(/assets/background/saitama.webp);
       background-size: 250px;
       background-repeat: no-repeat;
       background-position: center;

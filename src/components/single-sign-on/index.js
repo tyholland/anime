@@ -104,7 +104,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
         ) : (
           <>
             <Image
-              src="/assets/icons/google-icon.png"
+              src="/assets/icons/google-icon.webp"
               width={20}
               height={20}
               alt="Google Icon"

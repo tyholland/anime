@@ -35,7 +35,7 @@ const Header = () => {
       <$HeaderTop>
         <$HeaderTitle>
           <Image
-            src="/assets/abz-logo.png"
+            src="/assets/abz-logo.webp"
             width={70}
             height={70}
             alt="Anime Brothaz"

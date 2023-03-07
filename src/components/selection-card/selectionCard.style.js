@@ -12,7 +12,7 @@ export const $SelectionCardBlock = styled.button`
   margin: 2%;
   width: 280px;
   height: 280px;
-  background-image: url("/assets/background/dragonball.png");
+  background-image: url("/assets/background/dragonball.webp");
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: 50% 15%;

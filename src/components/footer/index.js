@@ -46,14 +46,14 @@ const Footer = () => {
       </$FooterSection>
       <$FooterSection className="social">
         <Image
-          src="/assets/icons/facebook-icon.png"
+          src="/assets/icons/facebook-icon.webp"
           width={40}
           height={40}
           alt="ABZ Facebook"
           onClick={() => openInNewTab('https://m.facebook.com/animebrothaz')}
         />
         <Image
-          src="/assets/icons/twitter-icon.png"
+          src="/assets/icons/twitter-icon.webp"
           width={40}
           height={40}
           alt="ABZ Twitter"
@@ -62,7 +62,7 @@ const Footer = () => {
           }
         />
         <Image
-          src="/assets/icons/instagram-icon.png"
+          src="/assets/icons/instagram-icon.webp"
           width={40}
           height={40}
           alt="ABZ Instagram"
@@ -71,7 +71,7 @@ const Footer = () => {
           }
         />
         <Image
-          src="/assets/icons/youtube-icon.png"
+          src="/assets/icons/youtube-icon.webp"
           width={40}
           height={40}
           alt="ABZ Youtube"
@@ -82,7 +82,7 @@ const Footer = () => {
           }
         />
         <Image
-          src="/assets/icons/tiktok-icon.png"
+          src="/assets/icons/tiktok-icon.webp"
           width={40}
           height={40}
           alt="ABZ Tiktok"

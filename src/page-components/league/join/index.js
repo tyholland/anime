@@ -80,7 +80,7 @@ const JoinLeague = () => {
             />
             {errorMsg && <ErrorMsg msg={errorMsg} />}
           </div>
-          <$JoinLeagueImg src="/assets/background/vegito.jpg" alt="Vegito" />
+          <$JoinLeagueImg src="/assets/background/vegito.webp" alt="Vegito" />
         </$JoinLeagueWrapper>
         <ReadMore />
       </$GlobalContainer>

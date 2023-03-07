@@ -96,7 +96,7 @@ const SocialMedia = ({
           <$SocialMediaMobileDevice>
             <Button btnColor="share" btnFunction={handleMobileShare}>
               <Image
-                src="/assets/icons/share-icon.jpg"
+                src="/assets/icons/share-icon.webp"
                 width={100}
                 height={100}
                 alt="Share Icon"
