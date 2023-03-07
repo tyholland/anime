@@ -86,12 +86,6 @@ export const photoCredits = [
     platform: 'pixabay.com',
   },
   {
-    image: '/assets/profile/broly.webp',
-    name: 'Broly',
-    creator: '@HiteshHtSharma',
-    platform: 'pixabay.com',
-  },
-  {
     image: '/assets/profile/brook.webp',
     name: 'Brook',
     creator: '@die_grafiktheke',
