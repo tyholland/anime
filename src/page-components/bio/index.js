@@ -24,7 +24,6 @@ const Bio = () => {
   const router = useRouter();
   const [player, setPlayer] = useState(null);
   const [affinities, setAffinities] = useState(null);
-  const [isFighter, setIsFighter] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
 
   const handlePlayerInfo = async () => {
@@ -34,7 +33,6 @@ const Bio = () => {
       const character = await getPlayer(query.character);
 
       const {
-        category,
         fire,
         water,
         wind,
@@ -46,9 +44,6 @@ const Bio = () => {
         ice,
         no_affinity,
       } = character[0];
-      const isVillain = category === 'Villain';
-      const isBattlefield = category === 'Battlefield';
-      const isSupport = category === 'Support';
       const affinitiesTypes = [
         {
           type: 'Fire',
@@ -108,7 +103,6 @@ const Bio = () => {
       });
 
       setPlayer(character[0]);
-      setIsFighter(!isVillain && !isBattlefield && !isSupport);
       setAffinities(affinity);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to load character'));
@@ -145,13 +139,13 @@ const Bio = () => {
               <$BioSubTitle>
                 Anime Series: <span>{player.series}</span>
               </$BioSubTitle>
-            </div>
-            <div>
               <$BioAttribute>Rank:</$BioAttribute>
               <$BioSubAttribute>{player.category}</$BioSubAttribute>
               <$BioAttribute>Power Level:</$BioAttribute>
               <$BioSubAttribute>{player.power_level}</$BioSubAttribute>
-              {isFighter && (
+            </div>
+            <div>
+              {player.category !== 'Battlefield' && !!affinities?.length && (
                 <>
                   <$BioAttribute>Element Affinity:</$BioAttribute>
                   <$BioAffinity className="down">
@@ -179,12 +173,12 @@ const Bio = () => {
               )}
               {player.category === 'Villain' && !!affinities?.length && (
                 <>
-                  <$BioAttribute>Element Affinity:</$BioAttribute>
+                  <$BioAttribute>Damage %:</$BioAttribute>
                   <$BioAffinity className="down">
                     {affinities?.map((item) => (
                       <$BioAffinity className="right" key={item.type}>
                         <$GlobalCircle className={item.class}></$GlobalCircle>
-                        <$BioAffinityText>{item.type}</$BioAffinityText>
+                        <$BioAffinityText>{item.value}%</$BioAffinityText>
                       </$BioAffinity>
                     ))}
                   </$BioAffinity>
@@ -194,14 +188,20 @@ const Bio = () => {
                   </div>
                 </>
               )}
+              {player.category === 'Villain' && !affinities?.length && (
+                <>
+                  <$BioAttribute>Damage %:</$BioAttribute>
+                  <$BioSubAttribute>No Damage is given.</$BioSubAttribute>
+                </>
+              )}
               {player.category === 'Support' && !!affinities?.length && (
                 <>
-                  <$BioAttribute>Element Affinity:</$BioAttribute>
+                  <$BioAttribute>Boost %:</$BioAttribute>
                   <$BioAffinity className="down">
                     {affinities?.map((item) => (
                       <$BioAffinity className="right" key={item.type}>
                         <$GlobalCircle className={item.class}></$GlobalCircle>
-                        <$BioAffinityText>{item.type}</$BioAffinityText>
+                        <$BioAffinityText>{item.value}%</$BioAffinityText>
                       </$BioAffinity>
                     ))}
                   </$BioAffinity>
@@ -211,21 +211,32 @@ const Bio = () => {
                   </div>
                 </>
               )}
+              {player.category === 'Support' && !affinities?.length && (
+                <>
+                  <$BioAttribute>Boost %:</$BioAttribute>
+                  <$BioSubAttribute>No Boost is given.</$BioSubAttribute>
+                </>
+              )}
               {player.category === 'Battlefield' && (
                 <>
-                  <$BioAttribute>Gives boost to:</$BioAttribute>
+                  <$BioAttribute>Boost or Damage %:</$BioAttribute>
                   <$BioAffinity className="down">
                     {affinities?.map((item) => (
                       <$BioAffinity className="right" key={item.type}>
                         <$GlobalCircle className={item.class}></$GlobalCircle>
-                        <$BioAffinityText>{item.type}</$BioAffinityText>
+                        <$BioAffinityText>{item.type}:</$BioAffinityText>
+                        <$BioAffinityText>{item.value}%</$BioAffinityText>
                       </$BioAffinity>
                     ))}
                   </$BioAffinity>
-                  <div>
+                  <p>
+                    Boost is given to characters that have one or all of these
+                    affinities.
+                  </p>
+                  <p>
                     Damage is given to characters that have at least one of
                     these affinities as a weakness.
-                  </div>
+                  </p>
                 </>
               )}
             </div>
