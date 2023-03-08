@@ -86,18 +86,6 @@ export const photoCredits = [
     platform: 'pixabay.com',
   },
   {
-    image: '/assets/profile/brook.webp',
-    name: 'Brook',
-    creator: '@die_grafiktheke',
-    platform: 'pixabay.com',
-  },
-  {
-    image: '/assets/profile/chopper.webp',
-    name: 'Chooper',
-    creator: '@die_grafiktheke',
-    platform: 'pixabay.com',
-  },
-  {
     image: '/assets/profile/deku.webp',
     name: 'Deku',
     creator: '@Abdullah3992',
@@ -128,45 +116,9 @@ export const photoCredits = [
     platform: 'pixabay.com',
   },
   {
-    image: '/assets/profile/luffy.webp',
-    name: 'Luffy',
-    creator: '@die_grafiktheke',
-    platform: 'pixabay.com',
-  },
-  {
     image: '/assets/profile/naruto.webp',
     name: 'Naruto',
     creator: '@Eleatell',
-    platform: 'pixabay.com',
-  },
-  {
-    image: '/assets/profile/sailor-jupiter.webp',
-    name: 'Sailor jupiter',
-    creator: '@SelenitSaturn',
-    platform: 'pixabay.com',
-  },
-  {
-    image: '/assets/profile/sailor-mars.webp',
-    name: 'Sailor ars',
-    creator: '@SelenitSaturn',
-    platform: 'pixabay.com',
-  },
-  {
-    image: '/assets/profile/sailor-mercury.webp',
-    name: 'Sailor mercury',
-    creator: '@SelenitSaturn',
-    platform: 'pixabay.com',
-  },
-  {
-    image: '/assets/profile/sailor-moon.webp',
-    name: 'Sailor moon',
-    creator: '@SelenitSaturn',
-    platform: 'pixabay.com',
-  },
-  {
-    image: '/assets/profile/sailor-venus.webp',
-    name: 'Sailor venus',
-    creator: '@SelenitSaturn',
     platform: 'pixabay.com',
   },
   {
@@ -182,12 +134,6 @@ export const photoCredits = [
     platform: 'pixabay.com',
   },
   {
-    image: '/assets/profile/sanji.webp',
-    name: 'Sanji',
-    creator: '@die_grafiktheke',
-    platform: 'pixabay.com',
-  },
-  {
     image: '/assets/profile/sasuke.webp',
     name: 'Sasuke',
     creator: '@Eleatell',
@@ -197,18 +143,6 @@ export const photoCredits = [
     image: '/assets/profile/sukuna.webp',
     name: 'Sukuna',
     creator: '@TRIFEX',
-    platform: 'pixabay.com',
-  },
-  {
-    image: '/assets/profile/usopp.webp',
-    name: 'Usopp',
-    creator: '@die_grafiktheke',
-    platform: 'pixabay.com',
-  },
-  {
-    image: '/assets/profile/zoro.webp',
-    name: 'Zoro',
-    creator: '@die_grafiktheke',
     platform: 'pixabay.com',
   },
   {
