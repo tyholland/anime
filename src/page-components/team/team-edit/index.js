@@ -11,7 +11,6 @@ import {
   $TeamEditGrid,
   $TeamEditSection,
 } from './teamEdit.style';
-import BackLink from 'Components/back-link';
 import ChangeCharacters from 'src/modals/change-character';
 import { getTeam, updateTeam } from 'src/requests/team';
 import Metadata from 'Components/metadata';
@@ -225,7 +224,6 @@ const TeamEdit = () => {
       {!account && <NotUser />}
       {account && (
         <>
-          <BackLink />
           <$GlobalContainer>
             <$GlobalTitle>Edit Team</$GlobalTitle>
             {!playerList && <Loader />}
@@ -340,6 +338,14 @@ const TeamEdit = () => {
                       {handleBtn('Battlefield', 'battlefield')}
                     </$TeamEditBtn>
                   </$TeamEditGrid>
+                </$TeamEditWrapper>
+                <$TeamEditWrapper className="return">
+                  <Button
+                    btnText="Return to Team"
+                    btnColor="primary"
+                    customBtnClass="medium"
+                    btnFunction={() => router.back()}
+                  />
                 </$TeamEditWrapper>
                 <ChangeCharacters
                   players={playerRank}

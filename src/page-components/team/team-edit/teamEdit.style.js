@@ -11,6 +11,10 @@ export const $TeamEditWrapper = styled.div`
   width: 70%;
   align-items: center;
   margin: 0 auto;
+
+  &.return {
+    margin-top: 3%;
+  }
 `;
 
 export const $TeamEditBtn = styled.div`
