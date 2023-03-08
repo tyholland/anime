@@ -4,6 +4,7 @@ import 'react-data-grid/lib/styles.css';
 import Players from 'Components/players';
 import MainModal from '../main';
 import Button from 'Components/button';
+import { $ChangeCharacterWrapper } from '../main/main.style';
 
 const ChangeCharacters = ({
   players,
@@ -28,6 +29,8 @@ const ChangeCharacters = ({
     },
   };
 
+  console.log(players);
+
   return (
     <MainModal
       modalIsOpen={modalIsOpen}
@@ -35,11 +38,17 @@ const ChangeCharacters = ({
       styles={customStyles}
     >
       <$GlobalContainer className="grid leagueCharacter">
-        {!isBracket && <div>Remaining Points: {playerList.userPoints}</div>}
-        <div>
-          Click on any character you want to{' '}
-          {isBracket ? 'add.' : 'change with.'}
-        </div>
+        <$ChangeCharacterWrapper>
+          {!isBracket && (
+            <div>
+              <strong>Remaining Points</strong>: {playerList.userPoints}
+            </div>
+          )}
+          <div className="downSpace">
+            Click on any character you want to{' '}
+            {isBracket ? 'add.' : 'change with.'}
+          </div>
+        </$ChangeCharacterWrapper>
         <Players
           data={players}
           changeRoster={true}

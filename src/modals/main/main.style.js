@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
 
 export const $MainGlobalStyles = createGlobalStyle`
@@ -29,4 +29,10 @@ export const $MainGlobalStyles = createGlobalStyle`
       overflow: hidden;
     }
   }
+`;
+
+export const $ChangeCharacterWrapper = styled.div`
+  margin-bottom: 3%;
+  text-align: center;
+  line-height: 25px;
 `;

@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { $PlayersFilter, $PlayersStyles } from './players.style';
 import TextField from 'Components/text-field';
 import Button from 'Components/button';
+import { getAffinitiesTypes } from 'Utils/index';
 
 const Players = ({
   data,
@@ -52,7 +53,39 @@ const Players = ({
     },
     {
       key: 'power',
+      name: 'Power',
+    },
+  ];
+  const teamColumns = [
+    {
+      key: 'fullName',
+      name: 'Name',
+    },
+    {
+      key: 'rank',
+      name: 'Rank',
+    },
+    {
+      key: 'power',
       name: 'Power Level',
+    },
+    {
+      key: 'affinity',
+      name: 'Affinities',
+    },
+  ];
+  const teamMobileColumns = [
+    {
+      key: 'name',
+      name: 'Name',
+    },
+    {
+      key: 'power',
+      name: 'Power',
+    },
+    {
+      key: 'affinity',
+      name: 'Affinities',
     },
   ];
 
@@ -76,6 +109,7 @@ const Players = ({
     listOfPlayers?.forEach((item) => {
       series.push(item.series);
       rank.push(item.category);
+      const affinity = getAffinitiesTypes(item);
 
       playerArr.push({
         fullName: item.full_name,
@@ -83,6 +117,7 @@ const Players = ({
         rank: item.category,
         power: item.power_level,
         series: item.series,
+        affinity: affinity.join(', '),
         width: 200,
         id: item.id,
       });
@@ -376,22 +411,22 @@ const Players = ({
   return (
     <>
       <$PlayersStyles />
-      {!changeRoster && (
-        <>
-          <$PlayersFilter>
-            <TextField
-              placeholder="Search for character..."
-              onChange={(val) => handleSearchWord(val)}
-            />
-            <Button
-              btnText="Filter"
-              btnColor="primary"
-              customBtnClass="small"
-              btnFunction={handleFilterDisplay}
-            />
-          </$PlayersFilter>
-          {isFilter && (
-            <$PlayersFilter className="special">
+      <$PlayersFilter>
+        <TextField
+          placeholder="Search for character..."
+          onChange={(val) => handleSearchWord(val)}
+        />
+        <Button
+          btnText="Filter"
+          btnColor="primary"
+          customBtnClass="small"
+          btnFunction={handleFilterDisplay}
+        />
+      </$PlayersFilter>
+      {isFilter && (
+        <$PlayersFilter className={`special${changeRoster ? ' team' : ''}`}>
+          {!changeRoster && (
+            <>
               <div className="rankFilter">
                 <label>Rank</label>
                 <select
@@ -424,24 +459,24 @@ const Players = ({
                   })}
                 </select>
               </div>
-              <div className="powerFilter">
-                <label>Sort Power Level</label>
-                <select
-                  onChange={(val) => handlePowerSort(val)}
-                  defaultValue={powerLevel}
-                >
-                  <option value="none">None</option>
-                  <option value="high">High</option>
-                  <option value="low">Low</option>
-                </select>
-              </div>
-            </$PlayersFilter>
+            </>
           )}
-        </>
+          <div className="powerFilter">
+            <label>Sort Power Level</label>
+            <select
+              onChange={(val) => handlePowerSort(val)}
+              defaultValue={powerLevel}
+            >
+              <option value="none">None</option>
+              <option value="high">High</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+        </$PlayersFilter>
       )}
       <div className="desktopGrid">
         <DataGrid
-          columns={columns}
+          columns={changeRoster ? teamColumns : columns}
           rows={rows}
           className={changeRoster ? 'fillModal' : 'fillGrid'}
           onRowClick={(val) => handleRowClick(val)}
@@ -449,7 +484,7 @@ const Players = ({
       </div>
       <div className="mobileGrid">
         <DataGrid
-          columns={mobileColumns}
+          columns={changeRoster ? teamMobileColumns : mobileColumns}
           rows={rows}
           className={changeRoster ? 'fillModal' : 'fillGrid'}
           onRowClick={(val) => handleRowClick(val)}

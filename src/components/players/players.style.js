@@ -23,7 +23,7 @@ export const $PlayersStyles = createGlobalStyle`
   }
 
   .fillModal {
-    grid-template-columns: 175px 150px 150px 175px !important;
+    grid-template-columns: 175px 120px 100px 300px !important;
     width: auto;
     height: 455px;
     margin-top: 2%;
@@ -46,9 +46,12 @@ export const $PlayersStyles = createGlobalStyle`
       display: block;
     }
 
-    .fillGrid,
-    .fillModal {
+    .fillGrid {
       grid-template-columns: 180px 80px 80px 0px !important;
+    }
+
+    .fillModal {
+      grid-template-columns: 80px 80px 180px 0px !important
     }
   }
 `;
@@ -62,6 +65,12 @@ export const $PlayersFilter = styled.div`
 
   &.special {
     justify-content: space-between;
+
+    ${MOBILE_VIEW} {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 85%;
+    }
   }
 
   label,
@@ -97,6 +106,14 @@ export const $PlayersFilter = styled.div`
     margin: 0 0 0 5% !important;
   }
 
+  &.team {
+    width: 80%;
+
+    ${MOBILE_VIEW} {
+      width: 85%;
+    }
+  }
+
   ${MOBILE_VIEW} {
     width: 100%;
 
@@ -104,7 +121,8 @@ export const $PlayersFilter = styled.div`
       display: none;
     }
 
-    .rankFilter {
+    .rankFilter,
+    .powerFilter {
       display: flex;
       width: 90%;
       margin: 3% 0;

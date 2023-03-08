@@ -184,7 +184,8 @@ const Bio = () => {
                   </$BioAffinity>
                   <div>
                     Damage is given to characters that have at least one of
-                    these affinities as a weakness.
+                    these affinities as a weakness. If the affinity is "No
+                    Affinity", then the damage is given to all characters.
                   </div>
                 </>
               )}
@@ -235,7 +236,8 @@ const Bio = () => {
                   </p>
                   <p>
                     Damage is given to characters that have at least one of
-                    these affinities as a weakness.
+                    these affinities as a weakness. If the affinity is "No
+                    Affinity", then the damage is given to all characters.
                   </p>
                 </>
               )}
