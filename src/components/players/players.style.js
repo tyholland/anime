@@ -60,6 +60,10 @@ export const $PlayersFilter = styled.div`
   justify-content: center;
   align-items: center;
 
+  &.special {
+    justify-content: space-between;
+  }
+
   label,
   select {
     position: relative;
@@ -74,14 +78,23 @@ export const $PlayersFilter = styled.div`
   }
 
   .rankFilter,
-  .seriesFilter {
-    width: 40%;
+  .seriesFilter,
+  .powerFilter {
+    width: 30%;
   }
 
   input {
     margin-top: 0;
     height: 25px;
     padding: 5px 10px;
+
+    ${MOBILE_VIEW} {
+      width: 200px;
+    }
+  }
+
+  button {
+    margin: 0 0 0 5% !important;
   }
 
   ${MOBILE_VIEW} {

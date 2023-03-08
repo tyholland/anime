@@ -4,6 +4,7 @@ import DataGrid from 'react-data-grid';
 import { useRouter } from 'next/router';
 import { $PlayersFilter, $PlayersStyles } from './players.style';
 import TextField from 'Components/text-field';
+import Button from 'Components/button';
 
 const Players = ({
   data,
@@ -19,7 +20,9 @@ const Players = ({
   const [rankArr, setRankArr] = useState([]);
   const [seriesName, setSeriesName] = useState('all');
   const [rankName, setRankName] = useState('all');
+  const [powerLevel, setPowerLevel] = useState('none');
   const [searchWord, setSearchWord] = useState(null);
+  const [isFilter, setIsFilter] = useState(false);
   const columns = [
     {
       key: 'fullName',
@@ -53,20 +56,22 @@ const Players = ({
     },
   ];
 
-  const getCharacters = async () => {
+  const getCharacters = () => {
     const playerArr = [];
     const series = [];
     const rank = [];
 
-    listOfPlayers?.sort(function (a, b) {
-      if (a.full_name < b.full_name) {
-        return -1;
-      }
-      if (a.full_name > b.full_name) {
-        return 1;
-      }
-      return 0;
-    });
+    if (powerLevel === 'none') {
+      listOfPlayers?.sort((a, b) => {
+        if (a.full_name < b.full_name) {
+          return -1;
+        }
+        if (a.full_name > b.full_name) {
+          return 1;
+        }
+        return 0;
+      });
+    }
 
     listOfPlayers?.forEach((item) => {
       series.push(item.series);
@@ -241,9 +246,128 @@ const Players = ({
     setListOfPlayers(playersList);
   };
 
+  const handleFilterDisplay = () => {
+    setIsFilter(!isFilter);
+  };
+
+  const handlePowerSort = (e) => {
+    setPowerLevel(e.target.value);
+    let playersList = data;
+
+    if (e.target.value === 'none') {
+      if (rankName !== 'all') {
+        playersList = playersList.filter((item) => {
+          if (searchWord) {
+            return (
+              item.category === rankName &&
+              item.full_name.toLowerCase().includes(searchWord.toLowerCase())
+            );
+          }
+
+          return item.category === rankName;
+        });
+      }
+
+      if (seriesName !== 'all') {
+        playersList = playersList.filter((item) => {
+          if (searchWord) {
+            return (
+              item.series === seriesName &&
+              item.full_name.toLowerCase().includes(searchWord.toLowerCase())
+            );
+          }
+
+          return item.series === seriesName;
+        });
+      }
+
+      setListOfPlayers(playersList);
+      return;
+    }
+
+    if (e.target.value === 'low') {
+      playersList = data.sort((a, b) => {
+        if (a.power_level < b.power_level) {
+          return -1;
+        }
+        if (a.power_level > b.power_level) {
+          return 1;
+        }
+        return 0;
+      });
+
+      if (rankName !== 'all') {
+        playersList = playersList.filter((item) => {
+          if (searchWord) {
+            return (
+              item.category === rankName &&
+              item.full_name.toLowerCase().includes(searchWord.toLowerCase())
+            );
+          }
+
+          return item.category === rankName;
+        });
+      }
+
+      if (seriesName !== 'all') {
+        playersList = playersList.filter((item) => {
+          if (searchWord) {
+            return (
+              item.series === seriesName &&
+              item.full_name.toLowerCase().includes(searchWord.toLowerCase())
+            );
+          }
+
+          return item.series === seriesName;
+        });
+      }
+
+      setListOfPlayers(playersList);
+      return;
+    }
+
+    playersList = data.sort((a, b) => {
+      if (a.power_level > b.power_level) {
+        return -1;
+      }
+      if (a.power_level < b.power_level) {
+        return 1;
+      }
+      return 0;
+    });
+
+    if (rankName !== 'all') {
+      playersList = playersList.filter((item) => {
+        if (searchWord) {
+          return (
+            item.category === rankName &&
+            item.full_name.toLowerCase().includes(searchWord.toLowerCase())
+          );
+        }
+
+        return item.category === rankName;
+      });
+    }
+
+    if (seriesName !== 'all') {
+      playersList = playersList.filter((item) => {
+        if (searchWord) {
+          return (
+            item.series === seriesName &&
+            item.full_name.toLowerCase().includes(searchWord.toLowerCase())
+          );
+        }
+
+        return item.series === seriesName;
+      });
+    }
+
+    setListOfPlayers(playersList);
+  };
+
   useEffect(() => {
     getCharacters();
-  }, [listOfPlayers]);
+  }, [listOfPlayers, powerLevel]);
 
   useEffect(() => {
     setListOfPlayers(data);
@@ -259,41 +383,60 @@ const Players = ({
               placeholder="Search for character..."
               onChange={(val) => handleSearchWord(val)}
             />
+            <Button
+              btnText="Filter"
+              btnColor="primary"
+              customBtnClass="small"
+              btnFunction={handleFilterDisplay}
+            />
           </$PlayersFilter>
-          <$PlayersFilter>
-            <div className="rankFilter">
-              <label>Filter by rank</label>
-              <select
-                onChange={(val) => handleRankFilter(val)}
-                defaultValue={rankArr[0] === rankName}
-              >
-                <option value="all">All</option>
-                {rankArr.map((item) => {
-                  return (
-                    <option value={item} key={item}>
-                      {item}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-            <div className="seriesFilter">
-              <label>Filter by series</label>
-              <select
-                onChange={(val) => handleSeriesFilter(val)}
-                defaultValue={seriesArr[0] === seriesName}
-              >
-                <option value="all">All</option>
-                {seriesArr.map((item) => {
-                  return (
-                    <option value={item} key={item}>
-                      {item}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-          </$PlayersFilter>
+          {isFilter && (
+            <$PlayersFilter className="special">
+              <div className="rankFilter">
+                <label>Rank</label>
+                <select
+                  onChange={(val) => handleRankFilter(val)}
+                  defaultValue={rankArr[0] === rankName}
+                >
+                  <option value="all">All</option>
+                  {rankArr.map((item) => {
+                    return (
+                      <option value={item} key={item}>
+                        {item}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <div className="seriesFilter">
+                <label>Series</label>
+                <select
+                  onChange={(val) => handleSeriesFilter(val)}
+                  defaultValue={seriesArr[0] === seriesName}
+                >
+                  <option value="all">All</option>
+                  {seriesArr.map((item) => {
+                    return (
+                      <option value={item} key={item}>
+                        {item}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <div className="powerFilter">
+                <label>Sort Power Level</label>
+                <select
+                  onChange={(val) => handlePowerSort(val)}
+                  defaultValue={powerLevel}
+                >
+                  <option value="none">None</option>
+                  <option value="high">High</option>
+                  <option value="low">Low</option>
+                </select>
+              </div>
+            </$PlayersFilter>
+          )}
         </>
       )}
       <div className="desktopGrid">
