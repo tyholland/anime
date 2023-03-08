@@ -82,3 +82,7 @@ export const $AdminSection = styled.div`
     }
   }
 `;
+
+export const $AdminContainer = styled.div`
+  margin-bottom: 5%;
+`;

@@ -10,7 +10,7 @@ import Button from 'Components/button';
 import { useAppContext } from 'src/hooks/context';
 import Error from 'PageComponents/error';
 import TextField from 'Components/text-field';
-import { $AdminWrapper, $AdminSection } from './admin.style';
+import { $AdminWrapper, $AdminSection, $AdminContainer } from './admin.style';
 import Select from 'Components/select';
 import SocialMedia from 'Components/social-media';
 import {
@@ -211,7 +211,7 @@ const Admin = () => {
             {errorMsg && <ErrorMsg msg={errorMsg} />}
             {!league && <Loader />}
             {league && (
-              <div>
+              <$AdminContainer>
                 <Collapsible trigger="Basic" triggerTagName="div">
                   <$AdminWrapper>
                     <$AdminSection>
@@ -329,7 +329,7 @@ const Admin = () => {
                     )}
                   </$AdminWrapper>
                 </Collapsible>
-              </div>
+              </$AdminContainer>
             )}
             <ReadMore>{message}</ReadMore>
           </$GlobalContainer>

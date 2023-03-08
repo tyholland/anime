@@ -1,33 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
 import { $PodcastService, $PodcastDescript } from './podcast.style';
 import ReadMore from 'Components/read-more';
+import Script from 'next/script';
 
 const Podcast = () => {
-  const getPodcastScript = () => {
-    if (typeof document === 'undefined') {
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.setAttribute(
-      'src',
-      'https://www.buzzsprout.com/1260827.js?container_id=buzzsprout-large-player&player=large'
-    );
-    script.setAttribute('charset', 'utf-8');
-    script.setAttribute('type', 'text/javascript');
-    document.head.appendChild(script);
-  };
-
   const goToSharePage = () => {
     window.open('https://www.buzzsprout.com/1260827/share');
   };
-
-  useEffect(() => {
-    getPodcastScript();
-  }, []);
 
   return (
     <>
@@ -64,6 +46,7 @@ const Podcast = () => {
         </$PodcastDescript>
         <ReadMore />
       </$GlobalContainer>
+      <Script src="https://www.buzzsprout.com/1260827.js?container_id=buzzsprout-large-player&player=large" />
     </>
   );
 };
