@@ -58,8 +58,9 @@ export const $BioSubAttribute = styled.div`
 `;
 
 export const $BioImage = styled.img`
-  width: 100%;
+  max-width: 250px;
   margin-bottom: 10%;
+  width: auto;
 `;
 
 export const $BioWrapper = styled.div`
