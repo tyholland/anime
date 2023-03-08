@@ -43,6 +43,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
               <$GlobalCircle
                 key={item.type}
                 className={`team ${item.type}`}
+                title={item.type === 'noAffinity' ? 'no affinity' : item.type}
               ></$GlobalCircle>
             );
           })}

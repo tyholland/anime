@@ -69,6 +69,9 @@ const TeamCard = ({ data }) => {
                   <$GlobalCircle
                     key={item.type}
                     className={`team ${item.type}`}
+                    title={
+                      item.type === 'noAffinity' ? 'no affinity' : item.type
+                    }
                   ></$GlobalCircle>
                 );
               })}
@@ -144,6 +147,9 @@ const TeamCard = ({ data }) => {
                     <$GlobalCircle
                       key={item.type}
                       className={`team ${item.type}`}
+                      title={
+                        item.type === 'noAffinity' ? 'no affinity' : item.type
+                      }
                     ></$GlobalCircle>
                   );
                 })}
@@ -167,6 +173,9 @@ const TeamCard = ({ data }) => {
                     <$GlobalCircle
                       key={item.type}
                       className={`team ${item.type}`}
+                      title={
+                        item.type === 'noAffinity' ? 'no affinity' : item.type
+                      }
                     ></$GlobalCircle>
                   );
                 })}
