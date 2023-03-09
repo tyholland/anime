@@ -13,6 +13,7 @@ const Players = ({
   setPlayerList,
   playerList,
   field,
+  page = null,
 }) => {
   const router = useRouter();
   const [rows, setRows] = useState([]);
@@ -111,6 +112,22 @@ const Players = ({
       rank.push(item.category);
       const affinity = getAffinitiesTypes(item);
 
+      if (!!page && page === 'admin') {
+        playerArr.push({
+          fullName: item.full_name,
+          name: item.name,
+          rank: item.category,
+          power: item.power_level,
+          series: item.series,
+          affinity: affinity.join(', '),
+          width: 200,
+          id: item.id,
+          all: item,
+        });
+
+        return;
+      }
+
       playerArr.push({
         fullName: item.full_name,
         name: item.name,
@@ -136,6 +153,11 @@ const Players = ({
       playerList[field] = item;
 
       setPlayerList(playerList);
+      return;
+    }
+
+    if (!!page && page === 'admin') {
+      setPlayerList(item);
       return;
     }
 

@@ -49,3 +49,13 @@ export const deleteAccount = async (token) => {
 
   return await axiosClient(data);
 };
+
+export const getAdminAccess = async (token) => {
+  const data = {
+    url: `${api}/admin/dashboard`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};
