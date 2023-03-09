@@ -11,14 +11,21 @@ import {
 import { addNewAccount } from 'src/requests/users';
 import { useAppContext } from 'src/hooks/context';
 import Metadata from 'Components/metadata';
-import { redirectToAccount, redirectUrl, responseError } from 'Utils/index';
+import {
+  joinLeagueSetup,
+  redirectToAccount,
+  redirectUrl,
+  responseError,
+} from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 import ErrorMsg from 'Components/error-msg';
 import SingleSignOn from 'Components/single-sign-on';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { $SignUpPolicy } from './signUp.style';
+import { useRouter } from 'next/router';
 
 const SignUp = () => {
+  const router = useRouter();
   const { setInitialUser, currentUser } = useAppContext();
   const [userEmail, setUserEmail] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
@@ -26,6 +33,7 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmPwd, setConfirmPwd] = useState('');
   const userErrorMsg = 'Firebase: Error (auth/email-already-in-use).';
+  const { join } = router.query;
 
   const handleSetEmail = (val) => {
     setUserEmail(val);
@@ -69,6 +77,11 @@ const SignUp = () => {
       addEvent('Account sign-up', {
         provider: firebaseUser.user.providerData[0].providerId,
       });
+
+      if (join) {
+        await joinLeagueSetup(join, user, router);
+        return;
+      }
 
       redirectUrl('/league');
     } catch (error) {

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { $GlobalContainer } from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card/index.js';
-import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 import { useAppContext } from 'src/hooks/context';
 import { responseError } from 'Utils/index';
@@ -72,7 +71,6 @@ const LeagueDetails = () => {
           {!leagueData && <Loader />}
           {leagueData && (
             <>
-              <BackLink />
               <div className="buttonGrid">
                 {account?.user_id === leagueData.creator_id && (
                   <SelectionCard

@@ -12,6 +12,7 @@ import Metadata from 'Components/metadata/index.js';
 import { useRouter } from 'next/router.js';
 import { useAppContext } from 'src/hooks/context.js';
 import {
+  joinLeagueSetup,
   redirectToAccount,
   redirectToContinuePage,
   responseError,
@@ -33,6 +34,7 @@ const Login = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const pwdErrorMsg = 'Firebase: Error (auth/wrong-password).';
   const emailErrorMsg = 'Firebase: Error (auth/user-not-found).';
+  const { join } = router.query;
 
   const handleEmail = (val) => {
     setEmail(val);
@@ -67,6 +69,11 @@ const Login = () => {
       addEvent('Account login', {
         provider: firebaseUser.user.providerData[0].providerId,
       });
+
+      if (join) {
+        await joinLeagueSetup(join, user, router);
+        return;
+      }
 
       redirectToContinuePage(router);
     } catch (err) {
@@ -133,7 +140,7 @@ const Login = () => {
               <Button
                 btnText="Sign Up"
                 customBtnClass="text small"
-                redirect="/sign-up"
+                redirect={join ? `/sign-up?join=${join}` : '/sign-up'}
               />
             </$LoginContentLinks>
           </>

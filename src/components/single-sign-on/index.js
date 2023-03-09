@@ -8,6 +8,7 @@ import {
 } from 'firebase/auth';
 import { addEvent } from 'Utils/amplitude';
 import {
+  joinLeagueSetup,
   redirectToContinuePage,
   redirectUrl,
   responseError,
@@ -25,6 +26,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const { join } = router.query;
 
   const handleGoogle = async () => {
     const provider = new GoogleAuthProvider();
@@ -72,6 +74,11 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
       addEvent(eventName, {
         provider: currentUser?.user.providerData[0].providerId,
       });
+
+      if (join) {
+        await joinLeagueSetup(join, user, router);
+        return;
+      }
 
       isLogin ? redirectToContinuePage(router) : redirectUrl('/league');
     } catch (err) {

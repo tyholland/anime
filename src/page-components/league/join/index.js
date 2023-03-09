@@ -40,11 +40,11 @@ const JoinLeague = () => {
 
       router.push(`/league/details?league_id=${leagueId}`);
     } catch (error) {
-      addEvent('Error', responseError(error, 'Join League'));
-      const nonUserMsg = 'Please login, in order to join a league.';
       error.response?.status === 401
-        ? setErrorMsg(nonUserMsg)
+        ? router.push(`/login?join=${leagueHash}`)
         : setErrorMsg(error.response.data.message);
+
+      addEvent('Error', responseError(error, 'Join League'));
       setIsDisabled(true);
       setIsLoading(false);
     }

@@ -1,3 +1,6 @@
+import { joinLeague } from 'src/requests/league';
+import { addEvent } from './amplitude';
+
 export const redirectUrl = (url) => {
   window.location.href = url;
 };
@@ -265,4 +268,22 @@ export const getAffinitiesTypes = (character) => {
   });
 
   return affinityList;
+};
+
+export const joinLeagueSetup = async (leagueHash, currentUser, router) => {
+  const payload = {
+    hash: leagueHash,
+  };
+
+  try {
+    const { leagueId } = await joinLeague(payload, currentUser?.token);
+
+    addEvent('Join League', {
+      league: leagueHash,
+    });
+
+    router.push(`/league/details?league_id=${leagueId}`);
+  } catch (err) {
+    throw new Error(`${err} - Can not join league`);
+  }
 };
