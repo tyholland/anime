@@ -109,7 +109,10 @@ const Affinities = () => {
       <div>
         <strong>Boost or Damage %</strong>: Fire: 250%, Water: 300%, Earth:
         300%, Wind: 250%, Arcane: 200%, Darkness: 250%, Celestial: 300%, Ice:
-        300%, Electric: 250%, No Affinity: 50%
+        300%, Electric: 250%
+      </div>
+      <div>
+        <strong>Boost %</strong>: No Affinity: 500%
       </div>
     </$GameplayCardContainer>
   );
