@@ -187,7 +187,7 @@ const TeamEdit = () => {
     } catch (err) {
       addEvent('Error', responseError(err, 'Update Team'));
       setErrorMsg(err.response.data.message);
-      setPlayerList(emptyPlayer(field));
+      await handleTeamData();
     }
 
     setIsModalOpen(false);

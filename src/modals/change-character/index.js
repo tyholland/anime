@@ -29,8 +29,6 @@ const ChangeCharacters = ({
     },
   };
 
-  console.log(players);
-
   return (
     <MainModal
       modalIsOpen={modalIsOpen}
