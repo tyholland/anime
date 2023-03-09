@@ -122,6 +122,10 @@
       {
         "source": "/bracket",
         "destination": "/bracket.html"
+      },
+      {
+        "source": "/admin-dashboard",
+        "destination": "/admin-dashboard.html"
       }
     ]
   }
