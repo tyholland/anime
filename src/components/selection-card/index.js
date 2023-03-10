@@ -24,7 +24,7 @@ const SelectionCard = ({ btnText, redirect, isDisabled, newTab }) => {
           <$SelectionCardText>{btnText}</$SelectionCardText>
         </$SelectionCardBlock>
         <Notification
-          message="Your league has started yet. This will be active after your league has started."
+          message="Week 1 of your league has started yet. This will be active after Week 1 has started."
           closeModal={closeModal}
           modalIsOpen={modalIsOpen}
         />

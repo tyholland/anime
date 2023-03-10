@@ -317,7 +317,7 @@ const Admin = () => {
                         return <li key={index}></li>;
                       })}
                     </ol>
-                    {teamNames.length !== teamNum && (
+                    {teamNames.length !== parseInt(teamNum) && (
                       <SocialMedia
                         pageTitle="Invite friends to Join League"
                         title={`Join my Anime Fantasy League. League code: ${league.hash}`}
