@@ -157,7 +157,7 @@ const Admin = () => {
       );
       const { league, teams } = leagueData;
       const { num_teams, name, week } = league;
-      const inactiveLeague = teams.length < num_teams || week === -1;
+      const inactiveLeague = teams.length < num_teams;
       const activeLeague = !inactiveLeague || week >= 0;
       const missingTeams = [];
 
@@ -174,7 +174,7 @@ const Admin = () => {
       setTeamNum(num_teams);
       setLeagueName(name);
       setMissingTeams(missingTeams);
-      setIsLeagueDisabled(inactiveLeague || activeLeague);
+      setIsLeagueDisabled(activeLeague);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to league admin data'));
       setErrorPage(true);
