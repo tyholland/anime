@@ -186,7 +186,7 @@ const Admin = () => {
   }, [currentUser]);
 
   useEffect(() => {
-    if (Object.keys(router.query).length && !!currentUser) {
+    if (Object.keys(router.query).length > 0 && !!currentUser) {
       handleLeagueAdmin();
     }
   }, [router.query, currentUser]);

@@ -18,7 +18,7 @@ import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import ErrorMsg from 'Components/error-msg';
 import { useRouter } from 'next/router';
-import { getPlayers, getUseablePlayers } from 'src/requests/player';
+import { getUseablePlayers } from 'src/requests/player';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 import { useAppContext } from 'src/hooks/context';
@@ -44,8 +44,10 @@ const TeamEdit = () => {
     const { team_id } = router.query;
 
     try {
-      const players = await getUseablePlayers(team_id, currentUser?.token);
-      const allCharacters = await getPlayers();
+      const { unusedPlayers, allPlayers } = await getUseablePlayers(
+        team_id,
+        currentUser?.token
+      );
       const teamData = await getTeam(team_id, currentUser?.token);
 
       const { team, userPoints } = teamData;
@@ -61,8 +63,8 @@ const TeamEdit = () => {
         battlefield: team.battlefield,
         userPoints,
       });
-      setPlayers(players);
-      setAllPlayers(allCharacters);
+      setPlayers(unusedPlayers);
+      setAllPlayers(allPlayers);
       setTeamId(team_id);
     } catch (err) {
       addEvent(
@@ -177,12 +179,15 @@ const TeamEdit = () => {
 
     try {
       await updateTeam(teamId, thePlayers, currentUser?.token);
-      const players = await getUseablePlayers(teamId, currentUser?.token);
+      const { unusedPlayers } = await getUseablePlayers(
+        teamId,
+        currentUser?.token
+      );
 
       thePlayers['userPoints'] = totalPoints;
 
       setPlayerList(thePlayers);
-      setPlayers(players);
+      setPlayers(unusedPlayers);
       setErrorMsg(null);
     } catch (err) {
       addEvent('Error', responseError(err, 'Update Team'));
@@ -206,7 +211,7 @@ const TeamEdit = () => {
   }, [canChange]);
 
   useEffect(() => {
-    if (Object.keys(router.query).length && !!account) {
+    if (Object.keys(router.query).length > 0 && !!account) {
       handleTeamData();
     }
   }, [router.query, account]);

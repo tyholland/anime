@@ -97,7 +97,7 @@ const Playoffs = () => {
   }, [currentUser]);
 
   useEffect(() => {
-    if (Object.keys(router.query).length && !!account) {
+    if (Object.keys(router.query).length > 0 && !!account) {
       handlePlayoffSchedule();
     }
   }, [router.query, account]);

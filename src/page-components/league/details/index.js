@@ -6,7 +6,6 @@ import { useAppContext } from 'src/hooks/context';
 import { responseError } from 'Utils/index';
 import { useRouter } from 'next/router';
 import { getLeague } from 'src/requests/league';
-import { getMatchUpFromTeamId } from 'src/requests/matchup';
 import { addEvent } from 'Utils/amplitude';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
@@ -25,15 +24,14 @@ const LeagueDetails = () => {
     const { league_id } = router.query;
 
     try {
-      const data = await getLeague(league_id, currentUser?.token);
-      const matchupData = await getMatchUpFromTeamId(
-        data[0].teamId,
+      const { leagueData, matchupData } = await getLeague(
+        league_id,
         currentUser?.token
       );
 
       setLeagueId(league_id);
       setLeagueData({
-        ...data[0],
+        ...leagueData[0],
         ...matchupData[0],
       });
     } catch (err) {
@@ -50,7 +48,7 @@ const LeagueDetails = () => {
   }, [currentUser]);
 
   useEffect(() => {
-    if (Object.keys(router.query).length && !!account) {
+    if (Object.keys(router.query).length > 0 && !!account) {
       handleLeagueData();
     }
   }, [router.query, account]);

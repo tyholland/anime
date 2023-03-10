@@ -37,7 +37,7 @@ const Scoreboard = () => {
   }, [currentUser]);
 
   useEffect(() => {
-    if (Object.keys(router.query).length && !!account) {
+    if (Object.keys(router.query).length > 0 && !!account) {
       handleScoreboard();
     }
   }, [router.query, account]);

@@ -38,7 +38,7 @@ const SpecificVoteMatchup = () => {
   };
 
   useEffect(() => {
-    if (Object.keys(router.query).length) {
+    if (Object.keys(router.query).length > 0) {
       handleVotingData();
     }
   }, [router.query]);

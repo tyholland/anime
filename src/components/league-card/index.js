@@ -1,8 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useAppContext } from 'src/hooks/context';
-import { getMatchUpFromTeamId } from 'src/requests/matchup';
-import { addEvent } from 'Utils/amplitude';
-import { responseError } from 'Utils/index';
+import React from 'react';
 import Button from '../button';
 import {
   $LeagueCardText,
@@ -11,28 +7,7 @@ import {
 } from './leagueCard.style';
 
 const LeagueCard = ({ data }) => {
-  const [matchupId, setMatchupId] = useState(null);
-  const { currentUser } = useAppContext();
-  const { name, team_name, leagueId, teamId } = data;
-
-  const getMatchupData = async () => {
-    try {
-      const matchupData = await getMatchUpFromTeamId(
-        teamId,
-        currentUser?.token
-      );
-
-      setMatchupId(matchupData[0]?.matchupId);
-    } catch (err) {
-      addEvent('Error', responseError(err, 'Failed to get matchup data'));
-    }
-  };
-
-  useEffect(() => {
-    if (!matchupId) {
-      getMatchupData();
-    }
-  }, [matchupId]);
+  const { name, team_name, leagueId, teamId, matchupId } = data;
 
   return (
     <$LeagueCardWrapper>
