@@ -43,6 +43,7 @@ const Admin = () => {
   const [league, setLeague] = useState(null);
   const [missingTeams, setMissingTeams] = useState([]);
   const [isLeagueDisabled, setIsLeagueDisabled] = useState(true);
+  const [isStarted, setIsStarted] = useState(false);
   const options = ['6', '8', '10'];
   let origin = '';
   const message =
@@ -158,8 +159,9 @@ const Admin = () => {
         currentUser?.token
       );
       const { league, teams } = leagueData;
-      const { num_teams, name } = league;
+      const { num_teams, name, week } = league;
       const isActiveLeague = teams.length === num_teams;
+      const alreadyStarted = week >= 0;
       const missingTeams = [];
 
       if (teams.length < num_teams) {
@@ -176,6 +178,7 @@ const Admin = () => {
       setLeagueName(name);
       setMissingTeams(missingTeams);
       setIsLeagueDisabled(!isActiveLeague);
+      setIsStarted(alreadyStarted);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to league admin data'));
       setErrorPage(true);
@@ -280,7 +283,7 @@ const Admin = () => {
                         btnText="Start League"
                         btnFunction={handleLeagueStart}
                         btnColor="primary"
-                        isDisabled={isLeagueDisabled}
+                        isDisabled={isStarted || isLeagueDisabled}
                         customBtnClass="medium"
                       />
                     </$AdminSection>
