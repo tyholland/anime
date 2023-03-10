@@ -64,7 +64,7 @@ const Admin = () => {
       setTeamNum(val);
 
       const missingTeams = [];
-      const isActiveLeague = teamNames.length === teamNum;
+      const isActiveLeague = teamNames.length === parseInt(val);
 
       if (teamNames.length < val) {
         const remainingTeams = val - teamNames.length;
