@@ -16,7 +16,6 @@ import { useAppContext } from 'src/hooks/context';
 import Loader from 'Components/loader';
 import NotUser from 'Components/not-user';
 import ReadMore from 'Components/read-more';
-import { getMatchUpFromTeamId } from 'src/requests/matchup';
 
 const ViewLeague = () => {
   const { currentUser } = useAppContext();
@@ -30,16 +29,6 @@ const ViewLeague = () => {
 
     try {
       const leagues = await getAllLeagues(currentUser?.token);
-
-      for (let index = 0; index < leagues.length; index++) {
-        const matchupData = await getMatchUpFromTeamId(
-          leagues[index].teamId,
-          currentUser?.token
-        );
-
-        leagues[index].matchupId = matchupData[0]?.matchupId;
-      }
-
       const card = leagues.map((item) => {
         return <LeagueCard key={item.team_name} data={item} />;
       });
