@@ -173,7 +173,7 @@ const Admin = () => {
       setTeamNum(num_teams);
       setLeagueName(name);
       setMissingTeams(missingTeams);
-      setIsLeagueDisabled(isActiveLeague);
+      setIsLeagueDisabled(!isActiveLeague);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to league admin data'));
       setErrorPage(true);
