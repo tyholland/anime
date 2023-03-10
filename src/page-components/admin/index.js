@@ -64,6 +64,7 @@ const Admin = () => {
       setTeamNum(val);
 
       const missingTeams = [];
+      const isActiveLeague = teamNames.length === teamNum;
 
       if (teamNames.length < val) {
         const remainingTeams = val - teamNames.length;
@@ -73,6 +74,7 @@ const Admin = () => {
         }
       }
 
+      setIsLeagueDisabled(!isActiveLeague);
       setMissingTeams(missingTeams);
       setEditNum(false);
     } catch (err) {
