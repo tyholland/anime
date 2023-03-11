@@ -119,7 +119,11 @@ const ViewMatchup = () => {
                   Weekly Affinity:
                   {team1.team.activeAffinity === 0
                     ? ' Unknown'
-                    : ` ${team1.team.affinity}`}
+                    : ` ${
+                        team1.team.affinity === 'no_affinity'
+                          ? 'no affinity'
+                          : team1.team.affinity
+                      }`}
                 </$GlobalSubTitle>
                 <$ViewMatchupWrapper>
                   <$ViewMatchupTeamContent>

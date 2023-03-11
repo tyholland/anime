@@ -83,27 +83,27 @@ const LeagueDetails = () => {
                 <SelectionCard
                   btnText="Matchup"
                   redirect={`/matchup?matchup_id=${leagueData.matchupId}`}
-                  isDisabled={!leagueData.matchupId}
+                  isDisabled={!leagueData.week > 0}
                 />
                 <SelectionCard
                   btnText="Schedule"
                   redirect={`/schedule?league_id=${leagueId}`}
-                  isDisabled={!leagueData.matchupId}
+                  isDisabled={!leagueData.week > 0}
                 />
                 <SelectionCard
                   btnText="Scoreboard"
                   redirect={`/scoreboard?league_id=${leagueId}`}
-                  isDisabled={!leagueData.matchupId}
+                  isDisabled={!leagueData.week > 0}
                 />
                 <SelectionCard
                   btnText="Standings"
                   redirect={`/standings?league_id=${leagueId}`}
-                  isDisabled={!leagueData.matchupId}
+                  isDisabled={!leagueData.week > 0}
                 />
                 <SelectionCard
                   btnText="Playoffs"
                   redirect={`/playoffs?league_id=${leagueId}`}
-                  isDisabled={!leagueData.matchupId}
+                  isDisabled={!leagueData.week > 0}
                 />
               </div>
             </>
