@@ -52,6 +52,7 @@ const SpecificVoteMatchup = () => {
       <Metadata
         title="Matchup Voting"
         description="Vote on this matchup between two characters. Your vote can help give the individual fighter that extra boost they need to win their matchup."
+        image={playerA?.image_url}
       />
       <$GlobalContainer>
         {!hasMatchup && <Loader />}

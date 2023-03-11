@@ -95,6 +95,7 @@ const AllVoteMatchups = () => {
       <Metadata
         title="All Matchup Voting"
         description="Vote on various matchups between characters in every rank. Your vote can help give the individual fighter that extra boost they need to win their matchup."
+        image={playerA?.image_url}
       />
       <$GlobalContainer>
         {isLoading && <Loader />}

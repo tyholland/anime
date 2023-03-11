@@ -1,12 +1,18 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Metadata = ({ title, description }) => {
+const Metadata = ({ title, description, image = null }) => {
   const host = process.env.NEXT_PUBLIC_URL;
   const { pathname } = useRouter();
-  const img = `${host}/assets/abz-logo.webp`;
   const router = useRouter();
+  const [img, setImg] = useState(`${host}/assets/abz-logo.webp`);
+
+  useEffect(() => {
+    if (image) {
+      setImg(`${host}${image}`);
+    }
+  }, [image]);
 
   return (
     <Head>
