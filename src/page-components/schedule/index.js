@@ -65,10 +65,10 @@ const Schedule = () => {
             {games?.map((game) => {
               const { week, teamA, teamB, scoreA, scoreB, match } = game;
               const activeGames = games.filter(
-                (match) => match.scoreA !== 0 && match.scoreB !== 0
+                (match) => match.scoreA > 0 && match.scoreB > 0
               );
-              const isOldWeek = activeGames.length < week;
-              const highlight = activeGames.length <= week;
+              const isOldWeek = activeGames[activeGames.length - 1].week > week;
+              const highlight = activeGames.length >= week;
 
               const isWinner = (team) => {
                 const winner =
@@ -93,20 +93,16 @@ const Schedule = () => {
                 >
                   <div>Week {week}:</div>
                   <$ScheduleTeamContainer>
-                    <$ScheduleTeamSection>
-                      <$ScheduleTeamName
-                        className={isWinner(teamA) && 'winner'}
-                      >
-                        {teamA}
-                      </$ScheduleTeamName>
+                    <$ScheduleTeamSection
+                      className={isWinner(teamA) && 'winner'}
+                    >
+                      <$ScheduleTeamName>{teamA}</$ScheduleTeamName>
                       <div>{scoreA}</div>
                     </$ScheduleTeamSection>
-                    <$ScheduleTeamSection>
-                      <$ScheduleTeamName
-                        className={isWinner(teamB) && 'winner'}
-                      >
-                        {teamB}
-                      </$ScheduleTeamName>
+                    <$ScheduleTeamSection
+                      className={isWinner(teamB) && 'winner'}
+                    >
+                      <$ScheduleTeamName>{teamB}</$ScheduleTeamName>
                       <div>{scoreB}</div>
                     </$ScheduleTeamSection>
                   </$ScheduleTeamContainer>

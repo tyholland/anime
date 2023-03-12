@@ -46,6 +46,10 @@ export const $ScheduleTeamSection = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 2%;
+
+  &.winner {
+    font-weight: ${FONT_WEIGHT_BOLD};
+  }
 `;
 
 export const $ScheduleTeamContainer = styled.div`
@@ -67,9 +71,5 @@ export const $ScheduleTeamName = styled.div`
 
   ${MOBILE_VIEW} {
     width: 110px;
-  }
-
-  &.winner {
-    font-weight: ${FONT_WEIGHT_BOLD};
   }
 `;
