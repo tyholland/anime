@@ -18,6 +18,7 @@ export const $ScheduleWrapper = styled.button`
   border: none;
   border-bottom: 1px solid ${COLOR_BLACK};
   background: ${COLOR_WHITE};
+  color: ${COLOR_BLACK};
 
   > div {
     font-size: 16px;
