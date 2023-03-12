@@ -67,8 +67,8 @@ const Schedule = () => {
               const activeGames = games.filter(
                 (match) => match.scoreA !== 0 && match.scoreB !== 0
               );
-              const isOldWeek = activeGames.length > week;
-              const highlight = activeGames.length >= week;
+              const isOldWeek = activeGames.length < week;
+              const highlight = activeGames.length <= week;
 
               const isWinner = (team) => {
                 const winner =
