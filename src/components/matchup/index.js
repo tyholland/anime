@@ -37,7 +37,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
   const getAffinities = (character) => {
     return (
       <$MatchupAffinity className={isReverse && 'reverse'}>
-        {!!character.affinity.length &&
+        {!!character.affinity?.length &&
           character.affinity.map((item) => {
             return (
               <$GlobalCircle
@@ -47,7 +47,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
               ></$GlobalCircle>
             );
           })}
-        {!character.affinity.length && <span>-</span>}
+        {!character.affinity?.length && <span>-</span>}
       </$MatchupAffinity>
     );
   };
