@@ -54,10 +54,12 @@ const CharacterStats = ({
     currentUser.user_id === userId && isMatchupPage && isActive > 0;
 
   const closeModal = () => {
+    setErrorMsg(null);
     setIsModalOpen(false);
   };
 
   const handleVotes = async () => {
+    setErrorMsg(null);
     const { query } = router;
     const payload = {
       rank,
@@ -169,7 +171,9 @@ const CharacterStats = ({
       )}
       <$CharacterStatsScoring className="total">
         <$CharacterStatsLabel>Total Points</$CharacterStatsLabel>
-        <$CharacterStatsPoints>{matchPoints}</$CharacterStatsPoints>
+        <$CharacterStatsPoints>
+          {canVote ? matchPoints : teamPoints}
+        </$CharacterStatsPoints>
       </$CharacterStatsScoring>
       {!!errorMsg && <ErrorMsg msg={errorMsg} />}
       <$CharacterStatsBtnWrapper>
@@ -193,7 +197,7 @@ const CharacterStats = ({
           btnText="Close"
           btnColor="cancel"
           customBtnClass="medium"
-          btnFunction={() => setIsModalOpen(!isModalOpen)}
+          btnFunction={closeModal}
         />
       </$CharacterStatsBtnWrapper>
     </MainModal>
