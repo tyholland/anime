@@ -41,6 +41,17 @@ export const getAnimeNews = async () => {
 export const updatePlayerData = async (payload, token) => {
   const data = {
     url: `${api}/player/update`,
+    method: 'put',
+    body: payload,
+    token,
+  };
+
+  return await axiosClient(data);
+};
+
+export const addPlayerData = async (payload, token) => {
+  const data = {
+    url: `${api}/player/add`,
     method: 'post',
     body: payload,
     token,

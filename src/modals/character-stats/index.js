@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../components/button';
 import { $GlobalTitle } from 'Styles/global.style';
 import {
@@ -13,6 +13,7 @@ import { useRouter } from 'next/router';
 import { responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 import { useAppContext } from 'src/hooks/context';
+import ErrorMsg from 'Components/error-msg';
 
 const CharacterStats = ({
   isModalOpen,
@@ -25,6 +26,7 @@ const CharacterStats = ({
 }) => {
   const { currentUser } = useAppContext();
   const router = useRouter();
+  const [errorMsg, setErrorMsg] = useState(null);
   const customStyles = {
     content: {
       top: '50%',
@@ -76,6 +78,7 @@ const CharacterStats = ({
       router.push(`/matchup/vote?vote_id=${newMatchup.matchupVoteId}`);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to create matchup voting'));
+      setErrorMsg(err.response.data.message);
     }
   };
 
@@ -168,6 +171,7 @@ const CharacterStats = ({
         <$CharacterStatsLabel>Total Points</$CharacterStatsLabel>
         <$CharacterStatsPoints>{matchPoints}</$CharacterStatsPoints>
       </$CharacterStatsScoring>
+      {!!errorMsg && <ErrorMsg msg={errorMsg} />}
       <$CharacterStatsBtnWrapper>
         {!!activeVoting.length && canVote && (
           <Button

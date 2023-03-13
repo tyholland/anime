@@ -10,8 +10,12 @@ import Metadata from 'Components/metadata';
 import SocialMedia from 'Components/social-media';
 import Loader from 'Components/loader';
 import ReadMore from 'Components/read-more';
+import { useAppContext } from 'src/hooks/context';
+import { responseError } from 'Utils/index';
+import { addPlayerData } from 'src/requests/player';
 
 const Suggest = () => {
+  const { currentUser } = useAppContext();
   const [player, setPlayer] = useState('');
   const [series, setSeries] = useState('');
   const [rank, setRank] = useState('');
@@ -29,6 +33,14 @@ const Suggest = () => {
       series,
       category: rank,
     });
+
+    if (currentUser) {
+      try {
+        await addPlayerData({ player, series, rank }, currentUser.token);
+      } catch (err) {
+        addEvent('Error', responseError(err, 'Failed to add new character'));
+      }
+    }
 
     setIsSubmitted(true);
   };
