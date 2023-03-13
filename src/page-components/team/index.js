@@ -23,6 +23,7 @@ import { addEvent } from 'Utils/amplitude.js';
 import { useAppContext } from 'src/hooks/context.js';
 import NotUser from 'Components/not-user/index.js';
 import ReadMore from 'Components/read-more/index.js';
+import AdSense from 'react-adsense';
 
 const Team = () => {
   const router = useRouter();
@@ -128,6 +129,13 @@ const Team = () => {
                 </$TeamTotal>
               </>
             )}
+            <AdSense.Google
+              client="ca-pub-6648399860832112"
+              slot="4473046527"
+              style={{ display: 'block' }}
+              format="auto"
+              responsive="true"
+            />
             <ReadMore />
           </$GlobalContainer>
         </>
