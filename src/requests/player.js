@@ -10,6 +10,16 @@ export const getPlayers = async () => {
   return await axiosClient(data);
 };
 
+export const getAdminPlayers = async (token) => {
+  const data = {
+    url: `${api}/admin/player`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};
+
 export const getPlayer = async (playerId) => {
   const data = {
     url: `${api}/player/${playerId}`,

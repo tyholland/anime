@@ -13,7 +13,7 @@ import { responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 import NotUser from 'Components/not-user';
 import Players from 'Components/players';
-import { getPlayers, updatePlayerData } from 'src/requests/player';
+import { getAdminPlayers, updatePlayerData } from 'src/requests/player';
 import { getAdminAccess } from 'src/requests/users';
 import { $AdminDashboardSection } from './adminDashboard.style';
 
@@ -48,7 +48,7 @@ const AdminDashboard = () => {
 
     try {
       const { success } = await getAdminAccess(currentUser?.token);
-      const allPlayers = await getPlayers();
+      const allPlayers = await getAdminPlayers(currentUser?.token);
 
       setPlayers(allPlayers);
       setHasAccess(success);
@@ -78,6 +78,12 @@ const AdminDashboard = () => {
 
     try {
       await updatePlayerData(payload, currentUser?.token);
+
+      addEvent('Admin Dashboard', {
+        action: 'update player',
+        user: currentUser?.email,
+        playerId: playerInfo.id,
+      });
 
       playerInfo[attr] = playerChange;
       setEditFullName(false);
