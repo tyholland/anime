@@ -47,6 +47,7 @@ export const $BracketCreatePlayer = styled.div`
     display: flex;
     align-items: center;
     margin-left: 5%;
+    width: 150px;
 
     ${MOBILE_VIEW} {
       flex-direction: column;
@@ -55,10 +56,10 @@ export const $BracketCreatePlayer = styled.div`
 `;
 
 export const $BracketCreateWrapper = styled.div`
-  margin-bottom: 3%;
+  margin: 3% 0;
 
   ${MOBILE_VIEW} {
-    margin-bottom: 10%;
+    margin: 10% 0;
   }
 
   &.btn {
