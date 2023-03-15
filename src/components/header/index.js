@@ -32,19 +32,19 @@ const Header = () => {
 
   useEffect(() => {
     window.OneSignal = window.OneSignal || [];
-
-    if (!window.OneSignal || window.OneSignal === []) {
-      window.OneSignal.push(function () {
-        window.OneSignal.init({
-          appId: process.env.NEXT_PUBLIC_ONESIGNAL,
-          safari_web_id:
-            'web.onesignal.auto.597eddd1-7088-4460-8312-f4c61675b8f7',
-          notifyButton: {
-            enable: true,
-          },
-        });
+    // eslint-disable-next-line no-undef
+    OneSignal.push(function () {
+      // eslint-disable-next-line no-undef
+      OneSignal.init({
+        appId: process.env.NEXT_PUBLIC_ONESIGNAL,
+        safari_web_id:
+          'web.onesignal.auto.597eddd1-7088-4460-8312-f4c61675b8f7',
+        notifyButton: {
+          enable: true,
+        },
+        allowLocalhostAsSecureOrigin: true,
       });
-    }
+    });
   }, []);
 
   return (
