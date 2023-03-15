@@ -34,6 +34,19 @@ export const $MatchupVotingWrapper = styled.div`
     }
   }
 
+  &.btnRedirect {
+    width: 450px;
+    margin: 3% auto 0;
+
+    button {
+      width: 200px;
+    }
+
+    ${MOBILE_VIEW} {
+      margin-bottom: 10%;
+    }
+  }
+
   ${MOBILE_VIEW} {
     flex-direction: column;
   }

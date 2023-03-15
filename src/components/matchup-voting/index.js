@@ -144,6 +144,22 @@ const MatchupVoting = ({
           />
         </$MatchupVotingWrapper>
       )}
+      {!isChangeable && (
+        <$MatchupVotingWrapper className="btnRedirect">
+          <Button
+            btnText="Vote on more Matchups"
+            btnColor="secondary"
+            customBtnClass="medium"
+            redirect={'/matchup/all'}
+          />
+          <Button
+            btnText="Back to Matchup"
+            btnColor="secondary"
+            customBtnClass="medium"
+            redirect={`/matchup?matchup_id=${matchup.matchup_id}`}
+          />
+        </$MatchupVotingWrapper>
+      )}
     </>
   );
 };
