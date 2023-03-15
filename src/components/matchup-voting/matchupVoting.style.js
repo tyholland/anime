@@ -43,7 +43,8 @@ export const $MatchupVotingWrapper = styled.div`
     }
 
     ${MOBILE_VIEW} {
-      margin-bottom: 10%;
+      margin: 5% 0;
+      width: 100%;
     }
   }
 
