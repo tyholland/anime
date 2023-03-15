@@ -4,11 +4,19 @@ import { FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
 export const $MatchupVotingCharacter = styled.div`
   font-size: 30px;
   font-weight: ${FONT_WEIGHT_BOLD};
+
+  ${MOBILE_VIEW} {
+    font-size: 20px;
+  }
 `;
 
 export const $MatchupVotingTeam = styled.div`
   font-size: 18px;
   color: rgba(0, 0, 0, 0.5);
+
+  ${MOBILE_VIEW} {
+    font-size: 14px;
+  }
 `;
 
 export const $MatchupVotingVersus = styled.div`
@@ -16,6 +24,11 @@ export const $MatchupVotingVersus = styled.div`
   font-weight: ${FONT_WEIGHT_BOLD};
   margin: 40px 0;
   text-align: center;
+
+  ${MOBILE_VIEW} {
+    width: auto !important;
+    margin: 30px 0;
+  }
 `;
 
 export const $MatchupVotingWrapper = styled.div`
@@ -50,6 +63,7 @@ export const $MatchupVotingWrapper = styled.div`
 
   ${MOBILE_VIEW} {
     flex-direction: column;
+    margin: 3% 0 10%;
   }
 `;
 
@@ -58,14 +72,38 @@ export const $MatchupVotingSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  ${MOBILE_VIEW} {
+    flex-direction: row;
+  }
+
+  > div {
+    text-align: center;
+
+    ${MOBILE_VIEW} {
+      width: 50%;
+    }
+  }
+
+  button {
+    ${MOBILE_VIEW} {
+      width: 90% !important;
+    }
+  }
 `;
 
 export const $MatchupVotingImage = styled.img`
   width: 300px;
   height: auto;
   margin-bottom: 2%;
+
+  ${MOBILE_VIEW} {
+    width: 100%;
+  }
 `;
 
 export const $MatchupVotingTotal = styled.div`
+  justify-content: center;
   margin-top: 5%;
+  display: flex;
 `;

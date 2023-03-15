@@ -92,37 +92,53 @@ const MatchupVoting = ({
     <>
       <$MatchupVotingWrapper className={errorMsg && 'spacing'}>
         <$MatchupVotingSection>
-          <$MatchupVotingImage
-            src={playerA.image_url}
-            alt={playerA.full_name}
-          />
-          <$MatchupVotingCharacter>{playerA.full_name}</$MatchupVotingCharacter>
-          <$MatchupVotingTeam>{leagueName}</$MatchupVotingTeam>
-          <Button
-            btnText={`Vote for ${playerA.name}`}
-            btnColor="primary"
-            customBtnClass="medium"
-            btnFunction={() => handleAddingVotes(playerA, 'player_a_count')}
-          />
-          <$MatchupVotingTotal>Total Votes: {playerACount}</$MatchupVotingTotal>
+          <div>
+            <$MatchupVotingImage
+              src={playerA.image_url}
+              alt={playerA.full_name}
+            />
+            <$MatchupVotingCharacter>
+              {playerA.full_name}
+            </$MatchupVotingCharacter>
+            <$MatchupVotingTeam>{leagueName}</$MatchupVotingTeam>
+          </div>
+          <div>
+            <Button
+              btnText={`Vote for ${playerA.name}`}
+              btnColor="primary"
+              customBtnClass="medium"
+              btnFunction={() => handleAddingVotes(playerA, 'player_a_count')}
+            />
+            <$MatchupVotingTotal>
+              Total Votes: {playerACount}
+            </$MatchupVotingTotal>
+          </div>
         </$MatchupVotingSection>
         <$MatchupVotingSection>
           <$MatchupVotingVersus>VS</$MatchupVotingVersus>
         </$MatchupVotingSection>
         <$MatchupVotingSection>
-          <$MatchupVotingImage
-            src={playerB.image_url}
-            alt={playerB.full_name}
-          />
-          <$MatchupVotingCharacter>{playerB.full_name}</$MatchupVotingCharacter>
-          <$MatchupVotingTeam>{leagueName}</$MatchupVotingTeam>
-          <Button
-            btnText={`Vote for ${playerB.name}`}
-            btnColor="primary"
-            customBtnClass="medium"
-            btnFunction={() => handleAddingVotes(playerB, 'player_b_count')}
-          />
-          <$MatchupVotingTotal>Total Votes: {playerBCount}</$MatchupVotingTotal>
+          <div>
+            <$MatchupVotingImage
+              src={playerB.image_url}
+              alt={playerB.full_name}
+            />
+            <$MatchupVotingCharacter>
+              {playerB.full_name}
+            </$MatchupVotingCharacter>
+            <$MatchupVotingTeam>{leagueName}</$MatchupVotingTeam>
+          </div>
+          <div>
+            <Button
+              btnText={`Vote for ${playerB.name}`}
+              btnColor="primary"
+              customBtnClass="medium"
+              btnFunction={() => handleAddingVotes(playerB, 'player_b_count')}
+            />
+            <$MatchupVotingTotal>
+              Total Votes: {playerBCount}
+            </$MatchupVotingTotal>
+          </div>
         </$MatchupVotingSection>
       </$MatchupVotingWrapper>
       {errorMsg && <ErrorMsg msg={errorMsg} />}
