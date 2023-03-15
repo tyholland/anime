@@ -10,15 +10,6 @@ export const $MatchupVotingCharacter = styled.div`
   }
 `;
 
-export const $MatchupVotingTeam = styled.div`
-  font-size: 18px;
-  color: rgba(0, 0, 0, 0.5);
-
-  ${MOBILE_VIEW} {
-    font-size: 14px;
-  }
-`;
-
 export const $MatchupVotingVersus = styled.div`
   font-size: 20px;
   font-weight: ${FONT_WEIGHT_BOLD};

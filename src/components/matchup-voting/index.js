@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   $MatchupVotingCharacter,
-  $MatchupVotingTeam,
   $MatchupVotingVersus,
   $MatchupVotingWrapper,
   $MatchupVotingSection,
@@ -30,7 +29,6 @@ const MatchupVoting = ({
   const [playerA, setPlayerA] = useState(null);
   const [playerB, setPlayerB] = useState(null);
   const [voteId, setVoteId] = useState(null);
-  const [leagueName, setLeagueName] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   let pathname = '';
 
@@ -70,13 +68,12 @@ const MatchupVoting = ({
   };
 
   const handleMatchup = (matchup) => {
-    const { player_a_count, player_b_count, leagueName, id } = matchup;
+    const { player_a_count, player_b_count, id } = matchup;
 
     setPlayerA(userPlayerA);
     setPlayerB(userPlayerB);
     setPlayerACount(player_a_count);
     setPlayerBCount(player_b_count);
-    setLeagueName(leagueName);
     setVoteId(id);
   };
 
@@ -100,7 +97,6 @@ const MatchupVoting = ({
             <$MatchupVotingCharacter>
               {playerA.full_name}
             </$MatchupVotingCharacter>
-            <$MatchupVotingTeam>{leagueName}</$MatchupVotingTeam>
           </div>
           <div>
             <Button
@@ -126,7 +122,6 @@ const MatchupVoting = ({
             <$MatchupVotingCharacter>
               {playerB.full_name}
             </$MatchupVotingCharacter>
-            <$MatchupVotingTeam>{leagueName}</$MatchupVotingTeam>
           </div>
           <div>
             <Button
