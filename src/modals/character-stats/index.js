@@ -51,7 +51,10 @@ const CharacterStats = ({
   const damageTotal = teamPoints - matchPoints;
   const activeVoting = votes.filter((vote) => vote.rank === rank);
   const canVote =
-    currentUser.user_id === userId && isMatchupPage && isActive > 0;
+    currentUser.user_id === userId &&
+    isMatchupPage &&
+    isActive > 0 &&
+    rank !== 'battlefield';
 
   const closeModal = () => {
     setErrorMsg(null);
