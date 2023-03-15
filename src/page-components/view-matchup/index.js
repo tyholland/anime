@@ -28,6 +28,7 @@ import { useAppContext } from 'src/hooks/context';
 import NotUser from 'Components/not-user';
 import Button from 'Components/button';
 import Notification from 'src/modals/notification';
+import ActivateVoting from 'src/modals/activate-voting';
 
 const ViewMatchup = () => {
   const router = useRouter();
@@ -41,7 +42,9 @@ const ViewMatchup = () => {
   const [account, setAccount] = useState(null);
   const [isActive, setIsActive] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [votingIsOpen, setVotingIsOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState(null);
+  const [retrigger, setRetrigger] = useState(false);
   const hasMatchup = !!team1 && !!team2 && !!score1 && !!score2 && !!votes;
 
   const handleMatchupData = async () => {
@@ -61,6 +64,7 @@ const ViewMatchup = () => {
       setScore2(score_b);
       setVotes(results.votes);
       setIsActive(active);
+      setRetrigger(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get matchup'));
       setErrorPage(true);
@@ -87,6 +91,12 @@ const ViewMatchup = () => {
       handleMatchupData();
     }
   }, [router.query, account]);
+
+  useEffect(() => {
+    if (retrigger) {
+      handleMatchupData();
+    }
+  }, [retrigger]);
 
   if (errorPage) {
     return <Error />;
@@ -139,6 +149,16 @@ const ViewMatchup = () => {
                     <$ViewMatchupTeamTotal>{score2}</$ViewMatchupTeamTotal>
                   </$ViewMatchupTeamContent>
                 </$ViewMatchupWrapper>
+                {isActive && (
+                  <$ViewMatchupWrapper className="activate">
+                    <Button
+                      btnText="Activate Voting"
+                      btnColor="primary"
+                      btnFunction={() => setVotingIsOpen(true)}
+                      customBtnClass="small"
+                    />
+                  </$ViewMatchupWrapper>
+                )}
                 <$ViewMatchupTeamSplit>
                   <MatchUp
                     isReverse={false}
@@ -180,6 +200,14 @@ const ViewMatchup = () => {
                     isActive={isActive}
                   />
                 </$ViewMatchupTeamSplit>
+                <ActivateVoting
+                  isModalOpen={votingIsOpen}
+                  setIsModalOpen={setVotingIsOpen}
+                  team1={team1.team}
+                  team2={team2.team}
+                  votes={votes}
+                  setRetrigger={setRetrigger}
+                />
               </>
             )}
             <Notification

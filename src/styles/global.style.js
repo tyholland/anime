@@ -45,7 +45,7 @@ export const $GlobalContainer = styled.div`
   min-height: 70vh;
 
   ${RESPONSIVE_VIEW} {
-    padding: 5% 3%;
+    padding: 3% 3% 5%;
   }
 
   &.grid {

@@ -9,6 +9,12 @@ export const $ViewMatchupWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  &.activate {
+    margin: 10px auto 0;
+    width: 150px;
+    justify-content: center;
+  }
 `;
 
 export const $ViewMatchupPositionSection = styled.div`
@@ -26,7 +32,7 @@ export const $ViewMatchupTeamSplit = styled.div`
   flex-direction: row;
   align-items: center;
   width: 100%;
-  margin-top: 30px;
+  margin-top: 20px;
 `;
 
 export const $ViewMatchupPositionColumn = styled.div`
