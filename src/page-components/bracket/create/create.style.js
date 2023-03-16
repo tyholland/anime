@@ -73,6 +73,8 @@ export const $BracketCreateWrapper = styled.div`
   }
 
   &.bracket {
+    margin: 0 auto;
+    width: 97%;
     overflow-x: scroll;
   }
 `;

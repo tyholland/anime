@@ -430,11 +430,15 @@ const BracketCreate = () => {
             <$BracketCreateWrapper className="bracket">
               <TournamentBracket
                 matches={defaultBracket}
-                width={winWidth > 1200 ? 1170 : winWidth}
+                width={
+                  winWidth > 700 && winWidth < 1200
+                    ? winWidth - 85
+                    : winWidth > 1200 && 1100
+                }
                 height={winWidth < 900 ? 700 : 400}
                 disableStrictBracketSizing={true}
                 hidePKs={true}
-                orientation={winWidth < 900 ? 'portrait' : 'landscape'}
+                orientation={winWidth < 700 ? 'portrait' : 'landscape'}
               />
             </$BracketCreateWrapper>
             <$BracketCreateWrapper className="title">
