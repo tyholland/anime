@@ -33,6 +33,7 @@ const Bracket = () => {
   const [hasVoted, setHasVoted] = useState([]);
   const [bracketRound, setBracketRound] = useState(null);
   const [bracketCreator, setBracketCreator] = useState(null);
+  const [bracketName, setBracketName] = useState(null);
   const [theChamp, setTheChamp] = useState(null);
   let pathname = '';
 
@@ -53,7 +54,7 @@ const Bracket = () => {
     const { bracket_id } = router.query;
 
     try {
-      const { allMatches, round, creator } = await getBracket(bracket_id);
+      const { allMatches, round, creator, name } = await getBracket(bracket_id);
 
       if (round === 5) {
         const { champ } = await getTheChamp(bracket_id, currentUser?.token);
@@ -63,6 +64,7 @@ const Bracket = () => {
       setMatches(allMatches);
       setBracketRound(round);
       setBracketCreator(creator);
+      setBracketName(name);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get bracket data'));
       setErrorPage(true);
@@ -229,7 +231,7 @@ const Bracket = () => {
       />
       <$BracketContainer>
         <$GlobalTitle className="bracket">
-          Bracket
+          {bracketName || 'Bracket'}
           <Button
             btnText="?"
             btnColor="secondary"

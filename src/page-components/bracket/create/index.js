@@ -18,6 +18,7 @@ import ReadMore from 'Components/read-more';
 import { createBracket } from 'src/requests/bracket';
 import { useRouter } from 'next/router';
 import TournamentBracket from 'react-svg-tournament-bracket';
+import TextField from 'Components/text-field';
 
 const BracketCreate = () => {
   const emptyPlayersList = {
@@ -128,6 +129,7 @@ const BracketCreate = () => {
   const [playerList, setPlayerList] = useState(emptyPlayersList);
   const [errorPage, setErrorPage] = useState(false);
   const [account, setAccount] = useState(null);
+  const [bracketName, setBracketName] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
   const [winWidth, setWinWidth] = useState(0);
 
@@ -378,7 +380,7 @@ const BracketCreate = () => {
   const handleSubmit = async () => {
     try {
       const { bracketId } = await createBracket(
-        { bracket: playerList },
+        { bracket: playerList, name: bracketName },
         currentUser?.token
       );
       setPlayerList(emptyPlayersList);
@@ -433,6 +435,13 @@ const BracketCreate = () => {
               hidePKs={true}
               orientation={winWidth < 900 ? 'portrait' : 'landscape'}
             />
+            <$BracketCreateWrapper className="title">
+              <TextField
+                placeholder="Enter Bracket Name"
+                onChange={(val) => setBracketName(val)}
+                maxLength={12}
+              />
+            </$BracketCreateWrapper>
             <$BracketCreateWrapper>
               <$BracketCreateSection>
                 <div className="space">Match 1</div>

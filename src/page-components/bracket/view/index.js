@@ -32,7 +32,7 @@ const ViewBrackets = () => {
         return (
           <div key={item.id}>
             <Button
-              btnText={`Bracket #${index + 1}`}
+              btnText={item.name || `Bracket #${index + 1}`}
               btnColor="primary"
               customBtnClass="leagues"
               redirect={`/bracket?bracket_id=${item.id}`}

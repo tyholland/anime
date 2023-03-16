@@ -65,4 +65,9 @@ export const $BracketCreateWrapper = styled.div`
   &.btn {
     text-align: center;
   }
+
+  &.title {
+    display: flex;
+    justify-content: center;
+  }
 `;
