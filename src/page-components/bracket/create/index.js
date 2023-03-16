@@ -427,14 +427,16 @@ const BracketCreate = () => {
         <>
           <$GlobalContainer>
             <$GlobalTitle>Create your Bracket</$GlobalTitle>
-            <TournamentBracket
-              matches={defaultBracket}
-              width={winWidth > 1200 ? 1170 : winWidth - 60}
-              height={winWidth < 900 ? 700 : 400}
-              disableStrictBracketSizing={true}
-              hidePKs={true}
-              orientation={winWidth < 900 ? 'portrait' : 'landscape'}
-            />
+            <$BracketCreateWrapper className="bracket">
+              <TournamentBracket
+                matches={defaultBracket}
+                width={winWidth > 1200 ? 1170 : winWidth - 80}
+                height={winWidth < 900 ? 700 : 400}
+                disableStrictBracketSizing={true}
+                hidePKs={true}
+                orientation={winWidth < 900 ? 'portrait' : 'landscape'}
+              />
+            </$BracketCreateWrapper>
             <$BracketCreateWrapper className="title">
               <TextField
                 placeholder="Enter Bracket Name"

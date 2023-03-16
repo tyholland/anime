@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const $BracketWrapper = styled.div`
   margin: 0 auto 2%;
   width: 97%;
+  overflow-x: scroll;
 
   &.voting {
     text-align: center;

@@ -71,4 +71,8 @@ export const $BracketCreateWrapper = styled.div`
     display: flex;
     justify-content: center;
   }
+
+  &.bracket {
+    overflow-x: scroll;
+  }
 `;

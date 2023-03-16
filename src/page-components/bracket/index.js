@@ -244,11 +244,11 @@ const Bracket = () => {
             <$BracketWrapper>
               <TournamentBracket
                 matches={matches}
-                width={winWidth > 1200 ? 1170 : winWidth - 40}
+                width={winWidth > 1200 ? 1170 : winWidth - 30}
                 height={winWidth < 900 ? 700 : 400}
                 disableStrictBracketSizing={true}
                 hidePKs={true}
-                orientation={winWidth < 900 ? 'portrait' : 'landscape'}
+                orientation={winWidth < 700 ? 'portrait' : 'landscape'}
                 onSelectMatch={(match) => handleMatchDisplay(match)}
                 onSelectTeam={(match, team) => handleVotes(match, team)}
               />
