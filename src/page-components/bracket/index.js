@@ -22,6 +22,7 @@ const Bracket = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState(null);
   const [errorPage, setErrorPage] = useState(null);
+  const [hasVoted, setHasVoted] = useState([]);
   let pathname = '';
 
   if (typeof window !== 'undefined') {
@@ -52,14 +53,27 @@ const Bracket = () => {
 
   const handleMatchDisplay = (match) => {
     const {
-      awayTeamName,
+      awayTeamFullName,
       awayTeamScore,
-      homeTeamName,
+      homeTeamFullName,
       homeTeamScore,
       matchNumber,
     } = match;
 
-    const message = `Matchup #${matchNumber} between ${homeTeamName} and ${awayTeamName}. ${homeTeamName} has ${homeTeamScore} votes. ${awayTeamName} has ${awayTeamScore} votes.`;
+    const message = (
+      <>
+        <p>
+          Matchup #{matchNumber} between {homeTeamFullName} and{' '}
+          {awayTeamFullName}.
+        </p>
+        <p>
+          {homeTeamFullName} has {homeTeamScore} votes.
+        </p>
+        <p>
+          {awayTeamFullName} has {awayTeamScore} votes.
+        </p>
+      </>
+    );
 
     setModalMsg(message);
     setModalIsOpen(true);
@@ -82,6 +96,14 @@ const Bracket = () => {
       return;
     }
 
+    // Check if matchup has already been voted on
+    // Doesn't prevent multiple voting if page is refreshed
+    if (hasVoted.some((item) => item === match.voteId)) {
+      setModalMsg('You already voted on this matchup');
+      setModalIsOpen(true);
+      return;
+    }
+
     try {
       await addVotes(payload, currentUser?.token);
 
@@ -95,6 +117,9 @@ const Bracket = () => {
         votedFor: match[`${team}TeamName`],
         totalVotes: score + 1,
       });
+
+      // Added to allow voting without being logged in
+      setHasVoted((arr) => [...arr, match.voteId]);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to add votes'));
       setModalMsg(err.response.data.message);
@@ -172,8 +197,8 @@ const Bracket = () => {
             <$BracketWrapper>
               <TournamentBracket
                 matches={matches}
-                width={winWidth > 1200 ? 1170 : winWidth - 30}
-                height={1200}
+                width={winWidth > 1200 ? 1170 : winWidth - 40}
+                height={winWidth < 900 ? 700 : 400}
                 disableStrictBracketSizing={true}
                 hidePKs={true}
                 orientation={winWidth < 900 ? 'portrait' : 'landscape'}

@@ -476,7 +476,7 @@ const BracketCreate = () => {
             <TournamentBracket
               matches={defaultBracket}
               width={winWidth > 1200 ? 1170 : winWidth - 60}
-              height={400}
+              height={winWidth < 900 ? 700 : 400}
               disableStrictBracketSizing={true}
               hidePKs={true}
               orientation={winWidth < 900 ? 'portrait' : 'landscape'}
