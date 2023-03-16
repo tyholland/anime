@@ -150,18 +150,6 @@ const Bracket = () => {
       <div>
         Welcome to the ABZ Bracket. The rules for the Bracket are very simple.
         <p>
-          First of all, every Bracket's first round starts on the Sunday
-          following the creation of the Bracket. So, if you are unable to vote
-          on the matchups in the first round, you will most likely need to wait
-          until the following Sunday when the first round becomes active.
-        </p>
-        <p>
-          After the first round becomes active, the second round will become
-          active after the next Sunday, and then the first round will become
-          inactive. Each round, including the championship round, will last only
-          one week, so make sure to get all your votes in as soon as possible.
-        </p>
-        <p>
           You can vote on a specific matchup. If you click on a character in a
           matchup, that means you are voting for that character to win. Once you
           click on a character, you will no longer be able to vote on that
