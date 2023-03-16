@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Metadata from 'Components/metadata';
 import TournamentBracket from 'react-svg-tournament-bracket';
-import { getBracket } from 'src/requests/bracket';
+import {
+  getBracket,
+  getTheChamp,
+  startChampRound,
+  startRound1,
+  startRound2,
+  startRound3,
+  startRound4,
+} from 'src/requests/bracket';
 import { useRouter } from 'next/router';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
@@ -23,6 +31,9 @@ const Bracket = () => {
   const [modalMsg, setModalMsg] = useState(null);
   const [errorPage, setErrorPage] = useState(null);
   const [hasVoted, setHasVoted] = useState([]);
+  const [bracketRound, setBracketRound] = useState(null);
+  const [bracketCreator, setBracketCreator] = useState(null);
+  const [theChamp, setTheChamp] = useState(null);
   let pathname = '';
 
   if (typeof window !== 'undefined') {
@@ -42,9 +53,16 @@ const Bracket = () => {
     const { bracket_id } = router.query;
 
     try {
-      const { allMatches } = await getBracket(bracket_id);
+      const { allMatches, round, creator } = await getBracket(bracket_id);
+
+      if (round === 5) {
+        const { champ } = await getTheChamp(bracket_id, currentUser?.token);
+        setTheChamp(champ);
+      }
 
       setMatches(allMatches);
+      setBracketRound(round);
+      setBracketCreator(creator);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get bracket data'));
       setErrorPage(true);
@@ -166,6 +184,45 @@ const Bracket = () => {
     setModalIsOpen(true);
   };
 
+  const startRound = async () => {
+    const { bracket_id } = router.query;
+
+    try {
+      switch (bracketRound) {
+      case 0:
+        await startRound1(bracket_id, currentUser?.token);
+        setBracketRound(1);
+        break;
+      case 1:
+        await startRound2(bracket_id, currentUser?.token);
+        setBracketRound(2);
+        break;
+      case 2:
+        await startRound3(bracket_id, currentUser?.token);
+        setBracketRound(3);
+        break;
+      case 3:
+        await startRound4(bracket_id, currentUser?.token);
+        setBracketRound(4);
+        break;
+      case 4:
+        var { champ } = await startChampRound(bracket_id, currentUser?.token);
+        setTheChamp(champ);
+        break;
+      default:
+        await startRound1(bracket_id, currentUser?.token);
+        break;
+      }
+
+      await handleBracketDisplay();
+    } catch (err) {
+      addEvent(
+        'Error',
+        responseError(err, `Failed to start the next round - ${bracketRound}`)
+      );
+    }
+  };
+
   useEffect(() => {
     if (Object.keys(router.query).length > 0 && !matches) {
       handleBracketDisplay();
@@ -205,6 +262,21 @@ const Bracket = () => {
                 onSelectMatch={(match) => handleMatchDisplay(match)}
                 onSelectTeam={(match, team) => handleVotes(match, team)}
               />
+            </$BracketWrapper>
+            <$BracketWrapper className="voting">
+              {!theChamp && currentUser?.user_id === bracketCreator && (
+                <Button
+                  btnText={
+                    bracketRound == 4
+                      ? 'Get The Champ'
+                      : `Start Voting on Round ${bracketRound + 1}`
+                  }
+                  btnFunction={startRound}
+                  btnColor="primary"
+                  customBtnClass="medium"
+                />
+              )}
+              {!!theChamp && <h1>The Champion is: {theChamp}</h1>}
             </$BracketWrapper>
             <$BracketWrapper>
               <SocialMedia

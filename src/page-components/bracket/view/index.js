@@ -6,6 +6,7 @@ import {
   $ViewLeagueEmptyTitle,
   $ViewLeagueEmptyBtnWrapper,
 } from 'PageComponents/league/view/view.style';
+import { $BracketViewContainer } from '../bracket.style';
 import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error';
 import { addEvent } from 'Utils/amplitude';
@@ -83,7 +84,9 @@ const ViewBrackets = () => {
               />
             </$GlobalTitle>
             {isLoading && <Loader />}
-            {!!bracketList?.length && !isLoading && bracketList}
+            {!!bracketList?.length && !isLoading && (
+              <$BracketViewContainer>{bracketList}</$BracketViewContainer>
+            )}
             {!bracketList?.length && !isLoading && (
               <>
                 <$ViewLeagueEmptyTitle>

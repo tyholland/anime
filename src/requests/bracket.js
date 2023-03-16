@@ -41,3 +41,63 @@ export const getAllBrackets = async (token) => {
 
   return await axiosClient(data);
 };
+
+export const startRound1 = async (bracketId, token) => {
+  const data = {
+    url: `${api}/bracket/round1/${bracketId}`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};
+
+export const startRound2 = async (bracketId, token) => {
+  const data = {
+    url: `${api}/bracket/round2/${bracketId}`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};
+
+export const startRound3 = async (bracketId, token) => {
+  const data = {
+    url: `${api}/bracket/round3/${bracketId}`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};
+
+export const startRound4 = async (bracketId, token) => {
+  const data = {
+    url: `${api}/bracket/round4/${bracketId}`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};
+
+export const startChampRound = async (bracketId, token) => {
+  const data = {
+    url: `${api}/bracket/round5/${bracketId}`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};
+
+export const getTheChamp = async (bracketId, token) => {
+  const data = {
+    url: `${api}/bracket/champ/${bracketId}`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};

@@ -117,54 +117,6 @@ const BracketCreate = () => {
       affinity: null,
       points: null,
     },
-    player17: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
-    player18: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
-    player19: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
-    player20: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
-    player21: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
-    player22: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
-    player23: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
-    player24: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
   };
   const router = useRouter();
   const { currentUser } = useAppContext();
