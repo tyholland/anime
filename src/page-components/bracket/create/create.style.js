@@ -51,6 +51,7 @@ export const $BracketCreatePlayer = styled.div`
 
     ${MOBILE_VIEW} {
       flex-direction: column;
+      width: 100%;
     }
   }
 `;
