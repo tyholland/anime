@@ -65,14 +65,4 @@ export const $BracketCreateWrapper = styled.div`
   &.btn {
     text-align: center;
   }
-
-  &.disclaimer {
-    width: 70%;
-    text-align: center;
-    margin: 0 auto 3%;
-
-    ${MOBILE_VIEW} {
-      width: 90%;
-    }
-  }
 `;

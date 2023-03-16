@@ -531,11 +531,6 @@ const BracketCreate = () => {
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
             </$BracketCreateWrapper>
-            <$BracketCreateWrapper className="disclaimer">
-              All newly created brackets will be available to be voted on
-              starting on the Sunday after the bracket was created. However, it
-              can be shared with friends right away.
-            </$BracketCreateWrapper>
             <$BracketCreateWrapper className="btn">
               <Button
                 btnText="Create Bracket"
