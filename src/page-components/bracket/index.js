@@ -244,7 +244,7 @@ const Bracket = () => {
             <$BracketWrapper>
               <TournamentBracket
                 matches={matches}
-                width={winWidth > 1200 ? 1170 : winWidth - 30}
+                width={winWidth > 1200 ? 1170 : winWidth}
                 height={winWidth < 900 ? 700 : 400}
                 disableStrictBracketSizing={true}
                 hidePKs={true}
