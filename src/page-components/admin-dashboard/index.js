@@ -19,9 +19,9 @@ import { $AdminDashboardSection } from './adminDashboard.style';
 
 const AdminDashboard = () => {
   const { currentUser } = useAppContext();
-  const [hasAccess, setHasAccess] = useState(false);
+  const [hasAccess, setHasAccess] = useState(true);
   const [players, setPlayers] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [updatePlayer, setUpdatePlayer] = useState(false);
   const [playerInfo, setPlayerInfo] = useState(null);
   const [playerChange, setPlayerChange] = useState(null);
@@ -45,8 +45,6 @@ const AdminDashboard = () => {
   const [editStatus, setEditStatus] = useState(false);
 
   const handleAdminAccess = async () => {
-    setIsLoading(true);
-
     try {
       const { success } = await getAdminAccess(currentUser?.token);
       const allPlayers = await getAdminPlayers(currentUser?.token);
