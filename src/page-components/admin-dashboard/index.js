@@ -42,6 +42,7 @@ const AdminDashboard = () => {
   const [editNoAffinity, setEditNoAffinity] = useState(false);
   const [editWeakness, setEditWeakness] = useState(false);
   const [editImage, setEditImage] = useState(false);
+  const [editStatus, setEditStatus] = useState(false);
 
   const handleAdminAccess = async () => {
     setIsLoading(true);
@@ -103,6 +104,7 @@ const AdminDashboard = () => {
       setEditNoAffinity(false);
       setEditWeakness(false);
       setEditImage(false);
+      setEditStatus(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to update player'));
     }
@@ -708,6 +710,40 @@ const AdminDashboard = () => {
                         <Button
                           btnText="Edit"
                           btnFunction={() => setEditImage(true)}
+                          customBtnClass="text edit"
+                        />
+                      </>
+                    )}
+                  </$AdminDashboardSection>
+                  <$AdminDashboardSection>
+                    <label>Active:</label>
+                    {editStatus && (
+                      <>
+                        <TextField onChange={handleNewVal} maxLength={15} />
+                        <Button
+                          btnText="Save"
+                          btnFunction={() => handlePlayerSave('active')}
+                          customBtnClass="text edit change"
+                        />
+                        <Button
+                          btnText="Cancel"
+                          btnFunction={() => {
+                            setEditStatus(false);
+                            setPlayerChange(playerInfo.active);
+                          }}
+                          customBtnClass="text edit change"
+                        />
+                      </>
+                    )}
+                    {!editStatus && (
+                      <>
+                        <TextField
+                          inputVal={playerInfo.active}
+                          isDisabled={true}
+                        />
+                        <Button
+                          btnText="Edit"
+                          btnFunction={() => setEditStatus(true)}
                           customBtnClass="text edit"
                         />
                       </>
