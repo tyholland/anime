@@ -140,7 +140,7 @@ const AdminDashboard = () => {
                 <label>Full Name:</label>
                 {editFullName && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField onChange={handleNewVal} />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('full_name')}
@@ -174,7 +174,7 @@ const AdminDashboard = () => {
                 <label>Name:</label>
                 {editName && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField onChange={handleNewVal} />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('name')}
@@ -205,7 +205,7 @@ const AdminDashboard = () => {
                 <label>Series:</label>
                 {editSeries && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField onChange={handleNewVal} />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('series')}
@@ -660,7 +660,7 @@ const AdminDashboard = () => {
                 <label>Image:</label>
                 {editImage && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField onChange={handleNewVal} />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('image_url')}
