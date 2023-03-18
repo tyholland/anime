@@ -11,6 +11,21 @@ const Changelog = () => {
       />
       <$GlobalContainer>
         <$GlobalTitle>Changelog</$GlobalTitle>
+        <h3>March 18, 2023</h3>
+        <ul>
+          <li>
+            Updated Bracket feature
+            <ul>
+              <li>Removed ability to vote on previous rounds</li>
+            </ul>
+          </li>
+          <li>
+            Gameplay Rules
+            <ul>
+              <li>Changed copy under the Bracket section</li>
+            </ul>
+          </li>
+        </ul>
         <h3>March 16, 2023</h3>
         <ul>
           <li>New character added</li>

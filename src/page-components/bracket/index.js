@@ -108,6 +108,11 @@ const Bracket = () => {
       playerCount: team === 'home' ? 'player_a_count' : 'player_b_count',
     };
 
+    if (match.round < bracketRound) {
+      handleMatchDisplay(match);
+      return;
+    }
+
     if (!match.voteId) {
       setModalMsg(
         `Round ${match.round} has not started yet. Voting is disabled until the round ${match.round} starts`
