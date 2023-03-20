@@ -149,7 +149,7 @@ const ViewMatchup = () => {
                     <$ViewMatchupTeamTotal>{score2}</$ViewMatchupTeamTotal>
                   </$ViewMatchupTeamContent>
                 </$ViewMatchupWrapper>
-                {isActive && (
+                {isActive > 0 && (
                   <$ViewMatchupWrapper className="activate">
                     <Button
                       btnText="Activate Voting"

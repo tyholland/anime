@@ -14,9 +14,15 @@ const Changelog = () => {
         <h3>March 20, 2023</h3>
         <ul>
           <li>
-            Updated Standings
+            Updated Standings page
             <ul>
               <li>Fixed how records for individual teams is calculated</li>
+            </ul>
+          </li>
+          <li>
+            Updated League Matchups page
+            <ul>
+              <li>Removed random 0 underneath team names</li>
             </ul>
           </li>
         </ul>
