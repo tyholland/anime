@@ -63,64 +63,35 @@ const CharacterStats = ({
       styles={customStyles}
     >
       <$GlobalTitle>{name}</$GlobalTitle>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel>Points</$CharacterStatsLabel>
-        <$CharacterStatsPoints>{originalPower}</$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel>Boost</$CharacterStatsLabel>
-        <$CharacterStatsPoints>+ {boostTotal}</$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel className="specific">
-          Weekly Affinity
-        </$CharacterStatsLabel>
-        <$CharacterStatsPoints className="specific">
-          {boost.week}
-        </$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel className="specific">
-          Support
-        </$CharacterStatsLabel>
-        <$CharacterStatsPoints className="specific">
-          {boost.support}
-        </$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel className="specific">
-          Battlefield
-        </$CharacterStatsLabel>
-        <$CharacterStatsPoints className="specific">
-          {boost.battlefield}
-        </$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel className="specific">Voting</$CharacterStatsLabel>
-        <$CharacterStatsPoints className="specific">
-          {boost.voting}
-        </$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      {isMatchupPage && (
+      {teamPoints === 0 && (
+        <$CharacterStatsScoring className="bye">
+          Bye week
+        </$CharacterStatsScoring>
+      )}
+      {teamPoints > 0 && (
         <>
           <$CharacterStatsScoring>
-            <$CharacterStatsLabel>Damage</$CharacterStatsLabel>
-            <$CharacterStatsPoints>- {damageTotal}</$CharacterStatsPoints>
+            <$CharacterStatsLabel>Points</$CharacterStatsLabel>
+            <$CharacterStatsPoints>{originalPower}</$CharacterStatsPoints>
+          </$CharacterStatsScoring>
+          <$CharacterStatsScoring>
+            <$CharacterStatsLabel>Boost</$CharacterStatsLabel>
+            <$CharacterStatsPoints>+ {boostTotal}</$CharacterStatsPoints>
           </$CharacterStatsScoring>
           <$CharacterStatsScoring>
             <$CharacterStatsLabel className="specific">
               Weekly Affinity
             </$CharacterStatsLabel>
             <$CharacterStatsPoints className="specific">
-              {damage.week}
+              {boost.week}
             </$CharacterStatsPoints>
           </$CharacterStatsScoring>
           <$CharacterStatsScoring>
             <$CharacterStatsLabel className="specific">
-              Villain
+              Support
             </$CharacterStatsLabel>
             <$CharacterStatsPoints className="specific">
-              {damage.villain}
+              {boost.support}
             </$CharacterStatsPoints>
           </$CharacterStatsScoring>
           <$CharacterStatsScoring>
@@ -128,7 +99,7 @@ const CharacterStats = ({
               Battlefield
             </$CharacterStatsLabel>
             <$CharacterStatsPoints className="specific">
-              {damage.battlefield}
+              {boost.battlefield}
             </$CharacterStatsPoints>
           </$CharacterStatsScoring>
           <$CharacterStatsScoring>
@@ -136,18 +107,58 @@ const CharacterStats = ({
               Voting
             </$CharacterStatsLabel>
             <$CharacterStatsPoints className="specific">
-              {damage.voting}
+              {boost.voting}
             </$CharacterStatsPoints>
           </$CharacterStatsScoring>
+          {isMatchupPage && (
+            <>
+              <$CharacterStatsScoring>
+                <$CharacterStatsLabel>Damage</$CharacterStatsLabel>
+                <$CharacterStatsPoints>- {damageTotal}</$CharacterStatsPoints>
+              </$CharacterStatsScoring>
+              <$CharacterStatsScoring>
+                <$CharacterStatsLabel className="specific">
+                  Weekly Affinity
+                </$CharacterStatsLabel>
+                <$CharacterStatsPoints className="specific">
+                  {damage.week}
+                </$CharacterStatsPoints>
+              </$CharacterStatsScoring>
+              <$CharacterStatsScoring>
+                <$CharacterStatsLabel className="specific">
+                  Villain
+                </$CharacterStatsLabel>
+                <$CharacterStatsPoints className="specific">
+                  {damage.villain}
+                </$CharacterStatsPoints>
+              </$CharacterStatsScoring>
+              <$CharacterStatsScoring>
+                <$CharacterStatsLabel className="specific">
+                  Battlefield
+                </$CharacterStatsLabel>
+                <$CharacterStatsPoints className="specific">
+                  {damage.battlefield}
+                </$CharacterStatsPoints>
+              </$CharacterStatsScoring>
+              <$CharacterStatsScoring>
+                <$CharacterStatsLabel className="specific">
+                  Voting
+                </$CharacterStatsLabel>
+                <$CharacterStatsPoints className="specific">
+                  {damage.voting}
+                </$CharacterStatsPoints>
+              </$CharacterStatsScoring>
+            </>
+          )}
+          <$CharacterStatsScoring className="total">
+            <$CharacterStatsLabel>Total Points</$CharacterStatsLabel>
+            <$CharacterStatsPoints>
+              {isMatchupPage ? matchPoints : teamPoints}
+            </$CharacterStatsPoints>
+          </$CharacterStatsScoring>
+          {!!errorMsg && <ErrorMsg msg={errorMsg} />}
         </>
       )}
-      <$CharacterStatsScoring className="total">
-        <$CharacterStatsLabel>Total Points</$CharacterStatsLabel>
-        <$CharacterStatsPoints>
-          {isMatchupPage ? matchPoints : teamPoints}
-        </$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      {!!errorMsg && <ErrorMsg msg={errorMsg} />}
       <$CharacterStatsBtnWrapper>
         {!!activeVoting.length && canVote && (
           <Button

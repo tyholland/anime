@@ -80,7 +80,7 @@ const TeamCard = ({ data }) => {
         </$TeamCardNameAffinity>
         <$TeamCardPower>
           <Button
-            btnText={character.teamPoints}
+            btnText={character.teamPoints === 0 ? 'Bye' : character.teamPoints}
             customBtnClass="text edit"
             btnFunction={() => toggleModal(character)}
           />
@@ -186,14 +186,14 @@ const TeamCard = ({ data }) => {
         <$TeamCardPower className="duo">
           <$TeamCardDuoSpace className="right points">
             <Button
-              btnText={brawler.teamPoints}
+              btnText={brawler.teamPoints === 0 ? 'Bye' : brawler.teamPoints}
               customBtnClass="text edit"
               btnFunction={() => toggleModal(brawler)}
             />
           </$TeamCardDuoSpace>
           <$TeamCardDuoSpace className="right points">
             <Button
-              btnText={support.teamPoints}
+              btnText={support.teamPoints === 0 ? 'Bye' : support.teamPoints}
               customBtnClass="text edit"
               btnFunction={() => toggleModal(support)}
             />

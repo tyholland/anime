@@ -21,6 +21,14 @@ export const $CharacterStatsScoring = styled.div`
     border-top: 1px solid ${COLOR_BLACK};
     padding-top: 20px;
   }
+
+  &.bye {
+    border-top: 1px solid ${COLOR_BLACK};
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+  }
 `;
 
 export const $CharacterStatsPoints = styled.div`

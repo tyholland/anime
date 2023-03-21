@@ -79,7 +79,11 @@ const ActivateVoting = ({
   const getCharacter = (team1, team2, rank) => {
     const activeVoting = votes.filter((vote) => vote.rank === rank);
 
-    if (activeVoting.length) {
+    if (
+      activeVoting.length ||
+      team1.matchPoints === 0 ||
+      team2.matchPoints === 0
+    ) {
       return;
     }
 

@@ -14,6 +14,15 @@ const Changelog = () => {
         <h3>March 20, 2023</h3>
         <ul>
           <li>
+            Add Bye week
+            <ul>
+              <li>Anime series will now have a bye week</li>
+              <li>
+                A character's bye week will be associated to the anime series
+              </li>
+            </ul>
+          </li>
+          <li>
             Updated Standings page
             <ul>
               <li>Fixed how records for individual teams is calculated</li>

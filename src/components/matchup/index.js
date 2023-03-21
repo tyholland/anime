@@ -90,7 +90,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
           onClick={() => toggleModal(captain)}
         >
           <$MatchupPowerText className={isReverse && 'reverse'}>
-            {captain.matchPoints}
+            {captain.matchPoints === 0 ? 'Bye' : captain.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
@@ -111,7 +111,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
           onClick={() => toggleModal(brawler_a)}
         >
           <$MatchupPowerText className={isReverse && 'reverse'}>
-            {brawler_a.matchPoints}
+            {brawler_a.matchPoints === 0 ? 'Bye' : brawler_a.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
@@ -132,7 +132,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
           onClick={() => toggleModal(brawler_b)}
         >
           <$MatchupPowerText className={isReverse && 'reverse'}>
-            {brawler_b.matchPoints}
+            {brawler_b.matchPoints === 0 ? 'Bye' : brawler_b.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
@@ -153,7 +153,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
           onClick={() => toggleModal(bs_brawler)}
         >
           <$MatchupPowerText className={isReverse && 'reverse'}>
-            {bs_brawler.matchPoints}
+            {bs_brawler.matchPoints === 0 ? 'Bye' : bs_brawler.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
@@ -174,7 +174,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
           onClick={() => toggleModal(bs_support)}
         >
           <$MatchupPowerText className={isReverse && 'reverse'}>
-            {bs_support.matchPoints}
+            {bs_support.matchPoints === 0 ? 'Bye' : bs_support.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
@@ -195,7 +195,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
           onClick={() => toggleModal(support)}
         >
           <$MatchupPowerText className={isReverse && 'reverse'}>
-            {support.matchPoints}
+            {support.matchPoints === 0 ? 'Bye' : support.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
@@ -216,7 +216,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
           onClick={() => toggleModal(villain)}
         >
           <$MatchupPowerText className={isReverse && 'reverse'}>
-            {villain.matchPoints}
+            {villain.matchPoints === 0 ? 'Bye' : villain.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
@@ -237,7 +237,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
           onClick={() => toggleModal(battlefield)}
         >
           <$MatchupPowerText className={isReverse && 'reverse'}>
-            {battlefield.matchPoints}
+            {battlefield.matchPoints === 0 ? 'Bye' : battlefield.matchPoints}
           </$MatchupPowerText>
         </$MatchupPower>
       </$MatchupSection>
