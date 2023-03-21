@@ -159,11 +159,6 @@ const TeamEdit = () => {
     });
 
     characterDetails.forEach((item) => {
-      if (item.bye_week === leagueWeek) {
-        totalPoints += 0;
-        return;
-      }
-
       totalPoints += item.power_level;
     });
 
