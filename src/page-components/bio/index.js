@@ -145,6 +145,8 @@ const Bio = () => {
               <$BioSubAttribute>{player.power_level}</$BioSubAttribute>
             </div>
             <div>
+              <$BioAttribute>Bye Week:</$BioAttribute>
+              <$BioSubAttribute>{player.bye_week}</$BioSubAttribute>
               {player.category !== 'Battlefield' && !!affinities?.length && (
                 <>
                   <$BioAttribute>Element Affinity:</$BioAttribute>

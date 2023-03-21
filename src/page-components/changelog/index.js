@@ -13,10 +13,24 @@ const Changelog = () => {
         <$GlobalTitle>Changelog</$GlobalTitle>
         <h3>March 21, 2023</h3>
         <ul>
-          <li>Character update</li>
-          <ul>
-            <li>Twice (Villain)</li>
-          </ul>
+          <li>
+            Character update
+            <ul>
+              <li>Twice (Villain)</li>
+            </ul>
+          </li>
+          <li>
+            Updated Gameplay rules
+            <ul>
+              <li>Explanation about bye weeks</li>
+            </ul>
+          </li>
+          <li>
+            Updated Character Bio page
+            <ul>
+              <li>Added bye week</li>
+            </ul>
+          </li>
         </ul>
         <h3>March 20, 2023</h3>
         <ul>
@@ -59,15 +73,17 @@ const Changelog = () => {
         </ul>
         <h3>March 16, 2023</h3>
         <ul>
-          <li>New character added</li>
-          <ul>
-            <li>Mo Fan (Captain)</li>
-            <li>Zhuo Yifan (Captain)</li>
-            <li>Ye Ming (Captain)</li>
-            <li>John (Support)</li>
-            <li>Seraphina (Support)</li>
-            <li>Joker (Villain)</li>
-          </ul>
+          <li>
+            New character added
+            <ul>
+              <li>Mo Fan (Captain)</li>
+              <li>Zhuo Yifan (Captain)</li>
+              <li>Ye Ming (Captain)</li>
+              <li>John (Support)</li>
+              <li>Seraphina (Support)</li>
+              <li>Joker (Villain)</li>
+            </ul>
+          </li>
           <li>
             Updated Bracket feature
             <ul>

@@ -20,6 +20,12 @@ const MakeTeam = () => {
         character, it most likely means that the character is already assigned
         to another team. You will need to choose a different character.
       </$GameplayCardSection>
+      <$GameplayCardSection>
+        Starting with Week 2, bye weeks will come into effect for all
+        characters. Bye weeks will last through Week 12. All characters within
+        an anime series will have the same bye week. You can find a character's
+        bye week on that character's bio page.
+      </$GameplayCardSection>
     </$GameplayCardContainer>
   );
 };
