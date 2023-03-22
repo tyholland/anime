@@ -1,22 +1,23 @@
 import { Html, Head, Main, NextScript } from 'next/document';
-import Script from 'next/script';
 
-export default function Document() {
+const Document = () => {
   return (
     <Html lang="en">
       <Head />
       <body>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        />
         <script
           src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
           async=""
+        ></script>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         ></script>
         <Main />
         <NextScript />
       </body>
     </Html>
   );
-}
+};
+
+export default Document;
