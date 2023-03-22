@@ -11,7 +11,8 @@ const Document = () => {
         ></script>
         <script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6648399860832112"
+          crossorigin="anonymous"
         ></script>
         <Main />
         <NextScript />

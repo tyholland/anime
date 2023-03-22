@@ -24,7 +24,6 @@
     "postcss-syntax": "^0.36.2",
     "prettier": "^2.7.1",
     "react": "18.2.0",
-    "react-adsense": "^0.1.0",
     "react-burger-menu": "^3.0.9",
     "react-collapsible": "^2.10.0",
     "react-data-grid": "^7.0.0-beta.20",
