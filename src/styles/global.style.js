@@ -188,6 +188,25 @@ export const $GlobalContainer = styled.div`
   &.homeEven {
     background: ${COLOR_WHITE};
   }
+
+  .series {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    div {
+      width: 220px;
+      margin: 1% 0;
+    }
+  }
+
+  .seriesTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 5% 0;
+  }
 `;
 
 export const $GlobalTitle = styled.div`

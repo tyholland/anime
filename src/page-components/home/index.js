@@ -6,6 +6,7 @@ import ReadMore from 'Components/read-more';
 import GameplayCard from 'Components/gameplay-card';
 import SuggestCharacter from 'Components/suggest-character';
 import Button from 'Components/button';
+import { allSeries } from 'Utils/constants';
 
 const Home = () => {
   const goToSharePage = () => {
@@ -17,17 +18,17 @@ const Home = () => {
       <Metadata title="Home" description="Anime Brothaz Fantasy League" />
       <$GlobalContainer className="bgImage home">
         <$GlobalTitle className="home">Anime Fantasy League</$GlobalTitle>
-        <$GlobalContainer>
+        <$GlobalContainer className="home">
           <div className="buttonGrid">
             <SelectionCard btnText="Create League" redirect="/league/create" />
-            <SelectionCard btnText="Join League" redirect="/league/join" />
             <SelectionCard
               btnText="Create Bracket"
               redirect="/bracket/create"
             />
             <SelectionCard btnText="Matchup Voting" redirect="/matchup/all" />
             <SelectionCard btnText="View Characters" redirect="/characters" />
-            <SelectionCard btnText="ABZ Podcast" redirect="/podcast" />
+            <SelectionCard btnText="Suggest Character" redirect="/#suggest" />
+            <SelectionCard btnText="ABZ Podcast" redirect="/#podcast" />
           </div>
         </$GlobalContainer>
         <ReadMore>
@@ -52,10 +53,10 @@ const Home = () => {
       <$GlobalContainer className="homeSection homeEven">
         <GameplayCard />
       </$GlobalContainer>
-      <$GlobalContainer className="homeSection">
+      <$GlobalContainer className="homeSection" id="suggest">
         <SuggestCharacter />
       </$GlobalContainer>
-      <$GlobalContainer className="homeSection homeEven">
+      <$GlobalContainer className="homeSection homeEven" id="podcast">
         <$GlobalTitle>Podcast</$GlobalTitle>
         <p>
           The ABZ podcast is recorded by the Brothaz (DiscipleDashni, QuietJams,
@@ -80,6 +81,18 @@ const Home = () => {
             btnFunction={goToSharePage}
           />
         </center>
+      </$GlobalContainer>
+      <$GlobalContainer className="homeSection">
+        <$GlobalTitle>Anime Series</$GlobalTitle>
+        <div className="seriesTitle">
+          A list of all the anime series from which the characters in this game
+          originate.
+        </div>
+        <div className="series">
+          {allSeries.sort().map((item) => {
+            return <div key={item}>{item}</div>;
+          })}
+        </div>
       </$GlobalContainer>
     </>
   );

@@ -3,7 +3,7 @@ import Metadata from 'Components/metadata';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import { photoCredits } from 'Utils/index';
+import { photoCredits } from 'Utils/constants';
 import {
   $CreditsWrapper,
   $CreditsItem,

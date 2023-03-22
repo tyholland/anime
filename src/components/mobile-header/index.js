@@ -44,6 +44,21 @@ const MobileHeader = ({ acct, acctLink }) => {
           customBtnClass="small header text"
         />
         <Button
+          btnText="Podcast"
+          btnFunction={() => handleBtnClick('/podcast')}
+          customBtnClass="small header text"
+        />
+        <Button
+          btnText="Gameplay"
+          btnFunction={() => handleBtnClick('/gameplay')}
+          customBtnClass="small header text"
+        />
+        <Button
+          btnText="Suggest Character"
+          btnFunction={() => handleBtnClick('/suggest')}
+          customBtnClass="small header text"
+        />
+        <Button
           btnText={acct}
           btnFunction={() => handleBtnClick(acctLink)}
           customBtnClass="small header text"

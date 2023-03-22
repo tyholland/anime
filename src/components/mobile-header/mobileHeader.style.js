@@ -30,7 +30,7 @@ export const $MobileHeaderContainer = styled.div`
   .bm-overlay {
     background: ${COLOR_ORANGE} !important;
     position: absolute !important;
-    width: 50% !important;
+    width: 60% !important;
     right: 0;
     height: ${(props) => props.showOverlay || 'auto'} !important;
   }
@@ -41,6 +41,7 @@ export const $MobileHeaderContainer = styled.div`
     button {
       width: 90%;
       margin: 0 5% 10%;
+      text-align: left;
 
       span {
         font-size: 20px;
@@ -59,5 +60,9 @@ export const $MobileHeaderContainer = styled.div`
 
   .bm-burger-bars {
     display: none;
+  }
+
+  .bm-menu-wrap {
+    width: 55% !important;
   }
 `;
