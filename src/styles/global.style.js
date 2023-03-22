@@ -181,7 +181,6 @@ export const $GlobalContainer = styled.div`
 
   &.homeSection {
     background: ${COLOR_GREY_EXTRA_LIGHT};
-    border-bottom: 1px solid #000;
     min-height: auto;
     padding: 5% 3%;
   }
