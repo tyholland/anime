@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 export const COLOR_ORANGE = 'rgb(249, 128, 17)';
 export const COLOR_ORANGE_DISABLED = 'rgba(249, 128, 17, 0.8)';
 export const COLOR_ORANGE_LIGHT = 'rgba(249, 128, 17, 0.3)';
+export const COLOR_ORANGE_EXTRA_LIGHT = 'rgba(249,128,17,0.15)';
 export const COLOR_RED = '#cc0000';
 export const COLOR_SUCCESS = '#4BB543';
 export const COLOR_ERROR = '#cc000080';
@@ -61,6 +62,12 @@ export const $GlobalContainer = styled.div`
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
+    width: 75%;
+    margin: 0 auto;
+
+    ${RESPONSIVE_VIEW} {
+      width: 100%;
+    }
   }
 
   &.schedule {
@@ -180,7 +187,7 @@ export const $GlobalContainer = styled.div`
   }
 
   &.homeSection {
-    background: ${COLOR_GREY_EXTRA_LIGHT};
+    background: ${COLOR_ORANGE_EXTRA_LIGHT};
     min-height: auto;
     padding: 5% 3%;
   }

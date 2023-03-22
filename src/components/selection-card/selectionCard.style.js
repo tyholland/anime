@@ -8,10 +8,10 @@ import {
 } from 'Styles/global.style';
 
 export const $SelectionCardBlock = styled.button`
-  padding: 2%;
-  margin: 2%;
-  width: 280px;
-  height: 280px;
+  padding: 1%;
+  margin: 1%;
+  width: 200px;
+  height: 200px;
   background-image: url("/assets/background/dragonball.webp");
   background-size: 100%;
   background-repeat: no-repeat;
@@ -22,11 +22,6 @@ export const $SelectionCardBlock = styled.button`
   background-color: transparent;
   border: none;
   position: relative;
-
-  ${RESPONSIVE_VIEW} {
-    width: 215px;
-    height: 215px;
-  }
 
   ${MOBILE_VIEW} {
     width: 150px;

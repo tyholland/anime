@@ -50,13 +50,13 @@ const Home = () => {
           always best!
         </ReadMore>
       </$GlobalContainer>
-      <$GlobalContainer className="homeSection homeEven">
+      <$GlobalContainer className="homeSection">
         <GameplayCard />
       </$GlobalContainer>
-      <$GlobalContainer className="homeSection" id="suggest">
+      <$GlobalContainer className="homeSection homeEven" id="suggest">
         <SuggestCharacter />
       </$GlobalContainer>
-      <$GlobalContainer className="homeSection homeEven" id="podcast">
+      <$GlobalContainer className="homeSection" id="podcast">
         <$GlobalTitle>Podcast</$GlobalTitle>
         <p>
           The ABZ podcast is recorded by the Brothaz (DiscipleDashni, QuietJams,
@@ -82,7 +82,7 @@ const Home = () => {
           />
         </center>
       </$GlobalContainer>
-      <$GlobalContainer className="homeSection">
+      <$GlobalContainer className="homeSection homeEven">
         <$GlobalTitle>Anime Series</$GlobalTitle>
         <div className="seriesTitle">
           A list of all the anime series from which the characters in this game
