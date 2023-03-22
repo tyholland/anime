@@ -198,6 +198,14 @@ export const $GlobalContainer = styled.div`
     div {
       width: 220px;
       margin: 1% 0;
+
+      ${MOBILE_VIEW} {
+        width: 45%;
+        margin: 1% 5% 1% 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
     }
   }
 
