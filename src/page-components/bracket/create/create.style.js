@@ -47,31 +47,34 @@ export const $BracketCreatePlayer = styled.div`
     display: flex;
     align-items: center;
     margin-left: 5%;
+    width: 150px;
 
     ${MOBILE_VIEW} {
       flex-direction: column;
+      width: 100%;
     }
   }
 `;
 
 export const $BracketCreateWrapper = styled.div`
-  margin-bottom: 3%;
+  margin: 3% 0;
 
   ${MOBILE_VIEW} {
-    margin-bottom: 10%;
+    margin: 10% 0;
   }
 
   &.btn {
     text-align: center;
   }
 
-  &.disclaimer {
-    width: 70%;
-    text-align: center;
-    margin: 0 auto 3%;
+  &.title {
+    display: flex;
+    justify-content: center;
+  }
 
-    ${MOBILE_VIEW} {
-      width: 90%;
-    }
+  &.bracket {
+    margin: 0 auto;
+    width: 97%;
+    overflow-x: scroll;
   }
 `;

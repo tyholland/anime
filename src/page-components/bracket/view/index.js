@@ -6,6 +6,7 @@ import {
   $ViewLeagueEmptyTitle,
   $ViewLeagueEmptyBtnWrapper,
 } from 'PageComponents/league/view/view.style';
+import { $BracketViewContainer } from '../bracket.style';
 import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error';
 import { addEvent } from 'Utils/amplitude';
@@ -31,7 +32,7 @@ const ViewBrackets = () => {
         return (
           <div key={item.id}>
             <Button
-              btnText={`Bracket #${index + 1}`}
+              btnText={item.name || `Bracket #${index + 1}`}
               btnColor="primary"
               customBtnClass="leagues"
               redirect={`/bracket?bracket_id=${item.id}`}
@@ -83,7 +84,9 @@ const ViewBrackets = () => {
               />
             </$GlobalTitle>
             {isLoading && <Loader />}
-            {!!bracketList?.length && !isLoading && bracketList}
+            {!!bracketList?.length && !isLoading && (
+              <$BracketViewContainer>{bracketList}</$BracketViewContainer>
+            )}
             {!bracketList?.length && !isLoading && (
               <>
                 <$ViewLeagueEmptyTitle>

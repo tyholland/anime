@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   $MatchupVotingCharacter,
-  $MatchupVotingTeam,
   $MatchupVotingVersus,
   $MatchupVotingWrapper,
   $MatchupVotingSection,
@@ -30,7 +29,6 @@ const MatchupVoting = ({
   const [playerA, setPlayerA] = useState(null);
   const [playerB, setPlayerB] = useState(null);
   const [voteId, setVoteId] = useState(null);
-  const [leagueName, setLeagueName] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   let pathname = '';
 
@@ -70,13 +68,12 @@ const MatchupVoting = ({
   };
 
   const handleMatchup = (matchup) => {
-    const { player_a_count, player_b_count, leagueName, id } = matchup;
+    const { player_a_count, player_b_count, id } = matchup;
 
     setPlayerA(userPlayerA);
     setPlayerB(userPlayerB);
     setPlayerACount(player_a_count);
     setPlayerBCount(player_b_count);
-    setLeagueName(leagueName);
     setVoteId(id);
   };
 
@@ -92,37 +89,51 @@ const MatchupVoting = ({
     <>
       <$MatchupVotingWrapper className={errorMsg && 'spacing'}>
         <$MatchupVotingSection>
-          <$MatchupVotingImage
-            src={playerA.image_url}
-            alt={playerA.full_name}
-          />
-          <$MatchupVotingCharacter>{playerA.full_name}</$MatchupVotingCharacter>
-          <$MatchupVotingTeam>{leagueName}</$MatchupVotingTeam>
-          <Button
-            btnText={`Vote for ${playerA.name}`}
-            btnColor="primary"
-            customBtnClass="medium"
-            btnFunction={() => handleAddingVotes(playerA, 'player_a_count')}
-          />
-          <$MatchupVotingTotal>Total Votes: {playerACount}</$MatchupVotingTotal>
+          <div>
+            <$MatchupVotingImage
+              src={playerA.image_url}
+              alt={playerA.full_name}
+            />
+            <$MatchupVotingCharacter>
+              {playerA.full_name}
+            </$MatchupVotingCharacter>
+          </div>
+          <div>
+            <Button
+              btnText={`Vote for ${playerA.name}`}
+              btnColor="primary"
+              customBtnClass="medium"
+              btnFunction={() => handleAddingVotes(playerA, 'player_a_count')}
+            />
+            <$MatchupVotingTotal>
+              Total Votes: {playerACount}
+            </$MatchupVotingTotal>
+          </div>
         </$MatchupVotingSection>
         <$MatchupVotingSection>
           <$MatchupVotingVersus>VS</$MatchupVotingVersus>
         </$MatchupVotingSection>
         <$MatchupVotingSection>
-          <$MatchupVotingImage
-            src={playerB.image_url}
-            alt={playerB.full_name}
-          />
-          <$MatchupVotingCharacter>{playerB.full_name}</$MatchupVotingCharacter>
-          <$MatchupVotingTeam>{leagueName}</$MatchupVotingTeam>
-          <Button
-            btnText={`Vote for ${playerB.name}`}
-            btnColor="primary"
-            customBtnClass="medium"
-            btnFunction={() => handleAddingVotes(playerB, 'player_b_count')}
-          />
-          <$MatchupVotingTotal>Total Votes: {playerBCount}</$MatchupVotingTotal>
+          <div>
+            <$MatchupVotingImage
+              src={playerB.image_url}
+              alt={playerB.full_name}
+            />
+            <$MatchupVotingCharacter>
+              {playerB.full_name}
+            </$MatchupVotingCharacter>
+          </div>
+          <div>
+            <Button
+              btnText={`Vote for ${playerB.name}`}
+              btnColor="primary"
+              customBtnClass="medium"
+              btnFunction={() => handleAddingVotes(playerB, 'player_b_count')}
+            />
+            <$MatchupVotingTotal>
+              Total Votes: {playerBCount}
+            </$MatchupVotingTotal>
+          </div>
         </$MatchupVotingSection>
       </$MatchupVotingWrapper>
       {errorMsg && <ErrorMsg msg={errorMsg} />}
@@ -141,6 +152,22 @@ const MatchupVoting = ({
             btnColor="secondary"
             customBtnClass="medium"
             btnFunction={changeMatchup}
+          />
+        </$MatchupVotingWrapper>
+      )}
+      {!isChangeable && (
+        <$MatchupVotingWrapper className="btnRedirect">
+          <Button
+            btnText="Vote on more Matchups"
+            btnColor="secondary"
+            customBtnClass="medium"
+            redirect={'/matchup/all'}
+          />
+          <Button
+            btnText="Back to Matchup"
+            btnColor="secondary"
+            customBtnClass="medium"
+            redirect={`/matchup?matchup_id=${matchup.matchup_id}`}
           />
         </$MatchupVotingWrapper>
       )}

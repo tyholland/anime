@@ -14,6 +14,7 @@ const ChangeCharacters = ({
   playerList,
   field,
   isBracket = false,
+  leagueWeek,
 }) => {
   const customStyles = {
     content: {
@@ -53,6 +54,7 @@ const ChangeCharacters = ({
           setPlayerList={setPlayerList}
           playerList={playerList}
           field={field}
+          leagueWeek={leagueWeek}
         />
         <Button
           btnFunction={closeModal}

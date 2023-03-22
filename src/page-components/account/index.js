@@ -11,7 +11,7 @@ import { useAppContext } from 'src/hooks/context';
 import { useRouter } from 'next/router';
 import Loader from 'Components/loader';
 import TextField from 'Components/text-field';
-import { deleteAccount } from 'src/requests/users';
+import { deleteAccount, getAdminAccess } from 'src/requests/users';
 import { responseError } from 'Utils/index';
 import {
   $AccountWrapper,
@@ -38,6 +38,7 @@ const Account = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [pwdSuccess, setPwdSuccess] = useState(false);
   const [auth, setAuth] = useState(getAuth());
+  const [adminAccess, setAdminAccess] = useState(false);
   const router = useRouter();
   const message =
     'The account page contains all your Fantasy League profile information, which includes only your email address. You have the ability to change your password if you choose to do so. The account page also allows you to log out of the Fantasy League. Lastly, if you must, you can even delete your account. Though where is the fun in doing that?';
@@ -110,6 +111,16 @@ const Account = () => {
     }
   };
 
+  const handleAdminAccess = async () => {
+    try {
+      const { success } = await getAdminAccess(currentUser?.token);
+
+      setAdminAccess(success);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to get admin access'));
+    }
+  };
+
   useEffect(() => {
     if (!logoutTrigger) {
       setNotLoggedIn(!currentUser);
@@ -125,6 +136,10 @@ const Account = () => {
       setAuth(getAuth());
     }
   }, [auth]);
+
+  useEffect(() => {
+    handleAdminAccess();
+  }, []);
 
   return (
     <>
@@ -200,6 +215,14 @@ const Account = () => {
                 </$AccountWrapper>
               </Collapsible>
             </div>
+          )}
+          {adminAccess && (
+            <Button
+              btnText="Admin Dashboard"
+              redirect="/admin-dashboard"
+              btnColor="primary"
+              customBtnClass="medium"
+            />
           )}
           <ReadMore>{message}</ReadMore>
         </$GlobalContainer>

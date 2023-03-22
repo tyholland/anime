@@ -39,6 +39,7 @@ const TeamEdit = () => {
   const [playerList, setPlayerList] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
   const [account, setAccount] = useState(null);
+  const [leagueWeek, setLeagueWeek] = useState(null);
 
   const handleTeamData = async () => {
     const { team_id } = router.query;
@@ -66,6 +67,7 @@ const TeamEdit = () => {
       setPlayers(unusedPlayers);
       setAllPlayers(allPlayers);
       setTeamId(team_id);
+      setLeagueWeek(team.week);
     } catch (err) {
       addEvent(
         'Error',
@@ -359,6 +361,7 @@ const TeamEdit = () => {
                   setPlayerList={updatePlayers}
                   playerList={playerList}
                   field={field}
+                  leagueWeek={leagueWeek}
                 />
               </>
             )}

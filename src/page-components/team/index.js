@@ -17,13 +17,14 @@ import Metadata from 'Components/metadata/index.js';
 import { useRouter } from 'next/router.js';
 import Error from 'PageComponents/error/index.js';
 import { responseError } from 'Utils/index.js';
-import { getTeam } from 'src/requests/team.js';
+import { getTeam, hideRecap } from 'src/requests/team.js';
 import Loader from 'Components/loader/index.js';
 import { addEvent } from 'Utils/amplitude.js';
 import { useAppContext } from 'src/hooks/context.js';
 import NotUser from 'Components/not-user/index.js';
 import ReadMore from 'Components/read-more/index.js';
 import AdSense from 'react-adsense';
+import Recap from 'src/modals/recap/index.js';
 
 const Team = () => {
   const router = useRouter();
@@ -36,13 +37,16 @@ const Team = () => {
   const [totalPoints, setTotalPoints] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
   const [account, setAccount] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [recap, setRecap] = useState(null);
+  const [leagueId, setLeagueId] = useState(null);
 
   const handleTeam = async () => {
     const { team_id } = router.query;
 
     try {
       const teamData = await getTeam(team_id, currentUser?.token);
-      const { team, info } = teamData;
+      const { team, info, recap } = teamData;
 
       const totalPoints =
         team.captain.teamPoints +
@@ -60,9 +64,21 @@ const Team = () => {
       setTotalPoints(totalPoints || 0);
       setTeamData(teamData);
       setHideWeek(team.week < 1);
+      setModalIsOpen(!!recap);
+      setRecap(recap);
+      setLeagueId(info.league_id);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get team data'));
       setErrorPage(true);
+    }
+  };
+
+  const closeModal = async () => {
+    try {
+      await hideRecap(leagueId, currentUser?.token);
+      setModalIsOpen(false);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to close modal'));
     }
   };
 
@@ -127,6 +143,12 @@ const Team = () => {
                   <$TeamTotalText>Total</$TeamTotalText>
                   <$TeamTotalAmount>{totalPoints}</$TeamTotalAmount>
                 </$TeamTotal>
+                <Recap
+                  data={recap}
+                  modalIsOpen={modalIsOpen}
+                  closeModal={closeModal}
+                  teamName={teamData.teamName}
+                />
               </>
             )}
             <AdSense.Google

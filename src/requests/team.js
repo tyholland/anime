@@ -72,3 +72,13 @@ export const removeTeam = async (leagueId, token) => {
 
   return await axiosClient(data);
 };
+
+export const hideRecap = async (leagueId, token) => {
+  const data = {
+    url: `${api}/team/recap/${leagueId}`,
+    method: 'put',
+    token,
+  };
+
+  return await axiosClient(data);
+};

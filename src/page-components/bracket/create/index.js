@@ -17,6 +17,8 @@ import NotUser from 'Components/not-user';
 import ReadMore from 'Components/read-more';
 import { createBracket } from 'src/requests/bracket';
 import { useRouter } from 'next/router';
+import TournamentBracket from 'react-svg-tournament-bracket';
+import TextField from 'Components/text-field';
 
 const BracketCreate = () => {
   const emptyPlayersList = {
@@ -116,54 +118,6 @@ const BracketCreate = () => {
       affinity: null,
       points: null,
     },
-    player17: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
-    player18: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
-    player19: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
-    player20: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
-    player21: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
-    player22: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
-    player23: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
-    player24: {
-      id: null,
-      name: null,
-      affinity: null,
-      points: null,
-    },
   };
   const router = useRouter();
   const { currentUser } = useAppContext();
@@ -175,7 +129,154 @@ const BracketCreate = () => {
   const [playerList, setPlayerList] = useState(emptyPlayersList);
   const [errorPage, setErrorPage] = useState(false);
   const [account, setAccount] = useState(null);
+  const [bracketName, setBracketName] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [winWidth, setWinWidth] = useState(0);
+
+  if (typeof window !== 'undefined') {
+    if (!winWidth) {
+      setWinWidth(window.innerWidth);
+    }
+    window.onresize = () => setWinWidth(window.innerWidth);
+  }
+
+  const defaultBracket = [
+    {
+      homeTeamName: 'Player 1',
+      awayTeamName: 'Player 2',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 1,
+      round: 1,
+      voteId: null,
+    },
+    {
+      homeTeamName: 'Player 3',
+      awayTeamName: 'Player 4',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 2,
+      round: 1,
+      voteId: null,
+    },
+    {
+      homeTeamName: 'Player 5',
+      awayTeamName: 'Player 6',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 3,
+      round: 1,
+      voteId: null,
+    },
+    {
+      homeTeamName: 'Player 7',
+      awayTeamName: 'Player 8',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 4,
+      round: 1,
+      voteId: null,
+    },
+    {
+      homeTeamName: 'Player 9',
+      awayTeamName: 'Player 10',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 5,
+      round: 1,
+      voteId: null,
+    },
+    {
+      homeTeamName: 'Player 11',
+      awayTeamName: 'Player 12',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 6,
+      round: 1,
+      voteId: null,
+    },
+    {
+      homeTeamName: 'Player 13',
+      awayTeamName: 'Player 14',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 7,
+      round: 1,
+      voteId: null,
+    },
+    {
+      homeTeamName: 'Player 15',
+      awayTeamName: 'Player 16',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 8,
+      round: 1,
+      voteId: null,
+    },
+    {
+      homeTeamName: '#1 Winner',
+      awayTeamName: '#2 Winner',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 9,
+      round: 2,
+      voteId: null,
+    },
+    {
+      homeTeamName: '#3 Winner',
+      awayTeamName: '#4 Winner',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 10,
+      round: 2,
+      voteId: null,
+    },
+    {
+      homeTeamName: '#5 Winner',
+      awayTeamName: '#6 Winner',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 11,
+      round: 2,
+      voteId: null,
+    },
+    {
+      homeTeamName: '#7 Winner',
+      awayTeamName: '#8 Winner',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 12,
+      round: 2,
+      voteId: null,
+    },
+    {
+      homeTeamName: '#9 Winner',
+      awayTeamName: '#10 Winner',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 13,
+      round: 3,
+      voteId: null,
+    },
+    {
+      homeTeamName: '#11 Winner',
+      awayTeamName: '#12 Winner',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 14,
+      round: 3,
+      voteId: null,
+    },
+    {
+      homeTeamName: '#13 Winner',
+      awayTeamName: '#14 Winner',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      matchNumber: 15,
+      round: 4,
+      voteId: null,
+    },
+  ];
 
   const handleAllPlayers = async () => {
     try {
@@ -201,10 +302,12 @@ const BracketCreate = () => {
   };
 
   const handleBtn = (fieldName) => {
+    const btnTextNum = fieldName.split('player');
+
     if (!playerList[fieldName].id) {
       return (
         <Button
-          btnText="Add"
+          btnText={`Add Player ${btnTextNum[1]}`}
           btnColor="primary"
           customBtnClass="small"
           btnFunction={() => {
@@ -277,7 +380,7 @@ const BracketCreate = () => {
   const handleSubmit = async () => {
     try {
       const { bracketId } = await createBracket(
-        { bracket: playerList },
+        { bracket: playerList, name: bracketName },
         currentUser?.token
       );
       setPlayerList(emptyPlayersList);
@@ -324,6 +427,27 @@ const BracketCreate = () => {
         <>
           <$GlobalContainer>
             <$GlobalTitle>Create your Bracket</$GlobalTitle>
+            <$BracketCreateWrapper className="bracket">
+              <TournamentBracket
+                matches={defaultBracket}
+                width={
+                  winWidth > 700 && winWidth < 1200
+                    ? winWidth - 85
+                    : winWidth > 1200 && 1100
+                }
+                height={winWidth < 900 ? 700 : 400}
+                disableStrictBracketSizing={true}
+                hidePKs={true}
+                orientation={winWidth < 700 ? 'portrait' : 'landscape'}
+              />
+            </$BracketCreateWrapper>
+            <$BracketCreateWrapper className="title">
+              <TextField
+                placeholder="Enter Bracket Name"
+                onChange={(val) => setBracketName(val)}
+                maxLength={12}
+              />
+            </$BracketCreateWrapper>
             <$BracketCreateWrapper>
               <$BracketCreateSection>
                 <div className="space">Match 1</div>
@@ -333,167 +457,94 @@ const BracketCreate = () => {
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <div>Bye</div>
+                  <div>{playerList.player2.name}</div>
+                  <div className="actionBtn">{handleBtn('player2')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Match 2</div>
                 <$BracketCreatePlayer>
-                  <div>{playerList.player2.name}</div>
-                  <div className="actionBtn">{handleBtn('player2')}</div>
+                  <div>{playerList.player3.name}</div>
+                  <div className="actionBtn">{handleBtn('player3')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <div>{playerList.player3.name}</div>
-                  <div className="actionBtn">{handleBtn('player3')}</div>
+                  <div>{playerList.player4.name}</div>
+                  <div className="actionBtn">{handleBtn('player4')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Match 3</div>
                 <$BracketCreatePlayer>
-                  <div>{playerList.player4.name}</div>
-                  <div className="actionBtn">{handleBtn('player4')}</div>
+                  <div>{playerList.player5.name}</div>
+                  <div className="actionBtn">{handleBtn('player5')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <div>{playerList.player5.name}</div>
-                  <div className="actionBtn">{handleBtn('player5')}</div>
+                  <div>{playerList.player6.name}</div>
+                  <div className="actionBtn">{handleBtn('player6')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Match 4</div>
                 <$BracketCreatePlayer>
-                  <div>{playerList.player6.name}</div>
-                  <div className="actionBtn">{handleBtn('player6')}</div>
+                  <div>{playerList.player7.name}</div>
+                  <div className="actionBtn">{handleBtn('player7')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <div>{playerList.player7.name}</div>
-                  <div className="actionBtn">{handleBtn('player7')}</div>
+                  <div>{playerList.player8.name}</div>
+                  <div className="actionBtn">{handleBtn('player8')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Match 5</div>
                 <$BracketCreatePlayer>
-                  <div>{playerList.player8.name}</div>
-                  <div className="actionBtn">{handleBtn('player8')}</div>
+                  <div>{playerList.player9.name}</div>
+                  <div className="actionBtn">{handleBtn('player9')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <div>{playerList.player9.name}</div>
-                  <div className="actionBtn">{handleBtn('player9')}</div>
+                  <div>{playerList.player10.name}</div>
+                  <div className="actionBtn">{handleBtn('player10')}</div>
                 </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
                 <div className="space">Match 6</div>
                 <$BracketCreatePlayer>
-                  <div>{playerList.player10.name}</div>
-                  <div className="actionBtn">{handleBtn('player10')}</div>
-                </$BracketCreatePlayer>
-                <div className="space">vs</div>
-                <$BracketCreatePlayer>
                   <div>{playerList.player11.name}</div>
                   <div className="actionBtn">{handleBtn('player11')}</div>
                 </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div className="space">Match 7</div>
+                <div className="space">vs</div>
                 <$BracketCreatePlayer>
                   <div>{playerList.player12.name}</div>
                   <div className="actionBtn">{handleBtn('player12')}</div>
                 </$BracketCreatePlayer>
-                <div className="space">vs</div>
-                <$BracketCreatePlayer>
-                  <div>Bye</div>
-                </$BracketCreatePlayer>
               </$BracketCreateSection>
               <$BracketCreateSection>
-                <div className="space">Match 8</div>
+                <div className="space">Match 7</div>
                 <$BracketCreatePlayer>
                   <div>{playerList.player13.name}</div>
                   <div className="actionBtn">{handleBtn('player13')}</div>
                 </$BracketCreatePlayer>
                 <div className="space">vs</div>
                 <$BracketCreatePlayer>
-                  <div>Bye</div>
-                </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div className="space">Match 9</div>
-                <$BracketCreatePlayer>
                   <div>{playerList.player14.name}</div>
                   <div className="actionBtn">{handleBtn('player14')}</div>
                 </$BracketCreatePlayer>
-                <div className="space">vs</div>
+              </$BracketCreateSection>
+              <$BracketCreateSection>
+                <div className="space">Match 8</div>
                 <$BracketCreatePlayer>
                   <div>{playerList.player15.name}</div>
                   <div className="actionBtn">{handleBtn('player15')}</div>
                 </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div className="space">Match 10</div>
+                <div className="space">vs</div>
                 <$BracketCreatePlayer>
                   <div>{playerList.player16.name}</div>
                   <div className="actionBtn">{handleBtn('player16')}</div>
                 </$BracketCreatePlayer>
-                <div className="space">vs</div>
-                <$BracketCreatePlayer>
-                  <div>{playerList.player17.name}</div>
-                  <div className="actionBtn">{handleBtn('player17')}</div>
-                </$BracketCreatePlayer>
               </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div className="space">Match 11</div>
-                <$BracketCreatePlayer>
-                  <div>{playerList.player18.name}</div>
-                  <div className="actionBtn">{handleBtn('player18')}</div>
-                </$BracketCreatePlayer>
-                <div className="space">vs</div>
-                <$BracketCreatePlayer>
-                  <div>{playerList.player19.name}</div>
-                  <div className="actionBtn">{handleBtn('player19')}</div>
-                </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div className="space">Match 12</div>
-                <$BracketCreatePlayer>
-                  <div>{playerList.player20.name}</div>
-                  <div className="actionBtn">{handleBtn('player20')}</div>
-                </$BracketCreatePlayer>
-                <div className="space">vs</div>
-                <$BracketCreatePlayer>
-                  <div>{playerList.player21.name}</div>
-                  <div className="actionBtn">{handleBtn('player21')}</div>
-                </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div className="space">Match 13</div>
-                <$BracketCreatePlayer>
-                  <div>{playerList.player22.name}</div>
-                  <div className="actionBtn">{handleBtn('player22')}</div>
-                </$BracketCreatePlayer>
-                <div className="space">vs</div>
-                <$BracketCreatePlayer>
-                  <div>{playerList.player23.name}</div>
-                  <div className="actionBtn">{handleBtn('player23')}</div>
-                </$BracketCreatePlayer>
-              </$BracketCreateSection>
-              <$BracketCreateSection>
-                <div className="space">Match 14</div>
-                <$BracketCreatePlayer>
-                  <div>{playerList.player24.name}</div>
-                  <div className="actionBtn">{handleBtn('player24')}</div>
-                </$BracketCreatePlayer>
-                <div className="space">vs</div>
-                <$BracketCreatePlayer>
-                  <div>Bye</div>
-                </$BracketCreatePlayer>
-              </$BracketCreateSection>
-            </$BracketCreateWrapper>
-            <$BracketCreateWrapper className="disclaimer">
-              All newly created brackets will be available to be voted on
-              starting on the Sunday after the bracket was created. However, it
-              can be shared with friends right away.
             </$BracketCreateWrapper>
             <$BracketCreateWrapper className="btn">
               <Button

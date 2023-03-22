@@ -14,6 +14,7 @@ const Players = ({
   playerList,
   field,
   page = null,
+  leagueWeek,
 }) => {
   const router = useRouter();
   const [rows, setRows] = useState([]);
@@ -132,7 +133,7 @@ const Players = ({
         fullName: item.full_name,
         name: item.name,
         rank: item.category,
-        power: item.power_level,
+        power: item.bye_week === leagueWeek ? 'Bye' : item.power_level,
         series: item.series,
         affinity: affinity.join(', '),
         width: 200,

@@ -6,7 +6,6 @@ export const axiosClient = async (data) => {
   const options = {
     method,
     url,
-    withCredentials: true,
   };
 
   if (token) {

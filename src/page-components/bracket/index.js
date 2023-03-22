@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Metadata from 'Components/metadata';
 import TournamentBracket from 'react-svg-tournament-bracket';
-import { getBracket } from 'src/requests/bracket';
+import {
+  getBracket,
+  getTheChamp,
+  startChampRound,
+  startRound1,
+  startRound2,
+  startRound3,
+  startRound4,
+} from 'src/requests/bracket';
 import { useRouter } from 'next/router';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
@@ -22,6 +30,11 @@ const Bracket = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState(null);
   const [errorPage, setErrorPage] = useState(null);
+  const [hasVoted, setHasVoted] = useState([]);
+  const [bracketRound, setBracketRound] = useState(null);
+  const [bracketCreator, setBracketCreator] = useState(null);
+  const [bracketName, setBracketName] = useState(null);
+  const [theChamp, setTheChamp] = useState(null);
   let pathname = '';
 
   if (typeof window !== 'undefined') {
@@ -41,9 +54,17 @@ const Bracket = () => {
     const { bracket_id } = router.query;
 
     try {
-      const { allMatches } = await getBracket(bracket_id);
+      const { allMatches, round, creator, name } = await getBracket(bracket_id);
+
+      if (round === 5) {
+        const { champ } = await getTheChamp(bracket_id, currentUser?.token);
+        setTheChamp(champ);
+      }
 
       setMatches(allMatches);
+      setBracketRound(round);
+      setBracketCreator(creator);
+      setBracketName(name);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get bracket data'));
       setErrorPage(true);
@@ -52,14 +73,27 @@ const Bracket = () => {
 
   const handleMatchDisplay = (match) => {
     const {
-      awayTeamName,
+      awayTeamFullName,
       awayTeamScore,
-      homeTeamName,
+      homeTeamFullName,
       homeTeamScore,
       matchNumber,
     } = match;
 
-    const message = `Matchup #${matchNumber} between ${homeTeamName} and ${awayTeamName}. ${homeTeamName} has ${homeTeamScore} votes. ${awayTeamName} has ${awayTeamScore} votes.`;
+    const message = (
+      <>
+        <p>
+          Matchup #{matchNumber} between {homeTeamFullName} and{' '}
+          {awayTeamFullName}.
+        </p>
+        <p>
+          {homeTeamFullName} has {homeTeamScore} votes.
+        </p>
+        <p>
+          {awayTeamFullName} has {awayTeamScore} votes.
+        </p>
+      </>
+    );
 
     setModalMsg(message);
     setModalIsOpen(true);
@@ -74,10 +108,23 @@ const Bracket = () => {
       playerCount: team === 'home' ? 'player_a_count' : 'player_b_count',
     };
 
+    if (match.round < bracketRound) {
+      handleMatchDisplay(match);
+      return;
+    }
+
     if (!match.voteId) {
       setModalMsg(
         `Round ${match.round} has not started yet. Voting is disabled until the round ${match.round} starts`
       );
+      setModalIsOpen(true);
+      return;
+    }
+
+    // Check if matchup has already been voted on
+    // Doesn't prevent multiple voting if page is refreshed
+    if (hasVoted.some((item) => item === match.voteId)) {
+      setModalMsg('You already voted on this matchup');
       setModalIsOpen(true);
       return;
     }
@@ -95,6 +142,9 @@ const Bracket = () => {
         votedFor: match[`${team}TeamName`],
         totalVotes: score + 1,
       });
+
+      // Added to allow voting without being logged in
+      setHasVoted((arr) => [...arr, match.voteId]);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to add votes'));
       setModalMsg(err.response.data.message);
@@ -106,18 +156,6 @@ const Bracket = () => {
     const msg = (
       <div>
         Welcome to the ABZ Bracket. The rules for the Bracket are very simple.
-        <p>
-          First of all, every Bracket's first round starts on the Sunday
-          following the creation of the Bracket. So, if you are unable to vote
-          on the matchups in the first round, you will most likely need to wait
-          until the following Sunday when the first round becomes active.
-        </p>
-        <p>
-          After the first round becomes active, the second round will become
-          active after the next Sunday, and then the first round will become
-          inactive. Each round, including the championship round, will last only
-          one week, so make sure to get all your votes in as soon as possible.
-        </p>
         <p>
           You can vote on a specific matchup. If you click on a character in a
           matchup, that means you are voting for that character to win. Once you
@@ -141,6 +179,45 @@ const Bracket = () => {
     setModalIsOpen(true);
   };
 
+  const startRound = async () => {
+    const { bracket_id } = router.query;
+
+    try {
+      switch (bracketRound) {
+      case 0:
+        await startRound1(bracket_id, currentUser?.token);
+        setBracketRound(1);
+        break;
+      case 1:
+        await startRound2(bracket_id, currentUser?.token);
+        setBracketRound(2);
+        break;
+      case 2:
+        await startRound3(bracket_id, currentUser?.token);
+        setBracketRound(3);
+        break;
+      case 3:
+        await startRound4(bracket_id, currentUser?.token);
+        setBracketRound(4);
+        break;
+      case 4:
+        var { champ } = await startChampRound(bracket_id, currentUser?.token);
+        setTheChamp(champ);
+        break;
+      default:
+        await startRound1(bracket_id, currentUser?.token);
+        break;
+      }
+
+      await handleBracketDisplay();
+    } catch (err) {
+      addEvent(
+        'Error',
+        responseError(err, `Failed to start the next round - ${bracketRound}`)
+      );
+    }
+  };
+
   useEffect(() => {
     if (Object.keys(router.query).length > 0 && !matches) {
       handleBracketDisplay();
@@ -159,7 +236,7 @@ const Bracket = () => {
       />
       <$BracketContainer>
         <$GlobalTitle className="bracket">
-          Bracket
+          {bracketName || 'Bracket'}
           <Button
             btnText="?"
             btnColor="secondary"
@@ -172,14 +249,33 @@ const Bracket = () => {
             <$BracketWrapper>
               <TournamentBracket
                 matches={matches}
-                width={winWidth > 1200 ? 1170 : winWidth - 30}
-                height={1200}
+                width={
+                  winWidth > 700 && winWidth < 1200
+                    ? winWidth - 85
+                    : winWidth > 1200 && 1100
+                }
+                height={winWidth < 900 ? 700 : 400}
                 disableStrictBracketSizing={true}
                 hidePKs={true}
-                orientation={winWidth < 900 ? 'portrait' : 'landscape'}
+                orientation={winWidth < 700 ? 'portrait' : 'landscape'}
                 onSelectMatch={(match) => handleMatchDisplay(match)}
                 onSelectTeam={(match, team) => handleVotes(match, team)}
               />
+            </$BracketWrapper>
+            <$BracketWrapper className="voting">
+              {!theChamp && currentUser?.user_id === bracketCreator && (
+                <Button
+                  btnText={
+                    bracketRound == 4
+                      ? 'Get The Champ'
+                      : `Start Voting on Round ${bracketRound + 1}`
+                  }
+                  btnFunction={startRound}
+                  btnColor="primary"
+                  customBtnClass="medium"
+                />
+              )}
+              {!!theChamp && <h1>The Champion is: {theChamp}</h1>}
             </$BracketWrapper>
             <$BracketWrapper>
               <SocialMedia

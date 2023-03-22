@@ -28,13 +28,16 @@ const Footer = () => {
             </Link>
           </div>
           <div>
-            <Link href="/suggest">Suggest New Character</Link>
+            <Link href="/suggest">Suggest Character</Link>
           </div>
         </$FooterLinks>
         <$FooterLinks>
           <div className="title">More Info</div>
           <div>
             <Link href="/policy">Privacy Policy</Link>
+          </div>
+          <div>
+            <Link href="/changelog">Changelog</Link>
           </div>
           <div>
             <Link href="/gameplay">Gameplay</Link>

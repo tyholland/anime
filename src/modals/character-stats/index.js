@@ -8,10 +8,6 @@ import {
   $CharacterStatsLabel,
 } from './characterStats.style';
 import MainModal from '../main';
-import { createMatchupVotes } from 'src/requests/matchup';
-import { useRouter } from 'next/router';
-import { responseError } from 'Utils/index';
-import { addEvent } from 'Utils/amplitude';
 import { useAppContext } from 'src/hooks/context';
 import ErrorMsg from 'Components/error-msg';
 
@@ -25,7 +21,6 @@ const CharacterStats = ({
   isActive = null,
 }) => {
   const { currentUser } = useAppContext();
-  const router = useRouter();
   const [errorMsg, setErrorMsg] = useState(null);
   const customStyles = {
     content: {
@@ -51,35 +46,14 @@ const CharacterStats = ({
   const damageTotal = teamPoints - matchPoints;
   const activeVoting = votes.filter((vote) => vote.rank === rank);
   const canVote =
-    currentUser.user_id === userId && isMatchupPage && isActive > 0;
+    currentUser.user_id === userId &&
+    isMatchupPage &&
+    isActive > 0 &&
+    rank !== 'battlefield';
 
   const closeModal = () => {
+    setErrorMsg(null);
     setIsModalOpen(false);
-  };
-
-  const handleVotes = async () => {
-    const { query } = router;
-    const payload = {
-      rank,
-    };
-
-    try {
-      const newMatchup = await createMatchupVotes(
-        query?.matchup_id,
-        payload,
-        currentUser?.token
-      );
-
-      addEvent('Start Matchup Voting', {
-        matchupId: query?.matchup_id,
-        rank,
-      });
-
-      router.push(`/matchup/vote?vote_id=${newMatchup.matchupVoteId}`);
-    } catch (err) {
-      addEvent('Error', responseError(err, 'Failed to create matchup voting'));
-      setErrorMsg(err.response.data.message);
-    }
   };
 
   return (
@@ -89,64 +63,35 @@ const CharacterStats = ({
       styles={customStyles}
     >
       <$GlobalTitle>{name}</$GlobalTitle>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel>Points</$CharacterStatsLabel>
-        <$CharacterStatsPoints>{originalPower}</$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel>Boost</$CharacterStatsLabel>
-        <$CharacterStatsPoints>+ {boostTotal}</$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel className="specific">
-          Weekly Affinity
-        </$CharacterStatsLabel>
-        <$CharacterStatsPoints className="specific">
-          {boost.week}
-        </$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel className="specific">
-          Support
-        </$CharacterStatsLabel>
-        <$CharacterStatsPoints className="specific">
-          {boost.support}
-        </$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel className="specific">
-          Battlefield
-        </$CharacterStatsLabel>
-        <$CharacterStatsPoints className="specific">
-          {boost.battlefield}
-        </$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      <$CharacterStatsScoring>
-        <$CharacterStatsLabel className="specific">Voting</$CharacterStatsLabel>
-        <$CharacterStatsPoints className="specific">
-          {boost.voting}
-        </$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      {isMatchupPage && (
+      {teamPoints === 0 && (
+        <$CharacterStatsScoring className="bye">
+          Bye week
+        </$CharacterStatsScoring>
+      )}
+      {teamPoints > 0 && (
         <>
           <$CharacterStatsScoring>
-            <$CharacterStatsLabel>Damage</$CharacterStatsLabel>
-            <$CharacterStatsPoints>- {damageTotal}</$CharacterStatsPoints>
+            <$CharacterStatsLabel>Points</$CharacterStatsLabel>
+            <$CharacterStatsPoints>{originalPower}</$CharacterStatsPoints>
+          </$CharacterStatsScoring>
+          <$CharacterStatsScoring>
+            <$CharacterStatsLabel>Boost</$CharacterStatsLabel>
+            <$CharacterStatsPoints>+ {boostTotal}</$CharacterStatsPoints>
           </$CharacterStatsScoring>
           <$CharacterStatsScoring>
             <$CharacterStatsLabel className="specific">
               Weekly Affinity
             </$CharacterStatsLabel>
             <$CharacterStatsPoints className="specific">
-              {damage.week}
+              {boost.week}
             </$CharacterStatsPoints>
           </$CharacterStatsScoring>
           <$CharacterStatsScoring>
             <$CharacterStatsLabel className="specific">
-              Villain
+              Support
             </$CharacterStatsLabel>
             <$CharacterStatsPoints className="specific">
-              {damage.villain}
+              {boost.support}
             </$CharacterStatsPoints>
           </$CharacterStatsScoring>
           <$CharacterStatsScoring>
@@ -154,7 +99,7 @@ const CharacterStats = ({
               Battlefield
             </$CharacterStatsLabel>
             <$CharacterStatsPoints className="specific">
-              {damage.battlefield}
+              {boost.battlefield}
             </$CharacterStatsPoints>
           </$CharacterStatsScoring>
           <$CharacterStatsScoring>
@@ -162,16 +107,58 @@ const CharacterStats = ({
               Voting
             </$CharacterStatsLabel>
             <$CharacterStatsPoints className="specific">
-              {damage.voting}
+              {boost.voting}
             </$CharacterStatsPoints>
           </$CharacterStatsScoring>
+          {isMatchupPage && (
+            <>
+              <$CharacterStatsScoring>
+                <$CharacterStatsLabel>Damage</$CharacterStatsLabel>
+                <$CharacterStatsPoints>- {damageTotal}</$CharacterStatsPoints>
+              </$CharacterStatsScoring>
+              <$CharacterStatsScoring>
+                <$CharacterStatsLabel className="specific">
+                  Weekly Affinity
+                </$CharacterStatsLabel>
+                <$CharacterStatsPoints className="specific">
+                  {damage.week}
+                </$CharacterStatsPoints>
+              </$CharacterStatsScoring>
+              <$CharacterStatsScoring>
+                <$CharacterStatsLabel className="specific">
+                  Villain
+                </$CharacterStatsLabel>
+                <$CharacterStatsPoints className="specific">
+                  {damage.villain}
+                </$CharacterStatsPoints>
+              </$CharacterStatsScoring>
+              <$CharacterStatsScoring>
+                <$CharacterStatsLabel className="specific">
+                  Battlefield
+                </$CharacterStatsLabel>
+                <$CharacterStatsPoints className="specific">
+                  {damage.battlefield}
+                </$CharacterStatsPoints>
+              </$CharacterStatsScoring>
+              <$CharacterStatsScoring>
+                <$CharacterStatsLabel className="specific">
+                  Voting
+                </$CharacterStatsLabel>
+                <$CharacterStatsPoints className="specific">
+                  {damage.voting}
+                </$CharacterStatsPoints>
+              </$CharacterStatsScoring>
+            </>
+          )}
+          <$CharacterStatsScoring className="total">
+            <$CharacterStatsLabel>Total Points</$CharacterStatsLabel>
+            <$CharacterStatsPoints>
+              {isMatchupPage ? matchPoints : teamPoints}
+            </$CharacterStatsPoints>
+          </$CharacterStatsScoring>
+          {!!errorMsg && <ErrorMsg msg={errorMsg} />}
         </>
       )}
-      <$CharacterStatsScoring className="total">
-        <$CharacterStatsLabel>Total Points</$CharacterStatsLabel>
-        <$CharacterStatsPoints>{matchPoints}</$CharacterStatsPoints>
-      </$CharacterStatsScoring>
-      {!!errorMsg && <ErrorMsg msg={errorMsg} />}
       <$CharacterStatsBtnWrapper>
         {!!activeVoting.length && canVote && (
           <Button
@@ -181,19 +168,11 @@ const CharacterStats = ({
             redirect={`/matchup/vote?vote_id=${activeVoting[0].id}`}
           />
         )}
-        {!activeVoting.length && canVote && (
-          <Button
-            btnText="Get Votes"
-            btnColor="primary"
-            customBtnClass="medium"
-            btnFunction={handleVotes}
-          />
-        )}
         <Button
           btnText="Close"
           btnColor="cancel"
           customBtnClass="medium"
-          btnFunction={() => setIsModalOpen(!isModalOpen)}
+          btnFunction={closeModal}
         />
       </$CharacterStatsBtnWrapper>
     </MainModal>

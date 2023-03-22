@@ -8,16 +8,10 @@ const BracketCard = () => {
   return (
     <$GameplayCardContainer>
       <$GameplayCardSection>
-        Every Bracket's first round starts on the Sunday following the creation
-        of the Bracket. So, if you are unable to vote on the matchups in the
-        first round, you will most likely need to wait until the following
-        Sunday when the first round becomes active.
-      </$GameplayCardSection>
-      <$GameplayCardSection>
-        After the first round becomes active, the second round will become
-        active after the next Sunday, and then the first round will become
-        inactive. Each round, including the championship round, will last only
-        one week, so make sure to get all your votes in as soon as possible.
+        Every Bracket owner has full control of starting the first round and any
+        other round. So, if you are unable to vote on the matchups in any round,
+        you will most likely need to wait until the bracket owner makes the
+        round active.
       </$GameplayCardSection>
       <$GameplayCardSection>
         You can vote on a specific matchup. If you click on a character in a
