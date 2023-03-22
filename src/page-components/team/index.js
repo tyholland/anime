@@ -24,7 +24,6 @@ import { useAppContext } from 'src/hooks/context.js';
 import NotUser from 'Components/not-user/index.js';
 import ReadMore from 'Components/read-more/index.js';
 import Recap from 'src/modals/recap/index.js';
-import Ads from 'Components/ads/index.js';
 
 const Team = () => {
   const router = useRouter();
@@ -149,7 +148,6 @@ const Team = () => {
                   closeModal={closeModal}
                   teamName={teamData.teamName}
                 />
-                <Ads />
               </>
             )}
             <ReadMore />

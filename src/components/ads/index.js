@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import AdSense from 'react-adsense';
+import AdSense from 'react-adsense';
 
 const Ads = () => {
   useEffect(() => {
@@ -16,21 +16,21 @@ const Ads = () => {
 
   return (
     <div>
-      <ins
+      {/* <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
         data-ad-client="ca-pub-6648399860832112"
         data-ad-slot="4473046527"
         data-ad-format="auto"
         data-full-width-responsive="true"
-      ></ins>
-      {/* <AdSense.Google
+      ></ins> */}
+      <AdSense.Google
         client="ca-pub-6648399860832112"
         slot="4473046527"
-        style={{ display: "block" }}
+        style={{ display: 'block' }}
         format="auto"
         responsive="true"
-      /> */}
+      />
     </div>
   );
 };
