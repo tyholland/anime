@@ -21,7 +21,7 @@ import { responseError } from 'Utils/index';
 import { useRouter } from 'next/router';
 import { addEvent } from 'Utils/amplitude';
 import { getMatchUp } from 'src/requests/matchup';
-import { getMatchupTeam } from 'src/requests/team';
+import { getMatchupTeam, hideRecap } from 'src/requests/team';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 import { useAppContext } from 'src/hooks/context';
@@ -29,6 +29,7 @@ import NotUser from 'Components/not-user';
 import Button from 'Components/button';
 import Notification from 'src/modals/notification';
 import ActivateVoting from 'src/modals/activate-voting';
+import Recap from 'src/modals/recap';
 
 const ViewMatchup = () => {
   const router = useRouter();
@@ -45,6 +46,8 @@ const ViewMatchup = () => {
   const [votingIsOpen, setVotingIsOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState(null);
   const [retrigger, setRetrigger] = useState(false);
+  const [recapIsOpen, setRecapIsOpen] = useState(false);
+  const [recap, setRecap] = useState(null);
   const hasMatchup = !!team1 && !!team2 && !!score1 && !!score2 && !!votes;
 
   const handleMatchupData = async () => {
@@ -57,6 +60,11 @@ const ViewMatchup = () => {
 
       const team1 = await getMatchupTeam(team_a, currentUser?.token);
       const team2 = await getMatchupTeam(team_b, currentUser?.token);
+      const theRecap = team1.recap
+        ? team1.teamName === team1.recap.currentTeam
+          ? team1.recap
+          : team2.recap
+        : null;
 
       setTeam1(team1);
       setTeam2(team2);
@@ -65,6 +73,8 @@ const ViewMatchup = () => {
       setVotes(results.votes);
       setIsActive(active);
       setRetrigger(false);
+      setRecapIsOpen(!!team1.recap);
+      setRecap(theRecap);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get matchup'));
       setErrorPage(true);
@@ -73,6 +83,15 @@ const ViewMatchup = () => {
 
   const closeModal = () => {
     setModalIsOpen(false);
+  };
+
+  const closeRecapModal = async () => {
+    try {
+      await hideRecap(team1.info.league_id, currentUser?.token);
+      setRecapIsOpen(false);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to close recap modal'));
+    }
   };
 
   const handleModal = () => {
@@ -207,6 +226,16 @@ const ViewMatchup = () => {
                   team2={team2.team}
                   votes={votes}
                   setRetrigger={setRetrigger}
+                />
+                <Recap
+                  data={recap}
+                  modalIsOpen={recapIsOpen}
+                  closeModal={closeRecapModal}
+                  teamName={
+                    team1.teamName === recap?.currentTeam
+                      ? team1.teamName
+                      : team2.teamName
+                  }
                 />
               </>
             )}
