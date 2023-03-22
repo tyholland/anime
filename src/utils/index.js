@@ -282,7 +282,7 @@ export const joinLeagueSetup = async (leagueHash, currentUser, router) => {
       league: leagueHash,
     });
 
-    router.push(`/league/details?league_id=${leagueId}`);
+    router.push(`/league?league_id=${leagueId}`);
   } catch (err) {
     throw new Error(`${err} - Can not join league`);
   }

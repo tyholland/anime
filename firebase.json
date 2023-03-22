@@ -64,10 +64,6 @@
         "destination": "/league/view.html"
       },
       {
-        "source": "/league/details",
-        "destination": "/league/details.html"
-      },
-      {
         "source": "/matchup/vote",
         "destination": "/matchup/vote.html"
       },

@@ -38,7 +38,7 @@ const JoinLeague = () => {
         league: leagueHash,
       });
 
-      router.push(`/league/details?league_id=${leagueId}`);
+      router.push(`/league?league_id=${leagueId}`);
     } catch (error) {
       error.response?.status === 401
         ? router.push(`/login?join=${leagueHash}`)

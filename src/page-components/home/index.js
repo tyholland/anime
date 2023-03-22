@@ -3,8 +3,15 @@ import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card';
 import Metadata from 'Components/metadata';
 import ReadMore from 'Components/read-more';
+import GameplayCard from 'Components/gameplay-card';
+import SuggestCharacter from 'Components/suggest-character';
+import Button from 'Components/button';
 
 const Home = () => {
+  const goToSharePage = () => {
+    window.open('https://www.buzzsprout.com/1260827/share');
+  };
+
   return (
     <>
       <Metadata title="Home" description="Anime Brothaz Fantasy League" />
@@ -12,14 +19,15 @@ const Home = () => {
         <$GlobalTitle className="home">Anime Fantasy League</$GlobalTitle>
         <$GlobalContainer>
           <div className="buttonGrid">
+            <SelectionCard btnText="Create League" redirect="/league/create" />
+            <SelectionCard btnText="Join League" redirect="/league/join" />
             <SelectionCard
               btnText="Create Bracket"
               redirect="/bracket/create"
             />
-            <SelectionCard btnText="Join a League" redirect="/league/join" />
-            <SelectionCard btnText="Character List" redirect="/characters" />
             <SelectionCard btnText="Matchup Voting" redirect="/matchup/all" />
-            <SelectionCard btnText="Suggest Character" redirect="/suggest" />
+            <SelectionCard btnText="View Characters" redirect="/characters" />
+            <SelectionCard btnText="ABZ Podcast" redirect="/podcast" />
           </div>
         </$GlobalContainer>
         <ReadMore>
@@ -40,6 +48,38 @@ const Home = () => {
           Good luck in your battles! And remember, a well-balanced team is
           always best!
         </ReadMore>
+      </$GlobalContainer>
+      <$GlobalContainer className="homeSection homeEven">
+        <GameplayCard />
+      </$GlobalContainer>
+      <$GlobalContainer className="homeSection">
+        <SuggestCharacter />
+      </$GlobalContainer>
+      <$GlobalContainer className="homeSection homeEven">
+        <$GlobalTitle>Podcast</$GlobalTitle>
+        <p>
+          The ABZ podcast is recorded by the Brothaz (DiscipleDashni, QuietJams,
+          and TySoFly), who get together to discuss a wide variety of topics
+          within the anime community. Topics can range from, but are not limited
+          to, the latest episodes, manga chapters, favorite characters, and so
+          on. You can listen to all the ABZ podcast episodes here and now. We
+          have an abundance of episodes to choose from, ranging from 30 minutes
+          to an hour. Enjoy!
+        </p>
+        <p>
+          To listen to our podcast, click the link below. It will take you to a
+          page where you can choose your favorite podcast application, and then
+          you can listen to all the ABZ podcast episodes that are available. Be
+          sure to listen to episode 1 if you are new to the ABZ podcast channel.
+        </p>
+        <center>
+          <Button
+            btnText="ABZ Podcast"
+            btnColor="primary"
+            customBtnClass="medium"
+            btnFunction={goToSharePage}
+          />
+        </center>
       </$GlobalContainer>
     </>
   );

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import LeagueCard from 'Components/league-card';
-import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
 import {
@@ -65,9 +64,22 @@ const ViewLeague = () => {
       {!account && <NotUser />}
       {account && (
         <>
-          <BackLink />
           <$GlobalContainer>
-            <$GlobalTitle>All Leagues</$GlobalTitle>
+            <$GlobalTitle className="bracketView">
+              All Leagues
+              <Button
+                btnText="Create"
+                btnColor="secondary"
+                redirect="/league/create"
+                customBtnClass="small"
+              />
+              <Button
+                btnText="Join"
+                btnColor="secondary"
+                redirect="/league/join"
+                customBtnClass="small"
+              />
+            </$GlobalTitle>
             {isLoading && <Loader />}
             {!isLoading && (
               <>

@@ -1,9 +1,16 @@
 import styled from 'styled-components';
+import { MOBILE_VIEW } from 'Styles/global.style';
 
 export const $BracketWrapper = styled.div`
   margin: 0 auto 2%;
   width: 97%;
   overflow-x: scroll;
+  display: flex;
+  justify-content: center;
+
+  ${MOBILE_VIEW} {
+    justify-content: flex-start;
+  }
 
   &.voting {
     text-align: center;

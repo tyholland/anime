@@ -12,6 +12,7 @@ export const COLOR_BLACK = '#000000';
 export const COLOR_BLACK_DISABLED = '#00000010';
 export const COLOR_GREY = '#CDCDCD';
 export const COLOR_GREY_LIGHT = '#CDCDCD80';
+export const COLOR_GREY_EXTRA_LIGHT = '#CDCDCD30';
 export const COLOR_BLUE = 'rgb(27, 5, 246)';
 export const COLOR_BLUE_HOVER = '#0066cc';
 export const FONT_WEIGHT_BOLD = '700';
@@ -112,6 +113,8 @@ export const $GlobalContainer = styled.div`
   }
 
   &.home {
+    min-height: auto;
+
     &::before {
       background-image: url(/assets/background/itachi.webp);
     }
@@ -174,6 +177,17 @@ export const $GlobalContainer = styled.div`
     ${RESPONSIVE_VIEW} {
       padding: 0;
     }
+  }
+
+  &.homeSection {
+    background: ${COLOR_GREY_EXTRA_LIGHT};
+    border-bottom: 1px solid #000;
+    min-height: auto;
+    padding: 5% 3%;
+  }
+
+  &.homeEven {
+    background: ${COLOR_WHITE};
   }
 `;
 

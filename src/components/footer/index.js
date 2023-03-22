@@ -32,7 +32,7 @@ const Footer = () => {
           </div>
         </$FooterLinks>
         <$FooterLinks>
-          <div className="title">More Info</div>
+          <div className="title">Info</div>
           <div>
             <Link href="/policy">Privacy Policy</Link>
           </div>
@@ -42,8 +42,17 @@ const Footer = () => {
           <div>
             <Link href="/gameplay">Gameplay</Link>
           </div>
+        </$FooterLinks>
+        <$FooterLinks>
+          <div className="title">To Do</div>
+          <div>
+            <Link href="/characters">Character List</Link>
+          </div>
           <div>
             <Link href="/credits">Photo Credit</Link>
+          </div>
+          <div>
+            <Link href="/podcast">ABZ Podcast</Link>
           </div>
         </$FooterLinks>
       </$FooterSection>

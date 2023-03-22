@@ -11,6 +11,17 @@ const Changelog = () => {
       />
       <$GlobalContainer>
         <$GlobalTitle>Changelog</$GlobalTitle>
+        <h3>March 22, 2023</h3>
+        <ul>
+          <li>
+            Homepage Redesign
+            <ul>
+              <li>Updated navigation links</li>
+              <li>Added more content to homepage</li>
+              <li>Updated links in footer</li>
+            </ul>
+          </li>
+        </ul>
         <h3>March 21, 2023</h3>
         <ul>
           <li>

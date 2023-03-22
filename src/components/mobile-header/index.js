@@ -35,17 +35,12 @@ const MobileHeader = ({ acct, acctLink }) => {
       >
         <Button
           btnText="League"
-          btnFunction={() => handleBtnClick('/league')}
+          btnFunction={() => handleBtnClick('/league/view')}
           customBtnClass="small header text"
         />
         <Button
           btnText="Bracket"
           btnFunction={() => handleBtnClick('/bracket/view')}
-          customBtnClass="small header text"
-        />
-        <Button
-          btnText="Podcast"
-          btnFunction={() => handleBtnClick('/podcast')}
           customBtnClass="small header text"
         />
         <Button

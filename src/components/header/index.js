@@ -62,17 +62,12 @@ const Header = () => {
         <$HeaderMenu>
           <Button
             btnText="League"
-            redirect="/league"
+            redirect="/league/view"
             customBtnClass="small header text"
           />
           <Button
             btnText="Bracket"
             redirect="/bracket/view"
-            customBtnClass="small header text"
-          />
-          <Button
-            btnText="Podcast"
-            redirect="/podcast"
             customBtnClass="small header text"
           />
           <Button

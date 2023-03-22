@@ -49,7 +49,7 @@ const LeagueCreate = () => {
         name: leagueName,
       });
 
-      router.push(`/league/details?league_id=${leagueId}`);
+      router.push(`/league?league_id=${leagueId}`);
     } catch (err) {
       addEvent('Error', responseError(err, 'Create League'));
       const nonUserMsg = 'Please login, in order to create a league.';
