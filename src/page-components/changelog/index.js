@@ -16,9 +16,14 @@ const Changelog = () => {
           <li>
             Character update
             <ul>
-              <li>Twice (Villain)</li>
+              <li>Twice - Villain</li>
+              <li>Zeldris - Villain</li>
+              <li>Yomi - Villain</li>
+              <li>Wrath (King Bradly) - Villain</li>
+              <li>Ulquiorra - Villain</li>
             </ul>
           </li>
+          <li>Added Week Recap modal</li>
           <li>
             Updated Gameplay rules
             <ul>
@@ -76,12 +81,12 @@ const Changelog = () => {
           <li>
             New character added
             <ul>
-              <li>Mo Fan (Captain)</li>
-              <li>Zhuo Yifan (Captain)</li>
-              <li>Ye Ming (Captain)</li>
-              <li>John (Support)</li>
-              <li>Seraphina (Support)</li>
-              <li>Joker (Villain)</li>
+              <li>Mo Fan - Captain</li>
+              <li>Zhuo Yifan - Captain</li>
+              <li>Ye Ming - Captain</li>
+              <li>John - Support</li>
+              <li>Seraphina - Support</li>
+              <li>Joker - Villain</li>
             </ul>
           </li>
           <li>
