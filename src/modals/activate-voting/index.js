@@ -80,9 +80,11 @@ const ActivateVoting = ({
     const activeVoting = votes.filter((vote) => vote.rank === rank);
 
     if (
-      activeVoting.length > 0 ||
+      activeVoting.length ||
       team1.matchPoints === 0 ||
-      team2.matchPoints === 0
+      team2.matchPoints === 0 ||
+      !team1.id ||
+      !team2.id
     ) {
       return;
     }
