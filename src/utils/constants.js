@@ -207,7 +207,6 @@ export const allSeries = [
   'Paranoia Agent',
   'Akira',
   'Berserk',
-  'No Series',
   'Magic Emperor',
   'Martial Arts Reigns',
   'Versatile Mage',
