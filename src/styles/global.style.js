@@ -200,7 +200,19 @@ export const $GlobalContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    margin: 0 auto;
+    width: 900px;
+    text-align: center;
+
+    ${RESPONSIVE_VIEW} {
+      width: 700px;
+    }
+
+    ${MOBILE_VIEW} {
+      width: 100%;
+      text-align: left;
+    }
 
     div {
       width: 220px;
