@@ -159,7 +159,7 @@ const TeamEdit = () => {
     });
 
     characterDetails.forEach((item) => {
-      totalPoints += item.power_level;
+      totalPoints += item.cost;
     });
 
     return defaultPoints - totalPoints;

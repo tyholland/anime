@@ -141,10 +141,12 @@ const Bio = () => {
               </$BioSubTitle>
               <$BioAttribute>Rank:</$BioAttribute>
               <$BioSubAttribute>{player.category}</$BioSubAttribute>
-              <$BioAttribute>Power Level:</$BioAttribute>
-              <$BioSubAttribute>{player.power_level}</$BioSubAttribute>
+              <$BioAttribute>Points (cost to add):</$BioAttribute>
+              <$BioSubAttribute>{player.cost}</$BioSubAttribute>
             </div>
             <div>
+              <$BioAttribute>Power Level:</$BioAttribute>
+              <$BioSubAttribute>{player.power_level}</$BioSubAttribute>
               <$BioAttribute>Bye Week:</$BioAttribute>
               <$BioSubAttribute>{player.bye_week}</$BioSubAttribute>
               {player.category !== 'Battlefield' && !!affinities?.length && (

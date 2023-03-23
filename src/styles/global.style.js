@@ -175,7 +175,7 @@ export const $GlobalContainer = styled.div`
       background-repeat: no-repeat;
       background-position: center;
       position: absolute;
-      top: 15%;
+      top: 24%;
       right: 0px;
       bottom: 0px;
       left: 0px;

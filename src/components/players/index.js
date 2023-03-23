@@ -36,8 +36,8 @@ const Players = ({
       name: 'Rank',
     },
     {
-      key: 'power',
-      name: 'Power Level',
+      key: 'cost',
+      name: 'Points',
     },
     {
       key: 'series',
@@ -54,8 +54,8 @@ const Players = ({
       name: 'Rank',
     },
     {
-      key: 'power',
-      name: 'Power',
+      key: 'cost',
+      name: 'Points',
     },
   ];
   const teamColumns = [
@@ -68,8 +68,8 @@ const Players = ({
       name: 'Rank',
     },
     {
-      key: 'power',
-      name: 'Power Level',
+      key: 'cost',
+      name: 'Points',
     },
     {
       key: 'affinity',
@@ -82,8 +82,8 @@ const Players = ({
       name: 'Name',
     },
     {
-      key: 'power',
-      name: 'Power',
+      key: 'cost',
+      name: 'Points',
     },
     {
       key: 'affinity',
@@ -118,7 +118,7 @@ const Players = ({
           fullName: item.full_name,
           name: item.name,
           rank: item.category,
-          power: item.power_level,
+          power: item.cost,
           series: item.series,
           affinity: affinity.join(', '),
           width: 200,
@@ -133,7 +133,7 @@ const Players = ({
         fullName: item.full_name,
         name: item.name,
         rank: item.category,
-        power: item.bye_week === leagueWeek ? 'Bye' : item.power_level,
+        cost: item.bye_week === leagueWeek ? 'Bye' : item.cost,
         series: item.series,
         affinity: affinity.join(', '),
         width: 200,
@@ -345,10 +345,10 @@ const Players = ({
 
     if (e.target.value === 'low') {
       playersList = data.sort((a, b) => {
-        if (a.power_level < b.power_level) {
+        if (a.cost < b.cost) {
           return -1;
         }
-        if (a.power_level > b.power_level) {
+        if (a.cost > b.cost) {
           return 1;
         }
         return 0;
@@ -385,10 +385,10 @@ const Players = ({
     }
 
     playersList = data.sort((a, b) => {
-      if (a.power_level > b.power_level) {
+      if (a.cost > b.cost) {
         return -1;
       }
-      if (a.power_level < b.power_level) {
+      if (a.cost < b.cost) {
         return 1;
       }
       return 0;
