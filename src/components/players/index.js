@@ -118,7 +118,7 @@ const Players = ({
           fullName: item.full_name,
           name: item.name,
           rank: item.category,
-          power: item.cost,
+          cost: item.cost,
           series: item.series,
           affinity: affinity.join(', '),
           width: 200,
