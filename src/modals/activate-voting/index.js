@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../../components/button';
 import { $GlobalTitle } from 'Styles/global.style';
 import {
@@ -24,17 +24,7 @@ const ActivateVoting = ({
   const { currentUser } = useAppContext();
   const router = useRouter();
   const [errorMsg, setErrorMsg] = useState(null);
-  const canVote = votes.filter((vote) => {
-    return (
-      vote.rank !== 'captain' ||
-      vote.rank !== 'brawler_a' ||
-      vote.rank !== 'brawler_b' ||
-      vote.rank !== 'bs_brawler' ||
-      vote.rank !== 'bs_support' ||
-      vote.rank !== 'support' ||
-      vote.rank !== 'villain'
-    );
-  });
+  const [allVotes, setAllVotes] = useState(votes);
   const customStyles = {
     content: {
       top: '50%',
@@ -76,33 +66,53 @@ const ActivateVoting = ({
     }
   };
 
-  const getCharacter = (team1, team2, rank) => {
-    const activeVoting = votes.filter((vote) => vote.rank === rank);
+  const getCharacter = () => {
+    const list = [
+      'captain',
+      'brawler_a',
+      'brawler_b',
+      'bs_brawler',
+      'bs_support',
+      'support',
+      'villain',
+    ];
 
-    if (
-      activeVoting.length ||
-      team1.matchPoints === 0 ||
-      team2.matchPoints === 0 ||
-      !team1.id ||
-      !team2.id
-    ) {
-      return;
-    }
+    const votingList = list
+      .map((item) => {
+        const activeVoting = allVotes.filter((vote) => vote.rank === item);
 
-    return (
-      <$ActivateVotingSection>
-        <Button
-          btnText="Activate"
-          btnColor="primary"
-          btnFunction={() => handleVotes(rank)}
-          customBtnClass="small"
-        />
-        <div>
-          {team1.name} vs {team2.name}
-        </div>
-      </$ActivateVotingSection>
-    );
+        if (
+          activeVoting.length ||
+          team1[item].matchPoints === 0 ||
+          team2[item].matchPoints === 0 ||
+          !team1[item].id ||
+          !team2[item].id
+        ) {
+          return;
+        }
+
+        return (
+          <$ActivateVotingSection key={item}>
+            <Button
+              btnText="Activate"
+              btnColor="primary"
+              btnFunction={() => handleVotes(item)}
+              customBtnClass="small"
+            />
+            <div>
+              {team1[item].name} vs {team2[item].name}
+            </div>
+          </$ActivateVotingSection>
+        );
+      })
+      .filter(Boolean);
+
+    return votingList;
   };
+
+  useEffect(() => {
+    setAllVotes(votes);
+  }, [votes]);
 
   return (
     <MainModal
@@ -112,14 +122,8 @@ const ActivateVoting = ({
     >
       <$GlobalTitle>Activate Head-to-Head Voting</$GlobalTitle>
       {!!errorMsg && <ErrorMsg msg={errorMsg} />}
-      {getCharacter(team1.captain, team2.captain, 'captain')}
-      {getCharacter(team1.brawler_a, team2.brawler_a, 'brawler_a')}
-      {getCharacter(team1.brawler_b, team2.brawler_b, 'brawler_b')}
-      {getCharacter(team1.bs_brawler, team2.bs_brawler, 'bs_brawler')}
-      {getCharacter(team1.bs_support, team2.bs_support, 'bs_support')}
-      {getCharacter(team1.support, team2.support, 'support')}
-      {getCharacter(team1.villain, team2.villain, 'villain')}
-      {canVote.length === 7 && (
+      {getCharacter().length > 0 && getCharacter()}
+      {getCharacter().length === 0 && (
         <$ActivateVotingBtnWrapper>
           There are no more head-to-head battles that voting can be activated
           for.
