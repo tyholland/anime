@@ -28,6 +28,7 @@ const MatchupVoting = ({
   const [playerBCount, setPlayerBCount] = useState(null);
   const [playerA, setPlayerA] = useState(null);
   const [playerB, setPlayerB] = useState(null);
+  const [playerInfo, setPlayerInfo] = useState(null);
   const [voteId, setVoteId] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   let pathname = '';
@@ -68,12 +69,18 @@ const MatchupVoting = ({
   };
 
   const handleMatchup = (matchup) => {
-    const { player_a_count, player_b_count, id } = matchup;
+    const { player_a_count, player_b_count, id, teamA, teamB, leagueName } =
+      matchup;
 
     setPlayerA(userPlayerA);
     setPlayerB(userPlayerB);
     setPlayerACount(player_a_count);
     setPlayerBCount(player_b_count);
+    setPlayerInfo({
+      teamA,
+      teamB,
+      leagueName,
+    });
     setVoteId(id);
   };
 
@@ -96,6 +103,12 @@ const MatchupVoting = ({
             />
             <$MatchupVotingCharacter>
               {playerA.full_name}
+            </$MatchupVotingCharacter>
+            <$MatchupVotingCharacter className="details">
+              <strong>Team:</strong> {playerInfo.teamA}
+            </$MatchupVotingCharacter>
+            <$MatchupVotingCharacter className="details">
+              <strong>League:</strong> {playerInfo.leagueName}
             </$MatchupVotingCharacter>
           </div>
           <div>
@@ -121,6 +134,12 @@ const MatchupVoting = ({
             />
             <$MatchupVotingCharacter>
               {playerB.full_name}
+            </$MatchupVotingCharacter>
+            <$MatchupVotingCharacter className="details">
+              <strong>Team:</strong> {playerInfo.teamB}
+            </$MatchupVotingCharacter>
+            <$MatchupVotingCharacter className="details">
+              <strong>League:</strong> {playerInfo.leagueName}
             </$MatchupVotingCharacter>
           </div>
           <div>

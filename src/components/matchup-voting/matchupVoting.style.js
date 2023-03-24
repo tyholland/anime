@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
+import {
+  FONT_WEIGHT_BOLD,
+  FONT_WEIGHT_NORMAL,
+  MOBILE_VIEW,
+} from 'Styles/global.style';
 
 export const $MatchupVotingCharacter = styled.div`
   font-size: 30px;
@@ -7,6 +11,13 @@ export const $MatchupVotingCharacter = styled.div`
 
   ${MOBILE_VIEW} {
     font-size: 20px;
+  }
+
+  &.details {
+    font-size: 14px;
+    font-weight: ${FONT_WEIGHT_NORMAL};
+    margin: 4% 2% 0;
+    display: inline-block;
   }
 `;
 
