@@ -21,6 +21,7 @@ import Notification from 'src/modals/notification';
 import { $GlobalTitle } from 'Styles/global.style';
 import Error from 'PageComponents/error';
 import Button from 'Components/button';
+import BracketVoting from 'src/modals/bracket-voting';
 
 const Bracket = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const Bracket = () => {
   const [matches, setMatches] = useState(null);
   const [winWidth, setWinWidth] = useState(0);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [bracketIsOpen, setBracketIsOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState(null);
   const [errorPage, setErrorPage] = useState(null);
   const [hasVoted, setHasVoted] = useState([]);
@@ -35,6 +37,11 @@ const Bracket = () => {
   const [bracketCreator, setBracketCreator] = useState(null);
   const [bracketName, setBracketName] = useState(null);
   const [theChamp, setTheChamp] = useState(null);
+  const [playerA, setPlayerA] = useState(null);
+  const [playerB, setPlayerB] = useState(null);
+  const [match, setMatch] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [roundWinner, setRoundWinner] = useState(null);
   let pathname = '';
 
   if (typeof window !== 'undefined') {
@@ -48,6 +55,12 @@ const Bracket = () => {
 
   const closeModal = () => {
     setModalIsOpen(false);
+  };
+
+  const closeBracketModal = () => {
+    setErrorMsg(null);
+    setBracketIsOpen(false);
+    setRoundWinner(null);
   };
 
   const handleBracketDisplay = async () => {
@@ -72,65 +85,43 @@ const Bracket = () => {
   };
 
   const handleMatchDisplay = (match) => {
-    const {
-      awayTeamFullName,
-      awayTeamScore,
-      homeTeamFullName,
-      homeTeamScore,
-      matchNumber,
-    } = match;
+    const { homeTeamPlayer, awayTeamPlayer, voteId, round } = match;
 
-    const message = (
-      <>
-        <p>
-          Matchup #{matchNumber} between {homeTeamFullName} and{' '}
-          {awayTeamFullName}.
-        </p>
-        <p>
-          {homeTeamFullName} has {homeTeamScore} votes.
-        </p>
-        <p>
-          {awayTeamFullName} has {awayTeamScore} votes.
-        </p>
-      </>
-    );
-
-    setModalMsg(message);
-    setModalIsOpen(true);
-  };
-
-  const handleVotes = async (match, team) => {
-    const playerId = match[`${team}TeamId`];
-    const score = match[`${team}TeamScore`];
-    const payload = {
-      voteId: match.voteId,
-      votedFor: playerId,
-      playerCount: team === 'home' ? 'player_a_count' : 'player_b_count',
-    };
-
-    if (match.round < bracketRound) {
-      handleMatchDisplay(match);
-      return;
-    }
-
-    if (!match.voteId) {
+    if (!voteId) {
       setModalMsg(
-        `Round ${match.round} has not started yet. Voting is disabled until the round ${match.round} starts`
+        `Round ${round} has not started yet. Voting is disabled until the round ${round} starts`
       );
       setModalIsOpen(true);
       return;
     }
 
+    if (round < bracketRound) {
+      setRoundWinner(match);
+    }
+
+    setPlayerA(homeTeamPlayer);
+    setPlayerB(awayTeamPlayer);
+    setMatch(match);
+    setBracketIsOpen(true);
+  };
+
+  const handleVotes = async (match, team, payload) => {
+    const score = match[`${team}TeamScore`];
+
     // Check if matchup has already been voted on
     // Doesn't prevent multiple voting if page is refreshed
     if (hasVoted.some((item) => item === match.voteId)) {
-      setModalMsg('You already voted on this matchup');
-      setModalIsOpen(true);
-      return;
+      setErrorMsg('You already voted on this matchup');
+      return match;
     }
 
     try {
       await addVotes(payload, currentUser?.token);
+
+      addEvent('Bracket Voting', {
+        votedFor: match[`${team}TeamName`],
+        totalVotes: score + 1,
+      });
 
       const updateMatch = matches.findIndex(
         (obj) => obj.matchNumber == match.matchNumber
@@ -138,17 +129,12 @@ const Bracket = () => {
 
       matches[updateMatch][`${team}TeamScore`] = score + 1;
 
-      addEvent('Bracket Voting', {
-        votedFor: match[`${team}TeamName`],
-        totalVotes: score + 1,
-      });
-
       // Added to allow voting without being logged in
       setHasVoted((arr) => [...arr, match.voteId]);
+
+      return matches[updateMatch];
     } catch (err) {
-      addEvent('Error', responseError(err, 'Failed to add votes'));
-      setModalMsg(err.response.data.message);
-      setModalIsOpen(true);
+      addEvent('Error', responseError(err, 'Failed to add votes - Part 1'));
     }
   };
 
@@ -246,7 +232,7 @@ const Bracket = () => {
         </$GlobalTitle>
         {matches && (
           <>
-            <$BracketWrapper>
+            <$BracketWrapper className="grid">
               <TournamentBracket
                 matches={matches}
                 width={
@@ -259,7 +245,7 @@ const Bracket = () => {
                 hidePKs={true}
                 orientation={winWidth < 700 ? 'portrait' : 'landscape'}
                 onSelectMatch={(match) => handleMatchDisplay(match)}
-                onSelectTeam={(match, team) => handleVotes(match, team)}
+                onSelectTeam={(match) => handleMatchDisplay(match)}
               />
             </$BracketWrapper>
             <$BracketWrapper className="voting">
@@ -275,7 +261,12 @@ const Bracket = () => {
                   customBtnClass="medium"
                 />
               )}
-              {!!theChamp && <h1>The Champion is: {theChamp}</h1>}
+              {!!theChamp && (
+                <h1>
+                  <div>The Champion is:</div>
+                  <div>{theChamp}</div>
+                </h1>
+              )}
             </$BracketWrapper>
             <$BracketWrapper>
               <SocialMedia
@@ -287,10 +278,16 @@ const Bracket = () => {
                 url={pathname}
               />
             </$BracketWrapper>
-            <Notification
-              message={modalMsg}
-              closeModal={closeModal}
-              modalIsOpen={modalIsOpen}
+            <BracketVoting
+              isModalOpen={bracketIsOpen}
+              playerA={playerA}
+              playerB={playerB}
+              match={match}
+              handleVotes={handleVotes}
+              errorMsg={errorMsg}
+              setErrorMsg={setErrorMsg}
+              closeModal={closeBracketModal}
+              roundWinner={roundWinner}
             />
           </>
         )}

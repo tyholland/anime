@@ -8,8 +8,10 @@ export const $BracketWrapper = styled.div`
   display: flex;
   justify-content: center;
 
-  ${MOBILE_VIEW} {
-    justify-content: flex-start;
+  &.grid {
+    ${MOBILE_VIEW} {
+      justify-content: flex-start;
+    }
   }
 
   &.voting {

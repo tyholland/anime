@@ -11,6 +11,17 @@ const Changelog = () => {
       />
       <$GlobalContainer>
         <$GlobalTitle>Changelog</$GlobalTitle>
+        <h3>March 24, 2023</h3>
+        <ul>
+          <li>
+            Updated Bracket Feature
+            <ul>
+              <li>Moved voting on each matchup into a modal</li>
+              <li>Added imagery for the characters</li>
+              <li>For previous rounds, the modal displays the winner only</li>
+            </ul>
+          </li>
+        </ul>
         <h3>March 23, 2023</h3>
         <ul>
           <li>
