@@ -169,8 +169,8 @@ const TeamInfo = () => {
                 </div>
               </$TeamInfoWrapper>
             )}
-            <ReadMore />
           </$GlobalContainer>
+          <ReadMore />
         </>
       )}
     </>

@@ -2,7 +2,7 @@ import React from 'react';
 import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
-import { $PodcastService, $PodcastDescript } from './podcast.style';
+import { $PodcastService } from './podcast.style';
 import ReadMore from 'Components/read-more';
 import Script from 'next/script';
 
@@ -35,7 +35,7 @@ const Podcast = () => {
           />
         </$PodcastService>
         <div id="buzzsprout-large-player"></div>
-        <$PodcastDescript>
+        <div>
           The ABZ podcast is recorded by the Brothaz (DiscipleDashni, QuietJams,
           and TySoFly), who get together to discuss a wide variety of topics
           within the anime community. Topics can range from, but are not limited
@@ -43,9 +43,9 @@ const Podcast = () => {
           on. You can listen to all the ABZ podcast episodes here and now. We
           have an abundance of episodes to choose from, ranging from 30 minutes
           to an hour. Enjoy!
-        </$PodcastDescript>
-        <ReadMore />
+        </div>
       </$GlobalContainer>
+      <ReadMore />
       <Script src="https://www.buzzsprout.com/1260827.js?container_id=buzzsprout-large-player&player=large" />
     </>
   );

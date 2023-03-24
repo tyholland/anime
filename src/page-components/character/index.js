@@ -9,6 +9,7 @@ import { getPlayers } from 'src/requests/player';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import Loader from 'Components/loader';
+import ReadMore from 'Components/read-more';
 
 const Character = () => {
   const [players, setPlayers] = useState(null);
@@ -45,6 +46,7 @@ const Character = () => {
         {!players && <Loader />}
         {players && <Players data={players} />}
       </$GlobalContainer>
+      <ReadMore />
     </>
   );
 };

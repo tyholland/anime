@@ -19,6 +19,7 @@ import { createBracket } from 'src/requests/bracket';
 import { useRouter } from 'next/router';
 import TournamentBracket from 'react-svg-tournament-bracket';
 import TextField from 'Components/text-field';
+import BracketCard from 'Components/gameplay-card/bracket-card';
 
 const BracketCreate = () => {
   const emptyPlayersList = {
@@ -564,8 +565,10 @@ const BracketCreate = () => {
               field={field}
               isBracket={true}
             />
-            <ReadMore />
           </$GlobalContainer>
+          <ReadMore>
+            <BracketCard />
+          </ReadMore>
         </>
       )}
     </>

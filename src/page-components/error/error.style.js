@@ -28,18 +28,20 @@ export const $ErrorBtnWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 400px;
+  width: 70%;
   padding: 3% 0;
 
   ${MOBILE_VIEW} {
     flex-direction: column;
+    width: 100%;
   }
 
   button {
     width: 30% !important;
 
     ${MOBILE_VIEW} {
-      width: 50% !important;
+      width: 100% !important;
+      margin: 3%;
     }
   }
 `;

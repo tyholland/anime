@@ -72,22 +72,34 @@ const SuggestCharacter = () => {
             />
           </>
         )}
-        {isSubmitted && <div>Thank you for your suggestion!</div>}
+        {isSubmitted && (
+          <>
+            <div>Thank you for your suggestion!</div>
+            <Button
+              btnText={'Submit Another'}
+              btnColor="primary"
+              customBtnClass="medium"
+              btnFunction={() => setIsSubmitted(false)}
+            />
+          </>
+        )}
       </$LoginWrapper>
-      <SocialMedia
-        pageTitle="Tell Your Friends"
-        title="Suggest a new character for the Anime Fantasy League"
-        description="ABZ wants to know what character you want to have on your team."
-        singleHashtag="#abzFantasyLeague"
-        pluralHashtags={[
-          'abz',
-          'abzFantasyLeague',
-          'animebrothaz',
-          'abzSuggestCharacter',
-          'animebrothazSuggestion',
-        ]}
-        url={pathname}
-      />
+      {!isSubmitted && (
+        <SocialMedia
+          pageTitle="Tell Your Friends"
+          title="Suggest a new character for the Anime Fantasy League"
+          description="ABZ wants to know what character you want to have on your team."
+          singleHashtag="#abzFantasyLeague"
+          pluralHashtags={[
+            'abz',
+            'abzFantasyLeague',
+            'animebrothaz',
+            'abzSuggestCharacter',
+            'animebrothazSuggestion',
+          ]}
+          url={pathname}
+        />
+      )}
     </>
   );
 };

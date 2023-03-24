@@ -108,8 +108,8 @@ const ViewBrackets = () => {
                 </$ViewLeagueEmptyBtnWrapper>
               </>
             )}
-            <ReadMore />
           </$GlobalContainer>
+          <ReadMore />
         </>
       )}
     </>

@@ -153,8 +153,8 @@ const Playoffs = () => {
                 </$PlayoffsWrapper>
               </Collapsible>
             </div>
-            <ReadMore />
           </$GlobalContainer>
+          <ReadMore />
         </>
       )}
     </>

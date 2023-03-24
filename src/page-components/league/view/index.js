@@ -107,8 +107,8 @@ const ViewLeague = () => {
                 )}
               </>
             )}
-            <ReadMore />
           </$GlobalContainer>
+          <ReadMore />
         </>
       )}
     </>

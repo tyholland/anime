@@ -82,8 +82,18 @@ const JoinLeague = () => {
           </div>
           <$JoinLeagueImg src="/assets/background/vegito.webp" alt="Vegito" />
         </$JoinLeagueWrapper>
-        <ReadMore />
       </$GlobalContainer>
+      <ReadMore>
+        Affinity Tip: Electricity is an explosive elemental force that can be
+        wielded by both heroes and villains in the game. Its weakness lies in
+        earth, which can ground and nullify its electrical energy. Despite this
+        vulnerability, electricity users are still a formidable force in
+        battles. They are known for their agility and speed, as well as their
+        ability to stun and disrupt opponents with shocking attacks. Electricity
+        users can harness their powers to create devastating electrical storms
+        and blasts. As long as they are careful to avoid earth-based opponents,
+        electricity users can easily zap away the competition.
+      </ReadMore>
     </>
   );
 };

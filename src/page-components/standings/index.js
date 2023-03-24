@@ -77,8 +77,8 @@ const Standings = () => {
                 </$StandingsWrapper>
               );
             })}
-            <ReadMore />
           </$GlobalContainer>
+          <ReadMore />
         </>
       )}
     </>

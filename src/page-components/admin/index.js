@@ -335,8 +335,8 @@ const Admin = () => {
                 </Collapsible>
               </$AdminContainer>
             )}
-            <ReadMore>{message}</ReadMore>
           </$GlobalContainer>
+          <ReadMore>{message}</ReadMore>
         </>
       )}
     </>

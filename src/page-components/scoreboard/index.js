@@ -60,8 +60,8 @@ const Scoreboard = () => {
             {games?.map((game) => {
               return <GameContainer game={game} key={game.teamA} />;
             })}
-            <ReadMore />
           </$GlobalContainer>
+          <ReadMore />
         </>
       )}
     </>

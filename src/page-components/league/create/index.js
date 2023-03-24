@@ -90,8 +90,8 @@ const LeagueCreate = () => {
             isDisabled={isDisabled}
           />
         </$LeagueCreateWrapper>
-        <ReadMore />
       </$GlobalContainer>
+      <ReadMore />
     </>
   );
 };

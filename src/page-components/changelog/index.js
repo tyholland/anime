@@ -11,6 +11,38 @@ const Changelog = () => {
       />
       <$GlobalContainer>
         <$GlobalTitle>Changelog</$GlobalTitle>
+        <h3>March 23, 2023</h3>
+        <ul>
+          <li>
+            Update All Characters
+            <ul>
+              <li>New formula to calculate power level</li>
+              <li>
+                New formula to calculate cost for each character in order to add
+                them to your team
+              </li>
+            </ul>
+          </li>
+          <li>
+            Update Suggest Characters
+            <ul>
+              <li>
+                After suggesting a new character. The success message will ask
+                if you want to add another
+              </li>
+            </ul>
+          </li>
+          <li>
+            Updated Fun Facts
+            <ul>
+              <li>Removed "Fun Fact" button</li>
+              <li>
+                Facts and Page Info now display at the bottom of most pages in
+                small font
+              </li>
+            </ul>
+          </li>
+        </ul>
         <h3>March 22, 2023</h3>
         <ul>
           <li>

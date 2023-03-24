@@ -1,16 +1,10 @@
-import Button from 'Components/button';
 import React, { useEffect, useState } from 'react';
 import { getAnimeNews } from 'src/requests/player';
 import { addEvent } from 'Utils/amplitude';
 import { randomInt, responseError } from 'Utils/index';
-import {
-  $ReadMoreWrapper,
-  $ReadMoreContent,
-  $ReadMoreNews,
-} from './readMore.style';
+import { $ReadMoreWrapper, $ReadMoreDisclaimer } from './readMore.style';
 
 const ReadMore = ({ children }) => {
-  const [showMore, setShowMore] = useState(false);
   const [news, setNews] = useState(null);
 
   const handleAnimeNews = async () => {
@@ -38,18 +32,24 @@ const ReadMore = ({ children }) => {
 
   return (
     <$ReadMoreWrapper>
-      <$ReadMoreContent className={showMore && 'show'}>
-        <$ReadMoreNews>
-          Check out this anime called {news?.title}. Here's a short description
-          about it. {news?.shortDescription}.
-        </$ReadMoreNews>
-        {children}
-      </$ReadMoreContent>
-      <Button
-        btnText="Fun Fact"
-        btnFunction={() => setShowMore(!showMore)}
-        btnColor="readMore"
-      />
+      {!!news && (
+        <>
+          <div>
+            <p>
+              <strong>Anime:</strong> {news.title}
+            </p>
+            <p>
+              <strong>Description:</strong> {news.shortDescription}.
+            </p>
+          </div>
+          {!!children && (
+            <$ReadMoreDisclaimer>
+              <strong>Page Info: </strong>
+              {children}
+            </$ReadMoreDisclaimer>
+          )}
+        </>
+      )}
     </$ReadMoreWrapper>
   );
 };

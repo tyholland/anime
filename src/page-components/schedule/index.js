@@ -16,6 +16,7 @@ import {
   $ScheduleTeamContainer,
   $ScheduleTeamName,
 } from './schedule.style';
+import GameSchedule from 'Components/gameplay-card/schedule';
 
 const Schedule = () => {
   const router = useRouter();
@@ -109,8 +110,10 @@ const Schedule = () => {
                 </$ScheduleWrapper>
               );
             })}
-            <ReadMore />
           </$GlobalContainer>
+          <ReadMore>
+            <GameSchedule />
+          </ReadMore>
         </>
       )}
     </>

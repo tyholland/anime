@@ -21,8 +21,17 @@ const NotUser = ({ message = null }) => {
 
       abzNews = JSON.parse(abzNews);
       const news = abzNews[randomInt()];
-      const filteredMsg = `Check out this anime called ${news?.title}. Here's a short description
-    about it. ${news?.shortDescription}.`;
+      const filteredMsg = (
+        <>
+          <h3>Looking for a new series to watch!!!</h3>
+          <div>
+            <strong>Anime Series: </strong> {news?.title}
+          </div>
+          <div>
+            <strong>Description: </strong> {news?.shortDescription}
+          </div>
+        </>
+      );
 
       setMsg(filteredMsg);
     } else {
@@ -41,16 +50,14 @@ const NotUser = ({ message = null }) => {
           {!!msg && (
             <div>
               {msg}
-              <br />
-              <br />
-              You need to login in order to view this page.
+              Please login to view this page.
             </div>
           )}
-          {!msg && <div>You need to login in order to view this page.</div>}
+          {!msg && <div>Please login to view this page.</div>}
         </$NotUserContent>
         <$NotUserBtnWrapper>
           <Button
-            btnText="Login"
+            btnText="Login To Continue"
             redirect={`/login?continue=${router.asPath}`}
             btnColor="primary"
             customBtnClass="medium"

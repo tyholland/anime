@@ -29,7 +29,3 @@ export const $PodcastService = styled.div`
     }
   }
 `;
-
-export const $PodcastDescript = styled.div`
-  margin-bottom: 10%;
-`;

@@ -24,6 +24,7 @@ import Loader from 'Components/loader';
 import { useAppContext } from 'src/hooks/context';
 import NotUser from 'Components/not-user';
 import ReadMore from 'Components/read-more';
+import MakeTeam from 'Components/gameplay-card/make-team';
 
 const TeamEdit = () => {
   const router = useRouter();
@@ -365,8 +366,10 @@ const TeamEdit = () => {
                 />
               </>
             )}
-            <ReadMore />
           </$GlobalContainer>
+          <ReadMore>
+            <MakeTeam />
+          </ReadMore>
         </>
       )}
     </>

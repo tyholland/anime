@@ -248,8 +248,8 @@ const Bio = () => {
             </div>
           </$BioWrapper>
         )}
-        <ReadMore />
       </$GlobalContainer>
+      <ReadMore />
     </>
   );
 };

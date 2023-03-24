@@ -150,8 +150,8 @@ const Team = () => {
                 />
               </>
             )}
-            <ReadMore />
           </$GlobalContainer>
+          <ReadMore />
         </>
       )}
     </>

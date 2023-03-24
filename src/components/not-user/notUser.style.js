@@ -20,6 +20,11 @@ export const $NotUserContent = styled.div`
 
   div {
     width: 100%;
+    margin-bottom: 3%;
+  }
+
+  h3 {
+    margin-top: 0;
   }
 `;
 
@@ -28,18 +33,22 @@ export const $NotUserBtnWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 400px;
+  width: 70%;
   padding: 3% 0;
 
   ${MOBILE_VIEW} {
     flex-direction: column;
+    width: 100%;
   }
 
   button {
-    width: 30% !important;
+    span {
+      font-size: 24px !important;
+    }
 
     ${MOBILE_VIEW} {
-      width: 50% !important;
+      width: 100% !important;
+      margin: 3%;
     }
   }
 `;

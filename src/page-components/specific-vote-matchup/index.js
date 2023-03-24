@@ -1,6 +1,8 @@
+import Voting from 'Components/gameplay-card/voting';
 import Loader from 'Components/loader';
 import MatchupVoting from 'Components/matchup-voting';
 import Metadata from 'Components/metadata';
+import ReadMore from 'Components/read-more';
 import { useRouter } from 'next/router';
 import Error from 'PageComponents/error';
 import React, { useEffect, useState } from 'react';
@@ -64,6 +66,9 @@ const SpecificVoteMatchup = () => {
           />
         )}
       </$GlobalContainer>
+      <ReadMore>
+        <Voting />
+      </ReadMore>
     </>
   );
 };
