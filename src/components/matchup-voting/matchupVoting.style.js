@@ -96,11 +96,12 @@ export const $MatchupVotingSection = styled.div`
 
 export const $MatchupVotingImage = styled.img`
   width: 300px;
-  height: auto;
+  height: 300px;
   margin-bottom: 2%;
 
   ${MOBILE_VIEW} {
     width: 100%;
+    height: auto;
   }
 `;
 

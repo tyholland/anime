@@ -94,6 +94,7 @@ export const $MatchupVotingImage = styled.img`
 
   ${MOBILE_VIEW} {
     width: 100%;
+    height: auto;
   }
 `;
 
