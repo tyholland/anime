@@ -32,7 +32,6 @@ const Bracket = () => {
   const [bracketIsOpen, setBracketIsOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState(null);
   const [errorPage, setErrorPage] = useState(null);
-  const [hasVoted, setHasVoted] = useState([]);
   const [bracketRound, setBracketRound] = useState(null);
   const [bracketCreator, setBracketCreator] = useState(null);
   const [bracketName, setBracketName] = useState(null);
@@ -108,13 +107,6 @@ const Bracket = () => {
   const handleVotes = async (match, team, payload) => {
     const score = match[`${team}TeamScore`];
 
-    // Check if matchup has already been voted on
-    // Doesn't prevent multiple voting if page is refreshed
-    if (hasVoted.some((item) => item === match.voteId)) {
-      setErrorMsg('You already voted on this matchup');
-      return match;
-    }
-
     try {
       await addVotes(payload);
 
@@ -129,12 +121,11 @@ const Bracket = () => {
 
       matches[updateMatch][`${team}TeamScore`] = score + 1;
 
-      // Added to allow voting without being logged in
-      setHasVoted((arr) => [...arr, match.voteId]);
-
       return matches[updateMatch];
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to add votes - Part 1'));
+      setErrorMsg(err.response.data.message);
+      return match;
     }
   };
 

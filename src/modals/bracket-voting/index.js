@@ -8,10 +8,11 @@ import {
   $MatchupVotingTotal,
 } from './bracketVoting.style.js';
 import Button from 'Components/button';
-import { responseError } from 'Utils/index.js';
+import { getNonLoggedInUser, responseError } from 'Utils/index.js';
 import { addEvent } from 'Utils/amplitude.js';
 import ErrorMsg from 'Components/error-msg/index.js';
 import MainModal from '../main/index.js';
+import { useAppContext } from 'src/hooks/context.js';
 
 const BracketVoting = ({
   playerA,
@@ -24,6 +25,7 @@ const BracketVoting = ({
   closeModal,
   roundWinner,
 }) => {
+  const { currentUser } = useAppContext();
   const [playerACount, setPlayerACount] = useState(0);
   const [playerBCount, setPlayerBCount] = useState(0);
   const [bracketMatch, setBracketMatch] = useState(null);
@@ -49,6 +51,7 @@ const BracketVoting = ({
       voteId: bracketMatch?.voteId,
       votedFor: player.id,
       playerCount,
+      userId: currentUser?.user_id || getNonLoggedInUser(),
     };
 
     const team = playerCount === 'player_a_count' ? 'home' : 'away';
@@ -61,11 +64,7 @@ const BracketVoting = ({
         : setPlayerBCount(match.awayTeamScore);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to add votes - Part 2'));
-      const nonUserMsg = 'Please login, in order to vote on this matchup.';
-      console.log(err);
-      err.response.status === 401
-        ? setErrorMsg(nonUserMsg)
-        : setErrorMsg(err.response.data.message);
+      setErrorMsg(err.response.data.message);
     }
   };
 

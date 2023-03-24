@@ -62,10 +62,7 @@ const MatchupVoting = ({
       });
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to add votes'));
-      const nonUserMsg = 'Please login, in order to vote on this matchup.';
-      err.response.status === 401
-        ? setErrorMsg(nonUserMsg)
-        : setErrorMsg(err.response.data.message);
+      setErrorMsg(err.response.data.message);
     }
   };
 
