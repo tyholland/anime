@@ -122,3 +122,19 @@ export const joinLeagueSetup = async (leagueHash, currentUser, router) => {
     throw new Error(`${err} - Can not join league`);
   }
 };
+
+export const getNonLoggedInUser = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  const user = window.localStorage.getItem('abz.nonLogged');
+
+  if (!user) {
+    const randomNum = Math.floor(Math.random() * 100000000);
+    window.localStorage.setItem('abz.nonLogged', randomNum);
+    return randomNum;
+  }
+
+  return parseInt(user);
+};

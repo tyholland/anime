@@ -12,12 +12,11 @@ export const createBracket = async (payload, token) => {
   return await axiosClient(data);
 };
 
-export const addVotes = async (payload, token) => {
+export const addVotes = async (payload) => {
   const data = {
     url: `${api}/bracket/add`,
     method: 'put',
     body: payload,
-    token,
   };
 
   return await axiosClient(data);

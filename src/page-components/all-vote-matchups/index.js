@@ -3,7 +3,7 @@ import BackLink from 'Components/back-link';
 import { $GlobalContainer } from 'Styles/global.style.js';
 import MatchupVoting from 'Components/matchup-voting';
 import { addEvent } from 'Utils/amplitude';
-import { responseError } from 'Utils/index';
+import { getNonLoggedInUser, responseError } from 'Utils/index';
 import { getPlayer } from 'src/requests/player';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
@@ -52,8 +52,14 @@ const AllVoteMatchups = () => {
   const handleAllMatchups = async () => {
     setIsLoading(true);
 
+    const theUser = currentUser
+      ? currentUser
+      : { user_id: getNonLoggedInUser() };
+
     try {
-      const allMatchupVotes = await getAllMatchupVotes({ currentUser });
+      const allMatchupVotes = await getAllMatchupVotes({
+        currentUser: theUser,
+      });
 
       const totalLength = allMatchupVotes.length - 1;
       const { player_a_id, player_b_id } = allMatchupVotes[0];

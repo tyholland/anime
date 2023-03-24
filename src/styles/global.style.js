@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 export const COLOR_ORANGE = 'rgb(249, 128, 17)';
 export const COLOR_ORANGE_DISABLED = 'rgba(249, 128, 17, 0.8)';
 export const COLOR_ORANGE_LIGHT = 'rgba(249, 128, 17, 0.3)';
-export const COLOR_ORANGE_EXTRA_LIGHT = 'rgba(249,128,17,0.15)';
+export const COLOR_ORANGE_EXTRA_LIGHT = 'rgba(249,128,17,0.05)';
 export const COLOR_RED = '#cc0000';
 export const COLOR_SUCCESS = '#4BB543';
 export const COLOR_ERROR = '#cc000080';

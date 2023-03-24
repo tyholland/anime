@@ -31,6 +31,46 @@ const Home = () => {
           </div>
         </$GlobalContainer>
       </$GlobalContainer>
+      <$GlobalContainer className="homeSection homeEven">
+        <$GlobalTitle>Welcome to the world of elemental battles!</$GlobalTitle>
+        This is a weekly fantasy game that takes place over 12 weeks. You can
+        enter a public league or group up with friends to start your own private
+        league. In this game, we have categorized heroes based on ten elemental
+        affinities to master: fire, water, electricity, earth, wind, darkness,
+        celestial, arcane, ice, and those with no affinity.
+        <p>
+          Heroes, villains, supports, and battlefields can have their power
+          levels boosted or reduced based on their affinities. Make sure to
+          choose your characters wisely and consider their elemental strengths
+          and weaknesses before entering battle. Most characters have one or two
+          affinities.
+        </p>
+        <p>
+          Beware, there are a few characters and battlefields in the game that
+          possess more than three elemental affinities. These omega affinity
+          characters can be boosted by any element.
+        </p>
+        <p>
+          No match is predetermined. Even the most powerful fighters can succumb
+          to the power of a well-made team. We have multiple modifiers in place
+          to take your power level far over 9000! Supports, battlefields, and
+          the weekly affinity drop will all increase your team's power. However,
+          villains and some enemy battlefields will decrease your team's
+          fighting strength.
+        </p>
+        <p>
+          Lastly, be sure to share your matches when they go live! Players and
+          non-players can vote on any live match. The winner of the vote gets a
+          power boost while the loser receives a power loss. Your friends can
+          make the difference between winning and losing!
+        </p>
+        <p>
+          So, whether you prefer your team to use the power of fire or the force
+          of ice, there's an elemental affinity for everyone to master in this
+          game. Good luck in your battles! And remember, a well-balanced team is
+          always best!
+        </p>
+      </$GlobalContainer>
       <$GlobalContainer className="homeSection">
         <GameplayCard />
       </$GlobalContainer>

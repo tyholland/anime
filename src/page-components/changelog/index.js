@@ -14,9 +14,16 @@ const Changelog = () => {
         <h3>March 24, 2023</h3>
         <ul>
           <li>
+            Updated Homepage
+            <ul>
+              <li>Added new welcome copy</li>
+            </ul>
+          </li>
+          <li>
             Updated Matchups Feature
             <ul>
               <li>Added team name and league name for each character</li>
+              <li>Any user, logged in or not, can vote on matchups</li>
             </ul>
           </li>
           <li>

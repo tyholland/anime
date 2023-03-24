@@ -10,7 +10,7 @@ import {
 import Button from 'Components/button';
 import SocialMedia from 'Components/social-media/index.js';
 import { addVotes } from 'src/requests/matchup.js';
-import { responseError } from 'Utils/index.js';
+import { getNonLoggedInUser, responseError } from 'Utils/index.js';
 import { addEvent } from 'Utils/amplitude.js';
 import ErrorMsg from 'Components/error-msg/index.js';
 import { useAppContext } from 'src/hooks/context.js';
@@ -46,10 +46,11 @@ const MatchupVoting = ({
       voteId,
       votedFor: player.id,
       playerCount,
+      userId: currentUser?.user_id || getNonLoggedInUser(),
     };
 
     try {
-      const { votes } = await addVotes(payload, currentUser?.token);
+      const { votes } = await addVotes(payload);
 
       playerCount === 'player_a_count'
         ? setPlayerACount(votes)

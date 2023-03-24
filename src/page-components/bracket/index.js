@@ -116,7 +116,7 @@ const Bracket = () => {
     }
 
     try {
-      await addVotes(payload, currentUser?.token);
+      await addVotes(payload);
 
       addEvent('Bracket Voting', {
         votedFor: match[`${team}TeamName`],
