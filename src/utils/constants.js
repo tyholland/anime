@@ -54,12 +54,6 @@ export const photoCredits = [
     platform: 'pixabay.com',
   },
   {
-    image: '/assets/profile/deku.webp',
-    name: 'Deku',
-    creator: '@Abdullah3992',
-    platform: 'pixabay.com',
-  },
-  {
     image: '/assets/profile/elizabeth.webp',
     name: 'Elizabeth',
     creator: '@ermaltahiri',
