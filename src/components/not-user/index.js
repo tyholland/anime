@@ -45,7 +45,7 @@ const NotUser = ({ message = null }) => {
 
   return (
     <>
-      <$GlobalContainer className="bgImage notFound">
+      <$GlobalContainer className="bgImage notUser">
         <$NotUserContent>
           {!!msg && (
             <div>

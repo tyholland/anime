@@ -137,10 +137,13 @@ export const $GlobalContainer = styled.div`
     }
   }
 
-  &.league {
+  &.notUser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     &::before {
       background-image: url(/assets/background/naruto-rasengan.webp);
-      filter: grayscale(85%);
     }
   }
 
