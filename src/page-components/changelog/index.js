@@ -14,6 +14,22 @@ const Changelog = () => {
         <h3>March 24, 2023</h3>
         <ul>
           <li>
+            Bio page/modal
+            <ul>
+              <li>
+                Clicking on a character will now open a modal on all pages
+                except for the characters page.
+              </li>
+              <li>
+                From the characters page, you will still be directed to the bio
+                page for that character.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <h3>March 24, 2023</h3>
+        <ul>
+          <li>
             Updated Homepage
             <ul>
               <li>Added new welcome copy</li>

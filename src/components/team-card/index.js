@@ -1,4 +1,3 @@
-import Link from 'next/link.js';
 import React, { useState } from 'react';
 import {
   $TeamCardSection,
@@ -15,9 +14,12 @@ import {
 import { $GlobalCircle } from 'Styles/global.style.js';
 import CharacterStats from 'src/modals/character-stats/index.js';
 import Button from 'Components/button/index.js';
+import BioReview from 'src/modals/bio-review/index.js';
 
 const TeamCard = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [bioModalIsOpen, setBioModalIsOpen] = useState(false);
+  const [characterId, setCharacterId] = useState(null);
   const [characterStats, setCharacterStats] = useState(null);
   const {
     captain,
@@ -33,6 +35,15 @@ const TeamCard = ({ data }) => {
   const toggleModal = (character) => {
     setIsModalOpen(!isModalOpen);
     setCharacterStats(character);
+  };
+
+  const getProfile = (id) => {
+    setBioModalIsOpen(true);
+    setCharacterId(id);
+  };
+
+  const closeModal = () => {
+    setBioModalIsOpen(false);
   };
 
   const characterLink = (character) => {
@@ -56,11 +67,9 @@ const TeamCard = ({ data }) => {
       <>
         <$TeamCardNameAffinity>
           <$TeamCardCharacterWrapper>
-            <Link href={`/bio?character=${character.id}`}>
-              <$TeamCardCharacter>
-                <$TeamCardCharacterTxt>{character.name}</$TeamCardCharacterTxt>
-              </$TeamCardCharacter>
-            </Link>
+            <$TeamCardCharacter onClick={() => getProfile(character.id)}>
+              <$TeamCardCharacterTxt>{character.name}</$TeamCardCharacterTxt>
+            </$TeamCardCharacter>
           </$TeamCardCharacterWrapper>
           <$TeamCardAffinity className="affinity">
             {!!character.affinity.length &&
@@ -132,13 +141,11 @@ const TeamCard = ({ data }) => {
         <$TeamCardNameAffinity className="duo">
           <div className="section">
             <$TeamCardCharacterWrapper className="duo">
-              <Link href={`/bio?character=${brawler.id}`}>
-                <$TeamCardCharacter>
-                  <$TeamCardDuoSpace className="text">
-                    {brawler.name}
-                  </$TeamCardDuoSpace>
-                </$TeamCardCharacter>
-              </Link>
+              <$TeamCardCharacter onClick={() => getProfile(brawler.id)}>
+                <$TeamCardDuoSpace className="text">
+                  {brawler.name}
+                </$TeamCardDuoSpace>
+              </$TeamCardCharacter>
             </$TeamCardCharacterWrapper>
             <$TeamCardDuoSpace className="duo">
               {!!brawler.affinity.length &&
@@ -158,13 +165,11 @@ const TeamCard = ({ data }) => {
           </div>
           <div className="section">
             <$TeamCardCharacterWrapper className="duo">
-              <Link href={`/bio?character=${support.id}`}>
-                <$TeamCardCharacter>
-                  <$TeamCardDuoSpace className="text">
-                    {support.name}
-                  </$TeamCardDuoSpace>
-                </$TeamCardCharacter>
-              </Link>
+              <$TeamCardCharacter onClick={() => getProfile(support.id)}>
+                <$TeamCardDuoSpace className="text">
+                  {support.name}
+                </$TeamCardDuoSpace>
+              </$TeamCardCharacter>
             </$TeamCardCharacterWrapper>
             <$TeamCardDuoSpace className="duo">
               {!!support.affinity.length &&
@@ -245,6 +250,11 @@ const TeamCard = ({ data }) => {
         character={characterStats}
         votes={[]}
         isMatchupPage={false}
+      />
+      <BioReview
+        modalIsOpen={bioModalIsOpen}
+        closeModal={closeModal}
+        characterId={characterId}
       />
     </>
   );

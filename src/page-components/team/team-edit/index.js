@@ -25,6 +25,7 @@ import { useAppContext } from 'src/hooks/context';
 import NotUser from 'Components/not-user';
 import ReadMore from 'Components/read-more';
 import MakeTeam from 'Components/gameplay-card/make-team';
+import BioReview from 'src/modals/bio-review';
 
 const TeamEdit = () => {
   const router = useRouter();
@@ -41,6 +42,8 @@ const TeamEdit = () => {
   const [errorPage, setErrorPage] = useState(false);
   const [account, setAccount] = useState(null);
   const [leagueWeek, setLeagueWeek] = useState(null);
+  const [bioModalIsOpen, setBioModalIsOpen] = useState(false);
+  const [characterId, setCharacterId] = useState(null);
 
   const handleTeamData = async () => {
     const { team_id } = router.query;
@@ -80,6 +83,7 @@ const TeamEdit = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setBioModalIsOpen(false);
   };
 
   const openModal = (rank) => {
@@ -202,6 +206,11 @@ const TeamEdit = () => {
     setCanChange(true);
   };
 
+  const getProfile = (id) => {
+    setBioModalIsOpen(true);
+    setCharacterId(id);
+  };
+
   useEffect(() => {
     setAccount(currentUser);
   }, [currentUser]);
@@ -266,56 +275,58 @@ const TeamEdit = () => {
                     <$TeamEditSection>
                       <Button
                         btnText={playerList.captain.name}
-                        redirect={`/bio?character=${playerList.captain.id}`}
+                        btnFunction={() => getProfile(playerList.captain.id)}
                         customBtnClass="text edit"
                       />
                     </$TeamEditSection>
                     <$TeamEditSection>
                       <Button
                         btnText={playerList.brawlerA.name}
-                        redirect={`/bio?character=${playerList.brawlerA.id}`}
+                        btnFunction={() => getProfile(playerList.brawlerA.id)}
                         customBtnClass="text edit"
                       />
                     </$TeamEditSection>
                     <$TeamEditSection>
                       <Button
                         btnText={playerList.brawlerB.name}
-                        redirect={`/bio?character=${playerList.brawlerB.id}`}
+                        btnFunction={() => getProfile(playerList.brawlerB.id)}
                         customBtnClass="text edit"
                       />
                     </$TeamEditSection>
                     <$TeamEditSection>
                       <Button
                         btnText={playerList.bsBrawler.name}
-                        redirect={`/bio?character=${playerList.bsBrawler.id}`}
+                        btnFunction={() => getProfile(playerList.bsBrawler.id)}
                         customBtnClass="text edit"
                       />
                     </$TeamEditSection>
                     <$TeamEditSection>
                       <Button
                         btnText={playerList.bsSupport.name}
-                        redirect={`/bio?character=${playerList.bsSupport.id}`}
+                        btnFunction={() => getProfile(playerList.bsSupport.id)}
                         customBtnClass="text edit"
                       />
                     </$TeamEditSection>
                     <$TeamEditSection>
                       <Button
                         btnText={playerList.support.name}
-                        redirect={`/bio?character=${playerList.support.id}`}
+                        btnFunction={() => getProfile(playerList.support.id)}
                         customBtnClass="text edit"
                       />
                     </$TeamEditSection>
                     <$TeamEditSection>
                       <Button
                         btnText={playerList.villain.name}
-                        redirect={`/bio?character=${playerList.villain.id}`}
+                        btnFunction={() => getProfile(playerList.villain.id)}
                         customBtnClass="text edit"
                       />
                     </$TeamEditSection>
                     <$TeamEditSection>
                       <Button
                         btnText={playerList.battlefield.name}
-                        redirect={`/bio?character=${playerList.battlefield.id}`}
+                        btnFunction={() =>
+                          getProfile(playerList.battlefield.id)
+                        }
                         customBtnClass="text edit"
                       />
                     </$TeamEditSection>
@@ -363,6 +374,11 @@ const TeamEdit = () => {
                   playerList={playerList}
                   field={field}
                   leagueWeek={leagueWeek}
+                />
+                <BioReview
+                  modalIsOpen={bioModalIsOpen}
+                  closeModal={closeModal}
+                  characterId={characterId}
                 />
               </>
             )}
