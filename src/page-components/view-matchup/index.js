@@ -56,7 +56,7 @@ const ViewMatchup = () => {
     try {
       const results = await getMatchUp(matchup_id, currentUser?.token);
 
-      const { team_a, team_b, score_a, score_b, active } = results.matchup;
+      const { team_a, team_b, score_a, score_b } = results.matchup;
 
       const team1 = await getMatchupTeam(team_a, currentUser?.token);
       const team2 = await getMatchupTeam(team_b, currentUser?.token);
@@ -71,7 +71,7 @@ const ViewMatchup = () => {
       setScore1(score_a);
       setScore2(score_b);
       setVotes(results.votes);
-      setIsActive(active);
+      setIsActive(results.isVotingActive);
       setRetrigger(false);
       setRecapIsOpen(!!team1.recap);
       setRecap(theRecap);
