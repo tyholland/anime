@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
 
-export const $MatchupVotingCharacter = styled.div`
+export const $BracketVotingCharacter = styled.div`
   font-size: 30px;
   font-weight: ${FONT_WEIGHT_BOLD};
 
@@ -10,7 +10,7 @@ export const $MatchupVotingCharacter = styled.div`
   }
 `;
 
-export const $MatchupVotingVersus = styled.div`
+export const $BracketVotingVersus = styled.div`
   font-size: 20px;
   font-weight: ${FONT_WEIGHT_BOLD};
   margin: 40px 0;
@@ -22,15 +22,19 @@ export const $MatchupVotingVersus = styled.div`
   }
 `;
 
-export const $MatchupVotingWrapper = styled.div`
+export const $BracketVotingWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   margin: 5% 0;
-  width: 700px;
+  width: 100%;
 
   &.spacing {
     margin-bottom: 3%;
+  }
+
+  &.duo {
+    width: 700px;
   }
 
   &.btn {
@@ -60,7 +64,7 @@ export const $MatchupVotingWrapper = styled.div`
   }
 `;
 
-export const $MatchupVotingSection = styled.div`
+export const $BracketVotingSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -87,7 +91,7 @@ export const $MatchupVotingSection = styled.div`
   }
 `;
 
-export const $MatchupVotingImage = styled.img`
+export const $BracketVotingImage = styled.img`
   width: 200px;
   height: 200px;
   margin-bottom: 2%;
@@ -98,7 +102,7 @@ export const $MatchupVotingImage = styled.img`
   }
 `;
 
-export const $MatchupVotingTotal = styled.div`
+export const $BracketVotingTotal = styled.div`
   justify-content: center;
   margin-top: 5%;
   display: flex;

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {
-  $MatchupVotingCharacter,
-  $MatchupVotingVersus,
-  $MatchupVotingWrapper,
-  $MatchupVotingSection,
-  $MatchupVotingImage,
-  $MatchupVotingTotal,
+  $BracketVotingCharacter,
+  $BracketVotingVersus,
+  $BracketVotingWrapper,
+  $BracketVotingSection,
+  $BracketVotingImage,
+  $BracketVotingTotal,
 } from './bracketVoting.style.js';
 import Button from 'Components/button';
 import { getNonLoggedInUser, responseError } from 'Utils/index.js';
@@ -91,24 +91,24 @@ const BracketVoting = ({
       styles={customStyles}
     >
       {bracketMatch && (
-        <>
-          <center>
-            <h2>
-              Match {bracketMatch?.matchNumber}
-              {!!matchWinner && ' - Winner'}
-            </h2>
-          </center>
-          <$MatchupVotingWrapper className={errorMsg && 'spacing'}>
+        <center>
+          <h2>
+            Match {bracketMatch?.matchNumber}
+            {!!matchWinner && ' - Winner'}
+          </h2>
+          <$BracketVotingWrapper
+            className={`${errorMsg && 'spacing'}${!matchWinner && ' duo'}`}
+          >
             {(matchWinner === playerA.id || !matchWinner) && (
-              <$MatchupVotingSection>
+              <$BracketVotingSection>
                 <div>
-                  <$MatchupVotingImage
+                  <$BracketVotingImage
                     src={playerA.image_url}
                     alt={playerA.full_name}
                   />
-                  <$MatchupVotingCharacter>
+                  <$BracketVotingCharacter>
                     {playerA.full_name}
-                  </$MatchupVotingCharacter>
+                  </$BracketVotingCharacter>
                 </div>
                 {!matchWinner && (
                   <div>
@@ -120,28 +120,28 @@ const BracketVoting = ({
                         handleAddingVotes(playerA, 'player_a_count')
                       }
                     />
-                    <$MatchupVotingTotal>
+                    <$BracketVotingTotal>
                       Total Votes: {playerACount}
-                    </$MatchupVotingTotal>
+                    </$BracketVotingTotal>
                   </div>
                 )}
-              </$MatchupVotingSection>
+              </$BracketVotingSection>
             )}
             {!matchWinner && (
-              <$MatchupVotingSection>
-                <$MatchupVotingVersus>VS</$MatchupVotingVersus>
-              </$MatchupVotingSection>
+              <$BracketVotingSection>
+                <$BracketVotingVersus>VS</$BracketVotingVersus>
+              </$BracketVotingSection>
             )}
             {(matchWinner === playerB.id || !matchWinner) && (
-              <$MatchupVotingSection>
+              <$BracketVotingSection>
                 <div>
-                  <$MatchupVotingImage
+                  <$BracketVotingImage
                     src={playerB.image_url}
                     alt={playerB.full_name}
                   />
-                  <$MatchupVotingCharacter>
+                  <$BracketVotingCharacter>
                     {playerB.full_name}
-                  </$MatchupVotingCharacter>
+                  </$BracketVotingCharacter>
                 </div>
                 {!matchWinner && (
                   <div>
@@ -153,24 +153,22 @@ const BracketVoting = ({
                         handleAddingVotes(playerB, 'player_b_count')
                       }
                     />
-                    <$MatchupVotingTotal>
+                    <$BracketVotingTotal>
                       Total Votes: {playerBCount}
-                    </$MatchupVotingTotal>
+                    </$BracketVotingTotal>
                   </div>
                 )}
-              </$MatchupVotingSection>
+              </$BracketVotingSection>
             )}
-          </$MatchupVotingWrapper>
+          </$BracketVotingWrapper>
           {errorMsg && <ErrorMsg msg={errorMsg} />}
-          <center>
-            <Button
-              btnText="Close"
-              btnColor="cancel"
-              customBtnClass="medium"
-              btnFunction={closeModal}
-            />
-          </center>
-        </>
+          <Button
+            btnText="Close"
+            btnColor="cancel"
+            customBtnClass="medium"
+            btnFunction={closeModal}
+          />
+        </center>
       )}
     </MainModal>
   );
