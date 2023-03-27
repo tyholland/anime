@@ -381,4 +381,10 @@ export const $CollapsibleStyles = createGlobalStyle`
   .Collapsible:last-child {
     border-bottom: 1px solid ${COLOR_BLACK};
   }
+
+  .Collapsible__contentInner {
+    overflow-y: scroll;
+    height: 115px;
+    margin-top: 3%;
+  }
 `;

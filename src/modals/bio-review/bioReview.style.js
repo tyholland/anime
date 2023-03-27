@@ -13,7 +13,7 @@ export const $BioReviewWrapper = styled.div`
   }
 
   > div {
-    width: 600px;
+    width: 100%;
 
     ${MOBILE_VIEW} {
       width: 100%;

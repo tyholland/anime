@@ -81,7 +81,8 @@ export const $BioWrapper = styled.div`
     margin: 0 5%;
 
     ${MOBILE_VIEW} {
-      width: 90%;
+      width: 50%;
+      margin: 0 2%;
     }
   }
 `;
