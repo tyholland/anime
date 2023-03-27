@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MOBILE_VIEW } from 'Styles/global.style';
+import { MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
 
 export const $BioReviewWrapper = styled.div`
   display: flex;
@@ -13,16 +13,26 @@ export const $BioReviewWrapper = styled.div`
   }
 
   > div {
-    width: 100%;
+    width: 500px;
+
+    ${RESPONSIVE_VIEW} {
+      width: 100%;
+    }
 
     ${MOBILE_VIEW} {
-      width: 100%;
       flex-direction: row;
     }
 
     img {
       width: 200px;
       height: 200px;
+    }
+
+    > div {
+      ${MOBILE_VIEW} {
+        width: 50%;
+        margin: 0 2%;
+      }
     }
   }
 `;
