@@ -132,12 +132,12 @@ const BioCard = ({ characterId }) => {
           <$BioSubAttribute>{player.category}</$BioSubAttribute>
           <$BioAttribute>Points (cost to add):</$BioAttribute>
           <$BioSubAttribute>{player.cost}</$BioSubAttribute>
+          <$BioAttribute>Bye Week:</$BioAttribute>
+          <$BioSubAttribute>{player.bye_week}</$BioSubAttribute>
         </div>
         <div>
           <$BioAttribute>Power Level:</$BioAttribute>
           <$BioSubAttribute>{player.power_level}</$BioSubAttribute>
-          <$BioAttribute>Bye Week:</$BioAttribute>
-          <$BioSubAttribute>{player.bye_week}</$BioSubAttribute>
           {player.category !== 'Battlefield' && !!affinities?.length && (
             <>
               <$BioAttribute>Element Affinity:</$BioAttribute>
