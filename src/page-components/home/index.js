@@ -33,11 +33,13 @@ const Home = () => {
       </$GlobalContainer>
       <$GlobalContainer className="homeSection homeEven">
         <$GlobalTitle>Welcome to the world of elemental battles!</$GlobalTitle>
-        This is a weekly fantasy game that takes place over 12 weeks. You can
-        enter a public league or group up with friends to start your own private
-        league. In this game, we have categorized heroes based on ten elemental
-        affinities to master: fire, water, electricity, earth, wind, darkness,
-        celestial, arcane, ice, and those with no affinity.
+        This is a weekly fantasy game that takes place over 12 weeks. Build a
+        team of your favorite manga and anime characters. Wage weekly battles
+        against your friends for victory. You can enter a public league or group
+        up with friends to start your own private league. In this game, we have
+        categorized heroes based on ten elemental affinities to master: fire,
+        water, electricity, earth, wind, darkness, celestial, arcane, ice, and
+        those with no affinity.
         <p>
           Heroes, villains, supports, and battlefields can have their power
           levels boosted or reduced based on their affinities. Make sure to
