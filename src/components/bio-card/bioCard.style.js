@@ -59,7 +59,7 @@ export const $BioSubAttribute = styled.div`
 
 export const $BioImage = styled.img`
   max-width: 250px;
-  max-height: 250px;
+  max-height: 200px;
   margin-bottom: 10%;
   width: auto;
 `;
