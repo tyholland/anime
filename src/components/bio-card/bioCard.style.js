@@ -28,12 +28,20 @@ export const $BioAffinity = styled.div`
 
 export const $BioAffinityText = styled.div`
   margin-left: 5px;
+
+  ${MOBILE_VIEW} {
+    font-size: 14px;
+  }
 `;
 
 export const $BioTitle = styled.div`
   font-size: 30px;
   font-weight: ${FONT_WEIGHT_BOLD};
   margin-bottom: 5%;
+
+  ${MOBILE_VIEW} {
+    font-size: 25px;
+  }
 `;
 
 export const $BioSubTitle = styled.div`
@@ -45,16 +53,28 @@ export const $BioSubTitle = styled.div`
   span {
     font-weight: ${FONT_WEIGHT_NORMAL};
   }
+
+  ${MOBILE_VIEW} {
+    font-size: 16px;
+  }
 `;
 
 export const $BioAttribute = styled.div`
   font-size: 22px;
   font-weight: ${FONT_WEIGHT_BOLD};
+
+  ${MOBILE_VIEW} {
+    font-size: 18px;
+  }
 `;
 
 export const $BioSubAttribute = styled.div`
   font-size: 20px;
   margin-bottom: 25px;
+
+  ${MOBILE_VIEW} {
+    font-size: 14px;
+  }
 `;
 
 export const $BioImage = styled.img`
