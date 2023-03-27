@@ -26,6 +26,11 @@ export const $BioReviewWrapper = styled.div`
     img {
       width: 200px;
       height: 200px;
+
+      ${MOBILE_VIEW} {
+        width: 100%;
+        height: auto;
+      }
     }
 
     > div {
