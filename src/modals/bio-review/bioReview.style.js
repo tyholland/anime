@@ -17,6 +17,7 @@ export const $BioReviewWrapper = styled.div`
 
     ${MOBILE_VIEW} {
       width: 100%;
+      flex-direction: row;
     }
 
     img {
