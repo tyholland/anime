@@ -27,6 +27,7 @@ const AllVoteMatchups = () => {
   const [errorPage, setErrorPage] = useState(false);
 
   const getVotingMatchup = async () => {
+    window.scrollTo(0, 0);
     const nextMatchup = totalMatchups - count;
 
     if (nextMatchup === 0) {
