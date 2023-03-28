@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {
   COLOR_BLACK,
   COLOR_ORANGE,
+  COLOR_ORANGE_DISABLED,
   COLOR_ORANGE_LIGHT,
   FONT_WEIGHT_BOLD,
   RESPONSIVE_VIEW,
@@ -15,6 +16,18 @@ export const $DraftSection = styled.div`
 
   &.team {
     margin-top: 5%;
+  }
+
+  &.recent {
+    justify-content: flex-start;
+    margin: 3% 0;
+    padding: 2%;
+    width: 96%;
+    background-color: ${COLOR_ORANGE_DISABLED};
+
+    > div {
+      margin-right: 3%;
+    }
   }
 `;
 

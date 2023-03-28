@@ -5,7 +5,14 @@ import Button from 'Components/button';
 import { $BioReviewWrapper } from './bioReview.style';
 import BioCard from 'Components/bio-card';
 
-const BioReview = ({ modalIsOpen, closeModal, characterId, type = null }) => {
+const BioReview = ({
+  modalIsOpen,
+  closeModal,
+  characterId,
+  type = null,
+  canDraft,
+  draftPlayer,
+}) => {
   const customStyles = {
     content: {
       top: '50%',
@@ -30,9 +37,9 @@ const BioReview = ({ modalIsOpen, closeModal, characterId, type = null }) => {
         <BioCard characterId={characterId} />
       </$BioReviewWrapper>
       <$BioReviewWrapper className="btn">
-        {!!type && type === 'draft' && (
+        {!!type && type === 'draft' && !!canDraft && (
           <Button
-            btnFunction={closeModal}
+            btnFunction={draftPlayer}
             btnText="Draft"
             btnColor="primary"
             customBtnClass="medium"
