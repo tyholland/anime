@@ -157,7 +157,7 @@ const Players = ({
       return;
     }
 
-    if (!!page && page === 'admin') {
+    if (!!page && (page === 'admin' || page === 'draft')) {
       setPlayerList(item);
       return;
     }
@@ -466,22 +466,24 @@ const Players = ({
                   })}
                 </select>
               </div>
-              <div className="seriesFilter">
-                <label>Series</label>
-                <select
-                  onChange={(val) => handleSeriesFilter(val)}
-                  defaultValue={seriesArr[0] === seriesName}
-                >
-                  <option value="all">All</option>
-                  {seriesArr.map((item) => {
-                    return (
-                      <option value={item} key={item}>
-                        {item}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
+              {page !== 'draft' && (
+                <div className="seriesFilter">
+                  <label>Series</label>
+                  <select
+                    onChange={(val) => handleSeriesFilter(val)}
+                    defaultValue={seriesArr[0] === seriesName}
+                  >
+                    <option value="all">All</option>
+                    {seriesArr.map((item) => {
+                      return (
+                        <option value={item} key={item}>
+                          {item}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              )}
             </>
           )}
           <div className="powerFilter">
@@ -501,7 +503,13 @@ const Players = ({
         <DataGrid
           columns={changeRoster ? teamColumns : columns}
           rows={rows}
-          className={changeRoster ? 'fillModal' : 'fillGrid'}
+          className={
+            changeRoster
+              ? 'fillModal'
+              : page === 'draft'
+                ? 'fillDraft'
+                : 'fillGrid'
+          }
           onRowClick={(val) => handleRowClick(val)}
         />
       </div>

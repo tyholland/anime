@@ -8,7 +8,8 @@ import {
 
 export const $PlayersStyles = createGlobalStyle`
   .fillGrid,
-  .fillModal {
+  .fillModal,
+  .fillDraft {
     grid-template-columns: 250px 150px 150px 250px !important;
     width: auto;
     height: 100vh;
@@ -27,6 +28,10 @@ export const $PlayersStyles = createGlobalStyle`
     width: auto;
     height: 455px;
     margin-top: 2%;
+  }
+
+  .fillDraft {
+    grid-template-columns: 180px 110px 110px 200px !important;
   }
 
   .fillGrid > div:hover {
