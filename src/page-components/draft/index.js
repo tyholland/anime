@@ -7,7 +7,11 @@ import BioReview from 'src/modals/bio-review';
 import { getDraft } from 'src/requests/draft';
 import { getUseablePlayers } from 'src/requests/player';
 import { getTeam } from 'src/requests/team';
-import { $GlobalContainer } from 'Styles/global.style';
+import {
+  $GlobalContainer,
+  COLOR_RED,
+  COLOR_SUCCESS,
+} from 'Styles/global.style';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import {
@@ -17,6 +21,7 @@ import {
   $DraftTeamGrid,
   $DraftPlayerGrid,
 } from './draft.style';
+import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
 const Draft = () => {
   const { currentUser } = useAppContext();
@@ -110,8 +115,17 @@ const Draft = () => {
             <div>1</div>
           </$DraftRound>
           <$DraftRound>
-            <div>Time</div>
-            <div>1:00</div>
+            <div>Time:</div>
+            <div className="timer">
+              <CountdownCircleTimer
+                isPlaying
+                duration={60}
+                colors={[COLOR_SUCCESS, COLOR_SUCCESS, COLOR_RED, COLOR_RED]}
+                colorsTime={[60, 10, 10, 0]}
+              >
+                {({ remainingTime }) => remainingTime}
+              </CountdownCircleTimer>
+            </div>
           </$DraftRound>
           <$DraftTeamsList teams={teamsList?.length}>
             {teamsList?.map((item) => {

@@ -18,7 +18,7 @@ export const $DraftTeamsList = styled.div`
 
   > div {
     width: ${(props) => `calc(94% / ${props.teams})`};
-    height: 80px;
+    height: 90px;
     border: 1px solid ${COLOR_BLACK};
     margin: 0 1%;
     text-overflow: ellipsis;
@@ -37,6 +37,18 @@ export const $DraftRound = styled.div`
 
   > div {
     margin-bottom: 10%;
+  }
+
+  .timer {
+    > div {
+      width: 80px !important;
+      height: 80px !important;
+
+      svg {
+        width: 80px;
+        height: 80px;
+      }
+    }
   }
 `;
 
