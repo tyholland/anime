@@ -1,12 +1,11 @@
 import React from 'react';
-import { $GlobalContainer } from 'Styles/global.style';
 import 'react-data-grid/lib/styles.css';
 import MainModal from '../main';
 import Button from 'Components/button';
 import { $BioReviewWrapper } from './bioReview.style';
 import BioCard from 'Components/bio-card';
 
-const BioReview = ({ modalIsOpen, closeModal, characterId }) => {
+const BioReview = ({ modalIsOpen, closeModal, characterId, type = null }) => {
   const customStyles = {
     content: {
       top: '50%',
@@ -27,19 +26,25 @@ const BioReview = ({ modalIsOpen, closeModal, characterId }) => {
       closeModal={closeModal}
       styles={customStyles}
     >
-      <$GlobalContainer>
-        <$BioReviewWrapper>
-          <BioCard characterId={characterId} />
-        </$BioReviewWrapper>
-        <$BioReviewWrapper className="btn">
+      <$BioReviewWrapper>
+        <BioCard characterId={characterId} />
+      </$BioReviewWrapper>
+      <$BioReviewWrapper className="btn">
+        {!!type && type === 'draft' && (
           <Button
             btnFunction={closeModal}
-            btnText="Close"
-            btnColor="cancel"
-            customBtnClass="small"
+            btnText="Draft"
+            btnColor="primary"
+            customBtnClass="medium"
           />
-        </$BioReviewWrapper>
-      </$GlobalContainer>
+        )}
+        <Button
+          btnFunction={closeModal}
+          btnText="Close"
+          btnColor="cancel"
+          customBtnClass={!!type && type === 'draft' ? 'medium' : 'small'}
+        />
+      </$BioReviewWrapper>
     </MainModal>
   );
 };

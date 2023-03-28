@@ -7,6 +7,11 @@ export const $BioReviewWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 5%;
+  width: 600px;
+
+  ${MOBILE_VIEW} {
+    width: auto;
+  }
 
   &.btn {
     margin-bottom: 0;

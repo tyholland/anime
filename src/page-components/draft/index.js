@@ -1,58 +1,72 @@
-import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 import Players from 'Components/players';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useAppContext } from 'src/hooks/context';
+import BioReview from 'src/modals/bio-review';
 import { getDraft } from 'src/requests/draft';
 import { getUseablePlayers } from 'src/requests/player';
 import { getTeam } from 'src/requests/team';
 import { $GlobalContainer } from 'Styles/global.style';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
-import { $DraftSection, $DraftTeamsList } from './draft.style';
+import {
+  $DraftSection,
+  $DraftTeamsList,
+  $DraftRound,
+  $DraftTeamGrid,
+  $DraftPlayerGrid,
+} from './draft.style';
 
 const Draft = () => {
   const { currentUser } = useAppContext();
   const router = useRouter();
   const [teamsList, setTeamsList] = useState(null);
-  const [draftTeam, setDraftTeam] = useState(null);
+  const [draftTeamId, setDraftTeamId] = useState(null);
   const [players, setPlayers] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [characterId, setCharacterId] = useState(null);
   const [playerList, setPlayerList] = useState(null);
 
   const getDraftInfo = async () => {
+    if (!router.query) {
+      return;
+    }
+
     const { league_id } = router.query;
+
     try {
-      const { teams, userTeam } = await getDraft(league_id, currentUser?.token);
+      const { teams, userTeamId } = await getDraft(
+        league_id,
+        currentUser?.token
+      );
 
       setTeamsList(teams);
-      setDraftTeam(userTeam);
+      setDraftTeamId(userTeamId);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get draft info'));
     }
   };
 
   const getAllPlayers = async () => {
-    const { teamId } = draftTeam;
-
     try {
       const { unusedPlayers } = await getUseablePlayers(
-        teamId,
+        draftTeamId,
         currentUser?.token
       );
-      const teamData = await getTeam(teamId, currentUser?.token);
+      const teamData = await getTeam(draftTeamId, currentUser?.token);
 
       const { team, userPoints } = teamData;
 
       setPlayerList({
-        captain: team.captain,
-        brawlerA: team.brawler_a,
-        brawlerB: team.brawler_b,
-        bsBrawler: team.bs_brawler,
-        bsSupport: team.bs_support,
-        support: team.support,
-        villain: team.villain,
-        battlefield: team.battlefield,
+        captain: team.captain.id,
+        brawlerA: team.brawler_a.id,
+        brawlerB: team.brawler_b.id,
+        bsBrawler: team.bs_brawler.id,
+        bsSupport: team.bs_support.id,
+        support: team.support.id,
+        villain: team.villain.id,
+        battlefield: team.battlefield.id,
         userPoints,
       });
 
@@ -62,6 +76,15 @@ const Draft = () => {
     }
   };
 
+  const openDraftModal = (character) => {
+    setCharacterId(character.id);
+    setIsModalOpen(true);
+  };
+
+  const closeDraftModal = () => {
+    setIsModalOpen(false);
+  };
+
   useEffect(() => {
     if (Object.keys(router.query).length > 0 && !!currentUser) {
       getDraftInfo();
@@ -69,10 +92,10 @@ const Draft = () => {
   }, [router.query, currentUser]);
 
   useEffect(() => {
-    if (draftTeam) {
+    if (draftTeamId) {
       getAllPlayers();
     }
-  }, [draftTeam]);
+  }, [draftTeamId]);
 
   return (
     <>
@@ -80,47 +103,76 @@ const Draft = () => {
         title="League Draft"
         description="Fantasy League Draft. Create the ultimate team and pick your characters before your friends do."
       />
-      <>
-        <BackLink />
-        <$GlobalContainer>
-          <$DraftSection>
+      <$GlobalContainer>
+        <$DraftSection>
+          <$DraftRound>
             <div>Round</div>
-            <div>Timer</div>
-            <$DraftTeamsList teams={teamsList?.length}>
-              {teamsList?.map((item) => {
-                return <div key={item.id}>{item.team_name}</div>;
-              })}
-            </$DraftTeamsList>
-          </$DraftSection>
-          <$DraftSection>
-            <div>Recent Team:</div>
-            <div>Character Selected</div>
-          </$DraftSection>
-          <$DraftSection className="team">
-            <div className="playerGrid">
-              {!!players && (
-                <Players
-                  data={players}
-                  setPlayerList={setPlayerList}
-                  playerList={playerList}
-                  page="draft"
-                />
-              )}
+            <div>1</div>
+          </$DraftRound>
+          <$DraftRound>
+            <div>Time</div>
+            <div>1:00</div>
+          </$DraftRound>
+          <$DraftTeamsList teams={teamsList?.length}>
+            {teamsList?.map((item) => {
+              return <div key={item.id}>{item.team_name}</div>;
+            })}
+          </$DraftTeamsList>
+        </$DraftSection>
+        <$DraftSection>
+          <div>Recent Team:</div>
+          <div>Character Selected</div>
+        </$DraftSection>
+        <$DraftSection className="team">
+          <$DraftPlayerGrid>
+            {!!players && (
+              <Players
+                data={players}
+                setPlayerList={setPlayerList}
+                playerList={playerList}
+                openDraft={openDraftModal}
+                page="draft"
+              />
+            )}
+          </$DraftPlayerGrid>
+          <$DraftTeamGrid>
+            <h2>Your Team</h2>
+            <div>
+              <strong>Available Points:</strong> {playerList?.userPoints}
             </div>
-            <div className="teamGrid">
-              <h2>Your Team</h2>
-              <div>Captain: {draftTeam?.captain}</div>
-              <div>Brawler: {draftTeam?.brawler_a}</div>
-              <div>Brawler: {draftTeam?.brawler_b}</div>
-              <div>Brawler - Duo: {draftTeam?.bs_brawler}</div>
-              <div>Support - Duo: {draftTeam?.bs_support}</div>
-              <div>Support: {draftTeam?.support}</div>
-              <div>Villain: {draftTeam?.villain}</div>
-              <div>Battlefield: {draftTeam?.battlefield}</div>
+            <div>
+              <strong>Captain:</strong> {playerList?.captain}
             </div>
-          </$DraftSection>
-        </$GlobalContainer>
-      </>
+            <div>
+              <strong>Brawler:</strong> {playerList?.brawlerA}
+            </div>
+            <div>
+              <strong>Brawler:</strong> {playerList?.brawlerB}
+            </div>
+            <div>
+              <strong>Brawler - Duo:</strong> {playerList?.bsBrawler}
+            </div>
+            <div>
+              <strong>Support - Duo:</strong> {playerList?.bsSupport}
+            </div>
+            <div>
+              <strong>Support:</strong> {playerList?.support}
+            </div>
+            <div>
+              <strong>Villain:</strong> {playerList?.villain}
+            </div>
+            <div>
+              <strong>Battlefield:</strong> {playerList?.battlefield}
+            </div>
+          </$DraftTeamGrid>
+        </$DraftSection>
+      </$GlobalContainer>
+      <BioReview
+        modalIsOpen={isModalOpen}
+        closeModal={closeDraftModal}
+        characterId={characterId}
+        type="draft"
+      />
     </>
   );
 };

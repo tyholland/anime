@@ -15,6 +15,7 @@ const Players = ({
   field,
   page = null,
   leagueWeek,
+  openDraft,
 }) => {
   const router = useRouter();
   const [rows, setRows] = useState([]);
@@ -157,12 +158,19 @@ const Players = ({
       return;
     }
 
-    if (!!page && (page === 'admin' || page === 'draft')) {
+    if (!page) {
+      router.push(`/bio?character=${item.id}`);
+    }
+
+    if (page === 'admin') {
       setPlayerList(item);
       return;
     }
 
-    router.push(`/bio?character=${item.id}`);
+    if (page === 'draft') {
+      openDraft(item);
+      return;
+    }
   };
 
   const handleRankFilter = (e) => {
