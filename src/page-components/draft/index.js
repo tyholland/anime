@@ -36,6 +36,7 @@ const Draft = () => {
   const [round, setRound] = useState(null);
   const [recent, setRecent] = useState(null);
   const [canDraft, setCanDraft] = useState(false);
+  const [initialTime, setInititalTime] = useState(null);
 
   const getDraftInfo = async () => {
     if (!router.query) {
@@ -57,6 +58,7 @@ const Draft = () => {
       setDraftTeamId(userTeamId);
       setRound(draft.round);
       setRecent(recentPick);
+      setInititalTime(null);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get draft info'));
     }
@@ -177,6 +179,7 @@ const Draft = () => {
               <CountdownCircleTimer
                 isPlaying
                 duration={60}
+                initialRemainingTime={initialTime}
                 colors={[COLOR_SUCCESS, COLOR_SUCCESS, COLOR_RED, COLOR_RED]}
                 colorsTime={[60, 10, 10, 0]}
                 onComplete={nextTeamPick}
