@@ -250,6 +250,7 @@ const Admin = () => {
                           <TextField
                             placeholder="League Name"
                             onChange={setLeagueName}
+                            inputVal={leagueName}
                           />
                           <Button
                             btnText="Save"

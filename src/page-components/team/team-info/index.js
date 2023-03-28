@@ -118,6 +118,7 @@ const TeamInfo = () => {
                         placeholder="Enter Team Name"
                         onChange={setChangedName}
                         maxLength={15}
+                        inputVal={teamName}
                       />
                       <Button
                         btnText="Save"

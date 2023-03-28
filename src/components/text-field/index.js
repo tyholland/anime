@@ -22,6 +22,7 @@ const TextField = ({
         secureTextEntry={isPassword}
         onChange={(input) => onChange(input.target.value)}
         maxLength={maxLength}
+        defaultValue={inputVal}
       />
     );
   }
@@ -46,6 +47,7 @@ const TextField = ({
       autoCapitalize="none"
       secureTextEntry={isPassword}
       type={isPassword ? type : 'none'}
+      defaultValue={inputVal}
     />
   );
 };

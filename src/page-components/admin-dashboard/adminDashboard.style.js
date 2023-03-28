@@ -28,6 +28,10 @@ export const $AdminDashboardSection = styled.div`
     height: 40px;
   }
 
+  &.img {
+    justify-content: center;
+  }
+
   > div {
     display: flex;
     align-items: center;

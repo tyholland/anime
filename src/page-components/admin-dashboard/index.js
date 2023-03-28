@@ -16,6 +16,7 @@ import Players from 'Components/players';
 import { getAdminPlayers, updatePlayerData } from 'src/requests/player';
 import { getAdminAccess } from 'src/requests/users';
 import { $AdminDashboardSection } from './adminDashboard.style';
+import Image from 'next/image';
 
 const AdminDashboard = () => {
   const { currentUser } = useAppContext();
@@ -43,6 +44,8 @@ const AdminDashboard = () => {
   const [editWeakness, setEditWeakness] = useState(false);
   const [editImage, setEditImage] = useState(false);
   const [editStatus, setEditStatus] = useState(false);
+  const [editCost, setEditCost] = useState(false);
+  const [editByeWeek, setEditByeWeek] = useState(false);
 
   const handleAdminAccess = async () => {
     try {
@@ -103,6 +106,8 @@ const AdminDashboard = () => {
       setEditWeakness(false);
       setEditImage(false);
       setEditStatus(false);
+      setEditCost(false);
+      setEditByeWeek(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to update player'));
     }
@@ -136,11 +141,59 @@ const AdminDashboard = () => {
           )}
           {updatePlayer && (
             <>
+              <$AdminDashboardSection className="img">
+                <Image
+                  src={playerInfo.image_url}
+                  width={200}
+                  height={200}
+                  alt={playerInfo.full_name}
+                />
+              </$AdminDashboardSection>
+              <$AdminDashboardSection>
+                <label>Image:</label>
+                {editImage && (
+                  <>
+                    <TextField
+                      onChange={handleNewVal}
+                      inputVal={playerInfo.image_url}
+                    />
+                    <Button
+                      btnText="Save"
+                      btnFunction={() => handlePlayerSave('image_url')}
+                      customBtnClass="text edit change"
+                    />
+                    <Button
+                      btnText="Cancel"
+                      btnFunction={() => {
+                        setEditImage(false);
+                        setPlayerChange(playerInfo.image_url);
+                      }}
+                      customBtnClass="text edit change"
+                    />
+                  </>
+                )}
+                {!editImage && (
+                  <>
+                    <TextField
+                      inputVal={playerInfo.image_url}
+                      isDisabled={true}
+                    />
+                    <Button
+                      btnText="Edit"
+                      btnFunction={() => setEditImage(true)}
+                      customBtnClass="text edit"
+                    />
+                  </>
+                )}
+              </$AdminDashboardSection>
               <$AdminDashboardSection>
                 <label>Full Name:</label>
                 {editFullName && (
                   <>
-                    <TextField onChange={handleNewVal} />
+                    <TextField
+                      onChange={handleNewVal}
+                      inputVal={playerInfo.full_name}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('full_name')}
@@ -174,7 +227,10 @@ const AdminDashboard = () => {
                 <label>Name:</label>
                 {editName && (
                   <>
-                    <TextField onChange={handleNewVal} />
+                    <TextField
+                      onChange={handleNewVal}
+                      inputVal={playerInfo.name}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('name')}
@@ -205,7 +261,10 @@ const AdminDashboard = () => {
                 <label>Series:</label>
                 {editSeries && (
                   <>
-                    <TextField onChange={handleNewVal} />
+                    <TextField
+                      onChange={handleNewVal}
+                      inputVal={playerInfo.series}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('series')}
@@ -236,7 +295,11 @@ const AdminDashboard = () => {
                 <label>Power Level:</label>
                 {editPowerLevel && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.power_level}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('power_level')}
@@ -267,10 +330,49 @@ const AdminDashboard = () => {
                 )}
               </$AdminDashboardSection>
               <$AdminDashboardSection>
+                <label>Cost:</label>
+                {editCost && (
+                  <>
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.cost}
+                    />
+                    <Button
+                      btnText="Save"
+                      btnFunction={() => handlePlayerSave('cost')}
+                      customBtnClass="text edit change"
+                    />
+                    <Button
+                      btnText="Cancel"
+                      btnFunction={() => {
+                        setEditCost(false);
+                        setPlayerChange(playerInfo.cost);
+                      }}
+                      customBtnClass="text edit change"
+                    />
+                  </>
+                )}
+                {!editCost && (
+                  <>
+                    <TextField inputVal={playerInfo.cost} isDisabled={true} />
+                    <Button
+                      btnText="Edit"
+                      btnFunction={() => setEditCost(true)}
+                      customBtnClass="text edit"
+                    />
+                  </>
+                )}
+              </$AdminDashboardSection>
+              <$AdminDashboardSection>
                 <label>Category:</label>
                 {editCategory && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.category}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('category')}
@@ -304,7 +406,11 @@ const AdminDashboard = () => {
                 <label>Fire:</label>
                 {editFire && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.fire}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('fire')}
@@ -335,7 +441,11 @@ const AdminDashboard = () => {
                 <label>Water:</label>
                 {editWater && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.water}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('water')}
@@ -366,7 +476,11 @@ const AdminDashboard = () => {
                 <label>Wind:</label>
                 {editWind && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.wind}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('wind')}
@@ -397,7 +511,11 @@ const AdminDashboard = () => {
                 <label>Earth:</label>
                 {editEarth && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.earth}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('earth')}
@@ -428,7 +546,11 @@ const AdminDashboard = () => {
                 <label>Arcane:</label>
                 {editArcane && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.arcane}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('arcane')}
@@ -459,7 +581,11 @@ const AdminDashboard = () => {
                 <label>Electric:</label>
                 {editElectric && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.electric}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('electric')}
@@ -493,7 +619,11 @@ const AdminDashboard = () => {
                 <label>Celestrial:</label>
                 {editCelestrial && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.celestrial}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('celestrial')}
@@ -527,7 +657,11 @@ const AdminDashboard = () => {
                 <label>Darkness:</label>
                 {editDarkness && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.darkness}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('darkness')}
@@ -561,7 +695,11 @@ const AdminDashboard = () => {
                 <label>Ice:</label>
                 {editIce && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.ice}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('ice')}
@@ -592,7 +730,11 @@ const AdminDashboard = () => {
                 <label>No Affinity:</label>
                 {editNoAffinity && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.no_affinity}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('no_affinity')}
@@ -626,7 +768,11 @@ const AdminDashboard = () => {
                 <label>Weakness:</label>
                 {editWeakness && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.weakness}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('weakness')}
@@ -657,44 +803,14 @@ const AdminDashboard = () => {
                 )}
               </$AdminDashboardSection>
               <$AdminDashboardSection>
-                <label>Image:</label>
-                {editImage && (
-                  <>
-                    <TextField onChange={handleNewVal} />
-                    <Button
-                      btnText="Save"
-                      btnFunction={() => handlePlayerSave('image_url')}
-                      customBtnClass="text edit change"
-                    />
-                    <Button
-                      btnText="Cancel"
-                      btnFunction={() => {
-                        setEditImage(false);
-                        setPlayerChange(playerInfo.image_url);
-                      }}
-                      customBtnClass="text edit change"
-                    />
-                  </>
-                )}
-                {!editImage && (
-                  <>
-                    <TextField
-                      inputVal={playerInfo.image_url}
-                      isDisabled={true}
-                    />
-                    <Button
-                      btnText="Edit"
-                      btnFunction={() => setEditImage(true)}
-                      customBtnClass="text edit"
-                    />
-                  </>
-                )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
                 <label>Active:</label>
                 {editStatus && (
                   <>
-                    <TextField onChange={handleNewVal} maxLength={15} />
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.active}
+                    />
                     <Button
                       btnText="Save"
                       btnFunction={() => handlePlayerSave('active')}
@@ -716,6 +832,44 @@ const AdminDashboard = () => {
                     <Button
                       btnText="Edit"
                       btnFunction={() => setEditStatus(true)}
+                      customBtnClass="text edit"
+                    />
+                  </>
+                )}
+              </$AdminDashboardSection>
+              <$AdminDashboardSection>
+                <label>Bye Week:</label>
+                {editByeWeek && (
+                  <>
+                    <TextField
+                      onChange={handleNewVal}
+                      maxLength={15}
+                      inputVal={playerInfo.bye_week}
+                    />
+                    <Button
+                      btnText="Save"
+                      btnFunction={() => handlePlayerSave('bye_week')}
+                      customBtnClass="text edit change"
+                    />
+                    <Button
+                      btnText="Cancel"
+                      btnFunction={() => {
+                        setEditByeWeek(false);
+                        setPlayerChange(playerInfo.bye_week);
+                      }}
+                      customBtnClass="text edit change"
+                    />
+                  </>
+                )}
+                {!editByeWeek && (
+                  <>
+                    <TextField
+                      inputVal={playerInfo.bye_week}
+                      isDisabled={true}
+                    />
+                    <Button
+                      btnText="Edit"
+                      btnFunction={() => setEditByeWeek(true)}
                       customBtnClass="text edit"
                     />
                   </>
