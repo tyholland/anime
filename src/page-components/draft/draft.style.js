@@ -1,5 +1,11 @@
 import styled from 'styled-components';
-import { COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
+import {
+  COLOR_BLACK,
+  COLOR_ORANGE,
+  COLOR_ORANGE_LIGHT,
+  FONT_WEIGHT_BOLD,
+  RESPONSIVE_VIEW,
+} from 'Styles/global.style';
 
 export const $DraftSection = styled.div`
   display: flex;
@@ -25,6 +31,18 @@ export const $DraftTeamsList = styled.div`
     white-space: nowrap;
     overflow: hidden;
     padding: 3% 2%;
+  }
+
+  .highlight {
+    border-color: ${COLOR_ORANGE};
+    background-color: ${COLOR_ORANGE_LIGHT};
+
+    .pick {
+      margin-top: 20%;
+      font-size: 20px;
+      font-weight: ${FONT_WEIGHT_BOLD};
+      text-align: center;
+    }
   }
 `;
 
@@ -65,7 +83,13 @@ export const $DraftPlayerGrid = styled.div`
 `;
 
 export const $DraftTeamGrid = styled.div`
-  width: 230px;
+  min-width: 230px;
+  max-width: 400px;
+  width: 100%;
+
+  ${RESPONSIVE_VIEW} {
+    width: auto;
+  }
 
   h2 {
     margin-top: 0;

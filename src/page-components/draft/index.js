@@ -32,6 +32,7 @@ const Draft = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [characterId, setCharacterId] = useState(null);
   const [playerList, setPlayerList] = useState(null);
+  const [pickOrder, setPickOrder] = useState(0);
 
   const getDraftInfo = async () => {
     if (!router.query) {
@@ -90,6 +91,16 @@ const Draft = () => {
     setIsModalOpen(false);
   };
 
+  const nextTeamPick = () => {
+    if (pickOrder === teamsList.length - 1) {
+      return { shouldRepeat: false, delay: 0 };
+    }
+
+    setPickOrder(pickOrder + 1);
+
+    return { shouldRepeat: true, delay: 0 };
+  };
+
   useEffect(() => {
     if (Object.keys(router.query).length > 0 && !!currentUser) {
       getDraftInfo();
@@ -122,14 +133,23 @@ const Draft = () => {
                 duration={60}
                 colors={[COLOR_SUCCESS, COLOR_SUCCESS, COLOR_RED, COLOR_RED]}
                 colorsTime={[60, 10, 10, 0]}
+                onComplete={nextTeamPick}
               >
                 {({ remainingTime }) => remainingTime}
               </CountdownCircleTimer>
             </div>
           </$DraftRound>
           <$DraftTeamsList teams={teamsList?.length}>
-            {teamsList?.map((item) => {
-              return <div key={item.id}>{item.team_name}</div>;
+            {teamsList?.map((item, index) => {
+              return (
+                <div
+                  key={item.id}
+                  className={pickOrder === index && 'highlight'}
+                >
+                  {item.team_name}
+                  {pickOrder === index && <div className="pick">Your Pick</div>}
+                </div>
+              );
             })}
           </$DraftTeamsList>
         </$DraftSection>
