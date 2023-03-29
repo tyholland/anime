@@ -17,7 +17,6 @@ import {
   deleteLeague,
   getLeagueAdminData,
   removeTeamFromLeague,
-  startLeague,
   updateLeague,
 } from 'src/requests/league';
 import { responseError } from 'Utils/index';
@@ -28,6 +27,7 @@ import Loader from 'Components/loader';
 import { useRouter } from 'next/router';
 import NotUser from 'Components/not-user';
 import ReadMore from 'Components/read-more';
+import { createDraft } from 'src/requests/draft';
 
 const Admin = () => {
   const router = useRouter();
@@ -105,13 +105,9 @@ const Admin = () => {
     }
   };
 
-  const handleLeagueStart = async () => {
-    const payload = {
-      leagueId: league.id,
-    };
-
+  const handleCreateDraft = async () => {
     try {
-      await startLeague(payload, currentUser?.token);
+      await createDraft(league.id, currentUser?.token);
       setIsLeagueDisabled(true);
     } catch (err) {
       addEvent('Error', responseError(err, 'failed to update league name'));
@@ -281,8 +277,8 @@ const Admin = () => {
                     </$AdminSection>
                     <$AdminSection className="start">
                       <Button
-                        btnText="Start League"
-                        btnFunction={handleLeagueStart}
+                        btnText="Create Draft"
+                        btnFunction={handleCreateDraft}
                         btnColor="primary"
                         isDisabled={isStarted || isLeagueDisabled}
                         customBtnClass="medium"
