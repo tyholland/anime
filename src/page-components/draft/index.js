@@ -44,7 +44,6 @@ const Draft = () => {
   const [recent, setRecent] = useState(null);
   const [canDraft, setCanDraft] = useState(false);
   const [initialTime, setInititalTime] = useState(null);
-  const [quota, setQuota] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [draftId, setDraftId] = useState(null);
   const [triggerNewRound, setTriggerNewRound] = useState(false);
@@ -153,21 +152,23 @@ const Draft = () => {
   };
 
   const assignCharacterList = () => {
+    let quota = false;
+
     switch (character.rank) {
     case 'Captain':
       !playerList.captain.id
         ? (playerList.captain = character)
-        : setQuota(true);
+        : (quota = true);
       break;
     case 'Villain':
       !playerList.villain.id
         ? (playerList.villain = character)
-        : setQuota(true);
+        : (quota = true);
       break;
     case 'Battlefield':
       !playerList.battlefield.id
         ? (playerList.battlefield = character)
-        : setQuota(true);
+        : (quota = true);
       break;
     case 'Brawler':
       !playerList.brawlerA.id
@@ -176,38 +177,41 @@ const Draft = () => {
           ? (playerList.brawlerB = character)
           : !playerList.bsBrawler.id
             ? (playerList.bsBrawler = character)
-            : setQuota(true);
+            : (quota = true);
       break;
     case 'Support':
       !playerList.support.id
         ? (playerList.support = character)
         : !playerList.bsSupport.id
           ? (playerList.bsSupport = character)
-          : setQuota(true);
+          : (quota = true);
       break;
     default:
       break;
     }
 
-    return playerList;
+    return {
+      thePlayers: playerList,
+      quota,
+    };
   };
 
   const draftPlayer = async () => {
-    const thePlayers = assignCharacterList();
+    const { thePlayers, quota } = assignCharacterList();
     const index = teamsList.findIndex(
       (item) => item.user_id === currentUser?.user_id
     );
 
     if (quota) {
-      setErrorMsg(
-        `You have reached the quota for ${character.rank} characters`
-      );
+      setErrorMsg(`You've reached the quota for ${character.rank}s`);
+      return;
     }
 
     if (index === -1) {
       setErrorMsg(
         `You can't add ${character.fullName} to a team that you don't own`
       );
+      return;
     }
 
     try {
