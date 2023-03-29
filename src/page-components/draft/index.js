@@ -6,12 +6,13 @@ import { useAppContext } from 'src/hooks/context';
 import BioReview from 'src/modals/bio-review';
 import {
   draftNextRound,
+  draftPlayers,
   getDraft,
   updateDraftRecentPick,
   updateDraftTeams,
 } from 'src/requests/draft';
 import { getUseablePlayers } from 'src/requests/player';
-import { getTeam, updateTeam } from 'src/requests/team';
+import { getTeam } from 'src/requests/team';
 import {
   $GlobalContainer,
   COLOR_RED,
@@ -73,6 +74,7 @@ const Draft = () => {
       setInititalTime(null);
       setDraftId(draft.id);
       setIsLoading(false);
+      setCanDraft(teams[pickOrder].user_id === currentUser.user_id);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get draft info'));
     }
@@ -89,14 +91,14 @@ const Draft = () => {
       const { team, userPoints } = teamData;
 
       setPlayerList({
-        captain: team.captain.id,
-        brawlerA: team.brawler_a.id,
-        brawlerB: team.brawler_b.id,
-        bsBrawler: team.bs_brawler.id,
-        bsSupport: team.bs_support.id,
-        support: team.support.id,
-        villain: team.villain.id,
-        battlefield: team.battlefield.id,
+        captain: team.captain,
+        brawlerA: team.brawler_a,
+        brawlerB: team.brawler_b,
+        bsBrawler: team.bs_brawler,
+        bsSupport: team.bs_support,
+        support: team.support,
+        villain: team.villain,
+        battlefield: team.battlefield,
         userPoints,
       });
 
@@ -153,17 +155,17 @@ const Draft = () => {
   const assignCharacterList = () => {
     switch (character.rank) {
     case 'Captain':
-      !playerList.brawlerA.id
+      !playerList.captain.id
         ? (playerList.captain = character)
         : setQuota(true);
       break;
     case 'Villain':
-      !playerList.brawlerA.id
-        ? (playerList.vilain = character)
+      !playerList.villain.id
+        ? (playerList.villain = character)
         : setQuota(true);
       break;
     case 'Battlefield':
-      !playerList.brawlerA.id
+      !playerList.battlefield.id
         ? (playerList.battlefield = character)
         : setQuota(true);
       break;
@@ -209,7 +211,7 @@ const Draft = () => {
     }
 
     try {
-      await updateTeam(draftTeamId, thePlayers, currentUser?.token);
+      await draftPlayers(draftTeamId, thePlayers, currentUser?.token);
 
       teamsList[index].pick = character.fullName;
 
@@ -229,6 +231,10 @@ const Draft = () => {
         { pick: JSON.stringify(payload) },
         currentUser?.token
       );
+
+      closeDraftModal();
+      nextTeamPick();
+      setRestartTimer(character.fullName);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to draft player'));
     }
@@ -327,28 +333,28 @@ const Draft = () => {
                   <strong>Available Points:</strong> {playerList?.userPoints}
                 </div>
                 <div>
-                  <strong>Captain:</strong> {playerList?.captain}
+                  <strong>Captain:</strong> {playerList?.captain?.name}
                 </div>
                 <div>
-                  <strong>Brawler:</strong> {playerList?.brawlerA}
+                  <strong>Brawler:</strong> {playerList?.brawlerA?.name}
                 </div>
                 <div>
-                  <strong>Brawler:</strong> {playerList?.brawlerB}
+                  <strong>Brawler:</strong> {playerList?.brawlerB?.name}
                 </div>
                 <div>
-                  <strong>Brawler - Duo:</strong> {playerList?.bsBrawler}
+                  <strong>Brawler - Duo:</strong> {playerList?.bsBrawler?.name}
                 </div>
                 <div>
-                  <strong>Support - Duo:</strong> {playerList?.bsSupport}
+                  <strong>Support - Duo:</strong> {playerList?.bsSupport?.name}
                 </div>
                 <div>
-                  <strong>Support:</strong> {playerList?.support}
+                  <strong>Support:</strong> {playerList?.support?.name}
                 </div>
                 <div>
-                  <strong>Villain:</strong> {playerList?.villain}
+                  <strong>Villain:</strong> {playerList?.villain?.name}
                 </div>
                 <div>
-                  <strong>Battlefield:</strong> {playerList?.battlefield}
+                  <strong>Battlefield:</strong> {playerList?.battlefield?.name}
                 </div>
               </$DraftTeamGrid>
             </$DraftSection>

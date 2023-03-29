@@ -62,3 +62,14 @@ export const draftNextRound = async (leagueId, token) => {
 
   return await axiosClient(data);
 };
+
+export const draftPlayers = async (teamId, payload, token) => {
+  const data = {
+    url: `${api}/draft/players/${teamId}`,
+    method: 'put',
+    body: payload,
+    token,
+  };
+
+  return await axiosClient(data);
+};
