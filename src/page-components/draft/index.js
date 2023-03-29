@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useAppContext } from 'src/hooks/context';
 import BioReview from 'src/modals/bio-review';
-import { getDraft } from 'src/requests/draft';
+import { getDraft, updateDraftTeams } from 'src/requests/draft';
 import { getUseablePlayers } from 'src/requests/player';
 import { getTeam, updateTeam } from 'src/requests/team';
 import {
@@ -37,6 +37,9 @@ const Draft = () => {
   const [recent, setRecent] = useState(null);
   const [canDraft, setCanDraft] = useState(false);
   const [initialTime, setInititalTime] = useState(null);
+  const [quota, setQuota] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [draftId, setDraftId] = useState(null);
 
   const getDraftInfo = async () => {
     if (!router.query) {
@@ -59,6 +62,7 @@ const Draft = () => {
       setRound(draft.round);
       setRecent(recentPick);
       setInititalTime(null);
+      setDraftId(draft.id);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get draft info'));
     }
@@ -99,6 +103,7 @@ const Draft = () => {
 
   const closeDraftModal = () => {
     setIsModalOpen(false);
+    setErrorMsg(null);
   };
 
   const nextTeamPick = () => {
@@ -115,22 +120,35 @@ const Draft = () => {
   const assignCharacterList = () => {
     switch (character.rank) {
     case 'Captain':
-      playerList.captain = character;
+      !playerList.brawlerA.id
+        ? (playerList.captain = character)
+        : setQuota(true);
       break;
     case 'Villain':
-      playerList.vilain = character;
+      !playerList.brawlerA.id
+        ? (playerList.vilain = character)
+        : setQuota(true);
       break;
     case 'Battlefield':
-      playerList.battlefield = character;
+      !playerList.brawlerA.id
+        ? (playerList.battlefield = character)
+        : setQuota(true);
       break;
     case 'Brawler':
-      !playerList.brawlerA.id ? (playerList.brawlerA = character) : null;
-      !playerList.brawlerB.id ? (playerList.brawlerB = character) : null;
-      !playerList.bsBrawler.id ? (playerList.bsBrawler = character) : null;
+      !playerList.brawlerA.id
+        ? (playerList.brawlerA = character)
+        : !playerList.brawlerB.id
+          ? (playerList.brawlerB = character)
+          : !playerList.bsBrawler.id
+            ? (playerList.bsBrawler = character)
+            : setQuota(true);
       break;
     case 'Support':
-      !playerList.bsSupport.id ? (playerList.bsSupport = character) : null;
-      !playerList.support.id ? (playerList.support = character) : null;
+      !playerList.support.id
+        ? (playerList.support = character)
+        : !playerList.bsSupport.id
+          ? (playerList.bsSupport = character)
+          : setQuota(true);
       break;
     default:
       break;
@@ -142,8 +160,27 @@ const Draft = () => {
   const draftPlayer = async () => {
     const thePlayers = assignCharacterList();
 
+    if (quota) {
+      setErrorMsg(
+        `You have reached the quota for ${character.rank} characters`
+      );
+    }
+
     try {
       await updateTeam(draftTeamId, thePlayers, currentUser?.token);
+      const index = teamsList.findIndex(
+        (item) => item.user_id === currentUser?.user_id
+      );
+
+      if (index > -1) {
+        teamsList[index].pick = character.fullName;
+      }
+
+      await updateDraftTeams(
+        draftId,
+        { teams: JSON.stringify(teamsList) },
+        currentUser?.token
+      );
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to draft player'));
     }
@@ -255,6 +292,7 @@ const Draft = () => {
         characterId={character?.id}
         canDraft={canDraft}
         draftPlayer={draftPlayer}
+        errorMsg={errorMsg}
         type="draft"
       />
     </>

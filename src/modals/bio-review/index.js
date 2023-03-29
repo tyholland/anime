@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-data-grid/lib/styles.css';
 import MainModal from '../main';
 import Button from 'Components/button';
 import { $BioReviewWrapper } from './bioReview.style';
 import BioCard from 'Components/bio-card';
+import ErrorMsg from 'Components/error-msg';
 
 const BioReview = ({
   modalIsOpen,
@@ -12,7 +13,9 @@ const BioReview = ({
   type = null,
   canDraft,
   draftPlayer,
+  errorMsg,
 }) => {
+  const [message, setMessage] = useState(null);
   const customStyles = {
     content: {
       top: '50%',
@@ -27,6 +30,10 @@ const BioReview = ({
     },
   };
 
+  useEffect(() => {
+    setMessage(errorMsg);
+  }, [errorMsg]);
+
   return (
     <MainModal
       modalIsOpen={modalIsOpen}
@@ -36,6 +43,7 @@ const BioReview = ({
       <$BioReviewWrapper>
         <BioCard characterId={characterId} />
       </$BioReviewWrapper>
+      {message && <ErrorMsg msg={message} />}
       <$BioReviewWrapper className="btn">
         {!!type && type === 'draft' && !!canDraft && (
           <Button
