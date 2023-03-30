@@ -380,15 +380,16 @@ export const $CollapsibleStyles = createGlobalStyle`
       font-size: 18px;
       cursor: pointer;
     }
+
+    &[content="bio"]
+    .Collapsible__contentInner {
+      overflow-y: scroll;
+      height: 115px;
+      margin-top: 3%;
+    }
   }
 
   .Collapsible:last-child {
     border-bottom: 1px solid ${COLOR_BLACK};
-  }
-
-  .Collapsible__contentInner {
-    overflow-y: scroll;
-    height: 115px;
-    margin-top: 3%;
   }
 `;
