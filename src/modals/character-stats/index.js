@@ -153,7 +153,7 @@ const CharacterStats = ({
           <$CharacterStatsScoring className="total">
             <$CharacterStatsLabel>Total Points</$CharacterStatsLabel>
             <$CharacterStatsPoints>
-              {isMatchupPage ? matchPoints : teamPoints}
+              {isMatchupPage ? (matchPoints < 0 ? 0 : matchPoints) : teamPoints}
             </$CharacterStatsPoints>
           </$CharacterStatsScoring>
           {!!errorMsg && <ErrorMsg msg={errorMsg} />}

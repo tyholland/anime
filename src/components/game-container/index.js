@@ -22,11 +22,11 @@ const GameContainer = ({ game, gameNum = null }) => {
         {!!gameNum && <$GameContainerGame>Game {gameNum}</$GameContainerGame>}
         <$GameContainerTeamSection>
           <$GameContainerTeamName>{teamA}</$GameContainerTeamName>
-          <div>{scoreA}</div>
+          <div>{scoreA < 0 ? 0 : scoreA}</div>
         </$GameContainerTeamSection>
         <$GameContainerTeamSection>
           <$GameContainerTeamName>{teamB}</$GameContainerTeamName>
-          <div>{scoreB}</div>
+          <div>{scoreB < 0 ? 0 : scoreB}</div>
         </$GameContainerTeamSection>
       </$GameContainerTeamContainer>
     </$GameContainerWrapper>

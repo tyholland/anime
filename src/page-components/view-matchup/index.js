@@ -48,7 +48,7 @@ const ViewMatchup = () => {
   const [retrigger, setRetrigger] = useState(false);
   const [recapIsOpen, setRecapIsOpen] = useState(false);
   const [recap, setRecap] = useState(null);
-  const hasMatchup = !!team1 && !!team2 && !!score1 && !!score2 && !!votes;
+  const [hasMatchup, setHasMatchup] = useState(false);
 
   const handleMatchupData = async () => {
     const { matchup_id } = router.query;
@@ -75,6 +75,7 @@ const ViewMatchup = () => {
       setRetrigger(false);
       setRecapIsOpen(!!team1.recap);
       setRecap(theRecap);
+      setHasMatchup(true);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get matchup'));
       setErrorPage(true);
@@ -159,13 +160,17 @@ const ViewMatchup = () => {
                     <$ViewMatchupTeamName>
                       {team1.teamName}
                     </$ViewMatchupTeamName>
-                    <$ViewMatchupTeamTotal>{score1}</$ViewMatchupTeamTotal>
+                    <$ViewMatchupTeamTotal>
+                      {score1 < 0 ? 0 : score1}
+                    </$ViewMatchupTeamTotal>
                   </$ViewMatchupTeamContent>
                   <$ViewMatchupTeamContent>
                     <$ViewMatchupTeamName>
                       {team2.teamName}
                     </$ViewMatchupTeamName>
-                    <$ViewMatchupTeamTotal>{score2}</$ViewMatchupTeamTotal>
+                    <$ViewMatchupTeamTotal>
+                      {score2 < 0 ? 0 : score2}
+                    </$ViewMatchupTeamTotal>
                   </$ViewMatchupTeamContent>
                 </$ViewMatchupWrapper>
                 {isActive > 0 && (
