@@ -6,6 +6,8 @@ import {
   COLOR_ORANGE_LIGHT,
   FONT_WEIGHT_BOLD,
   RESPONSIVE_VIEW,
+  COLOR_WHITE,
+  MOBILE_VIEW,
 } from 'Styles/global.style';
 
 export const $DraftSection = styled.div`
@@ -110,5 +112,33 @@ export const $DraftTeamGrid = styled.div`
 
   > div {
     margin-bottom: 5%;
+  }
+`;
+
+export const $DraftInactive = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  font-size: 25px;
+  background-color: ${COLOR_WHITE};
+  border-radius: 10px;
+  padding: 3%;
+  margin-top: 5%;
+
+  ${MOBILE_VIEW} {
+    width: 94%;
+    font-size: 20px;
+  }
+
+  div {
+    width: 100%;
+    padding-bottom: 0;
+  }
+
+  button {
+    margin-top: 5%;
   }
 `;

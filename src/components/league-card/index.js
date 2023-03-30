@@ -7,7 +7,7 @@ import {
 } from './leagueCard.style';
 
 const LeagueCard = ({ data }) => {
-  const { name, team_name, leagueId, teamId, matchupId } = data;
+  const { name, team_name, leagueId, teamId, matchupId, hasDraft } = data;
 
   return (
     <$LeagueCardWrapper>
@@ -22,6 +22,14 @@ const LeagueCard = ({ data }) => {
         </$LeagueCardText>
       </$LeagueCardSection>
       <$LeagueCardSection className="actions">
+        {hasDraft && (
+          <Button
+            btnText="Draft"
+            btnColor="primary"
+            customBtnClass="leagues"
+            redirect={`/draft?league_id=${leagueId}`}
+          />
+        )}
         <Button
           btnText="League"
           btnColor="primary"

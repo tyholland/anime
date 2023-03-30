@@ -10,6 +10,7 @@ import {
   getDraft,
   updateDraftRecentPick,
   updateDraftTeams,
+  startDraft,
 } from 'src/requests/draft';
 import { getUseablePlayers } from 'src/requests/player';
 import { getTeam } from 'src/requests/team';
@@ -26,9 +27,12 @@ import {
   $DraftRound,
   $DraftTeamGrid,
   $DraftPlayerGrid,
+  $DraftInactive,
 } from './draft.style';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import Loader from 'Components/loader';
+import ReadMore from 'Components/read-more';
+import Button from 'Components/button';
 
 const Draft = () => {
   const { currentUser } = useAppContext();
@@ -49,6 +53,8 @@ const Draft = () => {
   const [triggerNewRound, setTriggerNewRound] = useState(false);
   const [restartTimer, setRestartTimer] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [isInactiveDraft, setIsInactiveDraft] = useState(false);
+  const [inactiveLeagueData, setInactiveLeagueData] = useState(null);
 
   const getDraftInfo = async () => {
     if (!router.query) {
@@ -76,6 +82,9 @@ const Draft = () => {
       setCanDraft(teams[pickOrder].user_id === currentUser.user_id);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get draft info'));
+      setIsInactiveDraft(true);
+      setInactiveLeagueData(err.response.data);
+      setIsLoading(false);
     }
   };
 
@@ -244,6 +253,17 @@ const Draft = () => {
     }
   };
 
+  const startDrafting = async () => {
+    const { league_id } = router.query;
+
+    try {
+      await startDraft(league_id, currentUser?.token);
+      await getDraftInfo();
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to start draft'));
+    }
+  };
+
   useEffect(() => {
     if (Object.keys(router.query).length > 0 && !!currentUser) {
       getDraftInfo();
@@ -268,112 +288,149 @@ const Draft = () => {
         title="League Draft"
         description="Fantasy League Draft. Create the ultimate team and pick your characters before your friends do."
       />
-      {isLoading && <Loader />}
-      {!isLoading && (
-        <>
-          <$GlobalContainer>
-            <$DraftSection>
-              <$DraftRound>
-                <div>Round</div>
-                <div>{round}</div>
-              </$DraftRound>
-              <$DraftRound>
-                <div>Time:</div>
-                <div className="timer">
-                  <CountdownCircleTimer
-                    isPlaying
-                    duration={60}
-                    initialRemainingTime={initialTime}
-                    colors={[
-                      COLOR_SUCCESS,
-                      COLOR_SUCCESS,
-                      COLOR_RED,
-                      COLOR_RED,
-                    ]}
-                    colorsTime={[60, 10, 10, 0]}
-                    onComplete={nextTeamPick}
-                    key={restartTimer}
-                  >
-                    {({ remainingTime }) => remainingTime}
-                  </CountdownCircleTimer>
-                </div>
-              </$DraftRound>
-              <$DraftTeamsList teams={teamsList?.length}>
-                {teamsList?.map((item, index) => {
-                  const currentPick = pickOrder === index;
-                  const userPick = item.user_id === currentUser?.user_id;
-
-                  return (
-                    <div key={item.id} className={currentPick && 'highlight'}>
-                      {item.team_name}
-                      {currentPick && userPick && (
-                        <div className="pick">Your Pick</div>
-                      )}
-                      {currentPick && !userPick && (
-                        <div className="pick">Is Drafting</div>
-                      )}
+      <$GlobalContainer className={isInactiveDraft && 'bgImage inactiveDraft'}>
+        {isLoading && <Loader />}
+        {!isLoading && (
+          <>
+            {!isInactiveDraft && (
+              <>
+                <$DraftSection>
+                  <$DraftRound>
+                    <div>Round</div>
+                    <div>{round}</div>
+                  </$DraftRound>
+                  <$DraftRound>
+                    <div>Time:</div>
+                    <div className="timer">
+                      <CountdownCircleTimer
+                        isPlaying
+                        duration={60}
+                        initialRemainingTime={initialTime}
+                        colors={[
+                          COLOR_SUCCESS,
+                          COLOR_SUCCESS,
+                          COLOR_RED,
+                          COLOR_RED,
+                        ]}
+                        colorsTime={[60, 10, 10, 0]}
+                        onComplete={nextTeamPick}
+                        key={restartTimer}
+                      >
+                        {({ remainingTime }) => remainingTime}
+                      </CountdownCircleTimer>
                     </div>
-                  );
-                })}
-              </$DraftTeamsList>
-            </$DraftSection>
-            <$DraftSection className="recent">
-              <div>{recent?.team} drafted:</div>
-              <div>{recent?.pick}</div>
-            </$DraftSection>
-            <$DraftSection className="team">
-              <$DraftPlayerGrid>
-                {!!players && (
-                  <Players
-                    data={players}
-                    openDraft={openDraftModal}
-                    page="draft"
-                  />
+                  </$DraftRound>
+                  <$DraftTeamsList teams={teamsList?.length}>
+                    {teamsList?.map((item, index) => {
+                      const currentPick = pickOrder === index;
+                      const userPick = item.user_id === currentUser?.user_id;
+
+                      return (
+                        <div
+                          key={item.id}
+                          className={currentPick && 'highlight'}
+                        >
+                          {item.team_name}
+                          {currentPick && userPick && (
+                            <div className="pick">Your Pick</div>
+                          )}
+                          {currentPick && !userPick && (
+                            <div className="pick">Is Drafting</div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </$DraftTeamsList>
+                </$DraftSection>
+                <$DraftSection className="recent">
+                  <div>{recent?.team} drafted:</div>
+                  <div>{recent?.pick}</div>
+                </$DraftSection>
+                <$DraftSection className="team">
+                  <$DraftPlayerGrid>
+                    {!!players && (
+                      <Players
+                        data={players}
+                        openDraft={openDraftModal}
+                        page="draft"
+                      />
+                    )}
+                  </$DraftPlayerGrid>
+                  <$DraftTeamGrid>
+                    <h2>Your Team</h2>
+                    <div>
+                      <strong>Available Points:</strong>{' '}
+                      {playerList?.userPoints}
+                    </div>
+                    <div>
+                      <strong>Captain:</strong> {playerList?.captain?.name}
+                    </div>
+                    <div>
+                      <strong>Brawler:</strong> {playerList?.brawlerA?.name}
+                    </div>
+                    <div>
+                      <strong>Brawler:</strong> {playerList?.brawlerB?.name}
+                    </div>
+                    <div>
+                      <strong>Brawler - Duo:</strong>{' '}
+                      {playerList?.bsBrawler?.name}
+                    </div>
+                    <div>
+                      <strong>Support - Duo:</strong>{' '}
+                      {playerList?.bsSupport?.name}
+                    </div>
+                    <div>
+                      <strong>Support:</strong> {playerList?.support?.name}
+                    </div>
+                    <div>
+                      <strong>Villain:</strong> {playerList?.villain?.name}
+                    </div>
+                    <div>
+                      <strong>Battlefield:</strong>{' '}
+                      {playerList?.battlefield?.name}
+                    </div>
+                  </$DraftTeamGrid>
+                </$DraftSection>
+              </>
+            )}
+            {isInactiveDraft && (
+              <$DraftInactive>
+                {inactiveLeagueData.creator !== currentUser.user_id && (
+                  <>
+                    The Draft for {inactiveLeagueData.leagueName} is currently
+                    inactive. Please contact your league owner to activate this
+                    draft.
+                  </>
                 )}
-              </$DraftPlayerGrid>
-              <$DraftTeamGrid>
-                <h2>Your Team</h2>
-                <div>
-                  <strong>Available Points:</strong> {playerList?.userPoints}
-                </div>
-                <div>
-                  <strong>Captain:</strong> {playerList?.captain?.name}
-                </div>
-                <div>
-                  <strong>Brawler:</strong> {playerList?.brawlerA?.name}
-                </div>
-                <div>
-                  <strong>Brawler:</strong> {playerList?.brawlerB?.name}
-                </div>
-                <div>
-                  <strong>Brawler - Duo:</strong> {playerList?.bsBrawler?.name}
-                </div>
-                <div>
-                  <strong>Support - Duo:</strong> {playerList?.bsSupport?.name}
-                </div>
-                <div>
-                  <strong>Support:</strong> {playerList?.support?.name}
-                </div>
-                <div>
-                  <strong>Villain:</strong> {playerList?.villain?.name}
-                </div>
-                <div>
-                  <strong>Battlefield:</strong> {playerList?.battlefield?.name}
-                </div>
-              </$DraftTeamGrid>
-            </$DraftSection>
-          </$GlobalContainer>
-          <BioReview
-            modalIsOpen={isModalOpen}
-            closeModal={closeDraftModal}
-            characterId={character?.id}
-            canDraft={canDraft}
-            draftPlayer={draftPlayer}
-            errorMsg={errorMsg}
-            type="draft"
-          />
-        </>
-      )}
+                {inactiveLeagueData.creator === currentUser.user_id && (
+                  <>
+                    Your Draft for {inactiveLeagueData.leagueName} is currently
+                    inactive. Make sure to contact your league members and
+                    schedule a good time that works for everyone before starting
+                    your draft.
+                    <Button
+                      btnColor="primary"
+                      btnText="Start Draft"
+                      btnFunction={startDrafting}
+                      customBtnClass="medium"
+                    />
+                  </>
+                )}
+                <ReadMore />
+              </$DraftInactive>
+            )}
+          </>
+        )}
+      </$GlobalContainer>
+      <BioReview
+        modalIsOpen={isModalOpen}
+        closeModal={closeDraftModal}
+        characterId={character?.id}
+        canDraft={canDraft}
+        draftPlayer={draftPlayer}
+        errorMsg={errorMsg}
+        type="draft"
+      />
     </>
   );
 };

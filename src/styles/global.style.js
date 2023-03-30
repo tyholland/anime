@@ -147,7 +147,11 @@ export const $GlobalContainer = styled.div`
     }
   }
 
-  &.resource {
+  &.inactiveDraft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     &::before {
       background-image: url(/assets/background/kakashi-sharigan.webp);
     }
