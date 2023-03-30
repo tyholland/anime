@@ -1,17 +1,25 @@
 User-agent: Googlebot
 Disallow: /admin-dashboard
 Disallow: /404
+Disallow: /ads.txt
+Disallow: /league/details
 
 User-agent: AdsBot-Google
 Disallow: /admin-dashboard
 Disallow: /404
+Disallow: /ads.txt
+Disallow: /league/details
 
 User-agent: Googlebot-Image
 Disallow: /admin-dashboard
 Disallow: /404
+Disallow: /ads.txt
+Disallow: /league/details
 
 User-agent: *
 Disallow: /admin-dashboard
 Disallow: /404
+Disallow: /ads.txt
+Disallow: /league/details
 
 Sitemap: https://animebrothaz.com/sitemap.xml
