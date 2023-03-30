@@ -98,13 +98,13 @@ const Schedule = () => {
                       className={isWinner(teamA) && 'winner'}
                     >
                       <$ScheduleTeamName>{teamA}</$ScheduleTeamName>
-                      <div>{scoreA < 0 ? 0 : scoreA}</div>
+                      <div>{scoreA}</div>
                     </$ScheduleTeamSection>
                     <$ScheduleTeamSection
                       className={isWinner(teamB) && 'winner'}
                     >
                       <$ScheduleTeamName>{teamB}</$ScheduleTeamName>
-                      <div>{scoreB < 0 ? 0 : scoreB}</div>
+                      <div>{scoreB}</div>
                     </$ScheduleTeamSection>
                   </$ScheduleTeamContainer>
                 </$ScheduleWrapper>
