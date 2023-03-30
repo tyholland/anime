@@ -71,7 +71,7 @@ const ViewMatchup = () => {
       setScore1(score_a);
       setScore2(score_b);
       setVotes(results.votes);
-      setIsActive(results.isVotingActive && active);
+      setIsActive(results.isVotingActive === 1 && active === 1);
       setRetrigger(false);
       setRecapIsOpen(!!team1.recap);
       setRecap(theRecap);
