@@ -217,7 +217,7 @@ const BioCard = ({ characterId }) => {
           )}
           {player.category === 'Battlefield' && (
             <>
-              <$BioAttribute>Boost or Damage %:</$BioAttribute>
+              <$BioAttribute>Team Boost and Enemy Team Damage %:</$BioAttribute>
               <$BioAffinity className="down">
                 {affinities?.map((item) => (
                   <$BioAffinity className="right" key={item.type}>
