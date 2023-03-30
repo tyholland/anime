@@ -37,7 +37,7 @@ const AdminDashboard = () => {
   const [editEarth, setEditEarth] = useState(false);
   const [editArcane, setEditArcane] = useState(false);
   const [editElectric, setEditElectric] = useState(false);
-  const [editCelestrial, setEditCelestrial] = useState(false);
+  const [editCelestial, setEditCelestial] = useState(false);
   const [editDarkness, setEditDarkness] = useState(false);
   const [editIce, setEditIce] = useState(false);
   const [editNoAffinity, setEditNoAffinity] = useState(false);
@@ -99,7 +99,7 @@ const AdminDashboard = () => {
       setEditEarth(false);
       setEditArcane(false);
       setEditElectric(false);
-      setEditCelestrial(false);
+      setEditCelestial(false);
       setEditDarkness(false);
       setEditIce(false);
       setEditNoAffinity(false);
@@ -616,38 +616,38 @@ const AdminDashboard = () => {
                 )}
               </$AdminDashboardSection>
               <$AdminDashboardSection>
-                <label>Celestrial:</label>
-                {editCelestrial && (
+                <label>Celestial:</label>
+                {editCelestial && (
                   <>
                     <TextField
                       onChange={handleNewVal}
                       maxLength={15}
-                      inputVal={playerInfo.celestrial}
+                      inputVal={playerInfo.celestial}
                     />
                     <Button
                       btnText="Save"
-                      btnFunction={() => handlePlayerSave('celestrial')}
+                      btnFunction={() => handlePlayerSave('celestial')}
                       customBtnClass="text edit change"
                     />
                     <Button
                       btnText="Cancel"
                       btnFunction={() => {
-                        setEditCelestrial(false);
-                        setPlayerChange(playerInfo.celestrial);
+                        setEditCelestial(false);
+                        setPlayerChange(playerInfo.celestial);
                       }}
                       customBtnClass="text edit change"
                     />
                   </>
                 )}
-                {!editCelestrial && (
+                {!editCelestial && (
                   <>
                     <TextField
-                      inputVal={playerInfo.celestrial}
+                      inputVal={playerInfo.celestial}
                       isDisabled={true}
                     />
                     <Button
                       btnText="Edit"
-                      btnFunction={() => setEditCelestrial(true)}
+                      btnFunction={() => setEditCelestial(true)}
                       customBtnClass="text edit"
                     />
                   </>

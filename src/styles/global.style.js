@@ -350,7 +350,7 @@ export const $GlobalCircle = styled.div`
     background-color: #964b0070;
   }
 
-  &.celestrial {
+  &.celestial {
     background-color: ${COLOR_WHITE};
   }
 

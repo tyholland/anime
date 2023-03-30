@@ -33,7 +33,7 @@ const BioCard = ({ characterId }) => {
         earth,
         arcane,
         electric,
-        celestrial,
+        celestial,
         darkness,
         ice,
         no_affinity,
@@ -70,9 +70,9 @@ const BioCard = ({ characterId }) => {
           value: electric,
         },
         {
-          type: 'Celestrial',
-          class: 'celestrial',
-          value: celestrial,
+          type: 'Celestial',
+          class: 'celestial',
+          value: celestial,
         },
         {
           type: 'Darkness',
@@ -225,7 +225,7 @@ const BioCard = ({ characterId }) => {
           )}
           {player.category === 'Battlefield' && (
             <>
-              <$BioAttribute>Boost or Damage %:</$BioAttribute>
+              <$BioAttribute>Team Boost and Enemy Team Damage %:</$BioAttribute>
               <$BioAffinity className="down">
                 {affinities?.map((item) => (
                   <$BioAffinity className="right" key={item.type}>
