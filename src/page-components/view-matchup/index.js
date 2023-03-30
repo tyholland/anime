@@ -160,17 +160,13 @@ const ViewMatchup = () => {
                     <$ViewMatchupTeamName>
                       {team1.teamName}
                     </$ViewMatchupTeamName>
-                    <$ViewMatchupTeamTotal>
-                      {score1 < 0 ? 0 : score1}
-                    </$ViewMatchupTeamTotal>
+                    <$ViewMatchupTeamTotal>{score1}</$ViewMatchupTeamTotal>
                   </$ViewMatchupTeamContent>
                   <$ViewMatchupTeamContent>
                     <$ViewMatchupTeamName>
                       {team2.teamName}
                     </$ViewMatchupTeamName>
-                    <$ViewMatchupTeamTotal>
-                      {score2 < 0 ? 0 : score2}
-                    </$ViewMatchupTeamTotal>
+                    <$ViewMatchupTeamTotal>{score2}</$ViewMatchupTeamTotal>
                   </$ViewMatchupTeamContent>
                 </$ViewMatchupWrapper>
                 {isActive > 0 && (
