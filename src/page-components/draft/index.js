@@ -8,8 +8,6 @@ import {
   draftNextRound,
   draftPlayers,
   getDraft,
-  updateDraftRecentPick,
-  updateDraftTeams,
   startDraft,
 } from 'src/requests/draft';
 import { getUseablePlayers } from 'src/requests/player';
@@ -33,6 +31,7 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import Loader from 'Components/loader';
 import ReadMore from 'Components/read-more';
 import Button from 'Components/button';
+import { getLeague } from 'src/requests/league';
 
 const Draft = () => {
   const { currentUser } = useAppContext();
@@ -55,6 +54,7 @@ const Draft = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isInactiveDraft, setIsInactiveDraft] = useState(false);
   const [inactiveLeagueData, setInactiveLeagueData] = useState(null);
+  const [triggerNullPlayer, setTriggerNullPlayer] = useState(false);
 
   const getDraftInfo = async () => {
     if (!router.query) {
@@ -64,22 +64,25 @@ const Draft = () => {
     const { league_id } = router.query;
 
     try {
-      const { draft, userTeamId } = await getDraft(
+      const { draft, userTeamId, remainingTime } = await getDraft(
         league_id,
         currentUser?.token
       );
 
       const teams = JSON.parse(draft.teams);
-      const recentPick = JSON.parse(draft.recent_pick);
+      const recentPick = !draft.recent_pick
+        ? null
+        : JSON.parse(draft.recent_pick);
 
       setTeamsList(teams);
       setDraftTeamId(userTeamId);
       setRound(draft.round);
       setRecent(recentPick);
-      setInititalTime(null);
+      setInititalTime(remainingTime);
       setDraftId(draft.id);
       setIsLoading(false);
       setCanDraft(teams[pickOrder].user_id === currentUser.user_id);
+      setPickOrder(draft.pick_order);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get draft info'));
       setIsInactiveDraft(true);
@@ -124,6 +127,7 @@ const Draft = () => {
   const closeDraftModal = () => {
     setIsModalOpen(false);
     setErrorMsg(null);
+    setCharacter(null);
   };
 
   const startNextRound = async () => {
@@ -149,6 +153,10 @@ const Draft = () => {
   };
 
   const nextTeamPick = () => {
+    if (!character) {
+      setTriggerNullPlayer(true);
+    }
+
     if (pickOrder === teamsList.length - 1) {
       setTriggerNewRound(true);
       return { shouldRepeat: false, delay: 0 };
@@ -163,7 +171,7 @@ const Draft = () => {
   const assignCharacterList = () => {
     let quota = false;
 
-    switch (character.rank) {
+    switch (character?.rank) {
     case 'Captain':
       !playerList.captain.id
         ? (playerList.captain = character)
@@ -224,32 +232,58 @@ const Draft = () => {
     }
 
     try {
-      await draftPlayers(draftTeamId, thePlayers, currentUser?.token);
-
       teamsList[index].pick = character.fullName;
 
-      await updateDraftTeams(
-        draftId,
-        { teams: JSON.stringify(teamsList) },
-        currentUser?.token
-      );
-
-      const payload = {
+      const pickUpdate = {
         team: teamsList[index].team_name,
         pick: character.fullName,
       };
 
-      await updateDraftRecentPick(
+      const payload = {
+        thePlayers,
+        teams: JSON.stringify(teamsList),
+        pick: JSON.stringify(pickUpdate),
         draftId,
-        { pick: JSON.stringify(payload) },
-        currentUser?.token
-      );
+        pickOrder,
+      };
+
+      await draftPlayers(draftTeamId, payload, currentUser?.token);
+      await getAllPlayers();
+
+      setRecent(pickUpdate);
 
       closeDraftModal();
       nextTeamPick();
-      setRestartTimer(character.fullName);
+      setRestartTimer(character.id);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to draft player'));
+    }
+  };
+
+  const draftNullPlayer = async () => {
+    const index = teamsList.findIndex((item) => !item.pick);
+
+    try {
+      teamsList[index].pick = 'none';
+
+      const pickUpdate = {
+        team: teamsList[index].team_name,
+        pick: 'none',
+      };
+
+      const payload = {
+        thePlayers: null,
+        teams: JSON.stringify(teamsList),
+        pick: JSON.stringify(pickUpdate),
+        draftId,
+        pickOrder,
+      };
+
+      await draftPlayers(draftTeamId, payload, currentUser?.token);
+      setRecent(pickUpdate);
+      setTriggerNullPlayer(false);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to add null player'));
     }
   };
 
@@ -258,9 +292,27 @@ const Draft = () => {
 
     try {
       await startDraft(league_id, currentUser?.token);
-      await getDraftInfo();
+      setIsInactiveDraft(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to start draft'));
+    }
+  };
+
+  const getLeagueData = async () => {
+    const { league_id } = router.query;
+
+    try {
+      const { leagueData } = await getLeague(league_id, currentUser?.token);
+
+      setIsInactiveDraft(!(leagueData[0].draft_active === 1));
+
+      if (leagueData[0].draft_active !== 1) {
+        setTimeout(async () => {
+          await getLeagueData();
+        }, 5000);
+      }
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to get league data'));
     }
   };
 
@@ -268,7 +320,7 @@ const Draft = () => {
     if (Object.keys(router.query).length > 0 && !!currentUser) {
       getDraftInfo();
     }
-  }, [router.query, currentUser]);
+  }, [router.query, currentUser, isInactiveDraft]);
 
   useEffect(() => {
     if (draftTeamId) {
@@ -277,10 +329,26 @@ const Draft = () => {
   }, [draftTeamId]);
 
   useEffect(() => {
+    if (triggerNullPlayer) {
+      draftNullPlayer();
+    }
+  }, [triggerNullPlayer]);
+
+  useEffect(() => {
     if (triggerNewRound) {
       startNextRound();
     }
   }, [triggerNewRound]);
+
+  useEffect(() => {
+    if (
+      Object.keys(router.query).length > 0 &&
+      !!currentUser &&
+      isInactiveDraft
+    ) {
+      getLeagueData();
+    }
+  }, [router.query, currentUser, isInactiveDraft]);
 
   return (
     <>
@@ -342,10 +410,12 @@ const Draft = () => {
                     })}
                   </$DraftTeamsList>
                 </$DraftSection>
-                <$DraftSection className="recent">
-                  <div>{recent?.team} drafted:</div>
-                  <div>{recent?.pick}</div>
-                </$DraftSection>
+                {recent && (
+                  <$DraftSection className="recent">
+                    <div>{recent.team} drafted:</div>
+                    <div>{recent.pick}</div>
+                  </$DraftSection>
+                )}
                 <$DraftSection className="team">
                   <$DraftPlayerGrid>
                     {!!players && (
