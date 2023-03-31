@@ -58,6 +58,8 @@ const League = () => {
     return <Error />;
   }
 
+  console.log(leagueId);
+
   return (
     <>
       <Metadata
@@ -90,27 +92,27 @@ const League = () => {
                 <SelectionCard
                   btnText="Matchup"
                   redirect={`/matchup?matchup_id=${leagueData.matchupId}`}
-                  isDisabled={!leagueData.week > 0}
+                  isDisabled={!(leagueData.week > 0)}
                 />
                 <SelectionCard
                   btnText="Schedule"
                   redirect={`/schedule?league_id=${leagueId}`}
-                  isDisabled={!leagueData.week > 0}
+                  isDisabled={!(leagueData.week > 0)}
                 />
                 <SelectionCard
                   btnText="Scoreboard"
                   redirect={`/scoreboard?league_id=${leagueId}`}
-                  isDisabled={!leagueData.week > 0}
+                  isDisabled={!(leagueData.week > 0)}
                 />
                 <SelectionCard
                   btnText="Standings"
                   redirect={`/standings?league_id=${leagueId}`}
-                  isDisabled={!leagueData.week > 0}
+                  isDisabled={!(leagueData.week > 0)}
                 />
                 <SelectionCard
                   btnText="Playoffs"
                   redirect={`/playoffs?league_id=${leagueId}`}
-                  isDisabled={!leagueData.week > 0}
+                  isDisabled={!(leagueData.week > 0)}
                 />
               </div>
             </>
