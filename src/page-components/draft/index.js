@@ -55,6 +55,7 @@ const Draft = () => {
   const [isInactiveDraft, setIsInactiveDraft] = useState(false);
   const [inactiveLeagueData, setInactiveLeagueData] = useState(null);
   const [triggerNullPlayer, setTriggerNullPlayer] = useState(false);
+  // const [isDraftComplete, setIsDraftComplete] = useState(false);
 
   const getDraftInfo = async () => {
     if (!router.query) {
@@ -64,6 +65,7 @@ const Draft = () => {
     const { league_id } = router.query;
 
     try {
+      // add draftComplete below
       const { draft, userTeamId, remainingTime } = await getDraft(
         league_id,
         currentUser?.token
@@ -81,8 +83,9 @@ const Draft = () => {
       setInititalTime(remainingTime);
       setDraftId(draft.id);
       setIsLoading(false);
-      setCanDraft(teams[pickOrder].user_id === currentUser.user_id);
+      setCanDraft(teams[draft.pick_order].user_id === currentUser?.user_id);
       setPickOrder(draft.pick_order);
+      // setIsDraftComplete(draftComplete)
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get draft info'));
       setIsInactiveDraft(true);
@@ -134,18 +137,25 @@ const Draft = () => {
     const { league_id } = router.query;
 
     try {
-      const { newRound, draftComplete } = await draftNextRound(
+      if (!character) {
+        await draftNullPlayer();
+      } else {
+        await draftPlayer();
+      }
+
+      const { draftComplete } = await draftNextRound(
         league_id,
         currentUser?.token
       );
 
       if (draftComplete) {
+        // add something to update page to draft results
+        // setIsDraftComplete(true)
         return;
       }
 
       setPickOrder(0);
       await getDraftInfo();
-      setRestartTimer(newRound);
       setTriggerNewRound(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed start a new round'));
@@ -153,13 +163,13 @@ const Draft = () => {
   };
 
   const nextTeamPick = () => {
-    if (!character) {
-      setTriggerNullPlayer(true);
-    }
-
     if (pickOrder === teamsList.length - 1) {
       setTriggerNewRound(true);
-      return { shouldRepeat: false, delay: 0 };
+      return { shouldRepeat: true, delay: 0 };
+    }
+
+    if (!character) {
+      setTriggerNullPlayer(true);
     }
 
     setCanDraft(teamsList[pickOrder + 1].user_id === currentUser.user_id);
@@ -213,6 +223,15 @@ const Draft = () => {
     };
   };
 
+  const handleDraftSelection = async () => {
+    if (pickOrder === teamsList.length - 1) {
+      await startNextRound();
+      return;
+    }
+
+    await draftPlayer();
+  };
+
   const draftPlayer = async () => {
     const { thePlayers, quota } = assignCharacterList();
     const index = teamsList.findIndex(
@@ -244,17 +263,19 @@ const Draft = () => {
         teams: JSON.stringify(teamsList),
         pick: JSON.stringify(pickUpdate),
         draftId,
-        pickOrder,
+        pickOrder: pickOrder + 1,
       };
 
       await draftPlayers(draftTeamId, payload, currentUser?.token);
       await getAllPlayers();
 
       setRecent(pickUpdate);
-
       closeDraftModal();
-      nextTeamPick();
-      setRestartTimer(character.id);
+
+      if (pickOrder !== teamsList.length - 1) {
+        setRestartTimer(character.id);
+        nextTeamPick();
+      }
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to draft player'));
     }
@@ -356,7 +377,9 @@ const Draft = () => {
         title="League Draft"
         description="Fantasy League Draft. Create the ultimate team and pick your characters before your friends do."
       />
-      <$GlobalContainer className={isInactiveDraft && 'bgImage inactiveDraft'}>
+      <$GlobalContainer
+        className={isInactiveDraft ? 'bgImage inactiveDraft' : ''}
+      >
         {isLoading && <Loader />}
         {!isLoading && (
           <>
@@ -396,7 +419,7 @@ const Draft = () => {
                       return (
                         <div
                           key={item.id}
-                          className={currentPick && 'highlight'}
+                          className={currentPick ? 'highlight' : ''}
                         >
                           {item.team_name}
                           {currentPick && userPick && (
@@ -497,7 +520,7 @@ const Draft = () => {
         closeModal={closeDraftModal}
         characterId={character?.id}
         canDraft={canDraft}
-        draftPlayer={draftPlayer}
+        draftPlayer={handleDraftSelection}
         errorMsg={errorMsg}
         type="draft"
       />
