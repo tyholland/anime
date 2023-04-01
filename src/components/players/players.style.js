@@ -56,7 +56,12 @@ export const $PlayersStyles = createGlobalStyle`
     }
 
     .fillModal {
-      grid-template-columns: 80px 80px 180px 0px !important
+      grid-template-columns: 80px 80px 180px 0px !important;
+    }
+
+    .fillDraft {
+      grid-template-columns: 180px 110px 100px 0px !important;
+      height: 50vh;
     }
   }
 `;

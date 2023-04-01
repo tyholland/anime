@@ -525,7 +525,13 @@ const Players = ({
         <DataGrid
           columns={changeRoster ? teamMobileColumns : mobileColumns}
           rows={rows}
-          className={changeRoster ? 'fillModal' : 'fillGrid'}
+          className={
+            changeRoster
+              ? 'fillModal'
+              : page === 'draft'
+                ? 'fillDraft'
+                : 'fillGrid'
+          }
           onRowClick={(val) => handleRowClick(val)}
         />
       </div>

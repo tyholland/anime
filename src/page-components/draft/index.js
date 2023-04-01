@@ -156,6 +156,7 @@ const Draft = () => {
 
       setPickOrder(0);
       await getDraftInfo();
+      setRestartTimer(character.id);
       setTriggerNewRound(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed start a new round'));

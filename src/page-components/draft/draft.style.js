@@ -16,8 +16,16 @@ export const $DraftSection = styled.div`
   align-items: flex-start;
   justify-content: space-between;
 
+  ${MOBILE_VIEW} {
+    flex-wrap: wrap;
+  }
+
   &.team {
     margin-top: 5%;
+
+    ${MOBILE_VIEW} {
+      flex-direction: column-reverse;
+    }
   }
 
   &.recent {
@@ -36,6 +44,10 @@ export const $DraftSection = styled.div`
 export const $DraftTeamsList = styled.div`
   display: flex;
   width: 70%;
+
+  ${MOBILE_VIEW} {
+    width: 100%;
+  }
 
   > div {
     width: ${(props) => `calc(94% / ${props.teams})`};
@@ -68,6 +80,10 @@ export const $DraftRound = styled.div`
   align-items: center;
   flex-direction: column;
 
+  ${MOBILE_VIEW} {
+    margin-bottom: 3%;
+  }
+
   > div {
     margin-bottom: 10%;
   }
@@ -88,11 +104,19 @@ export const $DraftRound = styled.div`
 export const $DraftPlayerGrid = styled.div`
   width: 600px;
 
+  ${MOBILE_VIEW} {
+    width: 100%;
+  }
+
   > div {
     width: 100%;
 
     .powerFilter {
       width: 35%;
+
+      ${MOBILE_VIEW} {
+        width: 100%;
+      }
     }
   }
 `;
@@ -104,6 +128,10 @@ export const $DraftTeamGrid = styled.div`
 
   ${RESPONSIVE_VIEW} {
     width: auto;
+  }
+
+  ${MOBILE_VIEW} {
+    margin-bottom: 5%;
   }
 
   h2 {
