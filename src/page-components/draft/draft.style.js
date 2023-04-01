@@ -170,3 +170,7 @@ export const $DraftInactive = styled.div`
     margin-top: 5%;
   }
 `;
+
+export const $DraftResults = styled.div`
+  margin: 3% 0;
+`;
