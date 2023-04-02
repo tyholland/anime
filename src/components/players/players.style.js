@@ -8,7 +8,9 @@ import {
 
 export const $PlayersStyles = createGlobalStyle`
   .fillGrid,
-  .fillModal {
+  .fillModal,
+  .fillDraft,
+  .fillAdmin {
     grid-template-columns: 250px 150px 150px 250px !important;
     width: auto;
     height: 100vh;
@@ -27,6 +29,14 @@ export const $PlayersStyles = createGlobalStyle`
     width: auto;
     height: 455px;
     margin-top: 2%;
+  }
+
+  .fillDraft {
+    grid-template-columns: 180px 110px 110px 200px !important;
+  }
+
+  .fillAdmin {
+    grid-template-columns: 180px 110px 110px 110px 180px !important;
   }
 
   .fillGrid > div:hover {
@@ -51,7 +61,16 @@ export const $PlayersStyles = createGlobalStyle`
     }
 
     .fillModal {
-      grid-template-columns: 80px 80px 180px 0px !important
+      grid-template-columns: 80px 80px 180px 0px !important;
+    }
+
+    .fillDraft {
+      grid-template-columns: 180px 110px 100px 0px !important;
+      height: 50vh;
+    }
+
+    .fillAdmin {
+      grid-template-columns: 100px 100px 80px 80px !important;
     }
   }
 `;

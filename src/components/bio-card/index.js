@@ -176,7 +176,11 @@ const BioCard = ({ characterId }) => {
                 ))}
               </$BioAffinity>
               <div>
-                <Collapsible trigger="Additional Info" triggerTagName="div">
+                <Collapsible
+                  trigger="Additional Info"
+                  triggerTagName="div"
+                  containerElementProps={{ content: 'bio' }}
+                >
                   Damage is given to characters that have at least one of these
                   affinities as a weakness. If the affinity is "No Affinity",
                   then the damage is given to all characters.
@@ -202,7 +206,11 @@ const BioCard = ({ characterId }) => {
                 ))}
               </$BioAffinity>
               <div>
-                <Collapsible trigger="Additional Info" triggerTagName="div">
+                <Collapsible
+                  trigger="Additional Info"
+                  triggerTagName="div"
+                  containerElementProps={{ content: 'bio' }}
+                >
                   Boost is given to characters that have one or all of these
                   affinities.
                 </Collapsible>
@@ -228,7 +236,11 @@ const BioCard = ({ characterId }) => {
                 ))}
               </$BioAffinity>
               <div>
-                <Collapsible trigger="Additional Info" triggerTagName="div">
+                <Collapsible
+                  trigger="Additional Info"
+                  triggerTagName="div"
+                  containerElementProps={{ content: 'bio' }}
+                >
                   <p>
                     Boost is given to characters that have one or all of these
                     affinities.

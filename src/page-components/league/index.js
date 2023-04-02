@@ -16,6 +16,7 @@ const League = () => {
   const { currentUser } = useAppContext();
   const [account, setAccount] = useState(null);
   const [leagueData, setLeagueData] = useState(null);
+  const [isDraftActive, setIsDraftActive] = useState(null);
   const [leagueId, setLeagueId] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
 
@@ -23,12 +24,13 @@ const League = () => {
     const { league_id } = router.query;
 
     try {
-      const { leagueData, matchupData } = await getLeague(
+      const { leagueData, matchupData, hasDraft } = await getLeague(
         league_id,
         currentUser?.token
       );
 
       setLeagueId(league_id);
+      setIsDraftActive(hasDraft);
       setLeagueData({
         ...leagueData[0],
         ...matchupData[0],
@@ -75,6 +77,12 @@ const League = () => {
                     redirect={`/league/admin?league_id=${leagueId}`}
                   />
                 )}
+                {isDraftActive && (
+                  <SelectionCard
+                    btnText="Draft"
+                    redirect={`/draft?league_id=${leagueId}`}
+                  />
+                )}
                 <SelectionCard
                   btnText="Team"
                   redirect={`/team?team_id=${leagueData.teamId}`}
@@ -82,27 +90,27 @@ const League = () => {
                 <SelectionCard
                   btnText="Matchup"
                   redirect={`/matchup?matchup_id=${leagueData.matchupId}`}
-                  isDisabled={!leagueData.week > 0}
+                  isDisabled={!(leagueData.week > 0)}
                 />
                 <SelectionCard
                   btnText="Schedule"
                   redirect={`/schedule?league_id=${leagueId}`}
-                  isDisabled={!leagueData.week > 0}
+                  isDisabled={!(leagueData.week > 0)}
                 />
                 <SelectionCard
                   btnText="Scoreboard"
                   redirect={`/scoreboard?league_id=${leagueId}`}
-                  isDisabled={!leagueData.week > 0}
+                  isDisabled={!(leagueData.week > 0)}
                 />
                 <SelectionCard
                   btnText="Standings"
                   redirect={`/standings?league_id=${leagueId}`}
-                  isDisabled={!leagueData.week > 0}
+                  isDisabled={!(leagueData.week > 0)}
                 />
                 <SelectionCard
                   btnText="Playoffs"
                   redirect={`/playoffs?league_id=${leagueId}`}
-                  isDisabled={!leagueData.week > 0}
+                  isDisabled={!(leagueData.week > 0)}
                 />
               </div>
             </>

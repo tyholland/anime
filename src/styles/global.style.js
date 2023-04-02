@@ -147,7 +147,11 @@ export const $GlobalContainer = styled.div`
     }
   }
 
-  &.resource {
+  &.inactiveDraft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     &::before {
       background-image: url(/assets/background/kakashi-sharigan.webp);
     }
@@ -376,15 +380,16 @@ export const $CollapsibleStyles = createGlobalStyle`
       font-size: 18px;
       cursor: pointer;
     }
+
+    &[content="bio"]
+    .Collapsible__contentInner {
+      overflow-y: scroll;
+      height: 115px;
+      margin-top: 3%;
+    }
   }
 
   .Collapsible:last-child {
     border-bottom: 1px solid ${COLOR_BLACK};
-  }
-
-  .Collapsible__contentInner {
-    overflow-y: scroll;
-    height: 115px;
-    margin-top: 3%;
   }
 `;

@@ -6,10 +6,20 @@ export const $BioReviewWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 5%;
+  width: 600px;
+
+  ${MOBILE_VIEW} {
+    width: auto;
+  }
 
   &.btn {
     margin-bottom: 0;
+    flex-direction: row;
+    justify-content: space-around;
+
+    button {
+      width: 200px;
+    }
   }
 
   > div {

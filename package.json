@@ -26,6 +26,7 @@
     "react": "18.2.0",
     "react-burger-menu": "^3.0.9",
     "react-collapsible": "^2.10.0",
+    "react-countdown-circle-timer": "^3.2.1",
     "react-data-grid": "^7.0.0-beta.20",
     "react-dom": "18.2.0",
     "react-modal": "^3.16.1",

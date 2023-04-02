@@ -15,6 +15,7 @@ const Players = ({
   field,
   page = null,
   leagueWeek,
+  openDraft,
 }) => {
   const router = useRouter();
   const [rows, setRows] = useState([]);
@@ -90,6 +91,46 @@ const Players = ({
       name: 'Affinities',
     },
   ];
+  const adminColumns = [
+    {
+      key: 'fullName',
+      name: 'Name',
+    },
+    {
+      key: 'rank',
+      name: 'Rank',
+    },
+    {
+      key: 'cost',
+      name: 'Points',
+    },
+    {
+      key: 'power',
+      name: 'Power Level',
+    },
+    {
+      key: 'series',
+      name: 'Anime Series',
+    },
+  ];
+  const adminMobileColumns = [
+    {
+      key: 'fullName',
+      name: 'Name',
+    },
+    {
+      key: 'rank',
+      name: 'Rank',
+    },
+    {
+      key: 'cost',
+      name: 'Points',
+    },
+    {
+      key: 'power',
+      name: 'Power',
+    },
+  ];
 
   const getCharacters = () => {
     const playerArr = [];
@@ -119,6 +160,7 @@ const Players = ({
           name: item.name,
           rank: item.category,
           cost: item.cost,
+          power: item.power_level,
           series: item.series,
           affinity: affinity.join(', '),
           width: 200,
@@ -157,12 +199,19 @@ const Players = ({
       return;
     }
 
-    if (!!page && page === 'admin') {
+    if (!page) {
+      router.push(`/bio?character=${item.id}`);
+    }
+
+    if (page === 'admin') {
       setPlayerList(item);
       return;
     }
 
-    router.push(`/bio?character=${item.id}`);
+    if (page === 'draft') {
+      openDraft(item);
+      return;
+    }
   };
 
   const handleRankFilter = (e) => {
@@ -466,26 +515,28 @@ const Players = ({
                   })}
                 </select>
               </div>
-              <div className="seriesFilter">
-                <label>Series</label>
-                <select
-                  onChange={(val) => handleSeriesFilter(val)}
-                  defaultValue={seriesArr[0] === seriesName}
-                >
-                  <option value="all">All</option>
-                  {seriesArr.map((item) => {
-                    return (
-                      <option value={item} key={item}>
-                        {item}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
+              {page !== 'draft' && (
+                <div className="seriesFilter">
+                  <label>Series</label>
+                  <select
+                    onChange={(val) => handleSeriesFilter(val)}
+                    defaultValue={seriesArr[0] === seriesName}
+                  >
+                    <option value="all">All</option>
+                    {seriesArr.map((item) => {
+                      return (
+                        <option value={item} key={item}>
+                          {item}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              )}
             </>
           )}
           <div className="powerFilter">
-            <label>Sort Power Level</label>
+            <label>Sort Points</label>
             <select
               onChange={(val) => handlePowerSort(val)}
               defaultValue={powerLevel}
@@ -499,17 +550,45 @@ const Players = ({
       )}
       <div className="desktopGrid">
         <DataGrid
-          columns={changeRoster ? teamColumns : columns}
+          columns={
+            changeRoster
+              ? teamColumns
+              : page === 'admin'
+                ? adminColumns
+                : columns
+          }
           rows={rows}
-          className={changeRoster ? 'fillModal' : 'fillGrid'}
+          className={
+            changeRoster
+              ? 'fillModal'
+              : page === 'draft'
+                ? 'fillDraft'
+                : page === 'admin'
+                  ? 'fillAdmin'
+                  : 'fillGrid'
+          }
           onRowClick={(val) => handleRowClick(val)}
         />
       </div>
       <div className="mobileGrid">
         <DataGrid
-          columns={changeRoster ? teamMobileColumns : mobileColumns}
+          columns={
+            changeRoster
+              ? teamMobileColumns
+              : page === 'admin'
+                ? adminMobileColumns
+                : mobileColumns
+          }
           rows={rows}
-          className={changeRoster ? 'fillModal' : 'fillGrid'}
+          className={
+            changeRoster
+              ? 'fillModal'
+              : page === 'draft'
+                ? 'fillDraft'
+                : page === 'admin'
+                  ? 'fillAdmin'
+                  : 'fillGrid'
+          }
           onRowClick={(val) => handleRowClick(val)}
         />
       </div>

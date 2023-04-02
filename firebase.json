@@ -130,6 +130,10 @@
       {
         "source": "/changelog",
         "destination": "/changelog.html"
+      },
+      {
+        "source": "/draft",
+        "destination": "/draft.html"
       }
     ]
   }
