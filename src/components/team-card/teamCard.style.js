@@ -23,7 +23,7 @@ export const $TeamCardSection = styled.div`
 
 export const $TeamCardPosition = styled.div`
   width: 5%;
-  padding: 18px 0;
+  padding: 19px 0;
   font-weight: ${FONT_WEIGHT_BOLD};
   color: ${COLOR_ORANGE};
   text-align: center;
@@ -46,6 +46,7 @@ export const $TeamCardPosition = styled.div`
 export const $TeamCardDuoSpace = styled.div`
   padding: 5px 0;
   display: flex;
+  font-size: 16px;
 
   &.right {
     text-align: right;
@@ -61,8 +62,13 @@ export const $TeamCardDuoSpace = styled.div`
   }
 
   &.noLink {
-    cursor: default;
+    cursor: text;
     font-weight: ${FONT_WEIGHT_BOLD};
+    color: ${COLOR_BLACK};
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &.duo {
@@ -124,7 +130,9 @@ export const $TeamCardCharacter = styled.button`
 `;
 
 export const $TeamCardCharacterTxt = styled.div`
-  color: ${COLOR_BLUE_HOVER};
+  color: ${(props) => (props.noCharacter ? COLOR_BLACK : COLOR_BLUE_HOVER)};
+  cursor: ${(props) => (props.noCharacter ? 'text' : 'pointer')};
+  font-size: 16px;
 
   ${MOBILE_VIEW} {
     text-overflow: ellipsis;
@@ -134,7 +142,7 @@ export const $TeamCardCharacterTxt = styled.div`
   }
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: ${(props) => (props.noCharacter ? 'none' : 'underline')};
   }
 `;
 

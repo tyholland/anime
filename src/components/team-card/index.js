@@ -53,7 +53,9 @@ const TeamCard = ({ data }) => {
           <$TeamCardNameAffinity>
             <$TeamCardCharacterWrapper>
               <$TeamCardCharacter className="noLink">
-                <$TeamCardCharacterTxt>-</$TeamCardCharacterTxt>
+                <$TeamCardCharacterTxt noCharacter={true}>
+                  -
+                </$TeamCardCharacterTxt>
               </$TeamCardCharacter>
             </$TeamCardCharacterWrapper>
             <$TeamCardAffinity className="affinity">-</$TeamCardAffinity>
@@ -99,10 +101,20 @@ const TeamCard = ({ data }) => {
   };
 
   const characterDouLink = (brawler, support) => {
-    if (!brawler.id && !support.id) {
+    if (!brawler.id) {
       return (
         <>
           <$TeamCardNameAffinity className="duo">
+            <div className="section">
+              <$TeamCardCharacterWrapper className="duo">
+                <$TeamCardCharacter onClick={() => getProfile(support.id)}>
+                  <$TeamCardDuoSpace className="text">
+                    {support.name}
+                  </$TeamCardDuoSpace>
+                </$TeamCardCharacter>
+              </$TeamCardCharacterWrapper>
+              <$TeamCardDuoSpace className="duo noLink">-</$TeamCardDuoSpace>
+            </div>
             <div className="section">
               <$TeamCardCharacterWrapper className="duo">
                 <$TeamCardCharacter className="noLink">
@@ -111,7 +123,66 @@ const TeamCard = ({ data }) => {
                   </$TeamCardDuoSpace>
                 </$TeamCardCharacter>
               </$TeamCardCharacterWrapper>
-              <$TeamCardDuoSpace className="duo noLink">-</$TeamCardDuoSpace>
+              <$TeamCardDuoSpace className="duo">
+                {!!support.affinity.length &&
+                  support.affinity.map((item) => {
+                    return (
+                      <$GlobalCircle
+                        key={item.type}
+                        className={`team ${item.type}`}
+                        title={
+                          item.type === 'noAffinity' ? 'no affinity' : item.type
+                        }
+                      ></$GlobalCircle>
+                    );
+                  })}
+                {!support.affinity.length && <span>-</span>}
+              </$TeamCardDuoSpace>
+            </div>
+          </$TeamCardNameAffinity>
+          <$TeamCardPower className="duo">
+            <$TeamCardDuoSpace className="right noLink points">
+              -
+            </$TeamCardDuoSpace>
+            <$TeamCardDuoSpace className="right points">
+              <Button
+                btnText={support.teamPoints === 0 ? 'Bye' : support.teamPoints}
+                customBtnClass="text edit"
+                btnFunction={() => toggleModal(support)}
+              />
+            </$TeamCardDuoSpace>
+          </$TeamCardPower>
+        </>
+      );
+    }
+
+    if (!support.id) {
+      return (
+        <>
+          <$TeamCardNameAffinity className="duo">
+            <div className="section">
+              <$TeamCardCharacterWrapper className="duo">
+                <$TeamCardCharacter onClick={() => getProfile(brawler.id)}>
+                  <$TeamCardDuoSpace className="text">
+                    {brawler.name}
+                  </$TeamCardDuoSpace>
+                </$TeamCardCharacter>
+              </$TeamCardCharacterWrapper>
+              <$TeamCardDuoSpace className="duo">
+                {!!brawler.affinity.length &&
+                  brawler.affinity.map((item) => {
+                    return (
+                      <$GlobalCircle
+                        key={item.type}
+                        className={`team ${item.type}`}
+                        title={
+                          item.type === 'noAffinity' ? 'no affinity' : item.type
+                        }
+                      ></$GlobalCircle>
+                    );
+                  })}
+                {!brawler.affinity.length && <span>-</span>}
+              </$TeamCardDuoSpace>
             </div>
             <div className="section">
               <$TeamCardCharacterWrapper className="duo">
@@ -125,8 +196,12 @@ const TeamCard = ({ data }) => {
             </div>
           </$TeamCardNameAffinity>
           <$TeamCardPower className="duo">
-            <$TeamCardDuoSpace className="right noLink points">
-              -
+            <$TeamCardDuoSpace className="right points">
+              <Button
+                btnText={brawler.teamPoints === 0 ? 'Bye' : brawler.teamPoints}
+                customBtnClass="text edit"
+                btnFunction={() => toggleModal(brawler)}
+              />
             </$TeamCardDuoSpace>
             <$TeamCardDuoSpace className="right noLink points">
               -

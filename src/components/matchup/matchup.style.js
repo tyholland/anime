@@ -44,6 +44,7 @@ export const $MatchupCharacterBtn = styled.button`
   margin: 5px 0 0 5%;
   display: flex;
   justify-content: start;
+  font-size: 14px;
 
   > span {
     color: ${COLOR_BLUE_HOVER};
@@ -75,6 +76,19 @@ export const $MatchupCharacterBtn = styled.button`
 
     ${MOBILE_VIEW} {
       margin: 0 6% 0;
+    }
+  }
+
+  &.disable {
+    cursor: text;
+
+    span {
+      color: ${COLOR_BLACK};
+      font-size: 16px;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 
@@ -119,10 +133,12 @@ export const $MatchupPower = styled.button`
 
 export const $MatchupPowerText = styled.div`
   text-align: right;
-  color: ${COLOR_BLUE_HOVER};
+  color: ${(props) => (props.noCharacter ? COLOR_BLACK : COLOR_BLUE_HOVER)};
+  font-size: ${(props) => (props.noCharacter ? '16px' : '14px')};
+  cursor: ${(props) => (props.noCharacter ? 'text' : 'pointer')};
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: ${(props) => (props.noCharacter ? 'none' : 'underline')};
   }
 
   &.reverse {
