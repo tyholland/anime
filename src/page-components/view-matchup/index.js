@@ -97,7 +97,18 @@ const ViewMatchup = () => {
 
   const handleModal = () => {
     setModalMsg(
-      'The weekly affinity will be a random affinity or a combination of affinities. It will be applied every Sunday. Depending on what the affinity is, it could determine whether your team wins or loses.'
+      <>
+        <div>
+          The weekly affinity will be a random affinity or a combination of
+          affinities. It will be applied every Sunday. Depending on what the
+          affinity is, it could determine whether your team wins or loses.
+        </div>
+        <br />
+        <div>
+          If you see a red indicator next to a player's name. That means that
+          player is or has been involved in user voting.
+        </div>
+      </>
     );
     setModalIsOpen(true);
   };
