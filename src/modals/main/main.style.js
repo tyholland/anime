@@ -16,7 +16,7 @@ export const $MainGlobalStyles = createGlobalStyle`
       padding: 5% !important;
       border-radius: 0 !important;
       max-width: 90% !important;
-      inset: 50% auto auto 48% !important;
+      inset: 50% auto auto 50% !important;
     }
 
     .ReactModal__Overlay {
