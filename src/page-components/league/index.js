@@ -58,8 +58,6 @@ const League = () => {
     return <Error />;
   }
 
-  console.log(leagueId);
-
   return (
     <>
       <Metadata
