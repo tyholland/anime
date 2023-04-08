@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { $AdsWraper } from './ads.style';
 
 const Ads = () => {
   useEffect(() => {
@@ -14,7 +15,7 @@ const Ads = () => {
   }, []);
 
   return (
-    <div>
+    <$AdsWraper>
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
@@ -23,7 +24,7 @@ const Ads = () => {
         data-ad-format="auto"
         data-full-width-responsive="true"
       ></ins>
-    </div>
+    </$AdsWraper>
   );
 };
 
