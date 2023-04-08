@@ -6,6 +6,7 @@ import GameplayCard from 'Components/gameplay-card';
 import SuggestCharacter from 'Components/suggest-character';
 import Button from 'Components/button';
 import { allSeries } from 'Utils/constants';
+import Ads from 'Components/ads';
 
 const Home = () => {
   const goToSharePage = () => {
@@ -73,12 +74,14 @@ const Home = () => {
           always best!
         </p>
       </$GlobalContainer>
+      <Ads />
       <$GlobalContainer className="homeSection">
         <GameplayCard />
       </$GlobalContainer>
       <$GlobalContainer className="homeSection homeEven" id="suggest">
         <SuggestCharacter />
       </$GlobalContainer>
+      <Ads />
       <$GlobalContainer className="homeSection" id="podcast">
         <$GlobalTitle>Podcast</$GlobalTitle>
         <p>
@@ -117,6 +120,7 @@ const Home = () => {
           })}
         </div>
       </$GlobalContainer>
+      <Ads />
     </>
   );
 };
