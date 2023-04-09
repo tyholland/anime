@@ -63,15 +63,15 @@ const Draft = () => {
   const [draftResults, setDraftResults] = useState(null);
 
   const getDraftInfo = async () => {
-    if (!router.query) {
-      return;
-    }
-
     const { league_id } = router.query;
 
     try {
       const { draft, userTeamId, remainingTime, draftComplete } =
         await getDraft(league_id, currentUser?.token);
+
+      if (draft.teams === JSON.stringify(teamsList)) {
+        return;
+      }
 
       const teams = JSON.parse(draft.teams);
       const recentPick = !draft.recent_pick
@@ -168,7 +168,7 @@ const Draft = () => {
 
       setPickOrder(0);
       await getDraftInfo();
-      setRestartTimer(character.id);
+      setRestartTimer(restartTimer + 1);
       setTriggerNewRound(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed start a new round'));
@@ -286,7 +286,8 @@ const Draft = () => {
       closeDraftModal();
 
       if (pickOrder !== teamsList.length - 1) {
-        setRestartTimer(character.id);
+        setInititalTime(60);
+        setRestartTimer(restartTimer + 1);
         nextTeamPick();
       }
     } catch (err) {
@@ -350,6 +351,28 @@ const Draft = () => {
     }
   };
 
+  const handleDraftInfoLoop = async () => {
+    if (Object.keys(router.query).length === 0) {
+      return;
+    }
+
+    const { league_id } = router.query;
+
+    try {
+      const { leagueData } = await getLeague(league_id, currentUser?.token);
+
+      if (leagueData[0].draft_complete === 0) {
+        setTimeout(async () => {
+          await getDraftInfo();
+          !!draftTeamId && (await getAllPlayers());
+          await handleDraftInfoLoop();
+        }, 1000);
+      }
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to handle draft info loop'));
+    }
+  };
+
   useEffect(() => {
     if (Object.keys(router.query).length > 0 && !!currentUser) {
       getDraftInfo();
@@ -383,6 +406,12 @@ const Draft = () => {
       getLeagueData();
     }
   }, [router.query, currentUser, isInactiveDraft]);
+
+  useEffect(() => {
+    if (!isInactiveDraft) {
+      handleDraftInfoLoop();
+    }
+  }, [isInactiveDraft, draftTeamId]);
 
   return (
     <>
