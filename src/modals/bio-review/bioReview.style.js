@@ -17,6 +17,10 @@ export const $BioReviewWrapper = styled.div`
     flex-direction: row;
     justify-content: space-around;
 
+    ${MOBILE_VIEW} {
+      flex-direction: column;
+    }
+
     button {
       width: 200px;
     }

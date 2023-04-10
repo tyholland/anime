@@ -57,7 +57,7 @@ const BioReview = ({
           btnFunction={closeModal}
           btnText="Close"
           btnColor="cancel"
-          customBtnClass={!!type && type === 'draft' ? 'medium' : 'small'}
+          customBtnClass="medium"
         />
       </$BioReviewWrapper>
     </MainModal>

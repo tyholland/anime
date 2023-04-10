@@ -101,7 +101,7 @@ const TeamCard = ({ data }) => {
   };
 
   const characterDouLink = (brawler, support) => {
-    if (!brawler.id) {
+    if (!brawler.id && !!support.id) {
       return (
         <>
           <$TeamCardNameAffinity className="duo">
@@ -156,7 +156,7 @@ const TeamCard = ({ data }) => {
       );
     }
 
-    if (!support.id) {
+    if (!support.id && !!brawler.id) {
       return (
         <>
           <$TeamCardNameAffinity className="duo">
@@ -202,6 +202,43 @@ const TeamCard = ({ data }) => {
                 customBtnClass="text edit"
                 btnFunction={() => toggleModal(brawler)}
               />
+            </$TeamCardDuoSpace>
+            <$TeamCardDuoSpace className="right noLink points">
+              -
+            </$TeamCardDuoSpace>
+          </$TeamCardPower>
+        </>
+      );
+    }
+
+    if (!support.id && !brawler.id) {
+      return (
+        <>
+          <$TeamCardNameAffinity className="duo">
+            <div className="section">
+              <$TeamCardCharacterWrapper className="duo">
+                <$TeamCardCharacter onClick={() => getProfile(brawler.id)}>
+                  <$TeamCardDuoSpace className="text noLink">
+                    -
+                  </$TeamCardDuoSpace>
+                </$TeamCardCharacter>
+              </$TeamCardCharacterWrapper>
+              <$TeamCardDuoSpace className="duo noLink">-</$TeamCardDuoSpace>
+            </div>
+            <div className="section">
+              <$TeamCardCharacterWrapper className="duo">
+                <$TeamCardCharacter className="noLink">
+                  <$TeamCardDuoSpace className="text noLink">
+                    -
+                  </$TeamCardDuoSpace>
+                </$TeamCardCharacter>
+              </$TeamCardCharacterWrapper>
+              <$TeamCardDuoSpace className="duo noLink">-</$TeamCardDuoSpace>
+            </div>
+          </$TeamCardNameAffinity>
+          <$TeamCardPower className="duo">
+            <$TeamCardDuoSpace className="right noLink points">
+              -
             </$TeamCardDuoSpace>
             <$TeamCardDuoSpace className="right noLink points">
               -
