@@ -282,6 +282,11 @@ const Draft = () => {
       await draftPlayers(draftTeamId, payload, currentUser?.token);
       await getAllPlayers();
 
+      addEvent('Draft Player', {
+        player: character.fullName,
+        round,
+      });
+
       setRecent(pickUpdate);
       closeDraftModal();
 
