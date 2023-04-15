@@ -13,11 +13,19 @@ const GameContainer = ({ game, gameNum = null }) => {
   const router = useRouter();
 
   const handleClick = () => {
+    if (teamB === 'Bye' || !match) {
+      return;
+    }
+
     router.push(`/matchup?matchup_id=${match}`);
   };
 
   return (
-    <$GameContainerWrapper key={teamA} onClick={handleClick}>
+    <$GameContainerWrapper
+      isBye={teamB === 'Bye' || !match}
+      key={teamA}
+      onClick={handleClick}
+    >
       <$GameContainerTeamContainer>
         {!!gameNum && <$GameContainerGame>Game {gameNum}</$GameContainerGame>}
         <$GameContainerTeamSection>

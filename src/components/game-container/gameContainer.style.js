@@ -4,6 +4,7 @@ import {
   COLOR_BLUE_HOVER,
   COLOR_WHITE,
   FONT_WEIGHT_BOLD,
+  FONT_WEIGHT_NORMAL,
   MOBILE_VIEW,
   RESPONSIVE_VIEW,
 } from 'Styles/global.style';
@@ -18,10 +19,11 @@ export const $GameContainerWrapper = styled.button`
   border: 1px solid ${COLOR_BLACK};
   border-radius: 10px;
   background: ${COLOR_WHITE};
+  cursor: ${(props) => (props.isBye ? 'text' : 'pointer')};
 
   &:hover {
-    color: ${COLOR_BLUE_HOVER};
-    font-weight: ${FONT_WEIGHT_BOLD};
+    font-weight: ${(props) => props.isBye ? FONT_WEIGHT_NORMAL : FONT_WEIGHT_BOLD};
+    color: ${(props) => (props.isBye ? COLOR_BLACK : COLOR_BLUE_HOVER)};
   }
 
   ${RESPONSIVE_VIEW} {

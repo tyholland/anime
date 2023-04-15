@@ -28,8 +28,8 @@ const ViewLeague = () => {
 
     try {
       const leagues = await getAllLeagues(currentUser?.token);
-      const card = leagues.map((item) => {
-        return <LeagueCard key={item.team_name} data={item} />;
+      const card = leagues.map((item, index) => {
+        return <LeagueCard key={`${item.team_name}-${index}`} data={item} />;
       });
 
       setLeagueCard(card);

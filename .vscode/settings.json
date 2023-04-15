@@ -1,4 +1,5 @@
 {
   "prettier.proseWrap": "always",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": false,
+  "editor.minimap.maxColumn": 200
 }
