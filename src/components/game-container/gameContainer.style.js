@@ -20,6 +20,7 @@ export const $GameContainerWrapper = styled.button`
   border-radius: 10px;
   background: ${COLOR_WHITE};
   cursor: ${(props) => (props.isBye ? 'text' : 'pointer')};
+  color: ${COLOR_BLACK};
 
   &:hover {
     font-weight: ${(props) => props.isBye ? FONT_WEIGHT_NORMAL : FONT_WEIGHT_BOLD};

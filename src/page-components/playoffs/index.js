@@ -45,13 +45,13 @@ const Playoffs = () => {
   const defaultSemis = [
     {
       teamA: 'Winner of Game #1',
-      teamB: 'Winner of Game #2',
+      teamB: 'Winner of Game #4',
       scoreA: 0,
       scoreB: 0,
     },
     {
-      teamA: 'Winner of Game #3',
-      teamB: 'Winner of Game #4',
+      teamA: 'Winner of Game #2',
+      teamB: 'Winner of Game #3',
       scoreA: 0,
       scoreB: 0,
     },

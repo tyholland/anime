@@ -6,7 +6,7 @@ import {
   $SelectionCardText,
 } from './selectionCard.style.js';
 
-const SelectionCard = ({ btnText, redirect, isDisabled, newTab }) => {
+const SelectionCard = ({ btnText, redirect, isDisabled, newTab, disabledMsg }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const closeModal = () => {
@@ -24,7 +24,7 @@ const SelectionCard = ({ btnText, redirect, isDisabled, newTab }) => {
           <$SelectionCardText>{btnText}</$SelectionCardText>
         </$SelectionCardBlock>
         <Notification
-          message="Week 1 has not started yet. Once its started, this link will become active."
+          message={disabledMsg}
           closeModal={closeModal}
           modalIsOpen={modalIsOpen}
         />
