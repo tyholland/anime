@@ -7,6 +7,7 @@ import SuggestCharacter from 'Components/suggest-character';
 import Button from 'Components/button';
 import { allSeries } from 'Utils/constants';
 import Ads from 'Components/ads';
+import Image from 'next/image';
 
 const Home = () => {
   const goToSharePage = () => {
@@ -15,7 +16,7 @@ const Home = () => {
 
   return (
     <>
-      <Metadata title="Home" description="Anime Brothaz Fantasy League" />
+      <Metadata title="Home" description="Anime Fantasy League" />
       <$GlobalContainer className="bgImage home">
         <$GlobalTitle className="home">Anime Fantasy League</$GlobalTitle>
         <$GlobalContainer className="home">
@@ -83,7 +84,15 @@ const Home = () => {
       </$GlobalContainer>
       <Ads />
       <$GlobalContainer className="homeSection" id="podcast">
-        <$GlobalTitle>Podcast</$GlobalTitle>
+        <$GlobalTitle className="podcast">
+          <Image
+            src="/assets/logo/abz-logo.webp"
+            width={70}
+            height={70}
+            alt="Anime Brothaz"
+          />
+          Podcast
+        </$GlobalTitle>
         <p>
           The ABZ podcast is recorded by the Brothaz (DiscipleDashni, QuietJams,
           and TySoFly), who get together to discuss a wide variety of topics

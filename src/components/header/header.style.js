@@ -21,9 +21,8 @@ export const $HeaderTitle = styled.div`
   text-align: center;
 
   img {
-    width: 70px;
-    height: auto;
     cursor: pointer;
+    border-radius: 22px;
   }
 `;
 

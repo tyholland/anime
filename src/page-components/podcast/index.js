@@ -5,6 +5,7 @@ import Button from 'Components/button';
 import { $PodcastService } from './podcast.style';
 import ReadMore from 'Components/read-more';
 import Script from 'next/script';
+import Image from 'next/image';
 
 const Podcast = () => {
   const goToSharePage = () => {
@@ -18,7 +19,15 @@ const Podcast = () => {
         description="The Brothaz (DiscipleDashni, QuietJams, and TySoFly) get together to discuss a wide variety of topics within the anime community. Topics can range from, but are not limited to latest episodes, manga chapters, favorite characters and so on."
       />
       <$GlobalContainer>
-        <$GlobalTitle>Podcast</$GlobalTitle>
+        <$GlobalTitle className="podcast">
+          <Image
+            src="/assets/logo/abz-logo.webp"
+            width={70}
+            height={70}
+            alt="Anime Brothaz"
+          />
+          Podcast
+        </$GlobalTitle>
         <$PodcastService>
           <div>
             If you prefer to use your own podcast service/application, feel free

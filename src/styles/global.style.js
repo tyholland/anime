@@ -267,7 +267,8 @@ export const $GlobalTitle = styled.div`
   }
 
   &.bracketView,
-  &.bracket {
+  &.bracket,
+  &.podcast {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -275,6 +276,12 @@ export const $GlobalTitle = styled.div`
     button {
       margin: 0 0 0 3%;
     }
+  }
+
+  &.podcast {
+    width: 190px;
+    margin: 0 auto 5%;
+    justify-content: space-between;
   }
 
   &.bracket {

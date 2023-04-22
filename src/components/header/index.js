@@ -52,10 +52,10 @@ const Header = () => {
       <$HeaderTop>
         <$HeaderTitle>
           <Image
-            src="/assets/abz-logo.webp"
+            src="/assets/logo/afl-logo.webp"
             width={70}
             height={70}
-            alt="Anime Brothaz"
+            alt="Anime Fantasy League"
             onClick={handleHomeClick}
           />
         </$HeaderTitle>

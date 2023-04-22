@@ -6,7 +6,7 @@ const Metadata = ({ title, description, image = null }) => {
   const host = process.env.NEXT_PUBLIC_URL;
   const { pathname } = useRouter();
   const router = useRouter();
-  const [img, setImg] = useState(`${host}/assets/abz-logo.webp`);
+  const [img, setImg] = useState(`${host}/assets/logo/afl-logo.webp`);
 
   useEffect(() => {
     if (image) {
