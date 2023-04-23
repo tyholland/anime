@@ -279,9 +279,13 @@ export const $GlobalTitle = styled.div`
   }
 
   &.podcast {
-    width: 190px;
+    width: 200px;
     margin: 0 auto 5%;
     justify-content: space-between;
+
+    ${RESPONSIVE_VIEW} {
+      width: 180px;
+    }
   }
 
   &.bracket {
