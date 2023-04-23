@@ -106,7 +106,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
             >
               {!captain.id
                 ? '-'
-                : captain.matchPoints < 0
+                : (captain.matchPoints < 0 || (captain.matchPoints === 0 && captain.teamPoints > 0))
                   ? 0
                   : captain.matchPoints === 0
                     ? 'Bye'
@@ -138,7 +138,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
             >
               {!brawler_a.id
                 ? '-'
-                : brawler_a.matchPoints < 0
+                : (brawler_a.matchPoints < 0 || (brawler_a.matchPoints === 0 && brawler_a.teamPoints > 0))
                   ? 0
                   : brawler_a.matchPoints === 0
                     ? 'Bye'
@@ -170,7 +170,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
             >
               {!brawler_b.id
                 ? '-'
-                : brawler_b.matchPoints < 0
+                : (brawler_b.matchPoints < 0 || (brawler_b.matchPoints === 0 && brawler_b.teamPoints > 0))
                   ? 0
                   : brawler_b.matchPoints === 0
                     ? 'Bye'
@@ -202,7 +202,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
             >
               {!bs_brawler.id
                 ? '-'
-                : bs_brawler.matchPoints < 0
+                : (bs_brawler.matchPoints < 0 || (bs_brawler.matchPoints === 0 && bs_brawler.teamPoints > 0))
                   ? 0
                   : bs_brawler.matchPoints === 0
                     ? 'Bye'
@@ -234,7 +234,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
             >
               {!bs_support.id
                 ? '-'
-                : bs_support.matchPoints < 0
+                : (bs_support.matchPoints < 0 || (bs_support.matchPoints === 0 && bs_support.teamPoints > 0))
                   ? 0
                   : bs_support.matchPoints === 0
                     ? 'Bye'
@@ -266,7 +266,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
             >
               {!support.id
                 ? '-'
-                : support.matchPoints < 0
+                : (support.matchPoints < 0 || (support.matchPoints === 0 && support.teamPoints > 0))
                   ? 0
                   : support.matchPoints === 0
                     ? 'Bye'
@@ -298,7 +298,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
             >
               {!villain.id
                 ? '-'
-                : villain.matchPoints < 0
+                : (villain.matchPoints < 0 || (villain.matchPoints === 0 && villain.teamPoints > 0))
                   ? 0
                   : villain.matchPoints === 0
                     ? 'Bye'
@@ -330,7 +330,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
             >
               {!battlefield.id
                 ? '-'
-                : battlefield.matchPoints < 0
+                : (battlefield.matchPoints < 0 || (battlefield.matchPoints === 0 && battlefield.teamPoints > 0))
                   ? 0
                   : battlefield.matchPoints === 0
                     ? 'Bye'
