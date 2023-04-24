@@ -5,7 +5,7 @@ let firebaseConfig;
 const setupFirebase = () => {
   firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_GOOGLE_API,
-    authDomain: `${process.env.NEXT_PUBLIC_GOOGLE_PRODJECT_ID}.firebaseapp.com`,
+    authDomain: 'animebrothaz.com',
     projectId: process.env.NEXT_PUBLIC_GOOGLE_PRODJECT_ID,
     storageBucket: `${process.env.NEXT_PUBLIC_GOOGLE_PRODJECT_ID}.appspot.com`,
     messagingSenderId: process.env.NEXT_PUBLIC_GOOGLE_SENDER_ID,
