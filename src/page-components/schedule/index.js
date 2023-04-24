@@ -79,7 +79,7 @@ const Schedule = () => {
               };
 
               const handleClick = () => {
-                if (!highlight) {
+                if (!highlight || teamB === 'Bye') {
                   return;
                 }
 
