@@ -17,6 +17,7 @@ import {
   $ScheduleTeamName,
 } from './schedule.style';
 import GameSchedule from 'Components/gameplay-card/schedule';
+import Notification from 'src/modals/notification';
 
 const Schedule = () => {
   const router = useRouter();
@@ -24,6 +25,11 @@ const Schedule = () => {
   const [games, setGames] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
   const [account, setAccount] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   const handleSchedule = async () => {
     const { league_id } = router.query;
@@ -79,7 +85,12 @@ const Schedule = () => {
               };
 
               const handleClick = () => {
-                if (!highlight || teamB === 'Bye') {
+                if (!highlight) {
+                  return;
+                }
+
+                if (teamB === 'Bye') {
+                  setModalIsOpen(true);
                   return;
                 }
 
@@ -114,6 +125,11 @@ const Schedule = () => {
           <ReadMore>
             <GameSchedule />
           </ReadMore>
+          <Notification
+            message="This is a Bye week. There are no matchups on a bye week."
+            closeModal={closeModal}
+            modalIsOpen={modalIsOpen}
+          />
         </>
       )}
     </>

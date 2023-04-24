@@ -92,7 +92,7 @@ const League = () => {
                   btnText="Matchup"
                   redirect={`/matchup?matchup_id=${leagueData.matchupId}`}
                   isDisabled={!(leagueData.week > 0) || leagueData.team_b === 0}
-                  disabledMsg={leagueData.team_b === 0 ? 'You have a Bye week' : 'Week 1 has not started yet. Once its started, this link will become active.'}
+                  disabledMsg={leagueData.team_b === 0 ? 'This is a Bye week. There are no matchups on a bye week.' : 'Week 1 has not started yet. Once its started, this link will become active.'}
                 />
                 <SelectionCard
                   btnText="Schedule"
