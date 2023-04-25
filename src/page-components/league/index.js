@@ -19,6 +19,7 @@ const League = () => {
   const [isDraftActive, setIsDraftActive] = useState(null);
   const [leagueId, setLeagueId] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
+  const disableMsg = 'Week 1 has not started yet. Once its started, this link will become active.';
 
   const handleLeagueData = async () => {
     const { league_id } = router.query;
@@ -92,27 +93,31 @@ const League = () => {
                   btnText="Matchup"
                   redirect={`/matchup?matchup_id=${leagueData.matchupId}`}
                   isDisabled={!(leagueData.week > 0) || leagueData.team_b === 0}
-                  disabledMsg={leagueData.team_b === 0 ? 'This is a Bye week. There are no matchups on a bye week.' : 'Week 1 has not started yet. Once its started, this link will become active.'}
+                  disabledMsg={leagueData.team_b === 0 ? 'This is a Bye week. There are no matchups on a bye week.' : disableMsg}
                 />
                 <SelectionCard
                   btnText="Schedule"
                   redirect={`/schedule?league_id=${leagueId}`}
                   isDisabled={!(leagueData.week > 0)}
+                  disabledMsg={disableMsg}
                 />
                 <SelectionCard
                   btnText="Scoreboard"
                   redirect={`/scoreboard?league_id=${leagueId}`}
                   isDisabled={!(leagueData.week > 0)}
+                  disabledMsg={disableMsg}
                 />
                 <SelectionCard
                   btnText="Standings"
                   redirect={`/standings?league_id=${leagueId}`}
                   isDisabled={!(leagueData.week > 0)}
+                  disabledMsg={disableMsg}
                 />
                 <SelectionCard
                   btnText="Playoffs"
                   redirect={`/playoffs?league_id=${leagueId}`}
                   isDisabled={!(leagueData.week > 0)}
+                  disabledMsg={disableMsg}
                 />
               </div>
             </>

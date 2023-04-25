@@ -40,6 +40,7 @@ const Team = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [recap, setRecap] = useState(null);
   const [leagueId, setLeagueId] = useState(null);
+  const [isDisabledRosterEdit, setIsDisabledRosterEdit] = useState(false);
 
   const handleTeam = async () => {
     const { team_id } = router.query;
@@ -67,6 +68,7 @@ const Team = () => {
       setModalIsOpen(!!recap);
       setRecap(recap);
       setLeagueId(info.league_id);
+      setIsDisabledRosterEdit(info.draft_complete === 0 || info.active === 0);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get team data'));
       setErrorPage(true);
@@ -133,6 +135,7 @@ const Team = () => {
                         btnText="Edit Roster"
                         btnColor="primary"
                         customBtnClass="medium"
+                        isDisabled={isDisabledRosterEdit}
                         redirect={`/team/edit?team_id=${teamId}`}
                       />
                     </$TeamBtnSection>
