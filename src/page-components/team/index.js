@@ -68,7 +68,7 @@ const Team = () => {
       setModalIsOpen(!!recap);
       setRecap(recap);
       setLeagueId(info.league_id);
-      setIsDisabledRosterEdit(info.draft_complete === 0 || info.active === 0);
+      setIsDisabledRosterEdit(info.is_roster_active === 0 || info.draft_complete === 0 || info.active === 0);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get team data'));
       setErrorPage(true);
