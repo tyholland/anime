@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MOBILE_VIEW } from 'Styles/global.style';
+import { MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
 
 export const $ViewLeagueEmptyTitle = styled.div`
   text-align: center;
@@ -24,5 +24,17 @@ export const $ViewLeagueEmptyBtnWrapper = styled.div`
 
   button {
     margin: 0 5%;
+  }
+`;
+
+export const $ViewLeaguePast = styled.div`
+  margin-top: 5%;
+
+  ${RESPONSIVE_VIEW} {
+    margin-top: 10%;
+  }
+
+  ${MOBILE_VIEW} {
+    margin-top: 20%;
   }
 `;

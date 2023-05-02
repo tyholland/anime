@@ -74,7 +74,7 @@ const League = () => {
           {leagueData && (
             <>
               <div className="buttonGrid">
-                {account?.user_id === leagueData.creator_id && (
+                {account?.user_id === leagueData.creator_id && leagueData.active === 1 && (
                   <SelectionCard
                     btnText="Admin Settings"
                     redirect={`/league/admin?league_id=${leagueId}`}
@@ -86,7 +86,7 @@ const League = () => {
                     redirect={`/draft?league_id=${leagueId}`}
                   />
                 )}
-                {!!leagueData.teamId && (
+                {!!leagueData.teamId && leagueData.active === 1 && (
                   <>
                     <SelectionCard
                       btnText="Team"

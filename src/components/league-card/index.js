@@ -7,7 +7,8 @@ import {
 } from './leagueCard.style';
 
 const LeagueCard = ({ data }) => {
-  const { name, team_name, leagueId, teamId, matchupId, hasDraft, week } = data;
+  const { name, team_name, leagueId, teamId, matchupId, hasDraft, week, active } = data;
+  const isPastLeague = active === 0;
 
   return (
     <$LeagueCardWrapper>
@@ -36,7 +37,7 @@ const LeagueCard = ({ data }) => {
           customBtnClass="leagues"
           redirect={`/league?league_id=${leagueId}`}
         />
-        {!!teamId && (
+        {!!teamId && !isPastLeague && (
           <Button
             btnText="View Team"
             btnColor="primary"
@@ -44,7 +45,7 @@ const LeagueCard = ({ data }) => {
             redirect={`/team?team_id=${teamId}`}
           />
         )}
-        {!!matchupId && week < 10 && (
+        {!!matchupId && week < 10 && !isPastLeague && (
           <Button
             btnText="View Matchup"
             btnColor="primary"

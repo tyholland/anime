@@ -6,6 +6,7 @@ import Button from 'Components/button';
 import {
   $ViewLeagueEmptyTitle,
   $ViewLeagueEmptyBtnWrapper,
+  $ViewLeaguePast
 } from './view.style';
 import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error';
@@ -19,6 +20,7 @@ import ReadMore from 'Components/read-more';
 const ViewLeague = () => {
   const { currentUser } = useAppContext();
   const [leagueCard, setLeagueCard] = useState([]);
+  const [leaguePastCard, setLeaguePastCard] = useState([]);
   const [account, setAccount] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,12 +29,18 @@ const ViewLeague = () => {
     setIsLoading(true);
 
     try {
-      const leagues = await getAllLeagues(currentUser?.token);
-      const card = leagues.map((item, index) => {
+      const {current, past} = await getAllLeagues(currentUser?.token);
+
+      const currentLeagues = current.map((item, index) => {
         return <LeagueCard key={`${item.team_name}-${index}`} data={item} />;
       });
 
-      setLeagueCard(card);
+      const pastLeagues = past.map((item, index) => {
+        return <LeagueCard key={`${item.team_name}-${index}`} data={item} />;
+      });
+
+      setLeagueCard(currentLeagues);
+      setLeaguePastCard(pastLeagues);
       setIsLoading(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get all leagues view'));
@@ -104,6 +112,12 @@ const ViewLeague = () => {
                       />
                     </$ViewLeagueEmptyBtnWrapper>
                   </>
+                )}
+                {!!leaguePastCard.length && (
+                  <$ViewLeaguePast>
+                    <$GlobalTitle>Past Leagues</$GlobalTitle>
+                    {leaguePastCard}
+                  </$ViewLeaguePast>
                 )}
               </>
             )}
