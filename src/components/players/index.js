@@ -6,6 +6,7 @@ import { $PlayersFilter, $PlayersStyles } from './players.style';
 import TextField from 'Components/text-field';
 import Button from 'Components/button';
 import { getAffinitiesTypes } from 'Utils/index';
+import { addEvent } from 'Utils/amplitude';
 
 const Players = ({
   data,
@@ -194,6 +195,10 @@ const Players = ({
   const handleRowClick = (item) => {
     if (changeRoster) {
       playerList[field] = item;
+
+      addEvent('Roster Update', {
+        player: item.fullName,
+      });
 
       setPlayerList(playerList);
       return;
