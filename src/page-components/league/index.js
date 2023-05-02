@@ -25,7 +25,7 @@ const League = () => {
     const { league_id } = router.query;
 
     try {
-      const { leagueData, matchupData, hasDraft } = await getLeague(
+      const { leagueData, matchupData, hasDraft, teamData } = await getLeague(
         league_id,
         currentUser?.token
       );
@@ -35,6 +35,7 @@ const League = () => {
       setLeagueData({
         ...leagueData[0],
         ...matchupData[0],
+        ...teamData[0]
       });
     } catch (err) {
       addEvent(
@@ -85,16 +86,20 @@ const League = () => {
                     redirect={`/draft?league_id=${leagueId}`}
                   />
                 )}
-                <SelectionCard
-                  btnText="Team"
-                  redirect={`/team?team_id=${leagueData.teamId}`}
-                />
-                <SelectionCard
-                  btnText="Matchup"
-                  redirect={`/matchup?matchup_id=${leagueData.matchupId}`}
-                  isDisabled={!(leagueData.week > 0) || leagueData.team_b === 0}
-                  disabledMsg={leagueData.team_b === 0 ? 'This is a Bye week. There are no matchups on a bye week.' : disableMsg}
-                />
+                {!!leagueData.teamId && (
+                  <SelectionCard
+                    btnText="Team"
+                    redirect={`/team?team_id=${leagueData.teamId}`}
+                  />
+                )}
+                {!!leagueData.teamId && leagueData.week > 9 (
+                  <SelectionCard
+                    btnText="Matchup"
+                    redirect={`/matchup?matchup_id=${leagueData.matchupId}`}
+                    isDisabled={!(leagueData.week > 0) || leagueData.team_b === 0}
+                    disabledMsg={leagueData.team_b === 0 ? 'This is a Bye week. There are no matchups on a bye week.' : disableMsg}
+                  />
+                )}
                 <SelectionCard
                   btnText="Schedule"
                   redirect={`/schedule?league_id=${leagueId}`}

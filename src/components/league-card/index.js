@@ -36,12 +36,14 @@ const LeagueCard = ({ data }) => {
           customBtnClass="leagues"
           redirect={`/league?league_id=${leagueId}`}
         />
-        <Button
-          btnText="View Team"
-          btnColor="primary"
-          customBtnClass="leagues"
-          redirect={`/team?team_id=${teamId}`}
-        />
+        {!!teamId && (
+          <Button
+            btnText="View Team"
+            btnColor="primary"
+            customBtnClass="leagues"
+            redirect={`/team?team_id=${teamId}`}
+          />
+        )}
         {!!matchupId && week < 10 && (
           <Button
             btnText="View Matchup"
