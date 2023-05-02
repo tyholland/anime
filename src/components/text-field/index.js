@@ -9,6 +9,7 @@ const TextField = ({
   isDisabled = false,
   inputVal = null,
   maxLength = 'auto',
+  onKeyDown,
 }) => {
   const isPassword = type === 'password';
 
@@ -23,6 +24,7 @@ const TextField = ({
         onChange={(input) => onChange(input.target.value)}
         maxLength={maxLength}
         defaultValue={inputVal}
+        onKeyDown={onKeyDown}
       />
     );
   }
@@ -48,6 +50,7 @@ const TextField = ({
       secureTextEntry={isPassword}
       type={isPassword ? type : 'none'}
       defaultValue={inputVal}
+      onKeyDown={onKeyDown}
     />
   );
 };

@@ -46,6 +46,12 @@ const Login = () => {
     setIsDisabled(!val.length || !email.length);
   };
 
+  const handleKeyboardSubmit = async (e) => {
+    if (e.key === 'Enter' && !isDisabled) {
+      await handleLogin();
+    }
+  };
+
   const handleLogin = async () => {
     setIsLoading(true);
     setErrorMsg(null);
@@ -109,11 +115,13 @@ const Login = () => {
                   placeholder="Email"
                   keyboard="email-address"
                   onChange={handleEmail}
+                  onKeyDown={handleKeyboardSubmit}
                 />
                 <TextField
                   placeholder="Password"
                   type="password"
                   onChange={handlePassword}
+                  onKeyDown={handleKeyboardSubmit}
                 />
                 <Button
                   btnText={isLoading ? <Loader isSmall={true} /> : 'Login'}

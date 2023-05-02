@@ -50,6 +50,12 @@ const SignUp = () => {
     setIsDisabled(!val.length || !password.length || !userEmail.length);
   };
 
+  const handleKeyboardSubmit = async (e) => {
+    if (e.key === 'Enter' && !isDisabled) {
+      await handleSignUp();
+    }
+  };
+
   const handleSignUp = async () => {
     setErrorMsg(null);
     setIsDisabled(true);
@@ -115,16 +121,19 @@ const SignUp = () => {
                 placeholder="Please enter a email"
                 keyboard="email-address"
                 onChange={handleSetEmail}
+                onKeyDown={handleKeyboardSubmit}
               />
               <TextField
                 placeholder="Please enter a password"
                 type="password"
                 onChange={handleSetPassword}
+                onKeyDown={handleKeyboardSubmit}
               />
               <TextField
                 placeholder="Confirm password"
                 type="password"
                 onChange={handleSetConfirmPwd}
+                onKeyDown={handleKeyboardSubmit}
               />
               <$SignUpPolicy>
                 By signing up, you acknowledge that you have read and understood
