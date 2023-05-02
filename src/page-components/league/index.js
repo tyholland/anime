@@ -87,18 +87,18 @@ const League = () => {
                   />
                 )}
                 {!!leagueData.teamId && (
-                  <SelectionCard
-                    btnText="Team"
-                    redirect={`/team?team_id=${leagueData.teamId}`}
-                  />
-                )}
-                {!!leagueData.teamId && leagueData.week > 9 (
-                  <SelectionCard
-                    btnText="Matchup"
-                    redirect={`/matchup?matchup_id=${leagueData.matchupId}`}
-                    isDisabled={!(leagueData.week > 0) || leagueData.team_b === 0}
-                    disabledMsg={leagueData.team_b === 0 ? 'This is a Bye week. There are no matchups on a bye week.' : disableMsg}
-                  />
+                  <>
+                    <SelectionCard
+                      btnText="Team"
+                      redirect={`/team?team_id=${leagueData.teamId}`}
+                    />
+                    <SelectionCard
+                      btnText="Matchup"
+                      redirect={`/matchup?matchup_id=${leagueData.matchupId}`}
+                      isDisabled={!(leagueData.week > 0) || leagueData.team_b === 0}
+                      disabledMsg={leagueData.team_b === 0 ? 'This is a Bye week. There are no matchups on a bye week.' : disableMsg}
+                    />
+                  </>
                 )}
                 <SelectionCard
                   btnText="Schedule"
