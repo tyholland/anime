@@ -55,6 +55,12 @@ const JoinLeague = () => {
     setLeagueHash(val);
   };
 
+  const handleKeyboardSubmit = async (e) => {
+    if (e.key === 'Enter' && !isDisabled) {
+      await handleJoinLeague();
+    }
+  };
+
   return (
     <>
       <Metadata
@@ -70,6 +76,7 @@ const JoinLeague = () => {
               placeholder="Enter your league code"
               onChange={handleLeagueHash}
               maxLength={11}
+              onKeyDown={handleKeyboardSubmit}
             />
             <Button
               btnText={isLoading ? <Loader isSmall={true} /> : 'Enter League'}
