@@ -34,6 +34,12 @@ const ForgotPassword = () => {
     }
   };
 
+  const handleKeyboardSubmit = async (e) => {
+    if (e.key === 'Enter' && !isDisabled) {
+      await handleForgotPwd();
+    }
+  };
+
   useEffect(() => {
     redirectToAccount(currentUser);
   }, []);
@@ -51,6 +57,7 @@ const ForgotPassword = () => {
             placeholder="Please enter a email"
             keyboard="email-address"
             onChange={handleEmail}
+            onKeyDown={handleKeyboardSubmit}
           />
           <Button
             btnText="Reset Password"
