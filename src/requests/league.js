@@ -115,12 +115,10 @@ export const getPlayoffs = async (leagueId, token) => {
   return await axiosClient(data);
 };
 
-export const startLeague = async (payload, token) => {
+export const startLeague = async () => {
   const data = {
-    url: `${api}/league/start`,
-    method: 'post',
-    body: payload,
-    token,
+    url: `${api}/cron/schedule`,
+    method: 'get',
   };
 
   return await axiosClient(data);

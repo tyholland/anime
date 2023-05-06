@@ -239,7 +239,7 @@ const Admin = () => {
                         {!editNum && (
                           <>
                             <div>Number of Teams: {teamNum}</div>
-                            { (isStarted || isLeagueDisabled) &&
+                            {isStarted || isLeagueDisabled &&
                               <Button
                                 btnText="Edit"
                                 btnFunction={() => setEditNum(true)}
@@ -293,7 +293,7 @@ const Admin = () => {
                           customBtnClass="medium"
                         />
                       </$AdminSection>
-                      {(isStarted || isLeagueDisabled) &&
+                      {isStarted || isLeagueDisabled &&
                       <$AdminSection className="delete">
                         <Button
                           btnText="Delete League"

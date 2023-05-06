@@ -165,7 +165,7 @@ const Draft = () => {
       if (draftComplete) {
         setIsDraftComplete(true);
         setInactiveLeagueData(false);
-        await startLeague({ leagueId: league_id });
+        await startLeague();
         return;
       }
     } catch (err) {
