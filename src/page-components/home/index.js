@@ -6,7 +6,6 @@ import GameplayCard from 'Components/gameplay-card';
 import SuggestCharacter from 'Components/suggest-character';
 import Button from 'Components/button';
 import { allSeries } from 'Utils/constants';
-import Ads from 'Components/ads';
 import Image from 'next/image';
 
 const Home = () => {
@@ -75,14 +74,12 @@ const Home = () => {
           always best!
         </p>
       </$GlobalContainer>
-      <Ads />
       <$GlobalContainer className="homeSection">
         <GameplayCard />
       </$GlobalContainer>
       <$GlobalContainer className="homeSection homeEven" id="suggest">
         <SuggestCharacter />
       </$GlobalContainer>
-      <Ads />
       <$GlobalContainer className="homeSection" id="podcast">
         <$GlobalTitle className="podcast">
           <Image
@@ -129,7 +126,6 @@ const Home = () => {
           })}
         </div>
       </$GlobalContainer>
-      <Ads />
     </>
   );
 };
