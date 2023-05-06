@@ -292,6 +292,7 @@ const Admin = () => {
                           isDisabled={isStarted || isLeagueDisabled}
                           customBtnClass="medium"
                         />
+                        <div>Your League doesn't officially start until the Monday after you complete your League Draft.</div>
                       </$AdminSection>
                       {isStarted || isLeagueDisabled &&
                       <$AdminSection className="delete">
@@ -343,7 +344,7 @@ const Admin = () => {
                   </Collapsible>
                 </$AdminContainer>
                 <Notification
-                  message="Go to the League page and you will see that the Draft button is now available."
+                  message="Your Draft is now avilable. Go to the League page in order to see the Draft button. Your League won't officially start until the Monday after you finish your League Draft."
                   modalIsOpen={draftNotify}
                   closeModal={closeModal}
                 />

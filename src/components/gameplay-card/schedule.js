@@ -9,7 +9,7 @@ const Schedule = () => {
     <$GameplayCardContainer>
       <$GameplayCardSection>
         Each league will span 12 weeks and will include a minimum of 6 and a
-        maximum of 10 teams. Additionally, an elemental affinity will be
+        maximum of 10 teams. Additionally, a new elemental affinity will be
         accessible on a weekly basis.
       </$GameplayCardSection>
       <$GameplayCardSection>
