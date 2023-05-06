@@ -107,9 +107,9 @@ const TeamCard = ({ data }) => {
           <$TeamCardNameAffinity className="duo">
             <div className="section">
               <$TeamCardCharacterWrapper className="duo">
-                <$TeamCardCharacter onClick={() => getProfile(support.id)}>
-                  <$TeamCardDuoSpace className="text">
-                    {support.name}
+                <$TeamCardCharacter className="noLink">
+                  <$TeamCardDuoSpace className="text noLink">
+                    -
                   </$TeamCardDuoSpace>
                 </$TeamCardCharacter>
               </$TeamCardCharacterWrapper>
@@ -117,9 +117,9 @@ const TeamCard = ({ data }) => {
             </div>
             <div className="section">
               <$TeamCardCharacterWrapper className="duo">
-                <$TeamCardCharacter className="noLink">
-                  <$TeamCardDuoSpace className="text noLink">
-                    -
+                <$TeamCardCharacter onClick={() => getProfile(support.id)}>
+                  <$TeamCardDuoSpace className="text">
+                    {support.name}
                   </$TeamCardDuoSpace>
                 </$TeamCardCharacter>
               </$TeamCardCharacterWrapper>
