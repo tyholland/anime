@@ -28,7 +28,8 @@ export const $DraftSection = styled.div`
     }
   }
 
-  &.recent {
+  &.recent,
+  &.current {
     justify-content: flex-start;
     margin: 3% 0;
     padding: 2%;
@@ -38,6 +39,12 @@ export const $DraftSection = styled.div`
     > div {
       margin-right: 3%;
     }
+  }
+
+  &.current {
+    background-color: ${COLOR_WHITE};
+    font-weight: ${FONT_WEIGHT_BOLD};
+    padding: 2% 2% 0 0;
   }
 `;
 
