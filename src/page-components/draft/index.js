@@ -270,6 +270,8 @@ const Draft = () => {
       setRestartTimer(timerReset + currentUser?.user_id);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to draft player'));
+      setErrorMsg(err.response.data.message);
+      delete teamsList[index].pick;
     }
   };
 
@@ -518,7 +520,7 @@ const Draft = () => {
                   <>
                     <$CollapsibleStyles />
                     <$GlobalTitle>Draft Results</$GlobalTitle>
-                    {draftResults.map((item, index) => {
+                    {draftResults?.map((item, index) => {
                       const count = index + 1;
                       const teams = JSON.parse(item.teams);
 
