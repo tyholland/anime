@@ -239,11 +239,13 @@ const Admin = () => {
                         {!editNum && (
                           <>
                             <div>Number of Teams: {teamNum}</div>
-                            <Button
-                              btnText="Edit"
-                              btnFunction={() => setEditNum(true)}
-                              customBtnClass="small text edit"
-                            />
+                            { (isStarted || isLeagueDisabled) &&
+                              <Button
+                                btnText="Edit"
+                                btnFunction={() => setEditNum(true)}
+                                customBtnClass="small text edit"
+                              />
+                            }
                           </>
                         )}
                       </$AdminSection>
@@ -291,6 +293,7 @@ const Admin = () => {
                           customBtnClass="medium"
                         />
                       </$AdminSection>
+                      {(isStarted || isLeagueDisabled) &&
                       <$AdminSection className="delete">
                         <Button
                           btnText="Delete League"
@@ -298,6 +301,7 @@ const Admin = () => {
                           customBtnClass="text"
                         />
                       </$AdminSection>
+                      }
                     </$AdminWrapper>
                   </Collapsible>
                   <Collapsible trigger="Teams" triggerTagName="div">
