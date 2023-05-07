@@ -187,6 +187,34 @@ const Admin = () => {
     setDraftNotify(false);
   };
 
+  const basicUp = (
+    <div className="collapseContainer">
+      <div>Basic</div>
+      <div className="up">&#10132;</div>
+    </div>
+  );
+
+  const basicDown = (
+    <div className="collapseContainer">
+      <div>Basic</div>
+      <div className="down">&#10132;</div>
+    </div>
+  );
+
+  const teamUp = (
+    <div className="collapseContainer">
+      <div>Teams</div>
+      <div className="up">&#10132;</div>
+    </div>
+  );
+
+  const teamDown = (
+    <div className="collapseContainer">
+      <div>Teams</div>
+      <div className="down">&#10132;</div>
+    </div>
+  );
+
   useEffect(() => {
     setNotLoggedIn(!currentUser);
   }, [currentUser]);
@@ -219,7 +247,7 @@ const Admin = () => {
             {league && (
               <>
                 <$AdminContainer>
-                  <Collapsible trigger="Basic" triggerTagName="div">
+                  <Collapsible trigger={basicDown} triggerTagName="div" triggerWhenOpen={basicUp}>
                     <$AdminWrapper>
                       <$AdminSection>
                         {editNum && (
@@ -305,7 +333,7 @@ const Admin = () => {
                       }
                     </$AdminWrapper>
                   </Collapsible>
-                  <Collapsible trigger="Teams" triggerTagName="div">
+                  <Collapsible trigger={teamDown} triggerTagName="div" triggerWhenOpen={teamUp}>
                     <$AdminWrapper className="column">
                       <ol>
                         {teamNames.map((team) => {

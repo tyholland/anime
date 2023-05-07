@@ -18,6 +18,7 @@ import {
   $AccountSectionRight,
   $AccountSectionLabel,
   $AccountPwdSuccess,
+  $AccountContainer
 } from './account.style';
 import { addEvent } from 'Utils/amplitude';
 import { getAuth, signOut, updatePassword, deleteUser } from 'firebase/auth';
@@ -121,6 +122,48 @@ const Account = () => {
     }
   };
 
+  const profileUp = (
+    <div className="collapseContainer">
+      <div>Profile</div>
+      <div className="up">&#10132;</div>
+    </div>
+  );
+
+  const profileDown = (
+    <div className="collapseContainer">
+      <div>Profile</div>
+      <div className="down">&#10132;</div>
+    </div>
+  );
+
+  const pwdUp = (
+    <div className="collapseContainer">
+      <div>Change Password</div>
+      <div className="up">&#10132;</div>
+    </div>
+  );
+
+  const pwdDown = (
+    <div className="collapseContainer">
+      <div>Change Password</div>
+      <div className="down">&#10132;</div>
+    </div>
+  );
+
+  const logUp = (
+    <div className="collapseContainer">
+      <div>Log Out</div>
+      <div className="up">&#10132;</div>
+    </div>
+  );
+
+  const logDown = (
+    <div className="collapseContainer">
+      <div>Log Out</div>
+      <div className="down">&#10132;</div>
+    </div>
+  );
+
   useEffect(() => {
     if (!logoutTrigger) {
       setNotLoggedIn(!currentUser);
@@ -156,8 +199,8 @@ const Account = () => {
             {isLoading && <Loader />}
             {!isLoading && (
               <>
-                <div>
-                  <Collapsible trigger="Profile" triggerTagName="div">
+                <$AccountContainer>
+                  <Collapsible trigger={profileDown} triggerWhenOpen={profileUp} triggerTagName="div">
                     <$AccountWrapper>
                       <$AccountSectionRight>
                         <$AccountSectionLabel>Email:</$AccountSectionLabel>
@@ -170,7 +213,7 @@ const Account = () => {
                       </$AccountSectionRight>
                     </$AccountWrapper>
                   </Collapsible>
-                  <Collapsible trigger="Change Password" triggerTagName="div">
+                  <Collapsible trigger={pwdDown} triggerWhenOpen={pwdUp} triggerTagName="div">
                     <$AccountWrapper className="column">
                       <div>
                         {errorMsg && <ErrorMsg msg={errorMsg} />}
@@ -202,7 +245,8 @@ const Account = () => {
                     </$AccountWrapper>
                   </Collapsible>
                   <Collapsible
-                    trigger="Log Out"
+                    trigger={logDown}
+                    triggerWhenOpen={logUp}
                     triggerTagName="div"
                     triggerElementProps={{ id: 'last' }}
                   >
@@ -216,7 +260,7 @@ const Account = () => {
                       />
                     </$AccountWrapper>
                   </Collapsible>
-                </div>
+                </$AccountContainer>
                 {adminAccess && (
                   <Button
                     btnText="Admin Dashboard"

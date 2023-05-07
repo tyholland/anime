@@ -67,3 +67,20 @@ export const $AccountPwdSuccess = styled.div`
   font-weight: ${FONT_WEIGHT_BOLD};
   margin-top: 3%;
 `;
+
+export const $AccountContainer = styled.div`
+  .collapseContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .down {
+    rotate: 90deg;
+  }
+
+  .up {
+    rotate: 270deg;
+  }
+`;

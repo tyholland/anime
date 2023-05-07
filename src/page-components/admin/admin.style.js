@@ -74,15 +74,42 @@ export const $AdminSection = styled.div`
 
   &.start {
     justify-content: center;
+    flex-direction: column;
     width: 100%;
 
     button {
       text-align: center;
       margin: 3% 0 0 !important;
     }
+
+    div {
+      width: 60%;
+      margin-top: 3%;
+      text-align: center;
+
+      ${MOBILE_VIEW} {
+        width: 100%;
+        margin-top: 5%;
+      }
+    }
   }
 `;
 
 export const $AdminContainer = styled.div`
   margin-bottom: 5%;
+
+  .collapseContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .down {
+    rotate: 90deg;
+  }
+
+  .up {
+    rotate: 270deg;
+  }
 `;
