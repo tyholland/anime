@@ -250,7 +250,8 @@ export const $GlobalTitle = styled.div`
   text-align: center;
   position: relative;
 
-  &.home {
+  &.home,
+  &.champ {
     background: ${COLOR_WHITE};
     width: 400px;
     margin: 0 auto;
@@ -258,8 +259,17 @@ export const $GlobalTitle = styled.div`
     border-radius: 15px;
 
     ${RESPONSIVE_VIEW} {
-      width: 75%;
+      width: 56%;
     }
+
+    ${MOBILE_VIEW} {
+      width: 96%;
+    }
+  }
+
+  &.champ {
+    margin-top: 2%;
+    background: ${COLOR_ORANGE};
   }
 
   ${RESPONSIVE_VIEW} {

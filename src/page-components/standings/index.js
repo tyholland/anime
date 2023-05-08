@@ -16,6 +16,7 @@ import {
   $StandingsTeamContainer,
   $StandingsTeamName,
 } from './standings.style';
+import LeagueChamp from 'Components/league-champ';
 
 const Standings = () => {
   const router = useRouter();
@@ -61,6 +62,7 @@ const Standings = () => {
       {account && (
         <>
           <BackLink />
+          <LeagueChamp />
           <$GlobalContainer className="grid schedule">
             {games?.map((game, index) => {
               const { team, win, loss } = game;

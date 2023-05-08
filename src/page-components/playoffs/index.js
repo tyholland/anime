@@ -13,6 +13,7 @@ import Error from 'PageComponents/error';
 import { useAppContext } from 'src/hooks/context';
 import NotUser from 'Components/not-user';
 import ReadMore from 'Components/read-more';
+import LeagueChamp from 'Components/league-champ';
 
 const Playoffs = () => {
   const defaultFirstRound = [
@@ -117,6 +118,7 @@ const Playoffs = () => {
       {account && (
         <>
           <BackLink />
+          <LeagueChamp />
           <$GlobalContainer>
             <div>
               <Collapsible trigger="First Round" triggerTagName="div">

@@ -1,5 +1,6 @@
 import BackLink from 'Components/back-link';
 import GameContainer from 'Components/game-container';
+import LeagueChamp from 'Components/league-champ';
 import Metadata from 'Components/metadata';
 import NotUser from 'Components/not-user';
 import ReadMore from 'Components/read-more';
@@ -56,6 +57,7 @@ const Scoreboard = () => {
       {account && (
         <>
           <BackLink />
+          <LeagueChamp />
           <$GlobalContainer className="grid schedule">
             {games?.map((game) => {
               return <GameContainer game={game} key={game.teamA} />;

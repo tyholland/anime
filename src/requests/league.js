@@ -123,3 +123,13 @@ export const startLeague = async () => {
 
   return await axiosClient(data);
 };
+
+export const getLeagueChamp = async (leagueId, token) => {
+  const data = {
+    url: `${api}/league/champion/${leagueId}`,
+    method: 'get',
+    token,
+  };
+
+  return await axiosClient(data);
+};

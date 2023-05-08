@@ -10,6 +10,7 @@ import { addEvent } from 'Utils/amplitude';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
 import NotUser from 'Components/not-user';
+import LeagueChamp from 'Components/league-champ';
 
 const League = () => {
   const router = useRouter();
@@ -70,6 +71,7 @@ const League = () => {
       {account && (
         <$GlobalContainer className="bgImage leagueDetail">
           <$GlobalTitle className="home">League Hub</$GlobalTitle>
+          <LeagueChamp classProp="champ" />
           {!leagueData && <Loader />}
           {leagueData && (
             <>
