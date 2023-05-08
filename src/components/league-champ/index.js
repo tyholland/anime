@@ -14,10 +14,6 @@ const LeagueChamp = ({classProp = null}) => {
   const handleLeagueChamp = async () => {
     const { league_id } = router.query;
 
-    if (!league_id) {
-      return;
-    }
-
     try {
       const { champ } = await getLeagueChamp(league_id, currentUser?.token);
       setTheChamp(champ);
@@ -27,8 +23,10 @@ const LeagueChamp = ({classProp = null}) => {
   };
 
   useEffect(() => {
-    handleLeagueChamp();
-  }, [currentUser]);
+    if (Object.keys(router.query).length > 0) {
+      handleLeagueChamp();
+    }
+  }, [router.query]);
 
   return (
     <>
