@@ -65,7 +65,7 @@ const JoinLeague = () => {
     <>
       <Metadata
         title="Join a League"
-        description="Join an ABZ League and see if you can create the ultimate team and win the league"
+        description="Join an AFL League and see if you can create the ultimate team and win the league"
       />
       <BackLink />
       <$GlobalContainer>

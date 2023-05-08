@@ -359,11 +359,11 @@ const Admin = () => {
                           pageTitle="Invite friends to Join League"
                           title={`Join my Anime Fantasy League. League code: ${league.hash}`}
                           description="Build your ultimate anime team"
-                          singleHashtag="#abzFantasyLeague"
+                          singleHashtag="#animeFantasyLeague"
                           pluralHashtags={[
-                            'abz',
-                            'abzFantasyLeague',
-                            'animebrothaz',
+                            'afl',
+                            'aflFantasyLeague',
+                            'animeFantasyLeague',
                           ]}
                           url={`${origin}/league/join`}
                         />

@@ -88,14 +88,14 @@ const SuggestCharacter = () => {
         <SocialMedia
           pageTitle="Tell Your Friends"
           title="Suggest a new character for the Anime Fantasy League"
-          description="ABZ wants to know what character you want to have on your team."
-          singleHashtag="#abzFantasyLeague"
+          description="AFL wants to know what character you want to have on your team."
+          singleHashtag="#animeFantasyLeague"
           pluralHashtags={[
-            'abz',
-            'abzFantasyLeague',
+            'afl',
+            'animeFantasyLeague',
             'animebrothaz',
-            'abzSuggestCharacter',
-            'animebrothazSuggestion',
+            'aflSuggestCharacter',
+            'animeSuggestion',
           ]}
           url={pathname}
         />

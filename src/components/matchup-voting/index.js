@@ -158,8 +158,8 @@ const MatchupVoting = ({
         pageTitle={isChangeable ? 'Share Matchup' : 'Get Votes'}
         title={`Matchup of the week: ${playerA.name} vs ${playerB.name}`}
         description={`Click the link to vote on the matchup of the week: ${playerA.name} vs ${playerB.name}...`}
-        singleHashtag="#abzFantasyLeague"
-        pluralHashtags={['abz', 'abzFantasyLeague', 'animebrothaz']}
+        singleHashtag="#animeFantasyLeague"
+        pluralHashtags={['afl', 'animeFantasyLeague', 'aflFantasyLeague']}
         url={pathname}
       />
       {!!isChangeable && (

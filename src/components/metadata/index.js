@@ -16,23 +16,23 @@ const Metadata = ({ title, description, image = null }) => {
 
   return (
     <Head>
-      <title>{`ABZ - ${title}`}</title>
-      <meta name="title" content={`ABZ - ${title}`} />
+      <title>{`AFL - ${title}`}</title>
+      <meta name="title" content={`AFL - ${title}`} />
       <meta name="description" content={description} />
       <meta name="image" content={img} />
 
       <meta property="og:type" content="website" />
       <meta property="og:url" content={`${host}${pathname}`} />
-      <meta property="og:title" content={`ABZ - ${title}`} />
+      <meta property="og:title" content={`AFL - ${title}`} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={img} />
 
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={`${host}${pathname}`} />
-      <meta property="twitter:title" content={`ABZ - ${title}`} />
+      <meta property="twitter:title" content={`AFL - ${title}`} />
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={img} />
-      <meta property="twitter:image:alt" content={`ABZ - ${title}`} />
+      <meta property="twitter:image:alt" content={`AFL - ${title}`} />
 
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />

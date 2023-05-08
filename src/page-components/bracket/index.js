@@ -132,7 +132,7 @@ const Bracket = () => {
   const handleRules = () => {
     const msg = (
       <div>
-        Welcome to the ABZ Bracket. The rules for the Bracket are very simple.
+        Welcome to the AFL Bracket. The rules for the Bracket are very simple.
         <p>
           You can vote on a specific matchup. If you click on a character in a
           matchup, that means you are voting for that character to win. Once you
@@ -209,7 +209,7 @@ const Bracket = () => {
     <>
       <Metadata
         title="Bracket"
-        description="Your ABZ Bracket shows all the head-to-head matchups that you want people to vote on. Share your bracket will all your friends or on your social media accounts."
+        description="Your AFL Bracket shows all the head-to-head matchups that you want people to vote on. Share your bracket will all your friends or on your social media accounts."
       />
       <$BracketContainer>
         <$GlobalTitle className="bracket">
@@ -261,11 +261,11 @@ const Bracket = () => {
             </$BracketWrapper>
             <$BracketWrapper>
               <SocialMedia
-                pageTitle="ABZ Bracket"
+                pageTitle="AFL Bracket"
                 title="Anime Bracket matchups"
                 description="Bracket features some great anime head-to-head matchups"
-                singleHashtag="#abzBracket"
-                pluralHashtags={['abz', 'abzBracket', 'animebrothaz']}
+                singleHashtag="#aflBracket"
+                pluralHashtags={['afl', 'aflBracket', 'bracket']}
                 url={pathname}
               />
             </$BracketWrapper>

@@ -8,7 +8,7 @@ const Policy = () => {
     <>
       <Metadata
         title="Privacy Policy"
-        description="Privacy policy for the ABZ Anime Fantasy League"
+        description="Privacy policy for the AFL Anime Fantasy League"
       />
       <$GlobalContainer>
         <$GlobalTitle>Privacy Policy</$GlobalTitle>
