@@ -121,7 +121,7 @@ const Playoffs = () => {
           <LeagueChamp />
           <$GlobalContainer>
             <div>
-              <Collapsible trigger="First Round" triggerTagName="div">
+              <Collapsible trigger="First Round" triggerTagName="div" triggerElementProps={{ id: 'first', 'aria-controls': 'first' }} contentElementId="first">
                 <$PlayoffsWrapper>
                   {round1.map((game, index) => {
                     return (
@@ -134,7 +134,7 @@ const Playoffs = () => {
                   })}
                 </$PlayoffsWrapper>
               </Collapsible>
-              <Collapsible trigger="Semi-Finals" triggerTagName="div">
+              <Collapsible trigger="Semi-Finals" triggerTagName="div" triggerElementProps={{ id: 'semis', 'aria-controls': 'semis' }} contentElementId="semis">
                 <$PlayoffsWrapper>
                   {round2.map((game, index) => {
                     return (
@@ -147,7 +147,7 @@ const Playoffs = () => {
                   })}
                 </$PlayoffsWrapper>
               </Collapsible>
-              <Collapsible trigger="Finals" triggerTagName="div">
+              <Collapsible trigger="Finals" triggerTagName="div" triggerElementProps={{ id: 'finals', 'aria-controls': 'finals' }} contentElementId="finals">
                 <$PlayoffsWrapper>
                   {round3.map((game) => {
                     return <GameContainer game={game} key={game.teamA} />;

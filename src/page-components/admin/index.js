@@ -247,7 +247,7 @@ const Admin = () => {
             {league && (
               <>
                 <$AdminContainer>
-                  <Collapsible trigger={basicDown} triggerTagName="div" triggerWhenOpen={basicUp}>
+                  <Collapsible trigger={basicDown} triggerTagName="div" triggerWhenOpen={basicUp} triggerElementProps={{ id: 'basic', 'aria-controls': 'basic' }} contentElementId="basic">
                     <$AdminWrapper>
                       <$AdminSection>
                         {editNum && (
@@ -333,7 +333,7 @@ const Admin = () => {
                       }
                     </$AdminWrapper>
                   </Collapsible>
-                  <Collapsible trigger={teamDown} triggerTagName="div" triggerWhenOpen={teamUp}>
+                  <Collapsible trigger={teamDown} triggerTagName="div" triggerWhenOpen={teamUp} triggerElementProps={{ id: 'team', 'aria-controls': 'team' }} contentElementId="team">
                     <$AdminWrapper className="column">
                       <ol>
                         {teamNames.map((team) => {

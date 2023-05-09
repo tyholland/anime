@@ -274,7 +274,7 @@ const Draft = () => {
 
       const playerChar = character?.rank.toLowerCase();
       delete thePlayers[playerChar];
-      
+
       setPlayerList(thePlayers);
     }
   };
@@ -533,6 +533,7 @@ const Draft = () => {
                           trigger={`Round ${count}`}
                           triggerTagName="div"
                           key={index}
+                          triggerElementProps={{ id: `round-${count}`, 'aria-controls': `round-${count}` }} contentElementId={`round-${count}`}
                         >
                           {teams.map((team) => {
                             return (

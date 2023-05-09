@@ -180,6 +180,7 @@ const BioCard = ({ characterId }) => {
                   trigger="Additional Info"
                   triggerTagName="div"
                   containerElementProps={{ content: 'bio' }}
+                  triggerElementProps={{ id: 'villainAccordion', 'aria-controls': 'villainAccordion' }} contentElementId="villainAccordion"
                 >
                   Damage is given to characters that have at least one of these
                   affinities as a weakness. If the affinity is "No Affinity",
@@ -210,6 +211,7 @@ const BioCard = ({ characterId }) => {
                   trigger="Additional Info"
                   triggerTagName="div"
                   containerElementProps={{ content: 'bio' }}
+                  triggerElementProps={{ id: 'supportAccordion', 'aria-controls': 'supportAccordion' }} contentElementId="supportAccordion"
                 >
                   Boost is given to characters that have one or all of these
                   affinities.
@@ -240,6 +242,7 @@ const BioCard = ({ characterId }) => {
                   trigger="Additional Info"
                   triggerTagName="div"
                   containerElementProps={{ content: 'bio' }}
+                  triggerElementProps={{ id: 'battlefieldAccordion', 'aria-controls': 'battlefieldAccordion' }} contentElementId="battlefieldAccordion"
                 >
                   <p>
                     Boost is given to characters that have one or all of these

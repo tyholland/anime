@@ -200,7 +200,7 @@ const Account = () => {
             {!isLoading && (
               <>
                 <$AccountContainer>
-                  <Collapsible trigger={profileDown} triggerWhenOpen={profileUp} triggerTagName="div">
+                  <Collapsible trigger={profileDown} triggerWhenOpen={profileUp} triggerTagName="div" triggerElementProps={{ id: 'profile', 'aria-controls': 'profile' }} contentElementId="profile">
                     <$AccountWrapper>
                       <$AccountSectionRight>
                         <$AccountSectionLabel>Email:</$AccountSectionLabel>
@@ -213,7 +213,7 @@ const Account = () => {
                       </$AccountSectionRight>
                     </$AccountWrapper>
                   </Collapsible>
-                  <Collapsible trigger={pwdDown} triggerWhenOpen={pwdUp} triggerTagName="div">
+                  <Collapsible trigger={pwdDown} triggerWhenOpen={pwdUp} triggerTagName="div" triggerElementProps={{ id: 'password', 'aria-controls': 'password' }} contentElementId="password">
                     <$AccountWrapper className="column">
                       <div>
                         {errorMsg && <ErrorMsg msg={errorMsg} />}
@@ -248,7 +248,8 @@ const Account = () => {
                     trigger={logDown}
                     triggerWhenOpen={logUp}
                     triggerTagName="div"
-                    triggerElementProps={{ id: 'last' }}
+                    triggerElementProps={{ id: 'last', 'aria-controls': 'last' }}
+                    contentElementId="last"
                   >
                     <$AccountWrapper className="column">
                       <div>Are you sure you want to logout?</div>
