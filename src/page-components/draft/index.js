@@ -271,7 +271,11 @@ const Draft = () => {
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to draft player'));
       setErrorMsg(err.response.data.message);
-      delete teamsList[index].pick;
+
+      const playerChar = character?.rank.toLowerCase();
+      delete thePlayers[playerChar];
+      
+      setPlayerList(thePlayers);
     }
   };
 

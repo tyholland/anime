@@ -13,7 +13,7 @@ export const $BioReviewWrapper = styled.div`
   }
 
   &.btn {
-    margin-bottom: 0;
+    margin: 0 auto;
     flex-direction: row;
     justify-content: space-around;
 

@@ -70,7 +70,7 @@ const Schedule = () => {
           <BackLink />
           <$GlobalContainer className="grid schedule">
             {games?.map((game) => {
-              const { week, teamA, teamB, scoreA, scoreB, match } = game;
+              const { week, teamA, teamB, scoreA, scoreB, match, leagueComplete } = game;
               const activeGames = games.filter(
                 (match) => match.scoreA > 0 || match.scoreB > 0
               );
@@ -81,7 +81,7 @@ const Schedule = () => {
                 const winner =
                   team === teamA ? scoreA > scoreB : scoreB > scoreA;
 
-                return isOldWeek ? winner : false;
+                return isOldWeek || leagueComplete ? winner : false;
               };
 
               const handleClick = () => {

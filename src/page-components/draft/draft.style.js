@@ -109,7 +109,9 @@ export const $DraftRound = styled.div`
 `;
 
 export const $DraftPlayerGrid = styled.div`
-  width: 600px;
+  max-width: 600px;
+  min-width: 400px;
+  margin-right: 5%;
 
   ${MOBILE_VIEW} {
     width: 100%;
