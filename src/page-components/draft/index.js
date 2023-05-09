@@ -272,11 +272,21 @@ const Draft = () => {
       addEvent('Error', responseError(err, 'Failed to draft player'));
       setErrorMsg(err.response.data.message);
 
-      const playerChar = character?.rank.toLowerCase();
-      delete thePlayers[playerChar];
+      for (const key in thePlayers) {
+        if (thePlayers[key].fullName === character.fullName) {
+          thePlayers[key].affinity = null;
+          thePlayers[key].boost = {week: null, support: null, battlefield: null, voting: null};
+          thePlayers[key].damage = {week: null, villain: null, battlefield: null, voting: null};
+          thePlayers[key].id = null;
+          thePlayers[key].matchPoints = 0;
+          thePlayers[key].name = null;
+          thePlayers[key].originalPower = null;
+          thePlayers[key].teamPoints = null;
+        }
+      }
 
       setPlayerList(thePlayers);
-    }
+    };
   };
 
   const draftNullPlayer = async (allTeams, draftData, userTeamId) => {
