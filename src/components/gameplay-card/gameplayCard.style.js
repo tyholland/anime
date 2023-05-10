@@ -76,3 +76,14 @@ export const $GameplayCardAccordian = styled.div`
     rotate: 270deg;
   }
 `;
+
+export const $GameplayCardAffinity = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  div {
+    margin: 0 1%;
+  }
+`;

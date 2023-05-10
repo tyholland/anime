@@ -29,6 +29,17 @@ const Changelog = () => {
               </li>
             </ul>
           </li>
+          <li>
+            Gameplay Rules
+            <ul>
+              <li>
+                Updated Weekly Element Affinities copy
+              </li>
+              <li>
+                Added affinity icons
+              </li>
+            </ul>
+          </li>
         </ul>
         <h3>March 24, 2023</h3>
         <ul>

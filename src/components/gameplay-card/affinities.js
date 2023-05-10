@@ -5,7 +5,9 @@ import {
   $GameplayCardHeader,
   $GameplayCardWrapper,
   $GameplayCardContainer,
+  $GameplayCardAffinity
 } from './gameplayCard.style';
+import { $GlobalCircle } from 'Styles/global.style';
 
 const Affinities = () => {
   return (
@@ -16,93 +18,31 @@ const Affinities = () => {
         affinity is, it could determine whether your team wins or loses the
         match.
       </div>
-      <p>
-        <strong>Affinities</strong>: Fire, Water, Earth, Wind, Arcane, Darkness,
-        Celestial, Ice, Electric, No Affinity
-      </p>
-      <p>
-        <strong>Affinities Combos</strong>: Wind & Water, Darkness & Ice, Arcane
-        & Fire
-      </p>
+      <$GameplayCardAffinity>
+        <strong>Affinities</strong>: <$GlobalCircle className="fire"></$GlobalCircle> Fire, <$GlobalCircle className="water"></$GlobalCircle> Water, <$GlobalCircle className="earth"></$GlobalCircle> Earth, <$GlobalCircle className="wind"></$GlobalCircle> Wind, <$GlobalCircle className="arcane"></$GlobalCircle> Arcane, <$GlobalCircle className="darkness"></$GlobalCircle> Darkness, <$GlobalCircle className="celestial"></$GlobalCircle> Celestial, <$GlobalCircle className="ice"></$GlobalCircle> Ice, <$GlobalCircle className="electric"></$GlobalCircle> Electric, <$GlobalCircle className="noAffinity"></$GlobalCircle> No Affinity
+      </$GameplayCardAffinity>
+      <$GameplayCardAffinity>
+        <strong>Affinities Combos</strong>: <$GlobalCircle className="wind"></$GlobalCircle> & <$GlobalCircle className="water"></$GlobalCircle>, <$GlobalCircle className="darkness"></$GlobalCircle> & <$GlobalCircle className="ice"></$GlobalCircle>, <$GlobalCircle className="arcane"></$GlobalCircle> & <$GlobalCircle className="fire"></$GlobalCircle>
+      </$GameplayCardAffinity>
       <$GameplayCardWrapper>
         <div>
           <$GameplayCardHeader>Regular Season</$GameplayCardHeader>
           <$GameplayCardSection className="indent">
-            <$GameplayCardTitle className="bold">Week 1</$GameplayCardTitle>
-            <$GameplayCardSection className="indent">
-              Random Affinity/Combos
-            </$GameplayCardSection>
-          </$GameplayCardSection>
-          <$GameplayCardSection className="indent">
-            <$GameplayCardTitle className="bold">Week 2</$GameplayCardTitle>
-            <$GameplayCardSection className="indent">
-              Random Affinity/Combos
-            </$GameplayCardSection>
-          </$GameplayCardSection>
-          <$GameplayCardSection className="indent">
-            <$GameplayCardTitle className="bold">Week 3</$GameplayCardTitle>
-            <$GameplayCardSection className="indent">
-              Random Affinity/Combos
-            </$GameplayCardSection>
-          </$GameplayCardSection>
-          <$GameplayCardSection className="indent">
-            <$GameplayCardTitle className="bold">Week 4</$GameplayCardTitle>
-            <$GameplayCardSection className="indent">
-              Random Affinity/Combos
-            </$GameplayCardSection>
-          </$GameplayCardSection>
-          <$GameplayCardSection className="indent">
-            <$GameplayCardTitle className="bold">Week 5</$GameplayCardTitle>
-            <$GameplayCardSection className="indent">
-              Random Affinity/Combos
-            </$GameplayCardSection>
-          </$GameplayCardSection>
-          <$GameplayCardSection className="indent">
-            <$GameplayCardTitle className="bold">Week 6</$GameplayCardTitle>
-            <$GameplayCardSection className="indent">
-              Random Affinity/Combos
-            </$GameplayCardSection>
-          </$GameplayCardSection>
-          <$GameplayCardSection className="indent">
-            <$GameplayCardTitle className="bold">Week 7</$GameplayCardTitle>
-            <$GameplayCardSection className="indent">
-              Random Affinity/Combos
-            </$GameplayCardSection>
-          </$GameplayCardSection>
-          <$GameplayCardSection className="indent">
-            <$GameplayCardTitle className="bold">Week 8</$GameplayCardTitle>
-            <$GameplayCardSection className="indent">
-              Random Affinity/Combos
-            </$GameplayCardSection>
-          </$GameplayCardSection>
-          <$GameplayCardSection className="indent">
-            <$GameplayCardTitle className="bold">Week 9</$GameplayCardTitle>
-            <$GameplayCardSection className="indent">
-              Random Affinity/Combos
-            </$GameplayCardSection>
+            <$GameplayCardTitle className="bold">Weeks 1 - 9</$GameplayCardTitle>
           </$GameplayCardSection>
         </div>
         <div>
           <$GameplayCardHeader>Playoffs (first round)</$GameplayCardHeader>
           <$GameplayCardSection className="indent">
             <$GameplayCardTitle className="bold">Week 10</$GameplayCardTitle>
-            <$GameplayCardSection className="indent">
-              Random Affinity/Combos
-            </$GameplayCardSection>
           </$GameplayCardSection>
           <$GameplayCardHeader>Semi-Finals (second round)</$GameplayCardHeader>
           <$GameplayCardSection className="indent">
             <$GameplayCardTitle className="bold">Week 11</$GameplayCardTitle>
-            <$GameplayCardSection className="indent">
-              Random Affinity/Combos
-            </$GameplayCardSection>
           </$GameplayCardSection>
           <$GameplayCardHeader>Finals</$GameplayCardHeader>
           <$GameplayCardSection className="indent">
             <$GameplayCardTitle className="bold">Week 12</$GameplayCardTitle>
-            <$GameplayCardSection className="indent">
-              Random Affinity/Combos
-            </$GameplayCardSection>
           </$GameplayCardSection>
         </div>
       </$GameplayCardWrapper>
