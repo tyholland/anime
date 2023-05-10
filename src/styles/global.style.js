@@ -384,6 +384,8 @@ export const $GlobalCircle = styled.div`
 
     ${MOBILE_VIEW} {
       margin: 2px 2px 0;
+      width: 14px;
+      height: 14px;
     }
   }
 `;
