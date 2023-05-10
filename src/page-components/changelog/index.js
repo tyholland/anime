@@ -11,6 +11,17 @@ const Changelog = () => {
       />
       <$GlobalContainer>
         <$GlobalTitle>Changelog</$GlobalTitle>
+        <h3>May 09, 2023</h3>
+        <ul>
+          <li>
+            Affinity Icons
+            <ul>
+              <li>
+                Removed the color swatches and added icons for each affinity
+              </li>
+            </ul>
+          </li>
+        </ul>
         <h3>March 24, 2023</h3>
         <ul>
           <li>

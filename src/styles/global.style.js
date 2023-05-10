@@ -333,50 +333,50 @@ export const $GlobalSubTitle = styled.div`
 `;
 
 export const $GlobalCircle = styled.div`
-  border: 1px solid ${COLOR_BLACK};
-  width: 14px;
-  height: 14px;
-  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 
   &.fire {
-    background-color: ${COLOR_RED};
+    background-image: url(/assets/icons/fire.webp);
   }
 
   &.arcane {
-    background-color: #999;
+    background-image: url(/assets/icons/arcane.webp);
   }
 
   &.darkness {
-    background-color: ${COLOR_BLACK};
-    border: 1px solid #ccc;
+    background-image: url(/assets/icons/darkness.webp);
   }
 
   &.water {
-    background-color: ${COLOR_BLUE};
+    background-image: url(/assets/icons/water.webp);
   }
 
   &.ice {
-    background-color: rgb(137, 196, 244);
+    background-image: url(/assets/icons/ice.webp);
   }
 
   &.electric {
-    background-color: #ffd70080;
+    background-image: url(/assets/icons/electric.webp);
   }
 
   &.wind {
-    background-color: #00000020;
+    background-image: url(/assets/icons/wind.webp);
   }
 
   &.earth {
-    background-color: #964b0070;
+    background-image: url(/assets/icons/earth.webp);
   }
 
   &.celestial {
-    background-color: ${COLOR_WHITE};
+    background-image: url(/assets/icons/celestial.webp);
   }
 
   &.noAffinity {
-    background: #bf40bf60;
+    background-image: url(/assets/icons/no-affinity.webp);
   }
 
   &.team {
@@ -384,8 +384,6 @@ export const $GlobalCircle = styled.div`
 
     ${MOBILE_VIEW} {
       margin: 2px 2px 0;
-      width: 10px;
-      height: 10px;
     }
   }
 `;
