@@ -21,6 +21,14 @@ const Changelog = () => {
               </li>
             </ul>
           </li>
+          <li>
+            Accordion arrows
+            <ul>
+              <li>
+                Add down/ip arrows to all remaining accordions
+              </li>
+            </ul>
+          </li>
         </ul>
         <h3>March 24, 2023</h3>
         <ul>

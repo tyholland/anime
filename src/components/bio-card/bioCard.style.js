@@ -106,3 +106,20 @@ export const $BioWrapper = styled.div`
     }
   }
 `;
+
+export const $BioAccordian = styled.div`
+  .collapseContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .down {
+    rotate: 90deg;
+  }
+
+  .up {
+    rotate: 270deg;
+  }
+`;

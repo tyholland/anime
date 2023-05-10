@@ -183,3 +183,20 @@ export const $DraftInactive = styled.div`
 export const $DraftResults = styled.div`
   margin: 3% 0;
 `;
+
+export const $DraftAccordian = styled.div`
+  .collapseContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .down {
+    rotate: 90deg;
+  }
+
+  .up {
+    rotate: 270deg;
+  }
+`;

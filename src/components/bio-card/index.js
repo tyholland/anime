@@ -9,6 +9,7 @@ import {
   $BioSubAttribute,
   $BioImage,
   $BioWrapper,
+  $BioAccordian,
 } from './bioCard.style';
 import { getPlayer } from 'src/requests/player';
 import Error from 'PageComponents/error';
@@ -104,6 +105,20 @@ const BioCard = ({ characterId }) => {
     }
   };
 
+  const infoUp = (
+    <div className="collapseContainer">
+      <div>Additional Info</div>
+      <div className="up">&#10132;</div>
+    </div>
+  );
+
+  const infoDown = (
+    <div className="collapseContainer">
+      <div>Additional Info</div>
+      <div className="down">&#10132;</div>
+    </div>
+  );
+
   useEffect(() => {
     if (characterId) {
       handlePlayerInfo();
@@ -175,9 +190,10 @@ const BioCard = ({ characterId }) => {
                   </$BioAffinity>
                 ))}
               </$BioAffinity>
-              <div>
+              <$BioAccordian>
                 <Collapsible
-                  trigger="Additional Info"
+                  trigger={infoDown}
+                  triggerWhenOpen={infoUp}
                   triggerTagName="div"
                   containerElementProps={{ content: 'bio' }}
                   triggerElementProps={{ id: 'villainAccordion', 'aria-controls': 'villainAccordion' }} contentElementId="villainAccordion"
@@ -186,7 +202,7 @@ const BioCard = ({ characterId }) => {
                   affinities as a weakness. If the affinity is "No Affinity",
                   then the damage is given to all characters.
                 </Collapsible>
-              </div>
+              </$BioAccordian>
             </>
           )}
           {player.category === 'Villain' && !affinities?.length && (
@@ -206,9 +222,10 @@ const BioCard = ({ characterId }) => {
                   </$BioAffinity>
                 ))}
               </$BioAffinity>
-              <div>
+              <$BioAccordian>
                 <Collapsible
-                  trigger="Additional Info"
+                  trigger={infoDown}
+                  triggerWhenOpen={infoUp}
                   triggerTagName="div"
                   containerElementProps={{ content: 'bio' }}
                   triggerElementProps={{ id: 'supportAccordion', 'aria-controls': 'supportAccordion' }} contentElementId="supportAccordion"
@@ -216,7 +233,7 @@ const BioCard = ({ characterId }) => {
                   Boost is given to characters that have one or all of these
                   affinities.
                 </Collapsible>
-              </div>
+              </$BioAccordian>
             </>
           )}
           {player.category === 'Support' && !affinities?.length && (
@@ -237,9 +254,10 @@ const BioCard = ({ characterId }) => {
                   </$BioAffinity>
                 ))}
               </$BioAffinity>
-              <div>
+              <$BioAccordian>
                 <Collapsible
-                  trigger="Additional Info"
+                  trigger={infoDown}
+                  triggerWhenOpen={infoUp}
                   triggerTagName="div"
                   containerElementProps={{ content: 'bio' }}
                   triggerElementProps={{ id: 'battlefieldAccordion', 'aria-controls': 'battlefieldAccordion' }} contentElementId="battlefieldAccordion"
@@ -254,7 +272,7 @@ const BioCard = ({ characterId }) => {
                     Affinity", then the damage is given to all characters.
                   </p>
                 </Collapsible>
-              </div>
+              </$BioAccordian>
             </>
           )}
         </div>

@@ -59,3 +59,20 @@ export const $GameplayCardContainer = styled.div`
     padding: 3%;
   }
 `;
+
+export const $GameplayCardAccordian = styled.div`
+  .collapseContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .down {
+    rotate: 90deg;
+  }
+
+  .up {
+    rotate: 270deg;
+  }
+`;

@@ -29,6 +29,7 @@ import {
   $DraftPlayerGrid,
   $DraftInactive,
   $DraftResults,
+  $DraftAccordian
 } from './draft.style';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import Loader from 'Components/loader';
@@ -531,16 +532,31 @@ const Draft = () => {
                   </>
                 )}
                 {isDraftComplete && (
-                  <>
+                  <$DraftAccordian>
                     <$CollapsibleStyles />
                     <$GlobalTitle>Draft Results</$GlobalTitle>
                     {draftResults?.map((item, index) => {
                       const count = index + 1;
                       const teams = JSON.parse(item.teams);
 
+                      const roundUp = (
+                        <div className="collapseContainer">
+                          <div>Round {count}</div>
+                          <div className="up">&#10132;</div>
+                        </div>
+                      );
+                    
+                      const roundDown = (
+                        <div className="collapseContainer">
+                          <div>Round {count}</div>
+                          <div className="down">&#10132;</div>
+                        </div>
+                      );
+
                       return (
                         <Collapsible
-                          trigger={`Round ${count}`}
+                          trigger={roundDown}
+                          triggerWhenOpen={roundUp}
                           triggerTagName="div"
                           key={index}
                           triggerElementProps={{ id: `round-${count}`, 'aria-controls': `round-${count}` }} contentElementId={`round-${count}`}
@@ -555,7 +571,7 @@ const Draft = () => {
                         </Collapsible>
                       );
                     })}
-                  </>
+                  </$DraftAccordian>
                 )}
               </>
             )}

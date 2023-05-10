@@ -4,7 +4,7 @@ import Metadata from 'Components/metadata';
 import React, { useEffect, useState } from 'react';
 import Collapsible from 'react-collapsible';
 import { $GlobalContainer, $CollapsibleStyles } from 'Styles/global.style';
-import { $PlayoffsWrapper } from './playoffs.style';
+import { $PlayoffsWrapper, $PlayoffsAccordian } from './playoffs.style';
 import { useRouter } from 'next/router';
 import { getPlayoffs } from 'src/requests/league';
 import { addEvent } from 'Utils/amplitude';
@@ -93,6 +93,48 @@ const Playoffs = () => {
     }
   };
 
+  const firstUp = (
+    <div className="collapseContainer">
+      <div>First Round</div>
+      <div className="up">&#10132;</div>
+    </div>
+  );
+
+  const firstDown = (
+    <div className="collapseContainer">
+      <div>First Round</div>
+      <div className="down">&#10132;</div>
+    </div>
+  );
+
+  const semisUp = (
+    <div className="collapseContainer">
+      <div>Semi-Finals</div>
+      <div className="up">&#10132;</div>
+    </div>
+  );
+
+  const semisDown = (
+    <div className="collapseContainer">
+      <div>Semi-Finals</div>
+      <div className="down">&#10132;</div>
+    </div>
+  );
+
+  const finalUp = (
+    <div className="collapseContainer">
+      <div>Finals</div>
+      <div className="up">&#10132;</div>
+    </div>
+  );
+
+  const finalDown = (
+    <div className="collapseContainer">
+      <div>Finals</div>
+      <div className="down">&#10132;</div>
+    </div>
+  );
+
   useEffect(() => {
     setAccount(currentUser);
   }, [currentUser]);
@@ -120,8 +162,14 @@ const Playoffs = () => {
           <BackLink />
           <LeagueChamp />
           <$GlobalContainer>
-            <div>
-              <Collapsible trigger="First Round" triggerTagName="div" triggerElementProps={{ id: 'first', 'aria-controls': 'first' }} contentElementId="first">
+            <$PlayoffsAccordian>
+              <Collapsible
+                trigger={firstDown}
+                triggerWhenOpen={firstUp}
+                triggerTagName="div"
+                triggerElementProps={{ id: 'first', 'aria-controls': 'first' }}
+                contentElementId="first"
+              >
                 <$PlayoffsWrapper>
                   {round1.map((game, index) => {
                     return (
@@ -134,7 +182,13 @@ const Playoffs = () => {
                   })}
                 </$PlayoffsWrapper>
               </Collapsible>
-              <Collapsible trigger="Semi-Finals" triggerTagName="div" triggerElementProps={{ id: 'semis', 'aria-controls': 'semis' }} contentElementId="semis">
+              <Collapsible
+                trigger={semisDown}
+                triggerWhenOpen={semisUp}
+                triggerTagName="div"
+                triggerElementProps={{ id: 'semis', 'aria-controls': 'semis' }}
+                contentElementId="semis"
+              >
                 <$PlayoffsWrapper>
                   {round2.map((game, index) => {
                     return (
@@ -147,14 +201,23 @@ const Playoffs = () => {
                   })}
                 </$PlayoffsWrapper>
               </Collapsible>
-              <Collapsible trigger="Finals" triggerTagName="div" triggerElementProps={{ id: 'finals', 'aria-controls': 'finals' }} contentElementId="finals">
+              <Collapsible
+                trigger={finalDown}
+                triggerWhenOpen={finalUp}
+                triggerTagName="div"
+                triggerElementProps={{
+                  id: 'finals',
+                  'aria-controls': 'finals',
+                }}
+                contentElementId="finals"
+              >
                 <$PlayoffsWrapper>
                   {round3.map((game) => {
                     return <GameContainer game={game} key={game.teamA} />;
                   })}
                 </$PlayoffsWrapper>
               </Collapsible>
-            </div>
+            </$PlayoffsAccordian>
           </$GlobalContainer>
           <ReadMore />
         </>
