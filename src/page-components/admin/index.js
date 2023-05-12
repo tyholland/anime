@@ -365,7 +365,7 @@ const Admin = () => {
                             'aflFantasyLeague',
                             'animeFantasyLeague',
                           ]}
-                          url={`${origin}/league/join`}
+                          url={`${origin}/league/join?id=${league.hash}`}
                         />
                       )}
                     </$AdminWrapper>

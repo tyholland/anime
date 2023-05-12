@@ -45,6 +45,14 @@ const Changelog = () => {
               </li>
             </ul>
           </li>
+          <li>
+            Join League
+            <ul>
+              <li>
+                The join url now contains the league ID in it. So now when you use the join url, it will pre-populate the input field and you just need to click on the button to join the league.
+              </li>
+            </ul>
+          </li>
         </ul>
         <h3>May 09, 2023</h3>
         <ul>

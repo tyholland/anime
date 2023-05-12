@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import BackLink from 'Components/back-link';
@@ -21,6 +21,7 @@ const JoinLeague = () => {
   const [errorMsg, setErrorMsg] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const { id } = router.query;
 
   const handleJoinLeague = async () => {
     setIsDisabled(true);
@@ -62,6 +63,12 @@ const JoinLeague = () => {
     }
   };
 
+  useEffect(() => {
+    if (id) {
+      handleLeagueHash(id);
+    }
+  }, [id]);
+
   return (
     <>
       <Metadata
@@ -78,6 +85,7 @@ const JoinLeague = () => {
               onChange={handleLeagueHash}
               maxLength={11}
               onKeyDown={handleKeyboardSubmit}
+              inputVal={id ? id : null}
             />
             <Button
               btnText={isLoading ? <Loader isSmall={true} /> : 'Enter League'}
