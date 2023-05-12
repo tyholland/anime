@@ -1,6 +1,6 @@
 import Button from 'Components/button';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -8,7 +8,6 @@ import {
   TwitterShareButton,
 } from 'react-share';
 import { EmailIcon, FacebookIcon, RedditIcon, TwitterIcon } from 'react-share';
-import Notification from 'src/modals/notification';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import {
@@ -24,8 +23,6 @@ const SocialMedia = ({
   pageTitle,
   description,
 }) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
   const handleMobileShare = async () => {
     const shareData = {
       title: description,
@@ -45,16 +42,11 @@ const SocialMedia = ({
     }
   };
 
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-
   const handleTracking = (platform) => {
     addEvent('Social Share', {
       platform,
       title,
     });
-    setModalIsOpen(true);
   };
 
   return (
@@ -104,11 +96,6 @@ const SocialMedia = ({
             </Button>
           </$SocialMediaMobileDevice>
         </div>
-        <Notification
-          message="Mobile share is unavailable"
-          closeModal={closeModal}
-          modalIsOpen={modalIsOpen}
-        />
       </$SocialMediaWrapper>
     </>
   );
