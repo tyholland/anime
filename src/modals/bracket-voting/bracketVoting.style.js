@@ -69,6 +69,11 @@ export const $BracketVotingSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 40%;
+
+  &.versus {
+    width: 10%;
+  }
 
   ${MOBILE_VIEW} {
     flex-direction: row;

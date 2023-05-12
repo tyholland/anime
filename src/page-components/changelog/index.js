@@ -43,6 +43,9 @@ const Changelog = () => {
               <li>
                 Can't submit Bracket until you add a bracket name
               </li>
+              <li>
+                Show vote totals, in the modal, for the winner of any specific round
+              </li>
             </ul>
           </li>
           <li>

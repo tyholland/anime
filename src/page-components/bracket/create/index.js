@@ -400,6 +400,11 @@ const BracketCreate = () => {
     }
   };
 
+  const handleBracketName = (val) => {
+    setBracketName(val);
+    setIsDisabled(!val.length || Object.values(playerList).some((list) => !list.id));
+  };
+
   useEffect(() => {
     setAccount(currentUser);
   }, [currentUser]);
@@ -449,7 +454,7 @@ const BracketCreate = () => {
             <$BracketCreateWrapper className="title">
               <TextField
                 placeholder="Enter Bracket Name"
-                onChange={(val) => setBracketName(val)}
+                onChange={(val) => handleBracketName(val)}
                 maxLength={12}
               />
             </$BracketCreateWrapper>

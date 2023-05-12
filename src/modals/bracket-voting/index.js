@@ -109,6 +109,9 @@ const BracketVoting = ({
                   <$BracketVotingCharacter>
                     {playerA.full_name}
                   </$BracketVotingCharacter>
+                  <$BracketVotingTotal>
+                  Total Votes: {playerACount}
+                  </$BracketVotingTotal>
                 </div>
                 {!matchWinner && (
                   <div>
@@ -128,7 +131,7 @@ const BracketVoting = ({
               </$BracketVotingSection>
             )}
             {!matchWinner && (
-              <$BracketVotingSection>
+              <$BracketVotingSection className="versus">
                 <$BracketVotingVersus>VS</$BracketVotingVersus>
               </$BracketVotingSection>
             )}
@@ -142,6 +145,9 @@ const BracketVoting = ({
                   <$BracketVotingCharacter>
                     {playerB.full_name}
                   </$BracketVotingCharacter>
+                  <$BracketVotingTotal>
+                  Total Votes: {playerBCount}
+                  </$BracketVotingTotal>
                 </div>
                 {!matchWinner && (
                   <div>
