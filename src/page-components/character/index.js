@@ -10,10 +10,14 @@ import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import Loader from 'Components/loader';
 import ReadMore from 'Components/read-more';
+import { useRouter } from 'next/router';
 
 const Character = () => {
+  const router = useRouter();
   const [players, setPlayers] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
+  const [seriesName, setSeriesName] = useState(null);
+  const { series } = router.query;
 
   const handleAllPlayers = async () => {
     try {
@@ -30,6 +34,10 @@ const Character = () => {
     handleAllPlayers();
   }, []);
 
+  useEffect(() => {
+    setSeriesName(series);
+  }, [series]);
+
   if (errorPage) {
     return <Error />;
   }
@@ -44,7 +52,7 @@ const Character = () => {
       <$GlobalContainer className="grid bgImage character">
         <$GlobalTitle>All Characters</$GlobalTitle>
         {!players && <Loader />}
-        {players && <Players data={players} />}
+        {players && <Players data={players} series={seriesName} />}
       </$GlobalContainer>
       <ReadMore />
     </>

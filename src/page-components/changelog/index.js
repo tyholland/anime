@@ -53,6 +53,14 @@ const Changelog = () => {
               </li>
             </ul>
           </li>
+          <li>
+            Homepage Series list
+            <ul>
+              <li>
+                Clicking on a series will take you to a list of character specific to that series.
+              </li>
+            </ul>
+          </li>
         </ul>
         <h3>May 09, 2023</h3>
         <ul>

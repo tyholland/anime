@@ -7,6 +7,7 @@ import SuggestCharacter from 'Components/suggest-character';
 import Button from 'Components/button';
 import { allSeries } from 'Utils/constants';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Home = () => {
   const goToSharePage = () => {
@@ -122,7 +123,11 @@ const Home = () => {
         </div>
         <div className="series">
           {allSeries.sort().map((item) => {
-            return <div key={item}>{item}</div>;
+            return (
+              <Link key={item} href={item.url}>
+                <button>{item.name}</button>
+              </Link>
+            );
           })}
         </div>
       </$GlobalContainer>

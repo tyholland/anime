@@ -158,51 +158,192 @@ export const photoCredits = [
 ];
 
 export const allSeries = [
-  'DBZ',
-  'One Punch Man',
-  'Black Clover',
-  'One Piece',
-  'Solo Leveling',
-  'The God of High School',
-  'The Seven Deadly Sins',
-  'Attack on Titan',
-  'Fairy Tail',
-  'Hunter x Hunter',
-  'Latna Saga: Survival of…',
-  'Naruto',
-  'Soul Eater',
-  'Tensei Slime',
-  'Fire Force',
-  'Omniscient Reader',
-  'The Great Mage Returns',
-  'My Hero Academia',
-  'Bleach',
-  'Death Note',
-  'Yu Yu Hakusho',
-  'TBATE',
-  'Full Metal Alchemist',
-  'KonoSuba',
-  'Magi',
-  'Blue Exorcist',
-  'Inuyasha',
-  'Jujutsu Kaisen',
-  'Gundam Wing',
-  'Katekyo Hitman Reborn!',
-  'Sailor Moon',
-  'Shield Hero',
-  'Demon Slayer',
-  'Rurouni Kenshin',
-  'Digimon',
-  'Boondocks',
-  'Cowboy Bebop',
-  'Dr. Stone',
-  'Trigun',
-  'Yu-Gi-Oh!',
-  'Paranoia Agent',
-  'Akira',
-  'Berserk',
-  'Magic Emperor',
-  'Martial Arts Reigns',
-  'Versatile Mage',
-  'Unordinary',
+  {
+    name: 'DBZ',
+    url: '/characters?series=DBZ'
+  },
+  {
+    name: 'One Punch Man',
+    url: '/characters?series=One Punch Man'
+  },
+  {
+    name: 'Black Clover',
+    url: '/characters?series=Black Clover'
+  },
+  {
+    name: 'One Piece',
+    url: '/characters?series=One Piece'
+  },
+  {
+    name: 'Solo Leveling',
+    url: '/characters?series=Solo Leveling'
+  },
+  {
+    name: 'The God of High School',
+    url: '/characters?series=The God of High School'
+  },
+  {
+    name: 'The Seven Deadly Sins',
+    url: '/characters?series=The Seven Deadly Sins'
+  },
+  {
+    name: 'Attack on Titan',
+    url: '/characters?series=Attack on Titan'
+  },
+  {
+    name: 'Fairy Tail',
+    url: '/characters?series=Fairy Tail'
+  },
+  {
+    name: 'Hunter x Hunter',
+    url: '/characters?series=Hunter x Hunter'
+  },
+  {
+    name: 'Latna Saga: Survival of…',
+    url: '/characters?series=Latna Saga: Survival of…'
+  },
+  {
+    name: 'Naruto',
+    url: '/characters?series=Naruto'
+  },
+  {
+    name: 'Soul Eater',
+    url: '/characters?series=Soul Eater'
+  },
+  {
+    name: 'Tensei Slime',
+    url: '/characters?series=Tensei Slime'
+  },
+  {
+    name: 'Fire Force',
+    url: '/characters?series=Fire Force'
+  },
+  {
+    name: 'Omniscient Reader',
+    url: '/characters?series=Omniscient Reader'
+  },
+  {
+    name: 'The Great Mage Returns',
+    url: '/characters?series=The Great Mage Returns'
+  },
+  {
+    name: 'My Hero Academia',
+    url: '/characters?series=My Hero Academia'
+  },
+  {
+    name: 'Bleach',
+    url: '/characters?series=Bleach'
+  },
+  {
+    name: 'Death Note',
+    url: '/characters?series=Death Note'
+  },
+  {
+    name: 'Yu Yu Hakusho',
+    url: '/characters?series=Yu Yu Hakusho'
+  },
+  {
+    name: 'TBATE',
+    url: '/characters?series=TBATE'
+  },
+  {
+    name: 'Full Metal Alchemist',
+    url: '/characters?series=Full Metal Alchemist'
+  },
+  {
+    name: 'KonoSuba',
+    url: '/characters?series=KonoSuba'
+  },
+  {
+    name: 'Magi',
+    url: '/characters?series=Magi'
+  },
+  {
+    name: 'Blue Exorcist',
+    url: '/characters?series=Blue Exorcist'
+  },
+  {
+    name: 'Inuyasha',
+    url: '/characters?series=Inuyasha'
+  },
+  {
+    name: 'Jujutsu Kaisen',
+    url: '/characters?series=Jujutsu Kaisen'
+  },
+  {
+    name: 'Gundam Wing',
+    url: '/characters?series=Gundam Wing'
+  },
+  {
+    name: 'Katekyo Hitman Reborn!',
+    url: '/characters?series=Katekyo Hitman Reborn!'
+  },
+  {
+    name: 'Sailor Moon',
+    url: '/characters?series=Sailor Moon'
+  },
+  {
+    name: 'Shield Hero',
+    url: '/characters?series=Shield Hero'
+  },
+  {
+    name: 'Demon Slayer',
+    url: '/characters?series=Demon Slayer'
+  },
+  {
+    name: 'Rurouni Kenshin',
+    url: '/characters?series=Rurouni Kenshin'
+  },
+  {
+    name: 'Digimon',
+    url: '/characters?series=Digimon'
+  },
+  {
+    name: 'Boondocks',
+    url: '/characters?series=Boondocks'
+  },
+  {
+    name: 'Cowboy Bebop',
+    url: '/characters?series=Cowboy Bebop'
+  },
+  {
+    name: 'Dr. Stone',
+    url: '/characters?series=Dr. Stone'
+  },
+  {
+    name: 'Trigun',
+    url: '/characters?series=Trigun'
+  },
+  {
+    name: 'Yu-Gi-Oh!',
+    url: '/characters?series=Yu-Gi-Oh!'
+  },
+  {
+    name: 'Paranoia Agent',
+    url: '/characters?series=Paranoia Agent'
+  },
+  {
+    name: 'Akira',
+    url: '/characters?series=Akira'
+  },
+  {
+    name: 'Berserk',
+    url: '/characters?series=Berserk'
+  },
+  {
+    name: 'Magic Emperor',
+    url: '/characters?series=Magic Emperor'
+  },
+  {
+    name: 'Martial Arts Reigns',
+    url: '/characters?series=Martial Arts Reigns'
+  },
+  {
+    name: 'Versatile Mage',
+    url: '/characters?series=Versatile Mage'
+  },
+  {
+    name: 'Unordinary',
+    url: '/characters?series=Unordinary'
+  },
 ];

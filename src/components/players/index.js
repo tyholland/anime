@@ -18,6 +18,7 @@ const Players = ({
   page = null,
   leagueWeek,
   openDraft,
+  series = 'all',
 }) => {
   const router = useRouter();
   const { currentUser } = useAppContext();
@@ -25,7 +26,7 @@ const Players = ({
   const [listOfPlayers, setListOfPlayers] = useState(data);
   const [seriesArr, setSeriesArr] = useState([]);
   const [rankArr, setRankArr] = useState([]);
-  const [seriesName, setSeriesName] = useState('all');
+  const [seriesName, setSeriesName] = useState(series);
   const [rankName, setRankName] = useState('all');
   const [powerLevel, setPowerLevel] = useState('none');
   const [searchWord, setSearchWord] = useState(null);
@@ -488,6 +489,18 @@ const Players = ({
     setListOfPlayers(data);
   }, [data]);
 
+  useEffect(() => {
+    const seriesObj = {
+      target: {
+        value: series
+      }
+    };
+    
+    handleSeriesFilter(seriesObj);
+
+    setSeriesArr([series]);
+  }, [series]);
+
   return (
     <>
       <$PlayersStyles />
@@ -528,7 +541,7 @@ const Players = ({
                   <label>Series</label>
                   <select
                     onChange={(val) => handleSeriesFilter(val)}
-                    defaultValue={seriesArr[0] === seriesName}
+                    defaultValue={series}
                   >
                     <option value="all">All</option>
                     {seriesArr.map((item) => {

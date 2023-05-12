@@ -260,9 +260,12 @@ export const $GlobalContainer = styled.div`
       text-align: left;
     }
 
-    div {
+    button {
       width: 220px;
       margin: 1% 0;
+      background: transparent;
+      border: none;
+      font-size: ${FONT_SIZE_MEDIUM};
 
       ${MOBILE_VIEW} {
         width: 45%;
