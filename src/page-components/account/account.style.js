@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import {
   COLOR_SUCCESS,
+  FONT_SIZE_EXTRA_SMALL,
+  FONT_SIZE_LARGE,
+  FONT_SIZE_MEDIUM,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
 } from 'Styles/global.style';
@@ -22,14 +25,14 @@ export const $AccountWrapper = styled.div`
       width: 89% !important;
 
       span {
-        font-size: 12px !important;
+        font-size: ${FONT_SIZE_EXTRA_SMALL} !important;
       }
     }
   }
 
   &.column {
     flex-direction: column;
-    font-size: 18px;
+    font-size: ${FONT_SIZE_LARGE};
     align-items: center;
 
     button {
@@ -58,7 +61,7 @@ export const $AccountSectionLabel = styled.div`
   text-align: left;
   width: 90%;
   margin: 0 auto;
-  font-size: 16px;
+  font-size: ${FONT_SIZE_MEDIUM};
   font-weight: bold;
 `;
 

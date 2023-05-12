@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import {
+  FONT_SIZE_EXTRA_LARGE,
+  FONT_SIZE_SMALL,
   FONT_WEIGHT_BOLD,
   FONT_WEIGHT_NORMAL,
   MOBILE_VIEW,
@@ -7,7 +9,7 @@ import {
 
 export const $TeamInfoStats = styled.div`
   margin-bottom: 10%;
-  font-size: 20px;
+  font-size: ${FONT_SIZE_EXTRA_LARGE};
 
   span {
     font-weight: ${FONT_WEIGHT_BOLD};
@@ -19,7 +21,7 @@ export const $TeamInfoStats = styled.div`
     width: 98% !important;
 
     span {
-      font-size: 14px !important;
+      font-size: ${FONT_SIZE_SMALL} !important;
       font-weight: ${FONT_WEIGHT_NORMAL};
     }
   }

@@ -1,17 +1,17 @@
 import styled from 'styled-components';
-import { FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
+import { FONT_SIZE_EXTRA_LARGE, FONT_SIZE_GIGANTIC, FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
 
 export const $BracketVotingCharacter = styled.div`
-  font-size: 30px;
+  font-size: ${FONT_SIZE_GIGANTIC};
   font-weight: ${FONT_WEIGHT_BOLD};
 
   ${MOBILE_VIEW} {
-    font-size: 20px;
+    font-size: ${FONT_SIZE_EXTRA_LARGE};
   }
 `;
 
 export const $BracketVotingVersus = styled.div`
-  font-size: 20px;
+  font-size: ${FONT_SIZE_EXTRA_LARGE};
   font-weight: ${FONT_WEIGHT_BOLD};
   margin: 40px 0;
   text-align: center;

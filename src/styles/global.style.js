@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
+// Colors
 export const COLOR_ORANGE = 'rgb(249, 128, 17)';
 export const COLOR_ORANGE_DISABLED = 'rgba(249, 128, 17, 0.8)';
 export const COLOR_ORANGE_LIGHT = 'rgba(249, 128, 17, 0.3)';
@@ -16,12 +17,24 @@ export const COLOR_GREY_LIGHT = '#CDCDCD80';
 export const COLOR_GREY_EXTRA_LIGHT = '#CDCDCD30';
 export const COLOR_BLUE = 'rgb(27, 5, 246)';
 export const COLOR_BLUE_HOVER = '#0066cc';
+
+// Font Sizes
+export const FONT_SIZE_EXTRA_SMALL = '10px';
+export const FONT_SIZE_SMALL = '14px';
+export const FONT_SIZE_MEDIUM = '16px';
+export const FONT_SIZE_LARGE = '18px';
+export const FONT_SIZE_EXTRA_LARGE = '20px';
+export const FONT_SIZE_GIGANTIC = '30px';
+
+// Font Weights
 export const FONT_WEIGHT_BOLD = '700';
 export const FONT_WEIGHT_NORMAL = '400';
 
+// Media Breaks
 export const RESPONSIVE_VIEW = '@media only screen and (max-width: 960px)';
 export const MOBILE_VIEW = '@media only screen and (max-width: 600px)';
 
+// Global Styles
 export const $GlobalStyles = createGlobalStyle`
   body {
     margin: 0 auto;
@@ -41,6 +54,32 @@ export const $GlobalStyles = createGlobalStyle`
   }
 `;
 
+export const $CollapsibleStyles = createGlobalStyle`
+  .Collapsible {
+    padding: 2%;
+    border: 1px solid ${COLOR_BLACK};
+    border-bottom: none;
+
+    div[role="button"] {
+      font-weight: ${FONT_WEIGHT_BOLD};
+      font-size: ${FONT_SIZE_LARGE};
+      cursor: pointer;
+    }
+
+    &[content="bio"]
+    .Collapsible__contentInner {
+      overflow-y: scroll;
+      height: 115px;
+      margin-top: 3%;
+    }
+  }
+
+  .Collapsible:last-child {
+    border-bottom: 1px solid ${COLOR_BLACK};
+  }
+`;
+
+// Global Variables
 export const $GlobalContainer = styled.div`
   padding: 2%;
   position: relative;
@@ -246,7 +285,7 @@ export const $GlobalContainer = styled.div`
 export const $GlobalTitle = styled.div`
   font-weight: ${FONT_WEIGHT_BOLD};
   margin-bottom: 5%;
-  font-size: 30px;
+  font-size: ${FONT_SIZE_GIGANTIC};
   text-align: center;
   position: relative;
 
@@ -273,7 +312,7 @@ export const $GlobalTitle = styled.div`
   }
 
   ${RESPONSIVE_VIEW} {
-    font-size: calc(100% + 8px);
+    font-size: calc(100% + ${FONT_SIZE_EXTRA_SMALL});
   }
 
   &.bracketView,
@@ -324,11 +363,11 @@ export const $GlobalTitle = styled.div`
 
 export const $GlobalSubTitle = styled.div`
   margin-bottom: 2%;
-  font-size: 20px;
+  font-size: ${FONT_SIZE_EXTRA_LARGE};
   text-align: center;
 
   &.matchup {
-    font-size: 16px;
+    font-size: ${FONT_SIZE_MEDIUM};
   }
 `;
 
@@ -387,30 +426,5 @@ export const $GlobalCircle = styled.div`
       width: 14px;
       height: 14px;
     }
-  }
-`;
-
-export const $CollapsibleStyles = createGlobalStyle`
-  .Collapsible {
-    padding: 2%;
-    border: 1px solid ${COLOR_BLACK};
-    border-bottom: none;
-
-    div[role="button"] {
-      font-weight: ${FONT_WEIGHT_BOLD};
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    &[content="bio"]
-    .Collapsible__contentInner {
-      overflow-y: scroll;
-      height: 115px;
-      margin-top: 3%;
-    }
-  }
-
-  .Collapsible:last-child {
-    border-bottom: 1px solid ${COLOR_BLACK};
   }
 `;

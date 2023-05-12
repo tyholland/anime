@@ -3,6 +3,7 @@ import {
   COLOR_BLACK,
   COLOR_BLUE_HOVER,
   COLOR_WHITE,
+  FONT_SIZE_MEDIUM,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
   RESPONSIVE_VIEW,
@@ -21,7 +22,7 @@ export const $ScheduleWrapper = styled.button`
   color: ${COLOR_BLACK};
 
   > div {
-    font-size: 16px;
+    font-size: ${FONT_SIZE_MEDIUM};
   }
 
   &:hover {

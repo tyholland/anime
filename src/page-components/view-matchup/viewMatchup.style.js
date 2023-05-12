@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import {
   COLOR_BLACK,
   COLOR_ORANGE,
+  FONT_SIZE_EXTRA_SMALL,
+  FONT_SIZE_LARGE,
+  FONT_SIZE_SMALL,
   FONT_WEIGHT_BOLD,
 } from 'Styles/global.style';
 
@@ -45,14 +48,14 @@ export const $ViewMatchupPosition = styled.div`
   color: ${COLOR_ORANGE};
   text-align: center;
   background-color: rgba(0, 0, 0, 0.8);
-  font-size: 14px;
+  font-size: ${FONT_SIZE_SMALL};
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 
   &.duo {
-    font-size: 12px;
+    font-size: ${FONT_SIZE_EXTRA_SMALL};
   }
 `;
 
@@ -61,13 +64,13 @@ export const $ViewMatchupTeamContent = styled.div`
 `;
 
 export const $ViewMatchupTeamName = styled.div`
-  font-size: 18px;
+  font-size: ${FONT_SIZE_LARGE};
   font-weight: ${FONT_WEIGHT_BOLD};
   text-align: center;
 `;
 
 export const $ViewMatchupTeamTotal = styled.div`
-  font-size: 14px;
+  font-size: ${FONT_SIZE_SMALL};
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
   margin-top: 15px;

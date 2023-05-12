@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import {
   COLOR_BLACK,
   COLOR_ORANGE,
+  FONT_SIZE_LARGE,
+  FONT_SIZE_MEDIUM,
+  FONT_SIZE_SMALL,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
 } from 'Styles/global.style';
@@ -31,7 +34,7 @@ export const $FooterSection = styled.div`
 
   div {
     margin-bottom: 5%;
-    font-size: 16px;
+    font-size: ${FONT_SIZE_MEDIUM};
 
     ${MOBILE_VIEW} {
       margin-bottom: 8%;
@@ -68,10 +71,10 @@ export const $FooterLinks = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  font-size: 14px;
+  font-size: ${FONT_SIZE_SMALL};
 
   .title {
     font-weight: ${FONT_WEIGHT_BOLD};
-    font-size: 18px;
+    font-size: ${FONT_SIZE_LARGE};
   }
 `;
