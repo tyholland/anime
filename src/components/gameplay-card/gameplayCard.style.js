@@ -78,7 +78,7 @@ export const $GameplayCardAccordian = styled.div`
   }
 `;
 
-export const $GameplayCardAffinity = styled.p`
+export const $GameplayCardAffinity = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
