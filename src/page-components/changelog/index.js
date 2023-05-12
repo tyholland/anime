@@ -37,6 +37,14 @@ const Changelog = () => {
               </li>
             </ul>
           </li>
+          <li>
+            Bracket feature
+            <ul>
+              <li>
+                Can't submit Bracket until you add a bracket name
+              </li>
+            </ul>
+          </li>
         </ul>
         <h3>May 09, 2023</h3>
         <ul>

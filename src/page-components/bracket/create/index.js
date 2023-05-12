@@ -378,7 +378,7 @@ const BracketCreate = () => {
     setPlayers(unusedPlayers);
     setIsModalOpen(false);
     setCanChange(true);
-    setIsDisabled(Object.values(playerList).some((list) => !list.id));
+    setIsDisabled(!bracketName.length || Object.values(playerList).some((list) => !list.id));
   };
 
   const handleSubmit = async () => {
