@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MOBILE_VIEW } from 'Styles/global.style';
+import { FONT_SIZE_LARGE, FONT_SIZE_MEDIUM, MOBILE_VIEW } from 'Styles/global.style';
 
 export const $PodcastService = styled.div`
   margin-bottom: 5%;
@@ -20,10 +20,10 @@ export const $PodcastService = styled.div`
     }
 
     span {
-      font-size: 16px !important;
+      font-size: ${FONT_SIZE_MEDIUM} !important;
 
       ${MOBILE_VIEW} {
-        font-size: 18px !important;
+        font-size: ${FONT_SIZE_LARGE} !important;
         line-height: 28px;
       }
     }

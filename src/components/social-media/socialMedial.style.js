@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
+import { FONT_SIZE_EXTRA_LARGE, FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
 
 export const $SocialMediaWrapper = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ export const $SocialMediaWrapper = styled.div`
   }
 
   .title {
-    font-size: 20px;
+    font-size: ${FONT_SIZE_EXTRA_LARGE};
     font-weight: ${FONT_WEIGHT_BOLD};
     margin-bottom: 2%;
   }

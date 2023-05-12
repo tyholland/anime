@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {
   COLOR_BLACK,
   COLOR_ORANGE,
+  FONT_SIZE_EXTRA_LARGE,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
 } from 'Styles/global.style';
@@ -15,7 +16,7 @@ export const $HeaderContainer = styled.div`
 `;
 
 export const $HeaderTitle = styled.div`
-  font-size: 20px;
+  font-size: ${FONT_SIZE_EXTRA_LARGE};
   color: ${COLOR_BLACK};
   font-weight: ${FONT_WEIGHT_BOLD};
   text-align: center;

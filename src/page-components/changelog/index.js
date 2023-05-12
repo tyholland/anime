@@ -11,6 +11,41 @@ const Changelog = () => {
       />
       <$GlobalContainer>
         <$GlobalTitle>Changelog</$GlobalTitle>
+        <h3>May 12, 2023</h3>
+        <ul>
+          <li>
+            Suggest Character feature
+            <ul>
+              <li>
+                Add message explaining the reason for suggesting a character
+              </li>
+            </ul>
+          </li>
+          <li>
+            Buttons
+            <ul>
+              <li>
+                Added a hover message on disabled buttons explaining why they are disabled.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Share feature
+            <ul>
+              <li>
+                Remove unnecessary modal
+              </li>
+            </ul>
+          </li>
+          <li>
+            Bracket feature
+            <ul>
+              <li>
+                Can't submit Bracket until you add a bracket name
+              </li>
+            </ul>
+          </li>
+        </ul>
         <h3>May 09, 2023</h3>
         <ul>
           <li>

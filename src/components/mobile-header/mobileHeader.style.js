@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import {
   COLOR_BLACK,
   COLOR_ORANGE,
+  FONT_SIZE_EXTRA_LARGE,
+  FONT_SIZE_SMALL,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
 } from 'Styles/global.style';
@@ -21,7 +23,7 @@ export const $MobileHeaderContainer = styled.div`
   }
 
   button {
-    font-size: 14px !important;
+    font-size: ${FONT_SIZE_SMALL} !important;
     font-weight: ${FONT_WEIGHT_BOLD};
     position: relative !important;
     color: ${COLOR_BLACK};
@@ -44,7 +46,7 @@ export const $MobileHeaderContainer = styled.div`
       text-align: left;
 
       span {
-        font-size: 20px;
+        font-size: ${FONT_SIZE_EXTRA_LARGE};
       }
     }
   }

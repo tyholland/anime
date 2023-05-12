@@ -42,6 +42,7 @@ const TeamInfo = () => {
       addEvent('Change Team Name', {
         previous: teamName,
         new: changedName,
+        userId: currentUser?.user_id
       });
 
       setTeamName(changedName);

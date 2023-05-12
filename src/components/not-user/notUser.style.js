@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLOR_WHITE, MOBILE_VIEW } from 'Styles/global.style';
+import { COLOR_WHITE, FONT_SIZE_EXTRA_LARGE, FONT_SIZE_GIGANTIC, MOBILE_VIEW } from 'Styles/global.style';
 
 export const $NotUserContent = styled.div`
   position: relative;
@@ -8,14 +8,14 @@ export const $NotUserContent = styled.div`
   align-items: center;
   justify-content: center;
   width: 70%;
-  font-size: 25px;
+  font-size: ${FONT_SIZE_GIGANTIC};
   background-color: ${COLOR_WHITE};
   border-radius: 10px;
   padding: 3%;
 
   ${MOBILE_VIEW} {
     width: 94%;
-    font-size: 20px;
+    font-size: ${FONT_SIZE_EXTRA_LARGE};
   }
 
   div {
@@ -43,7 +43,7 @@ export const $NotUserBtnWrapper = styled.div`
 
   button {
     span {
-      font-size: 24px !important;
+      font-size: ${FONT_SIZE_GIGANTIC} !important;
     }
 
     ${MOBILE_VIEW} {

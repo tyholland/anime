@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLOR_BLACK, FONT_WEIGHT_BOLD } from 'Styles/global.style';
+import { COLOR_BLACK, FONT_SIZE_EXTRA_LARGE, FONT_SIZE_SMALL, FONT_WEIGHT_BOLD } from 'Styles/global.style';
 
 export const $CharacterStatsBtnWrapper = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ export const $CharacterStatsScoring = styled.div`
     padding-top: 20px;
     display: flex;
     justify-content: center;
-    font-size: 20px;
+    font-size: ${FONT_SIZE_EXTRA_LARGE};
   }
 `;
 
@@ -35,10 +35,10 @@ export const $CharacterStatsPoints = styled.div`
   text-align: left;
   width: 48%;
   padding-left: 2%;
-  font-size: 20px;
+  font-size: ${FONT_SIZE_EXTRA_LARGE};
 
   &.specific {
-    font-size: 14px;
+    font-size: ${FONT_SIZE_SMALL};
     color: rgba(0, 0, 0, 0.5);
   }
 `;
@@ -48,10 +48,10 @@ export const $CharacterStatsLabel = styled.div`
   width: 48%;
   padding-right: 2%;
   font-weight: ${FONT_WEIGHT_BOLD};
-  font-size: 20px;
+  font-size: ${FONT_SIZE_EXTRA_LARGE};
 
   &.specific {
-    font-size: 14px;
+    font-size: ${FONT_SIZE_SMALL};
     color: rgba(0, 0, 0, 0.5);
   }
 `;

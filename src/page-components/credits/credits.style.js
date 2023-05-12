@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
+import { FONT_SIZE_EXTRA_SMALL, FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
 
 export const $CreditsGlobalStyles = createGlobalStyle`
   ul {
@@ -35,7 +35,7 @@ export const $CreditsItem = styled.div`
 `;
 
 export const $CreditsText = styled.div`
-  font-size: 12px;
+  font-size: ${FONT_SIZE_EXTRA_SMALL};
   margin-top: 2%;
 
   span {

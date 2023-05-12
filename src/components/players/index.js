@@ -7,6 +7,7 @@ import TextField from 'Components/text-field';
 import Button from 'Components/button';
 import { getAffinitiesTypes } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
+import { useAppContext } from 'src/hooks/context';
 
 const Players = ({
   data,
@@ -19,6 +20,7 @@ const Players = ({
   openDraft,
 }) => {
   const router = useRouter();
+  const { currentUser } = useAppContext();
   const [rows, setRows] = useState([]);
   const [listOfPlayers, setListOfPlayers] = useState(data);
   const [seriesArr, setSeriesArr] = useState([]);
@@ -198,6 +200,7 @@ const Players = ({
 
       addEvent('Roster Update', {
         player: item.fullName,
+        userId: currentUser?.user_id
       });
 
       setPlayerList(playerList);

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { RESPONSIVE_VIEW } from 'Styles/global.style';
+import { FONT_SIZE_MEDIUM, RESPONSIVE_VIEW } from 'Styles/global.style';
 
 export const $NotificationMsg = styled.div`
   margin-bottom: 10%;
-  font-size: 16px;
+  font-size: ${FONT_SIZE_MEDIUM};
 
   ${RESPONSIVE_VIEW} {
     margin-bottom: 0;

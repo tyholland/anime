@@ -3,6 +3,8 @@ import {
   COLOR_BLACK,
   COLOR_BLUE_HOVER,
   COLOR_RED,
+  FONT_SIZE_MEDIUM,
+  FONT_SIZE_SMALL,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
   RESPONSIVE_VIEW,
@@ -44,7 +46,7 @@ export const $MatchupCharacterBtn = styled.button`
   margin: 5px 0 0 5%;
   display: flex;
   justify-content: start;
-  font-size: 14px;
+  font-size: ${FONT_SIZE_SMALL};
 
   > span {
     color: ${COLOR_BLUE_HOVER};
@@ -84,7 +86,7 @@ export const $MatchupCharacterBtn = styled.button`
 
     span {
       color: ${COLOR_BLACK};
-      font-size: 16px;
+      font-size: ${FONT_SIZE_MEDIUM};
 
       &:hover {
         text-decoration: none;
@@ -134,7 +136,7 @@ export const $MatchupPower = styled.button`
 export const $MatchupPowerText = styled.div`
   text-align: right;
   color: ${(props) => (props.noCharacter ? COLOR_BLACK : COLOR_BLUE_HOVER)};
-  font-size: ${(props) => (props.noCharacter ? '16px' : '14px')};
+  font-size: ${(props) => (props.noCharacter ? FONT_SIZE_MEDIUM : FONT_SIZE_SMALL)};
   cursor: ${(props) => (props.noCharacter ? 'text' : 'pointer')};
 
   &:hover {

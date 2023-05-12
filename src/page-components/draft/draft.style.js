@@ -8,6 +8,8 @@ import {
   RESPONSIVE_VIEW,
   COLOR_WHITE,
   MOBILE_VIEW,
+  FONT_SIZE_EXTRA_LARGE,
+  FONT_SIZE_GIGANTIC,
 } from 'Styles/global.style';
 
 export const $DraftSection = styled.div`
@@ -73,7 +75,7 @@ export const $DraftTeamsList = styled.div`
 
     .pick {
       margin-top: 20%;
-      font-size: 20px;
+      font-size: ${FONT_SIZE_EXTRA_LARGE};
       font-weight: ${FONT_WEIGHT_BOLD};
       text-align: center;
     }
@@ -81,7 +83,7 @@ export const $DraftTeamsList = styled.div`
 `;
 
 export const $DraftRound = styled.div`
-  font-size: 25px;
+  font-size: ${FONT_SIZE_GIGANTIC};
   font-weight: ${FONT_WEIGHT_BOLD};
   display: flex;
   align-items: center;
@@ -159,7 +161,7 @@ export const $DraftInactive = styled.div`
   align-items: center;
   justify-content: center;
   width: 70%;
-  font-size: 25px;
+  font-size: ${FONT_SIZE_GIGANTIC};
   background-color: ${COLOR_WHITE};
   border-radius: 10px;
   padding: 3%;
@@ -167,7 +169,7 @@ export const $DraftInactive = styled.div`
 
   ${MOBILE_VIEW} {
     width: 94%;
-    font-size: 20px;
+    font-size: ${FONT_SIZE_EXTRA_LARGE};
   }
 
   div {

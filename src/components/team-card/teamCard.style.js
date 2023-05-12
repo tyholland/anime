@@ -4,6 +4,8 @@ import {
   COLOR_BLUE_HOVER,
   COLOR_ORANGE,
   COLOR_ORANGE_LIGHT,
+  FONT_SIZE_EXTRA_SMALL,
+  FONT_SIZE_MEDIUM,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
 } from 'Styles/global.style';
@@ -27,7 +29,7 @@ export const $TeamCardPosition = styled.div`
   font-weight: ${FONT_WEIGHT_BOLD};
   color: ${COLOR_ORANGE};
   text-align: center;
-  font-size: 10px;
+  font-size: ${FONT_SIZE_EXTRA_SMALL};
   background-color: rgba(0, 0, 0, 0.8);
 
   &.none {
@@ -46,7 +48,7 @@ export const $TeamCardPosition = styled.div`
 export const $TeamCardDuoSpace = styled.div`
   padding: 5px 0;
   display: flex;
-  font-size: 16px;
+  font-size: ${FONT_SIZE_MEDIUM};
 
   &.right {
     text-align: right;
@@ -132,7 +134,7 @@ export const $TeamCardCharacter = styled.button`
 export const $TeamCardCharacterTxt = styled.div`
   color: ${(props) => (props.noCharacter ? COLOR_BLACK : COLOR_BLUE_HOVER)};
   cursor: ${(props) => (props.noCharacter ? 'text' : 'pointer')};
-  font-size: 16px;
+  font-size: ${FONT_SIZE_MEDIUM};
 
   ${MOBILE_VIEW} {
     text-overflow: ellipsis;

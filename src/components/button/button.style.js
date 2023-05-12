@@ -7,6 +7,10 @@ import {
   COLOR_ORANGE_DISABLED,
   COLOR_RED,
   COLOR_WHITE,
+  FONT_SIZE_EXTRA_LARGE,
+  FONT_SIZE_EXTRA_SMALL,
+  FONT_SIZE_MEDIUM,
+  FONT_SIZE_SMALL,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
   RESPONSIVE_VIEW,
@@ -74,7 +78,7 @@ export const $Btn = styled.button`
     border-color: ${COLOR_WHITE};
 
     span {
-      font-size: 11px;
+      font-size: ${FONT_SIZE_EXTRA_SMALL};
       color: ${COLOR_BLACK};
     }
   }
@@ -87,7 +91,7 @@ export const $Btn = styled.button`
     border-color: ${COLOR_WHITE};
 
     span {
-      font-size: 12px;
+      font-size: ${FONT_SIZE_EXTRA_SMALL};
     }
   }
 
@@ -96,7 +100,7 @@ export const $Btn = styled.button`
     padding: 15px;
 
     span {
-      font-size: 14px;
+      font-size: ${FONT_SIZE_SMALL};
     }
   }
 
@@ -118,7 +122,7 @@ export const $Btn = styled.button`
     }
 
     span {
-      font-size: 15px;
+      font-size: ${FONT_SIZE_SMALL};
     }
   }
 
@@ -137,7 +141,7 @@ export const $Btn = styled.button`
     width: auto;
 
     & span {
-      font-size: 16px;
+      font-size: ${FONT_SIZE_MEDIUM};
 
       &:hover {
         text-decoration: underline;
@@ -150,7 +154,7 @@ export const $Btn = styled.button`
     width: 80px;
   }
 
-  &:disabled {
+  &.disabled {
     cursor: not-allowed;
 
     &.primary {
@@ -166,7 +170,7 @@ export const $Btn = styled.button`
 
 export const $BtnText = styled.span`
   text-align: center;
-  font-size: 20px;
+  font-size: ${FONT_SIZE_EXTRA_LARGE};
   font-weight: ${FONT_WEIGHT_BOLD};
   color: ${COLOR_BLACK};
 `;

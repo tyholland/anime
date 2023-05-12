@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import {
   COLOR_BLACK,
   COLOR_BLUE_HOVER,
+  FONT_SIZE_LARGE,
+  FONT_SIZE_SMALL,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
 } from 'Styles/global.style';
@@ -28,12 +30,12 @@ export const $TeamInfoTxt = styled.div`
 `;
 
 export const $TeamName = styled.div`
-  font-size: 18px;
+  font-size: ${FONT_SIZE_LARGE};
   font-weight: ${FONT_WEIGHT_BOLD};
 `;
 
 export const $TeamLeague = styled.div`
-  font-size: 14px;
+  font-size: ${FONT_SIZE_SMALL};
   color: rgba(0, 0, 0, 0.5);
 `;
 

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
+import { FONT_SIZE_LARGE, MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
 
 export const $ViewLeagueEmptyTitle = styled.div`
   text-align: center;
   margin: 10% 0 3%;
-  font-size: 18px;
+  font-size: ${FONT_SIZE_LARGE};
 
   ${MOBILE_VIEW} {
     margin: 10% 0;

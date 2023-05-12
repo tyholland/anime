@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
-import { $GlobalTitle } from 'Styles/global.style.js';
+import { $GlobalTitle, $GlobalSubTitle } from 'Styles/global.style.js';
 import { $LoginWrapper } from 'PageComponents/login/login.style.js';
 import Select from 'Components/select';
 import { addEvent } from 'Utils/amplitude';
@@ -29,6 +29,7 @@ const SuggestCharacter = () => {
       character: player,
       series,
       category: rank,
+      userId: currentUser?.user_id
     });
 
     if (currentUser) {
@@ -56,6 +57,7 @@ const SuggestCharacter = () => {
         <$GlobalTitle>Suggest a Character</$GlobalTitle>
         {!isSubmitted && (
           <>
+            <$GlobalSubTitle className="suggest">If you noticed that there's a character that you'd like to use in your League or to just have in your Bracket. Recommend a character below, to be added to our growing list of anime characters.</$GlobalSubTitle>
             <TextField placeholder="Character Name" onChange={setPlayer} />
             <TextField placeholder="Anime Series" onChange={setSeries} />
             <Select
@@ -79,14 +81,17 @@ const SuggestCharacter = () => {
               btnText={'Submit Another'}
               btnColor="primary"
               customBtnClass="medium"
-              btnFunction={() => setIsSubmitted(false)}
+              btnFunction={() => {
+                setIsSubmitted(false);
+                setIsLoading(false);
+              }}
             />
           </>
         )}
       </$LoginWrapper>
       {!isSubmitted && (
         <SocialMedia
-          pageTitle="Tell Your Friends"
+          pageTitle="Share with your friends"
           title="Suggest a new character for the Anime Fantasy League"
           description="AFL wants to know what character you want to have on your team."
           singleHashtag="#animeFantasyLeague"

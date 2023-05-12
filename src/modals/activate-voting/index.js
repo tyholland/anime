@@ -57,6 +57,7 @@ const ActivateVoting = ({
       addEvent('Start Matchup Voting', {
         matchupId: query?.matchup_id,
         rank,
+        userId: currentUser?.user_id
       });
 
       setRetrigger(true);

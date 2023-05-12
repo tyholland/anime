@@ -1,3 +1,4 @@
+import { FONT_SIZE_GIGANTIC } from 'Styles/global.style';
 import styled from 'styled-components';
 
 export const $RecapWrapper = styled.div`
@@ -13,7 +14,7 @@ export const $RecapWrapper = styled.div`
 `;
 
 export const $RecapWeek = styled.div`
-  font-size: 25px;
+  font-size: ${FONT_SIZE_GIGANTIC};
 `;
 
 export const $RecapAgainst = styled.div`

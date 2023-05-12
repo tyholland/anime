@@ -1,6 +1,6 @@
 import Button from 'Components/button';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -8,13 +8,13 @@ import {
   TwitterShareButton,
 } from 'react-share';
 import { EmailIcon, FacebookIcon, RedditIcon, TwitterIcon } from 'react-share';
-import Notification from 'src/modals/notification';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import {
   $SocialMediaWrapper,
   $SocialMediaMobileDevice,
 } from './socialMedial.style';
+import { useAppContext } from 'src/hooks/context';
 
 const SocialMedia = ({
   url,
@@ -24,8 +24,8 @@ const SocialMedia = ({
   pageTitle,
   description,
 }) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
+  const { currentUser } = useAppContext();
+  
   const handleMobileShare = async () => {
     const shareData = {
       title: description,
@@ -39,22 +39,19 @@ const SocialMedia = ({
       addEvent('Social Share', {
         platform: 'mobile device',
         title,
+        userId: currentUser?.user_id
       });
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to utilize mobile share'));
     }
   };
 
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-
   const handleTracking = (platform) => {
     addEvent('Social Share', {
       platform,
       title,
+      userId: currentUser?.user_id
     });
-    setModalIsOpen(true);
   };
 
   return (
@@ -104,11 +101,6 @@ const SocialMedia = ({
             </Button>
           </$SocialMediaMobileDevice>
         </div>
-        <Notification
-          message="Mobile share is unavailable"
-          closeModal={closeModal}
-          modalIsOpen={modalIsOpen}
-        />
       </$SocialMediaWrapper>
     </>
   );

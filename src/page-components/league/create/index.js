@@ -47,6 +47,7 @@ const LeagueCreate = () => {
 
       addEvent('League Created', {
         name: leagueName,
+        userId: currentUser?.user_id
       });
 
       router.push(`/league?league_id=${leagueId}`);

@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 import {
+  FONT_SIZE_EXTRA_LARGE,
+  FONT_SIZE_GIGANTIC,
+  FONT_SIZE_LARGE,
+  FONT_SIZE_MEDIUM,
+  FONT_SIZE_SMALL,
   FONT_WEIGHT_BOLD,
   FONT_WEIGHT_NORMAL,
   MOBILE_VIEW,
@@ -30,22 +35,22 @@ export const $BioAffinityText = styled.div`
   margin-left: 5px;
 
   ${MOBILE_VIEW} {
-    font-size: 14px;
+    font-size: ${FONT_SIZE_SMALL};
   }
 `;
 
 export const $BioTitle = styled.div`
-  font-size: 30px;
+  font-size: ${FONT_SIZE_GIGANTIC};
   font-weight: ${FONT_WEIGHT_BOLD};
   margin-bottom: 5%;
 
   ${MOBILE_VIEW} {
-    font-size: 25px;
+    font-size: ${FONT_SIZE_EXTRA_LARGE};
   }
 `;
 
 export const $BioSubTitle = styled.div`
-  font-size: 18px;
+  font-size: ${FONT_SIZE_LARGE};
   color: #999;
   font-weight: ${FONT_WEIGHT_BOLD};
   margin-bottom: 25px;
@@ -55,25 +60,25 @@ export const $BioSubTitle = styled.div`
   }
 
   ${MOBILE_VIEW} {
-    font-size: 16px;
+    font-size: ${FONT_SIZE_MEDIUM};
   }
 `;
 
 export const $BioAttribute = styled.div`
-  font-size: 22px;
+  font-size: ${FONT_SIZE_EXTRA_LARGE};
   font-weight: ${FONT_WEIGHT_BOLD};
 
   ${MOBILE_VIEW} {
-    font-size: 18px;
+    font-size: ${FONT_SIZE_LARGE};
   }
 `;
 
 export const $BioSubAttribute = styled.div`
-  font-size: 20px;
+  font-size: ${FONT_SIZE_EXTRA_LARGE};
   margin-bottom: 25px;
 
   ${MOBILE_VIEW} {
-    font-size: 14px;
+    font-size: ${FONT_SIZE_SMALL};
   }
 `;
 

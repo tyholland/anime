@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_WEIGHT_NORMAL, MOBILE_VIEW } from 'Styles/global.style';
+import { FONT_SIZE_EXTRA_SMALL, FONT_SIZE_LARGE, FONT_SIZE_MEDIUM, FONT_SIZE_SMALL, FONT_WEIGHT_NORMAL, MOBILE_VIEW } from 'Styles/global.style';
 
 export const $AdminWrapper = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ export const $AdminWrapper = styled.div`
   flex-direction: column;
 
   &.column {
-    font-size: 18px;
+    font-size: ${FONT_SIZE_LARGE};
     align-items: center;
 
     ol {
@@ -24,7 +24,7 @@ export const $AdminWrapper = styled.div`
       margin-left: 5%;
 
       span {
-        font-size: 12px;
+        font-size: ${FONT_SIZE_EXTRA_SMALL};
       }
     }
   }
@@ -46,14 +46,14 @@ export const $AdminSection = styled.div`
     margin: 0 0 0 5% !important;
 
     span {
-      font-size: 14px !important;
+      font-size: ${FONT_SIZE_SMALL} !important;
     }
   }
 
   select,
   input {
     width: 50%;
-    font-size: 16px;
+    font-size: {${FONT_SIZE_MEDIUM}};
     height: 30px;
     margin: 0;
   }
@@ -66,7 +66,7 @@ export const $AdminSection = styled.div`
       margin: 3% 0 0 0 !important;
 
       span {
-        font-size: 12px !important;
+        font-size: ${FONT_SIZE_EXTRA_SMALL} !important;
         font-weight: ${FONT_WEIGHT_NORMAL};
       }
     }

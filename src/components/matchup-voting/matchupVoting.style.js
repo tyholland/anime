@@ -1,20 +1,23 @@
 import styled from 'styled-components';
 import {
+  FONT_SIZE_EXTRA_LARGE,
+  FONT_SIZE_GIGANTIC,
+  FONT_SIZE_SMALL,
   FONT_WEIGHT_BOLD,
   FONT_WEIGHT_NORMAL,
   MOBILE_VIEW,
 } from 'Styles/global.style';
 
 export const $MatchupVotingCharacter = styled.div`
-  font-size: 30px;
+  font-size: ${FONT_SIZE_GIGANTIC};
   font-weight: ${FONT_WEIGHT_BOLD};
 
   ${MOBILE_VIEW} {
-    font-size: 20px;
+    font-size: ${FONT_SIZE_EXTRA_LARGE};
   }
 
   &.details {
-    font-size: 14px;
+    font-size: ${FONT_SIZE_SMALL};
     font-weight: ${FONT_WEIGHT_NORMAL};
     margin: 4% 2% 0;
     display: inline-block;
@@ -22,7 +25,7 @@ export const $MatchupVotingCharacter = styled.div`
 `;
 
 export const $MatchupVotingVersus = styled.div`
-  font-size: 20px;
+  font-size: ${FONT_SIZE_EXTRA_LARGE};
   font-weight: ${FONT_WEIGHT_BOLD};
   margin: 40px 0;
   text-align: center;

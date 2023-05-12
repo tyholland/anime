@@ -1,6 +1,8 @@
 import Link from 'next/link.js';
 import React from 'react';
 import { $Btn, $BtnText } from './button.style.js';
+import 'react-tooltip/dist/react-tooltip.css';
+import { Tooltip } from 'react-tooltip';
 
 const Button = ({
   btnColor,
@@ -11,26 +13,49 @@ const Button = ({
   isDisabled = false,
   children,
 }) => {
+  const handledBtnAction = () => {
+    if (isDisabled) {
+      return;
+    }
+
+    btnFunction();
+  };
+
   if (btnFunction) {
     if (children) {
       return (
-        <$Btn
-          className={`${btnColor || ''} ${customBtnClass || ''}`}
-          onClick={() => btnFunction()}
-          disabled={isDisabled}
-        >
-          {children}
-        </$Btn>
+        <>
+          <$Btn
+            className={`${btnColor || ''} ${customBtnClass || ''} ${
+              isDisabled ? 'disabled' : ''
+            }`}
+            onClick={handledBtnAction}
+            data-tooltip-id={`btnTooltip-${btnText}`}
+            data-tooltip-content="Please complete the required fields before proceeding"
+            data-tooltip-variant="error"
+          >
+            {children}
+          </$Btn>
+          {!!isDisabled && <Tooltip id={`btnTooltip-${btnText}`} place="bottom" />}
+        </>
       );
     }
+
     return (
-      <$Btn
-        className={`${btnColor || ''} ${customBtnClass || ''}`}
-        onClick={() => btnFunction()}
-        disabled={isDisabled}
-      >
-        <$BtnText>{btnText}</$BtnText>
-      </$Btn>
+      <>
+        <$Btn
+          className={`${btnColor || ''} ${customBtnClass || ''} ${
+            isDisabled ? 'disabled' : ''
+          }`}
+          onClick={handledBtnAction}
+          data-tooltip-id={`btnTooltip-${btnText}`}
+          data-tooltip-content="Please complete the required fields before proceeding"
+          data-tooltip-variant="error"
+        >
+          <$BtnText>{btnText}</$BtnText>
+        </$Btn>
+        {!!isDisabled && <Tooltip id={`btnTooltip-${btnText}`} place="bottom" />}
+      </>
     );
   }
 
@@ -38,7 +63,6 @@ const Button = ({
     <Link href={redirect}>
       <$Btn
         className={`${btnColor || ''} ${customBtnClass || ''}`}
-        disabled={isDisabled}
       >
         <$BtnText>{btnText}</$BtnText>
       </$Btn>
