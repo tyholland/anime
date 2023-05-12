@@ -266,6 +266,7 @@ export const $GlobalContainer = styled.div`
       background: transparent;
       border: none;
       font-size: ${FONT_SIZE_MEDIUM};
+      color: ${COLOR_BLACK};
 
       ${MOBILE_VIEW} {
         width: 45%;
