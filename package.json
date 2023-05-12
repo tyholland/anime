@@ -34,6 +34,7 @@
     "react-share": "^4.4.1",
     "react-spinners": "^0.13.7",
     "react-svg-tournament-bracket": "^1.4.1",
+    "react-tooltip": "^5.11.2",
     "styled-components": "^5.3.5",
     "stylelint": "^14.11.0",
     "stylelint-config-recommended": "^9.0.0",

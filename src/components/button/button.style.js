@@ -154,7 +154,7 @@ export const $Btn = styled.button`
     width: 80px;
   }
 
-  &:disabled {
+  &.disabled {
     cursor: not-allowed;
 
     &.primary {
