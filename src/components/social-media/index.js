@@ -14,6 +14,7 @@ import {
   $SocialMediaWrapper,
   $SocialMediaMobileDevice,
 } from './socialMedial.style';
+import { useAppContext } from 'src/hooks/context';
 
 const SocialMedia = ({
   url,
@@ -23,6 +24,8 @@ const SocialMedia = ({
   pageTitle,
   description,
 }) => {
+  const { currentUser } = useAppContext();
+  
   const handleMobileShare = async () => {
     const shareData = {
       title: description,
@@ -36,6 +39,7 @@ const SocialMedia = ({
       addEvent('Social Share', {
         platform: 'mobile device',
         title,
+        userId: currentUser?.user_id
       });
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to utilize mobile share'));
@@ -46,6 +50,7 @@ const SocialMedia = ({
     addEvent('Social Share', {
       platform,
       title,
+      userId: currentUser?.user_id
     });
   };
 

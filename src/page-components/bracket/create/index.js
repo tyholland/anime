@@ -316,6 +316,7 @@ const BracketCreate = () => {
             openModal();
             addEvent('Bracket Player', {
               action: 'add',
+              userId: currentUser?.user_id
             });
           }}
         />
@@ -333,6 +334,7 @@ const BracketCreate = () => {
             openModal();
             addEvent('Bracket Player', {
               action: 'change',
+              userId: currentUser?.user_id
             });
           }}
         />
@@ -344,6 +346,7 @@ const BracketCreate = () => {
             updatePlayers(emptyPlayer(fieldName));
             addEvent('Bracket Player', {
               action: 'remove',
+              userId: currentUser?.user_id
             });
           }}
         />
@@ -388,6 +391,7 @@ const BracketCreate = () => {
 
       addEvent('Create Bracket', {
         bracketId,
+        userId: currentUser?.user_id
       });
 
       router.push(`/bracket?bracket_id=${bracketId}`);

@@ -262,6 +262,7 @@ const Draft = () => {
       addEvent('Draft Player', {
         player: character.fullName,
         round,
+        userId: currentUser?.user_id
       });
 
       setRecent(pickUpdate);

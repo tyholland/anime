@@ -109,6 +109,7 @@ const TeamEdit = () => {
             openModal(rank);
             addEvent('Team Roster', {
               action: 'add',
+              userId: currentUser?.user_id
             });
           }}
         />
@@ -126,6 +127,7 @@ const TeamEdit = () => {
             openModal(rank);
             addEvent('Team Roster', {
               action: 'change',
+              userId: currentUser?.user_id
             });
           }}
         />
@@ -137,6 +139,7 @@ const TeamEdit = () => {
             updatePlayers(emptyPlayer(fieldName));
             addEvent('Team Roster', {
               action: 'remove',
+              userId: currentUser?.user_id
             });
           }}
         />

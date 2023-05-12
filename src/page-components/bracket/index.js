@@ -113,6 +113,7 @@ const Bracket = () => {
       addEvent('Bracket Voting', {
         votedFor: match[`${team}TeamName`],
         totalVotes: score + 1,
+        userId: currentUser?.user_id
       });
 
       const updateMatch = matches.findIndex(

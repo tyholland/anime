@@ -59,6 +59,7 @@ const MatchupVoting = ({
       addEvent('Matchup Voting', {
         votedFor: player.full_name,
         totalVotes: votes,
+        userId: currentUser?.user_id
       });
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to add votes'));

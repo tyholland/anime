@@ -29,6 +29,7 @@ const SuggestCharacter = () => {
       character: player,
       series,
       category: rank,
+      userId: currentUser?.user_id
     });
 
     if (currentUser) {

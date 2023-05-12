@@ -115,6 +115,7 @@ export const joinLeagueSetup = async (leagueHash, currentUser, router) => {
 
     addEvent('Join League', {
       league: leagueHash,
+      userId: currentUser?.user_id
     });
 
     router.push(`/league?league_id=${leagueId}`);

@@ -36,6 +36,7 @@ const JoinLeague = () => {
 
       addEvent('Join League', {
         league: leagueHash,
+        userId: currentUser?.user_id
       });
 
       router.push(`/league?league_id=${leagueId}`);
