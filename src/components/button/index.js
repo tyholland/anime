@@ -63,6 +63,7 @@ const Button = ({
     <Link href={redirect}>
       <$Btn
         className={`${btnColor || ''} ${customBtnClass || ''}`}
+        disabled={isDisabled}
       >
         <$BtnText>{btnText}</$BtnText>
       </$Btn>
