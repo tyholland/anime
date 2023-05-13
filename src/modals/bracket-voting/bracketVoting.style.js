@@ -108,7 +108,7 @@ export const $BracketVotingImage = styled.img`
 
   ${MOBILE_VIEW} {
     width: 100%;
-    height: auto;
+    height: 150px;
   }
 `;
 
