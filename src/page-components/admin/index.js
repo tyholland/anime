@@ -110,7 +110,7 @@ const Admin = () => {
   const handleCreateDraft = async () => {
     try {
       await createDraft(league.id, currentUser?.token);
-      setIsLeagueDisabled(true);
+      setIsStarted(true);
       setDraftNotify(true);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to create draft'));
@@ -267,7 +267,7 @@ const Admin = () => {
                         {!editNum && (
                           <>
                             <div>Number of Teams: {teamNum}</div>
-                            {isStarted || isLeagueDisabled &&
+                            {isStarted &&
                               <Button
                                 btnText="Edit"
                                 btnFunction={() => setEditNum(true)}
@@ -322,7 +322,7 @@ const Admin = () => {
                         />
                         <div>Your League doesn't officially start until the Monday after you complete your League Draft.</div>
                       </$AdminSection>
-                      {isStarted || isLeagueDisabled &&
+                      {isStarted &&
                       <$AdminSection className="delete">
                         <Button
                           btnText="Delete League"
