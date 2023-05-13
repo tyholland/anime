@@ -35,6 +35,10 @@ export const $BracketVotingWrapper = styled.div`
 
   &.duo {
     width: 700px;
+
+    ${MOBILE_VIEW} {
+      width: 100%;
+    }
   }
 
   &.btn {
@@ -77,6 +81,7 @@ export const $BracketVotingSection = styled.div`
 
   ${MOBILE_VIEW} {
     flex-direction: row;
+    width: 100%;
   }
 
   > div {
