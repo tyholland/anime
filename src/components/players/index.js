@@ -199,7 +199,7 @@ const Players = ({
     if (changeRoster) {
       playerList[field] = item;
 
-      addEvent('Roster Update', {
+      addEvent('Bracket Selection', {
         player: item.fullName,
         userId: currentUser?.user_id
       });
@@ -218,6 +218,11 @@ const Players = ({
     }
 
     if (page === 'draft') {
+      openDraft(item);
+      return;
+    }
+
+    if (page === 'roster') {
       openDraft(item);
       return;
     }
@@ -572,7 +577,7 @@ const Players = ({
       <div className="desktopGrid">
         <DataGrid
           columns={
-            changeRoster
+            changeRoster || page === 'roster'
               ? teamColumns
               : page === 'admin'
                 ? adminColumns
@@ -580,7 +585,7 @@ const Players = ({
           }
           rows={rows}
           className={
-            changeRoster
+            changeRoster || page === 'roster'
               ? 'fillModal'
               : page === 'draft'
                 ? 'fillDraft'
@@ -594,7 +599,7 @@ const Players = ({
       <div className="mobileGrid">
         <DataGrid
           columns={
-            changeRoster
+            changeRoster || page === 'roster'
               ? teamMobileColumns
               : page === 'admin'
                 ? adminMobileColumns
@@ -602,7 +607,7 @@ const Players = ({
           }
           rows={rows}
           className={
-            changeRoster
+            changeRoster || page === 'roster'
               ? 'fillModal'
               : page === 'draft'
                 ? 'fillDraft'

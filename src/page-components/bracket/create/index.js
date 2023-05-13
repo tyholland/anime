@@ -130,7 +130,7 @@ const BracketCreate = () => {
   const [playerList, setPlayerList] = useState(emptyPlayersList);
   const [errorPage, setErrorPage] = useState(false);
   const [account, setAccount] = useState(null);
-  const [bracketName, setBracketName] = useState(null);
+  const [bracketName, setBracketName] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const [winWidth, setWinWidth] = useState(0);
 

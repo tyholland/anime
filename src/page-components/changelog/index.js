@@ -22,6 +22,14 @@ const Changelog = () => {
             </ul>
           </li>
           <li>
+            Roster Change
+            <ul>
+              <li>
+                You can now view character info prior to selecting them
+              </li>
+            </ul>
+          </li>
+          <li>
             Buttons
             <ul>
               <li>

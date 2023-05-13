@@ -208,6 +208,14 @@ export const $GlobalContainer = styled.div`
     }
   }
 
+  &.roster {
+    justify-content: space-between;
+
+    > div {
+      width: 100%;
+    }
+  }
+
   &.leagueCharacter {
     position: relative;
     height: auto;
@@ -221,7 +229,7 @@ export const $GlobalContainer = styled.div`
       background-repeat: no-repeat;
       background-position: center;
       position: absolute;
-      top: 24%;
+      top: 10%;
       right: 0px;
       bottom: 0px;
       left: 0px;
@@ -229,6 +237,10 @@ export const $GlobalContainer = styled.div`
 
     ${RESPONSIVE_VIEW} {
       padding: 0;
+    }
+
+    button {
+      z-index: 1;
     }
   }
 
