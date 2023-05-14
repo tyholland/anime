@@ -11,6 +11,17 @@ const Changelog = () => {
       />
       <$GlobalContainer>
         <$GlobalTitle>Changelog</$GlobalTitle>
+        <h3>May 14, 2023</h3>
+        <ul>
+          <li>
+            League Hub
+            <ul>
+              <li>
+                Updated copy for error modal that pops up when Week 1 has started yet,
+              </li>
+            </ul>
+          </li>
+        </ul>
         <h3>May 12, 2023</h3>
         <ul>
           <li>

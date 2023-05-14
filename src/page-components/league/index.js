@@ -20,7 +20,7 @@ const League = () => {
   const [isDraftActive, setIsDraftActive] = useState(null);
   const [leagueId, setLeagueId] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
-  const disableMsg = 'Week 1 has not started yet. Once its started, this link will become active.';
+  const disableMsg = 'Week 1 has not started yet. Normally Week 1 will begin the Monday following your League Draft. Once it has started, this link will become active.';
 
   const handleLeagueData = async () => {
     const { league_id } = router.query;
