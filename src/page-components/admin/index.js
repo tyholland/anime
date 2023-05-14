@@ -43,7 +43,7 @@ const Admin = () => {
   const [errorMsg, setErrorMsg] = useState(null);
   const [league, setLeague] = useState(null);
   const [missingTeams, setMissingTeams] = useState([]);
-  const [isLeagueDisabled, setIsLeagueDisabled] = useState(true);
+  // const [isLeagueDisabled, setIsLeagueDisabled] = useState(true);
   const [isStarted, setIsStarted] = useState(false);
   const [draftNotify, setDraftNotify] = useState(false);
   const options = ['6', '8', '10'];
@@ -67,7 +67,7 @@ const Admin = () => {
       setTeamNum(val);
 
       const missingTeams = [];
-      const isActiveLeague = teamNames.length === parseInt(val);
+      // const isActiveLeague = teamNames.length === parseInt(val);
 
       if (teamNames.length < val) {
         const remainingTeams = val - teamNames.length;
@@ -77,7 +77,7 @@ const Admin = () => {
         }
       }
 
-      setIsLeagueDisabled(!isActiveLeague);
+      // setIsLeagueDisabled(!isActiveLeague);
       setMissingTeams(missingTeams);
       setEditNum(false);
     } catch (err) {
@@ -159,7 +159,7 @@ const Admin = () => {
       );
       const { league, teams } = leagueData;
       const { num_teams, name } = league;
-      const isActiveLeague = teams.length === num_teams;
+      // const isActiveLeague = teams.length === num_teams;
       const missingTeams = [];
 
       if (teams.length < num_teams) {
@@ -175,7 +175,7 @@ const Admin = () => {
       setTeamNum(num_teams);
       setLeagueName(name);
       setMissingTeams(missingTeams);
-      setIsLeagueDisabled(!isActiveLeague);
+      // setIsLeagueDisabled(!isActiveLeague);
       setIsStarted(leagueData.hasDraft);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to league admin data'));
@@ -317,7 +317,6 @@ const Admin = () => {
                           btnText="Create Draft"
                           btnFunction={handleCreateDraft}
                           btnColor="primary"
-                          isDisabled={isLeagueDisabled && isStarted}
                           customBtnClass="medium"
                         />
                         <div>Your League doesn't officially start until the Monday after you complete your League Draft.</div>
