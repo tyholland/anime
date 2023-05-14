@@ -317,7 +317,7 @@ const Admin = () => {
                           btnText="Create Draft"
                           btnFunction={handleCreateDraft}
                           btnColor="primary"
-                          isDisabled={isStarted && isLeagueDisabled}
+                          isDisabled={isLeagueDisabled || isStarted}
                           customBtnClass="medium"
                         />
                         <div>Your League doesn't officially start until the Monday after you complete your League Draft.</div>
