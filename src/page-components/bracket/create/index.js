@@ -9,7 +9,7 @@ import {
 import ChangeCharacters from 'src/modals/change-character';
 import Metadata from 'Components/metadata';
 import { addEvent } from 'Utils/amplitude';
-import { responseError } from 'Utils/index';
+import { randomInt, responseError } from 'Utils/index';
 import { getPlayers } from 'src/requests/player';
 import Error from 'PageComponents/error';
 import { useAppContext } from 'src/hooks/context';
@@ -316,7 +316,7 @@ const BracketCreate = () => {
             openModal();
             addEvent('Bracket Player', {
               action: 'add',
-              userId: currentUser?.user_id
+              userId: currentUser?.user_id,
             });
           }}
         />
@@ -334,7 +334,7 @@ const BracketCreate = () => {
             openModal();
             addEvent('Bracket Player', {
               action: 'change',
-              userId: currentUser?.user_id
+              userId: currentUser?.user_id,
             });
           }}
         />
@@ -346,7 +346,7 @@ const BracketCreate = () => {
             updatePlayers(emptyPlayer(fieldName));
             addEvent('Bracket Player', {
               action: 'remove',
-              userId: currentUser?.user_id
+              userId: currentUser?.user_id,
             });
           }}
         />
@@ -378,7 +378,9 @@ const BracketCreate = () => {
     setPlayers(unusedPlayers);
     setIsModalOpen(false);
     setCanChange(true);
-    setIsDisabled(!bracketName.length || Object.values(playerList).some((list) => !list.id));
+    setIsDisabled(
+      !bracketName.length || Object.values(playerList).some((list) => !list.id)
+    );
   };
 
   const handleSubmit = async () => {
@@ -391,7 +393,7 @@ const BracketCreate = () => {
 
       addEvent('Create Bracket', {
         bracketId,
-        userId: currentUser?.user_id
+        userId: currentUser?.user_id,
       });
 
       router.push(`/bracket?bracket_id=${bracketId}`);
@@ -402,7 +404,22 @@ const BracketCreate = () => {
 
   const handleBracketName = (val) => {
     setBracketName(val);
-    setIsDisabled(!val.length || Object.values(playerList).some((list) => !list.id));
+    setIsDisabled(
+      !val.length || Object.values(playerList).some((list) => !list.id)
+    );
+  };
+
+  const handleRandomizer = () => {
+    if (allPlayers.length) {
+      for (let index = 0; index < 16; index++) {
+        const randomNum = randomInt(allPlayers.length);
+
+        playerList[`player${index + 1}`].id = allPlayers[randomNum].id;
+        playerList[`player${index + 1}`].name = allPlayers[randomNum].name;
+      }
+
+      updatePlayers(playerList);
+    }
   };
 
   useEffect(() => {
@@ -456,6 +473,12 @@ const BracketCreate = () => {
                 placeholder="Enter Bracket Name"
                 onChange={(val) => handleBracketName(val)}
                 maxLength={12}
+              />
+              <Button
+                btnText="Randomize Bracket"
+                btnFunction={handleRandomizer}
+                btnColor="primary"
+                customBtnClass="medium"
               />
             </$BracketCreateWrapper>
             <$BracketCreateWrapper>

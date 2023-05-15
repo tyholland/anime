@@ -17,7 +17,7 @@ const Changelog = () => {
             League Hub
             <ul>
               <li>
-                Updated copy for error modal that pops up when Week 1 has started yet.
+                Updated copy for error modal that pops up when Week 1 has started yet
               </li>
             </ul>
           </li>
@@ -41,10 +41,13 @@ const Changelog = () => {
             Bracket feature
             <ul>
               <li>
-                You can view all active brackets now on the Brackets page, even if you aren't logged in.
+                You can view all active brackets now on the Brackets page, even if you aren't logged in
               </li>
               <li>
-                Logged in users will see their own brackets (if they have any) first. Then they will also be able to view all other active brackets.
+                Logged in users will see their own brackets (if they have any) first. Then they will also be able to view all other active brackets
+              </li>
+              <li>
+                You can randomize your bracket if you can't think of any good matchups
               </li>
             </ul>
           </li>

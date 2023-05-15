@@ -13,7 +13,7 @@ const ReadMore = ({ children }) => {
 
       window.localStorage.setItem('abz.news', JSON.stringify(data));
 
-      setNews(data[randomInt()]);
+      setNews(data[randomInt(50)]);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get anime news'));
     }
@@ -26,7 +26,7 @@ const ReadMore = ({ children }) => {
       handleAnimeNews();
     } else {
       abzNews = JSON.parse(abzNews);
-      setNews(abzNews[randomInt()]);
+      setNews(abzNews[randomInt(50)]);
     }
   }, []);
 

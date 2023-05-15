@@ -69,7 +69,12 @@ export const $BracketCreateWrapper = styled.div`
 
   &.title {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+
+    button {
+      width: 20%;
+    }
   }
 
   &.bracket {

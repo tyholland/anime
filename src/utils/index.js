@@ -29,8 +29,8 @@ export const responseError = (err, description) => {
   };
 };
 
-export const randomInt = () => {
-  return Math.floor(Math.random() * 50);
+export const randomInt = (size) => {
+  return Math.floor(Math.random() * size);
 };
 
 export const getAffinitiesTypes = (character) => {
@@ -132,7 +132,7 @@ export const getNonLoggedInUser = () => {
   const user = window.localStorage.getItem('abz.nonLogged');
 
   if (!user) {
-    const randomNum = Math.floor(Math.random() * 100000000);
+    const randomNum = randomInt(100000000);
     window.localStorage.setItem('abz.nonLogged', randomNum);
     return randomNum;
   }

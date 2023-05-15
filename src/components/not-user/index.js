@@ -20,7 +20,7 @@ const NotUser = ({ message = null }) => {
       }
 
       abzNews = JSON.parse(abzNews);
-      const news = abzNews[randomInt()];
+      const news = abzNews[randomInt(50)];
       const filteredMsg = (
         <>
           <h3>Looking for a new series to watch!!!</h3>
