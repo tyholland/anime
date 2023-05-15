@@ -82,7 +82,7 @@ export const $AdminSection = styled.div`
       margin: 3% 0 0 !important;
     }
 
-    div {
+    .content {
       width: 60%;
       margin-top: 3%;
       text-align: center;

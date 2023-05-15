@@ -65,6 +65,7 @@ const ForgotPassword = () => {
             customBtnClass="medium"
             btnFunction={handleForgotPwd}
             isDisabled={isDisabled}
+            disabledMsg="Please complete all the fields above in order to proceed"
           />
           <$LoginContentLinks>
             Already have an account?

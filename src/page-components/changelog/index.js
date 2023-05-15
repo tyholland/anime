@@ -29,6 +29,14 @@ const Changelog = () => {
               </li>
             </ul>
           </li>
+          <li>
+            Buttons
+            <ul>
+              <li>
+                Add specific error message to disabled buttons
+              </li>
+            </ul>
+          </li>
         </ul>
         <h3>May 12, 2023</h3>
         <ul>

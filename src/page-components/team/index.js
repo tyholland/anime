@@ -136,6 +136,7 @@ const Team = () => {
                         customBtnClass="medium"
                         isDisabled={isDisabledRosterEdit}
                         redirect={`/team/edit?team_id=${teamId}`}
+                        disabledMsg={'You can\'t edit your roster at this time'}
                       />
                     </$TeamBtnSection>
                   )}

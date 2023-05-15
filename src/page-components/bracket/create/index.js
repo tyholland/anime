@@ -563,6 +563,7 @@ const BracketCreate = () => {
                 btnFunction={handleSubmit}
                 customBtnClass="medium"
                 isDisabled={isDisabled}
+                disabledMsg="Please complete all the fields above in order to proceed"
               />
             </$BracketCreateWrapper>
             <ChangeCharacters

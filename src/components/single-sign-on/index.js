@@ -105,6 +105,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
         customBtnClass="medium"
         btnFunction={handleGoogle}
         isDisabled={isDisabled}
+        disabledMsg="Loading..."
       >
         {isLoading ? (
           <Loader isSmall={true} />
@@ -125,6 +126,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
         customBtnClass="medium"
         btnFunction={handleFacebook}
         isDisabled={isDisabled}
+        disabledMsg="Loading..."
       >
         {isLoading ? (
           <Loader isSmall={true} />

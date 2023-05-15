@@ -129,6 +129,7 @@ const Login = () => {
                   customBtnClass="medium"
                   btnFunction={handleLogin}
                   isDisabled={isDisabled}
+                  disabledMsg="Please complete all the fields above in order to proceed"
                 />
               </$LoginSection>
               <$LoginSection>

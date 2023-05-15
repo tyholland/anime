@@ -13,21 +13,9 @@ export const $AccountWrapper = styled.div`
   width: 80%;
   margin: 3% auto;
 
-  > div {
+  .pwd {
     width: 100%;
     text-align: center;
-
-    input {
-      width: 82%;
-    }
-
-    button {
-      width: 89% !important;
-
-      span {
-        font-size: ${FONT_SIZE_EXTRA_SMALL} !important;
-      }
-    }
   }
 
   &.column {
@@ -51,9 +39,17 @@ export const $AccountWrapper = styled.div`
 `;
 
 export const $AccountSectionRight = styled.div`
+  width: 100%;
+  text-align: center;
+
   button {
     text-align: right;
     margin-top: 5% !important;
+    width: 89% !important;
+
+    span {
+      font-size: ${FONT_SIZE_EXTRA_SMALL} !important;
+    }
   }
 `;
 

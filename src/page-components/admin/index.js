@@ -319,8 +319,9 @@ const Admin = () => {
                           btnColor="primary"
                           isDisabled={isStarted || isLeagueDisabled}
                           customBtnClass="medium"
+                          disabledMsg={isStarted ? 'League has already started' : isLeagueDisabled ? 'You don\'t have enough teams to draft' : null}
                         />
-                        <div>Your League doesn't officially start until the Monday after you complete your League Draft.</div>
+                        <div className="content">Your League doesn't officially start until the Monday after you complete your League Draft.</div>
                       </$AdminSection>
                       {!isStarted &&
                       <$AdminSection className="delete">

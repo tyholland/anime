@@ -218,7 +218,7 @@ const Account = () => {
                   </Collapsible>
                   <Collapsible trigger={pwdDown} triggerWhenOpen={pwdUp} triggerTagName="div" triggerElementProps={{ id: 'password', 'aria-controls': 'password' }} contentElementId="password">
                     <$AccountWrapper className="column">
-                      <div>
+                      <div className="pwd">
                         {errorMsg && <ErrorMsg msg={errorMsg} />}
                         <TextField
                           placeholder="Enter New Password"
@@ -239,6 +239,7 @@ const Account = () => {
                         customBtnClass="medium"
                         isDisabled={isDisabled}
                         btnFunction={handlePasswordChange}
+                        disabledMsg="Please complete all the fields above in order to proceed"
                       />
                       {pwdSuccess && (
                         <$AccountPwdSuccess>

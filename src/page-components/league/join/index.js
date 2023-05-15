@@ -93,6 +93,7 @@ const JoinLeague = () => {
               customBtnClass="medium"
               btnFunction={handleJoinLeague}
               isDisabled={isDisabled}
+              disabledMsg="Please complete all the fields above in order to proceed"
             />
             {errorMsg && <ErrorMsg msg={errorMsg} />}
           </div>

@@ -89,6 +89,7 @@ const LeagueCreate = () => {
             customBtnClass="medium"
             btnFunction={handleLeagueCreation}
             isDisabled={isDisabled}
+            disabledMsg="Please complete all the fields above in order to proceed"
           />
         </$LeagueCreateWrapper>
       </$GlobalContainer>
