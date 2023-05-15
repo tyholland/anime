@@ -42,6 +42,14 @@ export const $AccountSectionRight = styled.div`
   width: 100%;
   text-align: center;
 
+  input {
+    width: 50%;
+    
+    ${MOBILE_VIEW} {
+      width: 90%;
+    }
+  }
+
   button {
     text-align: right;
     margin-top: 5% !important;
