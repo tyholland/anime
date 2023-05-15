@@ -72,8 +72,16 @@ export const $BracketCreateWrapper = styled.div`
     justify-content: space-evenly;
     align-items: center;
 
+    ${MOBILE_VIEW} {
+      flex-direction: column;
+    }
+
     button {
       width: 20%;
+
+      ${MOBILE_VIEW} {
+        width: 50%;
+      }
     }
   }
 
