@@ -31,11 +31,10 @@ export const getBracket = async (bracketId) => {
   return await axiosClient(data);
 };
 
-export const getAllBrackets = async (token) => {
+export const getAllBrackets = async (userId) => {
   const data = {
-    url: `${api}/bracket/all/items`,
+    url: `${api}/bracket/all/items/${userId}`,
     method: 'get',
-    token,
   };
 
   return await axiosClient(data);

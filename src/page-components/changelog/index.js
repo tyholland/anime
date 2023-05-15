@@ -37,6 +37,17 @@ const Changelog = () => {
               </li>
             </ul>
           </li>
+          <li>
+            Bracket feature
+            <ul>
+              <li>
+                You can view all active brackets now on the Brackets page, even if you aren't logged in.
+              </li>
+              <li>
+                Logged in users will see their own brackets (if they have any) first. Then they will also be able to view all other active brackets.
+              </li>
+            </ul>
+          </li>
         </ul>
         <h3>May 12, 2023</h3>
         <ul>
