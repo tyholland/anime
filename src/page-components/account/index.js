@@ -25,6 +25,7 @@ import { getAuth, signOut, updatePassword, deleteUser } from 'firebase/auth';
 import ErrorMsg from 'Components/error-msg';
 import NotUser from 'Components/not-user';
 import ReadMore from 'Components/read-more';
+import Disclaimer from 'Components/disclaimer';
 
 const Account = () => {
   const { deleteCurrentUser, currentUser } = useAppContext();
@@ -43,6 +44,7 @@ const Account = () => {
   const router = useRouter();
   const message =
     'The account page contains all your Fantasy League profile information, which includes only your email address. You have the ability to change your password if you choose to do so. The account page also allows you to log out of the Fantasy League. Lastly, if you must, you can even delete your account. Though where is the fun in doing that?';
+  const disclaimerMsg = 'AFL emails notifications have been sent to all members. If you haven\'t received any, please check your spam folder for these AFL email notifications. If the emails are in your spam folder, please unmark them as spam.';
 
   const handleLogout = async () => {
     setIsLoading(true);
@@ -196,6 +198,7 @@ const Account = () => {
         <>
           <$GlobalContainer>
             <$GlobalTitle>Account</$GlobalTitle>
+            <Disclaimer msg={disclaimerMsg} />
             {isLoading && <Loader />}
             {!isLoading && (
               <>
