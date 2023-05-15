@@ -4,7 +4,7 @@ import 'react-data-grid/lib/styles.css';
 import Players from 'Components/players';
 import MainModal from '../main';
 import Button from 'Components/button';
-import { $ChangeCharacterWrapper } from '../main/main.style';
+import { $ChangeCharacterWrapper, $ChangeCharacterBio } from '../main/main.style';
 import BioCard from 'Components/bio-card';
 import { useAppContext } from 'src/hooks/context';
 import { addEvent } from 'Utils/amplitude';
@@ -91,7 +91,7 @@ const ChangeCharacters = ({
           />
         )}
         {isCharacter && (
-          <>
+          <$ChangeCharacterBio>
             <BioCard characterId={character.id} />
             <Button
               btnFunction={handleAddPlayer}
@@ -99,7 +99,7 @@ const ChangeCharacters = ({
               btnColor="primary"
               customBtnClass="medium"
             />
-          </>
+          </$ChangeCharacterBio>
         )}
         <Button
           btnFunction={handleClose}

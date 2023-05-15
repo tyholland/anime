@@ -35,3 +35,13 @@ export const $ChangeCharacterWrapper = styled.div`
   text-align: center;
   line-height: 25px;
 `;
+
+export const $ChangeCharacterBio = styled.div`
+  > div {
+    flex-direction: row;
+
+    img {
+      width: 100%;
+    }
+  }
+`;
