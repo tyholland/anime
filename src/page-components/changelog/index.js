@@ -11,6 +11,17 @@ const Changelog = () => {
       />
       <$GlobalContainer>
         <$GlobalTitle>Changelog</$GlobalTitle>
+        <h3>May 15, 2023</h3>
+        <ul>
+          <li>
+            Reminders
+            <ul>
+              <li>
+                Added some reminder modals and emails to keep users up to date with weekly events.
+              </li>
+            </ul>
+          </li>
+        </ul>
         <h3>May 14, 2023</h3>
         <ul>
           <li>

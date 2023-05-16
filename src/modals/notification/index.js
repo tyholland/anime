@@ -3,7 +3,7 @@ import { $GlobalContainer } from 'Styles/global.style';
 import 'react-data-grid/lib/styles.css';
 import MainModal from '../main';
 import Button from 'Components/button';
-import { $NotificationMsg } from './Notification.style';
+import { $NotificationMsg } from './notification.style';
 
 const Notification = ({ message, modalIsOpen, closeModal }) => {
   const customStyles = {
