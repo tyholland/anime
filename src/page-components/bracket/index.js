@@ -9,12 +9,12 @@ import {
   startRound2,
   startRound3,
   startRound4,
+  addBracketVotes,
 } from 'src/requests/bracket';
 import { useRouter } from 'next/router';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import { useAppContext } from 'src/hooks/context';
-import { addVotes } from 'src/requests/bracket';
 import { $BracketWrapper, $BracketContainer } from './bracket.style';
 import SocialMedia from 'Components/social-media';
 import Notification from 'src/modals/notification';
@@ -108,7 +108,7 @@ const Bracket = () => {
     const score = match[`${team}TeamScore`];
 
     try {
-      await addVotes(payload);
+      await addBracketVotes(payload);
 
       addEvent('Bracket Voting', {
         votedFor: match[`${team}TeamName`],

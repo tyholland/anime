@@ -210,6 +210,12 @@ const TeamEdit = () => {
     } catch (err) {
       addEvent('Error', responseError(err, 'Update Team'));
       setErrorMsg(err.response.data.message);
+      thePlayers[field] = {
+        id: null,
+        name: null,
+        affinity: null,
+        points: null,
+      };
       await handleTeamData();
     }
 
@@ -236,7 +242,7 @@ const TeamEdit = () => {
             customBtnClass="text edit"
           />
           <div className="affinities">
-            {player?.affinity?.map((item) => {
+            {!!player.id && player?.affinity?.map((item) => {
               return (
                 <$GlobalCircle
                   key={item.type}

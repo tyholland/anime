@@ -14,6 +14,17 @@ const Changelog = () => {
         <h3>May 16, 2023</h3>
         <ul>
           <li>
+            All Matchup Voting page
+            <ul>
+              <li>
+                You can now view and vote on matchups from any active League head-to-head battles. As well as matchups within any Bracket that is active.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <h3>May 16, 2023</h3>
+        <ul>
+          <li>
             Roster Selection Modal
             <ul>
               <li>

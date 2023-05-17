@@ -15,6 +15,7 @@ import { addEvent } from 'Utils/amplitude.js';
 import ErrorMsg from 'Components/error-msg/index.js';
 import { useAppContext } from 'src/hooks/context.js';
 import Loader from 'Components/loader/index.js';
+import { addBracketVotes } from 'src/requests/bracket.js';
 
 const MatchupVoting = ({
   userPlayerA,
@@ -39,7 +40,7 @@ const MatchupVoting = ({
       : window.location.href;
   }
 
-  const handleAddingVotes = async (player, playerCount) => {
+  const handleAddingVotes = async (player, playerCount, voteType) => {
     setErrorMsg(null);
 
     const payload = {
@@ -50,15 +51,23 @@ const MatchupVoting = ({
     };
 
     try {
-      const { votes } = await addVotes(payload);
+      let voteTally = 0;
+
+      if (voteType === 0) {
+        const { votes } = await addVotes(payload);
+        voteTally = votes;
+      } else {
+        const { votes } = await addBracketVotes(payload);
+        voteTally = votes;
+      }
 
       playerCount === 'player_a_count'
-        ? setPlayerACount(votes)
-        : setPlayerBCount(votes);
+        ? setPlayerACount(voteTally)
+        : setPlayerBCount(voteTally);
 
       addEvent('Matchup Voting', {
         votedFor: player.full_name,
-        totalVotes: votes,
+        totalVotes: voteTally,
         userId: currentUser?.user_id
       });
     } catch (err) {
@@ -68,7 +77,7 @@ const MatchupVoting = ({
   };
 
   const handleMatchup = (matchup) => {
-    const { player_a_count, player_b_count, id, teamA, teamB, leagueName } =
+    const { player_a_count, player_b_count, id, teamA, teamB, leagueName, is_bracket, bracket } =
       matchup;
 
     setPlayerA(userPlayerA);
@@ -79,6 +88,8 @@ const MatchupVoting = ({
       teamA,
       teamB,
       leagueName,
+      is_bracket,
+      bracket
     });
     setVoteId(id);
   };
@@ -103,19 +114,28 @@ const MatchupVoting = ({
             <$MatchupVotingCharacter>
               {playerA.full_name}
             </$MatchupVotingCharacter>
-            <$MatchupVotingCharacter className="details">
-              <strong>Team:</strong> {playerInfo.teamA}
-            </$MatchupVotingCharacter>
-            <$MatchupVotingCharacter className="details">
-              <strong>League:</strong> {playerInfo.leagueName}
-            </$MatchupVotingCharacter>
+            {playerInfo.is_bracket === 0 && (
+              <>
+                <$MatchupVotingCharacter className="details">
+                  <strong>Team:</strong> {playerInfo.teamA}
+                </$MatchupVotingCharacter>
+                <$MatchupVotingCharacter className="details">
+                  <strong>League:</strong> {playerInfo.leagueName}
+                </$MatchupVotingCharacter>
+              </>
+            )}
+            {playerInfo.is_bracket === 1 && (
+              <$MatchupVotingCharacter className="details">
+                <strong>Bracket:</strong> {playerInfo.bracket}
+              </$MatchupVotingCharacter>
+            )}
           </div>
           <div>
             <Button
               btnText={`Vote for ${playerA.name}`}
               btnColor="primary"
               customBtnClass="medium"
-              btnFunction={() => handleAddingVotes(playerA, 'player_a_count')}
+              btnFunction={() => handleAddingVotes(playerA, 'player_a_count', playerInfo.is_bracket)}
             />
             <$MatchupVotingTotal>
               Total Votes: {playerACount}
@@ -134,19 +154,28 @@ const MatchupVoting = ({
             <$MatchupVotingCharacter>
               {playerB.full_name}
             </$MatchupVotingCharacter>
-            <$MatchupVotingCharacter className="details">
-              <strong>Team:</strong> {playerInfo.teamB}
-            </$MatchupVotingCharacter>
-            <$MatchupVotingCharacter className="details">
-              <strong>League:</strong> {playerInfo.leagueName}
-            </$MatchupVotingCharacter>
+            {playerInfo.is_bracket === 0 && (
+              <>
+                <$MatchupVotingCharacter className="details">
+                  <strong>Team:</strong> {playerInfo.teamB}
+                </$MatchupVotingCharacter>
+                <$MatchupVotingCharacter className="details">
+                  <strong>League:</strong> {playerInfo.leagueName}
+                </$MatchupVotingCharacter>
+              </>
+            )}
+            {playerInfo.is_bracket === 1 && (
+              <$MatchupVotingCharacter className="details">
+                <strong>Bracket:</strong> {playerInfo.bracket}
+              </$MatchupVotingCharacter>
+            )}
           </div>
           <div>
             <Button
               btnText={`Vote for ${playerB.name}`}
               btnColor="primary"
               customBtnClass="medium"
-              btnFunction={() => handleAddingVotes(playerB, 'player_b_count')}
+              btnFunction={() => handleAddingVotes(playerB, 'player_b_count', playerInfo.is_bracket)}
             />
             <$MatchupVotingTotal>
               Total Votes: {playerBCount}
