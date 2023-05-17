@@ -87,7 +87,7 @@ export const $TeamEditSection = styled.div`
     display: none;
 
     ${MOBILE_VIEW} {
-      display: block;
+      display: flex;
       width: 40%;
     }
   }
