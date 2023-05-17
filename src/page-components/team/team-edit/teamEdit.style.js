@@ -38,6 +38,7 @@ export const $TeamEditBtn = styled.div`
 
   ${MOBILE_VIEW} {
     width: 180px;
+    flex-direction: column;
   }
 `;
 
