@@ -55,6 +55,24 @@ export const $ChangeCharacterBioBtn = styled.div`
   align-items: center;
   justify-content: space-between;
 
+  button {
+    width: 300px !important;
+    margin: 10px;
+
+    ${MOBILE_VIEW} {
+      width: 100% !important;
+      margin: 5px 0;
+    }
+  }
+
+  &.solo {
+    button {
+      ${MOBILE_VIEW} {
+        width: 300px !important;
+      }
+    }
+  }
+
   ${MOBILE_VIEW} {
     flex-direction: column !important;
   }

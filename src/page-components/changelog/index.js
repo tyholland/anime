@@ -14,13 +14,21 @@ const Changelog = () => {
         <h3>May 16, 2023</h3>
         <ul>
           <li>
-            Roster selection
+            Roster Selection Modal
             <ul>
               <li>
                 Mobile: you can type in the search bar
               </li>
               <li>
                 Mobile: UI improvements for viewing a character to select
+              </li>
+            </ul>
+          </li>
+          <li>
+            Team Edit page
+            <ul>
+              <li>
+                Updated UI to include affinities and character cost (points)
               </li>
             </ul>
           </li>

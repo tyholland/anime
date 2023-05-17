@@ -92,7 +92,7 @@ const ChangeCharacters = ({
         )}
         <$ChangeCharacterBio>
           {isCharacter && <BioCard characterId={character.id} /> }
-          <$ChangeCharacterBioBtn>
+          <$ChangeCharacterBioBtn className={!isCharacter ? 'solo' : ''}>
             {isCharacter && (
               <Button
                 btnFunction={handleAddPlayer}

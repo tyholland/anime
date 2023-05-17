@@ -3,6 +3,7 @@ import {
   $GlobalContainer,
   $GlobalTitle,
   $GlobalSubTitle,
+  $GlobalCircle,
 } from 'Styles/global.style.js';
 import Button from 'Components/button';
 import {
@@ -109,7 +110,7 @@ const TeamEdit = () => {
             openModal(rank);
             addEvent('Team Roster', {
               action: 'add',
-              userId: currentUser?.user_id
+              userId: currentUser?.user_id,
             });
           }}
         />
@@ -127,7 +128,7 @@ const TeamEdit = () => {
             openModal(rank);
             addEvent('Team Roster', {
               action: 'change',
-              userId: currentUser?.user_id
+              userId: currentUser?.user_id,
             });
           }}
         />
@@ -139,7 +140,7 @@ const TeamEdit = () => {
             updatePlayers(emptyPlayer(fieldName));
             addEvent('Team Roster', {
               action: 'remove',
-              userId: currentUser?.user_id
+              userId: currentUser?.user_id,
             });
           }}
         />
@@ -188,13 +189,20 @@ const TeamEdit = () => {
     const totalPoints = getUserPoints(thePlayers);
 
     try {
-      await updateTeam(teamId, thePlayers, currentUser?.token);
+      const { players } = await updateTeam(teamId, thePlayers, currentUser?.token);
       const { unusedPlayers } = await getUseablePlayers(
         teamId,
         currentUser?.token
       );
 
       thePlayers['userPoints'] = totalPoints;
+      const updatedPlayer = players.filter(item => {
+        return item.name === thePlayers[field].name;
+      })[0];
+
+      if (updatedPlayer) {
+        thePlayers[field] = updatedPlayer;
+      }
 
       setPlayerList(thePlayers);
       setPlayers(unusedPlayers);
@@ -212,6 +220,37 @@ const TeamEdit = () => {
   const getProfile = (id) => {
     setBioModalIsOpen(true);
     setCharacterId(id);
+  };
+
+  const handleCharacterLine = (rankDesktop, rankMobile, player, type) => {
+    const rank = rankDesktop.replace('Duo - ', '');
+
+    return (
+      <$TeamEditGrid>
+        <$TeamEditSection className="desktop">{rankDesktop}</$TeamEditSection>
+        <$TeamEditSection className="mobile">{rankMobile}</$TeamEditSection>
+        <$TeamEditSection className="character">
+          <Button
+            btnText={player.name}
+            btnFunction={() => getProfile(player.id)}
+            customBtnClass="text edit"
+          />
+          <div className="affinities">
+            {player?.affinity?.map((item) => {
+              return (
+                <$GlobalCircle
+                  key={item.type}
+                  className={`team ${item.type}`}
+                  title={item.type === 'noAffinity' ? 'no affinity' : item.type}
+                ></$GlobalCircle>
+              );
+            })}
+          </div>
+          {!!player.cost && <div className="points">Points: {player.cost}</div>}
+        </$TeamEditSection>
+        <$TeamEditBtn>{handleBtn(rank, type)}</$TeamEditBtn>
+      </$TeamEditGrid>
+    );
   };
 
   useEffect(() => {
@@ -254,112 +293,14 @@ const TeamEdit = () => {
                 </$GlobalSubTitle>
                 {!!errorMsg && <ErrorMsg msg={errorMsg} />}
                 <$TeamEditWrapper>
-                  <$TeamEditGrid className="desktop">
-                    <$TeamEditSection>Captain</$TeamEditSection>
-                    <$TeamEditSection>Brawler</$TeamEditSection>
-                    <$TeamEditSection>Brawler</$TeamEditSection>
-                    <$TeamEditSection>Duo - Brawler</$TeamEditSection>
-                    <$TeamEditSection>Duo - Support</$TeamEditSection>
-                    <$TeamEditSection>Support</$TeamEditSection>
-                    <$TeamEditSection>Villain</$TeamEditSection>
-                    <$TeamEditSection>Battlefield</$TeamEditSection>
-                  </$TeamEditGrid>
-                  <$TeamEditGrid className="mobile">
-                    <$TeamEditSection>C</$TeamEditSection>
-                    <$TeamEditSection>B</$TeamEditSection>
-                    <$TeamEditSection>B</$TeamEditSection>
-                    <$TeamEditSection>Duo - B</$TeamEditSection>
-                    <$TeamEditSection>Duo - S</$TeamEditSection>
-                    <$TeamEditSection>S</$TeamEditSection>
-                    <$TeamEditSection>V</$TeamEditSection>
-                    <$TeamEditSection>BF</$TeamEditSection>
-                  </$TeamEditGrid>
-                  <$TeamEditGrid>
-                    <$TeamEditSection>
-                      <Button
-                        btnText={playerList.captain.name}
-                        btnFunction={() => getProfile(playerList.captain.id)}
-                        customBtnClass="text edit"
-                      />
-                    </$TeamEditSection>
-                    <$TeamEditSection>
-                      <Button
-                        btnText={playerList.brawlerA.name}
-                        btnFunction={() => getProfile(playerList.brawlerA.id)}
-                        customBtnClass="text edit"
-                      />
-                    </$TeamEditSection>
-                    <$TeamEditSection>
-                      <Button
-                        btnText={playerList.brawlerB.name}
-                        btnFunction={() => getProfile(playerList.brawlerB.id)}
-                        customBtnClass="text edit"
-                      />
-                    </$TeamEditSection>
-                    <$TeamEditSection>
-                      <Button
-                        btnText={playerList.bsBrawler.name}
-                        btnFunction={() => getProfile(playerList.bsBrawler.id)}
-                        customBtnClass="text edit"
-                      />
-                    </$TeamEditSection>
-                    <$TeamEditSection>
-                      <Button
-                        btnText={playerList.bsSupport.name}
-                        btnFunction={() => getProfile(playerList.bsSupport.id)}
-                        customBtnClass="text edit"
-                      />
-                    </$TeamEditSection>
-                    <$TeamEditSection>
-                      <Button
-                        btnText={playerList.support.name}
-                        btnFunction={() => getProfile(playerList.support.id)}
-                        customBtnClass="text edit"
-                      />
-                    </$TeamEditSection>
-                    <$TeamEditSection>
-                      <Button
-                        btnText={playerList.villain.name}
-                        btnFunction={() => getProfile(playerList.villain.id)}
-                        customBtnClass="text edit"
-                      />
-                    </$TeamEditSection>
-                    <$TeamEditSection>
-                      <Button
-                        btnText={playerList.battlefield.name}
-                        btnFunction={() =>
-                          getProfile(playerList.battlefield.id)
-                        }
-                        customBtnClass="text edit"
-                      />
-                    </$TeamEditSection>
-                  </$TeamEditGrid>
-                  <$TeamEditGrid>
-                    <$TeamEditBtn>
-                      {handleBtn('Captain', 'captain')}
-                    </$TeamEditBtn>
-                    <$TeamEditBtn>
-                      {handleBtn('Brawler', 'brawlerA')}
-                    </$TeamEditBtn>
-                    <$TeamEditBtn>
-                      {handleBtn('Brawler', 'brawlerB')}
-                    </$TeamEditBtn>
-                    <$TeamEditBtn>
-                      {handleBtn('Brawler', 'bsBrawler')}
-                    </$TeamEditBtn>
-                    <$TeamEditBtn>
-                      {handleBtn('Support', 'bsSupport')}
-                    </$TeamEditBtn>
-                    <$TeamEditBtn>
-                      {handleBtn('Support', 'support')}
-                    </$TeamEditBtn>
-                    <$TeamEditBtn>
-                      {handleBtn('Villain', 'villain')}
-                    </$TeamEditBtn>
-                    <$TeamEditBtn>
-                      {handleBtn('Battlefield', 'battlefield')}
-                    </$TeamEditBtn>
-                  </$TeamEditGrid>
+                  {handleCharacterLine('Captain', 'C', playerList.captain, 'captain')}
+                  {handleCharacterLine('Brawler', 'B', playerList.brawlerA, 'brawlerA')}
+                  {handleCharacterLine('Brawler', 'B', playerList.brawlerB, 'brawlerB')}
+                  {handleCharacterLine('Duo - Brawler', 'Duo - B', playerList.bsBrawler, 'bsBrawler')}
+                  {handleCharacterLine('Duo - Support', 'Duo - S', playerList.bsSupport, 'bsSupport')}
+                  {handleCharacterLine('Support', 'S', playerList.support, 'support')}
+                  {handleCharacterLine('Villain', 'V', playerList.villain, 'villain')}
+                  {handleCharacterLine('Battlefield', 'BF', playerList.battlefield, 'battlefield')}
                 </$TeamEditWrapper>
                 <$TeamEditWrapper className="return">
                   <Button

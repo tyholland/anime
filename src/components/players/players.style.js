@@ -78,7 +78,7 @@ export const $PlayersStyles = createGlobalStyle`
 export const $PlayersFilter = styled.div`
   display: flex;
   margin-bottom: 2%;
-  width: 800px;
+  width: 100%;
   justify-content: center;
   align-items: center;
 
