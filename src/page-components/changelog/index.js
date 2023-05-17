@@ -61,7 +61,7 @@ const Changelog = () => {
             League Hub
             <ul>
               <li>
-                Updated copy for error modal that pops up when Week 1 has started yet
+                Updated copy for error modal that pops up when Week 1 hasn't started yet
               </li>
             </ul>
           </li>
