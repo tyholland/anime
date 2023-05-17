@@ -35,7 +35,13 @@ export const $BioAffinityText = styled.div`
   margin-left: 5px;
 
   ${MOBILE_VIEW} {
-    font-size: ${FONT_SIZE_SMALL};
+    display: none;
+  }
+
+  &.percent {
+    ${MOBILE_VIEW} {
+      display: block;
+    }
   }
 `;
 
@@ -107,7 +113,8 @@ export const $BioWrapper = styled.div`
     margin: 0 5%;
 
     ${MOBILE_VIEW} {
-      width: 90%;
+      width: 94%;
+      margin: 0 3%;
     }
   }
 `;

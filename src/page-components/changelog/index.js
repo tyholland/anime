@@ -11,6 +11,20 @@ const Changelog = () => {
       />
       <$GlobalContainer>
         <$GlobalTitle>Changelog</$GlobalTitle>
+        <h3>May 16, 2023</h3>
+        <ul>
+          <li>
+            Roster selection
+            <ul>
+              <li>
+                Mobile: you can type in the search bar
+              </li>
+              <li>
+                Mobile: UI improvements for viewing a character to select
+              </li>
+            </ul>
+          </li>
+        </ul>
         <h3>May 15, 2023</h3>
         <ul>
           <li>

@@ -186,7 +186,7 @@ const BioCard = ({ characterId }) => {
                 {affinities?.map((item) => (
                   <$BioAffinity className="right" key={item.type}>
                     <$GlobalCircle className={item.class}></$GlobalCircle>
-                    <$BioAffinityText>{item.value}%</$BioAffinityText>
+                    <$BioAffinityText className="percent">{item.value}%</$BioAffinityText>
                   </$BioAffinity>
                 ))}
               </$BioAffinity>
@@ -218,7 +218,7 @@ const BioCard = ({ characterId }) => {
                 {affinities?.map((item) => (
                   <$BioAffinity className="right" key={item.type}>
                     <$GlobalCircle className={item.class}></$GlobalCircle>
-                    <$BioAffinityText>{item.value}%</$BioAffinityText>
+                    <$BioAffinityText className="percent">{item.value}%</$BioAffinityText>
                   </$BioAffinity>
                 ))}
               </$BioAffinity>
@@ -250,7 +250,7 @@ const BioCard = ({ characterId }) => {
                   <$BioAffinity className="right" key={item.type}>
                     <$GlobalCircle className={item.class}></$GlobalCircle>
                     <$BioAffinityText>{item.type}:</$BioAffinityText>
-                    <$BioAffinityText>{item.value}%</$BioAffinityText>
+                    <$BioAffinityText className="percent">{item.value}%</$BioAffinityText>
                   </$BioAffinity>
                 ))}
               </$BioAffinity>

@@ -206,6 +206,7 @@ export const $GlobalContainer = styled.div`
       background-size: contain;
       top: 22%;
       min-height: auto;
+      opacity: 60%;
     }
   }
 
@@ -226,14 +227,15 @@ export const $GlobalContainer = styled.div`
     &::before {
       content: " ";
       background-image: url(/assets/background/saitama.webp);
-      background-size: 250px;
+      background-size: 200px;
       background-repeat: no-repeat;
       background-position: center;
       position: absolute;
-      top: 10%;
+      top: 18%;
       right: 0px;
       bottom: 0px;
       left: 0px;
+      opacity: 60%;
     }
 
     ${RESPONSIVE_VIEW} {

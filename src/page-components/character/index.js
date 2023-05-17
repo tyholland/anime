@@ -49,7 +49,7 @@ const Character = () => {
         description="View all the characters available to play in the Anime Fantasy League. Click on a character to view the profile"
       />
       <BackLink />
-      <$GlobalContainer className="grid bgImage character">
+      <$GlobalContainer className={`grid ${!players ? '' : 'bgImage character'}`}>
         <$GlobalTitle>All Characters</$GlobalTitle>
         {!players && <Loader />}
         {players && <Players data={players} series={seriesName} />}
