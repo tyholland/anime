@@ -38,10 +38,24 @@ export const $ChangeCharacterWrapper = styled.div`
 
 export const $ChangeCharacterBio = styled.div`
   > div {
-    flex-direction: row;
+    width: 100%;
+
+    ${MOBILE_VIEW} {
+      flex-direction: row;
+    }
 
     img {
       width: 100%;
     }
+  }
+`;
+
+export const $ChangeCharacterBioBtn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  ${MOBILE_VIEW} {
+    flex-direction: column !important;
   }
 `;

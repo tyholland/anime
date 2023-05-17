@@ -4,7 +4,7 @@ import 'react-data-grid/lib/styles.css';
 import Players from 'Components/players';
 import MainModal from '../main';
 import Button from 'Components/button';
-import { $ChangeCharacterWrapper, $ChangeCharacterBio } from '../main/main.style';
+import { $ChangeCharacterWrapper, $ChangeCharacterBio, $ChangeCharacterBioBtn } from '../main/main.style';
 import BioCard from 'Components/bio-card';
 import { useAppContext } from 'src/hooks/context';
 import { addEvent } from 'Utils/amplitude';
@@ -90,23 +90,25 @@ const ChangeCharacters = ({
             page={isBracket ? null : 'roster'}
           />
         )}
-        {isCharacter && (
-          <$ChangeCharacterBio>
-            <BioCard characterId={character.id} />
+        <$ChangeCharacterBio>
+          {isCharacter && <BioCard characterId={character.id} /> }
+          <$ChangeCharacterBioBtn>
+            {isCharacter && (
+              <Button
+                btnFunction={handleAddPlayer}
+                btnText="Select Player"
+                btnColor="primary"
+                customBtnClass="medium"
+              />
+            )}
             <Button
-              btnFunction={handleAddPlayer}
-              btnText="Select Player"
-              btnColor="primary"
+              btnFunction={handleClose}
+              btnText={isCharacter ? 'Close' : 'Cancel'}
+              btnColor="cancel"
               customBtnClass="medium"
             />
-          </$ChangeCharacterBio>
-        )}
-        <Button
-          btnFunction={handleClose}
-          btnText={isCharacter ? 'Close' : 'Cancel'}
-          btnColor="cancel"
-          customBtnClass="medium"
-        />
+          </$ChangeCharacterBioBtn>
+        </$ChangeCharacterBio>
       </$GlobalContainer>
     </MainModal>
   );
