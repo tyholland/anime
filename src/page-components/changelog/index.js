@@ -11,6 +11,17 @@ const Changelog = () => {
       />
       <$GlobalContainer>
         <$GlobalTitle>Changelog</$GlobalTitle>
+        <h3>May 20, 2023</h3>
+        <ul>
+          <li>
+            All Matchup Voting page
+            <ul>
+              <li>
+                On mobile, added a set height to the character images
+              </li>
+            </ul>
+          </li>
+        </ul>
         <h3>May 17, 2023</h3>
         <ul>
           <li>
