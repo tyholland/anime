@@ -7,15 +7,19 @@ import { firebaseApp } from 'Utils/firebase';
 import Footer from 'Components/footer';
 import Notification from 'src/modals/notification';
 import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
 import { FRIDAY, MONDAY, SUNDAY, THURSDAY, alerts } from 'Utils/constants.js';
 
 const MyApp = ({ Component, pageProps, router }) => {
   firebaseApp();
+  dayjs.extend(timezone);
   const [msg, setMsg] = useState(null);
   const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
 
   const handleAlertMsg = (label, message) => {
-    const theDate = `${dayjs().month()}/${dayjs().date()}/${dayjs().year()}`;
+    const currentDate = new Date();
+    const date = dayjs.tz(currentDate, 'America/New_York');
+    const theDate = `${date.month()}/${date.date()}/${date.year()}`;
     const previousDate = window.localStorage.getItem(label);
 
     if (previousDate === theDate) {
@@ -33,7 +37,9 @@ const MyApp = ({ Component, pageProps, router }) => {
   };
 
   const handleAlerts = () => {
-    const dayOfTheWeek = dayjs().day();
+    const currentDate = new Date();
+    const date = dayjs.tz(currentDate, 'America/New_York');
+    const dayOfTheWeek = date.day();
     const eligiblePage = router.state.pathname !== '/login' && router.state.pathname !== '/sign-up';
 
     if (eligiblePage) {
