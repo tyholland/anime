@@ -17,7 +17,15 @@ const Changelog = () => {
             All Matchup Voting page
             <ul>
               <li>
-                On mobile, added a set height to the character images
+                On mobile, added a set height to the character images.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Mobile Nav
+            <ul>
+              <li>
+                Darken the overlay that is shown when mobile nav is open.
               </li>
             </ul>
           </li>

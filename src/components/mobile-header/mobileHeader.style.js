@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {
   COLOR_BLACK,
-  COLOR_ORANGE,
+  COLOR_OVERLAY,
   FONT_SIZE_EXTRA_LARGE,
   FONT_SIZE_SMALL,
   FONT_WEIGHT_BOLD,
@@ -30,11 +30,11 @@ export const $MobileHeaderContainer = styled.div`
   }
 
   .bm-overlay {
-    background: ${COLOR_ORANGE} !important;
-    position: absolute !important;
-    width: 60% !important;
-    right: 0;
     height: ${(props) => props.showOverlay || 'auto'} !important;
+    background: ${COLOR_OVERLAY} !important;
+    position: absolute !important;
+    right: 0;
+    top: 0;
   }
 
   .bm-item-list {
@@ -53,11 +53,13 @@ export const $MobileHeaderContainer = styled.div`
 
   .bm-cross-button {
     width: auto !important;
-    top: -2px !important;
+    top: 30px !important;
   }
 
   .bm-menu {
     overflow: hidden !important;
+    top: 32px;
+    position: absolute;
   }
 
   .bm-burger-bars {
@@ -66,5 +68,7 @@ export const $MobileHeaderContainer = styled.div`
 
   .bm-menu-wrap {
     width: 55% !important;
+    top: 0;
+    background: rgb(249, 128, 17);
   }
 `;

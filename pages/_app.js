@@ -7,11 +7,13 @@ import { firebaseApp } from 'Utils/firebase';
 import Footer from 'Components/footer';
 import Notification from 'src/modals/notification';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { FRIDAY, MONDAY, SUNDAY, THURSDAY, alerts } from 'Utils/constants.js';
 
 const MyApp = ({ Component, pageProps, router }) => {
   firebaseApp();
+  dayjs.extend(utc);
   dayjs.extend(timezone);
   const [msg, setMsg] = useState(null);
   const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
