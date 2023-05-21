@@ -351,19 +351,19 @@ export const allSeries = [
 export const alerts = {
   start: {
     title: 'Update',
-    msg: 'It\'s Monday!!! Your either just start a new League, at which Congrats! Or a new week has started in you current League. Don\'t forget that you can update your roster at this point.'
+    msg: 'It\'s Monday (Eastern Standad Timezone)!!! Your either just start a new League, at which Congrats! Or a new week has started in you current League. Don\'t forget that you can update your roster at this point.'
   },
   voting: {
     title: 'Reminder',
-    msg: 'It\'s Thursday!!! Roster editing has ended. However, you can now activate voting on individual head-to-head matches within this week\'s Matchup.'
+    msg: 'It\'s Thursday (Eastern Standad Timezone)!!! Roster editing has ended. However, you can now activate voting on individual head-to-head matches within this week\'s Matchup.'
   },
   damage: {
     title: 'Reminder',
-    msg: 'It\'s Friday!!! You can now view damage points in this week\'s Matchup.'
+    msg: 'It\'s Friday (Eastern Standad Timezone)!!! You can now view damage points in this week\'s Matchup.'
   },
   affinity: {
     title: 'Reminder',
-    msg: 'It\'s Sunday!!! The Weekly Affinity has dropped. Look at this week\'s Matchup to see how it affected your team. Individual head-to-head voting has now disabled.'
+    msg: 'It\'s Sunday (Eastern Standad Timezone)!!! The Weekly Affinity has dropped. Look at this week\'s Matchup to see how it affected your team. Individual head-to-head voting has now disabled.'
   }
 };
 
