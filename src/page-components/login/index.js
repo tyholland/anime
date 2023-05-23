@@ -137,17 +137,17 @@ const Login = () => {
               </$LoginSection>
             </$LoginSectionWrapper>
             <$LoginContentLinks>
-              Forgot your password?
+            Memory jutsu failed?
               <Button
-                btnText="Reset password"
+                btnText="Recover your password here!"
                 customBtnClass="text"
                 redirect="/forgot"
               />
             </$LoginContentLinks>
             <$LoginContentLinks>
-              Don't have an account?
+            Not a guild member yet?
               <Button
-                btnText="Sign Up"
+                btnText="Join the Anime Fantasy League family!"
                 customBtnClass="text small"
                 redirect={join ? `/sign-up?join=${join}` : '/sign-up'}
               />

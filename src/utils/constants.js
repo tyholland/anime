@@ -351,19 +351,19 @@ export const allSeries = [
 export const alerts = {
   start: {
     title: 'Update',
-    msg: 'It\'s Monday (Eastern Standad Timezone)!!! Your either just start a new League, at which Congrats! Or a new week has started in you current League. Don\'t forget that you can update your roster at this point.'
+    msg: 'It\'s Monday (Eastern Standard Timezone)!!! 🌟✨ Your either just start a new League, at which Congrats! 🎉 Or a new week has started in your current League. Don\'t forget that you can update your roster at this point. 🌟💪🔥 Embrace the power of friendship and unleash your anime spirit as you embark on this epic journey! Let your favorite characters inspire you to greatness, and may your victories be as legendary as the battles fought in the anime realm! 🌟💫✨'
   },
   voting: {
     title: 'Reminder',
-    msg: 'It\'s Thursday (Eastern Standad Timezone)!!! Roster editing has ended. However, you can now activate voting on individual head-to-head matches within this week\'s Matchup.'
+    msg: 'It\'s Thursday (Eastern Standad Timezone)!!! 💫 Roster editing has ended, just like in an epic anime finale. But fear not, for a new thrilling chapter awaits! ✨ You can now activate voting on individual head-to-head matches within this week\'s Matchup, where the fate of your favorite characters will be decided. Get ready to embark on an anime-inspired journey and make your voice heard!'
   },
   damage: {
     title: 'Reminder',
-    msg: 'It\'s Friday (Eastern Standad Timezone)!!! You can now view damage points in this week\'s Matchup.'
+    msg: 'It\'s Friday (Eastern Standard Timezone)!!! You can now witness the damage points in this week\'s epic Matchup, straight out of an anime adventure! 🎮✨'
   },
   affinity: {
     title: 'Reminder',
-    msg: 'It\'s Sunday (Eastern Standad Timezone)!!! The Weekly Affinity has dropped. Look at this week\'s Matchup to see how it affected your team. Individual head-to-head voting has now disabled.'
+    msg: '🎌 Anime enthusiasts assemble! It\'s that time again on this fine Sunday (Eastern Standard Timezone) when The Weekly Affinity makes its grand appearance. Brace yourselves for the ultimate clash, as this week\'s Matchup holds the power to reshape your team\'s destiny. 🌟'
   }
 };
 

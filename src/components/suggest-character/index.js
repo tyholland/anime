@@ -57,7 +57,7 @@ const SuggestCharacter = () => {
         <$GlobalTitle>Suggest a Character</$GlobalTitle>
         {!isSubmitted && (
           <>
-            <$GlobalSubTitle className="suggest">If you noticed that there's a character that you'd like to use in your League or to just have in your Bracket. Recommend a character below, to be added to our growing list of anime characters.</$GlobalSubTitle>
+            <$GlobalSubTitle className="suggest">Noticed a missing hero from our roster? Use your summoning jutsu to recommend a new character for our vast Anime Universe!</$GlobalSubTitle>
             <TextField placeholder="Character Name" onChange={setPlayer} />
             <TextField placeholder="Anime Series" onChange={setSeries} />
             <Select
@@ -92,7 +92,7 @@ const SuggestCharacter = () => {
       </$LoginWrapper>
       {!isSubmitted && (
         <SocialMedia
-          pageTitle="Share with your friends"
+          pageTitle="Spread the otaku love! Share with your nakama!"
           title="Suggest a new character for the Anime Fantasy League"
           description="AFL wants to know what character you want to have on your team."
           singleHashtag="#animeFantasyLeague"
