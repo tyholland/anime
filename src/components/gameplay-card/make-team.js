@@ -8,7 +8,7 @@ const MakeTeam = () => {
   return (
     <$GameplayCardContainer>
       <$GameplayCardSection>
-      Each user is allowed a maximum limit of 9000 points, which they can use to acquire characters and battlefields for their team, inspired by the world of anime. Once all teams have been added, the league owner can start the league draft with a touch of anime flair. Schedule a time that works best for everyone in your league to have the draft, ensuring that the anticipation is at its peak.
+      Each user is allowed a maximum limit of 9000 points, which they can use to acquire characters and battlefields for their team, inspired by the world of anime. Once all teams have been added, the league owner can start the league draft. Schedule a time that works best for everyone in your league to have the draft, ensuring that the anticipation is at its peak.
       </$GameplayCardSection>
       <$GameplayCardSection>
       After the draft is over, the league will officially begin on the following Monday after your league draft ends, capturing the excitement and energy of anime battles. Gather your team and prepare for epic clashes, where extraordinary powers and skills will be put to the test.
