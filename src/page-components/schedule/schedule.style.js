@@ -9,7 +9,7 @@ import {
   RESPONSIVE_VIEW,
 } from 'Styles/global.style';
 
-export const $ScheduleWrapper = styled.button`
+export const ScheduleWrapper = styled.button`
   margin-bottom: 2%;
   padding-bottom: 2%;
   display: flex;
@@ -43,7 +43,7 @@ export const $ScheduleWrapper = styled.button`
   }
 `;
 
-export const $ScheduleTeamSection = styled.div`
+export const ScheduleTeamSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -54,13 +54,13 @@ export const $ScheduleTeamSection = styled.div`
   }
 `;
 
-export const $ScheduleTeamContainer = styled.div`
+export const ScheduleTeamContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 70%;
 `;
 
-export const $ScheduleTeamName = styled.div`
+export const ScheduleTeamName = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

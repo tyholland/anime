@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FONT_SIZE_EXTRA_SMALL, FONT_SIZE_LARGE, FONT_SIZE_MEDIUM, FONT_SIZE_SMALL, FONT_WEIGHT_NORMAL, MOBILE_VIEW } from 'Styles/global.style';
 
-export const $AdminWrapper = styled.div`
+export const AdminWrapper = styled.div`
   display: flex;
   width: 95%;
   margin: 3% auto;
@@ -30,7 +30,7 @@ export const $AdminWrapper = styled.div`
   }
 `;
 
-export const $AdminSection = styled.div`
+export const AdminSection = styled.div`
   width: 50%;
   display: flex;
   align-items: center;
@@ -95,7 +95,7 @@ export const $AdminSection = styled.div`
   }
 `;
 
-export const $AdminContainer = styled.div`
+export const AdminContainer = styled.div`
   margin-bottom: 5%;
 
   .collapseContainer {

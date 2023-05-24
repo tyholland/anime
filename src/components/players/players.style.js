@@ -6,7 +6,7 @@ import {
   MOBILE_VIEW,
 } from 'Styles/global.style';
 
-export const $PlayersStyles = createGlobalStyle`
+export const PlayersStyles = createGlobalStyle`
   .fillGrid,
   .fillModal,
   .fillDraft,
@@ -75,7 +75,7 @@ export const $PlayersStyles = createGlobalStyle`
   }
 `;
 
-export const $PlayersFilter = styled.div`
+export const PlayersFilter = styled.div`
   display: flex;
   margin-bottom: 2%;
   width: 100%;

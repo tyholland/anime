@@ -1,8 +1,8 @@
 import React from 'react';
-import { $ErrorMsgWrapper } from './errorMsg.style';
+import * as Styles from './errorMsg.style';
 
 const ErrorMsg = ({ msg }) => {
-  return <$ErrorMsgWrapper>{msg}</$ErrorMsgWrapper>;
+  return <Styles.ErrorMsgWrapper>{msg}</Styles.ErrorMsgWrapper>;
 };
 
 export default ErrorMsg;

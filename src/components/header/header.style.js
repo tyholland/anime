@@ -7,7 +7,7 @@ import {
   MOBILE_VIEW,
 } from 'Styles/global.style';
 
-export const $HeaderContainer = styled.div`
+export const HeaderContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -15,7 +15,7 @@ export const $HeaderContainer = styled.div`
   background-color: ${COLOR_ORANGE};
 `;
 
-export const $HeaderTitle = styled.div`
+export const HeaderTitle = styled.div`
   font-size: ${FONT_SIZE_EXTRA_LARGE};
   color: ${COLOR_BLACK};
   font-weight: ${FONT_WEIGHT_BOLD};
@@ -27,14 +27,14 @@ export const $HeaderTitle = styled.div`
   }
 `;
 
-export const $HeaderTop = styled.div`
+export const HeaderTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 1% 2%;
 `;
 
-export const $HeaderMenu = styled.div`
+export const HeaderMenu = styled.div`
   display: block;
 
   ${MOBILE_VIEW} {

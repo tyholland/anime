@@ -3,8 +3,8 @@ import GameContainer from 'Components/game-container';
 import Metadata from 'Components/metadata';
 import React, { useEffect, useState } from 'react';
 import Collapsible from 'react-collapsible';
-import { $GlobalContainer, $CollapsibleStyles } from 'Styles/global.style';
-import { $PlayoffsWrapper, $PlayoffsAccordian } from './playoffs.style';
+import * as GlobalStyles from 'Styles/global.style';
+import * as Styles from './playoffs.style';
 import { useRouter } from 'next/router';
 import { getPlayoffs } from 'src/requests/league';
 import { addEvent } from 'Utils/amplitude';
@@ -151,7 +151,7 @@ const Playoffs = () => {
 
   return (
     <>
-      <$CollapsibleStyles />
+      <GlobalStyles.CollapsibleStyles />
       <Metadata
         title="League Playoffs"
         description="View the league playoffs. Be one of the top 6 teams in the league and compete for the championship."
@@ -161,8 +161,8 @@ const Playoffs = () => {
         <>
           <BackLink />
           <LeagueChamp />
-          <$GlobalContainer>
-            <$PlayoffsAccordian>
+          <GlobalStyles.GlobalContainer>
+            <Styles.PlayoffsAccordian>
               <Collapsible
                 trigger={firstDown}
                 triggerWhenOpen={firstUp}
@@ -170,7 +170,7 @@ const Playoffs = () => {
                 triggerElementProps={{ id: 'first', 'aria-controls': 'first' }}
                 contentElementId="first"
               >
-                <$PlayoffsWrapper>
+                <Styles.PlayoffsWrapper>
                   {round1.map((game, index) => {
                     return (
                       <GameContainer
@@ -180,7 +180,7 @@ const Playoffs = () => {
                       />
                     );
                   })}
-                </$PlayoffsWrapper>
+                </Styles.PlayoffsWrapper>
               </Collapsible>
               <Collapsible
                 trigger={semisDown}
@@ -189,7 +189,7 @@ const Playoffs = () => {
                 triggerElementProps={{ id: 'semis', 'aria-controls': 'semis' }}
                 contentElementId="semis"
               >
-                <$PlayoffsWrapper>
+                <Styles.PlayoffsWrapper>
                   {round2.map((game, index) => {
                     return (
                       <GameContainer
@@ -199,7 +199,7 @@ const Playoffs = () => {
                       />
                     );
                   })}
-                </$PlayoffsWrapper>
+                </Styles.PlayoffsWrapper>
               </Collapsible>
               <Collapsible
                 trigger={finalDown}
@@ -211,14 +211,14 @@ const Playoffs = () => {
                 }}
                 contentElementId="finals"
               >
-                <$PlayoffsWrapper>
+                <Styles.PlayoffsWrapper>
                   {round3.map((game) => {
                     return <GameContainer game={game} key={game.teamA} />;
                   })}
-                </$PlayoffsWrapper>
+                </Styles.PlayoffsWrapper>
               </Collapsible>
-            </$PlayoffsAccordian>
-          </$GlobalContainer>
+            </Styles.PlayoffsAccordian>
+          </GlobalStyles.GlobalContainer>
           <ReadMore />
         </>
       )}

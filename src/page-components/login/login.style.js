@@ -1,26 +1,26 @@
 import styled from 'styled-components';
 import { FONT_WEIGHT_BOLD, RESPONSIVE_VIEW } from 'Styles/global.style';
 
-export const $LoginSplit = styled.div`
+export const LoginSplit = styled.div`
   font-weight: ${FONT_WEIGHT_BOLD};
   margin-top: 10px;
   text-align: center;
 `;
 
-export const $LoginContentLinks = styled.div`
+export const LoginContentLinks = styled.div`
   display: flex;
   margin-top: 20px;
   width: 350px;
 `;
 
-export const $LoginWrapper = styled.div`
+export const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-export const $LoginSectionWrapper = styled.div`
+export const LoginSectionWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +32,7 @@ export const $LoginSectionWrapper = styled.div`
   }
 `;
 
-export const $LoginSection = styled.div`
+export const LoginSection = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;

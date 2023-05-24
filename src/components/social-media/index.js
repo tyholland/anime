@@ -10,10 +10,7 @@ import {
 import { EmailIcon, FacebookIcon, RedditIcon, TwitterIcon } from 'react-share';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
-import {
-  $SocialMediaWrapper,
-  $SocialMediaMobileDevice,
-} from './socialMedial.style';
+import * as Styles from './socialMedial.style';
 import { useAppContext } from 'src/hooks/context';
 
 const SocialMedia = ({
@@ -56,7 +53,7 @@ const SocialMedia = ({
 
   return (
     <>
-      <$SocialMediaWrapper>
+      <Styles.SocialMediaWrapper>
         <div className="title">{pageTitle}</div>
         <div className="btns">
           <FacebookShareButton
@@ -90,7 +87,7 @@ const SocialMedia = ({
           >
             <RedditIcon size={50} round={true} />
           </RedditShareButton>
-          <$SocialMediaMobileDevice>
+          <Styles.SocialMediaMobileDevice>
             <Button btnColor="share" btnFunction={handleMobileShare}>
               <Image
                 src="/assets/icons/share-icon.webp"
@@ -99,9 +96,9 @@ const SocialMedia = ({
                 alt="Share Icon"
               />
             </Button>
-          </$SocialMediaMobileDevice>
+          </Styles.SocialMediaMobileDevice>
         </div>
-      </$SocialMediaWrapper>
+      </Styles.SocialMediaWrapper>
     </>
   );
 };

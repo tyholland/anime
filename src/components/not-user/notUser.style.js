@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLOR_WHITE, FONT_SIZE_EXTRA_LARGE, FONT_SIZE_GIGANTIC, MOBILE_VIEW } from 'Styles/global.style';
 
-export const $NotUserContent = styled.div`
+export const NotUserContent = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@ export const $NotUserContent = styled.div`
   }
 `;
 
-export const $NotUserBtnWrapper = styled.div`
+export const NotUserBtnWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;

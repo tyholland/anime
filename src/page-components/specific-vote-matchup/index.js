@@ -8,7 +8,7 @@ import Error from 'PageComponents/error';
 import React, { useEffect, useState } from 'react';
 import { getMatchupVotes } from 'src/requests/matchup';
 import { getPlayer } from 'src/requests/player';
-import { $GlobalContainer } from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style.js';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 
@@ -56,7 +56,7 @@ const SpecificVoteMatchup = () => {
         description="Vote on this matchup between two characters. Your vote can help give the individual fighter that extra boost they need to win their matchup."
         image={playerA?.image_url}
       />
-      <$GlobalContainer>
+      <GlobalStyles.GlobalContainer>
         {!hasMatchup && <Loader />}
         {hasMatchup && (
           <MatchupVoting
@@ -65,7 +65,7 @@ const SpecificVoteMatchup = () => {
             matchup={matchupVotes}
           />
         )}
-      </$GlobalContainer>
+      </GlobalStyles.GlobalContainer>
       <ReadMore>
         <Voting />
       </ReadMore>

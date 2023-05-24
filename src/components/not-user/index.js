@@ -1,7 +1,7 @@
 import Button from 'Components/button';
 import React, { useEffect, useState } from 'react';
-import { $GlobalContainer } from 'Styles/global.style';
-import { $NotUserContent, $NotUserBtnWrapper } from './notUser.style';
+import * as GlobalStyles from 'Styles/global.style';
+import * as Styles from './notUser.style';
 import { useRouter } from 'next/router';
 import { randomInt } from 'Utils/index';
 
@@ -45,8 +45,8 @@ const NotUser = ({ message = null }) => {
 
   return (
     <>
-      <$GlobalContainer className="bgImage notUser">
-        <$NotUserContent>
+      <GlobalStyles.GlobalContainer className="bgImage notUser">
+        <Styles.NotUserContent>
           {!!msg && (
             <div>
               {msg}
@@ -54,16 +54,16 @@ const NotUser = ({ message = null }) => {
             </div>
           )}
           {!msg && <div>Please login to view this page.</div>}
-        </$NotUserContent>
-        <$NotUserBtnWrapper>
+        </Styles.NotUserContent>
+        <Styles.NotUserBtnWrapper>
           <Button
             btnText="Login To Continue"
             redirect={`/login?continue=${router.asPath}`}
             btnColor="primary"
             customBtnClass="medium"
           />
-        </$NotUserBtnWrapper>
-      </$GlobalContainer>
+        </Styles.NotUserBtnWrapper>
+      </GlobalStyles.GlobalContainer>
     </>
   );
 };

@@ -12,25 +12,10 @@ import {
 } from 'src/requests/draft';
 import { getUseablePlayers } from 'src/requests/player';
 import { getTeam } from 'src/requests/team';
-import {
-  $GlobalContainer,
-  COLOR_RED,
-  COLOR_SUCCESS,
-  $CollapsibleStyles,
-  $GlobalTitle,
-} from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
-import {
-  $DraftSection,
-  $DraftTeamsList,
-  $DraftRound,
-  $DraftTeamGrid,
-  $DraftPlayerGrid,
-  $DraftInactive,
-  $DraftResults,
-  $DraftAccordian
-} from './draft.style';
+import * as Styles from './draft.style';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import Loader from 'Components/loader';
 import ReadMore from 'Components/read-more';
@@ -414,7 +399,7 @@ const Draft = () => {
         title="League Draft"
         description="Fantasy League Draft. Create the ultimate team and pick your characters before your friends do."
       />
-      <$GlobalContainer
+      <GlobalStyles.GlobalContainer
         className={isInactiveDraft ? 'bgImage inactiveDraft' : ''}
       >
         {isLoading && <Loader />}
@@ -424,12 +409,12 @@ const Draft = () => {
               <>
                 {!isDraftComplete && (
                   <>
-                    <$DraftSection>
-                      <$DraftRound>
+                    <Styles.DraftSection>
+                      <Styles.DraftRound>
                         <div>Round</div>
                         <div>{round}</div>
-                      </$DraftRound>
-                      <$DraftRound>
+                      </Styles.DraftRound>
+                      <Styles.DraftRound>
                         <div>Time:</div>
                         <div className="timer">
                           <CountdownCircleTimer
@@ -438,10 +423,10 @@ const Draft = () => {
                             initialRemainingTime={initialTime}
                             updateInterval={1}
                             colors={[
-                              COLOR_SUCCESS,
-                              COLOR_SUCCESS,
-                              COLOR_RED,
-                              COLOR_RED,
+                              GlobalStyles.COLOR_SUCCESS,
+                              GlobalStyles.COLOR_SUCCESS,
+                              GlobalStyles.COLOR_RED,
+                              GlobalStyles.COLOR_RED,
                             ]}
                             colorsTime={[60, 10, 10, 0]}
                             key={restartTimer}
@@ -449,8 +434,8 @@ const Draft = () => {
                             {({ remainingTime }) => remainingTime}
                           </CountdownCircleTimer>
                         </div>
-                      </$DraftRound>
-                      <$DraftTeamsList teams={teamsList?.length}>
+                      </Styles.DraftRound>
+                      <Styles.DraftTeamsList teams={teamsList?.length}>
                         {teamsList?.map((item, index) => {
                           const currentPick = pickOrder === index;
                           const userPick =
@@ -471,22 +456,22 @@ const Draft = () => {
                             </div>
                           );
                         })}
-                      </$DraftTeamsList>
-                    </$DraftSection>
+                      </Styles.DraftTeamsList>
+                    </Styles.DraftSection>
                     {!!teamsList && (
-                      <$DraftSection className="current">
+                      <Styles.DraftSection className="current">
                         <div>Current Pick:</div>
                         <div>{teamsList[pickOrder]?.team_name}</div>
-                      </$DraftSection>
+                      </Styles.DraftSection>
                     )}
                     {recent && (
-                      <$DraftSection className="recent">
+                      <Styles.DraftSection className="recent">
                         <div>{recent.team} drafted:</div>
                         <div>{recent.pick}</div>
-                      </$DraftSection>
+                      </Styles.DraftSection>
                     )}
-                    <$DraftSection className="team">
-                      <$DraftPlayerGrid>
+                    <Styles.DraftSection className="team">
+                      <Styles.DraftPlayerGrid>
                         {!!players && (
                           <Players
                             data={players}
@@ -494,8 +479,8 @@ const Draft = () => {
                             page="draft"
                           />
                         )}
-                      </$DraftPlayerGrid>
-                      <$DraftTeamGrid>
+                      </Styles.DraftPlayerGrid>
+                      <Styles.DraftTeamGrid>
                         <h2>Your Team</h2>
                         <div>
                           <strong>Available Points:</strong>{' '}
@@ -528,14 +513,14 @@ const Draft = () => {
                           <strong>Battlefield:</strong>{' '}
                           {playerList?.battlefield?.name}
                         </div>
-                      </$DraftTeamGrid>
-                    </$DraftSection>
+                      </Styles.DraftTeamGrid>
+                    </Styles.DraftSection>
                   </>
                 )}
                 {isDraftComplete && (
-                  <$DraftAccordian>
-                    <$CollapsibleStyles />
-                    <$GlobalTitle>Draft Results</$GlobalTitle>
+                  <Styles.DraftAccordian>
+                    <GlobalStyles.CollapsibleStyles />
+                    <GlobalStyles.GlobalTitle>Draft Results</GlobalStyles.GlobalTitle>
                     {draftResults?.map((item, index) => {
                       const count = index + 1;
                       const teams = JSON.parse(item.teams);
@@ -564,20 +549,20 @@ const Draft = () => {
                         >
                           {teams.map((team) => {
                             return (
-                              <$DraftResults key={team.pick}>
+                              <Styles.DraftResults key={team.pick}>
                                 {team.team_name}: {team.pick}
-                              </$DraftResults>
+                              </Styles.DraftResults>
                             );
                           })}
                         </Collapsible>
                       );
                     })}
-                  </$DraftAccordian>
+                  </Styles.DraftAccordian>
                 )}
               </>
             )}
             {isInactiveDraft && (
-              <$DraftInactive>
+              <Styles.DraftInactive>
                 {inactiveLeagueData.creator !== currentUser.user_id && (
                   <>
                     The Draft for {inactiveLeagueData.leagueName} is currently
@@ -600,11 +585,11 @@ const Draft = () => {
                   </>
                 )}
                 <ReadMore />
-              </$DraftInactive>
+              </Styles.DraftInactive>
             )}
           </>
         )}
-      </$GlobalContainer>
+      </GlobalStyles.GlobalContainer>
       <BioReview
         modalIsOpen={isModalOpen}
         closeModal={closeDraftModal}

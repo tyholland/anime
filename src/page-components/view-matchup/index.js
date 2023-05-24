@@ -1,20 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MatchUp from 'Components/matchup';
-import {
-  $GlobalContainer,
-  $GlobalTitle,
-  $GlobalSubTitle,
-} from 'Styles/global.style';
-import {
-  $ViewMatchupWrapper,
-  $ViewMatchupPositionSection,
-  $ViewMatchupTeamSplit,
-  $ViewMatchupPosition,
-  $ViewMatchupTeamContent,
-  $ViewMatchupTeamName,
-  $ViewMatchupTeamTotal,
-  $ViewMatchupPositionColumn,
-} from './viewMatchup.style';
+import * as GlobalStyles from 'Styles/global.style';
+import * as Styles from './viewMatchup.style';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 import { responseError } from 'Utils/index';
@@ -143,8 +130,8 @@ const ViewMatchup = () => {
       {account && (
         <>
           <BackLink />
-          <$GlobalContainer>
-            <$GlobalTitle className="matchup">
+          <GlobalStyles.GlobalContainer>
+            <GlobalStyles.GlobalTitle className="matchup">
               Matchup
               <Button
                 btnText="?"
@@ -152,11 +139,11 @@ const ViewMatchup = () => {
                 btnFunction={handleModal}
                 customBtnClass="small"
               />
-            </$GlobalTitle>
+            </GlobalStyles.GlobalTitle>
             {!hasMatchup && <Loader />}
             {hasMatchup && (
               <>
-                <$GlobalSubTitle className="matchup">
+                <GlobalStyles.GlobalSubTitle className="matchup">
                   Weekly Affinity:
                   {team1.team.activeAffinity === 0
                     ? ' Unknown'
@@ -165,32 +152,32 @@ const ViewMatchup = () => {
                           ? 'no affinity'
                           : team1.team.affinity
                       }`}
-                </$GlobalSubTitle>
-                <$ViewMatchupWrapper>
-                  <$ViewMatchupTeamContent>
-                    <$ViewMatchupTeamName>
+                </GlobalStyles.GlobalSubTitle>
+                <Styles.ViewMatchupWrapper>
+                  <Styles.ViewMatchupTeamContent>
+                    <Styles.ViewMatchupTeamName>
                       {team1.teamName}
-                    </$ViewMatchupTeamName>
-                    <$ViewMatchupTeamTotal>{score1}</$ViewMatchupTeamTotal>
-                  </$ViewMatchupTeamContent>
-                  <$ViewMatchupTeamContent>
-                    <$ViewMatchupTeamName>
+                    </Styles.ViewMatchupTeamName>
+                    <Styles.ViewMatchupTeamTotal>{score1}</Styles.ViewMatchupTeamTotal>
+                  </Styles.ViewMatchupTeamContent>
+                  <Styles.ViewMatchupTeamContent>
+                    <Styles.ViewMatchupTeamName>
                       {team2.teamName}
-                    </$ViewMatchupTeamName>
-                    <$ViewMatchupTeamTotal>{score2}</$ViewMatchupTeamTotal>
-                  </$ViewMatchupTeamContent>
-                </$ViewMatchupWrapper>
+                    </Styles.ViewMatchupTeamName>
+                    <Styles.ViewMatchupTeamTotal>{score2}</Styles.ViewMatchupTeamTotal>
+                  </Styles.ViewMatchupTeamContent>
+                </Styles.ViewMatchupWrapper>
                 {isActive > 0 && (
-                  <$ViewMatchupWrapper className="activate">
+                  <Styles.ViewMatchupWrapper className="activate">
                     <Button
                       btnText="Activate Voting"
                       btnColor="primary"
                       btnFunction={() => setVotingIsOpen(true)}
                       customBtnClass="small"
                     />
-                  </$ViewMatchupWrapper>
+                  </Styles.ViewMatchupWrapper>
                 )}
-                <$ViewMatchupTeamSplit>
+                <Styles.ViewMatchupTeamSplit>
                   <MatchUp
                     isReverse={false}
                     team={team1.team}
@@ -198,31 +185,31 @@ const ViewMatchup = () => {
                     userId={team1.memberId}
                     isActive={isActive}
                   />
-                  <$ViewMatchupPositionColumn>
-                    <$ViewMatchupPositionSection>
-                      <$ViewMatchupPosition>C</$ViewMatchupPosition>
-                    </$ViewMatchupPositionSection>
-                    <$ViewMatchupPositionSection>
-                      <$ViewMatchupPosition>B</$ViewMatchupPosition>
-                    </$ViewMatchupPositionSection>
-                    <$ViewMatchupPositionSection>
-                      <$ViewMatchupPosition>B</$ViewMatchupPosition>
-                    </$ViewMatchupPositionSection>
-                    <$ViewMatchupPositionSection className="duo">
-                      <$ViewMatchupPosition className="duo">
+                  <Styles.ViewMatchupPositionColumn>
+                    <Styles.ViewMatchupPositionSection>
+                      <Styles.ViewMatchupPosition>C</Styles.ViewMatchupPosition>
+                    </Styles.ViewMatchupPositionSection>
+                    <Styles.ViewMatchupPositionSection>
+                      <Styles.ViewMatchupPosition>B</Styles.ViewMatchupPosition>
+                    </Styles.ViewMatchupPositionSection>
+                    <Styles.ViewMatchupPositionSection>
+                      <Styles.ViewMatchupPosition>B</Styles.ViewMatchupPosition>
+                    </Styles.ViewMatchupPositionSection>
+                    <Styles.ViewMatchupPositionSection className="duo">
+                      <Styles.ViewMatchupPosition className="duo">
                         B/S
-                      </$ViewMatchupPosition>
-                    </$ViewMatchupPositionSection>
-                    <$ViewMatchupPositionSection>
-                      <$ViewMatchupPosition>S</$ViewMatchupPosition>
-                    </$ViewMatchupPositionSection>
-                    <$ViewMatchupPositionSection>
-                      <$ViewMatchupPosition>V</$ViewMatchupPosition>
-                    </$ViewMatchupPositionSection>
-                    <$ViewMatchupPositionSection>
-                      <$ViewMatchupPosition>BF</$ViewMatchupPosition>
-                    </$ViewMatchupPositionSection>
-                  </$ViewMatchupPositionColumn>
+                      </Styles.ViewMatchupPosition>
+                    </Styles.ViewMatchupPositionSection>
+                    <Styles.ViewMatchupPositionSection>
+                      <Styles.ViewMatchupPosition>S</Styles.ViewMatchupPosition>
+                    </Styles.ViewMatchupPositionSection>
+                    <Styles.ViewMatchupPositionSection>
+                      <Styles.ViewMatchupPosition>V</Styles.ViewMatchupPosition>
+                    </Styles.ViewMatchupPositionSection>
+                    <Styles.ViewMatchupPositionSection>
+                      <Styles.ViewMatchupPosition>BF</Styles.ViewMatchupPosition>
+                    </Styles.ViewMatchupPositionSection>
+                  </Styles.ViewMatchupPositionColumn>
                   <MatchUp
                     isReverse={true}
                     team={team2.team}
@@ -230,7 +217,7 @@ const ViewMatchup = () => {
                     userId={team2.memberId}
                     isActive={isActive}
                   />
-                </$ViewMatchupTeamSplit>
+                </Styles.ViewMatchupTeamSplit>
                 <ActivateVoting
                   isModalOpen={votingIsOpen}
                   setIsModalOpen={setVotingIsOpen}
@@ -256,7 +243,7 @@ const ViewMatchup = () => {
               modalIsOpen={modalIsOpen}
               closeModal={closeModal}
             />
-          </$GlobalContainer>
+          </GlobalStyles.GlobalContainer>
         </>
       )}
     </>

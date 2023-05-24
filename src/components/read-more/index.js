@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getAnimeNews } from 'src/requests/player';
 import { addEvent } from 'Utils/amplitude';
 import { randomInt, responseError } from 'Utils/index';
-import { $ReadMoreWrapper, $ReadMoreDisclaimer } from './readMore.style';
+import * as Styles from './readMore.style';
 
 const ReadMore = ({ children }) => {
   const [news, setNews] = useState(null);
@@ -31,7 +31,7 @@ const ReadMore = ({ children }) => {
   }, []);
 
   return (
-    <$ReadMoreWrapper>
+    <Styles.ReadMoreWrapper>
       {!!news && (
         <>
           <div>
@@ -43,14 +43,14 @@ const ReadMore = ({ children }) => {
             </p>
           </div>
           {!!children && (
-            <$ReadMoreDisclaimer>
+            <Styles.ReadMoreDisclaimer>
               <strong>Page Info: </strong>
               {children}
-            </$ReadMoreDisclaimer>
+            </Styles.ReadMoreDisclaimer>
           )}
         </>
       )}
-    </$ReadMoreWrapper>
+    </Styles.ReadMoreWrapper>
   );
 };
 

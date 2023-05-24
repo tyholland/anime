@@ -1,13 +1,13 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { $MainGlobalStyles } from './main.style';
+import * as Styles from './main.style';
 
 const MainModal = ({ modalIsOpen, closeModal, children, styles }) => {
   Modal.setAppElement('#__next');
 
   return (
     <>
-      <$MainGlobalStyles />
+      <Styles.MainGlobalStyles />
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}

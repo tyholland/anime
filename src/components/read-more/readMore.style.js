@@ -1,13 +1,13 @@
 import { FONT_SIZE_EXTRA_SMALL } from 'Styles/global.style';
 import styled from 'styled-components';
 
-export const $ReadMoreWrapper = styled.div`
+export const ReadMoreWrapper = styled.div`
   padding: 3% 3% 2%;
   width: 94%;
   font-size: ${FONT_SIZE_EXTRA_SMALL};
 `;
 
-export const $ReadMoreDisclaimer = styled.div`
+export const ReadMoreDisclaimer = styled.div`
   margin-top: 2%;
 
   > div {

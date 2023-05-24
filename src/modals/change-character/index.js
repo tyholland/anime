@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { $GlobalContainer } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import 'react-data-grid/lib/styles.css';
 import Players from 'Components/players';
 import MainModal from '../main';
 import Button from 'Components/button';
-import { $ChangeCharacterWrapper, $ChangeCharacterBio, $ChangeCharacterBioBtn } from '../main/main.style';
+import * as Styles from '../main/main.style';
 import BioCard from 'Components/bio-card';
 import { useAppContext } from 'src/hooks/context';
 import { addEvent } from 'Utils/amplitude';
@@ -64,9 +64,9 @@ const ChangeCharacters = ({
       closeModal={closeModal}
       styles={customStyles}
     >
-      <$GlobalContainer className={`grid ${isCharacter ? 'roster' : 'leagueCharacter'}`}>
+      <GlobalStyles.GlobalContainer className={`grid ${isCharacter ? 'roster' : 'leagueCharacter'}`}>
         {!isCharacter && (
-          <$ChangeCharacterWrapper>
+          <Styles.ChangeCharacterWrapper>
             {!isBracket && (
               <div>
                 <strong>Remaining Points</strong>: {playerList.userPoints}
@@ -76,7 +76,7 @@ const ChangeCharacters = ({
             Click on any character you want to{' '}
               {isBracket ? 'add.' : 'change with.'}
             </div>
-          </$ChangeCharacterWrapper>
+          </Styles.ChangeCharacterWrapper>
         )}
         {!isCharacter && (
           <Players
@@ -90,9 +90,9 @@ const ChangeCharacters = ({
             page={isBracket ? null : 'roster'}
           />
         )}
-        <$ChangeCharacterBio>
+        <Styles.ChangeCharacterBio>
           {isCharacter && <BioCard characterId={character.id} /> }
-          <$ChangeCharacterBioBtn className={!isCharacter ? 'solo' : ''}>
+          <Styles.ChangeCharacterBioBtn className={!isCharacter ? 'solo' : ''}>
             {isCharacter && (
               <Button
                 btnFunction={handleAddPlayer}
@@ -107,9 +107,9 @@ const ChangeCharacters = ({
               btnColor="cancel"
               customBtnClass="medium"
             />
-          </$ChangeCharacterBioBtn>
-        </$ChangeCharacterBio>
-      </$GlobalContainer>
+          </Styles.ChangeCharacterBioBtn>
+        </Styles.ChangeCharacterBio>
+      </GlobalStyles.GlobalContainer>
     </MainModal>
   );
 };

@@ -1,17 +1,7 @@
 import CharacterStats from 'src/modals/character-stats';
 import React, { useState } from 'react';
-import {
-  $MatchupColumn,
-  $MatchupSection,
-  $MatchupHeadliner,
-  $MatchupAffinity,
-  $MatchupPowerText,
-  $MatchupPower,
-  $MatchupCharacterBtn,
-  $MatchupCharacterBtnWrapper,
-  $MatchupAsterik,
-} from './matchup.style.js';
-import { $GlobalCircle } from 'Styles/global.style.js';
+import * as Styles from './matchup.style.js';
+import * as GlobalStyles from 'Styles/global.style.js';
 import BioReview from 'src/modals/bio-review/index.js';
 
 const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
@@ -39,19 +29,19 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
 
   const getAffinities = (character) => {
     return (
-      <$MatchupAffinity className={isReverse && 'reverse'}>
+      <Styles.MatchupAffinity className={isReverse && 'reverse'}>
         {!!character.affinity?.length &&
           character.affinity.map((item) => {
             return (
-              <$GlobalCircle
+              <GlobalStyles.GlobalCircle
                 key={item.type}
                 className={`team ${item.type}`}
                 title={item.type === 'noAffinity' ? 'no affinity' : item.type}
-              ></$GlobalCircle>
+              ></GlobalStyles.GlobalCircle>
             );
           })}
         {!character.affinity?.length && <span>-</span>}
-      </$MatchupAffinity>
+      </Styles.MatchupAffinity>
     );
   };
 
@@ -70,7 +60,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
     if (activeVoting.length) {
       return (
         <span>
-          <$MatchupAsterik>**</$MatchupAsterik>
+          <Styles.MatchupAsterik>**</Styles.MatchupAsterik>
           {player.name}
         </span>
       );
@@ -81,26 +71,26 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
 
   return (
     <>
-      <$MatchupColumn>
-        <$MatchupSection className={isReverse && 'reverse'}>
-          <$MatchupHeadliner>
-            <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
-              <$MatchupCharacterBtn
+      <Styles.MatchupColumn>
+        <Styles.MatchupSection className={isReverse && 'reverse'}>
+          <Styles.MatchupHeadliner>
+            <Styles.MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+              <Styles.MatchupCharacterBtn
                 onClick={() => getProfile(captain.id)}
                 className={`${isReverse && 'reverse'}${
                   !captain.id ? ' disable' : ''
                 }`}
               >
                 {getCharacterName(captain, 'captain')}
-              </$MatchupCharacterBtn>
-            </$MatchupCharacterBtnWrapper>
+              </Styles.MatchupCharacterBtn>
+            </Styles.MatchupCharacterBtnWrapper>
             {getAffinities(captain)}
-          </$MatchupHeadliner>
-          <$MatchupPower
+          </Styles.MatchupHeadliner>
+          <Styles.MatchupPower
             className={isReverse && 'reverse'}
             onClick={() => toggleModal(captain)}
           >
-            <$MatchupPowerText
+            <Styles.MatchupPowerText
               className={isReverse && 'reverse'}
               noCharacter={!captain.id}
             >
@@ -111,28 +101,28 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
                   : captain.matchPoints === 0
                     ? 'Bye'
                     : captain.matchPoints}
-            </$MatchupPowerText>
-          </$MatchupPower>
-        </$MatchupSection>
-        <$MatchupSection className={isReverse && 'reverse'}>
-          <$MatchupHeadliner>
-            <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
-              <$MatchupCharacterBtn
+            </Styles.MatchupPowerText>
+          </Styles.MatchupPower>
+        </Styles.MatchupSection>
+        <Styles.MatchupSection className={isReverse && 'reverse'}>
+          <Styles.MatchupHeadliner>
+            <Styles.MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+              <Styles.MatchupCharacterBtn
                 onClick={() => getProfile(brawler_a.id)}
                 className={`${isReverse && 'reverse'}${
                   !brawler_a.id ? ' disable' : ''
                 }`}
               >
                 {getCharacterName(brawler_a, 'brawler_a')}
-              </$MatchupCharacterBtn>
-            </$MatchupCharacterBtnWrapper>
+              </Styles.MatchupCharacterBtn>
+            </Styles.MatchupCharacterBtnWrapper>
             {getAffinities(brawler_a)}
-          </$MatchupHeadliner>
-          <$MatchupPower
+          </Styles.MatchupHeadliner>
+          <Styles.MatchupPower
             className={isReverse && 'reverse'}
             onClick={() => toggleModal(brawler_a)}
           >
-            <$MatchupPowerText
+            <Styles.MatchupPowerText
               className={isReverse && 'reverse'}
               noCharacter={!brawler_a.id}
             >
@@ -143,28 +133,28 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
                   : brawler_a.matchPoints === 0
                     ? 'Bye'
                     : brawler_a.matchPoints}
-            </$MatchupPowerText>
-          </$MatchupPower>
-        </$MatchupSection>
-        <$MatchupSection className={isReverse && 'reverse'}>
-          <$MatchupHeadliner>
-            <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
-              <$MatchupCharacterBtn
+            </Styles.MatchupPowerText>
+          </Styles.MatchupPower>
+        </Styles.MatchupSection>
+        <Styles.MatchupSection className={isReverse && 'reverse'}>
+          <Styles.MatchupHeadliner>
+            <Styles.MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+              <Styles.MatchupCharacterBtn
                 onClick={() => getProfile(brawler_b.id)}
                 className={`${isReverse && 'reverse'}${
                   !brawler_b.id ? ' disable' : ''
                 }`}
               >
                 {getCharacterName(brawler_b, 'brawler_b')}
-              </$MatchupCharacterBtn>
-            </$MatchupCharacterBtnWrapper>
+              </Styles.MatchupCharacterBtn>
+            </Styles.MatchupCharacterBtnWrapper>
             {getAffinities(brawler_b)}
-          </$MatchupHeadliner>
-          <$MatchupPower
+          </Styles.MatchupHeadliner>
+          <Styles.MatchupPower
             className={isReverse && 'reverse'}
             onClick={() => toggleModal(brawler_b)}
           >
-            <$MatchupPowerText
+            <Styles.MatchupPowerText
               className={isReverse && 'reverse'}
               noCharacter={!brawler_b.id}
             >
@@ -175,28 +165,28 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
                   : brawler_b.matchPoints === 0
                     ? 'Bye'
                     : brawler_b.matchPoints}
-            </$MatchupPowerText>
-          </$MatchupPower>
-        </$MatchupSection>
-        <$MatchupSection className={`duo ${isReverse && 'reverse'}`}>
-          <$MatchupHeadliner>
-            <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
-              <$MatchupCharacterBtn
+            </Styles.MatchupPowerText>
+          </Styles.MatchupPower>
+        </Styles.MatchupSection>
+        <Styles.MatchupSection className={`duo ${isReverse && 'reverse'}`}>
+          <Styles.MatchupHeadliner>
+            <Styles.MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+              <Styles.MatchupCharacterBtn
                 onClick={() => getProfile(bs_brawler.id)}
                 className={`${isReverse && 'reverse'}${
                   !bs_brawler.id ? ' disable' : ''
                 }`}
               >
                 {getCharacterName(bs_brawler, 'bs_brawler')}
-              </$MatchupCharacterBtn>
-            </$MatchupCharacterBtnWrapper>
+              </Styles.MatchupCharacterBtn>
+            </Styles.MatchupCharacterBtnWrapper>
             {getAffinities(bs_brawler)}
-          </$MatchupHeadliner>
-          <$MatchupPower
+          </Styles.MatchupHeadliner>
+          <Styles.MatchupPower
             className={isReverse && 'reverse'}
             onClick={() => toggleModal(bs_brawler)}
           >
-            <$MatchupPowerText
+            <Styles.MatchupPowerText
               className={isReverse && 'reverse'}
               noCharacter={!bs_brawler.id}
             >
@@ -207,28 +197,28 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
                   : bs_brawler.matchPoints === 0
                     ? 'Bye'
                     : bs_brawler.matchPoints}
-            </$MatchupPowerText>
-          </$MatchupPower>
-        </$MatchupSection>
-        <$MatchupSection className={isReverse && 'reverse'}>
-          <$MatchupHeadliner>
-            <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
-              <$MatchupCharacterBtn
+            </Styles.MatchupPowerText>
+          </Styles.MatchupPower>
+        </Styles.MatchupSection>
+        <Styles.MatchupSection className={isReverse && 'reverse'}>
+          <Styles.MatchupHeadliner>
+            <Styles.MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+              <Styles.MatchupCharacterBtn
                 onClick={() => getProfile(bs_support.id)}
                 className={`${isReverse && 'reverse'}${
                   !bs_support.id ? ' disable' : ''
                 }`}
               >
                 {getCharacterName(bs_support, 'bs_support')}
-              </$MatchupCharacterBtn>
-            </$MatchupCharacterBtnWrapper>
+              </Styles.MatchupCharacterBtn>
+            </Styles.MatchupCharacterBtnWrapper>
             {getAffinities(bs_support)}
-          </$MatchupHeadliner>
-          <$MatchupPower
+          </Styles.MatchupHeadliner>
+          <Styles.MatchupPower
             className={isReverse && 'reverse'}
             onClick={() => toggleModal(bs_support)}
           >
-            <$MatchupPowerText
+            <Styles.MatchupPowerText
               className={isReverse && 'reverse'}
               noCharacter={!bs_support.id}
             >
@@ -239,28 +229,28 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
                   : bs_support.matchPoints === 0
                     ? 'Bye'
                     : bs_support.matchPoints}
-            </$MatchupPowerText>
-          </$MatchupPower>
-        </$MatchupSection>
-        <$MatchupSection className={isReverse && 'reverse'}>
-          <$MatchupHeadliner>
-            <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
-              <$MatchupCharacterBtn
+            </Styles.MatchupPowerText>
+          </Styles.MatchupPower>
+        </Styles.MatchupSection>
+        <Styles.MatchupSection className={isReverse && 'reverse'}>
+          <Styles.MatchupHeadliner>
+            <Styles.MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+              <Styles.MatchupCharacterBtn
                 onClick={() => getProfile(support.id)}
                 className={`${isReverse && 'reverse'}${
                   !support.id ? ' disable' : ''
                 }`}
               >
                 {getCharacterName(support, 'support')}
-              </$MatchupCharacterBtn>
-            </$MatchupCharacterBtnWrapper>
+              </Styles.MatchupCharacterBtn>
+            </Styles.MatchupCharacterBtnWrapper>
             {getAffinities(support)}
-          </$MatchupHeadliner>
-          <$MatchupPower
+          </Styles.MatchupHeadliner>
+          <Styles.MatchupPower
             className={isReverse && 'reverse'}
             onClick={() => toggleModal(support)}
           >
-            <$MatchupPowerText
+            <Styles.MatchupPowerText
               className={isReverse && 'reverse'}
               noCharacter={!support.id}
             >
@@ -271,28 +261,28 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
                   : support.matchPoints === 0
                     ? 'Bye'
                     : support.matchPoints}
-            </$MatchupPowerText>
-          </$MatchupPower>
-        </$MatchupSection>
-        <$MatchupSection className={isReverse && 'reverse'}>
-          <$MatchupHeadliner>
-            <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
-              <$MatchupCharacterBtn
+            </Styles.MatchupPowerText>
+          </Styles.MatchupPower>
+        </Styles.MatchupSection>
+        <Styles.MatchupSection className={isReverse && 'reverse'}>
+          <Styles.MatchupHeadliner>
+            <Styles.MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+              <Styles.MatchupCharacterBtn
                 onClick={() => getProfile(villain.id)}
                 className={`${isReverse && 'reverse'}${
                   !villain.id ? ' disable' : ''
                 }`}
               >
                 {getCharacterName(villain, 'villain')}
-              </$MatchupCharacterBtn>
-            </$MatchupCharacterBtnWrapper>
+              </Styles.MatchupCharacterBtn>
+            </Styles.MatchupCharacterBtnWrapper>
             {getAffinities(villain)}
-          </$MatchupHeadliner>
-          <$MatchupPower
+          </Styles.MatchupHeadliner>
+          <Styles.MatchupPower
             className={isReverse && 'reverse'}
             onClick={() => toggleModal(villain)}
           >
-            <$MatchupPowerText
+            <Styles.MatchupPowerText
               className={isReverse && 'reverse'}
               noCharacter={!villain.id}
             >
@@ -303,28 +293,28 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
                   : villain.matchPoints === 0
                     ? 'Bye'
                     : villain.matchPoints}
-            </$MatchupPowerText>
-          </$MatchupPower>
-        </$MatchupSection>
-        <$MatchupSection className={isReverse && 'reverse'}>
-          <$MatchupHeadliner>
-            <$MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
-              <$MatchupCharacterBtn
+            </Styles.MatchupPowerText>
+          </Styles.MatchupPower>
+        </Styles.MatchupSection>
+        <Styles.MatchupSection className={isReverse && 'reverse'}>
+          <Styles.MatchupHeadliner>
+            <Styles.MatchupCharacterBtnWrapper className={isReverse && 'reverse'}>
+              <Styles.MatchupCharacterBtn
                 onClick={() => getProfile(battlefield.id)}
                 className={`${isReverse && 'reverse'}${
                   !battlefield.id ? ' disable' : ''
                 }`}
               >
                 {getCharacterName(battlefield, 'battlefield')}
-              </$MatchupCharacterBtn>
-            </$MatchupCharacterBtnWrapper>
+              </Styles.MatchupCharacterBtn>
+            </Styles.MatchupCharacterBtnWrapper>
             {getAffinities(battlefield)}
-          </$MatchupHeadliner>
-          <$MatchupPower
+          </Styles.MatchupHeadliner>
+          <Styles.MatchupPower
             className={isReverse && 'reverse'}
             onClick={() => toggleModal(battlefield)}
           >
-            <$MatchupPowerText
+            <Styles.MatchupPowerText
               className={isReverse && 'reverse'}
               noCharacter={!battlefield.id}
             >
@@ -335,9 +325,9 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
                   : battlefield.matchPoints === 0
                     ? 'Bye'
                     : battlefield.matchPoints}
-            </$MatchupPowerText>
-          </$MatchupPower>
-        </$MatchupSection>
+            </Styles.MatchupPowerText>
+          </Styles.MatchupPower>
+        </Styles.MatchupSection>
         <CharacterStats
           setIsModalOpen={setIsModalOpen}
           isModalOpen={isModalOpen}
@@ -346,7 +336,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }) => {
           userId={userId}
           isActive={isActive}
         />
-      </$MatchupColumn>
+      </Styles.MatchupColumn>
       <BioReview
         modalIsOpen={bioModalIsOpen}
         closeModal={closeModal}

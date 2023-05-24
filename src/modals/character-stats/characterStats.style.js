@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLOR_BLACK, FONT_SIZE_EXTRA_LARGE, FONT_SIZE_SMALL, FONT_WEIGHT_BOLD } from 'Styles/global.style';
 
-export const $CharacterStatsBtnWrapper = styled.div`
+export const CharacterStatsBtnWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,7 +11,7 @@ export const $CharacterStatsBtnWrapper = styled.div`
   }
 `;
 
-export const $CharacterStatsScoring = styled.div`
+export const CharacterStatsScoring = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -31,7 +31,7 @@ export const $CharacterStatsScoring = styled.div`
   }
 `;
 
-export const $CharacterStatsPoints = styled.div`
+export const CharacterStatsPoints = styled.div`
   text-align: left;
   width: 48%;
   padding-left: 2%;
@@ -43,7 +43,7 @@ export const $CharacterStatsPoints = styled.div`
   }
 `;
 
-export const $CharacterStatsLabel = styled.div`
+export const CharacterStatsLabel = styled.div`
   text-align: right;
   width: 48%;
   padding-right: 2%;

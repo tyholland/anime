@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  $HeaderContainer,
-  $HeaderTitle,
-  $HeaderTop,
-  $HeaderMenu,
-} from './header.style.js';
+import * as Styles from './header.style.js';
 import Image from 'next/image.js';
 import { useAppContext } from 'src/hooks/context.js';
 import Button from 'Components/button';
@@ -50,9 +45,9 @@ const Header = () => {
   }, []);
 
   return (
-    <$HeaderContainer>
-      <$HeaderTop>
-        <$HeaderTitle>
+    <Styles.HeaderContainer>
+      <Styles.HeaderTop>
+        <Styles.HeaderTitle>
           <Image
             src="/assets/logo/afl-logo.webp"
             width={70}
@@ -60,8 +55,8 @@ const Header = () => {
             alt="Anime Fantasy League"
             onClick={handleHomeClick}
           />
-        </$HeaderTitle>
-        <$HeaderMenu>
+        </Styles.HeaderTitle>
+        <Styles.HeaderMenu>
           <Button
             btnText="League"
             redirect="/league/view"
@@ -82,10 +77,10 @@ const Header = () => {
             redirect={btnlink}
             customBtnClass="small header text"
           />
-        </$HeaderMenu>
+        </Styles.HeaderMenu>
         <MobileHeader acct={btnText} acctLink={btnlink} />
-      </$HeaderTop>
-    </$HeaderContainer>
+      </Styles.HeaderTop>
+    </Styles.HeaderContainer>
   );
 };
 

@@ -1,5 +1,5 @@
 import Header from 'Components/header';
-import { $GlobalStyles } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import { AppWrapper } from 'src/hooks/context';
 import { useEffect, useState } from 'react';
 import { addEvent } from 'Utils/amplitude';
@@ -81,7 +81,7 @@ const MyApp = ({ Component, pageProps, router }) => {
 
   return (
     <AppWrapper>
-      <$GlobalStyles />
+      <GlobalStyles.GlobalStyles />
       <Header />
       <Component {...pageProps} />
       <Footer />

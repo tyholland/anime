@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { $GlobalCircle, $CollapsibleStyles } from 'Styles/global.style.js';
-import {
-  $BioAffinity,
-  $BioAffinityText,
-  $BioTitle,
-  $BioSubTitle,
-  $BioAttribute,
-  $BioSubAttribute,
-  $BioImage,
-  $BioWrapper,
-  $BioAccordian,
-} from './bioCard.style';
+import * as GlobalStyles from 'Styles/global.style.js';
+import * as Styles from './bioCard.style';
 import { getPlayer } from 'src/requests/player';
 import Error from 'PageComponents/error';
 import { addEvent } from 'Utils/amplitude';
@@ -135,62 +125,62 @@ const BioCard = ({ characterId }) => {
 
   return (
     <>
-      <$CollapsibleStyles />
-      <$BioWrapper>
+      <GlobalStyles.CollapsibleStyles />
+      <Styles.BioWrapper>
         <div>
-          <$BioImage src={player.image_url} alt={player.full_name} />
-          <$BioTitle>{player.full_name}</$BioTitle>
-          <$BioSubTitle>
+          <Styles.BioImage src={player.image_url} alt={player.full_name} />
+          <Styles.BioTitle>{player.full_name}</Styles.BioTitle>
+          <Styles.BioSubTitle>
             Anime Series: <span>{player.series}</span>
-          </$BioSubTitle>
-          <$BioAttribute>Rank:</$BioAttribute>
-          <$BioSubAttribute>{player.category}</$BioSubAttribute>
-          <$BioAttribute>Points (cost to add):</$BioAttribute>
-          <$BioSubAttribute>{player.cost}</$BioSubAttribute>
-          <$BioAttribute>Bye Week:</$BioAttribute>
-          <$BioSubAttribute>{player.bye_week}</$BioSubAttribute>
+          </Styles.BioSubTitle>
+          <Styles.BioAttribute>Rank:</Styles.BioAttribute>
+          <Styles.BioSubAttribute>{player.category}</Styles.BioSubAttribute>
+          <Styles.BioAttribute>Points (cost to add):</Styles.BioAttribute>
+          <Styles.BioSubAttribute>{player.cost}</Styles.BioSubAttribute>
+          <Styles.BioAttribute>Bye Week:</Styles.BioAttribute>
+          <Styles.BioSubAttribute>{player.bye_week}</Styles.BioSubAttribute>
         </div>
         <div>
-          <$BioAttribute>Power Level:</$BioAttribute>
-          <$BioSubAttribute>{player.power_level}</$BioSubAttribute>
+          <Styles.BioAttribute>Power Level:</Styles.BioAttribute>
+          <Styles.BioSubAttribute>{player.power_level}</Styles.BioSubAttribute>
           {player.category !== 'Battlefield' && !!affinities?.length && (
             <>
-              <$BioAttribute>Element Affinity:</$BioAttribute>
-              <$BioAffinity className="down">
+              <Styles.BioAttribute>Element Affinity:</Styles.BioAttribute>
+              <Styles.BioAffinity className="down">
                 {affinities?.map((item) => (
-                  <$BioAffinity className="right" key={item.type}>
-                    <$GlobalCircle className={item.class}></$GlobalCircle>
-                    <$BioAffinityText>{item.type}</$BioAffinityText>
-                  </$BioAffinity>
+                  <Styles.BioAffinity className="right" key={item.type}>
+                    <GlobalStyles.GlobalCircle className={item.class}></GlobalStyles.GlobalCircle>
+                    <Styles.BioAffinityText>{item.type}</Styles.BioAffinityText>
+                  </Styles.BioAffinity>
                 ))}
-              </$BioAffinity>
+              </Styles.BioAffinity>
             </>
           )}
           {!(!player.weakness || player.weakness === 'None') && (
             <>
-              <$BioAttribute>Element Weakness:</$BioAttribute>
-              <$BioAffinity className="last">
-                <$BioAffinity>
-                  <$GlobalCircle
+              <Styles.BioAttribute>Element Weakness:</Styles.BioAttribute>
+              <Styles.BioAffinity className="last">
+                <Styles.BioAffinity>
+                  <GlobalStyles.GlobalCircle
                     className={player.weakness.toLowerCase()}
-                  ></$GlobalCircle>
-                  <$BioAffinityText>{player.weakness}</$BioAffinityText>
-                </$BioAffinity>
-              </$BioAffinity>
+                  ></GlobalStyles.GlobalCircle>
+                  <Styles.BioAffinityText>{player.weakness}</Styles.BioAffinityText>
+                </Styles.BioAffinity>
+              </Styles.BioAffinity>
             </>
           )}
           {player.category === 'Villain' && !!affinities?.length && (
             <>
-              <$BioAttribute>Damage %:</$BioAttribute>
-              <$BioAffinity className="down">
+              <Styles.BioAttribute>Damage %:</Styles.BioAttribute>
+              <Styles.BioAffinity className="down">
                 {affinities?.map((item) => (
-                  <$BioAffinity className="right" key={item.type}>
-                    <$GlobalCircle className={item.class}></$GlobalCircle>
-                    <$BioAffinityText className="percent">{item.value}%</$BioAffinityText>
-                  </$BioAffinity>
+                  <Styles.BioAffinity className="right" key={item.type}>
+                    <GlobalStyles.GlobalCircle className={item.class}></GlobalStyles.GlobalCircle>
+                    <Styles.BioAffinityText className="percent">{item.value}%</Styles.BioAffinityText>
+                  </Styles.BioAffinity>
                 ))}
-              </$BioAffinity>
-              <$BioAccordian>
+              </Styles.BioAffinity>
+              <Styles.BioAccordian>
                 <Collapsible
                   trigger={infoDown}
                   triggerWhenOpen={infoUp}
@@ -202,27 +192,27 @@ const BioCard = ({ characterId }) => {
                   affinities as a weakness. If the affinity is "No Affinity",
                   then the damage is given to all characters.
                 </Collapsible>
-              </$BioAccordian>
+              </Styles.BioAccordian>
             </>
           )}
           {player.category === 'Villain' && !affinities?.length && (
             <>
-              <$BioAttribute>Damage %:</$BioAttribute>
-              <$BioSubAttribute>No Damage is given.</$BioSubAttribute>
+              <Styles.BioAttribute>Damage %:</Styles.BioAttribute>
+              <Styles.BioSubAttribute>No Damage is given.</Styles.BioSubAttribute>
             </>
           )}
           {player.category === 'Support' && !!affinities?.length && (
             <>
-              <$BioAttribute>Boost %:</$BioAttribute>
-              <$BioAffinity className="down">
+              <Styles.BioAttribute>Boost %:</Styles.BioAttribute>
+              <Styles.BioAffinity className="down">
                 {affinities?.map((item) => (
-                  <$BioAffinity className="right" key={item.type}>
-                    <$GlobalCircle className={item.class}></$GlobalCircle>
-                    <$BioAffinityText className="percent">{item.value}%</$BioAffinityText>
-                  </$BioAffinity>
+                  <Styles.BioAffinity className="right" key={item.type}>
+                    <GlobalStyles.GlobalCircle className={item.class}></GlobalStyles.GlobalCircle>
+                    <Styles.BioAffinityText className="percent">{item.value}%</Styles.BioAffinityText>
+                  </Styles.BioAffinity>
                 ))}
-              </$BioAffinity>
-              <$BioAccordian>
+              </Styles.BioAffinity>
+              <Styles.BioAccordian>
                 <Collapsible
                   trigger={infoDown}
                   triggerWhenOpen={infoUp}
@@ -233,28 +223,28 @@ const BioCard = ({ characterId }) => {
                   Boost is given to characters that have one or all of these
                   affinities.
                 </Collapsible>
-              </$BioAccordian>
+              </Styles.BioAccordian>
             </>
           )}
           {player.category === 'Support' && !affinities?.length && (
             <>
-              <$BioAttribute>Boost %:</$BioAttribute>
-              <$BioSubAttribute>No Boost is given.</$BioSubAttribute>
+              <Styles.BioAttribute>Boost %:</Styles.BioAttribute>
+              <Styles.BioSubAttribute>No Boost is given.</Styles.BioSubAttribute>
             </>
           )}
           {player.category === 'Battlefield' && (
             <>
-              <$BioAttribute>Team Boost and Enemy Team Damage %:</$BioAttribute>
-              <$BioAffinity className="down">
+              <Styles.BioAttribute>Team Boost and Enemy Team Damage %:</Styles.BioAttribute>
+              <Styles.BioAffinity className="down">
                 {affinities?.map((item) => (
-                  <$BioAffinity className="right" key={item.type}>
-                    <$GlobalCircle className={item.class}></$GlobalCircle>
-                    <$BioAffinityText>{item.type}:</$BioAffinityText>
-                    <$BioAffinityText className="percent">{item.value}%</$BioAffinityText>
-                  </$BioAffinity>
+                  <Styles.BioAffinity className="right" key={item.type}>
+                    <GlobalStyles.GlobalCircle className={item.class}></GlobalStyles.GlobalCircle>
+                    <Styles.BioAffinityText>{item.type}:</Styles.BioAffinityText>
+                    <Styles.BioAffinityText className="percent">{item.value}%</Styles.BioAffinityText>
+                  </Styles.BioAffinity>
                 ))}
-              </$BioAffinity>
-              <$BioAccordian>
+              </Styles.BioAffinity>
+              <Styles.BioAccordian>
                 <Collapsible
                   trigger={infoDown}
                   triggerWhenOpen={infoUp}
@@ -272,11 +262,11 @@ const BioCard = ({ characterId }) => {
                     Affinity", then the damage is given to all characters.
                   </p>
                 </Collapsible>
-              </$BioAccordian>
+              </Styles.BioAccordian>
             </>
           )}
         </div>
-      </$BioWrapper>
+      </Styles.BioWrapper>
     </>
   );
 };

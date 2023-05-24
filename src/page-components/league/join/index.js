@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import BackLink from 'Components/back-link';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
-import { $JoinLeagueWrapper, $JoinLeagueImg } from './join.style';
+import * as GlobalStyles from 'Styles/global.style';
+import * as Styles from './join.style';
 import Metadata from 'Components/metadata';
 import { joinLeague } from 'src/requests/league';
 import { addEvent } from 'Utils/amplitude';
@@ -76,9 +76,9 @@ const JoinLeague = () => {
         description="Join an AFL League and see if you can create the ultimate team and win the league"
       />
       <BackLink />
-      <$GlobalContainer>
-        <$GlobalTitle>Join League</$GlobalTitle>
-        <$JoinLeagueWrapper className={errorMsg && 'spacing'}>
+      <GlobalStyles.GlobalContainer>
+        <GlobalStyles.GlobalTitle>Join League</GlobalStyles.GlobalTitle>
+        <Styles.JoinLeagueWrapper className={errorMsg && 'spacing'}>
           <div>
             <TextField
               placeholder="Enter your league code"
@@ -97,9 +97,9 @@ const JoinLeague = () => {
             />
             {errorMsg && <ErrorMsg msg={errorMsg} />}
           </div>
-          <$JoinLeagueImg src="/assets/background/vegito.webp" alt="Vegito" />
-        </$JoinLeagueWrapper>
-      </$GlobalContainer>
+          <Styles.JoinLeagueImg src="/assets/background/vegito.webp" alt="Vegito" />
+        </Styles.JoinLeagueWrapper>
+      </GlobalStyles.GlobalContainer>
       <ReadMore>
         Affinity Tip: Electricity is an explosive elemental force that can be
         wielded by both heroes and villains in the game. Its weakness lies in

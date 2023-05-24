@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'react-data-grid/lib/styles.css';
 import DataGrid from 'react-data-grid';
 import { useRouter } from 'next/router';
-import { $PlayersFilter, $PlayersStyles } from './players.style';
+import * as Styles from './players.style';
 import TextField from 'Components/text-field';
 import Button from 'Components/button';
 import { getAffinitiesTypes } from 'Utils/index';
@@ -508,8 +508,8 @@ const Players = ({
 
   return (
     <>
-      <$PlayersStyles />
-      <$PlayersFilter>
+      <Styles.PlayersStyles />
+      <Styles.PlayersFilter>
         <TextField
           placeholder="Search for character..."
           onChange={(val) => handleSearchWord(val)}
@@ -520,9 +520,9 @@ const Players = ({
           customBtnClass="small"
           btnFunction={handleFilterDisplay}
         />
-      </$PlayersFilter>
+      </Styles.PlayersFilter>
       {isFilter && (
-        <$PlayersFilter className={`special${changeRoster ? ' team' : ''}`}>
+        <Styles.PlayersFilter className={`special${changeRoster ? ' team' : ''}`}>
           {!changeRoster && (
             <>
               <div className="rankFilter">
@@ -572,7 +572,7 @@ const Players = ({
               <option value="low">Low</option>
             </select>
           </div>
-        </$PlayersFilter>
+        </Styles.PlayersFilter>
       )}
       <div className="desktopGrid">
         <DataGrid

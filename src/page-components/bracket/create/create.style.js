@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLOR_BLACK, MOBILE_VIEW } from 'Styles/global.style';
 
-export const $BracketCreateSection = styled.div`
+export const BracketCreateSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -24,7 +24,7 @@ export const $BracketCreateSection = styled.div`
   }
 `;
 
-export const $BracketCreatePlayer = styled.div`
+export const BracketCreatePlayer = styled.div`
   display: flex;
   align-items: center;
   width: 33%;
@@ -56,7 +56,7 @@ export const $BracketCreatePlayer = styled.div`
   }
 `;
 
-export const $BracketCreateWrapper = styled.div`
+export const BracketCreateWrapper = styled.div`
   margin: 3% 0;
 
   ${MOBILE_VIEW} {

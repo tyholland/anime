@@ -6,7 +6,7 @@ import {
   RESPONSIVE_VIEW,
 } from 'Styles/global.style';
 
-export const $GameplayCardSection = styled.div`
+export const GameplayCardSection = styled.div`
   margin-bottom: 20px;
   font-size: ${FONT_SIZE_MEDIUM};
 
@@ -19,7 +19,7 @@ export const $GameplayCardSection = styled.div`
   }
 `;
 
-export const $GameplayCardTitle = styled.div`
+export const GameplayCardTitle = styled.div`
   text-decoration: underline;
   margin-bottom: 10px;
   font-size: ${FONT_SIZE_MEDIUM};
@@ -30,13 +30,13 @@ export const $GameplayCardTitle = styled.div`
   }
 `;
 
-export const $GameplayCardHeader = styled.div`
+export const GameplayCardHeader = styled.div`
   font-size: ${FONT_SIZE_MEDIUM};
   margin: 5% 0;
   font-weight: ${FONT_WEIGHT_BOLD};
 `;
 
-export const $GameplayCardWrapper = styled.div`
+export const GameplayCardWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-evenly;
@@ -53,7 +53,7 @@ export const $GameplayCardWrapper = styled.div`
   }
 `;
 
-export const $GameplayCardContainer = styled.div`
+export const GameplayCardContainer = styled.div`
   padding: 2%;
 
   ${RESPONSIVE_VIEW} {
@@ -61,7 +61,7 @@ export const $GameplayCardContainer = styled.div`
   }
 `;
 
-export const $GameplayCardAccordian = styled.div`
+export const GameplayCardAccordian = styled.div`
   .collapseContainer {
     display: flex;
     width: 100%;
@@ -78,7 +78,7 @@ export const $GameplayCardAccordian = styled.div`
   }
 `;
 
-export const $GameplayCardAffinity = styled.div`
+export const GameplayCardAffinity = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;

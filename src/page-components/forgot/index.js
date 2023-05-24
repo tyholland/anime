@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
-import {
-  $LoginContentLinks,
-  $LoginWrapper,
-} from 'PageComponents/login/login.style.js';
+import * as GlobalStyles from 'Styles/global.style.js';
+import * as Styles from 'PageComponents/login/login.style.js';
 import { useAppContext } from 'src/hooks/context';
 import Metadata from 'Components/metadata';
 import { redirectToAccount, responseError } from 'Utils/index';
@@ -50,9 +47,9 @@ const ForgotPassword = () => {
         title="Forgot Password"
         description="Enter your email to get your password reset. Check your email for your temporary password."
       />
-      <$GlobalContainer>
-        <$LoginWrapper>
-          <$GlobalTitle>Forgot Password</$GlobalTitle>
+      <GlobalStyles.GlobalContainer>
+        <Styles.LoginWrapper>
+          <GlobalStyles.GlobalTitle>Forgot Password</GlobalStyles.GlobalTitle>
           <TextField
             placeholder="Please enter a email"
             keyboard="email-address"
@@ -67,12 +64,12 @@ const ForgotPassword = () => {
             isDisabled={isDisabled}
             disabledMsg="Please complete all the fields above in order to proceed"
           />
-          <$LoginContentLinks>
+          <Styles.LoginContentLinks>
             Already have an account?
             <Button btnText="Login" customBtnClass="text" redirect="/login" />
-          </$LoginContentLinks>
-        </$LoginWrapper>
-      </$GlobalContainer>
+          </Styles.LoginContentLinks>
+        </Styles.LoginWrapper>
+      </GlobalStyles.GlobalContainer>
     </>
   );
 };

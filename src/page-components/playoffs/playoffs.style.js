@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const $PlayoffsWrapper = styled.div`
+export const PlayoffsWrapper = styled.div`
   padding: 5% 2%;
 `;
 
-export const $PlayoffsAccordian = styled.div`
+export const PlayoffsAccordian = styled.div`
   .collapseContainer {
     display: flex;
     width: 100%;

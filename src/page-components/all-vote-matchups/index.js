@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import BackLink from 'Components/back-link';
-import { $GlobalContainer } from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style.js';
 import MatchupVoting from 'Components/matchup-voting';
 import { addEvent } from 'Utils/amplitude';
 import { getNonLoggedInUser, responseError } from 'Utils/index';
 import { getPlayer } from 'src/requests/player';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
-import { $AllVoteMatchupsEmptyWrapper } from './allVoteMatchups.style';
+import * as Styles from './allVoteMatchups.style';
 import { getAllMatchupVotes } from 'src/requests/matchup';
 import Error from 'PageComponents/error';
 import Loader from 'Components/loader';
@@ -105,7 +105,7 @@ const AllVoteMatchups = () => {
         description="Vote on various matchups between characters in every rank. Your vote can help give the individual fighter that extra boost they need to win their matchup."
         image={playerA?.image_url}
       />
-      <$GlobalContainer>
+      <GlobalStyles.GlobalContainer>
         {isLoading && <Loader />}
         {!!isMatchupsAvailable?.length && !isLoading && (
           <MatchupVoting
@@ -117,7 +117,7 @@ const AllVoteMatchups = () => {
           />
         )}
         {!isMatchupsAvailable?.length && !isLoading && (
-          <$AllVoteMatchupsEmptyWrapper>
+          <Styles.AllVoteMatchupsEmptyWrapper>
             <div className="title">
               There are no available matchups to vote on
             </div>
@@ -127,9 +127,9 @@ const AllVoteMatchups = () => {
               customBtnClass="medium"
               btnColor="primary"
             />
-          </$AllVoteMatchupsEmptyWrapper>
+          </Styles.AllVoteMatchupsEmptyWrapper>
         )}
-      </$GlobalContainer>
+      </GlobalStyles.GlobalContainer>
       <ReadMore>
         <Voting />
       </ReadMore>

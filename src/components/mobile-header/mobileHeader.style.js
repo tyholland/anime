@@ -8,7 +8,7 @@ import {
   MOBILE_VIEW,
 } from 'Styles/global.style';
 
-export const $MobileHeaderContainer = styled.div`
+export const MobileHeaderContainer = styled.div`
   display: none;
 
   ${MOBILE_VIEW} {

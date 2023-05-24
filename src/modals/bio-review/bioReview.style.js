@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
 
-export const $BioReviewWrapper = styled.div`
+export const BioReviewWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

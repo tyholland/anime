@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card/index.js';
 import Metadata from 'Components/metadata';
 import { useAppContext } from 'src/hooks/context';
@@ -69,8 +69,8 @@ const League = () => {
       />
       {!account && <NotUser />}
       {account && (
-        <$GlobalContainer className="bgImage leagueDetail">
-          <$GlobalTitle className="home">League Hub</$GlobalTitle>
+        <GlobalStyles.GlobalContainer className="bgImage leagueDetail">
+          <GlobalStyles.GlobalTitle className="home">League Hub</GlobalStyles.GlobalTitle>
           <LeagueChamp classProp="champ" />
           {!leagueData && <Loader />}
           {leagueData && (
@@ -129,7 +129,7 @@ const League = () => {
               </div>
             </>
           )}
-        </$GlobalContainer>
+        </GlobalStyles.GlobalContainer>
       )}
     </>
   );

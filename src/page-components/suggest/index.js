@@ -1,5 +1,5 @@
 import React from 'react';
-import { $GlobalContainer } from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style.js';
 import BackLink from 'Components/back-link';
 import Metadata from 'Components/metadata';
 import ReadMore from 'Components/read-more';
@@ -13,9 +13,9 @@ const Suggest = () => {
         description="Suggest a character to be added to the Anime Fantasy League. Provide the characters name, anime series, and the character rank"
       />
       <BackLink />
-      <$GlobalContainer>
+      <GlobalStyles.GlobalContainer>
         <SuggestCharacter />
-      </$GlobalContainer>
+      </GlobalStyles.GlobalContainer>
       <ReadMore>
         Affinity Tip: Fire is a powerful elemental force that is harnessed by
         many heroes and villains in the game. Its weakness lies in water, making

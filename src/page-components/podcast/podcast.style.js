@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FONT_SIZE_LARGE, FONT_SIZE_MEDIUM, MOBILE_VIEW } from 'Styles/global.style';
 
-export const $PodcastService = styled.div`
+export const PodcastService = styled.div`
   margin-bottom: 5%;
   display: flex;
   align-items: center;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import 'react-data-grid/lib/styles.css';
 import BackLink from 'Components/back-link';
 import Players from 'Components/players';
@@ -49,11 +49,11 @@ const Character = () => {
         description="View all the characters available to play in the Anime Fantasy League. Click on a character to view the profile"
       />
       <BackLink />
-      <$GlobalContainer className={`grid ${!players ? '' : 'bgImage character'}`}>
-        <$GlobalTitle>All Characters</$GlobalTitle>
+      <GlobalStyles.GlobalContainer className={`grid ${!players ? '' : 'bgImage character'}`}>
+        <GlobalStyles.GlobalTitle>All Characters</GlobalStyles.GlobalTitle>
         {!players && <Loader />}
         {players && <Players data={players} series={seriesName} />}
-      </$GlobalContainer>
+      </GlobalStyles.GlobalContainer>
       <ReadMore />
     </>
   );

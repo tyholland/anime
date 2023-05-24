@@ -1,12 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import {
-  $GameContainerTeamSection,
-  $GameContainerWrapper,
-  $GameContainerTeamContainer,
-  $GameContainerTeamName,
-  $GameContainerGame,
-} from './gameContainer.style';
+import * as Styles from './gameContainer.style';
 import Notification from 'src/modals/notification';
 
 const GameContainer = ({ game, gameNum = null }) => {
@@ -33,23 +27,23 @@ const GameContainer = ({ game, gameNum = null }) => {
 
   return (
     <>
-      <$GameContainerWrapper
+      <Styles.GameContainerWrapper
         isBye={teamB === 'Bye' || !match}
         key={teamA}
         onClick={handleClick}
       >
-        <$GameContainerTeamContainer>
-          {!!gameNum && <$GameContainerGame>Game {gameNum}</$GameContainerGame>}
-          <$GameContainerTeamSection>
-            <$GameContainerTeamName>{teamA}</$GameContainerTeamName>
+        <Styles.GameContainerTeamContainer>
+          {!!gameNum && <Styles.GameContainerGame>Game {gameNum}</Styles.GameContainerGame>}
+          <Styles.GameContainerTeamSection>
+            <Styles.GameContainerTeamName>{teamA}</Styles.GameContainerTeamName>
             <div>{scoreA}</div>
-          </$GameContainerTeamSection>
-          <$GameContainerTeamSection>
-            <$GameContainerTeamName>{teamB}</$GameContainerTeamName>
+          </Styles.GameContainerTeamSection>
+          <Styles.GameContainerTeamSection>
+            <Styles.GameContainerTeamName>{teamB}</Styles.GameContainerTeamName>
             <div>{scoreB}</div>
-          </$GameContainerTeamSection>
-        </$GameContainerTeamContainer>
-      </$GameContainerWrapper>
+          </Styles.GameContainerTeamSection>
+        </Styles.GameContainerTeamContainer>
+      </Styles.GameContainerWrapper>
       <Notification
         message="This is a Bye week. There are no matchups on a bye week."
         closeModal={closeModal}

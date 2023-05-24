@@ -37,7 +37,7 @@ export const RESPONSIVE_VIEW = '@media only screen and (max-width: 960px)';
 export const MOBILE_VIEW = '@media only screen and (max-width: 600px)';
 
 // Global Styles
-export const $GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   body {
     margin: 0 auto;
     min-width: 960px;
@@ -56,7 +56,7 @@ export const $GlobalStyles = createGlobalStyle`
   }
 `;
 
-export const $CollapsibleStyles = createGlobalStyle`
+export const CollapsibleStyles = createGlobalStyle`
   .Collapsible {
     padding: 2%;
     border: 1px solid ${COLOR_BLACK};
@@ -82,7 +82,7 @@ export const $CollapsibleStyles = createGlobalStyle`
 `;
 
 // Global Variables
-export const $GlobalContainer = styled.div`
+export const GlobalContainer = styled.div`
   padding: 2%;
   position: relative;
   min-height: 70vh;
@@ -304,7 +304,7 @@ export const $GlobalContainer = styled.div`
   }
 `;
 
-export const $GlobalTitle = styled.div`
+export const GlobalTitle = styled.div`
   font-weight: ${FONT_WEIGHT_BOLD};
   margin-bottom: 5%;
   font-size: ${FONT_SIZE_GIGANTIC};
@@ -383,7 +383,7 @@ export const $GlobalTitle = styled.div`
   }
 `;
 
-export const $GlobalSubTitle = styled.div`
+export const GlobalSubTitle = styled.div`
   margin-bottom: 2%;
   font-size: ${FONT_SIZE_EXTRA_LARGE};
   text-align: center;
@@ -397,7 +397,7 @@ export const $GlobalSubTitle = styled.div`
   }
 `;
 
-export const $GlobalCircle = styled.div`
+export const GlobalCircle = styled.div`
   width: 20px;
   height: 20px;
   background-repeat: no-repeat;

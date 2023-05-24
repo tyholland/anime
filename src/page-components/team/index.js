@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {
-  $TeamTotalText,
-  $TeamTotalAmount,
-  $TeamTotal,
-  $TeamInfo,
-  $TeamContent,
-  $TeamName,
-  $TeamLeague,
-  $TeamBtnSection,
-} from './team.style.js';
-import { $GlobalContainer } from 'Styles/global.style';
+import * as Styles from './team.style.js';
+import * as GlobalStyles from 'Styles/global.style';
 import Button from 'Components/button';
 import TeamCard from 'Components/team-card';
 import BackLink from 'Components/back-link/index.js';
@@ -107,23 +98,23 @@ const Team = () => {
       {account && (
         <>
           <BackLink />
-          <$GlobalContainer>
+          <GlobalStyles.GlobalContainer>
             {!teamData && <Loader />}
             {teamData && (
               <>
-                <$TeamInfo>
-                  <$TeamContent>
-                    <$TeamName>{teamData.teamName}</$TeamName>
+                <Styles.TeamInfo>
+                  <Styles.TeamContent>
+                    <Styles.TeamName>{teamData.teamName}</Styles.TeamName>
                     {hideWeek ||
                       (!isPastWeek && (
-                        <$TeamLeague>Week: {teamData.team.week}</$TeamLeague>
+                        <Styles.TeamLeague>Week: {teamData.team.week}</Styles.TeamLeague>
                       ))}
-                    <$TeamLeague>
+                    <Styles.TeamLeague>
                       Rank: {`${rank.win}-${rank.loss}`}
-                    </$TeamLeague>
-                  </$TeamContent>
+                    </Styles.TeamLeague>
+                  </Styles.TeamContent>
                   {!isPastWeek && (
-                    <$TeamBtnSection>
+                    <Styles.TeamBtnSection>
                       <Button
                         btnText="Team Info"
                         btnColor="primary"
@@ -138,14 +129,14 @@ const Team = () => {
                         redirect={`/team/edit?team_id=${teamId}`}
                         disabledMsg={'You can\'t edit your roster at this time'}
                       />
-                    </$TeamBtnSection>
+                    </Styles.TeamBtnSection>
                   )}
-                </$TeamInfo>
+                </Styles.TeamInfo>
                 <TeamCard data={teamData.team} />
-                <$TeamTotal>
-                  <$TeamTotalText>Total</$TeamTotalText>
-                  <$TeamTotalAmount>{totalPoints}</$TeamTotalAmount>
-                </$TeamTotal>
+                <Styles.TeamTotal>
+                  <Styles.TeamTotalText>Total</Styles.TeamTotalText>
+                  <Styles.TeamTotalAmount>{totalPoints}</Styles.TeamTotalAmount>
+                </Styles.TeamTotal>
                 <Recap
                   data={recap}
                   modalIsOpen={modalIsOpen}
@@ -154,7 +145,7 @@ const Team = () => {
                 />
               </>
             )}
-          </$GlobalContainer>
+          </GlobalStyles.GlobalContainer>
           <ReadMore />
         </>
       )}

@@ -1,6 +1,6 @@
 import Link from 'next/link.js';
 import React from 'react';
-import { $Btn, $BtnText } from './button.style.js';
+import * as Styles from './button.style.js';
 import 'react-tooltip/dist/react-tooltip.css';
 import { Tooltip } from 'react-tooltip';
 import { COLOR_BLACK, COLOR_WHITE } from 'Styles/global.style.js';
@@ -27,7 +27,7 @@ const Button = ({
     if (children) {
       return (
         <>
-          <$Btn
+          <Styles.Btn
             className={`${btnColor || ''} ${customBtnClass || ''} ${
               isDisabled ? 'disabled' : ''
             }`}
@@ -36,7 +36,7 @@ const Button = ({
             data-tooltip-content={disabledMsg}
           >
             {children}
-          </$Btn>
+          </Styles.Btn>
           {isDisabled && <Tooltip id={`btnTooltip-${btnText}`} place="bottom" style={{ backgroundColor: COLOR_BLACK, color: COLOR_WHITE }} />}
         </>
       );
@@ -44,7 +44,7 @@ const Button = ({
 
     return (
       <>
-        <$Btn
+        <Styles.Btn
           className={`${btnColor || ''} ${customBtnClass || ''} ${
             isDisabled ? 'disabled' : ''
           }`}
@@ -52,8 +52,8 @@ const Button = ({
           data-tooltip-id={`btnTooltip-${btnText}`}
           data-tooltip-content={disabledMsg}
         >
-          <$BtnText>{btnText}</$BtnText>
-        </$Btn>
+          <Styles.BtnText>{btnText}</Styles.BtnText>
+        </Styles.Btn>
         {isDisabled && <Tooltip id={`btnTooltip-${btnText}`} place="bottom" style={{ backgroundColor: COLOR_BLACK, color: COLOR_WHITE }} />}
       </>
     );
@@ -62,13 +62,13 @@ const Button = ({
   return (
     <>
       <Link href={isDisabled ? '#' : redirect}>
-        <$Btn
+        <Styles.Btn
           className={`${btnColor || ''} ${customBtnClass || ''} ${isDisabled ? 'disabled' : ''}`}
           data-tooltip-id={`btnTooltip-${btnText}`}
           data-tooltip-content={disabledMsg}
         >
-          <$BtnText>{btnText}</$BtnText>
-        </$Btn>
+          <Styles.BtnText>{btnText}</Styles.BtnText>
+        </Styles.Btn>
       </Link>
       {isDisabled && <Tooltip id={`btnTooltip-${btnText}`} place="bottom" style={{ backgroundColor: COLOR_BLACK, color: COLOR_WHITE }} />}
     </>

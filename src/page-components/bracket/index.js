@@ -15,10 +15,10 @@ import { useRouter } from 'next/router';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import { useAppContext } from 'src/hooks/context';
-import { $BracketWrapper, $BracketContainer } from './bracket.style';
+import * as Styles from './bracket.style';
 import SocialMedia from 'Components/social-media';
 import Notification from 'src/modals/notification';
-import { $GlobalTitle } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import Error from 'PageComponents/error';
 import Button from 'Components/button';
 import BracketVoting from 'src/modals/bracket-voting';
@@ -212,8 +212,8 @@ const Bracket = () => {
         title="Bracket"
         description="Your AFL Bracket shows all the head-to-head matchups that you want people to vote on. Share your bracket will all your friends or on your social media accounts."
       />
-      <$BracketContainer>
-        <$GlobalTitle className="bracket">
+      <Styles.BracketContainer>
+        <GlobalStyles.GlobalTitle className="bracket">
           {bracketName || 'Bracket'}
           <Button
             btnText="?"
@@ -221,10 +221,10 @@ const Bracket = () => {
             btnFunction={handleRules}
             customBtnClass="small"
           />
-        </$GlobalTitle>
+        </GlobalStyles.GlobalTitle>
         {matches && (
           <>
-            <$BracketWrapper className="grid">
+            <Styles.BracketWrapper className="grid">
               <TournamentBracket
                 matches={matches}
                 width={
@@ -239,8 +239,8 @@ const Bracket = () => {
                 onSelectMatch={(match) => handleMatchDisplay(match)}
                 onSelectTeam={(match) => handleMatchDisplay(match)}
               />
-            </$BracketWrapper>
-            <$BracketWrapper className="voting">
+            </Styles.BracketWrapper>
+            <Styles.BracketWrapper className="voting">
               {!theChamp && currentUser?.user_id === bracketCreator && (
                 <Button
                   btnText={
@@ -259,8 +259,8 @@ const Bracket = () => {
                   <div>{theChamp}</div>
                 </h1>
               )}
-            </$BracketWrapper>
-            <$BracketWrapper>
+            </Styles.BracketWrapper>
+            <Styles.BracketWrapper>
               <SocialMedia
                 pageTitle="AFL Bracket"
                 title="Anime Bracket matchups"
@@ -269,7 +269,7 @@ const Bracket = () => {
                 pluralHashtags={['afl', 'aflBracket', 'bracket']}
                 url={pathname}
               />
-            </$BracketWrapper>
+            </Styles.BracketWrapper>
             <BracketVoting
               isModalOpen={bracketIsOpen}
               playerA={playerA}
@@ -288,7 +288,7 @@ const Bracket = () => {
           closeModal={closeModal}
           modalIsOpen={modalIsOpen}
         />
-      </$BracketContainer>
+      </Styles.BracketContainer>
     </>
   );
 };

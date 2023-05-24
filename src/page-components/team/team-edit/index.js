@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {
-  $GlobalContainer,
-  $GlobalTitle,
-  $GlobalSubTitle,
-  $GlobalCircle,
-} from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style.js';
 import Button from 'Components/button';
-import {
-  $TeamEditWrapper,
-  $TeamEditBtn,
-  $TeamEditGrid,
-  $TeamEditSection,
-} from './teamEdit.style';
+import * as Styles from './teamEdit.style';
 import ChangeCharacters from 'src/modals/change-character';
 import { getTeam, updateTeam } from 'src/requests/team';
 import Metadata from 'Components/metadata';
@@ -232,10 +222,10 @@ const TeamEdit = () => {
     const rank = rankDesktop.replace('Duo - ', '');
 
     return (
-      <$TeamEditGrid>
-        <$TeamEditSection className="desktop">{rankDesktop}</$TeamEditSection>
-        <$TeamEditSection className="mobile">{rankMobile}</$TeamEditSection>
-        <$TeamEditSection className="character">
+      <Styles.TeamEditGrid>
+        <Styles.TeamEditSection className="desktop">{rankDesktop}</Styles.TeamEditSection>
+        <Styles.TeamEditSection className="mobile">{rankMobile}</Styles.TeamEditSection>
+        <Styles.TeamEditSection className="character">
           <Button
             btnText={player.name}
             btnFunction={() => getProfile(player.id)}
@@ -244,18 +234,18 @@ const TeamEdit = () => {
           <div className="affinities">
             {!!player.id && player?.affinity?.map((item) => {
               return (
-                <$GlobalCircle
+                <GlobalStyles.GlobalCircle
                   key={item.type}
                   className={`team ${item.type}`}
                   title={item.type === 'noAffinity' ? 'no affinity' : item.type}
-                ></$GlobalCircle>
+                ></GlobalStyles.GlobalCircle>
               );
             })}
           </div>
           {!!player.cost && <div className="points">Points: {player.cost}</div>}
-        </$TeamEditSection>
-        <$TeamEditBtn>{handleBtn(rank, type)}</$TeamEditBtn>
-      </$TeamEditGrid>
+        </Styles.TeamEditSection>
+        <Styles.TeamEditBtn>{handleBtn(rank, type)}</Styles.TeamEditBtn>
+      </Styles.TeamEditGrid>
     );
   };
 
@@ -289,16 +279,16 @@ const TeamEdit = () => {
       {!account && <NotUser />}
       {account && (
         <>
-          <$GlobalContainer>
-            <$GlobalTitle>Edit Team</$GlobalTitle>
+          <GlobalStyles.GlobalContainer>
+            <GlobalStyles.GlobalTitle>Edit Team</GlobalStyles.GlobalTitle>
             {!playerList && <Loader />}
             {playerList && (
               <>
-                <$GlobalSubTitle>
+                <GlobalStyles.GlobalSubTitle>
                   Remaining Points: {playerList.userPoints}
-                </$GlobalSubTitle>
+                </GlobalStyles.GlobalSubTitle>
                 {!!errorMsg && <ErrorMsg msg={errorMsg} />}
-                <$TeamEditWrapper>
+                <Styles.TeamEditWrapper>
                   {handleCharacterLine('Captain', 'C', playerList.captain, 'captain')}
                   {handleCharacterLine('Brawler', 'B', playerList.brawlerA, 'brawlerA')}
                   {handleCharacterLine('Brawler', 'B', playerList.brawlerB, 'brawlerB')}
@@ -307,15 +297,15 @@ const TeamEdit = () => {
                   {handleCharacterLine('Support', 'S', playerList.support, 'support')}
                   {handleCharacterLine('Villain', 'V', playerList.villain, 'villain')}
                   {handleCharacterLine('Battlefield', 'BF', playerList.battlefield, 'battlefield')}
-                </$TeamEditWrapper>
-                <$TeamEditWrapper className="return">
+                </Styles.TeamEditWrapper>
+                <Styles.TeamEditWrapper className="return">
                   <Button
                     btnText="Return to Team"
                     btnColor="primary"
                     customBtnClass="medium"
                     btnFunction={() => router.back()}
                   />
-                </$TeamEditWrapper>
+                </Styles.TeamEditWrapper>
                 <ChangeCharacters
                   players={playerRank}
                   modalIsOpen={isModalOpen}
@@ -332,7 +322,7 @@ const TeamEdit = () => {
                 />
               </>
             )}
-          </$GlobalContainer>
+          </GlobalStyles.GlobalContainer>
           <ReadMore>
             <MakeTeam />
           </ReadMore>

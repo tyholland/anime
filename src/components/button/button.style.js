@@ -16,7 +16,7 @@ import {
   RESPONSIVE_VIEW,
 } from 'Styles/global.style';
 
-export const $Btn = styled.button`
+export const Btn = styled.button`
   border-radius: 10px;
   padding: 3%;
   margin-top: 10px;
@@ -168,7 +168,7 @@ export const $Btn = styled.button`
   }
 `;
 
-export const $BtnText = styled.span`
+export const BtnText = styled.span`
   text-align: center;
   font-size: ${FONT_SIZE_EXTRA_LARGE};
   font-weight: ${FONT_WEIGHT_BOLD};

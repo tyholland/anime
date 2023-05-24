@@ -2,7 +2,7 @@ import Button from 'Components/button';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { slide as Menu } from 'react-burger-menu';
-import { $MobileHeaderContainer } from './mobileHeader.style';
+import * as Styles from './mobileHeader.style';
 
 const MobileHeader = ({ acct, acctLink }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +24,7 @@ const MobileHeader = ({ acct, acctLink }) => {
   };
 
   return (
-    <$MobileHeaderContainer showOverlay={isMenuOpen && '100%'}>
+    <Styles.MobileHeaderContainer showOverlay={isMenuOpen && '100%'}>
       <Menu
         right
         width={'50%'}
@@ -64,7 +64,7 @@ const MobileHeader = ({ acct, acctLink }) => {
           customBtnClass="small header text"
         />
       </Menu>
-    </$MobileHeaderContainer>
+    </Styles.MobileHeaderContainer>
   );
 };
 

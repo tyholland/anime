@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FONT_SIZE_EXTRA_LARGE, FONT_SIZE_GIGANTIC, FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
 
-export const $BracketVotingCharacter = styled.div`
+export const BracketVotingCharacter = styled.div`
   font-size: ${FONT_SIZE_GIGANTIC};
   font-weight: ${FONT_WEIGHT_BOLD};
 
@@ -10,7 +10,7 @@ export const $BracketVotingCharacter = styled.div`
   }
 `;
 
-export const $BracketVotingVersus = styled.div`
+export const BracketVotingVersus = styled.div`
   font-size: ${FONT_SIZE_EXTRA_LARGE};
   font-weight: ${FONT_WEIGHT_BOLD};
   margin: 40px 0;
@@ -22,7 +22,7 @@ export const $BracketVotingVersus = styled.div`
   }
 `;
 
-export const $BracketVotingWrapper = styled.div`
+export const BracketVotingWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -68,7 +68,7 @@ export const $BracketVotingWrapper = styled.div`
   }
 `;
 
-export const $BracketVotingSection = styled.div`
+export const BracketVotingSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -101,7 +101,7 @@ export const $BracketVotingSection = styled.div`
   }
 `;
 
-export const $BracketVotingImage = styled.img`
+export const BracketVotingImage = styled.img`
   width: 200px;
   height: 200px;
   margin-bottom: 2%;
@@ -112,7 +112,7 @@ export const $BracketVotingImage = styled.img`
   }
 `;
 
-export const $BracketVotingTotal = styled.div`
+export const BracketVotingTotal = styled.div`
   justify-content: center;
   margin-top: 5%;
   display: flex;

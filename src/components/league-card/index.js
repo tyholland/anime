@@ -1,28 +1,24 @@
 import React from 'react';
 import Button from '../button';
-import {
-  $LeagueCardText,
-  $LeagueCardSection,
-  $LeagueCardWrapper,
-} from './leagueCard.style';
+import * as Styles from './leagueCard.style';
 
 const LeagueCard = ({ data }) => {
   const { name, team_name, leagueId, teamId, matchupId, hasDraft, week, active } = data;
   const isPastLeague = active === 0;
 
   return (
-    <$LeagueCardWrapper>
-      <$LeagueCardSection>
-        <$LeagueCardText>
+    <Styles.LeagueCardWrapper>
+      <Styles.LeagueCardSection>
+        <Styles.LeagueCardText>
           <span>League: </span>
           {name}
-        </$LeagueCardText>
-        <$LeagueCardText>
+        </Styles.LeagueCardText>
+        <Styles.LeagueCardText>
           <span>Team: </span>
           {team_name}
-        </$LeagueCardText>
-      </$LeagueCardSection>
-      <$LeagueCardSection className="actions">
+        </Styles.LeagueCardText>
+      </Styles.LeagueCardSection>
+      <Styles.LeagueCardSection className="actions">
         {hasDraft && (
           <Button
             btnText="Draft"
@@ -61,8 +57,8 @@ const LeagueCard = ({ data }) => {
             redirect={`/playoffs?league_id=${leagueId}`}
           />
         )}
-      </$LeagueCardSection>
-    </$LeagueCardWrapper>
+      </Styles.LeagueCardSection>
+    </Styles.LeagueCardWrapper>
   );
 };
 

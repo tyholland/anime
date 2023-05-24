@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
-import {
-  $ViewLeagueEmptyTitle,
-  $ViewLeagueEmptyBtnWrapper,
-  $ViewLeaguePast
-} from 'PageComponents/league/view/view.style';
-import { $BracketViewContainer } from '../bracket.style';
+import * as Styles from 'PageComponents/league/view/view.style';
+import * as BracketStyles from '../bracket.style';
 import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error';
 import { addEvent } from 'Utils/amplitude';
@@ -79,8 +75,8 @@ const ViewBrackets = () => {
         title="View Brackets"
         description="View all your brackets that you have created. Also decide to create a new bracket. Never can have enough brackets."
       />
-      <$GlobalContainer>
-        <$GlobalTitle className="bracketView">
+      <GlobalStyles.GlobalContainer>
+        <GlobalStyles.GlobalTitle className="bracketView">
               Your Brackets
           <Button
             btnText="Add New"
@@ -88,17 +84,17 @@ const ViewBrackets = () => {
             redirect="/bracket/create"
             customBtnClass="small"
           />
-        </$GlobalTitle>
+        </GlobalStyles.GlobalTitle>
         {isLoading && <Loader />}
         {!!bracketList?.length && !isLoading && (
-          <$BracketViewContainer>{bracketList}</$BracketViewContainer>
+          <BracketStyles.BracketViewContainer>{bracketList}</BracketStyles.BracketViewContainer>
         )}
         {!bracketList?.length && !isLoading && (
           <>
-            <$ViewLeagueEmptyTitle>
+            <Styles.ViewLeagueEmptyTitle>
                   You haven't built any brackets yet.
-            </$ViewLeagueEmptyTitle>
-            <$ViewLeagueEmptyBtnWrapper>
+            </Styles.ViewLeagueEmptyTitle>
+            <Styles.ViewLeagueEmptyBtnWrapper>
               <Button
                 btnText="Create a Bracket"
                 redirect="/bracket/create"
@@ -111,18 +107,18 @@ const ViewBrackets = () => {
                 btnColor="primary"
                 customBtnClass="medium"
               />
-            </$ViewLeagueEmptyBtnWrapper>
+            </Styles.ViewLeagueEmptyBtnWrapper>
           </>
         )}
         {!!activeBracketList?.length && !isLoading && (
-          <$ViewLeaguePast>
-            <$GlobalTitle>All Active Brackets</$GlobalTitle>
-            <$BracketViewContainer>
+          <Styles.ViewLeaguePast>
+            <GlobalStyles.GlobalTitle>All Active Brackets</GlobalStyles.GlobalTitle>
+            <BracketStyles.BracketViewContainer>
               {activeBracketList}
-            </$BracketViewContainer>
-          </$ViewLeaguePast>
+            </BracketStyles.BracketViewContainer>
+          </Styles.ViewLeaguePast>
         )}
-      </$GlobalContainer>
+      </GlobalStyles.GlobalContainer>
       <ReadMore />
     </>
   );

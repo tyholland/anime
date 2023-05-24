@@ -1,20 +1,20 @@
 import React from 'react';
 import PacmanLoader from 'react-spinners/PacmanLoader';
-import { $LoaderWrapper } from './loader.style';
+import * as Styles from './loader.style';
 
 const Loader = ({ isSmall = false }) => {
   if (isSmall) {
     return (
-      <$LoaderWrapper className="small">
+      <Styles.LoaderWrapper className="small">
         <PacmanLoader size={10} />
-      </$LoaderWrapper>
+      </Styles.LoaderWrapper>
     );
   }
 
   return (
-    <$LoaderWrapper>
+    <Styles.LoaderWrapper>
       <PacmanLoader />
-    </$LoaderWrapper>
+    </Styles.LoaderWrapper>
   );
 };
 

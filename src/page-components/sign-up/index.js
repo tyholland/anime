@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
-import {
-  $LoginContentLinks,
-  $LoginWrapper,
-  $LoginSectionWrapper,
-  $LoginSection,
-} from 'PageComponents/login/login.style.js';
+import * as GlobalStyles from 'Styles/global.style.js';
+import * as Styles from 'PageComponents/login/login.style.js';
 import { addNewAccount } from 'src/requests/users';
 import { useAppContext } from 'src/hooks/context';
 import Metadata from 'Components/metadata';
@@ -21,7 +16,7 @@ import { addEvent } from 'Utils/amplitude';
 import ErrorMsg from 'Components/error-msg';
 import SingleSignOn from 'Components/single-sign-on';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { $SignUpPolicy } from './signUp.style';
+import * as SignUpStyles from './signUp.style';
 import { useRouter } from 'next/router';
 
 const SignUp = () => {
@@ -111,12 +106,12 @@ const SignUp = () => {
         title="Sign Up"
         description="Sign up to join the Anime Fantasy League. Use Google SSO or sign up with your email and password"
       />
-      <$GlobalContainer>
-        <$LoginWrapper>
-          <$GlobalTitle>Sign Up</$GlobalTitle>
+      <GlobalStyles.GlobalContainer>
+        <Styles.LoginWrapper>
+          <GlobalStyles.GlobalTitle>Sign Up</GlobalStyles.GlobalTitle>
           {errorMsg && <ErrorMsg msg={errorMsg} />}
-          <$LoginSectionWrapper>
-            <$LoginSection>
+          <Styles.LoginSectionWrapper>
+            <Styles.LoginSection>
               <TextField
                 placeholder="Please enter a email"
                 keyboard="email-address"
@@ -135,7 +130,7 @@ const SignUp = () => {
                 onChange={handleSetConfirmPwd}
                 onKeyDown={handleKeyboardSubmit}
               />
-              <$SignUpPolicy>
+              <SignUpStyles.SignUpPolicy>
                 By signing up, you acknowledge that you have read and understood
                 the
                 <Button
@@ -145,7 +140,7 @@ const SignUp = () => {
                   redirect="/policy"
                 />
                 .
-              </$SignUpPolicy>
+              </SignUpStyles.SignUpPolicy>
               <Button
                 btnText="Sign Up"
                 btnColor="primary"
@@ -154,17 +149,17 @@ const SignUp = () => {
                 isDisabled={isDisabled}
                 disabledMsg="Please complete all the fields above in order to proceed"
               />
-            </$LoginSection>
-            <$LoginSection>
+            </Styles.LoginSection>
+            <Styles.LoginSection>
               <SingleSignOn buttonText="Sign up" setError={setErrorMsg} />
-            </$LoginSection>
-          </$LoginSectionWrapper>
-          <$LoginContentLinks>
+            </Styles.LoginSection>
+          </Styles.LoginSectionWrapper>
+          <Styles.LoginContentLinks>
             Already have an account?
             <Button btnText="Login" customBtnClass="text" redirect="/login" />
-          </$LoginContentLinks>
-        </$LoginWrapper>
-      </$GlobalContainer>
+          </Styles.LoginContentLinks>
+        </Styles.LoginWrapper>
+      </GlobalStyles.GlobalContainer>
     </>
   );
 };

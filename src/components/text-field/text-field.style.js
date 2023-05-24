@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLOR_BLACK, FONT_SIZE_EXTRA_LARGE } from 'Styles/global.style';
 
-export const $Input = styled.input`
+export const Input = styled.input`
   border: 1px solid ${COLOR_BLACK};
   border-radius: 10px;
   height: 45px;

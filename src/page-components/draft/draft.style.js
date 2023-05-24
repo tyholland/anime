@@ -12,7 +12,7 @@ import {
   FONT_SIZE_GIGANTIC,
 } from 'Styles/global.style';
 
-export const $DraftSection = styled.div`
+export const DraftSection = styled.div`
   display: flex;
   width: 100%;
   align-items: flex-start;
@@ -50,7 +50,7 @@ export const $DraftSection = styled.div`
   }
 `;
 
-export const $DraftTeamsList = styled.div`
+export const DraftTeamsList = styled.div`
   display: flex;
   width: 70%;
 
@@ -82,7 +82,7 @@ export const $DraftTeamsList = styled.div`
   }
 `;
 
-export const $DraftRound = styled.div`
+export const DraftRound = styled.div`
   font-size: ${FONT_SIZE_GIGANTIC};
   font-weight: ${FONT_WEIGHT_BOLD};
   display: flex;
@@ -110,7 +110,7 @@ export const $DraftRound = styled.div`
   }
 `;
 
-export const $DraftPlayerGrid = styled.div`
+export const DraftPlayerGrid = styled.div`
   max-width: 600px;
   min-width: 400px;
   margin-right: 5%;
@@ -132,7 +132,7 @@ export const $DraftPlayerGrid = styled.div`
   }
 `;
 
-export const $DraftTeamGrid = styled.div`
+export const DraftTeamGrid = styled.div`
   min-width: 230px;
   max-width: 400px;
   width: 100%;
@@ -154,7 +154,7 @@ export const $DraftTeamGrid = styled.div`
   }
 `;
 
-export const $DraftInactive = styled.div`
+export const DraftInactive = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -182,11 +182,11 @@ export const $DraftInactive = styled.div`
   }
 `;
 
-export const $DraftResults = styled.div`
+export const DraftResults = styled.div`
   margin: 3% 0;
 `;
 
-export const $DraftAccordian = styled.div`
+export const DraftAccordian = styled.div`
   .collapseContainer {
     display: flex;
     width: 100%;

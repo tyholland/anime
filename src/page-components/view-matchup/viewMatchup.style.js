@@ -8,7 +8,7 @@ import {
   FONT_WEIGHT_BOLD,
 } from 'Styles/global.style';
 
-export const $ViewMatchupWrapper = styled.div`
+export const ViewMatchupWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -20,7 +20,7 @@ export const $ViewMatchupWrapper = styled.div`
   }
 `;
 
-export const $ViewMatchupPositionSection = styled.div`
+export const ViewMatchupPositionSection = styled.div`
   border-bottom: 1px solid ${COLOR_BLACK};
   height: 80px;
 
@@ -29,7 +29,7 @@ export const $ViewMatchupPositionSection = styled.div`
   }
 `;
 
-export const $ViewMatchupTeamSplit = styled.div`
+export const ViewMatchupTeamSplit = styled.div`
   border-top: 1px solid ${COLOR_BLACK};
   display: flex;
   flex-direction: row;
@@ -38,11 +38,11 @@ export const $ViewMatchupTeamSplit = styled.div`
   margin-top: 20px;
 `;
 
-export const $ViewMatchupPositionColumn = styled.div`
+export const ViewMatchupPositionColumn = styled.div`
   width: 8%;
 `;
 
-export const $ViewMatchupPosition = styled.div`
+export const ViewMatchupPosition = styled.div`
   width: 100%;
   font-weight: ${FONT_WEIGHT_BOLD};
   color: ${COLOR_ORANGE};
@@ -59,17 +59,17 @@ export const $ViewMatchupPosition = styled.div`
   }
 `;
 
-export const $ViewMatchupTeamContent = styled.div`
+export const ViewMatchupTeamContent = styled.div`
   width: 50%;
 `;
 
-export const $ViewMatchupTeamName = styled.div`
+export const ViewMatchupTeamName = styled.div`
   font-size: ${FONT_SIZE_LARGE};
   font-weight: ${FONT_WEIGHT_BOLD};
   text-align: center;
 `;
 
-export const $ViewMatchupTeamTotal = styled.div`
+export const ViewMatchupTeamTotal = styled.div`
   font-size: ${FONT_SIZE_SMALL};
   color: rgba(0, 0, 0, 0.5);
   text-align: center;

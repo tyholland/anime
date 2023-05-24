@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
 
-export const $JoinLeagueWrapper = styled.div`
+export const JoinLeagueWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,7 +30,7 @@ export const $JoinLeagueWrapper = styled.div`
   }
 `;
 
-export const $JoinLeagueImg = styled.img`
+export const JoinLeagueImg = styled.img`
   width: 200px;
   height: auto;
 

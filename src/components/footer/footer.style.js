@@ -9,7 +9,7 @@ import {
   MOBILE_VIEW,
 } from 'Styles/global.style';
 
-export const $FooterContainer = styled.div`
+export const FooterContainer = styled.div`
   width: 90%;
   display: flex;
   justify-content: space-between;
@@ -24,7 +24,7 @@ export const $FooterContainer = styled.div`
   }
 `;
 
-export const $FooterSection = styled.div`
+export const FooterSection = styled.div`
   display: flex;
   width: 70%;
 
@@ -67,7 +67,7 @@ export const $FooterSection = styled.div`
   }
 `;
 
-export const $FooterLinks = styled.div`
+export const FooterLinks = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;

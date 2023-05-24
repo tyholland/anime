@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import {
-  $LoginContentLinks,
-  $LoginWrapper,
-  $LoginSectionWrapper,
-  $LoginSection,
-} from './login.style.js';
+import * as Styles from './login.style.js';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style.js';
 import Metadata from 'Components/metadata/index.js';
 import { useRouter } from 'next/router.js';
 import { useAppContext } from 'src/hooks/context.js';
@@ -104,13 +99,13 @@ const Login = () => {
         title="Login"
         description="Login to the Anime Fantasy League. Use Google SSO or login with your email and password"
       />
-      <$GlobalContainer>
-        <$LoginWrapper>
-          <$GlobalTitle>Login</$GlobalTitle>
+      <GlobalStyles.GlobalContainer>
+        <Styles.LoginWrapper>
+          <GlobalStyles.GlobalTitle>Login</GlobalStyles.GlobalTitle>
           {errorMsg && <ErrorMsg msg={errorMsg} />}
           <>
-            <$LoginSectionWrapper>
-              <$LoginSection>
+            <Styles.LoginSectionWrapper>
+              <Styles.LoginSection>
                 <TextField
                   placeholder="Email"
                   keyboard="email-address"
@@ -131,30 +126,30 @@ const Login = () => {
                   isDisabled={isDisabled}
                   disabledMsg="Please complete all the fields above in order to proceed"
                 />
-              </$LoginSection>
-              <$LoginSection>
+              </Styles.LoginSection>
+              <Styles.LoginSection>
                 <SingleSignOn setError={setErrorMsg} />
-              </$LoginSection>
-            </$LoginSectionWrapper>
-            <$LoginContentLinks>
+              </Styles.LoginSection>
+            </Styles.LoginSectionWrapper>
+            <Styles.LoginContentLinks>
             Memory jutsu failed?
               <Button
                 btnText="Recover your password here!"
                 customBtnClass="text"
                 redirect="/forgot"
               />
-            </$LoginContentLinks>
-            <$LoginContentLinks>
+            </Styles.LoginContentLinks>
+            <Styles.LoginContentLinks>
             Not a guild member yet?
               <Button
                 btnText="Join the Anime Fantasy League family!"
                 customBtnClass="text small"
                 redirect={join ? `/sign-up?join=${join}` : '/sign-up'}
               />
-            </$LoginContentLinks>
+            </Styles.LoginContentLinks>
           </>
-        </$LoginWrapper>
-      </$GlobalContainer>
+        </Styles.LoginWrapper>
+      </GlobalStyles.GlobalContainer>
     </>
   );
 };

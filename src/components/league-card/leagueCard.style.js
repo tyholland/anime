@@ -7,7 +7,7 @@ import {
   RESPONSIVE_VIEW,
 } from 'Styles/global.style';
 
-export const $LeagueCardWrapper = styled.div`
+export const LeagueCardWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   border-bottom: 2px solid ${COLOR_BLACK};
@@ -22,7 +22,7 @@ export const $LeagueCardWrapper = styled.div`
   }
 `;
 
-export const $LeagueCardText = styled.div`
+export const LeagueCardText = styled.div`
   margin: 5px 0;
   font-size: ${FONT_SIZE_MEDIUM};
 
@@ -31,7 +31,7 @@ export const $LeagueCardText = styled.div`
   }
 `;
 
-export const $LeagueCardSection = styled.div`
+export const LeagueCardSection = styled.div`
   display: flex;
   flex-direction: column;
 

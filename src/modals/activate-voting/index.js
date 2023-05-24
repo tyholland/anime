@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from '../../components/button';
-import { $GlobalTitle } from 'Styles/global.style';
-import {
-  $ActivateVotingBtnWrapper,
-  $ActivateVotingSection,
-} from './activateVoting.style';
+import * as GlobalStyles from 'Styles/global.style';
+import * as Styles from './activateVoting.style';
 import MainModal from '../main';
 import { createMatchupVotes } from 'src/requests/matchup';
 import { useRouter } from 'next/router';
@@ -93,7 +90,7 @@ const ActivateVoting = ({
         }
 
         return (
-          <$ActivateVotingSection key={item}>
+          <Styles.ActivateVotingSection key={item}>
             <Button
               btnText="Activate"
               btnColor="primary"
@@ -103,7 +100,7 @@ const ActivateVoting = ({
             <div>
               {team1[item].name} vs {team2[item].name}
             </div>
-          </$ActivateVotingSection>
+          </Styles.ActivateVotingSection>
         );
       })
       .filter(Boolean);
@@ -121,16 +118,16 @@ const ActivateVoting = ({
       closeModal={closeModal}
       styles={customStyles}
     >
-      <$GlobalTitle>Activate Head-to-Head Voting</$GlobalTitle>
+      <GlobalStyles.GlobalTitle>Activate Head-to-Head Voting</GlobalStyles.GlobalTitle>
       {!!errorMsg && <ErrorMsg msg={errorMsg} />}
       {getCharacter().length > 0 && getCharacter()}
       {getCharacter().length === 0 && (
-        <$ActivateVotingBtnWrapper>
+        <Styles.ActivateVotingBtnWrapper>
           There are no more head-to-head battles that voting can be activated
           for.
-        </$ActivateVotingBtnWrapper>
+        </Styles.ActivateVotingBtnWrapper>
       )}
-      <$ActivateVotingBtnWrapper>
+      <Styles.ActivateVotingBtnWrapper>
         <Button
           btnText="Vote on Matchups"
           btnColor="primary"
@@ -143,7 +140,7 @@ const ActivateVoting = ({
           customBtnClass="medium"
           btnFunction={closeModal}
         />
-      </$ActivateVotingBtnWrapper>
+      </Styles.ActivateVotingBtnWrapper>
     </MainModal>
   );
 };

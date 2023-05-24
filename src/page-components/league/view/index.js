@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import LeagueCard from 'Components/league-card';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
-import {
-  $ViewLeagueEmptyTitle,
-  $ViewLeagueEmptyBtnWrapper,
-  $ViewLeaguePast
-} from './view.style';
+import * as Styles from './view.style';
 import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error';
 import { addEvent } from 'Utils/amplitude';
@@ -72,8 +68,8 @@ const ViewLeague = () => {
       {!account && <NotUser />}
       {account && (
         <>
-          <$GlobalContainer>
-            <$GlobalTitle className="bracketView">
+          <GlobalStyles.GlobalContainer>
+            <GlobalStyles.GlobalTitle className="bracketView">
               All Leagues
               <Button
                 btnText="Create"
@@ -87,17 +83,17 @@ const ViewLeague = () => {
                 redirect="/league/join"
                 customBtnClass="small"
               />
-            </$GlobalTitle>
+            </GlobalStyles.GlobalTitle>
             {isLoading && <Loader />}
             {!isLoading && (
               <>
                 {!!leagueCard.length && leagueCard}
                 {!leagueCard.length && (
                   <>
-                    <$ViewLeagueEmptyTitle>
+                    <Styles.ViewLeagueEmptyTitle>
                       You are not apart of any leagues at the moment
-                    </$ViewLeagueEmptyTitle>
-                    <$ViewLeagueEmptyBtnWrapper>
+                    </Styles.ViewLeagueEmptyTitle>
+                    <Styles.ViewLeagueEmptyBtnWrapper>
                       <Button
                         btnText="Join a League"
                         redirect="/league/join"
@@ -110,18 +106,18 @@ const ViewLeague = () => {
                         btnColor="primary"
                         customBtnClass="medium"
                       />
-                    </$ViewLeagueEmptyBtnWrapper>
+                    </Styles.ViewLeagueEmptyBtnWrapper>
                   </>
                 )}
                 {!!leaguePastCard.length && (
-                  <$ViewLeaguePast>
-                    <$GlobalTitle>Past Leagues</$GlobalTitle>
+                  <Styles.ViewLeaguePast>
+                    <GlobalStyles.GlobalTitle>Past Leagues</GlobalStyles.GlobalTitle>
                     {leaguePastCard}
-                  </$ViewLeaguePast>
+                  </Styles.ViewLeaguePast>
                 )}
               </>
             )}
-          </$GlobalContainer>
+          </GlobalStyles.GlobalContainer>
           <ReadMore />
         </>
       )}

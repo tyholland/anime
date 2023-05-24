@@ -1,52 +1,45 @@
 import React from 'react';
-import {
-  $GameplayCardSection,
-  $GameplayCardTitle,
-  $GameplayCardHeader,
-  $GameplayCardWrapper,
-  $GameplayCardContainer,
-  $GameplayCardAffinity
-} from './gameplayCard.style';
-import { $GlobalCircle } from 'Styles/global.style';
+import * as Styles from './gameplayCard.style';
+import * as GlobalStyles from 'Styles/global.style';
 
 const Affinities = () => {
   return (
-    <$GameplayCardContainer>
+    <Styles.GameplayCardContainer>
       <div>
         The weekly affinity will be a random affinity or a combination of
         affinities. It will be applied every Sunday. Depending on what the
         affinity is, it could determine whether your team wins or loses the
         match.
       </div>
-      <$GameplayCardAffinity>
-        <strong>Affinities</strong>: <$GlobalCircle className="fire"></$GlobalCircle> Fire, <$GlobalCircle className="water"></$GlobalCircle> Water, <$GlobalCircle className="earth"></$GlobalCircle> Earth, <$GlobalCircle className="wind"></$GlobalCircle> Wind, <$GlobalCircle className="arcane"></$GlobalCircle> Arcane, <$GlobalCircle className="darkness"></$GlobalCircle> Darkness, <$GlobalCircle className="celestial"></$GlobalCircle> Celestial, <$GlobalCircle className="ice"></$GlobalCircle> Ice, <$GlobalCircle className="electric"></$GlobalCircle> Electric, <$GlobalCircle className="noAffinity"></$GlobalCircle> No Affinity
-      </$GameplayCardAffinity>
-      <$GameplayCardAffinity>
-        <strong>Affinities Combos</strong>: <$GlobalCircle className="wind"></$GlobalCircle> & <$GlobalCircle className="water"></$GlobalCircle>, <$GlobalCircle className="darkness"></$GlobalCircle> & <$GlobalCircle className="ice"></$GlobalCircle>, <$GlobalCircle className="arcane"></$GlobalCircle> & <$GlobalCircle className="fire"></$GlobalCircle>
-      </$GameplayCardAffinity>
-      <$GameplayCardWrapper>
+      <Styles.GameplayCardAffinity>
+        <strong>Affinities</strong>: <GlobalStyles.GlobalCircle className="fire"></GlobalStyles.GlobalCircle> Fire, <GlobalStyles.GlobalCircle className="water"></GlobalStyles.GlobalCircle> Water, <GlobalStyles.GlobalCircle className="earth"></GlobalStyles.GlobalCircle> Earth, <GlobalStyles.GlobalCircle className="wind"></GlobalStyles.GlobalCircle> Wind, <GlobalStyles.GlobalCircle className="arcane"></GlobalStyles.GlobalCircle> Arcane, <GlobalStyles.GlobalCircle className="darkness"></GlobalStyles.GlobalCircle> Darkness, <GlobalStyles.GlobalCircle className="celestial"></GlobalStyles.GlobalCircle> Celestial, <GlobalStyles.GlobalCircle className="ice"></GlobalStyles.GlobalCircle> Ice, <GlobalStyles.GlobalCircle className="electric"></GlobalStyles.GlobalCircle> Electric, <GlobalStyles.GlobalCircle className="noAffinity"></GlobalStyles.GlobalCircle> No Affinity
+      </Styles.GameplayCardAffinity>
+      <Styles.GameplayCardAffinity>
+        <strong>Affinities Combos</strong>: <GlobalStyles.GlobalCircle className="wind"></GlobalStyles.GlobalCircle> & <GlobalStyles.GlobalCircle className="water"></GlobalStyles.GlobalCircle>, <GlobalStyles.GlobalCircle className="darkness"></GlobalStyles.GlobalCircle> & <GlobalStyles.GlobalCircle className="ice"></GlobalStyles.GlobalCircle>, <GlobalStyles.GlobalCircle className="arcane"></GlobalStyles.GlobalCircle> & <GlobalStyles.GlobalCircle className="fire"></GlobalStyles.GlobalCircle>
+      </Styles.GameplayCardAffinity>
+      <Styles.GameplayCardWrapper>
         <div>
-          <$GameplayCardHeader>Regular Season</$GameplayCardHeader>
-          <$GameplayCardSection className="indent">
-            <$GameplayCardTitle className="bold">Weeks 1 - 9</$GameplayCardTitle>
-          </$GameplayCardSection>
+          <Styles.GameplayCardHeader>Regular Season</Styles.GameplayCardHeader>
+          <Styles.GameplayCardSection className="indent">
+            <Styles.GameplayCardTitle className="bold">Weeks 1 - 9</Styles.GameplayCardTitle>
+          </Styles.GameplayCardSection>
         </div>
         <div>
-          <$GameplayCardHeader>Playoffs (first round)</$GameplayCardHeader>
-          <$GameplayCardSection className="indent">
-            <$GameplayCardTitle className="bold">Week 10</$GameplayCardTitle>
-          </$GameplayCardSection>
-          <$GameplayCardHeader>Semi-Finals (second round)</$GameplayCardHeader>
-          <$GameplayCardSection className="indent">
-            <$GameplayCardTitle className="bold">Week 11</$GameplayCardTitle>
-          </$GameplayCardSection>
-          <$GameplayCardHeader>Finals</$GameplayCardHeader>
-          <$GameplayCardSection className="indent">
-            <$GameplayCardTitle className="bold">Week 12</$GameplayCardTitle>
-          </$GameplayCardSection>
+          <Styles.GameplayCardHeader>Playoffs (first round)</Styles.GameplayCardHeader>
+          <Styles.GameplayCardSection className="indent">
+            <Styles.GameplayCardTitle className="bold">Week 10</Styles.GameplayCardTitle>
+          </Styles.GameplayCardSection>
+          <Styles.GameplayCardHeader>Semi-Finals (second round)</Styles.GameplayCardHeader>
+          <Styles.GameplayCardSection className="indent">
+            <Styles.GameplayCardTitle className="bold">Week 11</Styles.GameplayCardTitle>
+          </Styles.GameplayCardSection>
+          <Styles.GameplayCardHeader>Finals</Styles.GameplayCardHeader>
+          <Styles.GameplayCardSection className="indent">
+            <Styles.GameplayCardTitle className="bold">Week 12</Styles.GameplayCardTitle>
+          </Styles.GameplayCardSection>
         </div>
-      </$GameplayCardWrapper>
-    </$GameplayCardContainer>
+      </Styles.GameplayCardWrapper>
+    </Styles.GameplayCardContainer>
   );
 };
 

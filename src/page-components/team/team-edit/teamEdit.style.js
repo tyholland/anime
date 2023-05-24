@@ -6,7 +6,7 @@ import {
   MOBILE_VIEW,
 } from 'Styles/global.style';
 
-export const $TeamEditWrapper = styled.div`
+export const TeamEditWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   width: 70%;
@@ -23,7 +23,7 @@ export const $TeamEditWrapper = styled.div`
   }
 `;
 
-export const $TeamEditBtn = styled.div`
+export const TeamEditBtn = styled.div`
   display: flex;
   justify-content: center;
   height: 70px;
@@ -42,7 +42,7 @@ export const $TeamEditBtn = styled.div`
   }
 `;
 
-export const $TeamEditGrid = styled.div`
+export const TeamEditGrid = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -52,7 +52,7 @@ export const $TeamEditGrid = styled.div`
   }
 `;
 
-export const $TeamEditSection = styled.div`
+export const TeamEditSection = styled.div`
   padding: 2% 0;
   display: flex;
   align-items: center;

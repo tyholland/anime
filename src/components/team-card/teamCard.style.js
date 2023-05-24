@@ -10,7 +10,7 @@ import {
   MOBILE_VIEW,
 } from 'Styles/global.style';
 
-export const $TeamCardSection = styled.div`
+export const TeamCardSection = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,7 +23,7 @@ export const $TeamCardSection = styled.div`
   }
 `;
 
-export const $TeamCardPosition = styled.div`
+export const TeamCardPosition = styled.div`
   width: 5%;
   padding: 19px 0;
   font-weight: ${FONT_WEIGHT_BOLD};
@@ -45,7 +45,7 @@ export const $TeamCardPosition = styled.div`
   }
 `;
 
-export const $TeamCardDuoSpace = styled.div`
+export const TeamCardDuoSpace = styled.div`
   padding: 5px 0;
   display: flex;
   font-size: ${FONT_SIZE_MEDIUM};
@@ -89,7 +89,7 @@ export const $TeamCardDuoSpace = styled.div`
   }
 `;
 
-export const $TeamCardCharacterWrapper = styled.div`
+export const TeamCardCharacterWrapper = styled.div`
   width: 50%;
   margin: 15px 0 15px 5px;
 
@@ -107,7 +107,7 @@ export const $TeamCardCharacterWrapper = styled.div`
   }
 `;
 
-export const $TeamCardCharacterHeader = styled.div`
+export const TeamCardCharacterHeader = styled.div`
   color: ${COLOR_BLACK};
   text-align: left;
   width: 30%;
@@ -119,7 +119,7 @@ export const $TeamCardCharacterHeader = styled.div`
   }
 `;
 
-export const $TeamCardCharacter = styled.button`
+export const TeamCardCharacter = styled.button`
   color: ${COLOR_BLACK};
   background: transparent;
   border: none;
@@ -131,7 +131,7 @@ export const $TeamCardCharacter = styled.button`
   }
 `;
 
-export const $TeamCardCharacterTxt = styled.div`
+export const TeamCardCharacterTxt = styled.div`
   color: ${(props) => (props.noCharacter ? COLOR_BLACK : COLOR_BLUE_HOVER)};
   cursor: ${(props) => (props.noCharacter ? 'text' : 'pointer')};
   font-size: ${FONT_SIZE_MEDIUM};
@@ -148,7 +148,7 @@ export const $TeamCardCharacterTxt = styled.div`
   }
 `;
 
-export const $TeamCardAffinity = styled.div`
+export const TeamCardAffinity = styled.div`
   width: 30%;
   margin: 15px 0;
   font-weight: ${FONT_WEIGHT_BOLD};
@@ -184,7 +184,7 @@ export const $TeamCardAffinity = styled.div`
   }
 `;
 
-export const $TeamCardPower = styled.div`
+export const TeamCardPower = styled.div`
   width: 30%;
   text-align: right;
   margin: 15px 0;
@@ -199,7 +199,7 @@ export const $TeamCardPower = styled.div`
   }
 `;
 
-export const $TeamCardNameAffinity = styled.div`
+export const TeamCardNameAffinity = styled.div`
   display: flex;
   width: 60%;
 

@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  $GlobalContainer,
-  $GlobalTitle,
-  $CollapsibleStyles,
-} from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
@@ -13,13 +9,7 @@ import Loader from 'Components/loader';
 import TextField from 'Components/text-field';
 import { deleteAccount, getAdminAccess } from 'src/requests/users';
 import { responseError } from 'Utils/index';
-import {
-  $AccountWrapper,
-  $AccountSectionRight,
-  $AccountSectionLabel,
-  $AccountPwdSuccess,
-  $AccountContainer
-} from './account.style';
+import * as Styles from './account.style';
 import { addEvent } from 'Utils/amplitude';
 import { getAuth, signOut, updatePassword, deleteUser } from 'firebase/auth';
 import ErrorMsg from 'Components/error-msg';
@@ -188,7 +178,7 @@ const Account = () => {
 
   return (
     <>
-      <$CollapsibleStyles />
+      <GlobalStyles.CollapsibleStyles />
       <Metadata
         title="Account"
         description="Look at your profile, update username, and your password. Delete your account if you must."
@@ -196,28 +186,28 @@ const Account = () => {
       {notLoggedIn && <NotUser message={message} />}
       {!notLoggedIn && (
         <>
-          <$GlobalContainer>
-            <$GlobalTitle>Account</$GlobalTitle>
+          <GlobalStyles.GlobalContainer>
+            <GlobalStyles.GlobalTitle>Account</GlobalStyles.GlobalTitle>
             <Disclaimer msg={disclaimerMsg} />
             {isLoading && <Loader />}
             {!isLoading && (
               <>
-                <$AccountContainer>
+                <Styles.AccountContainer>
                   <Collapsible trigger={profileDown} triggerWhenOpen={profileUp} triggerTagName="div" triggerElementProps={{ id: 'profile', 'aria-controls': 'profile' }} contentElementId="profile">
-                    <$AccountWrapper>
-                      <$AccountSectionRight>
-                        <$AccountSectionLabel>Email:</$AccountSectionLabel>
+                    <Styles.AccountWrapper>
+                      <Styles.AccountSectionRight>
+                        <Styles.AccountSectionLabel>Email:</Styles.AccountSectionLabel>
                         <TextField isDisabled={true} inputVal={email} />
                         <Button
                           btnText="Delete Account"
                           customBtnClass="text"
                           btnFunction={handleDeleteAccount}
                         />
-                      </$AccountSectionRight>
-                    </$AccountWrapper>
+                      </Styles.AccountSectionRight>
+                    </Styles.AccountWrapper>
                   </Collapsible>
                   <Collapsible trigger={pwdDown} triggerWhenOpen={pwdUp} triggerTagName="div" triggerElementProps={{ id: 'password', 'aria-controls': 'password' }} contentElementId="password">
-                    <$AccountWrapper className="column">
+                    <Styles.AccountWrapper className="column">
                       <div className="pwd">
                         {errorMsg && <ErrorMsg msg={errorMsg} />}
                         <TextField
@@ -242,11 +232,11 @@ const Account = () => {
                         disabledMsg="Please complete all the fields above in order to proceed"
                       />
                       {pwdSuccess && (
-                        <$AccountPwdSuccess>
+                        <Styles.AccountPwdSuccess>
                           Your password has successfully been changed
-                        </$AccountPwdSuccess>
+                        </Styles.AccountPwdSuccess>
                       )}
-                    </$AccountWrapper>
+                    </Styles.AccountWrapper>
                   </Collapsible>
                   <Collapsible
                     trigger={logDown}
@@ -255,7 +245,7 @@ const Account = () => {
                     triggerElementProps={{ id: 'last', 'aria-controls': 'last' }}
                     contentElementId="last"
                   >
-                    <$AccountWrapper className="column">
+                    <Styles.AccountWrapper className="column">
                       <div>Are you sure you want to logout?</div>
                       <Button
                         btnText="Yes"
@@ -263,9 +253,9 @@ const Account = () => {
                         customBtnClass="medium"
                         btnFunction={handleLogout}
                       />
-                    </$AccountWrapper>
+                    </Styles.AccountWrapper>
                   </Collapsible>
-                </$AccountContainer>
+                </Styles.AccountContainer>
                 {adminAccess && (
                   <Button
                     btnText="Admin Dashboard"
@@ -276,7 +266,7 @@ const Account = () => {
                 )}
               </>
             )}
-          </$GlobalContainer>
+          </GlobalStyles.GlobalContainer>
           <ReadMore>{message}</ReadMore>
         </>
       )}

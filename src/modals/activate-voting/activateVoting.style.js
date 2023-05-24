@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { MOBILE_VIEW } from 'Styles/global.style';
 
-export const $ActivateVotingBtnWrapper = styled.div`
+export const ActivateVotingBtnWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +13,7 @@ export const $ActivateVotingBtnWrapper = styled.div`
   }
 `;
 
-export const $ActivateVotingSection = styled.div`
+export const ActivateVotingSection = styled.div`
   margin: 0 auto 2%;
   display: flex;
   align-items: center;

@@ -10,11 +10,11 @@ import {
   RESPONSIVE_VIEW,
 } from 'Styles/global.style';
 
-export const $MatchupColumn = styled.div`
+export const MatchupColumn = styled.div`
   width: 46%;
 `;
 
-export const $MatchupSection = styled.div`
+export const MatchupSection = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -31,14 +31,14 @@ export const $MatchupSection = styled.div`
   }
 `;
 
-export const $MatchupHeadliner = styled.div`
+export const MatchupHeadliner = styled.div`
   width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: end;
 `;
 
-export const $MatchupCharacterBtn = styled.button`
+export const MatchupCharacterBtn = styled.button`
   border: none;
   background: transparent;
   width: auto;
@@ -99,7 +99,7 @@ export const $MatchupCharacterBtn = styled.button`
   }
 `;
 
-export const $MatchupAffinity = styled.div`
+export const MatchupAffinity = styled.div`
   margin: 15px 0 0 5%;
   width: auto;
   display: flex;
@@ -121,7 +121,7 @@ export const $MatchupAffinity = styled.div`
   }
 `;
 
-export const $MatchupPower = styled.button`
+export const MatchupPower = styled.button`
   width: auto;
   margin: 0 5% 0 0;
   padding: 0;
@@ -133,7 +133,7 @@ export const $MatchupPower = styled.button`
   }
 `;
 
-export const $MatchupPowerText = styled.div`
+export const MatchupPowerText = styled.div`
   text-align: right;
   color: ${(props) => (props.noCharacter ? COLOR_BLACK : COLOR_BLUE_HOVER)};
   font-size: ${(props) => (props.noCharacter ? FONT_SIZE_MEDIUM : FONT_SIZE_SMALL)};
@@ -148,7 +148,7 @@ export const $MatchupPowerText = styled.div`
   }
 `;
 
-export const $MatchupCharacterBtnWrapper = styled.div`
+export const MatchupCharacterBtnWrapper = styled.div`
   display: flex;
   justify-content: start;
 
@@ -161,7 +161,7 @@ export const $MatchupCharacterBtnWrapper = styled.div`
   }
 `;
 
-export const $MatchupAsterik = styled.span`
+export const MatchupAsterik = styled.span`
   color: ${COLOR_RED};
   margin-right: 5px;
   font-weight: ${FONT_WEIGHT_BOLD};

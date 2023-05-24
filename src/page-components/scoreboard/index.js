@@ -9,7 +9,7 @@ import Error from 'PageComponents/error';
 import React, { useEffect, useState } from 'react';
 import { useAppContext } from 'src/hooks/context';
 import { getScoreboard } from 'src/requests/league';
-import { $GlobalContainer } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 
@@ -58,11 +58,11 @@ const Scoreboard = () => {
         <>
           <BackLink />
           <LeagueChamp />
-          <$GlobalContainer className="grid schedule">
+          <GlobalStyles.GlobalContainer className="grid schedule">
             {games?.map((game) => {
               return <GameContainer game={game} key={game.teamA} />;
             })}
-          </$GlobalContainer>
+          </GlobalStyles.GlobalContainer>
           <ReadMore />
         </>
       )}

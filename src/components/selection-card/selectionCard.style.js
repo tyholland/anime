@@ -10,7 +10,7 @@ import {
   RESPONSIVE_VIEW,
 } from 'Styles/global.style';
 
-export const $SelectionCardBlock = styled.button`
+export const SelectionCardBlock = styled.button`
   padding: 1%;
   margin: 1%;
   width: 200px;
@@ -32,7 +32,7 @@ export const $SelectionCardBlock = styled.button`
   }
 `;
 
-export const $SelectionCardText = styled.span`
+export const SelectionCardText = styled.span`
   text-align: center;
   font-size: ${FONT_SIZE_GIGANTIC};
   font-weight: ${FONT_WEIGHT_BOLD};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style.js';
 import Metadata from 'Components/metadata';
 
 const Changelog = () => {
@@ -9,8 +9,8 @@ const Changelog = () => {
         title="Changelog"
         description="Displays all the changes that happen on the site. Keeping you informed and up to date"
       />
-      <$GlobalContainer>
-        <$GlobalTitle>Changelog</$GlobalTitle>
+      <GlobalStyles.GlobalContainer>
+        <GlobalStyles.GlobalTitle>Changelog</GlobalStyles.GlobalTitle>
         <h3>May 22, 2023</h3>
         <ul>
           <li>
@@ -391,7 +391,7 @@ const Changelog = () => {
             </ul>
           </li>
         </ul>
-      </$GlobalContainer>
+      </GlobalStyles.GlobalContainer>
     </>
   );
 };

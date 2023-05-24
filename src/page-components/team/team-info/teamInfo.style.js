@@ -7,7 +7,7 @@ import {
   MOBILE_VIEW,
 } from 'Styles/global.style';
 
-export const $TeamInfoStats = styled.div`
+export const TeamInfoStats = styled.div`
   margin-bottom: 10%;
   font-size: ${FONT_SIZE_EXTRA_LARGE};
 
@@ -27,7 +27,7 @@ export const $TeamInfoStats = styled.div`
   }
 `;
 
-export const $TeamInfoWrapper = styled.div`
+export const TeamInfoWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
 

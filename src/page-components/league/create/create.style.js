@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const $LeagueCreateWrapper = styled.div`
+export const LeagueCreateWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

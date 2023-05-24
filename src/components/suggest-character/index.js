@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
-import { $GlobalTitle, $GlobalSubTitle } from 'Styles/global.style.js';
-import { $LoginWrapper } from 'PageComponents/login/login.style.js';
+import * as GlobalStyles from 'Styles/global.style.js';
+import * as Styles from 'PageComponents/login/login.style.js';
 import Select from 'Components/select';
 import { addEvent } from 'Utils/amplitude';
 import SocialMedia from 'Components/social-media';
@@ -53,11 +53,11 @@ const SuggestCharacter = () => {
 
   return (
     <>
-      <$LoginWrapper>
-        <$GlobalTitle>Suggest a Character</$GlobalTitle>
+      <Styles.LoginWrapper>
+        <GlobalStyles.GlobalTitle>Suggest a Character</GlobalStyles.GlobalTitle>
         {!isSubmitted && (
           <>
-            <$GlobalSubTitle className="suggest">Noticed a missing hero from our roster? Use your summoning jutsu to recommend a new character for our vast Anime Universe!</$GlobalSubTitle>
+            <GlobalStyles.GlobalSubTitle className="suggest">Noticed a missing hero from our roster? Use your summoning jutsu to recommend a new character for our vast Anime Universe!</GlobalStyles.GlobalSubTitle>
             <TextField placeholder="Character Name" onChange={setPlayer} />
             <TextField placeholder="Anime Series" onChange={setSeries} />
             <Select
@@ -89,7 +89,7 @@ const SuggestCharacter = () => {
             />
           </>
         )}
-      </$LoginWrapper>
+      </Styles.LoginWrapper>
       {!isSubmitted && (
         <SocialMedia
           pageTitle="Spread the otaku love! Share with your nakama!"

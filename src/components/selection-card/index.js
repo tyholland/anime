@@ -1,10 +1,7 @@
 import Link from 'next/link.js';
 import React, { useState } from 'react';
 import Notification from 'src/modals/notification/index.js';
-import {
-  $SelectionCardBlock,
-  $SelectionCardText,
-} from './selectionCard.style.js';
+import * as Styles from './selectionCard.style.js';
 
 const SelectionCard = ({ btnText, redirect, isDisabled, newTab, disabledMsg }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -20,9 +17,9 @@ const SelectionCard = ({ btnText, redirect, isDisabled, newTab, disabledMsg }) =
   if (isDisabled) {
     return (
       <>
-        <$SelectionCardBlock onClick={() => setModalIsOpen(true)}>
-          <$SelectionCardText>{btnText}</$SelectionCardText>
-        </$SelectionCardBlock>
+        <Styles.SelectionCardBlock onClick={() => setModalIsOpen(true)}>
+          <Styles.SelectionCardText>{btnText}</Styles.SelectionCardText>
+        </Styles.SelectionCardBlock>
         <Notification
           message={disabledMsg}
           closeModal={closeModal}
@@ -34,17 +31,17 @@ const SelectionCard = ({ btnText, redirect, isDisabled, newTab, disabledMsg }) =
 
   if (newTab) {
     return (
-      <$SelectionCardBlock onClick={() => handleOpenNewTab(redirect)}>
-        <$SelectionCardText>{btnText}</$SelectionCardText>
-      </$SelectionCardBlock>
+      <Styles.SelectionCardBlock onClick={() => handleOpenNewTab(redirect)}>
+        <Styles.SelectionCardText>{btnText}</Styles.SelectionCardText>
+      </Styles.SelectionCardBlock>
     );
   }
 
   return (
     <Link href={redirect}>
-      <$SelectionCardBlock>
-        <$SelectionCardText>{btnText}</$SelectionCardText>
-      </$SelectionCardBlock>
+      <Styles.SelectionCardBlock>
+        <Styles.SelectionCardText>{btnText}</Styles.SelectionCardText>
+      </Styles.SelectionCardBlock>
     </Link>
   );
 };

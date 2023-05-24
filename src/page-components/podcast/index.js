@@ -1,8 +1,8 @@
 import React from 'react';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
-import { $PodcastService } from './podcast.style';
+import * as Styles from './podcast.style';
 import ReadMore from 'Components/read-more';
 import Script from 'next/script';
 import Image from 'next/image';
@@ -18,8 +18,8 @@ const Podcast = () => {
         title="Podcast"
         description="The Brothaz (DiscipleDashni, QuietJams, and TySoFly) get together to discuss a wide variety of topics within the anime community. Topics can range from, but are not limited to latest episodes, manga chapters, favorite characters and so on."
       />
-      <$GlobalContainer>
-        <$GlobalTitle className="podcast">
+      <GlobalStyles.GlobalContainer>
+        <GlobalStyles.GlobalTitle className="podcast">
           <Image
             src="/assets/logo/abz-logo.webp"
             width={70}
@@ -27,8 +27,8 @@ const Podcast = () => {
             alt="Anime Brothaz"
           />
           Podcast
-        </$GlobalTitle>
-        <$PodcastService>
+        </GlobalStyles.GlobalTitle>
+        <Styles.PodcastService>
           <div>
             If you prefer to use your own podcast service/application, feel free
             to click the link below. It will take you to a page where you can
@@ -42,7 +42,7 @@ const Podcast = () => {
             customBtnClass="small"
             btnFunction={goToSharePage}
           />
-        </$PodcastService>
+        </Styles.PodcastService>
         <div id="buzzsprout-large-player"></div>
         <div>
           Introducing the ABZ Anime Podcast!
@@ -71,7 +71,7 @@ const Podcast = () => {
           </p>
           Happy listening and enjoy the ABZ Anime Podcast!
         </div>
-      </$GlobalContainer>
+      </GlobalStyles.GlobalContainer>
       <ReadMore />
       <Script src="https://www.buzzsprout.com/1260827.js?container_id=buzzsprout-large-player&player=large" />
     </>

@@ -1,7 +1,7 @@
 import React from 'react';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import Metadata from 'Components/metadata';
-import { $PolicySection } from './policy.style';
+import * as Styles from './policy.style';
 
 const Policy = () => {
   return (
@@ -10,9 +10,9 @@ const Policy = () => {
         title="Privacy Policy"
         description="Privacy policy for the AFL Anime Fantasy League"
       />
-      <$GlobalContainer>
-        <$GlobalTitle>Privacy Policy</$GlobalTitle>
-        <$PolicySection>
+      <GlobalStyles.GlobalContainer>
+        <GlobalStyles.GlobalTitle>Privacy Policy</GlobalStyles.GlobalTitle>
+        <Styles.PolicySection>
           This privacy policy sets out how the Anime Fantasy League website and
           its owners use and protect any information that you give the Anime
           Fantasy League website and its owners when you use this website. The
@@ -20,8 +20,8 @@ const Policy = () => {
           to time without notice by updating this page. You should check this
           page from time to time to ensure that you are happy with any changes.
           This policy is effective from 02-18-2023.
-        </$PolicySection>
-        <$PolicySection>
+        </Styles.PolicySection>
+        <Styles.PolicySection>
           We may collect and store indefinitely any information that you or your
           web browser sends to the site, including but not limited to the
           following:
@@ -37,8 +37,8 @@ const Policy = () => {
               Fantasy lineup picks
             </li>
           </ul>
-        </$PolicySection>
-        <$PolicySection>
+        </Styles.PolicySection>
+        <Styles.PolicySection>
           We use traffic log cookies to identify which pages are being used.
           This helps us analyze data about webpage traffic and improve our
           website to tailor it to customer needs. We only use this information
@@ -47,8 +47,8 @@ const Policy = () => {
           find useful and which you do not. A cookie in no way gives us access
           to your computer or any information about you, other than the data you
           choose to share with us.
-        </$PolicySection>
-        <$PolicySection>
+        </Styles.PolicySection>
+        <Styles.PolicySection>
           Our website may contain links to other websites of interest. However,
           once you have used these links to leave our site, you should note that
           we do not have any control over that other website. Therefore, we
@@ -57,8 +57,8 @@ const Policy = () => {
           are not governed by this privacy statement. You should exercise
           caution and look at the privacy statement applicable to the website in
           question.
-        </$PolicySection>
-      </$GlobalContainer>
+        </Styles.PolicySection>
+      </GlobalStyles.GlobalContainer>
     </>
   );
 };

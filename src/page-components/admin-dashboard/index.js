@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  $GlobalContainer,
-  $GlobalTitle,
-  $CollapsibleStyles,
-} from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
 import { useAppContext } from 'src/hooks/context';
@@ -15,7 +11,7 @@ import NotUser from 'Components/not-user';
 import Players from 'Components/players';
 import { getAdminPlayers, updatePlayerData } from 'src/requests/player';
 import { getAdminAccess } from 'src/requests/users';
-import { $AdminDashboardSection } from './adminDashboard.style';
+import * as Styles from './adminDashboard.style';
 import Image from 'next/image';
 
 const AdminDashboard = () => {
@@ -123,15 +119,15 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <$CollapsibleStyles />
+      <GlobalStyles.CollapsibleStyles />
       <Metadata
         title="Account"
         description="Look at your profile, update username, and your password. Delete your account if you must."
       />
       {isLoading && <Loader />}
       {!isLoading && (
-        <$GlobalContainer className="grid character">
-          <$GlobalTitle>Admin Dashboard</$GlobalTitle>
+        <GlobalStyles.GlobalContainer className="grid character">
+          <GlobalStyles.GlobalTitle>Admin Dashboard</GlobalStyles.GlobalTitle>
           {!updatePlayer && (
             <Players
               data={players}
@@ -141,15 +137,15 @@ const AdminDashboard = () => {
           )}
           {updatePlayer && (
             <>
-              <$AdminDashboardSection className="img">
+              <Styles.AdminDashboardSection className="img">
                 <Image
                   src={playerInfo.image_url}
                   width={200}
                   height={200}
                   alt={playerInfo.full_name}
                 />
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Image:</label>
                 {editImage && (
                   <>
@@ -185,8 +181,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Full Name:</label>
                 {editFullName && (
                   <>
@@ -222,8 +218,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Name:</label>
                 {editName && (
                   <>
@@ -256,8 +252,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Series:</label>
                 {editSeries && (
                   <>
@@ -290,8 +286,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Power Level:</label>
                 {editPowerLevel && (
                   <>
@@ -328,8 +324,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Cost:</label>
                 {editCost && (
                   <>
@@ -363,8 +359,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Category:</label>
                 {editCategory && (
                   <>
@@ -401,8 +397,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Fire:</label>
                 {editFire && (
                   <>
@@ -436,8 +432,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Water:</label>
                 {editWater && (
                   <>
@@ -471,8 +467,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Wind:</label>
                 {editWind && (
                   <>
@@ -506,8 +502,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Earth:</label>
                 {editEarth && (
                   <>
@@ -541,8 +537,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Arcane:</label>
                 {editArcane && (
                   <>
@@ -576,8 +572,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Electric:</label>
                 {editElectric && (
                   <>
@@ -614,8 +610,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Celestial:</label>
                 {editCelestial && (
                   <>
@@ -652,8 +648,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Darkness:</label>
                 {editDarkness && (
                   <>
@@ -690,8 +686,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Ice:</label>
                 {editIce && (
                   <>
@@ -725,8 +721,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>No Affinity:</label>
                 {editNoAffinity && (
                   <>
@@ -763,8 +759,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Weakness:</label>
                 {editWeakness && (
                   <>
@@ -801,8 +797,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Active:</label>
                 {editStatus && (
                   <>
@@ -836,8 +832,8 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
-              <$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
+              <Styles.AdminDashboardSection>
                 <label>Bye Week:</label>
                 {editByeWeek && (
                   <>
@@ -874,7 +870,7 @@ const AdminDashboard = () => {
                     />
                   </>
                 )}
-              </$AdminDashboardSection>
+              </Styles.AdminDashboardSection>
               <Button
                 btnText="Back to Characters"
                 btnFunction={() => setUpdatePlayer(false)}
@@ -883,7 +879,7 @@ const AdminDashboard = () => {
               />
             </>
           )}
-        </$GlobalContainer>
+        </GlobalStyles.GlobalContainer>
       )}
     </>
   );

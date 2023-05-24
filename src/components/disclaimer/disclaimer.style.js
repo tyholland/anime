@@ -7,7 +7,7 @@ import {
 } from 'Styles/global.style';
 import styled from 'styled-components';
 
-export const $DisclaimerWrapper = styled.div`
+export const DisclaimerWrapper = styled.div`
   width: 96%;
   background-color: ${COLOR_DISCLAIMER};
   color: ${COLOR_BLACK};

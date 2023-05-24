@@ -1,9 +1,9 @@
 import React from 'react';
-import { $GlobalContainer } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import 'react-data-grid/lib/styles.css';
 import MainModal from '../main';
 import Button from 'Components/button';
-import { $RecapWrapper, $RecapWeek, $RecapAgainst } from './recap.style';
+import * as Styles from './recap.style';
 
 const Recap = ({ data, modalIsOpen, closeModal, teamName }) => {
   const customStyles = {
@@ -32,26 +32,26 @@ const Recap = ({ data, modalIsOpen, closeModal, teamName }) => {
       closeModal={closeModal}
       styles={customStyles}
     >
-      <$GlobalContainer className="invalid">
-        <$RecapWrapper>
-          <$RecapWeek>Week {week} Results:</$RecapWeek>
+      <GlobalStyles.GlobalContainer className="invalid">
+        <Styles.RecapWrapper>
+          <Styles.RecapWeek>Week {week} Results:</Styles.RecapWeek>
           <h1>You {winner === teamName ? 'Won' : 'Lost'}</h1>
-          <$RecapAgainst>
+          <Styles.RecapAgainst>
             against {winner === teamName ? loser : winner}
-          </$RecapAgainst>
+          </Styles.RecapAgainst>
           <div>
             <strong>Score:</strong> {score}
           </div>
-        </$RecapWrapper>
-        <$RecapWrapper className="btn">
+        </Styles.RecapWrapper>
+        <Styles.RecapWrapper className="btn">
           <Button
             btnFunction={closeModal}
             btnText="Close"
             btnColor="cancel"
             customBtnClass="small"
           />
-        </$RecapWrapper>
-      </$GlobalContainer>
+        </Styles.RecapWrapper>
+      </GlobalStyles.GlobalContainer>
     </MainModal>
   );
 };

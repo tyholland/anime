@@ -10,7 +10,7 @@ import {
   MOBILE_VIEW,
 } from 'Styles/global.style';
 
-export const $BioAffinity = styled.div`
+export const BioAffinity = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -31,7 +31,7 @@ export const $BioAffinity = styled.div`
   }
 `;
 
-export const $BioAffinityText = styled.div`
+export const BioAffinityText = styled.div`
   margin-left: 5px;
 
   ${MOBILE_VIEW} {
@@ -45,7 +45,7 @@ export const $BioAffinityText = styled.div`
   }
 `;
 
-export const $BioTitle = styled.div`
+export const BioTitle = styled.div`
   font-size: ${FONT_SIZE_GIGANTIC};
   font-weight: ${FONT_WEIGHT_BOLD};
   margin-bottom: 5%;
@@ -55,7 +55,7 @@ export const $BioTitle = styled.div`
   }
 `;
 
-export const $BioSubTitle = styled.div`
+export const BioSubTitle = styled.div`
   font-size: ${FONT_SIZE_LARGE};
   color: #999;
   font-weight: ${FONT_WEIGHT_BOLD};
@@ -70,7 +70,7 @@ export const $BioSubTitle = styled.div`
   }
 `;
 
-export const $BioAttribute = styled.div`
+export const BioAttribute = styled.div`
   font-size: ${FONT_SIZE_EXTRA_LARGE};
   font-weight: ${FONT_WEIGHT_BOLD};
 
@@ -79,7 +79,7 @@ export const $BioAttribute = styled.div`
   }
 `;
 
-export const $BioSubAttribute = styled.div`
+export const BioSubAttribute = styled.div`
   font-size: ${FONT_SIZE_EXTRA_LARGE};
   margin-bottom: 25px;
 
@@ -88,14 +88,14 @@ export const $BioSubAttribute = styled.div`
   }
 `;
 
-export const $BioImage = styled.img`
+export const BioImage = styled.img`
   max-width: 250px;
   max-height: 200px;
   margin-bottom: 10%;
   width: auto;
 `;
 
-export const $BioWrapper = styled.div`
+export const BioWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: self-start;
@@ -119,7 +119,7 @@ export const $BioWrapper = styled.div`
   }
 `;
 
-export const $BioAccordian = styled.div`
+export const BioAccordian = styled.div`
   .collapseContainer {
     display: flex;
     width: 100%;

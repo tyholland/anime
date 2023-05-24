@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  $FooterContainer,
-  $FooterSection,
-  $FooterLinks,
-} from './footer.style.js';
+import * as Styles from './footer.style.js';
 import Image from 'next/image.js';
 import Link from 'next/link.js';
 
@@ -13,9 +9,9 @@ const Footer = () => {
   };
 
   return (
-    <$FooterContainer>
-      <$FooterSection>
-        <$FooterLinks>
+    <Styles.FooterContainer>
+      <Styles.FooterSection>
+        <Styles.FooterLinks>
           <div className="title">Help</div>
           <div>
             <Link href="mailto:animebrothaz3@gmail.com">Contact Us</Link>
@@ -30,8 +26,8 @@ const Footer = () => {
           <div>
             <Link href="/suggest">Suggest Character</Link>
           </div>
-        </$FooterLinks>
-        <$FooterLinks>
+        </Styles.FooterLinks>
+        <Styles.FooterLinks>
           <div className="title">Info</div>
           <div>
             <Link href="/policy">Privacy Policy</Link>
@@ -42,8 +38,8 @@ const Footer = () => {
           <div>
             <Link href="/gameplay">Gameplay</Link>
           </div>
-        </$FooterLinks>
-        <$FooterLinks>
+        </Styles.FooterLinks>
+        <Styles.FooterLinks>
           <div className="title">To Do</div>
           <div>
             <Link href="/characters">Character List</Link>
@@ -54,9 +50,9 @@ const Footer = () => {
           <div>
             <Link href="/podcast">ABZ Podcast</Link>
           </div>
-        </$FooterLinks>
-      </$FooterSection>
-      <$FooterSection className="social">
+        </Styles.FooterLinks>
+      </Styles.FooterSection>
+      <Styles.FooterSection className="social">
         <Image
           src="/assets/icons/facebook-icon.webp"
           width={40}
@@ -100,8 +96,8 @@ const Footer = () => {
           alt="ABZ Tiktok"
           onClick={() => openInNewTab('https://www.tiktok.com/@animebrothaz')}
         />
-      </$FooterSection>
-    </$FooterContainer>
+      </Styles.FooterSection>
+    </Styles.FooterContainer>
   );
 };
 

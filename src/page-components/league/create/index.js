@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style.js';
 import { createLeague } from 'src/requests/league';
-import { $LeagueCreateWrapper } from './create.style';
+import * as Styles from './create.style';
 import BackLink from 'Components/back-link';
 import Select from 'Components/select';
 import { useRouter } from 'next/router';
@@ -73,9 +73,9 @@ const LeagueCreate = () => {
         description="Anyone can create a new league and invite friends to join it"
       />
       <BackLink />
-      <$GlobalContainer>
-        <$LeagueCreateWrapper>
-          <$GlobalTitle>Create a League</$GlobalTitle>
+      <GlobalStyles.GlobalContainer>
+        <Styles.LeagueCreateWrapper>
+          <GlobalStyles.GlobalTitle>Create a League</GlobalStyles.GlobalTitle>
           {errorMsg && <ErrorMsg msg={errorMsg} />}
           <TextField placeholder="League Name" onChange={handleLeagueName} />
           <Select
@@ -91,8 +91,8 @@ const LeagueCreate = () => {
             isDisabled={isDisabled}
             disabledMsg="Please complete all the fields above in order to proceed"
           />
-        </$LeagueCreateWrapper>
-      </$GlobalContainer>
+        </Styles.LeagueCreateWrapper>
+      </GlobalStyles.GlobalContainer>
       <ReadMore />
     </>
   );

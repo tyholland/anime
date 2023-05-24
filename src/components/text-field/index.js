@@ -1,5 +1,5 @@
 import React from 'react';
-import { $Input } from './text-field.style.js';
+import * as Styles from './text-field.style.js';
 
 const TextField = ({
   placeholder,
@@ -15,7 +15,7 @@ const TextField = ({
 
   if (onChange) {
     return (
-      <$Input
+      <Styles.Input
         placeholder={placeholder}
         keyboardType={keyboard || 'default'}
         autoCapitalize="none"
@@ -31,7 +31,7 @@ const TextField = ({
 
   if (isDisabled) {
     return (
-      <$Input
+      <Styles.Input
         keyboardType={keyboard || 'default'}
         autoCapitalize="none"
         textContentType={'none'}
@@ -43,7 +43,7 @@ const TextField = ({
   }
 
   return (
-    <$Input
+    <Styles.Input
       placeholder={placeholder}
       keyboardType={keyboard || 'default'}
       autoCapitalize="none"

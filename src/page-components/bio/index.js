@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import BackLink from 'Components/back-link';
-import { $GlobalContainer } from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style.js';
 import Metadata from 'Components/metadata';
 import { useRouter } from 'next/router';
 import ReadMore from 'Components/read-more';
@@ -26,9 +26,9 @@ const Bio = () => {
         }
       />
       <BackLink />
-      <$GlobalContainer>
+      <GlobalStyles.GlobalContainer>
         <BioCard characterId={player} />
-      </$GlobalContainer>
+      </GlobalStyles.GlobalContainer>
       <ReadMore />
     </>
   );

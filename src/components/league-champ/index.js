@@ -4,7 +4,7 @@ import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import { getLeagueChamp } from 'src/requests/league';
 import { useAppContext } from 'src/hooks/context';
-import { $GlobalTitle } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 
 const LeagueChamp = ({classProp = null}) => {
   const router = useRouter();
@@ -31,7 +31,7 @@ const LeagueChamp = ({classProp = null}) => {
   return (
     <>
       {!!theChamp && (
-        <$GlobalTitle className={classProp ? classProp : ''}>Champion: {theChamp}</$GlobalTitle>
+        <GlobalStyles.GlobalTitle className={classProp ? classProp : ''}>Champion: {theChamp}</GlobalStyles.GlobalTitle>
       )}
     </>
   );

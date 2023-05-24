@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import {
-  $GlobalContainer,
-  $GlobalTitle,
-  $CollapsibleStyles,
-} from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import Metadata from 'Components/metadata';
 import Button from 'Components/button';
 import { useAppContext } from 'src/hooks/context';
 import Error from 'PageComponents/error';
 import TextField from 'Components/text-field';
-import { $AdminWrapper, $AdminSection, $AdminContainer } from './admin.style';
+import * as Styles from './admin.style';
 import Select from 'Components/select';
 import SocialMedia from 'Components/social-media';
 import {
@@ -231,7 +227,7 @@ const Admin = () => {
 
   return (
     <>
-      <$CollapsibleStyles />
+      <GlobalStyles.CollapsibleStyles />
       <Metadata
         title="Admin Settings"
         description="League Admin settings. You can change the number of teams in the league or the league name."
@@ -240,16 +236,16 @@ const Admin = () => {
       {!notLoggedIn && (
         <>
           <BackLink />
-          <$GlobalContainer>
-            <$GlobalTitle>Admin Settings</$GlobalTitle>
+          <GlobalStyles.GlobalContainer>
+            <GlobalStyles.GlobalTitle>Admin Settings</GlobalStyles.GlobalTitle>
             {errorMsg && <ErrorMsg msg={errorMsg} />}
             {!league && <Loader />}
             {league && (
               <>
-                <$AdminContainer>
+                <Styles.AdminContainer>
                   <Collapsible trigger={basicDown} triggerTagName="div" triggerWhenOpen={basicUp} triggerElementProps={{ id: 'basic', 'aria-controls': 'basic' }} contentElementId="basic">
-                    <$AdminWrapper>
-                      <$AdminSection>
+                    <Styles.AdminWrapper>
+                      <Styles.AdminSection>
                         {editNum && (
                           <>
                             <Select
@@ -276,8 +272,8 @@ const Admin = () => {
                             }
                           </>
                         )}
-                      </$AdminSection>
-                      <$AdminSection>
+                      </Styles.AdminSection>
+                      <Styles.AdminSection>
                         {editLeague && (
                           <>
                             <TextField
@@ -311,8 +307,8 @@ const Admin = () => {
                             />
                           </>
                         )}
-                      </$AdminSection>
-                      <$AdminSection className="start">
+                      </Styles.AdminSection>
+                      <Styles.AdminSection className="start">
                         <Button
                           btnText="Create Draft"
                           btnFunction={handleCreateDraft}
@@ -322,20 +318,20 @@ const Admin = () => {
                           disabledMsg={isStarted ? 'League has already started' : isLeagueDisabled ? 'You don\'t have enough teams to draft' : null}
                         />
                         <div className="content">Your League doesn't officially start until the Monday after you complete your League Draft.</div>
-                      </$AdminSection>
+                      </Styles.AdminSection>
                       {!isStarted &&
-                      <$AdminSection className="delete">
+                      <Styles.AdminSection className="delete">
                         <Button
                           btnText="Delete League"
                           btnFunction={handleDeleteLeague}
                           customBtnClass="text"
                         />
-                      </$AdminSection>
+                      </Styles.AdminSection>
                       }
-                    </$AdminWrapper>
+                    </Styles.AdminWrapper>
                   </Collapsible>
                   <Collapsible trigger={teamDown} triggerTagName="div" triggerWhenOpen={teamUp} triggerElementProps={{ id: 'team', 'aria-controls': 'team' }} contentElementId="team">
-                    <$AdminWrapper className="column">
+                    <Styles.AdminWrapper className="column">
                       <ol>
                         {teamNames.map((team) => {
                           return (
@@ -369,9 +365,9 @@ const Admin = () => {
                           url={`${origin}/league/join?id=${league.hash}`}
                         />
                       )}
-                    </$AdminWrapper>
+                    </Styles.AdminWrapper>
                   </Collapsible>
-                </$AdminContainer>
+                </Styles.AdminContainer>
                 <Notification
                   message="Your Draft is now avilable. Go to the League page in order to see the Draft button. Your League won't officially start until the Monday after you finish your League Draft."
                   modalIsOpen={draftNotify}
@@ -379,7 +375,7 @@ const Admin = () => {
                 />
               </>
             )}
-          </$GlobalContainer>
+          </GlobalStyles.GlobalContainer>
           <ReadMore>{message}</ReadMore>
         </>
       )}

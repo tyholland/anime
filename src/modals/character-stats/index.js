@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../../components/button';
-import { $GlobalTitle } from 'Styles/global.style';
-import {
-  $CharacterStatsBtnWrapper,
-  $CharacterStatsScoring,
-  $CharacterStatsPoints,
-  $CharacterStatsLabel,
-} from './characterStats.style';
+import * as GlobalStyles from 'Styles/global.style';
+import * as Styles from './characterStats.style';
 import MainModal from '../main';
 import { useAppContext } from 'src/hooks/context';
 import ErrorMsg from 'Components/error-msg';
@@ -62,104 +57,104 @@ const CharacterStats = ({
       closeModal={closeModal}
       styles={customStyles}
     >
-      <$GlobalTitle>{name}</$GlobalTitle>
+      <GlobalStyles.GlobalTitle>{name}</GlobalStyles.GlobalTitle>
       {teamPoints === 0 && (
-        <$CharacterStatsScoring className="bye">
+        <Styles.CharacterStatsScoring className="bye">
           Bye week
-        </$CharacterStatsScoring>
+        </Styles.CharacterStatsScoring>
       )}
       {teamPoints > 0 && (
         <>
-          <$CharacterStatsScoring>
-            <$CharacterStatsLabel>Points</$CharacterStatsLabel>
-            <$CharacterStatsPoints>{originalPower}</$CharacterStatsPoints>
-          </$CharacterStatsScoring>
-          <$CharacterStatsScoring>
-            <$CharacterStatsLabel>Boost</$CharacterStatsLabel>
-            <$CharacterStatsPoints>+ {boostTotal}</$CharacterStatsPoints>
-          </$CharacterStatsScoring>
-          <$CharacterStatsScoring>
-            <$CharacterStatsLabel className="specific">
+          <Styles.CharacterStatsScoring>
+            <Styles.CharacterStatsLabel>Points</Styles.CharacterStatsLabel>
+            <Styles.CharacterStatsPoints>{originalPower}</Styles.CharacterStatsPoints>
+          </Styles.CharacterStatsScoring>
+          <Styles.CharacterStatsScoring>
+            <Styles.CharacterStatsLabel>Boost</Styles.CharacterStatsLabel>
+            <Styles.CharacterStatsPoints>+ {boostTotal}</Styles.CharacterStatsPoints>
+          </Styles.CharacterStatsScoring>
+          <Styles.CharacterStatsScoring>
+            <Styles.CharacterStatsLabel className="specific">
               Weekly Affinity
-            </$CharacterStatsLabel>
-            <$CharacterStatsPoints className="specific">
+            </Styles.CharacterStatsLabel>
+            <Styles.CharacterStatsPoints className="specific">
               {boost.week}
-            </$CharacterStatsPoints>
-          </$CharacterStatsScoring>
-          <$CharacterStatsScoring>
-            <$CharacterStatsLabel className="specific">
+            </Styles.CharacterStatsPoints>
+          </Styles.CharacterStatsScoring>
+          <Styles.CharacterStatsScoring>
+            <Styles.CharacterStatsLabel className="specific">
               Support
-            </$CharacterStatsLabel>
-            <$CharacterStatsPoints className="specific">
+            </Styles.CharacterStatsLabel>
+            <Styles.CharacterStatsPoints className="specific">
               {boost.support}
-            </$CharacterStatsPoints>
-          </$CharacterStatsScoring>
-          <$CharacterStatsScoring>
-            <$CharacterStatsLabel className="specific">
+            </Styles.CharacterStatsPoints>
+          </Styles.CharacterStatsScoring>
+          <Styles.CharacterStatsScoring>
+            <Styles.CharacterStatsLabel className="specific">
               Battlefield
-            </$CharacterStatsLabel>
-            <$CharacterStatsPoints className="specific">
+            </Styles.CharacterStatsLabel>
+            <Styles.CharacterStatsPoints className="specific">
               {boost.battlefield}
-            </$CharacterStatsPoints>
-          </$CharacterStatsScoring>
-          <$CharacterStatsScoring>
-            <$CharacterStatsLabel className="specific">
+            </Styles.CharacterStatsPoints>
+          </Styles.CharacterStatsScoring>
+          <Styles.CharacterStatsScoring>
+            <Styles.CharacterStatsLabel className="specific">
               Voting
-            </$CharacterStatsLabel>
-            <$CharacterStatsPoints className="specific">
+            </Styles.CharacterStatsLabel>
+            <Styles.CharacterStatsPoints className="specific">
               {boost.voting}
-            </$CharacterStatsPoints>
-          </$CharacterStatsScoring>
+            </Styles.CharacterStatsPoints>
+          </Styles.CharacterStatsScoring>
           {isMatchupPage && (
             <>
-              <$CharacterStatsScoring>
-                <$CharacterStatsLabel>Damage</$CharacterStatsLabel>
-                <$CharacterStatsPoints>- {damageTotal}</$CharacterStatsPoints>
-              </$CharacterStatsScoring>
-              <$CharacterStatsScoring>
-                <$CharacterStatsLabel className="specific">
+              <Styles.CharacterStatsScoring>
+                <Styles.CharacterStatsLabel>Damage</Styles.CharacterStatsLabel>
+                <Styles.CharacterStatsPoints>- {damageTotal}</Styles.CharacterStatsPoints>
+              </Styles.CharacterStatsScoring>
+              <Styles.CharacterStatsScoring>
+                <Styles.CharacterStatsLabel className="specific">
                   Weekly Affinity
-                </$CharacterStatsLabel>
-                <$CharacterStatsPoints className="specific">
+                </Styles.CharacterStatsLabel>
+                <Styles.CharacterStatsPoints className="specific">
                   {damage.week}
-                </$CharacterStatsPoints>
-              </$CharacterStatsScoring>
-              <$CharacterStatsScoring>
-                <$CharacterStatsLabel className="specific">
+                </Styles.CharacterStatsPoints>
+              </Styles.CharacterStatsScoring>
+              <Styles.CharacterStatsScoring>
+                <Styles.CharacterStatsLabel className="specific">
                   Villain
-                </$CharacterStatsLabel>
-                <$CharacterStatsPoints className="specific">
+                </Styles.CharacterStatsLabel>
+                <Styles.CharacterStatsPoints className="specific">
                   {damage.villain}
-                </$CharacterStatsPoints>
-              </$CharacterStatsScoring>
-              <$CharacterStatsScoring>
-                <$CharacterStatsLabel className="specific">
+                </Styles.CharacterStatsPoints>
+              </Styles.CharacterStatsScoring>
+              <Styles.CharacterStatsScoring>
+                <Styles.CharacterStatsLabel className="specific">
                   Battlefield
-                </$CharacterStatsLabel>
-                <$CharacterStatsPoints className="specific">
+                </Styles.CharacterStatsLabel>
+                <Styles.CharacterStatsPoints className="specific">
                   {damage.battlefield}
-                </$CharacterStatsPoints>
-              </$CharacterStatsScoring>
-              <$CharacterStatsScoring>
-                <$CharacterStatsLabel className="specific">
+                </Styles.CharacterStatsPoints>
+              </Styles.CharacterStatsScoring>
+              <Styles.CharacterStatsScoring>
+                <Styles.CharacterStatsLabel className="specific">
                   Voting
-                </$CharacterStatsLabel>
-                <$CharacterStatsPoints className="specific">
+                </Styles.CharacterStatsLabel>
+                <Styles.CharacterStatsPoints className="specific">
                   {damage.voting}
-                </$CharacterStatsPoints>
-              </$CharacterStatsScoring>
+                </Styles.CharacterStatsPoints>
+              </Styles.CharacterStatsScoring>
             </>
           )}
-          <$CharacterStatsScoring className="total">
-            <$CharacterStatsLabel>Total Points</$CharacterStatsLabel>
-            <$CharacterStatsPoints>
+          <Styles.CharacterStatsScoring className="total">
+            <Styles.CharacterStatsLabel>Total Points</Styles.CharacterStatsLabel>
+            <Styles.CharacterStatsPoints>
               {isMatchupPage ? (matchPoints < 0 ? 0 : matchPoints) : teamPoints}
-            </$CharacterStatsPoints>
-          </$CharacterStatsScoring>
+            </Styles.CharacterStatsPoints>
+          </Styles.CharacterStatsScoring>
           {!!errorMsg && <ErrorMsg msg={errorMsg} />}
         </>
       )}
-      <$CharacterStatsBtnWrapper>
+      <Styles.CharacterStatsBtnWrapper>
         {!!activeVoting.length && canVote && (
           <Button
             btnText="View Voting Status"
@@ -174,7 +169,7 @@ const CharacterStats = ({
           customBtnClass="medium"
           btnFunction={closeModal}
         />
-      </$CharacterStatsBtnWrapper>
+      </Styles.CharacterStatsBtnWrapper>
     </MainModal>
   );
 };

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FONT_SIZE_LARGE, MOBILE_VIEW } from 'Styles/global.style';
 
-export const $AdminDashboardSection = styled.div`
+export const AdminDashboardSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;

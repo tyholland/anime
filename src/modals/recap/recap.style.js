@@ -1,7 +1,7 @@
 import { FONT_SIZE_GIGANTIC } from 'Styles/global.style';
 import styled from 'styled-components';
 
-export const $RecapWrapper = styled.div`
+export const RecapWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,11 +13,11 @@ export const $RecapWrapper = styled.div`
   }
 `;
 
-export const $RecapWeek = styled.div`
+export const RecapWeek = styled.div`
   font-size: ${FONT_SIZE_GIGANTIC};
 `;
 
-export const $RecapAgainst = styled.div`
+export const RecapAgainst = styled.div`
   margin-bottom: 5%;
   font-style: italic;
 `;

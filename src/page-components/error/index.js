@@ -1,7 +1,7 @@
 import Button from 'Components/button';
 import React from 'react';
-import { $GlobalContainer } from 'Styles/global.style';
-import { $ErrorContent, $ErrorBtnWrapper } from './error.style';
+import * as GlobalStyles from 'Styles/global.style';
+import * as Styles from './error.style';
 import Metadata from 'Components/metadata';
 
 const Error = () => {
@@ -11,8 +11,8 @@ const Error = () => {
         title="Page Not Found"
         description="This page is not a valid page. Please view another page"
       />
-      <$GlobalContainer className="bgImage notFound">
-        <$ErrorContent>
+      <GlobalStyles.GlobalContainer className="bgImage notFound">
+        <Styles.ErrorContent>
           <div>
             Unfortunately, the URL that you have entered is not a valid page.
             Although this page is not valid, we have plenty of other things to
@@ -26,8 +26,8 @@ const Error = () => {
             or the Brackets. Also, feel free to submit a new character to be
             used on the site as well.
           </div>
-        </$ErrorContent>
-        <$ErrorBtnWrapper>
+        </Styles.ErrorContent>
+        <Styles.ErrorBtnWrapper>
           <Button
             btnText="Create a League"
             redirect="/league/create"
@@ -46,8 +46,8 @@ const Error = () => {
             btnColor="primary"
             customBtnClass="medium"
           />
-        </$ErrorBtnWrapper>
-      </$GlobalContainer>
+        </Styles.ErrorBtnWrapper>
+      </GlobalStyles.GlobalContainer>
     </>
   );
 };

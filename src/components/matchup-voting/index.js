@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  $MatchupVotingCharacter,
-  $MatchupVotingVersus,
-  $MatchupVotingWrapper,
-  $MatchupVotingSection,
-  $MatchupVotingImage,
-  $MatchupVotingTotal,
-} from './matchupVoting.style.js';
+import * as Styles from './matchupVoting.style.js';
 import Button from 'Components/button';
 import SocialMedia from 'Components/social-media/index.js';
 import { addVotes } from 'src/requests/matchup.js';
@@ -104,30 +97,30 @@ const MatchupVoting = ({
 
   return (
     <>
-      <$MatchupVotingWrapper className={errorMsg && 'spacing'}>
-        <$MatchupVotingSection>
+      <Styles.MatchupVotingWrapper className={errorMsg && 'spacing'}>
+        <Styles.MatchupVotingSection>
           <div>
-            <$MatchupVotingImage
+            <Styles.MatchupVotingImage
               src={playerA.image_url}
               alt={playerA.full_name}
             />
-            <$MatchupVotingCharacter>
+            <Styles.MatchupVotingCharacter>
               {playerA.full_name}
-            </$MatchupVotingCharacter>
+            </Styles.MatchupVotingCharacter>
             {playerInfo.is_bracket === 0 && (
               <>
-                <$MatchupVotingCharacter className="details">
+                <Styles.MatchupVotingCharacter className="details">
                   <strong>Team:</strong> {playerInfo.teamA}
-                </$MatchupVotingCharacter>
-                <$MatchupVotingCharacter className="details">
+                </Styles.MatchupVotingCharacter>
+                <Styles.MatchupVotingCharacter className="details">
                   <strong>League:</strong> {playerInfo.leagueName}
-                </$MatchupVotingCharacter>
+                </Styles.MatchupVotingCharacter>
               </>
             )}
             {playerInfo.is_bracket === 1 && (
-              <$MatchupVotingCharacter className="details">
+              <Styles.MatchupVotingCharacter className="details">
                 <strong>Bracket:</strong> {playerInfo.bracket}
-              </$MatchupVotingCharacter>
+              </Styles.MatchupVotingCharacter>
             )}
           </div>
           <div>
@@ -137,37 +130,37 @@ const MatchupVoting = ({
               customBtnClass="medium"
               btnFunction={() => handleAddingVotes(playerA, 'player_a_count', playerInfo.is_bracket)}
             />
-            <$MatchupVotingTotal>
+            <Styles.MatchupVotingTotal>
               Total Votes: {playerACount}
-            </$MatchupVotingTotal>
+            </Styles.MatchupVotingTotal>
           </div>
-        </$MatchupVotingSection>
-        <$MatchupVotingSection>
-          <$MatchupVotingVersus>VS</$MatchupVotingVersus>
-        </$MatchupVotingSection>
-        <$MatchupVotingSection>
+        </Styles.MatchupVotingSection>
+        <Styles.MatchupVotingSection>
+          <Styles.MatchupVotingVersus>VS</Styles.MatchupVotingVersus>
+        </Styles.MatchupVotingSection>
+        <Styles.MatchupVotingSection>
           <div>
-            <$MatchupVotingImage
+            <Styles.MatchupVotingImage
               src={playerB.image_url}
               alt={playerB.full_name}
             />
-            <$MatchupVotingCharacter>
+            <Styles.MatchupVotingCharacter>
               {playerB.full_name}
-            </$MatchupVotingCharacter>
+            </Styles.MatchupVotingCharacter>
             {playerInfo.is_bracket === 0 && (
               <>
-                <$MatchupVotingCharacter className="details">
+                <Styles.MatchupVotingCharacter className="details">
                   <strong>Team:</strong> {playerInfo.teamB}
-                </$MatchupVotingCharacter>
-                <$MatchupVotingCharacter className="details">
+                </Styles.MatchupVotingCharacter>
+                <Styles.MatchupVotingCharacter className="details">
                   <strong>League:</strong> {playerInfo.leagueName}
-                </$MatchupVotingCharacter>
+                </Styles.MatchupVotingCharacter>
               </>
             )}
             {playerInfo.is_bracket === 1 && (
-              <$MatchupVotingCharacter className="details">
+              <Styles.MatchupVotingCharacter className="details">
                 <strong>Bracket:</strong> {playerInfo.bracket}
-              </$MatchupVotingCharacter>
+              </Styles.MatchupVotingCharacter>
             )}
           </div>
           <div>
@@ -177,12 +170,12 @@ const MatchupVoting = ({
               customBtnClass="medium"
               btnFunction={() => handleAddingVotes(playerB, 'player_b_count', playerInfo.is_bracket)}
             />
-            <$MatchupVotingTotal>
+            <Styles.MatchupVotingTotal>
               Total Votes: {playerBCount}
-            </$MatchupVotingTotal>
+            </Styles.MatchupVotingTotal>
           </div>
-        </$MatchupVotingSection>
-      </$MatchupVotingWrapper>
+        </Styles.MatchupVotingSection>
+      </Styles.MatchupVotingWrapper>
       {errorMsg && <ErrorMsg msg={errorMsg} />}
       <SocialMedia
         pageTitle={isChangeable ? 'Share Matchup' : 'Get Votes'}
@@ -193,17 +186,17 @@ const MatchupVoting = ({
         url={pathname}
       />
       {!!isChangeable && (
-        <$MatchupVotingWrapper className="btn">
+        <Styles.MatchupVotingWrapper className="btn">
           <Button
             btnText="Next Matchup"
             btnColor="secondary"
             customBtnClass="medium"
             btnFunction={changeMatchup}
           />
-        </$MatchupVotingWrapper>
+        </Styles.MatchupVotingWrapper>
       )}
       {!isChangeable && (
-        <$MatchupVotingWrapper className="btnRedirect">
+        <Styles.MatchupVotingWrapper className="btnRedirect">
           <Button
             btnText="Vote on more Matchups"
             btnColor="secondary"
@@ -216,7 +209,7 @@ const MatchupVoting = ({
             customBtnClass="medium"
             redirect={`/matchup?matchup_id=${matchup.matchup_id}`}
           />
-        </$MatchupVotingWrapper>
+        </Styles.MatchupVotingWrapper>
       )}
     </>
   );

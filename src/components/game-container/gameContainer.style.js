@@ -10,7 +10,7 @@ import {
   RESPONSIVE_VIEW,
 } from 'Styles/global.style';
 
-export const $GameContainerWrapper = styled.button`
+export const GameContainerWrapper = styled.button`
   margin-bottom: 2%;
   padding: 2%;
   display: flex;
@@ -38,21 +38,21 @@ export const $GameContainerWrapper = styled.button`
   }
 `;
 
-export const $GameContainerTeamSection = styled.div`
+export const GameContainerTeamSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 1% 0;
 `;
 
-export const $GameContainerTeamContainer = styled.div`
+export const GameContainerTeamContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   font-size: ${FONT_SIZE_MEDIUM};
 `;
 
-export const $GameContainerTeamName = styled.div`
+export const GameContainerTeamName = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -68,7 +68,7 @@ export const $GameContainerTeamName = styled.div`
   }
 `;
 
-export const $GameContainerGame = styled.div`
+export const GameContainerGame = styled.div`
   margin-bottom: 2%;
   font-weight: ${FONT_WEIGHT_BOLD};
 `;

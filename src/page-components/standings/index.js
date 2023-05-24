@@ -7,15 +7,10 @@ import Error from 'PageComponents/error';
 import React, { useEffect, useState } from 'react';
 import { useAppContext } from 'src/hooks/context';
 import { getStandings } from 'src/requests/league';
-import { $GlobalContainer } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
-import {
-  $StandingsTeamSection,
-  $StandingsWrapper,
-  $StandingsTeamContainer,
-  $StandingsTeamName,
-} from './standings.style';
+import * as Styles from './standings.style';
 import LeagueChamp from 'Components/league-champ';
 
 const Standings = () => {
@@ -63,23 +58,23 @@ const Standings = () => {
         <>
           <BackLink />
           <LeagueChamp />
-          <$GlobalContainer className="grid schedule">
+          <GlobalStyles.GlobalContainer className="grid schedule">
             {games?.map((game, index) => {
               const { team, win, loss } = game;
 
               return (
-                <$StandingsWrapper key={team}>
+                <Styles.StandingsWrapper key={team}>
                   <div>{index + 1}.</div>
-                  <$StandingsTeamContainer>
-                    <$StandingsTeamSection>
-                      <$StandingsTeamName>{team}</$StandingsTeamName>
+                  <Styles.StandingsTeamContainer>
+                    <Styles.StandingsTeamSection>
+                      <Styles.StandingsTeamName>{team}</Styles.StandingsTeamName>
                       <div>{`${win} - ${loss}`}</div>
-                    </$StandingsTeamSection>
-                  </$StandingsTeamContainer>
-                </$StandingsWrapper>
+                    </Styles.StandingsTeamSection>
+                  </Styles.StandingsTeamContainer>
+                </Styles.StandingsWrapper>
               );
             })}
-          </$GlobalContainer>
+          </GlobalStyles.GlobalContainer>
           <ReadMore />
         </>
       )}

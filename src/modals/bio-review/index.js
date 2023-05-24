@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'react-data-grid/lib/styles.css';
 import MainModal from '../main';
 import Button from 'Components/button';
-import { $BioReviewWrapper } from './bioReview.style';
+import * as Styles from './bioReview.style';
 import BioCard from 'Components/bio-card';
 import ErrorMsg from 'Components/error-msg';
 
@@ -40,11 +40,11 @@ const BioReview = ({
       closeModal={closeModal}
       styles={customStyles}
     >
-      <$BioReviewWrapper>
+      <Styles.BioReviewWrapper>
         <BioCard characterId={characterId} />
-      </$BioReviewWrapper>
+      </Styles.BioReviewWrapper>
       {message && <ErrorMsg msg={message} />}
-      <$BioReviewWrapper className="btn">
+      <Styles.BioReviewWrapper className="btn">
         {!!type && type === 'draft' && !!canDraft && (
           <Button
             btnFunction={draftPlayer}
@@ -59,7 +59,7 @@ const BioReview = ({
           btnColor="cancel"
           customBtnClass="medium"
         />
-      </$BioReviewWrapper>
+      </Styles.BioReviewWrapper>
     </MainModal>
   );
 };

@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { MOBILE_VIEW } from 'Styles/global.style';
 
-export const $MainGlobalStyles = createGlobalStyle`
+export const MainGlobalStyles = createGlobalStyle`
   .ReactModal__Content {
     min-width: 40% !important;
     max-width: 85% !important;
@@ -30,13 +30,13 @@ export const $MainGlobalStyles = createGlobalStyle`
   }
 `;
 
-export const $ChangeCharacterWrapper = styled.div`
+export const ChangeCharacterWrapper = styled.div`
   margin-bottom: 3%;
   text-align: center;
   line-height: 25px;
 `;
 
-export const $ChangeCharacterBio = styled.div`
+export const ChangeCharacterBio = styled.div`
   > div {
     width: 100%;
 
@@ -50,7 +50,7 @@ export const $ChangeCharacterBio = styled.div`
   }
 `;
 
-export const $ChangeCharacterBioBtn = styled.div`
+export const ChangeCharacterBioBtn = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;

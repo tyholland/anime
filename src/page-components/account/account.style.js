@@ -8,7 +8,7 @@ import {
   MOBILE_VIEW,
 } from 'Styles/global.style';
 
-export const $AccountWrapper = styled.div`
+export const AccountWrapper = styled.div`
   display: flex;
   width: 80%;
   margin: 3% auto;
@@ -38,7 +38,7 @@ export const $AccountWrapper = styled.div`
   }
 `;
 
-export const $AccountSectionRight = styled.div`
+export const AccountSectionRight = styled.div`
   width: 100%;
   text-align: center;
 
@@ -61,7 +61,7 @@ export const $AccountSectionRight = styled.div`
   }
 `;
 
-export const $AccountSectionLabel = styled.div`
+export const AccountSectionLabel = styled.div`
   text-align: left;
   width: 90%;
   margin: 0 auto;
@@ -69,13 +69,13 @@ export const $AccountSectionLabel = styled.div`
   font-weight: bold;
 `;
 
-export const $AccountPwdSuccess = styled.div`
+export const AccountPwdSuccess = styled.div`
   color: ${COLOR_SUCCESS};
   font-weight: ${FONT_WEIGHT_BOLD};
   margin-top: 3%;
 `;
 
-export const $AccountContainer = styled.div`
+export const AccountContainer = styled.div`
   .collapseContainer {
     display: flex;
     width: 100%;

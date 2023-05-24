@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  $BracketVotingCharacter,
-  $BracketVotingVersus,
-  $BracketVotingWrapper,
-  $BracketVotingSection,
-  $BracketVotingImage,
-  $BracketVotingTotal,
-} from './bracketVoting.style.js';
+import * as Styles from './bracketVoting.style.js';
 import Button from 'Components/button';
 import { getNonLoggedInUser, responseError } from 'Utils/index.js';
 import { addEvent } from 'Utils/amplitude.js';
@@ -96,23 +89,23 @@ const BracketVoting = ({
             Match {bracketMatch?.matchNumber}
             {!!matchWinner && ' - Winner'}
           </h2>
-          <$BracketVotingWrapper
+          <Styles.BracketVotingWrapper
             className={`${errorMsg && 'spacing'}${!matchWinner && ' duo'}`}
           >
             {(matchWinner === playerA.id || !matchWinner) && (
-              <$BracketVotingSection>
+              <Styles.BracketVotingSection>
                 <div>
-                  <$BracketVotingImage
+                  <Styles.BracketVotingImage
                     src={playerA.image_url}
                     alt={playerA.full_name}
                   />
-                  <$BracketVotingCharacter>
+                  <Styles.BracketVotingCharacter>
                     {playerA.full_name}
-                  </$BracketVotingCharacter>
+                  </Styles.BracketVotingCharacter>
                   {matchWinner === playerA.id && (
-                    <$BracketVotingTotal>
+                    <Styles.BracketVotingTotal>
                       Total Votes: {playerACount}
-                    </$BracketVotingTotal>
+                    </Styles.BracketVotingTotal>
                   )}
                 </div>
                 {!matchWinner && (
@@ -125,32 +118,32 @@ const BracketVoting = ({
                         handleAddingVotes(playerA, 'player_a_count')
                       }
                     />
-                    <$BracketVotingTotal>
+                    <Styles.BracketVotingTotal>
                       Total Votes: {playerACount}
-                    </$BracketVotingTotal>
+                    </Styles.BracketVotingTotal>
                   </div>
                 )}
-              </$BracketVotingSection>
+              </Styles.BracketVotingSection>
             )}
             {!matchWinner && (
-              <$BracketVotingSection className="versus">
-                <$BracketVotingVersus>VS</$BracketVotingVersus>
-              </$BracketVotingSection>
+              <Styles.BracketVotingSection className="versus">
+                <Styles.BracketVotingVersus>VS</Styles.BracketVotingVersus>
+              </Styles.BracketVotingSection>
             )}
             {(matchWinner === playerB.id || !matchWinner) && (
-              <$BracketVotingSection>
+              <Styles.BracketVotingSection>
                 <div>
-                  <$BracketVotingImage
+                  <Styles.BracketVotingImage
                     src={playerB.image_url}
                     alt={playerB.full_name}
                   />
-                  <$BracketVotingCharacter>
+                  <Styles.BracketVotingCharacter>
                     {playerB.full_name}
-                  </$BracketVotingCharacter>
+                  </Styles.BracketVotingCharacter>
                   {matchWinner === playerB.id && (
-                    <$BracketVotingTotal>
+                    <Styles.BracketVotingTotal>
                       Total Votes: {playerBCount}
-                    </$BracketVotingTotal>
+                    </Styles.BracketVotingTotal>
                   )}
                 </div>
                 {!matchWinner && (
@@ -163,14 +156,14 @@ const BracketVoting = ({
                         handleAddingVotes(playerB, 'player_b_count')
                       }
                     />
-                    <$BracketVotingTotal>
+                    <Styles.BracketVotingTotal>
                       Total Votes: {playerBCount}
-                    </$BracketVotingTotal>
+                    </Styles.BracketVotingTotal>
                   </div>
                 )}
-              </$BracketVotingSection>
+              </Styles.BracketVotingSection>
             )}
-          </$BracketVotingWrapper>
+          </Styles.BracketVotingWrapper>
           {errorMsg && <ErrorMsg msg={errorMsg} />}
           <Button
             btnText="Close"

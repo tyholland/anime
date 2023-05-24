@@ -1,5 +1,5 @@
 import React from 'react';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card';
 import Metadata from 'Components/metadata';
 import SuggestCharacter from 'Components/suggest-character';
@@ -7,6 +7,7 @@ import Button from 'Components/button';
 import { allSeries } from 'Utils/constants';
 import Image from 'next/image';
 import Link from 'next/link';
+import * as Styles from './home.style';
 
 const Home = () => {
   const goToSharePage = () => {
@@ -16,9 +17,9 @@ const Home = () => {
   return (
     <>
       <Metadata title="Home" description="Anime Fantasy League" />
-      <$GlobalContainer className="bgImage home">
-        <$GlobalTitle className="home">Anime Fantasy League</$GlobalTitle>
-        <$GlobalContainer className="home">
+      <GlobalStyles.GlobalContainer className="bgImage home">
+        <GlobalStyles.GlobalTitle className="home">Anime Fantasy League</GlobalStyles.GlobalTitle>
+        <GlobalStyles.GlobalContainer className="home">
           <div className="buttonGrid">
             <SelectionCard btnText="Create League" redirect="/league/create" />
             <SelectionCard
@@ -30,31 +31,31 @@ const Home = () => {
             <SelectionCard btnText="Suggest Character" redirect="/#suggest" />
             <SelectionCard btnText="ABZ Podcast" redirect="/#podcast" />
           </div>
-        </$GlobalContainer>
-      </$GlobalContainer>
-      <$GlobalContainer className="homeSection homeEven">
-        <$GlobalTitle>The Ultimate Otaku Battle Guide</$GlobalTitle>
+        </GlobalStyles.GlobalContainer>
+      </GlobalStyles.GlobalContainer>
+      <GlobalStyles.GlobalContainer className="homeSection homeEven">
+        <GlobalStyles.GlobalTitle>The Ultimate Otaku Battle Guide</GlobalStyles.GlobalTitle>
         <strong>Preamble</strong>
-        <p>
+        <Styles.HomeIntro>
           Welcome, Otaku warriors, to the Anime Fantasy League, your
           battleground for proving your anime wisdom! Here, you'll assemble a
           team of legendary manga and anime heroes, then pit them against your
           friends' teams in epic weekly battles.
-        </p>
-        <p>
+        </Styles.HomeIntro>
+        <Styles.HomeIntro>
           <strong>1. The Formation of Your Guild</strong>
-        </p>
-        <p>
+        </Styles.HomeIntro>
+        <Styles.HomeIntro>
           At the dawn of your journey, each player is granted a power pool of
           9000 points. Use this wisely to recruit your team of characters and
           secure your battlefields. Once all guilds are assembled, the league's
           master will initiate the draft. After this event, the grand contest
           commences on the next Monday.
-        </p>
-        <p>
+        </Styles.HomeIntro>
+        <Styles.HomeIntro>
           <strong>2. The Cycle of the Anime Seasons</strong>
-        </p>
-        <p>
+        </Styles.HomeIntro>
+        <Styles.HomeIntro>
           Your quest unfolds over 12 weeks, each with a new elemental affinity
           gracing the battlefield. The calendar of events is as follows:
           <ul>
@@ -72,55 +73,55 @@ const Home = () => {
               graces the battlefield.
             </li>
           </ul>
-        </p>
-        <p>
+        </Styles.HomeIntro>
+        <Styles.HomeIntro>
           <strong>3. Power Fluxes: Power-ups and Jutsus</strong>
-        </p>
-        <p>
+        </Styles.HomeIntro>
+        <Styles.HomeIntro>
           Characters gain or lose power through elemental affinities, support
           characters, battlefield conditions, and the will of the voting
           populace. Boosts are like power-ups, supercharging your characters,
           while losses are like debilitating jutsus that reduce their prowess.
           Mastering these fluctuations is key to your triumph in the Anime
           Fantasy League.
-        </p>
-        <p>
+        </Styles.HomeIntro>
+        <Styles.HomeIntro>
           <strong>4. The Power of the Fans: User Voting</strong>
-        </p>
-        <p>
+        </Styles.HomeIntro>
+        <Styles.HomeIntro>
           Fan favor can turn the tide of a battle! To initiate voting for a
           duel, navigate to your matchup and tap on a character's points.
           Winning the fan's favor earns your character points and reduces the
           opponent's. In the event of a tie, the clash remains evenly balanced,
           and no points are exchanged.
-        </p>
-        <p>
+        </Styles.HomeIntro>
+        <Styles.HomeIntro>
           <strong>5. The Grand Tournament: Bracket Play</strong>
-        </p>
-        <p>
+        </Styles.HomeIntro>
+        <Styles.HomeIntro>
           The Grand Tournament is an exhilarating feature of the Anime Fantasy
           League. As a participant, you can prophesize the outcome of character
           clashes. The tournament master controls the start of each round.
-        </p>
-        <p>
+        </Styles.HomeIntro>
+        <Styles.HomeIntro>
           <strong>6. The Summoning Scroll: Suggesting a Character</strong>
-        </p>
-        <p>
+        </Styles.HomeIntro>
+        <Styles.HomeIntro>
           Is your favorite character absent from our roster? Fear not! You can
           use the Summoning Scroll to suggest a character for inclusion in our
           ever-expanding universe of anime warriors.
-        </p>
-        <p>
+        </Styles.HomeIntro>
+        <Styles.HomeIntro>
           Remember, the Anime Fantasy League is a test of strategy and anime
           knowledge. Choose your heroes wisely, and may the spirit of anime
           guide you to victory!
-        </p>
-      </$GlobalContainer>
-      <$GlobalContainer className="homeSection" id="suggest">
+        </Styles.HomeIntro>
+      </GlobalStyles.GlobalContainer>
+      <GlobalStyles.GlobalContainer className="homeSection" id="suggest">
         <SuggestCharacter />
-      </$GlobalContainer>
-      <$GlobalContainer className="homeSection homeEven" id="podcast">
-        <$GlobalTitle className="podcast">
+      </GlobalStyles.GlobalContainer>
+      <GlobalStyles.GlobalContainer className="homeSection homeEven" id="podcast">
+        <GlobalStyles.GlobalTitle className="podcast">
           <Image
             src="/assets/logo/abz-logo.webp"
             width={70}
@@ -128,7 +129,7 @@ const Home = () => {
             alt="Anime Brothaz"
           />
           Podcast
-        </$GlobalTitle>
+        </GlobalStyles.GlobalTitle>
         <p>
           The ABZ Anime Podcast is hosted by the Brothaz (DiscipleDashni,
           QuietJams, and TySoFly), a group of passionate anime enthusiasts who
@@ -166,9 +167,9 @@ const Home = () => {
             btnFunction={goToSharePage}
           />
         </center>
-      </$GlobalContainer>
-      <$GlobalContainer className="homeSection">
-        <$GlobalTitle>Anime Series</$GlobalTitle>
+      </GlobalStyles.GlobalContainer>
+      <GlobalStyles.GlobalContainer className="homeSection">
+        <GlobalStyles.GlobalTitle>Anime Series</GlobalStyles.GlobalTitle>
         <div className="seriesTitle">
           A Blossoming Bouquet of Anime: A list of all the anime series from
           which the characters in this game originate.
@@ -182,7 +183,7 @@ const Home = () => {
             );
           })}
         </div>
-      </$GlobalContainer>
+      </GlobalStyles.GlobalContainer>
     </>
   );
 };

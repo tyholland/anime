@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FONT_SIZE_EXTRA_LARGE, FONT_WEIGHT_BOLD, MOBILE_VIEW } from 'Styles/global.style';
 
-export const $SocialMediaWrapper = styled.div`
+export const SocialMediaWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,7 +25,7 @@ export const $SocialMediaWrapper = styled.div`
   }
 `;
 
-export const $SocialMediaMobileDevice = styled.div`
+export const SocialMediaMobileDevice = styled.div`
   display: none;
 
   ${MOBILE_VIEW} {

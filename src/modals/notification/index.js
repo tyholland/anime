@@ -1,9 +1,9 @@
 import React from 'react';
-import { $GlobalContainer } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import 'react-data-grid/lib/styles.css';
 import MainModal from '../main';
 import Button from 'Components/button';
-import { $NotificationMsg } from './notification.style';
+import * as Styles from './notification.style';
 
 const Notification = ({ message, modalIsOpen, closeModal }) => {
   const customStyles = {
@@ -26,15 +26,15 @@ const Notification = ({ message, modalIsOpen, closeModal }) => {
       closeModal={closeModal}
       styles={customStyles}
     >
-      <$GlobalContainer className="invalid">
-        <$NotificationMsg>{message}</$NotificationMsg>
+      <GlobalStyles.GlobalContainer className="invalid">
+        <Styles.NotificationMsg>{message}</Styles.NotificationMsg>
         <Button
           btnFunction={closeModal}
           btnText="Close"
           btnColor="cancel"
           customBtnClass="small"
         />
-      </$GlobalContainer>
+      </GlobalStyles.GlobalContainer>
     </MainModal>
   );
 };

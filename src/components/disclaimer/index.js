@@ -1,11 +1,11 @@
 import React from 'react';
-import { $DisclaimerWrapper } from './disclaimer.style';
+import * as Styles from './disclaimer.style';
 
 const Disclaimer = ({msg}) => {
   return (
-    <$DisclaimerWrapper>
+    <Styles.DisclaimerWrapper>
       {msg}
-    </$DisclaimerWrapper>
+    </Styles.DisclaimerWrapper>
   );
 };
 

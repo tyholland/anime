@@ -7,15 +7,10 @@ import Error from 'PageComponents/error';
 import React, { useEffect, useState } from 'react';
 import { useAppContext } from 'src/hooks/context';
 import { getSchedule } from 'src/requests/team';
-import { $GlobalContainer } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
-import {
-  $ScheduleTeamSection,
-  $ScheduleWrapper,
-  $ScheduleTeamContainer,
-  $ScheduleTeamName,
-} from './schedule.style';
+import * as Styles from './schedule.style';
 import GameSchedule from 'Components/gameplay-card/schedule';
 import Notification from 'src/modals/notification';
 
@@ -68,7 +63,7 @@ const Schedule = () => {
       {account && (
         <>
           <BackLink />
-          <$GlobalContainer className="grid schedule">
+          <GlobalStyles.GlobalContainer className="grid schedule">
             {games?.map((game) => {
               const { week, teamA, teamB, scoreA, scoreB, match, leagueComplete } = game;
               const activeGames = games.filter(
@@ -98,30 +93,30 @@ const Schedule = () => {
               };
 
               return (
-                <$ScheduleWrapper
+                <Styles.ScheduleWrapper
                   key={week}
                   className={!highlight && 'noHighlight'}
                   onClick={handleClick}
                 >
                   <div>Week {week}:</div>
-                  <$ScheduleTeamContainer>
-                    <$ScheduleTeamSection
+                  <Styles.ScheduleTeamContainer>
+                    <Styles.ScheduleTeamSection
                       className={isWinner(teamA) && 'winner'}
                     >
-                      <$ScheduleTeamName>{teamA}</$ScheduleTeamName>
+                      <Styles.ScheduleTeamName>{teamA}</Styles.ScheduleTeamName>
                       <div>{scoreA}</div>
-                    </$ScheduleTeamSection>
-                    <$ScheduleTeamSection
+                    </Styles.ScheduleTeamSection>
+                    <Styles.ScheduleTeamSection
                       className={isWinner(teamB) && 'winner'}
                     >
-                      <$ScheduleTeamName>{teamB}</$ScheduleTeamName>
+                      <Styles.ScheduleTeamName>{teamB}</Styles.ScheduleTeamName>
                       <div>{scoreB}</div>
-                    </$ScheduleTeamSection>
-                  </$ScheduleTeamContainer>
-                </$ScheduleWrapper>
+                    </Styles.ScheduleTeamSection>
+                  </Styles.ScheduleTeamContainer>
+                </Styles.ScheduleWrapper>
               );
             })}
-          </$GlobalContainer>
+          </GlobalStyles.GlobalContainer>
           <ReadMore>
             <GameSchedule />
           </ReadMore>

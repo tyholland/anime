@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLOR_BLACK, MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
 
-export const $StandingsWrapper = styled.div`
+export const StandingsWrapper = styled.div`
   margin-bottom: 2%;
   padding: 2%;
   display: flex;
@@ -20,21 +20,21 @@ export const $StandingsWrapper = styled.div`
   }
 `;
 
-export const $StandingsTeamSection = styled.div`
+export const StandingsTeamSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 1% 0;
 `;
 
-export const $StandingsTeamContainer = styled.div`
+export const StandingsTeamContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-left: 5%;
 `;
 
-export const $StandingsTeamName = styled.div`
+export const StandingsTeamName = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

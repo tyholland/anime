@@ -4,12 +4,7 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { photoCredits } from 'Utils/constants';
-import {
-  $CreditsWrapper,
-  $CreditsItem,
-  $CreditsText,
-  $CreditsGlobalStyles,
-} from './credits.style';
+import * as Styles from './credits.style';
 
 const Credits = () => {
   const [itemOffset, setItemOffset] = useState(0);
@@ -29,19 +24,19 @@ const Credits = () => {
     const currentItems = photos.slice(itemOffset, endOffset);
 
     return (
-      <$CreditsWrapper>
+      <Styles.CreditsWrapper>
         {currentItems.map((item) => (
-          <$CreditsItem key={item.name}>
+          <Styles.CreditsItem key={item.name}>
             <Image src={item.image} width={200} height={200} alt={item.name} />
-            <$CreditsText>
+            <Styles.CreditsText>
               <span>Creator:</span> {item.creator}
-            </$CreditsText>
-            <$CreditsText>
+            </Styles.CreditsText>
+            <Styles.CreditsText>
               <span>Platform:</span> {item.platform}
-            </$CreditsText>
-          </$CreditsItem>
+            </Styles.CreditsText>
+          </Styles.CreditsItem>
         ))}
-      </$CreditsWrapper>
+      </Styles.CreditsWrapper>
     );
   };
 
@@ -52,7 +47,7 @@ const Credits = () => {
         description="We give credit to all the photo creators that offer up their images to be used by others. For every image on our site, there is a reference to the person who created it."
       />
       <BackLink />
-      <$CreditsGlobalStyles />
+      <Styles.CreditsGlobalStyles />
       {getContentItems()}
       <ReactPaginate
         breakLabel="..."

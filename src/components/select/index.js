@@ -1,9 +1,9 @@
 import React from 'react';
-import { $Select } from './select.style.js';
+import * as Styles from './select.style.js';
 
 const Select = ({ onChange, defaultVal, options }) => {
   return (
-    <$Select onChange={(input) => onChange(input.target.value)}>
+    <Styles.Select onChange={(input) => onChange(input.target.value)}>
       <option value="">{defaultVal}</option>
       {options.map((item) => {
         return (
@@ -12,7 +12,7 @@ const Select = ({ onChange, defaultVal, options }) => {
           </option>
         );
       })}
-    </$Select>
+    </Styles.Select>
   );
 };
 

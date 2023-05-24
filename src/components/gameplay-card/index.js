@@ -3,12 +3,12 @@ import Boost from 'Components/gameplay-card/boost';
 import Loss from 'Components/gameplay-card/loss';
 import Voting from 'Components/gameplay-card/voting';
 import React from 'react';
-import { $GlobalTitle, $CollapsibleStyles } from 'Styles/global.style';
+import * as GlobalStyles from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import MakeTeam from 'Components/gameplay-card/make-team';
 import Schedule from 'Components/gameplay-card/schedule';
 import BracketCard from 'Components/gameplay-card/bracket-card';
-import { $GameplayCardAccordian } from './gameplayCard.style';
+import * as Styles from './gameplayCard.style';
 
 const GameplayCard = () => {
   const teamUp = (
@@ -110,9 +110,9 @@ const GameplayCard = () => {
   );
 
   return (
-    <$GameplayCardAccordian>
-      <$CollapsibleStyles />
-      <$GlobalTitle>Gameplay</$GlobalTitle>
+    <Styles.GameplayCardAccordian>
+      <GlobalStyles.CollapsibleStyles />
+      <GlobalStyles.GlobalTitle>Gameplay</GlobalStyles.GlobalTitle>
       <Collapsible
         trigger={teamDown}
         triggerWhenOpen={teamUp}
@@ -176,7 +176,7 @@ const GameplayCard = () => {
       >
         <BracketCard />
       </Collapsible>
-    </$GameplayCardAccordian>
+    </Styles.GameplayCardAccordian>
   );
 };
 

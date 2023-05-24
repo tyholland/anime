@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { $TeamInfoStats, $TeamInfoWrapper } from './teamInfo.style.js';
-import { $GlobalContainer, $GlobalTitle } from 'Styles/global.style.js';
+import * as Styles from './teamInfo.style.js';
+import * as GlobalStyles from 'Styles/global.style.js';
 import Button from 'Components/button';
 import TextField from 'Components/text-field';
 import BackLink from 'Components/back-link/index.js';
@@ -106,12 +106,12 @@ const TeamInfo = () => {
       {account && (
         <>
           <BackLink />
-          <$GlobalContainer>
-            <$GlobalTitle>Team Info</$GlobalTitle>
+          <GlobalStyles.GlobalContainer>
+            <GlobalStyles.GlobalTitle>Team Info</GlobalStyles.GlobalTitle>
             {errorMsg && <ErrorMsg msg={errorMsg} />}
             {!teamData && <Loader />}
             {teamData && (
-              <$TeamInfoWrapper>
+              <Styles.TeamInfoWrapper>
                 <div className="editName">
                   {edit && (
                     <>
@@ -139,9 +139,9 @@ const TeamInfo = () => {
                   )}
                   {!edit && (
                     <>
-                      <$TeamInfoStats>
+                      <Styles.TeamInfoStats>
                         <span>Team Name:</span> {teamName}
-                      </$TeamInfoStats>
+                      </Styles.TeamInfoStats>
                       <Button
                         btnText="Edit"
                         btnFunction={() => setEdit(true)}
@@ -151,27 +151,27 @@ const TeamInfo = () => {
                   )}
                 </div>
                 <div>
-                  <$TeamInfoStats>
+                  <Styles.TeamInfoStats>
                     <span>League:</span> {teamData.name}
-                  </$TeamInfoStats>
-                  <$TeamInfoStats>
+                  </Styles.TeamInfoStats>
+                  <Styles.TeamInfoStats>
                     <span>Record:</span>{' '}
                     {`${teamData.rank.win}-${teamData.rank.loss}`}
-                  </$TeamInfoStats>
-                  <$TeamInfoStats>
+                  </Styles.TeamInfoStats>
+                  <Styles.TeamInfoStats>
                     <span>Points Remaining:</span> {teamData.points} pts
-                  </$TeamInfoStats>
-                  <$TeamInfoStats>
+                  </Styles.TeamInfoStats>
+                  <Styles.TeamInfoStats>
                     <Button
                       btnText="Remove team"
                       btnFunction={handleRemoveTeam}
                       customBtnClass="text"
                     />
-                  </$TeamInfoStats>
+                  </Styles.TeamInfoStats>
                 </div>
-              </$TeamInfoWrapper>
+              </Styles.TeamInfoWrapper>
             )}
-          </$GlobalContainer>
+          </GlobalStyles.GlobalContainer>
           <ReadMore />
         </>
       )}

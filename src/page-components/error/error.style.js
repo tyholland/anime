@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLOR_WHITE, FONT_SIZE_EXTRA_LARGE, FONT_SIZE_GIGANTIC, MOBILE_VIEW } from 'Styles/global.style';
 
-export const $ErrorContent = styled.div`
+export const ErrorContent = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@ export const $ErrorContent = styled.div`
   }
 `;
 
-export const $ErrorBtnWrapper = styled.div`
+export const ErrorBtnWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
