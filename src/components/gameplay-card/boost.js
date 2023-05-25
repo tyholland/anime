@@ -5,11 +5,13 @@ const Boost = () => {
   return (
     <Styles.GameplayCardContainer>
       <Styles.GameplayCardSection>
-        <Styles.GameplayCardTitle>Weekly Element Affinity</Styles.GameplayCardTitle>
+        <Styles.GameplayCardTitle>
+          Weekly Element Affinity
+        </Styles.GameplayCardTitle>
         <div>
-          If a character has the same affinity as the weekly element affinity,
-          they will receive a power boost. This boost will be a percentage of
-          the power boost provided by the weekly element affinity.
+          When a character resonates with the weekly element, they will unlock a
+          surge of power! This power boost will be a percentage of the weekly
+          elemental spirit's might.
         </div>
       </Styles.GameplayCardSection>
       <Styles.GameplayCardSection>
@@ -25,7 +27,9 @@ const Boost = () => {
         </div>
       </Styles.GameplayCardSection>
       <Styles.GameplayCardSection>
-        <Styles.GameplayCardTitle>Support Character in 2v2 Battle</Styles.GameplayCardTitle>
+        <Styles.GameplayCardTitle>
+          Support Character in 2v2 Battle
+        </Styles.GameplayCardTitle>
         <div>
           In a 2v2 battle, support characters can only provide a power boost to
           the brawler they are teamed up with, and this boost is a percentage of

@@ -5,12 +5,14 @@ const Voting = () => {
   return (
     <Styles.GameplayCardContainer>
       <Styles.GameplayCardSection>
-        <Styles.GameplayCardTitle>Initiate User Voting</Styles.GameplayCardTitle>
+        <Styles.GameplayCardTitle>
+          Initiate User Voting
+        </Styles.GameplayCardTitle>
         <div>
-          To initiate user voting, Team A should go to their matchup and click
-          on a character's points, which will open up that character's point
-          breakdown. Then, they can click the button to get votes. Once user
-          voting has been initiated, Team B cannot initiate their own user
+          To summon the power of the vote, Team A should navigate to their
+          matchup and click on a character's power level, unveiling the essence
+          of their strength. Then, they can click the button to get votes. Once
+          user voting has been initiated, Team B cannot initiate their own user
           voting for the same head-to-head battle.
         </div>
       </Styles.GameplayCardSection>
@@ -25,7 +27,9 @@ const Voting = () => {
         </div>
       </Styles.GameplayCardSection>
       <Styles.GameplayCardSection>
-        <Styles.GameplayCardTitle>What about a Tie in Voting</Styles.GameplayCardTitle>
+        <Styles.GameplayCardTitle>
+          What about a Tie in Voting
+        </Styles.GameplayCardTitle>
         <div>
           If there is a tie in user voting, neither team will gain or lose any
           points.
