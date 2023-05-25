@@ -58,7 +58,7 @@ const ViewMatchup = () => {
       setScore1(score_a);
       setScore2(score_b);
       setVotes(results.votes);
-      setIsActive(results.isVotingActive === 1 && active === 1);
+      setIsActive(results.isVotingActive === 1 && active === 1 && results.isUser);
       setRetrigger(false);
       setRecapIsOpen(!!team1.recap);
       setRecap(theRecap);
@@ -167,7 +167,7 @@ const ViewMatchup = () => {
                     <Styles.ViewMatchupTeamTotal>{score2}</Styles.ViewMatchupTeamTotal>
                   </Styles.ViewMatchupTeamContent>
                 </Styles.ViewMatchupWrapper>
-                {isActive > 0 && (
+                {!!isActive && (
                   <Styles.ViewMatchupWrapper className="activate">
                     <Button
                       btnText="Activate Voting"
