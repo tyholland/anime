@@ -19,6 +19,7 @@ export const COLOR_BLUE = 'rgb(27, 5, 246)';
 export const COLOR_BLUE_HOVER = '#0066cc';
 export const COLOR_DISCLAIMER = '#7BB0D0';
 export const COLOR_OVERLAY = '#00000090';
+export const COLOR_YELLOW = '#ffbf00';
 
 // Font Sizes
 export const FONT_SIZE_EXTRA_SMALL = '10px';

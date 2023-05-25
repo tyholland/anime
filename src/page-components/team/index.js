@@ -15,6 +15,7 @@ import { useAppContext } from 'src/hooks/context.js';
 import NotUser from 'Components/not-user/index.js';
 import ReadMore from 'Components/read-more/index.js';
 import Recap from 'src/modals/recap/index.js';
+import BenchCard from 'Components/bench-card/index.js';
 
 const Team = () => {
   const router = useRouter();
@@ -31,6 +32,7 @@ const Team = () => {
   const [recap, setRecap] = useState(null);
   const [leagueId, setLeagueId] = useState(null);
   const [isDisabledRosterEdit, setIsDisabledRosterEdit] = useState(false);
+  const [benchSize, setBenchSize] = useState(0);
 
   const handleTeam = async () => {
     const { team_id } = router.query;
@@ -59,6 +61,7 @@ const Team = () => {
       setRecap(recap);
       setLeagueId(info.league_id);
       setIsDisabledRosterEdit(info.is_roster_active === 0 || info.draft_complete === 0 || info.active === 0);
+      setBenchSize(info.benchSize);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get team data'));
       setErrorPage(true);
@@ -137,6 +140,7 @@ const Team = () => {
                   <Styles.TeamTotalText>Total</Styles.TeamTotalText>
                   <Styles.TeamTotalAmount>{totalPoints}</Styles.TeamTotalAmount>
                 </Styles.TeamTotal>
+                <BenchCard data={teamData.team} size={benchSize} />
                 <Recap
                   data={recap}
                   modalIsOpen={modalIsOpen}

@@ -32,9 +32,11 @@ const Admin = () => {
   const [errorPage, setErrorPage] = useState(false);
   const [notLoggedIn, setNotLoggedIn] = useState(false);
   const [editNum, setEditNum] = useState(false);
+  const [editBench, setEditBench] = useState(false);
   const [editLeague, setEditLeague] = useState(false);
   const [leagueName, setLeagueName] = useState(null);
   const [teamNum, setTeamNum] = useState(null);
+  const [benchNum, setBenchNum] = useState(null);
   const [teamNames, setTeamNames] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [league, setLeague] = useState(null);
@@ -42,7 +44,8 @@ const Admin = () => {
   const [isLeagueDisabled, setIsLeagueDisabled] = useState(true);
   const [isStarted, setIsStarted] = useState(false);
   const [draftNotify, setDraftNotify] = useState(false);
-  const options = ['6', '8', '10'];
+  const teamOptions = ['6', '8', '10'];
+  const benchOptions = ['0', '2', '3', '4'];
   let origin = '';
   const message =
     'Water is a dynamic and versatile element that many heroes and villains in the game can wield to great effect. However, its weakness lies in electricity, making users who master water vulnerable to attacks by electric-based characters. Water is a force to be reckoned with in battles, possessing the ability to adapt to various situations and environments. While they may need to be cautious of electric-based opponents, water users will never shy away from any opponent, as they can just wash them away with a flood.';
@@ -80,6 +83,25 @@ const Admin = () => {
       addEvent(
         'Error',
         responseError(err, 'Failed to update league number of teams')
+      );
+    }
+  };
+
+  const handleNumBench = async (val) => {
+    const payload = {
+      name: leagueName,
+      bench: val,
+      isActive: 1,
+    };
+
+    try {
+      await updateLeague(league.id, payload, currentUser?.token);
+      setBenchNum(val);
+      setEditBench(false);
+    } catch (err) {
+      addEvent(
+        'Error',
+        responseError(err, 'Failed to update league bench size')
       );
     }
   };
@@ -154,7 +176,7 @@ const Admin = () => {
         currentUser?.token
       );
       const { league, teams } = leagueData;
-      const { num_teams, name } = league;
+      const { num_teams, name, num_bench } = league;
       const isActiveLeague = teams.length === num_teams;
       const missingTeams = [];
 
@@ -173,6 +195,7 @@ const Admin = () => {
       setMissingTeams(missingTeams);
       setIsLeagueDisabled(!isActiveLeague);
       setIsStarted(leagueData.hasDraft);
+      setBenchNum(num_bench);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to league admin data'));
       setErrorPage(true);
@@ -251,7 +274,7 @@ const Admin = () => {
                             <Select
                               defaultVal="Number of Teams"
                               onChange={handleNumTeams}
-                              options={options}
+                              options={teamOptions}
                             />
                             <Button
                               btnText="Cancel"
@@ -267,6 +290,34 @@ const Admin = () => {
                               <Button
                                 btnText="Edit"
                                 btnFunction={() => setEditNum(true)}
+                                customBtnClass="small text edit"
+                              />
+                            }
+                          </>
+                        )}
+                      </Styles.AdminSection>
+                      <Styles.AdminSection>
+                        {editBench && (
+                          <>
+                            <Select
+                              defaultVal="Bench Size"
+                              onChange={handleNumBench}
+                              options={benchOptions}
+                            />
+                            <Button
+                              btnText="Cancel"
+                              btnFunction={() => setEditBench(false)}
+                              customBtnClass="text edit"
+                            />
+                          </>
+                        )}
+                        {!editBench && (
+                          <>
+                            <div>Bench Size: {benchNum}</div>
+                            {!isStarted &&
+                              <Button
+                                btnText="Edit"
+                                btnFunction={() => setEditBench(true)}
                                 customBtnClass="small text edit"
                               />
                             }

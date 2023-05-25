@@ -25,6 +25,7 @@ const TeamEdit = () => {
   const [allPlayers, setAllPlayers] = useState(null);
   const [teamId, setTeamId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isSwapOpen, setIsSwapOpen] = useState(false);
   const [playerRank, setPlayerRank] = useState(null);
   const [field, setField] = useState(null);
   const [canChange, setCanChange] = useState(false);
@@ -35,6 +36,7 @@ const TeamEdit = () => {
   const [leagueWeek, setLeagueWeek] = useState(null);
   const [bioModalIsOpen, setBioModalIsOpen] = useState(false);
   const [characterId, setCharacterId] = useState(null);
+  const [benchSize, setBenchSize] = useState(0);
 
   const handleTeamData = async () => {
     const { team_id } = router.query;
@@ -46,7 +48,7 @@ const TeamEdit = () => {
       );
       const teamData = await getTeam(team_id, currentUser?.token);
 
-      const { team, userPoints } = teamData;
+      const { team, userPoints, info } = teamData;
 
       setPlayerList({
         captain: team.captain,
@@ -57,12 +59,17 @@ const TeamEdit = () => {
         support: team.support,
         villain: team.villain,
         battlefield: team.battlefield,
+        bench0: team.bench0,
+        bench1: team.bench1,
+        bench2: team.bench2,
+        bench3: team.bench3,
         userPoints,
       });
       setPlayers(unusedPlayers);
       setAllPlayers(allPlayers);
       setTeamId(team_id);
       setLeagueWeek(team.week);
+      setBenchSize(info.benchSize);
     } catch (err) {
       addEvent(
         'Error',
@@ -80,9 +87,16 @@ const TeamEdit = () => {
   const openModal = (rank) => {
     let specificPlayers = players.filter((item) => item.category === rank);
 
-    if (rank === 'All') {
+    if (rank === 'All' || rank === 'Bench') {
       specificPlayers = players;
     }
+
+    setPlayerRank(specificPlayers);
+    setIsModalOpen(true);
+  };
+
+  const openSwapModal = (rank) => {
+    let specificPlayers = players.filter((item) => item.category === rank);
 
     setPlayerRank(specificPlayers);
     setIsModalOpen(true);
@@ -134,6 +148,18 @@ const TeamEdit = () => {
             });
           }}
         />
+        <Button
+          btnText="Swap"
+          btnColor="tertiary"
+          customBtnClass="small"
+          btnFunction={() => {
+            openSwapModal(rank);
+            addEvent('Team Roster', {
+              action: 'swap',
+              userId: currentUser?.user_id,
+            });
+          }}
+        />
       </>
     );
   };
@@ -150,6 +176,10 @@ const TeamEdit = () => {
       updatedPlayers.support.id,
       updatedPlayers.villain.id,
       updatedPlayers.battlefield.id,
+      updatedPlayers.bench0.id,
+      updatedPlayers.bench1.id,
+      updatedPlayers.bench2.id,
+      updatedPlayers.bench3.id,
     ];
     const characterIds = characterArr.filter((item) => !!item);
 
@@ -160,6 +190,13 @@ const TeamEdit = () => {
     characterDetails.forEach((item) => {
       totalPoints += item.cost;
     });
+
+    if (benchSize > 0) {
+      const additionalBenchPoints = benchSize * 400;
+      const totalTeamPoints = defaultPoints + additionalBenchPoints;
+
+      return totalTeamPoints - totalPoints;
+    }
 
     return defaultPoints - totalPoints;
   };
@@ -249,6 +286,21 @@ const TeamEdit = () => {
     );
   };
 
+  const handleBench = (benchSize) => {
+    switch (benchSize) {
+    case 0:
+      return [];
+    case 2:
+      return [playerList.bench0, playerList.bench1];
+    case 3:
+      return [playerList.bench0, playerList.bench1, playerList.bench2];
+    case 4:
+      return [playerList.bench0, playerList.bench1, playerList.bench2, playerList.bench3];
+    default:
+      return [];
+    }
+  };
+
   useEffect(() => {
     setAccount(currentUser);
   }, [currentUser]);
@@ -297,6 +349,9 @@ const TeamEdit = () => {
                   {handleCharacterLine('Support', 'S', playerList.support, 'support')}
                   {handleCharacterLine('Villain', 'V', playerList.villain, 'villain')}
                   {handleCharacterLine('Battlefield', 'BF', playerList.battlefield, 'battlefield')}
+                  {handleBench(benchSize).map((bench, index) => {
+                    return handleCharacterLine('Bench', 'BN', bench, `bench${index}`);
+                  })}
                 </Styles.TeamEditWrapper>
                 <Styles.TeamEditWrapper className="return">
                   <Button

@@ -7,6 +7,7 @@ import {
   COLOR_ORANGE_DISABLED,
   COLOR_RED,
   COLOR_WHITE,
+  COLOR_YELLOW,
   FONT_SIZE_EXTRA_LARGE,
   FONT_SIZE_EXTRA_SMALL,
   FONT_SIZE_MEDIUM,
@@ -43,6 +44,14 @@ export const Btn = styled.button`
 
     span {
       color: ${COLOR_WHITE};
+    }
+  }
+
+  &.tertiary {
+    background-color: ${COLOR_YELLOW};
+
+    span {
+      color: ${COLOR_BLACK};
     }
   }
 
