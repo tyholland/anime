@@ -14,6 +14,20 @@ const Changelog = () => {
         <h3>May 22, 2023</h3>
         <ul>
           <li>
+            Roster
+            <ul>
+              <li>
+                You can now add bench players
+              </li>
+              <li>
+                Each bench spot is an additional 400 points added to your team total too allow you to add more players to your team.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <h3>May 22, 2023</h3>
+        <ul>
+          <li>
             Content
             <ul>
               <li>

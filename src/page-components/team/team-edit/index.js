@@ -17,6 +17,7 @@ import NotUser from 'Components/not-user';
 import ReadMore from 'Components/read-more';
 import MakeTeam from 'Components/gameplay-card/make-team';
 import BioReview from 'src/modals/bio-review';
+import SwapPlayer from 'src/modals/swap-player';
 
 const TeamEdit = () => {
   const router = useRouter();
@@ -25,7 +26,7 @@ const TeamEdit = () => {
   const [allPlayers, setAllPlayers] = useState(null);
   const [teamId, setTeamId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [isSwapOpen, setIsSwapOpen] = useState(false);
+  const [isSwapOpen, setIsSwapOpen] = useState(false);
   const [playerRank, setPlayerRank] = useState(null);
   const [field, setField] = useState(null);
   const [canChange, setCanChange] = useState(false);
@@ -82,6 +83,7 @@ const TeamEdit = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setBioModalIsOpen(false);
+    setIsSwapOpen(false);
   };
 
   const openModal = (rank) => {
@@ -90,13 +92,6 @@ const TeamEdit = () => {
     if (rank === 'All' || rank === 'Bench') {
       specificPlayers = players;
     }
-
-    setPlayerRank(specificPlayers);
-    setIsModalOpen(true);
-  };
-
-  const openSwapModal = (rank) => {
-    let specificPlayers = players.filter((item) => item.category === rank);
 
     setPlayerRank(specificPlayers);
     setIsModalOpen(true);
@@ -153,7 +148,8 @@ const TeamEdit = () => {
           btnColor="tertiary"
           customBtnClass="small"
           btnFunction={() => {
-            openSwapModal(rank);
+            setField(fieldName);
+            setIsSwapOpen(true);
             addEvent('Team Roster', {
               action: 'swap',
               userId: currentUser?.user_id,
@@ -259,7 +255,7 @@ const TeamEdit = () => {
     const rank = rankDesktop.replace('Duo - ', '');
 
     return (
-      <Styles.TeamEditGrid>
+      <Styles.TeamEditGrid key={`${player.id}-${type}`}>
         <Styles.TeamEditSection className="desktop">{rankDesktop}</Styles.TeamEditSection>
         <Styles.TeamEditSection className="mobile">{rankMobile}</Styles.TeamEditSection>
         <Styles.TeamEditSection className="character">
@@ -369,6 +365,13 @@ const TeamEdit = () => {
                   playerList={playerList}
                   field={field}
                   leagueWeek={leagueWeek}
+                />
+                <SwapPlayer
+                  modalIsOpen={isSwapOpen}
+                  closeModal={closeModal}
+                  setPlayerList={updatePlayers}
+                  playerList={playerList}
+                  field={field}
                 />
                 <BioReview
                   modalIsOpen={bioModalIsOpen}
