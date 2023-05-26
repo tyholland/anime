@@ -1,5 +1,12 @@
 import styled from 'styled-components';
-import { FONT_SIZE_EXTRA_SMALL, FONT_SIZE_LARGE, FONT_SIZE_MEDIUM, FONT_SIZE_SMALL, FONT_WEIGHT_NORMAL, MOBILE_VIEW } from 'Styles/global.style';
+import {
+  FONT_SIZE_EXTRA_SMALL,
+  FONT_SIZE_LARGE,
+  FONT_SIZE_MEDIUM,
+  FONT_SIZE_SMALL,
+  FONT_WEIGHT_NORMAL,
+  MOBILE_VIEW,
+} from 'Styles/global.style';
 
 export const AdminWrapper = styled.div`
   display: flex;
@@ -53,9 +60,9 @@ export const AdminSection = styled.div`
   select,
   input {
     width: 50%;
-    font-size: {${FONT_SIZE_MEDIUM}};
+    font-size: ${FONT_SIZE_MEDIUM};
     height: 30px;
-    margin: 0;
+    margin: 0 2% 0 0;
   }
 
   &.delete {
