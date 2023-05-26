@@ -1,3 +1,3 @@
-import Error from 'src/page-components/error';
+import Error from 'PageComponents/error/error';
 
 export default Error;

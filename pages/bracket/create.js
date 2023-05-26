@@ -1,3 +1,3 @@
-import BracketCreate from 'PageComponents/bracket/create';
+import BracketCreate from 'PageComponents/bracket/create/create';
 
 export default BracketCreate;

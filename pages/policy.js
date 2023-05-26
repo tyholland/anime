@@ -1,3 +1,3 @@
-import Policy from 'PageComponents/policy';
+import Policy from 'PageComponents/policy/policy';
 
 export default Policy;

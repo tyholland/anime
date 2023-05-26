@@ -1,3 +1,3 @@
-import Bio from 'PageComponents/bio';
+import Bio from 'PageComponents/bio/bio';
 
 export default Bio;

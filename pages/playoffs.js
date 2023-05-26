@@ -1,3 +1,3 @@
-import Playoffs from 'PageComponents/playoffs';
+import Playoffs from 'PageComponents/playoffs/playoffs';
 
 export default Playoffs;

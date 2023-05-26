@@ -1,11 +1,11 @@
-import Header from 'Components/header';
+import Header from 'Components/header/header';
 import * as GlobalStyles from 'Styles/global.style';
 import { AppWrapper } from 'src/hooks/context';
 import { useEffect, useState } from 'react';
 import { addEvent } from 'Utils/amplitude';
 import { firebaseApp } from 'Utils/firebase';
-import Footer from 'Components/footer';
-import Notification from 'src/modals/notification';
+import Footer from 'Components/footer/footer';
+import Notification from 'src/modals/notification/notification';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';

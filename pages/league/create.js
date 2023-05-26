@@ -1,3 +1,3 @@
-import LeagueCreate from 'PageComponents/league/create';
+import LeagueCreate from 'PageComponents/league/create/create';
 
 export default LeagueCreate;

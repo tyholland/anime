@@ -1,3 +1,3 @@
-import Character from 'src/page-components/character';
+import Character from 'PageComponents/character/character';
 
 export default Character;
