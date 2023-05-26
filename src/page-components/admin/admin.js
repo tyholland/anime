@@ -605,13 +605,13 @@ const Admin = () => {
                                 ? 'Choose a date'
                                 : `${draftMonth} ${draftDay}, ${draftYear}`}
                             </div>
-                            {/* {!isStarted && */}
-                            <Button
-                              btnText="Edit"
-                              btnFunction={() => setEditDraftDate(true)}
-                              customBtnClass="small text edit"
-                            />
-                            {/* } */}
+                            {!isStarted && (
+                              <Button
+                                btnText="Edit"
+                                btnFunction={() => setEditDraftDate(true)}
+                                customBtnClass="small text edit"
+                              />
+                            )}
                           </>
                         )}
                       </Styles.AdminSection>
@@ -653,28 +653,32 @@ const Admin = () => {
                               <strong>Time:</strong>{' '}
                               {!draftHour
                                 ? 'Choose a time'
-                                : `${draftHour}:${draftMin} ${draftMeridiem}`}
+                                : `${draftHour}:${draftMin}${draftMeridiem} EST`}
                             </div>
-                            {/* {!isStarted && */}
-                            <Button
-                              btnText="Edit"
-                              btnFunction={() => setEditDraftTime(true)}
-                              customBtnClass="small text edit"
-                            />
-                            {/* } */}
+                            {!isStarted && (
+                              <Button
+                                btnText="Edit"
+                                btnFunction={() => setEditDraftTime(true)}
+                                customBtnClass="small text edit"
+                              />
+                            )}
                           </>
                         )}
                       </Styles.AdminSection>
                       <Styles.AdminSection className="start">
                         <Button
-                          btnText="Create Draft"
+                          btnText={
+                            isStarted
+                              ? 'League Draft Submitted'
+                              : 'Submit League Draft'
+                          }
                           btnFunction={handleCreateDraft}
                           btnColor="primary"
                           isDisabled={isStarted || isLeagueDisabled}
                           customBtnClass="medium"
                           disabledMsg={
                             isStarted
-                              ? 'League has already started'
+                              ? 'League Draft has been setup'
                               : isLeagueDisabled
                                 ? 'You don\'t have enough teams to draft'
                                 : null
