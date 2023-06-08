@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as GlobalStyles from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card/selection-card.js';
 import Metadata from 'Components/metadata/metadata';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import { responseError } from 'Utils/index';
 import { useRouter } from 'next/router';
 import { getLeague } from 'src/requests/league';

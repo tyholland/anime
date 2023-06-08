@@ -7,7 +7,7 @@ import TextField from 'Components/text-field/text-field';
 import Button from 'Components/button/button';
 import { getAffinitiesTypes } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 
 const Players = ({
   data,

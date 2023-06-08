@@ -15,14 +15,14 @@ import {
 } from 'Utils/index';
 import { useRouter } from 'next/router';
 import { accountExists, accountLogin, addNewAccount } from 'src/requests/users';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import Loader from 'Components/loader/loader';
 import Image from 'next/image';
 import { FacebookIcon } from 'react-share';
 
 const SingleSignOn = ({ buttonText = 'Login', setError }) => {
   const router = useRouter();
-  const { setInitialUser } = useAppContext();
+  const { updateCurrentUser } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
@@ -69,7 +69,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }) => {
         ? await accountLogin(payload)
         : await addNewAccount(payload);
 
-      setInitialUser(user);
+      updateCurrentUser(user);
 
       addEvent(eventName, {
         provider: currentUser?.user.providerData[0].providerId,

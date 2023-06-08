@@ -14,7 +14,7 @@ import {
 import { useRouter } from 'next/router';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import * as Styles from './bracket.style';
 import SocialMedia from 'Components/social-media/social-media';
 import Notification from 'src/modals/notification/notification';

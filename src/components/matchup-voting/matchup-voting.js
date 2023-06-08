@@ -6,7 +6,7 @@ import { addVotes } from 'src/requests/matchup.js';
 import { getNonLoggedInUser, responseError } from 'Utils/index.js';
 import { addEvent } from 'Utils/amplitude.js';
 import ErrorMsg from 'Components/error-msg/error-msg.js';
-import { useAppContext } from 'src/hooks/context.js';
+import { useAppContext } from 'src/hooks/user.js';
 import Loader from 'Components/loader/loader.js';
 import { addBracketVotes } from 'src/requests/bracket.js';
 

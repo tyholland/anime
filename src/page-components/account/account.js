@@ -3,7 +3,7 @@ import * as GlobalStyles from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import Metadata from 'Components/metadata/metadata';
 import Button from 'Components/button/button';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import { useRouter } from 'next/router';
 import Loader from 'Components/loader/loader';
 import TextField from 'Components/text-field/text-field';

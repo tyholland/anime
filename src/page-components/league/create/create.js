@@ -11,7 +11,7 @@ import Metadata from 'Components/metadata/metadata';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import ErrorMsg from 'Components/error-msg/error-msg';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import Loader from 'Components/loader/loader';
 import ReadMore from 'Components/read-more/read-more';
 

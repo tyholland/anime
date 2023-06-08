@@ -3,7 +3,7 @@ import * as GlobalStyles from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import Metadata from 'Components/metadata/metadata';
 import Button from 'Components/button/button';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import Error from 'PageComponents/error/error';
 import TextField from 'Components/text-field/text-field';
 import * as Styles from './admin.style';

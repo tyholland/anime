@@ -7,7 +7,7 @@ import Select from 'Components/select/select';
 import { addEvent } from 'Utils/amplitude';
 import SocialMedia from 'Components/social-media/social-media';
 import Loader from 'Components/loader/loader';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import { responseError } from 'Utils/index';
 import { addPlayerData } from 'src/requests/player';
 

@@ -2,7 +2,7 @@ import Metadata from 'Components/metadata/metadata';
 import Players from 'Components/players/players';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import BioReview from 'src/modals/bio-review/bio-review';
 import {
   draftNextRound,

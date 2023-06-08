@@ -7,7 +7,7 @@ import { createMatchupVotes } from 'src/requests/matchup';
 import { useRouter } from 'next/router';
 import { responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import ErrorMsg from 'Components/error-msg/error-msg';
 
 const ActivateVoting = ({

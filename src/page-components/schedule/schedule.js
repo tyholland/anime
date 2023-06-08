@@ -5,7 +5,7 @@ import ReadMore from 'Components/read-more/read-more';
 import { useRouter } from 'next/router';
 import Error from 'PageComponents/error/error';
 import React, { useEffect, useState } from 'react';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import { getSchedule } from 'src/requests/team';
 import * as GlobalStyles from 'Styles/global.style';
 import { addEvent } from 'Utils/amplitude';

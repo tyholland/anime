@@ -5,7 +5,7 @@ import { getNonLoggedInUser, responseError } from 'Utils/index.js';
 import { addEvent } from 'Utils/amplitude.js';
 import ErrorMsg from 'Components/error-msg/error-msg.js';
 import MainModal from '../main/main.js';
-import { useAppContext } from 'src/hooks/context.js';
+import { useAppContext } from 'src/hooks/user.js';
 
 const BracketVoting = ({
   playerA,

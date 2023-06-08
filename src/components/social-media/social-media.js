@@ -11,7 +11,7 @@ import { EmailIcon, FacebookIcon, RedditIcon, TwitterIcon } from 'react-share';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import * as Styles from './socialMedial.style';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 
 const SocialMedia = ({
   url,

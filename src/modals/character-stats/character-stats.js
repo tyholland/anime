@@ -3,7 +3,7 @@ import Button from '../../components/button/button';
 import * as GlobalStyles from 'Styles/global.style';
 import * as Styles from './characterStats.style';
 import MainModal from '../main/main';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import ErrorMsg from 'Components/error-msg/error-msg';
 
 const CharacterStats = ({

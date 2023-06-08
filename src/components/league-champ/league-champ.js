@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import { getLeagueChamp } from 'src/requests/league';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import * as GlobalStyles from 'Styles/global.style';
 
 const LeagueChamp = ({classProp = null}) => {

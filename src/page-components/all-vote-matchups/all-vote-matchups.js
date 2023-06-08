@@ -11,7 +11,7 @@ import * as Styles from './allVoteMatchups.style';
 import { getAllMatchupVotes } from 'src/requests/matchup';
 import Error from 'PageComponents/error/error';
 import Loader from 'Components/loader/loader';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import ReadMore from 'Components/read-more/read-more';
 import Voting from 'Components/gameplay-card/voting';
 

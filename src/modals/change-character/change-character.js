@@ -6,7 +6,7 @@ import MainModal from '../main/main';
 import Button from 'Components/button/button';
 import * as Styles from '../main/main.style';
 import BioCard from 'Components/bio-card/bio-card';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import { addEvent } from 'Utils/amplitude';
 
 const ChangeCharacters = ({

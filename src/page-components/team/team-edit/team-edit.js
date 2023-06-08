@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import { getUseablePlayers } from 'src/requests/player';
 import Error from 'PageComponents/error/error';
 import Loader from 'Components/loader/loader';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
 import MakeTeam from 'Components/gameplay-card/make-team';

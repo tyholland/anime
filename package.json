@@ -16,6 +16,7 @@
     "@amplitude/analytics-browser": "^1.6.4",
     "@stylelint/postcss-css-in-js": "^0.38.0",
     "axios": "^1.2.0",
+    "crypto-js": "^4.1.1",
     "dayjs": "^1.11.7",
     "env-cmd": "^10.1.0",
     "eslint-config-prettier": "^8.5.0",

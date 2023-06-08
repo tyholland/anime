@@ -1,6 +1,6 @@
 import Header from 'Components/header/header';
 import * as GlobalStyles from 'Styles/global.style';
-import { AppWrapper } from 'src/hooks/context';
+import { AppWrapper } from 'src/hooks/user';
 import { useEffect, useState } from 'react';
 import { addEvent } from 'Utils/amplitude';
 import { firebaseApp } from 'Utils/firebase';

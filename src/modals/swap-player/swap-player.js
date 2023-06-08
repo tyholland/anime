@@ -5,7 +5,7 @@ import MainModal from '../main/main';
 import Button from 'Components/button/button';
 import * as Styles from './swapPlayer.style';
 import { addEvent } from 'Utils/amplitude';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 
 const SwapPlayer = ({
   modalIsOpen,

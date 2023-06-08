@@ -8,7 +8,7 @@ import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error/error';
 import { addEvent } from 'Utils/amplitude';
 import { getAllLeagues } from 'src/requests/league';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import Loader from 'Components/loader/loader';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
@@ -17,7 +17,6 @@ const ViewLeague = () => {
   const { currentUser } = useAppContext();
   const [leagueCard, setLeagueCard] = useState([]);
   const [leaguePastCard, setLeaguePastCard] = useState([]);
-  const [account, setAccount] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -46,14 +45,10 @@ const ViewLeague = () => {
   };
 
   useEffect(() => {
-    setAccount(currentUser);
-  }, [currentUser]);
-
-  useEffect(() => {
-    if (account) {
+    if (currentUser) {
       handleAllLeagues();
     }
-  }, [account]);
+  }, [currentUser]);
 
   if (errorPage) {
     return <Error />;
@@ -65,8 +60,8 @@ const ViewLeague = () => {
         title="View Leagues"
         description="View all the Leagues that you are participating in. You can view your specific team for the league, view the specific weeks matchup, and all league details"
       />
-      {!account && <NotUser />}
-      {account && (
+      {!currentUser && <NotUser />}
+      {currentUser && (
         <>
           <GlobalStyles.GlobalContainer>
             <GlobalStyles.GlobalTitle className="bracketView">

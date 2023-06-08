@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as GlobalStyles from 'Styles/global.style';
 import Metadata from 'Components/metadata/metadata';
 import Button from 'Components/button/button';
-import { useAppContext } from 'src/hooks/context';
+import { useAppContext } from 'src/hooks/user';
 import Loader from 'Components/loader/loader';
 import TextField from 'Components/text-field/text-field';
 import { responseError } from 'Utils/index';

@@ -1,5 +1,10 @@
 import { joinLeague } from 'src/requests/league';
 import { addEvent } from './amplitude';
+import CryptoJS from 'crypto-js';
+// import Cryptr from 'cryptr';
+// const cryptr = new Cryptr(process.env.NEXT_PUBLIC_CRYPT_KEY);
+
+const secretPass = process.env.NEXT_PUBLIC_CRYPT_KEY;
 
 export const redirectUrl = (url) => {
   window.location.href = url;
@@ -115,7 +120,7 @@ export const joinLeagueSetup = async (leagueHash, currentUser, router) => {
 
     addEvent('Join League', {
       league: leagueHash,
-      userId: currentUser?.user_id
+      userId: currentUser?.user_id,
     });
 
     router.push(`/league?league_id=${leagueId}`);
@@ -124,16 +129,59 @@ export const joinLeagueSetup = async (leagueHash, currentUser, router) => {
   }
 };
 
+const encryptData = (text) => {
+  const data = CryptoJS.AES.encrypt(
+    JSON.stringify(text),
+    secretPass
+  ).toString();
+
+  return data;
+};
+
+const decryptData = (text) => {
+  const bytes = CryptoJS.AES.decrypt(text, secretPass);
+  const data = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+
+  return data;
+};
+
+export const getCachedData = (name) => {
+  if (typeof document === 'undefined') {
+    return null;
+  }
+
+  const cookieArr = document.cookie.split(';');
+
+  for (let i = 0; i < cookieArr.length; i++) {
+    const cookiePair = cookieArr[i].split('=');
+
+    if (name == cookiePair[0].trim()) {
+      const cookieVal = decryptData(cookiePair[1]);
+      return JSON.parse(cookieVal);
+    }
+  }
+
+  return null;
+};
+
+export const setCachedData = (name, value) => {
+  document.cookie = `${name} = ${encryptData(value)}; secure; SameSite=Strict`;
+};
+
+export const deleteCachedData = (name) => {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+};
+
 export const getNonLoggedInUser = () => {
   if (typeof window === 'undefined') {
     return;
   }
 
-  const user = window.localStorage.getItem('abz.nonLogged');
+  const user = getCachedData('aflNonLogged');
 
   if (!user) {
     const randomNum = randomInt(100000000);
-    window.localStorage.setItem('abz.nonLogged', randomNum);
+    setCachedData('aflNonLogged', randomNum);
     return randomNum;
   }
 
