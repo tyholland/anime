@@ -65,7 +65,7 @@ const ForgotPassword = () => {
             disabledMsg="Please complete all the fields above in order to proceed"
           />
           <Styles.LoginContentLinks>
-            Already have an account?
+            Already a guild member?
             <Button btnText="Login" customBtnClass="text" redirect="/login" />
           </Styles.LoginContentLinks>
         </Styles.LoginWrapper>

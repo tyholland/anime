@@ -669,8 +669,8 @@ const Admin = () => {
                         <Button
                           btnText={
                             isStarted
-                              ? 'League Draft Submitted'
-                              : 'Submit League Draft'
+                              ? 'Draft Schedule Submitted'
+                              : 'Submit Draft Schedule'
                           }
                           btnFunction={handleCreateDraft}
                           btnColor="primary"
@@ -707,7 +707,7 @@ const Admin = () => {
                           return (
                             <li key={team.id} className="team">
                               {team.team_name}
-                              {league.week === -1 && (
+                              {!isStarted && (
                                 <Button
                                   btnText="Remove"
                                   btnFunction={() => handleRemoveTeam(team.id)}

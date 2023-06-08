@@ -22,10 +22,15 @@ import ReadMore from 'Components/read-more/read-more';
 import Button from 'Components/button/button';
 import { getLeague, startLeague } from 'src/requests/league';
 import Collapsible from 'react-collapsible';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 
 const Draft = () => {
   const { currentUser } = useAppContext();
   const router = useRouter();
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
   const [teamsList, setTeamsList] = useState(null);
   const [draftTeamId, setDraftTeamId] = useState(null);
   const [players, setPlayers] = useState(null);
@@ -45,15 +50,23 @@ const Draft = () => {
   const [inactiveLeagueData, setInactiveLeagueData] = useState(null);
   const [isDraftComplete, setIsDraftComplete] = useState(false);
   const [draftResults, setDraftResults] = useState(null);
+  const [draftSchedule, setDraftSchedule] = useState(null);
 
   const getDraftInfo = async () => {
     const { league_id } = router.query;
 
     try {
-      const { draft, userTeamId, remainingTime, draftComplete, resetTimer } =
-        await getDraft(league_id, currentUser?.token);
+      const {
+        draft,
+        userTeamId,
+        remainingTime,
+        draftComplete,
+        resetTimer,
+        draftSchedule,
+      } = await getDraft(league_id, currentUser?.token);
 
       const teams = JSON.parse(draft.teams);
+      const draftTime = JSON.parse(draftSchedule);
 
       if (draft.pick_order === teams.length) {
         await startNextRound();
@@ -66,8 +79,8 @@ const Draft = () => {
 
       const timerReset = new Date();
       setRestartTimer(timerReset + currentUser?.token);
-        
-      !!resetTimer && await getAllPlayers();
+
+      !!resetTimer && (await getAllPlayers());
 
       const recentPick = !draft.recent_pick
         ? null
@@ -83,17 +96,20 @@ const Draft = () => {
       setPickOrder(draft.pick_order);
       setIsDraftComplete(draftComplete);
       setInititalTime(remainingTime);
+      setDraftSchedule(draftTime);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get draft info'));
       setIsInactiveDraft(true);
       setInactiveLeagueData(err.response.data);
 
       if (err.response.data.draftComplete) {
-        const { draft, draftComplete } = err.response.data;
+        const { draft, draftComplete, draftSchedule } = err.response.data;
+        const draftTime = JSON.parse(draftSchedule);
 
         setIsInactiveDraft(false);
         setDraftResults(draft);
         setIsDraftComplete(draftComplete);
+        setDraftSchedule(draftTime);
       }
 
       setIsLoading(false);
@@ -238,7 +254,7 @@ const Draft = () => {
         draftId,
         pickOrder,
         leagueId: league_id,
-        round
+        round,
       };
 
       await draftPlayers(draftTeamId, payload, currentUser?.token);
@@ -247,7 +263,7 @@ const Draft = () => {
       addEvent('Draft Player', {
         player: character.fullName,
         round,
-        userId: currentUser?.user_id
+        userId: currentUser?.user_id,
       });
 
       setRecent(pickUpdate);
@@ -262,8 +278,18 @@ const Draft = () => {
       for (const key in thePlayers) {
         if (thePlayers[key].fullName === character.fullName) {
           thePlayers[key].affinity = null;
-          thePlayers[key].boost = {week: null, support: null, battlefield: null, voting: null};
-          thePlayers[key].damage = {week: null, villain: null, battlefield: null, voting: null};
+          thePlayers[key].boost = {
+            week: null,
+            support: null,
+            battlefield: null,
+            voting: null,
+          };
+          thePlayers[key].damage = {
+            week: null,
+            villain: null,
+            battlefield: null,
+            voting: null,
+          };
           thePlayers[key].id = null;
           thePlayers[key].matchPoints = 0;
           thePlayers[key].name = null;
@@ -273,7 +299,7 @@ const Draft = () => {
       }
 
       setPlayerList(thePlayers);
-    };
+    }
   };
 
   const draftNullPlayer = async (allTeams, draftData, userTeamId) => {
@@ -296,7 +322,7 @@ const Draft = () => {
         draftId: id,
         pickOrder: pick_order,
         leagueId: league_id,
-        round
+        round,
       };
 
       await draftPlayers(userTeamId, payload, currentUser?.token);
@@ -320,16 +346,36 @@ const Draft = () => {
     }
   };
 
+  const handleDraftDay = (schedule) => {
+    const currentDate = new Date();
+    const date = dayjs.tz(currentDate, 'America/New_York');
+    const currentDraftDate = new Date(
+      `${schedule.date.month} ${schedule.date.day}, ${schedule.date.year}`
+    );
+    const draftDate = dayjs.tz(currentDraftDate, 'America/New_York');
+
+    return !(date.diff(draftDate) < 0);
+  };
+
   const getLeagueData = async () => {
     const { league_id } = router.query;
 
     try {
       const { leagueData } = await getLeague(league_id, currentUser?.token);
+      const { draft_active, draft_schedule } = leagueData[0];
 
-      setIsInactiveDraft(!(leagueData[0].draft_active === 1));
+      setIsInactiveDraft(!(draft_active === 1));
       let leagueTimeout;
 
-      if (leagueData[0].draft_active === 0) {
+      const draftDate = JSON.parse(draft_schedule);
+      setDraftSchedule(draftDate);
+      const isDraftDay = handleDraftDay(draftDate);
+
+      if (!isDraftDay) {
+        return;
+      }
+
+      if (draft_active === 0) {
         leagueTimeout = setTimeout(async () => {
           await getLeagueData();
         }, 1000);
@@ -342,6 +388,12 @@ const Draft = () => {
   };
 
   const handleDraftInfoLoop = async () => {
+    const isDraftDay = handleDraftDay(draftSchedule);
+
+    if (!isDraftDay) {
+      return;
+    }
+
     if (Object.keys(router.query).length === 0) {
       return;
     }
@@ -388,10 +440,10 @@ const Draft = () => {
   }, [router.query, currentUser, isInactiveDraft]);
 
   useEffect(() => {
-    if (!isInactiveDraft) {
+    if (!isInactiveDraft && !!draftSchedule) {
       handleDraftInfoLoop();
     }
-  }, [isInactiveDraft, draftTeamId]);
+  }, [isInactiveDraft, draftTeamId, draftSchedule]);
 
   return (
     <>
@@ -520,7 +572,17 @@ const Draft = () => {
                 {isDraftComplete && (
                   <Styles.DraftAccordian>
                     <GlobalStyles.CollapsibleStyles />
-                    <GlobalStyles.GlobalTitle>Draft Results</GlobalStyles.GlobalTitle>
+                    <GlobalStyles.GlobalTitle>
+                      Draft Results
+                    </GlobalStyles.GlobalTitle>
+                    <Styles.DraftResults>
+                      <strong>Date of Draft:</strong>{' '}
+                      {`${draftSchedule?.date.month} ${draftSchedule?.date.day}, ${draftSchedule?.date.year}`}
+                    </Styles.DraftResults>
+                    <Styles.DraftResults>
+                      <strong>Time of Draft:</strong>{' '}
+                      {`${draftSchedule?.time.hour}:${draftSchedule?.time.min}${draftSchedule?.time.meridiem} EST`}
+                    </Styles.DraftResults>
                     {draftResults?.map((item, index) => {
                       const count = index + 1;
                       const teams = JSON.parse(item.teams);
@@ -531,7 +593,7 @@ const Draft = () => {
                           <div className="up">&#10132;</div>
                         </div>
                       );
-                    
+
                       const roundDown = (
                         <div className="collapseContainer">
                           <div>Round {count}</div>
@@ -545,7 +607,11 @@ const Draft = () => {
                           triggerWhenOpen={roundUp}
                           triggerTagName="div"
                           key={index}
-                          triggerElementProps={{ id: `round-${count}`, 'aria-controls': `round-${count}` }} contentElementId={`round-${count}`}
+                          triggerElementProps={{
+                            id: `round-${count}`,
+                            'aria-controls': `round-${count}`,
+                          }}
+                          contentElementId={`round-${count}`}
                         >
                           {teams.map((team) => {
                             return (
@@ -563,26 +629,33 @@ const Draft = () => {
             )}
             {isInactiveDraft && (
               <Styles.DraftInactive>
+                <Styles.DraftResults>
+                  <strong>Date of Draft:</strong>{' '}
+                  {`${draftSchedule?.date.month} ${draftSchedule?.date.day}, ${draftSchedule?.date.year}`}
+                </Styles.DraftResults>
+                <Styles.DraftResults>
+                  <strong>Time of Draft:</strong>{' '}
+                  {`${draftSchedule?.time.hour}:${draftSchedule?.time.min}${draftSchedule?.time.meridiem} EST`}
+                </Styles.DraftResults>
                 {inactiveLeagueData.creator !== currentUser.user_id && (
-                  <>
-                    The Draft for {inactiveLeagueData.leagueName} is currently
-                    inactive. Please contact your league owner to activate this
-                    draft.
-                  </>
+                  <Styles.DraftResults>
+                    The Draft for {inactiveLeagueData.leagueName} hasn't started
+                    yet.
+                  </Styles.DraftResults>
                 )}
                 {inactiveLeagueData.creator === currentUser.user_id && (
-                  <>
-                    Your Draft for {inactiveLeagueData.leagueName} is currently
-                    inactive. Make sure to contact your league members and
-                    schedule a good time that works for everyone before starting
-                    your draft.
+                  <Styles.DraftResults>
+                    Your Draft for {inactiveLeagueData.leagueName} hasn't
+                    started yet. Once it is the date and time of your Draft.
+                    Click the "Start Draft" button before in order to start the
+                    draft for your League
                     <Button
                       btnColor="primary"
                       btnText="Start Draft"
                       btnFunction={startDrafting}
                       customBtnClass="medium"
                     />
-                  </>
+                  </Styles.DraftResults>
                 )}
                 <ReadMore />
               </Styles.DraftInactive>

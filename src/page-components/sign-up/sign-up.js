@@ -155,7 +155,7 @@ const SignUp = () => {
             </Styles.LoginSection>
           </Styles.LoginSectionWrapper>
           <Styles.LoginContentLinks>
-            Already have an account?
+            Already a guild member?
             <Button btnText="Login" customBtnClass="text" redirect="/login" />
           </Styles.LoginContentLinks>
         </Styles.LoginWrapper>

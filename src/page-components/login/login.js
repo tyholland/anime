@@ -132,17 +132,17 @@ const Login = () => {
               </Styles.LoginSection>
             </Styles.LoginSectionWrapper>
             <Styles.LoginContentLinks>
-            Memory jutsu failed?
+              Memory jutsu failed?
               <Button
-                btnText="Recover your password here!"
+                btnText="Recover password here!"
                 customBtnClass="text"
                 redirect="/forgot"
               />
             </Styles.LoginContentLinks>
             <Styles.LoginContentLinks>
-            Not a guild member yet?
+              Not a guild member yet?
               <Button
-                btnText="Join the Anime Fantasy League family!"
+                btnText="Join the AFL family!"
                 customBtnClass="text small"
                 redirect={join ? `/sign-up?join=${join}` : '/sign-up'}
               />

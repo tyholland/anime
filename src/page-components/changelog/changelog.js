@@ -11,16 +11,24 @@ const Changelog = () => {
       />
       <GlobalStyles.GlobalContainer>
         <GlobalStyles.GlobalTitle>Changelog</GlobalStyles.GlobalTitle>
+        <h3>June 7, 2023</h3>
+        <ul>
+          <li>
+            League Admin
+            <ul>
+              <li>You can add a draft date and time</li>
+            </ul>
+          </li>
+        </ul>
         <h3>May 25, 2023</h3>
         <ul>
           <li>
             Roster
             <ul>
+              <li>You can now add bench players</li>
               <li>
-                You can now add bench players
-              </li>
-              <li>
-                Each bench spot is an additional 400 points added to your team total too allow you to add more players to your team.
+                Each bench spot is an additional 400 points added to your team
+                total too allow you to add more players to your team.
               </li>
             </ul>
           </li>
@@ -30,9 +38,7 @@ const Changelog = () => {
           <li>
             Content
             <ul>
-              <li>
-                Add anime flair
-              </li>
+              <li>Add anime flair</li>
             </ul>
           </li>
         </ul>
@@ -41,17 +47,13 @@ const Changelog = () => {
           <li>
             All Matchup Voting page
             <ul>
-              <li>
-                On mobile, added a set height to the character images.
-              </li>
+              <li>On mobile, added a set height to the character images.</li>
             </ul>
           </li>
           <li>
             Mobile Nav
             <ul>
-              <li>
-                Darken the overlay that is shown when mobile nav is open.
-              </li>
+              <li>Darken the overlay that is shown when mobile nav is open.</li>
             </ul>
           </li>
         </ul>
@@ -61,7 +63,9 @@ const Changelog = () => {
             All Matchup Voting page
             <ul>
               <li>
-                You can now view and vote on matchups from any active League head-to-head battles. As well as matchups within any Bracket that is active.
+                You can now view and vote on matchups from any active League
+                head-to-head battles. As well as matchups within any Bracket
+                that is active.
               </li>
             </ul>
           </li>
@@ -71,12 +75,8 @@ const Changelog = () => {
           <li>
             Roster Selection Modal
             <ul>
-              <li>
-                Mobile: you can type in the search bar
-              </li>
-              <li>
-                Mobile: UI improvements for viewing a character to select
-              </li>
+              <li>Mobile: you can type in the search bar</li>
+              <li>Mobile: UI improvements for viewing a character to select</li>
             </ul>
           </li>
           <li>
@@ -94,7 +94,8 @@ const Changelog = () => {
             Reminders
             <ul>
               <li>
-                Added some reminder modals and emails to keep users up to date with weekly events.
+                Added some reminder modals and emails to keep users up to date
+                with weekly events.
               </li>
             </ul>
           </li>
@@ -105,37 +106,38 @@ const Changelog = () => {
             League Hub
             <ul>
               <li>
-                Updated copy for error modal that pops up when Week 1 hasn't started yet
+                Updated copy for error modal that pops up when Week 1 hasn't
+                started yet
               </li>
             </ul>
           </li>
           <li>
             Account page
             <ul>
-              <li>
-                Add disclaimer message
-              </li>
+              <li>Add disclaimer message</li>
             </ul>
           </li>
           <li>
             Buttons
             <ul>
-              <li>
-                Add specific error message to disabled buttons
-              </li>
+              <li>Add specific error message to disabled buttons</li>
             </ul>
           </li>
           <li>
             Bracket feature
             <ul>
               <li>
-                You can view all active brackets now on the Brackets page, even if you aren't logged in
+                You can view all active brackets now on the Brackets page, even
+                if you aren't logged in
               </li>
               <li>
-                Logged in users will see their own brackets (if they have any) first. Then they will also be able to view all other active brackets
+                Logged in users will see their own brackets (if they have any)
+                first. Then they will also be able to view all other active
+                brackets
               </li>
               <li>
-                You can randomize your bracket if you can't think of any good matchups
+                You can randomize your bracket if you can't think of any good
+                matchups
               </li>
             </ul>
           </li>
@@ -153,35 +155,31 @@ const Changelog = () => {
           <li>
             Roster Change
             <ul>
-              <li>
-                You can now view character info prior to selecting them
-              </li>
+              <li>You can now view character info prior to selecting them</li>
             </ul>
           </li>
           <li>
             Buttons
             <ul>
               <li>
-                Added a hover message on disabled buttons explaining why they are disabled.
+                Added a hover message on disabled buttons explaining why they
+                are disabled.
               </li>
             </ul>
           </li>
           <li>
             Share feature
             <ul>
-              <li>
-                Remove unnecessary modal
-              </li>
+              <li>Remove unnecessary modal</li>
             </ul>
           </li>
           <li>
             Bracket feature
             <ul>
+              <li>Can't submit Bracket until you add a bracket name</li>
               <li>
-                Can't submit Bracket until you add a bracket name
-              </li>
-              <li>
-                Show vote totals, in the modal, for the winner of any specific round
+                Show vote totals, in the modal, for the winner of any specific
+                round
               </li>
             </ul>
           </li>
@@ -189,7 +187,9 @@ const Changelog = () => {
             Join League
             <ul>
               <li>
-                The join url now contains the league ID in it. So now when you use the join url, it will pre-populate the input field and you just need to click on the button to join the league.
+                The join url now contains the league ID in it. So now when you
+                use the join url, it will pre-populate the input field and you
+                just need to click on the button to join the league.
               </li>
             </ul>
           </li>
@@ -197,7 +197,8 @@ const Changelog = () => {
             Homepage Series list
             <ul>
               <li>
-                Clicking on a series will take you to a list of character specific to that series.
+                Clicking on a series will take you to a list of character
+                specific to that series.
               </li>
             </ul>
           </li>
@@ -215,20 +216,14 @@ const Changelog = () => {
           <li>
             Accordion arrows
             <ul>
-              <li>
-                Add down/ip arrows to all remaining accordions
-              </li>
+              <li>Add down/ip arrows to all remaining accordions</li>
             </ul>
           </li>
           <li>
             Gameplay Rules
             <ul>
-              <li>
-                Updated Weekly Element Affinities copy
-              </li>
-              <li>
-                Added affinity icons
-              </li>
+              <li>Updated Weekly Element Affinities copy</li>
+              <li>Added affinity icons</li>
             </ul>
           </li>
         </ul>
