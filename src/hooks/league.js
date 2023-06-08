@@ -4,25 +4,37 @@ import {
   getCachedData,
   setCachedData,
 } from 'Utils/index';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+import { MONDAY } from 'Utils/constants';
 
 const LeagueContext = createContext();
 
 export const LeagueWrapper = ({ children }) => {
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
   const [contextLeague, setContextLeague] = useState(null);
   const cachedUser = getCachedData('aflLeague');
+  const currentDate = new Date();
+  const date = dayjs.tz(currentDate, 'America/New_York');
+  const dayOfTheWeek = date.day() === MONDAY;
 
-  let leagueData = null;
+  let allLeagueData = null;
 
   if (contextLeague) {
-    leagueData = contextLeague;
+    allLeagueData = contextLeague;
+    allLeagueData.isMonday = dayOfTheWeek;
   } else if (cachedUser) {
-    leagueData = cachedUser;
+    allLeagueData = cachedUser;
+    allLeagueData.isMonday = dayOfTheWeek;
   }
 
   const updateLeagueData = (additionalInfo) => {
+
     const data = {
-      ...leagueData,
-      ...additionalInfo,
+      ...allLeagueData,
+      ...additionalInfo
     };
 
     setContextLeague(data);
@@ -34,10 +46,13 @@ export const LeagueWrapper = ({ children }) => {
     setContextLeague(null);
   };
 
+  const handleLeagueRefresh = !!allLeagueData?.activeDraft || !!allLeagueData?.isMonday;
+
   const sharedState = {
-    leagueData,
+    allLeagueData,
     updateLeagueData,
     deleteLeagueData,
+    handleLeagueRefresh
   };
 
   return (

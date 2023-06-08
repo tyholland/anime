@@ -11,10 +11,12 @@ import Error from 'PageComponents/error/error';
 import Loader from 'Components/loader/loader';
 import NotUser from 'Components/not-user/not-user';
 import LeagueChamp from 'Components/league-champ/league-champ';
+import { useLeagueContext } from 'src/hooks/league';
 
 const League = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
+  const { updateLeagueData, allLeagueData, handleLeagueRefresh } = useLeagueContext();
   const [account, setAccount] = useState(null);
   const [leagueData, setLeagueData] = useState(null);
   const [isDraftActive, setIsDraftActive] = useState(null);
@@ -22,8 +24,25 @@ const League = () => {
   const [errorPage, setErrorPage] = useState(false);
   const disableMsg = 'Week 1 has not started yet. Normally Week 1 will begin the Monday following your League Draft. Once it has started, this link will become active.';
 
+  const handleLeagueSetup = (leagueId, hasDraft, leagueData, matchupData, teamData) => {
+    setLeagueId(leagueId);
+    setIsDraftActive(hasDraft);
+    setLeagueData({
+      ...leagueData[0],
+      ...matchupData[0],
+      ...teamData[0]
+    });
+  };
+
+
   const handleLeagueData = async () => {
     const { league_id } = router.query;
+
+    if (allLeagueData && !handleLeagueRefresh && allLeagueData[`league_${league_id}`]) {
+      const {leagueData, matchupData, hasDraft, teamData} = allLeagueData[`league_${league_id}`];
+      handleLeagueSetup(league_id, hasDraft, leagueData, matchupData, teamData);
+      return;
+    }
 
     try {
       const { leagueData, matchupData, hasDraft, teamData } = await getLeague(
@@ -31,13 +50,17 @@ const League = () => {
         currentUser?.token
       );
 
-      setLeagueId(league_id);
-      setIsDraftActive(hasDraft);
-      setLeagueData({
-        ...leagueData[0],
-        ...matchupData[0],
-        ...teamData[0]
-      });
+      handleLeagueSetup(league_id, hasDraft, leagueData, matchupData, teamData);
+
+      const leagueObj = {};
+      const currentLeague = `league_${league_id}`;
+      leagueObj[currentLeague] = {
+        leagueData,
+        matchupData,
+        hasDraft,
+        teamData
+      };
+      updateLeagueData(leagueObj);
     } catch (err) {
       addEvent(
         'Error',

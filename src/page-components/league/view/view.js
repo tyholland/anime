@@ -16,7 +16,7 @@ import { useLeagueContext } from 'src/hooks/league';
 
 const ViewLeague = () => {
   const { currentUser } = useUserContext();
-  const { updateLeagueData, leagueData } = useLeagueContext();
+  const { updateLeagueData, allLeagueData, handleLeagueRefresh } = useLeagueContext();
   const [leagueCard, setLeagueCard] = useState([]);
   const [leaguePastCard, setLeaguePastCard] = useState([]);
   const [errorPage, setErrorPage] = useState(false);
@@ -40,8 +40,8 @@ const ViewLeague = () => {
   const handleAllLeagues = async () => {
     setIsLoading(true);
 
-    if (leagueData && !leagueData.activeDraft) {
-      const {current, past} = leagueData;
+    if (allLeagueData && !handleLeagueRefresh) {
+      const {current, past} = allLeagueData;
       handleLeagueSetup(current, past);
       return;
     }
