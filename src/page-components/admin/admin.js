@@ -3,7 +3,7 @@ import * as GlobalStyles from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import Metadata from 'Components/metadata/metadata';
 import Button from 'Components/button/button';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import Error from 'PageComponents/error/error';
 import TextField from 'Components/text-field/text-field';
 import * as Styles from './admin.style';
@@ -28,12 +28,14 @@ import Notification from 'src/modals/notification/notification';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import { useLeagueContext } from 'src/hooks/league';
 
 const Admin = () => {
   const router = useRouter();
   dayjs.extend(utc);
   dayjs.extend(timezone);
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
+  const { updateLeagueData, leagueData } = useLeagueContext();
   const [errorPage, setErrorPage] = useState(false);
   const [notLoggedIn, setNotLoggedIn] = useState(false);
   const [editNum, setEditNum] = useState(false);
@@ -279,6 +281,7 @@ const Admin = () => {
       await createDraft(league.id, currentUser?.token);
       setIsStarted(true);
       setDraftNotify(true);
+      updateLeagueData(leagueData ? leagueData.activeDraft = true : {activeDraft: true});
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to create draft'));
     }

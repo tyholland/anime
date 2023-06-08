@@ -10,13 +10,13 @@ import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import { useRouter } from 'next/router';
 import ErrorMsg from 'Components/error-msg/error-msg';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import Loader from 'Components/loader/loader';
 import ReadMore from 'Components/read-more/read-more';
 
 const JoinLeague = () => {
   const router = useRouter();
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [leagueHash, setLeagueHash] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);

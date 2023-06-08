@@ -14,7 +14,7 @@ import {
 import { useRouter } from 'next/router';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import * as Styles from './bracket.style';
 import SocialMedia from 'Components/social-media/social-media';
 import Notification from 'src/modals/notification/notification';
@@ -25,7 +25,7 @@ import BracketVoting from 'src/modals/bracket-voting/bracket-voting';
 
 const Bracket = () => {
   const router = useRouter();
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [matches, setMatches] = useState(null);
   const [winWidth, setWinWidth] = useState(0);
   const [modalIsOpen, setModalIsOpen] = useState(false);

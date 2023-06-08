@@ -15,14 +15,14 @@ import {
 } from 'Utils/index';
 import { useRouter } from 'next/router';
 import { accountExists, accountLogin, addNewAccount } from 'src/requests/users';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import Loader from 'Components/loader/loader';
 import Image from 'next/image';
 import { FacebookIcon } from 'react-share';
 
 const SingleSignOn = ({ buttonText = 'Login', setError }) => {
   const router = useRouter();
-  const { updateCurrentUser } = useAppContext();
+  const { updateCurrentUser } = useUserContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);

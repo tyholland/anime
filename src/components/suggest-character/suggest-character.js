@@ -7,12 +7,12 @@ import Select from 'Components/select/select';
 import { addEvent } from 'Utils/amplitude';
 import SocialMedia from 'Components/social-media/social-media';
 import Loader from 'Components/loader/loader';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import { responseError } from 'Utils/index';
 import { addPlayerData } from 'src/requests/player';
 
 const SuggestCharacter = () => {
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [player, setPlayer] = useState('');
   const [series, setSeries] = useState('');
   const [rank, setRank] = useState('');

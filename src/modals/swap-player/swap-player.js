@@ -5,7 +5,7 @@ import MainModal from '../main/main';
 import Button from 'Components/button/button';
 import * as Styles from './swapPlayer.style';
 import { addEvent } from 'Utils/amplitude';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 
 const SwapPlayer = ({
   modalIsOpen,
@@ -14,7 +14,7 @@ const SwapPlayer = ({
   playerList,
   field,
 }) => {
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [swappablePlayers, setSwappablePlayers] = useState(null);
   const [fieldName, setFieldName] = useState(field);
   const [players, setPlayers] = useState(playerList);

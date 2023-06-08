@@ -3,7 +3,7 @@ import * as GlobalStyles from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import Metadata from 'Components/metadata/metadata';
 import Button from 'Components/button/button';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import { useRouter } from 'next/router';
 import Loader from 'Components/loader/loader';
 import TextField from 'Components/text-field/text-field';
@@ -18,13 +18,12 @@ import ReadMore from 'Components/read-more/read-more';
 import Disclaimer from 'Components/disclaimer/disclaimer';
 
 const Account = () => {
-  const { deleteCurrentUser, currentUser } = useAppContext();
+  const { deleteCurrentUser, currentUser } = useUserContext();
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isPwdLoading, setIsPwdLoading] = useState(false);
-  const [notLoggedIn, setNotLoggedIn] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
-  const [logoutTrigger, setLogoutTrigger] = useState(false);
+  const [notLoggedIn, setNotLoggedIn] = useState(false);
   const [pwd, setPwd] = useState('');
   const [confirmPwd, setConfirmPwd] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
@@ -38,7 +37,6 @@ const Account = () => {
 
   const handleLogout = async () => {
     setIsLoading(true);
-    setLogoutTrigger(true);
 
     try {
       await signOut(auth);
@@ -48,7 +46,6 @@ const Account = () => {
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to logout'));
       setIsLoading(false);
-      setLogoutTrigger(false);
     }
   };
 
@@ -157,9 +154,7 @@ const Account = () => {
   );
 
   useEffect(() => {
-    if (!logoutTrigger) {
-      setNotLoggedIn(!currentUser);
-    }
+    setNotLoggedIn(!!currentUser);
 
     if (currentUser) {
       setEmail(currentUser.email);
@@ -183,8 +178,8 @@ const Account = () => {
         title="Account"
         description="Look at your profile, update username, and your password. Delete your account if you must."
       />
-      {notLoggedIn && <NotUser message={message} />}
-      {!notLoggedIn && (
+      {!notLoggedIn && <NotUser message={message} />}
+      {notLoggedIn && (
         <>
           <GlobalStyles.GlobalContainer>
             <GlobalStyles.GlobalTitle>Account</GlobalStyles.GlobalTitle>

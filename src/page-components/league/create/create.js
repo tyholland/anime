@@ -11,12 +11,12 @@ import Metadata from 'Components/metadata/metadata';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import ErrorMsg from 'Components/error-msg/error-msg';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import Loader from 'Components/loader/loader';
 import ReadMore from 'Components/read-more/read-more';
 
 const LeagueCreate = () => {
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [teams, setTeams] = useState('');
   const [leagueName, setLeagueName] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);

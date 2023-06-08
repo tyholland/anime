@@ -11,7 +11,7 @@ import { responseError } from 'Utils/index.js';
 import { getTeam, hideRecap } from 'src/requests/team.js';
 import Loader from 'Components/loader/loader.js';
 import { addEvent } from 'Utils/amplitude.js';
-import { useAppContext } from 'src/hooks/user.js';
+import { useUserContext } from 'src/hooks/user.js';
 import NotUser from 'Components/not-user/not-user.js';
 import ReadMore from 'Components/read-more/read-more.js';
 import Recap from 'src/modals/recap/recap.js';
@@ -19,7 +19,7 @@ import BenchCard from 'Components/bench-card/bench-card.js';
 
 const Team = () => {
   const router = useRouter();
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [teamId, setTeamId] = useState(null);
   const [teamData, setTeamData] = useState(null);
   const [rank, setRank] = useState(null);

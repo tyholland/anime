@@ -7,13 +7,13 @@ import * as BracketStyles from '../bracket.style';
 import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error/error';
 import { addEvent } from 'Utils/amplitude';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import Loader from 'Components/loader/loader';
 import ReadMore from 'Components/read-more/read-more';
 import { getAllBrackets } from 'src/requests/bracket';
 
 const ViewBrackets = () => {
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [bracketList, setBracketList] = useState(null);
   const [activeBracketList, setActiveBracketList] = useState(null);
   const [errorPage, setErrorPage] = useState(false);

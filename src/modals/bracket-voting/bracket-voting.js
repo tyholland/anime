@@ -5,7 +5,7 @@ import { getNonLoggedInUser, responseError } from 'Utils/index.js';
 import { addEvent } from 'Utils/amplitude.js';
 import ErrorMsg from 'Components/error-msg/error-msg.js';
 import MainModal from '../main/main.js';
-import { useAppContext } from 'src/hooks/user.js';
+import { useUserContext } from 'src/hooks/user.js';
 
 const BracketVoting = ({
   playerA,
@@ -18,7 +18,7 @@ const BracketVoting = ({
   closeModal,
   roundWinner,
 }) => {
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [playerACount, setPlayerACount] = useState(0);
   const [playerBCount, setPlayerBCount] = useState(0);
   const [bracketMatch, setBracketMatch] = useState(null);

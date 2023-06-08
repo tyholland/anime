@@ -5,7 +5,7 @@ import TextField from 'Components/text-field/text-field.js';
 import * as GlobalStyles from 'Styles/global.style.js';
 import Metadata from 'Components/metadata/metadata.js';
 import { useRouter } from 'next/router.js';
-import { useAppContext } from 'src/hooks/user.js';
+import { useUserContext } from 'src/hooks/user.js';
 import {
   joinLeagueSetup,
   redirectToAccount,
@@ -21,7 +21,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
   const router = useRouter();
-  const { currentUser, updateCurrentUser } = useAppContext();
+  const { currentUser, updateCurrentUser } = useUserContext();
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);

@@ -6,7 +6,7 @@ import MainModal from '../main/main';
 import Button from 'Components/button/button';
 import * as Styles from '../main/main.style';
 import BioCard from 'Components/bio-card/bio-card';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import { addEvent } from 'Utils/amplitude';
 
 const ChangeCharacters = ({
@@ -19,7 +19,7 @@ const ChangeCharacters = ({
   isBracket = false,
   leagueWeek,
 }) => {
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [isCharacter, setIsCharacter] = useState(false);
   const [character, setCharacter] = useState(null);
 

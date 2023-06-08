@@ -7,7 +7,7 @@ import { createMatchupVotes } from 'src/requests/matchup';
 import { useRouter } from 'next/router';
 import { responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import ErrorMsg from 'Components/error-msg/error-msg';
 
 const ActivateVoting = ({
@@ -18,7 +18,7 @@ const ActivateVoting = ({
   votes,
   setRetrigger,
 }) => {
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const router = useRouter();
   const [errorMsg, setErrorMsg] = useState(null);
   const [allVotes, setAllVotes] = useState(votes);

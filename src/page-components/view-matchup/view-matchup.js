@@ -11,7 +11,7 @@ import { getMatchUp } from 'src/requests/matchup';
 import { getMatchupTeam, hideRecap } from 'src/requests/team';
 import Error from 'PageComponents/error/error';
 import Loader from 'Components/loader/loader';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import NotUser from 'Components/not-user/not-user';
 import Button from 'Components/button/button';
 import Notification from 'src/modals/notification/notification';
@@ -20,7 +20,7 @@ import Recap from 'src/modals/recap/recap';
 
 const ViewMatchup = () => {
   const router = useRouter();
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [team1, setTeam1] = useState(null);
   const [team2, setTeam2] = useState(null);
   const [score1, setScore1] = useState(null);

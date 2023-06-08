@@ -8,35 +8,54 @@ import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error/error';
 import { addEvent } from 'Utils/amplitude';
 import { getAllLeagues } from 'src/requests/league';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import Loader from 'Components/loader/loader';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
+import { useLeagueContext } from 'src/hooks/league';
 
 const ViewLeague = () => {
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
+  const { updateLeagueData, leagueData } = useLeagueContext();
   const [leagueCard, setLeagueCard] = useState([]);
   const [leaguePastCard, setLeaguePastCard] = useState([]);
   const [errorPage, setErrorPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isUser, setIsUser] = useState(false);
+
+  const handleLeagueSetup = (current, past) => {
+    const currentLeagues = current.map((item, index) => {
+      return <LeagueCard key={`${item.team_name}-${index}`} data={item} />;
+    });
+
+    const pastLeagues = past.map((item, index) => {
+      return <LeagueCard key={`${item.team_name}-${index}`} data={item} />;
+    });
+
+    setLeagueCard(currentLeagues);
+    setLeaguePastCard(pastLeagues);
+    setIsLoading(false);
+  };
 
   const handleAllLeagues = async () => {
     setIsLoading(true);
 
+    if (leagueData && !leagueData.activeDraft) {
+      const {current, past} = leagueData;
+      handleLeagueSetup(current, past);
+      return;
+    }
+
     try {
       const {current, past} = await getAllLeagues(currentUser?.token);
 
-      const currentLeagues = current.map((item, index) => {
-        return <LeagueCard key={`${item.team_name}-${index}`} data={item} />;
-      });
+      handleLeagueSetup(current, past);
 
-      const pastLeagues = past.map((item, index) => {
-        return <LeagueCard key={`${item.team_name}-${index}`} data={item} />;
+      updateLeagueData({
+        current,
+        past,
+        activeDraft: false
       });
-
-      setLeagueCard(currentLeagues);
-      setLeaguePastCard(pastLeagues);
-      setIsLoading(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get all leagues view'));
       setErrorPage(true);
@@ -45,6 +64,8 @@ const ViewLeague = () => {
   };
 
   useEffect(() => {
+    setIsUser(!!currentUser);
+
     if (currentUser) {
       handleAllLeagues();
     }
@@ -60,8 +81,8 @@ const ViewLeague = () => {
         title="View Leagues"
         description="View all the Leagues that you are participating in. You can view your specific team for the league, view the specific weeks matchup, and all league details"
       />
-      {!currentUser && <NotUser />}
-      {currentUser && (
+      {!isUser && <NotUser />}
+      {isUser && (
         <>
           <GlobalStyles.GlobalContainer>
             <GlobalStyles.GlobalTitle className="bracketView">

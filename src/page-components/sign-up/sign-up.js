@@ -4,7 +4,7 @@ import TextField from 'Components/text-field/text-field';
 import * as GlobalStyles from 'Styles/global.style.js';
 import * as Styles from 'PageComponents/login/login.style.js';
 import { addNewAccount } from 'src/requests/users';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import Metadata from 'Components/metadata/metadata';
 import {
   joinLeagueSetup,
@@ -21,7 +21,7 @@ import { useRouter } from 'next/router';
 
 const SignUp = () => {
   const router = useRouter();
-  const { updateCurrentUser, currentUser } = useAppContext();
+  const { updateCurrentUser, currentUser } = useUserContext();
   const [userEmail, setUserEmail] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);

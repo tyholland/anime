@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import * as Styles from './header.style.js';
 import Image from 'next/image.js';
-import { useAppContext } from 'src/hooks/user.js';
+import { useUserContext } from 'src/hooks/user.js';
 import Button from 'Components/button/button.js';
 import { useRouter } from 'next/router.js';
 import MobileHeader from 'Components/mobile-header/mobile-header.js';
 
 const Header = () => {
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const router = useRouter();
   const [btnText, setBtnText] = useState('Login');
   const [btnlink, setBtnlink] = useState('/login');

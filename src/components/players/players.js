@@ -7,7 +7,7 @@ import TextField from 'Components/text-field/text-field';
 import Button from 'Components/button/button';
 import { getAffinitiesTypes } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 
 const Players = ({
   data,
@@ -21,7 +21,7 @@ const Players = ({
   series = 'all',
 }) => {
   const router = useRouter();
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [rows, setRows] = useState([]);
   const [listOfPlayers, setListOfPlayers] = useState(data);
   const [seriesArr, setSeriesArr] = useState([]);

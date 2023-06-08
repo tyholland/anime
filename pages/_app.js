@@ -1,6 +1,6 @@
 import Header from 'Components/header/header';
 import * as GlobalStyles from 'Styles/global.style';
-import { AppWrapper } from 'src/hooks/user';
+import { UserWrapper } from 'src/hooks/user';
 import { useEffect, useState } from 'react';
 import { addEvent } from 'Utils/amplitude';
 import { firebaseApp } from 'Utils/firebase';
@@ -10,6 +10,7 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { FRIDAY, MONDAY, SUNDAY, THURSDAY, alerts } from 'Utils/constants.js';
+import { LeagueWrapper } from 'src/hooks/league';
 
 const MyApp = ({ Component, pageProps, router }) => {
   firebaseApp();
@@ -80,17 +81,19 @@ const MyApp = ({ Component, pageProps, router }) => {
   }, []);
 
   return (
-    <AppWrapper>
-      <GlobalStyles.GlobalStyles />
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
-      <Notification
-        message={msg}
-        modalIsOpen={isAlertModalOpen}
-        closeModal={closeModal}
-      />
-    </AppWrapper>
+    <UserWrapper>
+      <LeagueWrapper>
+        <GlobalStyles.GlobalStyles />
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
+        <Notification
+          message={msg}
+          modalIsOpen={isAlertModalOpen}
+          closeModal={closeModal}
+        />
+      </LeagueWrapper>
+    </UserWrapper>
   );
 };
 

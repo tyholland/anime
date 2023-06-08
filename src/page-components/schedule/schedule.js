@@ -5,7 +5,7 @@ import ReadMore from 'Components/read-more/read-more';
 import { useRouter } from 'next/router';
 import Error from 'PageComponents/error/error';
 import React, { useEffect, useState } from 'react';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import { getSchedule } from 'src/requests/team';
 import * as GlobalStyles from 'Styles/global.style';
 import { addEvent } from 'Utils/amplitude';
@@ -16,7 +16,7 @@ import Notification from 'src/modals/notification/notification';
 
 const Schedule = () => {
   const router = useRouter();
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [games, setGames] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
   const [account, setAccount] = useState(null);

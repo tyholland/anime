@@ -12,13 +12,13 @@ import ErrorMsg from 'Components/error-msg/error-msg.js';
 import { useRouter } from 'next/router.js';
 import Loader from 'Components/loader/loader.js';
 import Error from 'PageComponents/error/error.js';
-import { useAppContext } from 'src/hooks/user.js';
+import { useUserContext } from 'src/hooks/user.js';
 import NotUser from 'Components/not-user/not-user.js';
 import ReadMore from 'Components/read-more/read-more.js';
 
 const TeamInfo = () => {
   const router = useRouter();
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [edit, setEdit] = useState(false);
   const [teamData, setTeamData] = useState(null);
   const [teamName, setTeamName] = useState(null);

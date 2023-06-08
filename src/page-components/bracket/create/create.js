@@ -8,7 +8,7 @@ import { addEvent } from 'Utils/amplitude';
 import { randomInt, responseError } from 'Utils/index';
 import { getPlayers } from 'src/requests/player';
 import Error from 'PageComponents/error/error';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
 import { createBracket } from 'src/requests/bracket';
@@ -117,7 +117,7 @@ const BracketCreate = () => {
     },
   };
   const router = useRouter();
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [players, setPlayers] = useState(null);
   const [allPlayers, setAllPlayers] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);

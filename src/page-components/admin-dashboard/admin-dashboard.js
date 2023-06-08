@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as GlobalStyles from 'Styles/global.style';
 import Metadata from 'Components/metadata/metadata';
 import Button from 'Components/button/button';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import Loader from 'Components/loader/loader';
 import TextField from 'Components/text-field/text-field';
 import { responseError } from 'Utils/index';
@@ -15,7 +15,7 @@ import * as Styles from './adminDashboard.style';
 import Image from 'next/image';
 
 const AdminDashboard = () => {
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [hasAccess, setHasAccess] = useState(true);
   const [players, setPlayers] = useState(null);
   const [isLoading, setIsLoading] = useState(true);

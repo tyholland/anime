@@ -8,9 +8,9 @@ import {
   setCachedData,
 } from 'Utils/index';
 
-const AppContext = createContext();
+const UserContext = createContext();
 
-export const AppWrapper = ({ children }) => {
+export const UserWrapper = ({ children }) => {
   const [contextUser, setContextUser] = useState(null);
   const cachedUser = getCachedData('aflUser');
 
@@ -50,10 +50,10 @@ export const AppWrapper = ({ children }) => {
   };
 
   return (
-    <AppContext.Provider value={sharedState}>{children}</AppContext.Provider>
+    <UserContext.Provider value={sharedState}>{children}</UserContext.Provider>
   );
 };
 
-export const useAppContext = () => {
-  return useContext(AppContext);
+export const useUserContext = () => {
+  return useContext(UserContext);
 };

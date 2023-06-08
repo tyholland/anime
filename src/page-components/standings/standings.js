@@ -5,7 +5,7 @@ import ReadMore from 'Components/read-more/read-more';
 import { useRouter } from 'next/router';
 import Error from 'PageComponents/error/error';
 import React, { useEffect, useState } from 'react';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import { getStandings } from 'src/requests/league';
 import * as GlobalStyles from 'Styles/global.style';
 import { addEvent } from 'Utils/amplitude';
@@ -15,7 +15,7 @@ import LeagueChamp from 'Components/league-champ/league-champ';
 
 const Standings = () => {
   const router = useRouter();
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [games, setGames] = useState(null);
   const [errorPage, setErrorPage] = useState(false);
   const [account, setAccount] = useState(null);

@@ -10,7 +10,7 @@ import { getPlayoffs } from 'src/requests/league';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error/error';
-import { useAppContext } from 'src/hooks/user';
+import { useUserContext } from 'src/hooks/user';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
 import LeagueChamp from 'Components/league-champ/league-champ';
@@ -68,7 +68,7 @@ const Playoffs = () => {
   ];
 
   const router = useRouter();
-  const { currentUser } = useAppContext();
+  const { currentUser } = useUserContext();
   const [round1, setRound1] = useState(defaultFirstRound);
   const [round2, setRound2] = useState(defaultSemis);
   const [round3, setRound3] = useState(defaultFinals);
