@@ -1,31 +1,36 @@
 import { createContext, useContext, useState } from 'react';
-import {
-  deleteCachedData,
-  getCachedData,
-  setCachedData,
-} from 'Utils/index';
+import { deleteStorageData, getStorageData, setStorageData } from 'Utils/index';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+import { MONDAY } from 'Utils/constants';
 
 const TeamContext = createContext();
 
 export const TeamWrapper = ({ children }) => {
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
   const [contextTeam, setContextTeam] = useState(null);
   const [contextTeamInfo, setContextTeamInfo] = useState(null);
   const [contextTeamRecap, setContextTeamRecap] = useState(null);
-  const cachedTeamInfo = getCachedData('aflTeam.info');
-  const cachedTeamRecap = getCachedData('aflTeam.recap');
-  const captain = getCachedData('aflTeam.captain');
-  const brawler_a = getCachedData('aflTeam.brawler_a');
-  const brawler_b = getCachedData('aflTeam.brawler_b');
-  const bs_brawler = getCachedData('aflTeam.bs_brawler');
-  const bs_support = getCachedData('aflTeam.bs_support');
-  const support = getCachedData('aflTeam.support');
-  const battlefield = getCachedData('aflTeam.battlefield');
-  const villain = getCachedData('aflTeam.villain');
-  const bench0 = getCachedData('aflTeam.bench0');
-  const bench1 = getCachedData('aflTeam.bench1');
-  const bench2 = getCachedData('aflTeam.bench2');
-  const bench3 = getCachedData('aflTeam.bench3');
-  const details = getCachedData('aflTeam.details');
+  const cachedTeamInfo = getStorageData('aflTeam.info');
+  const cachedTeamRecap = getStorageData('aflTeam.recap');
+  const captain = getStorageData('aflTeam.captain');
+  const brawler_a = getStorageData('aflTeam.brawler_a');
+  const brawler_b = getStorageData('aflTeam.brawler_b');
+  const bs_brawler = getStorageData('aflTeam.bs_brawler');
+  const bs_support = getStorageData('aflTeam.bs_support');
+  const support = getStorageData('aflTeam.support');
+  const battlefield = getStorageData('aflTeam.battlefield');
+  const villain = getStorageData('aflTeam.villain');
+  const bench0 = getStorageData('aflTeam.bench0');
+  const bench1 = getStorageData('aflTeam.bench1');
+  const bench2 = getStorageData('aflTeam.bench2');
+  const bench3 = getStorageData('aflTeam.bench3');
+  const details = getStorageData('aflTeam.details');
+  const currentDate = new Date();
+  const date = dayjs.tz(currentDate, 'America/New_York');
+  const dayOfTheWeek = date.day() === MONDAY;
 
   let allTeamData = null;
   let allInfoData = null;
@@ -33,21 +38,30 @@ export const TeamWrapper = ({ children }) => {
 
   if (contextTeam) {
     allTeamData = contextTeam;
+    allTeamData.isMonday = dayOfTheWeek;
   } else if (captain) {
     allTeamData = {
-      captain,
-      brawler_a,
-      brawler_b,
-      bs_brawler,
-      bs_support,
-      support,
-      battlefield,
-      villain,
-      bench0,
-      bench1,
-      bench2,
-      bench3,
-      ...details,
+      team: {
+        captain,
+        brawler_a,
+        brawler_b,
+        bs_brawler,
+        bs_support,
+        support,
+        battlefield,
+        villain,
+        bench0,
+        bench1,
+        bench2,
+        bench3,
+        activeAffinity: details.activeAffinity,
+        affinity: details.affinity,
+        week: details.week,
+      },
+      memberId: details.memberId,
+      teamName: details.teamName,
+      userPoints: details.userPoints,
+      isMonday: dayOfTheWeek,
     };
   }
 
@@ -64,71 +78,85 @@ export const TeamWrapper = ({ children }) => {
   }
 
   const updateTeamData = (additionalInfo) => {
+    delete additionalInfo.info;
+    delete additionalInfo.recap;
+
     const data = {
       ...allTeamData,
-      ...additionalInfo
+      ...additionalInfo,
     };
 
     setContextTeam(data);
-    setCachedData('aflTeam.captain', JSON.stringify(data.captain));
-    setCachedData('aflTeam.brawler_a', JSON.stringify(data.brawler_a));
-    setCachedData('aflTeam.brawler_b', JSON.stringify(data.brawler_b));
-    setCachedData('aflTeam.bs_brawler', JSON.stringify(data.bs_brawler));
-    setCachedData('aflTeam.bs_support', JSON.stringify(data.bs_support));
-    setCachedData('aflTeam.support', JSON.stringify(data.support));
-    setCachedData('aflTeam.battlefield', JSON.stringify(data.battlefield));
-    setCachedData('aflTeam.villain', JSON.stringify(data.villain));
-    setCachedData('aflTeam.bench0', JSON.stringify(data.bench0));
-    setCachedData('aflTeam.bench1', JSON.stringify(data.bench1));
-    setCachedData('aflTeam.bench2', JSON.stringify(data.bench2));
-    setCachedData('aflTeam.bench3', JSON.stringify(data.bench3));
-    setCachedData('aflTeam.details', JSON.stringify({
-      activeAffinity: data.activeAffinity,
-      affinity: data.affinity,
-      week: data.week,
-    }));
+    setStorageData('aflTeam.captain', JSON.stringify(data.team.captain));
+    setStorageData('aflTeam.brawler_a', JSON.stringify(data.team.brawler_a));
+    setStorageData('aflTeam.brawler_b', JSON.stringify(data.team.brawler_b));
+    setStorageData('aflTeam.bs_brawler', JSON.stringify(data.team.bs_brawler));
+    setStorageData('aflTeam.bs_support', JSON.stringify(data.team.bs_support));
+    setStorageData('aflTeam.support', JSON.stringify(data.team.support));
+    setStorageData(
+      'aflTeam.battlefield',
+      JSON.stringify(data.team.battlefield)
+    );
+    setStorageData('aflTeam.villain', JSON.stringify(data.team.villain));
+    setStorageData('aflTeam.bench0', JSON.stringify(data.team.bench0));
+    setStorageData('aflTeam.bench1', JSON.stringify(data.team.bench1));
+    setStorageData('aflTeam.bench2', JSON.stringify(data.team.bench2));
+    setStorageData('aflTeam.bench3', JSON.stringify(data.team.bench3));
+    setStorageData(
+      'aflTeam.details',
+      JSON.stringify({
+        activeAffinity: data.team.activeAffinity,
+        affinity: data.team.affinity,
+        week: data.team.week,
+        memberId: data.memberId,
+        teamName: data.teamName,
+        userPoints: data.userPoints,
+      })
+    );
   };
 
   const updateInfoData = (additionalInfo) => {
     const data = {
       ...allInfoData,
-      ...additionalInfo
+      ...additionalInfo,
     };
 
     setContextTeamInfo(data);
-    setCachedData('aflTeam.info', JSON.stringify(data));
+    setStorageData('aflTeam.info', JSON.stringify(data));
   };
 
   const updateRecapData = (additionalInfo) => {
     const data = {
       ...allRecapData,
-      ...additionalInfo
+      ...additionalInfo,
     };
 
     setContextTeamRecap(data);
-    setCachedData('aflTeam.recap', JSON.stringify(data));
+    setStorageData('aflTeam.recap', JSON.stringify(data));
   };
 
   const deleteTeamData = () => {
-    deleteCachedData('aflTeam.info');
-    deleteCachedData('aflTeam.recap');
-    deleteCachedData('aflTeam.captain');
-    deleteCachedData('aflTeam.brawler_a');
-    deleteCachedData('aflTeam.brawler_b');
-    deleteCachedData('aflTeam.bs_brawler');
-    deleteCachedData('aflTeam.bs_support');
-    deleteCachedData('aflTeam.support');
-    deleteCachedData('aflTeam.battlefield');
-    deleteCachedData('aflTeam.villain');
-    deleteCachedData('aflTeam.bench0');
-    deleteCachedData('aflTeam.bench1');
-    deleteCachedData('aflTeam.bench2');
-    deleteCachedData('aflTeam.bench3');
-    deleteCachedData('aflTeam.details');
+    deleteStorageData('aflTeam.info');
+    deleteStorageData('aflTeam.recap');
+    deleteStorageData('aflTeam.captain');
+    deleteStorageData('aflTeam.brawler_a');
+    deleteStorageData('aflTeam.brawler_b');
+    deleteStorageData('aflTeam.bs_brawler');
+    deleteStorageData('aflTeam.bs_support');
+    deleteStorageData('aflTeam.support');
+    deleteStorageData('aflTeam.battlefield');
+    deleteStorageData('aflTeam.villain');
+    deleteStorageData('aflTeam.bench0');
+    deleteStorageData('aflTeam.bench1');
+    deleteStorageData('aflTeam.bench2');
+    deleteStorageData('aflTeam.bench3');
+    deleteStorageData('aflTeam.details');
     setContextTeam(null);
     setContextTeamInfo(null);
     setContextTeamRecap(null);
   };
+
+  const handleLeagueRefresh = !!allTeamData?.isMonday;
 
   const sharedState = {
     allTeamData,
@@ -138,6 +166,7 @@ export const TeamWrapper = ({ children }) => {
     updateInfoData,
     updateRecapData,
     deleteTeamData,
+    handleLeagueRefresh,
   };
 
   return (

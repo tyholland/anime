@@ -21,7 +21,15 @@ import { useTeamContext } from 'src/hooks/team.js';
 const Team = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
-  const { updateTeamData, updateInfoData, updateRecapData, allInfoData, allRecapData, allTeamData } = useTeamContext();
+  const {
+    updateTeamData,
+    updateInfoData,
+    updateRecapData,
+    allInfoData,
+    allRecapData,
+    allTeamData,
+    handleLeagueRefresh,
+  } = useTeamContext();
   const [teamId, setTeamId] = useState(null);
   const [teamData, setTeamData] = useState(null);
   const [rank, setRank] = useState(null);
@@ -58,30 +66,34 @@ const Team = () => {
     setModalIsOpen(!!recap);
     setRecap(recap);
     setLeagueId(info.league_id);
-    setIsDisabledRosterEdit(info.is_roster_active === 0 || info.draft_complete === 0 || info.active === 0);
+    setIsDisabledRosterEdit(
+      info.is_roster_active === 0 ||
+        info.draft_complete === 0 ||
+        info.active === 0
+    );
     setBenchSize(info.benchSize);
   };
 
   const handleTeam = async () => {
     const { team_id } = router.query;
 
-    if (allTeamData) {
+    if (allTeamData && !handleLeagueRefresh) {
       const teamInfo = {
-        team: allTeamData,
+        ...allTeamData,
         info: allInfoData,
-        recap: allRecapData
+        recap: allRecapData,
       };
-      
+
       handleTeamSetup(teamInfo, team_id);
       return;
     }
 
     try {
       const teamData = await getTeam(team_id, currentUser?.token);
-      const { team, info, recap } = teamData;
+      const { info, recap } = teamData;
 
       handleTeamSetup(teamData, team_id);
-      updateTeamData(team);
+      updateTeamData(teamData);
       updateInfoData(info);
       if (recap) {
         updateRecapData(recap);
@@ -135,7 +147,9 @@ const Team = () => {
                     <Styles.TeamName>{teamData.teamName}</Styles.TeamName>
                     {hideWeek ||
                       (!isPastWeek && (
-                        <Styles.TeamLeague>Week: {teamData.team.week}</Styles.TeamLeague>
+                        <Styles.TeamLeague>
+                          Week: {teamData.team.week}
+                        </Styles.TeamLeague>
                       ))}
                     <Styles.TeamLeague>
                       Rank: {`${rank.win}-${rank.loss}`}

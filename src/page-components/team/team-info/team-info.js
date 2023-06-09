@@ -15,10 +15,12 @@ import Error from 'PageComponents/error/error.js';
 import { useUserContext } from 'src/hooks/user.js';
 import NotUser from 'Components/not-user/not-user.js';
 import ReadMore from 'Components/read-more/read-more.js';
+import { useTeamContext } from 'src/hooks/team.js';
 
 const TeamInfo = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
+  const { allInfoData, updateInfoData, handleLeagueRefresh } = useTeamContext();
   const [edit, setEdit] = useState(false);
   const [teamData, setTeamData] = useState(null);
   const [teamName, setTeamName] = useState(null);
@@ -42,11 +44,14 @@ const TeamInfo = () => {
       addEvent('Change Team Name', {
         previous: teamName,
         new: changedName,
-        userId: currentUser?.user_id
+        userId: currentUser?.user_id,
       });
 
       setTeamName(changedName);
       setEdit(false);
+      updateInfoData({
+        team_name: changedName,
+      });
     } catch (err) {
       addEvent('Error', responseError(err, 'Change Team Name'));
       setErrorMsg(err.response.data.message);
@@ -69,6 +74,12 @@ const TeamInfo = () => {
 
   const handleTeamInfo = async () => {
     const { member_id } = router.query;
+
+    if (allInfoData && !handleLeagueRefresh) {
+      setTeamName(allInfoData.team_name);
+      setTeamData(allInfoData);
+      return;
+    }
 
     try {
       const teamData = await getTeamInfo(member_id, currentUser?.token);

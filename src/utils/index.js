@@ -165,11 +165,36 @@ export const getCachedData = (name) => {
 };
 
 export const setCachedData = (name, value) => {
-  document.cookie = `${name} = ${encryptData(value)}; secure; SameSite=Strict`;
+  document.cookie = `${name} = ${encryptData(value)}; secure; max-age=${
+    5 * 24 * 60 * 60
+  }`;
 };
 
 export const deleteCachedData = (name) => {
   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+};
+
+export const getStorageData = (name) => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  const stored = window.localStorage.getItem(name);
+
+  if (stored) {
+    const decryptedVal = decryptData(stored);
+    return JSON.parse(decryptedVal);
+  }
+
+  return null;
+};
+
+export const setStorageData = (name, value) => {
+  window.localStorage.setItem(name, encryptData(value));
+};
+
+export const deleteStorageData = (name) => {
+  window.localStorage.removeItem(name);
 };
 
 export const getNonLoggedInUser = () => {

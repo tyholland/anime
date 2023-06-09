@@ -177,7 +177,7 @@ const Home = () => {
         <div className="series">
           {allSeries.sort().map((item) => {
             return (
-              <Link key={item} href={item.url}>
+              <Link key={item.name} href={item.url}>
                 <button>{item.name}</button>
               </Link>
             );

@@ -18,10 +18,13 @@ import ReadMore from 'Components/read-more/read-more';
 import MakeTeam from 'Components/gameplay-card/make-team';
 import BioReview from 'src/modals/bio-review/bio-review';
 import SwapPlayer from 'src/modals/swap-player/swap-player';
+import { useTeamContext } from 'src/hooks/team';
 
 const TeamEdit = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
+  const { allTeamData, allInfoData, handleLeagueRefresh } =
+    useTeamContext();
   const [players, setPlayers] = useState(null);
   const [allPlayers, setAllPlayers] = useState(null);
   const [teamId, setTeamId] = useState(null);
@@ -39,6 +42,31 @@ const TeamEdit = () => {
   const [characterId, setCharacterId] = useState(null);
   const [benchSize, setBenchSize] = useState(0);
 
+  const handleTeamSetup = (teamData, unusedPlayers, allPlayers, team_id) => {
+    const { team, userPoints, info } = teamData;
+
+    setPlayerList({
+      captain: team.captain,
+      brawlerA: team.brawler_a,
+      brawlerB: team.brawler_b,
+      bsBrawler: team.bs_brawler,
+      bsSupport: team.bs_support,
+      support: team.support,
+      villain: team.villain,
+      battlefield: team.battlefield,
+      bench0: team.bench0,
+      bench1: team.bench1,
+      bench2: team.bench2,
+      bench3: team.bench3,
+      userPoints,
+    });
+    setPlayers(unusedPlayers);
+    setAllPlayers(allPlayers);
+    setTeamId(team_id);
+    setLeagueWeek(team.week);
+    setBenchSize(info.benchSize);
+  };
+
   const handleTeamData = async () => {
     const { team_id } = router.query;
 
@@ -47,30 +75,20 @@ const TeamEdit = () => {
         team_id,
         currentUser?.token
       );
+
+      if (allTeamData && !handleLeagueRefresh) {
+        const teamInfo = {
+          ...allTeamData,
+          info: allInfoData,
+        };
+
+        handleTeamSetup(teamInfo, unusedPlayers, allPlayers, team_id);
+        return;
+      }
+
       const teamData = await getTeam(team_id, currentUser?.token);
 
-      const { team, userPoints, info } = teamData;
-
-      setPlayerList({
-        captain: team.captain,
-        brawlerA: team.brawler_a,
-        brawlerB: team.brawler_b,
-        bsBrawler: team.bs_brawler,
-        bsSupport: team.bs_support,
-        support: team.support,
-        villain: team.villain,
-        battlefield: team.battlefield,
-        bench0: team.bench0,
-        bench1: team.bench1,
-        bench2: team.bench2,
-        bench3: team.bench3,
-        userPoints,
-      });
-      setPlayers(unusedPlayers);
-      setAllPlayers(allPlayers);
-      setTeamId(team_id);
-      setLeagueWeek(team.week);
-      setBenchSize(info.benchSize);
+      handleTeamSetup(teamData, unusedPlayers, allPlayers, team_id);
     } catch (err) {
       addEvent(
         'Error',
@@ -212,14 +230,18 @@ const TeamEdit = () => {
     const totalPoints = getUserPoints(thePlayers);
 
     try {
-      const { players } = await updateTeam(teamId, thePlayers, currentUser?.token);
+      const { players } = await updateTeam(
+        teamId,
+        thePlayers,
+        currentUser?.token
+      );
       const { unusedPlayers } = await getUseablePlayers(
         teamId,
         currentUser?.token
       );
 
       thePlayers['userPoints'] = totalPoints;
-      const updatedPlayer = players.filter(item => {
+      const updatedPlayer = players.filter((item) => {
         return item.name === thePlayers[field].name;
       })[0];
 
@@ -256,8 +278,12 @@ const TeamEdit = () => {
 
     return (
       <Styles.TeamEditGrid key={`${player.id}-${type}`}>
-        <Styles.TeamEditSection className="desktop">{rankDesktop}</Styles.TeamEditSection>
-        <Styles.TeamEditSection className="mobile">{rankMobile}</Styles.TeamEditSection>
+        <Styles.TeamEditSection className="desktop">
+          {rankDesktop}
+        </Styles.TeamEditSection>
+        <Styles.TeamEditSection className="mobile">
+          {rankMobile}
+        </Styles.TeamEditSection>
         <Styles.TeamEditSection className="character">
           <Button
             btnText={player.name}
@@ -265,15 +291,18 @@ const TeamEdit = () => {
             customBtnClass="text edit"
           />
           <div className="affinities">
-            {!!player.id && player?.affinity?.map((item) => {
-              return (
-                <GlobalStyles.GlobalCircle
-                  key={item.type}
-                  className={`team ${item.type}`}
-                  title={item.type === 'noAffinity' ? 'no affinity' : item.type}
-                ></GlobalStyles.GlobalCircle>
-              );
-            })}
+            {!!player.id &&
+              player?.affinity?.map((item) => {
+                return (
+                  <GlobalStyles.GlobalCircle
+                    key={item.type}
+                    className={`team ${item.type}`}
+                    title={
+                      item.type === 'noAffinity' ? 'no affinity' : item.type
+                    }
+                  ></GlobalStyles.GlobalCircle>
+                );
+              })}
           </div>
           {!!player.cost && <div className="points">Points: {player.cost}</div>}
         </Styles.TeamEditSection>
@@ -291,7 +320,12 @@ const TeamEdit = () => {
     case 3:
       return [playerList.bench0, playerList.bench1, playerList.bench2];
     case 4:
-      return [playerList.bench0, playerList.bench1, playerList.bench2, playerList.bench3];
+      return [
+        playerList.bench0,
+        playerList.bench1,
+        playerList.bench2,
+        playerList.bench3,
+      ];
     default:
       return [];
     }
@@ -337,16 +371,61 @@ const TeamEdit = () => {
                 </GlobalStyles.GlobalSubTitle>
                 {!!errorMsg && <ErrorMsg msg={errorMsg} />}
                 <Styles.TeamEditWrapper>
-                  {handleCharacterLine('Captain', 'C', playerList.captain, 'captain')}
-                  {handleCharacterLine('Brawler', 'B', playerList.brawlerA, 'brawlerA')}
-                  {handleCharacterLine('Brawler', 'B', playerList.brawlerB, 'brawlerB')}
-                  {handleCharacterLine('Duo - Brawler', 'Duo - B', playerList.bsBrawler, 'bsBrawler')}
-                  {handleCharacterLine('Duo - Support', 'Duo - S', playerList.bsSupport, 'bsSupport')}
-                  {handleCharacterLine('Support', 'S', playerList.support, 'support')}
-                  {handleCharacterLine('Villain', 'V', playerList.villain, 'villain')}
-                  {handleCharacterLine('Battlefield', 'BF', playerList.battlefield, 'battlefield')}
+                  {handleCharacterLine(
+                    'Captain',
+                    'C',
+                    playerList.captain,
+                    'captain'
+                  )}
+                  {handleCharacterLine(
+                    'Brawler',
+                    'B',
+                    playerList.brawlerA,
+                    'brawlerA'
+                  )}
+                  {handleCharacterLine(
+                    'Brawler',
+                    'B',
+                    playerList.brawlerB,
+                    'brawlerB'
+                  )}
+                  {handleCharacterLine(
+                    'Duo - Brawler',
+                    'Duo - B',
+                    playerList.bsBrawler,
+                    'bsBrawler'
+                  )}
+                  {handleCharacterLine(
+                    'Duo - Support',
+                    'Duo - S',
+                    playerList.bsSupport,
+                    'bsSupport'
+                  )}
+                  {handleCharacterLine(
+                    'Support',
+                    'S',
+                    playerList.support,
+                    'support'
+                  )}
+                  {handleCharacterLine(
+                    'Villain',
+                    'V',
+                    playerList.villain,
+                    'villain'
+                  )}
+                  {handleCharacterLine(
+                    'Battlefield',
+                    'BF',
+                    playerList.battlefield,
+                    'battlefield'
+                  )}
                   {handleBench(benchSize).map((bench, index) => {
-                    return handleCharacterLine('Bench', 'BN', bench, `bench${index}`);
+                    return handleCharacterLine(
+                      'Bench',
+                      'BN',
+                      bench,
+                      `bench${index}`
+                    );
                   })}
                 </Styles.TeamEditWrapper>
                 <Styles.TeamEditWrapper className="return">
