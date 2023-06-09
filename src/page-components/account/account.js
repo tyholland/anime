@@ -16,9 +16,13 @@ import ErrorMsg from 'Components/error-msg/error-msg';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
 import Disclaimer from 'Components/disclaimer/disclaimer';
+import { useLeagueContext } from 'src/hooks/league';
+import { useTeamContext } from 'src/hooks/team';
 
 const Account = () => {
   const { deleteCurrentUser, currentUser } = useUserContext();
+  const { deleteLeagueData } = useLeagueContext();
+  const { deleteTeamData } = useTeamContext();
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isPwdLoading, setIsPwdLoading] = useState(false);
@@ -41,6 +45,8 @@ const Account = () => {
     try {
       await signOut(auth);
       await deleteCurrentUser();
+      deleteLeagueData();
+      deleteTeamData();
       addEvent('Account logout');
       router.push('/');
     } catch (err) {

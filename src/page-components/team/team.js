@@ -7,7 +7,7 @@ import BackLink from 'Components/back-link/back-link.js';
 import Metadata from 'Components/metadata/metadata.js';
 import { useRouter } from 'next/router.js';
 import Error from 'PageComponents/error/error.js';
-import { responseError } from 'Utils/index.js';
+import { deleteCachedData, responseError } from 'Utils/index.js';
 import { getTeam, hideRecap } from 'src/requests/team.js';
 import Loader from 'Components/loader/loader.js';
 import { addEvent } from 'Utils/amplitude.js';
@@ -16,10 +16,12 @@ import NotUser from 'Components/not-user/not-user.js';
 import ReadMore from 'Components/read-more/read-more.js';
 import Recap from 'src/modals/recap/recap.js';
 import BenchCard from 'Components/bench-card/bench-card.js';
+import { useTeamContext } from 'src/hooks/team.js';
 
 const Team = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
+  const { updateTeamData, updateInfoData, updateRecapData, allInfoData, allRecapData, allTeamData } = useTeamContext();
   const [teamId, setTeamId] = useState(null);
   const [teamData, setTeamData] = useState(null);
   const [rank, setRank] = useState(null);
@@ -34,34 +36,56 @@ const Team = () => {
   const [isDisabledRosterEdit, setIsDisabledRosterEdit] = useState(false);
   const [benchSize, setBenchSize] = useState(0);
 
+  const handleTeamSetup = (teamData, team_id) => {
+    const { team, info, recap } = teamData;
+
+    const totalPoints =
+      team.captain.teamPoints +
+      team.brawler_a.teamPoints +
+      team.brawler_b.teamPoints +
+      team.bs_brawler.teamPoints +
+      team.bs_support.teamPoints +
+      team.support.teamPoints +
+      team.villain.teamPoints +
+      team.battlefield.teamPoints;
+
+    setTeamId(team_id);
+    setRank(info.rank);
+    setIsPastWeek(team.week < info.leagueWeek);
+    setTotalPoints(totalPoints || 0);
+    setTeamData(teamData);
+    setHideWeek(team.week < 1);
+    setModalIsOpen(!!recap);
+    setRecap(recap);
+    setLeagueId(info.league_id);
+    setIsDisabledRosterEdit(info.is_roster_active === 0 || info.draft_complete === 0 || info.active === 0);
+    setBenchSize(info.benchSize);
+  };
+
   const handleTeam = async () => {
     const { team_id } = router.query;
+
+    if (allTeamData) {
+      const teamInfo = {
+        team: allTeamData,
+        info: allInfoData,
+        recap: allRecapData
+      };
+      
+      handleTeamSetup(teamInfo, team_id);
+      return;
+    }
 
     try {
       const teamData = await getTeam(team_id, currentUser?.token);
       const { team, info, recap } = teamData;
 
-      const totalPoints =
-        team.captain.teamPoints +
-        team.brawler_a.teamPoints +
-        team.brawler_b.teamPoints +
-        team.bs_brawler.teamPoints +
-        team.bs_support.teamPoints +
-        team.support.teamPoints +
-        team.villain.teamPoints +
-        team.battlefield.teamPoints;
-
-      setTeamId(team_id);
-      setRank(info.rank);
-      setIsPastWeek(team.week < info.leagueWeek);
-      setTotalPoints(totalPoints || 0);
-      setTeamData(teamData);
-      setHideWeek(team.week < 1);
-      setModalIsOpen(!!recap);
-      setRecap(recap);
-      setLeagueId(info.league_id);
-      setIsDisabledRosterEdit(info.is_roster_active === 0 || info.draft_complete === 0 || info.active === 0);
-      setBenchSize(info.benchSize);
+      handleTeamSetup(teamData, team_id);
+      updateTeamData(team);
+      updateInfoData(info);
+      if (recap) {
+        updateRecapData(recap);
+      }
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get team data'));
       setErrorPage(true);
@@ -71,6 +95,7 @@ const Team = () => {
   const closeModal = async () => {
     try {
       await hideRecap(leagueId, currentUser?.token);
+      deleteCachedData('aflTeam.recap');
       setModalIsOpen(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to close modal'));

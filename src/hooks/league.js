@@ -15,7 +15,7 @@ export const LeagueWrapper = ({ children }) => {
   dayjs.extend(utc);
   dayjs.extend(timezone);
   const [contextLeague, setContextLeague] = useState(null);
-  const cachedUser = getCachedData('aflLeague');
+  const cachedLeaguge = getCachedData('aflLeague');
   const currentDate = new Date();
   const date = dayjs.tz(currentDate, 'America/New_York');
   const dayOfTheWeek = date.day() === MONDAY;
@@ -25,8 +25,8 @@ export const LeagueWrapper = ({ children }) => {
   if (contextLeague) {
     allLeagueData = contextLeague;
     allLeagueData.isMonday = dayOfTheWeek;
-  } else if (cachedUser) {
-    allLeagueData = cachedUser;
+  } else if (cachedLeaguge) {
+    allLeagueData = cachedLeaguge;
     allLeagueData.isMonday = dayOfTheWeek;
   }
 
