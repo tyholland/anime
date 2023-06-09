@@ -6,24 +6,18 @@ import { addEvent } from 'Utils/amplitude';
 import { firebaseApp } from 'Utils/firebase';
 import Footer from 'Components/footer/footer';
 import Notification from 'src/modals/notification/notification';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
 import { FRIDAY, MONDAY, SUNDAY, THURSDAY, alerts } from 'Utils/constants.js';
 import { LeagueWrapper } from 'src/hooks/league';
 import { TeamWrapper } from 'src/hooks/team';
-import { getStorageData, setStorageData } from 'Utils/index';
+import { getDate, getStorageData, setStorageData } from 'Utils/index';
 
 const MyApp = ({ Component, pageProps, router }) => {
   firebaseApp();
-  dayjs.extend(utc);
-  dayjs.extend(timezone);
   const [msg, setMsg] = useState(null);
   const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
 
   const handleAlertMsg = (label, message) => {
-    const currentDate = new Date();
-    const date = dayjs.tz(currentDate, 'America/New_York');
+    const date = getDate();
     const theDate = `${date.month()}/${date.date()}/${date.year()}`;
     const previousDate = getStorageData(label);
 
@@ -42,8 +36,7 @@ const MyApp = ({ Component, pageProps, router }) => {
   };
 
   const handleAlerts = () => {
-    const currentDate = new Date();
-    const date = dayjs.tz(currentDate, 'America/New_York');
+    const date = getDate();
     const dayOfTheWeek = date.day();
     const eligiblePage = router.state.pathname !== '/login' && router.state.pathname !== '/sign-up';
 

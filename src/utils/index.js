@@ -185,8 +185,7 @@ export const getStorageData = (name) => {
   const stored = window.localStorage.getItem(name);
 
   if (stored) {
-    const currentDate = new Date();
-    const date = dayjs.tz(currentDate, 'America/New_York');
+    const date = getDate();
     const decryptedVal = decryptData(stored);
     const expire = dayjs.tz(decryptedVal.expiry, 'America/New_York');
 
@@ -202,8 +201,7 @@ export const getStorageData = (name) => {
 };
 
 export const setStorageData = (name, value) => {
-  const currentDate = new Date();
-  const date = dayjs.tz(currentDate, 'America/New_York');
+  const date = getDate();
   const item = {
     value,
     expiry: date.add(5, 'day'),
@@ -230,4 +228,16 @@ export const getNonLoggedInUser = () => {
   }
 
   return parseInt(user);
+};
+
+export const getDate = (defaultDate = null) => {
+  let currentDate = new Date();
+
+  if (defaultDate) {
+    currentDate = new Date(defaultDate);
+  }
+
+  const date = dayjs.tz(currentDate, 'America/New_York');
+
+  return date;
 };

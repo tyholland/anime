@@ -1,15 +1,10 @@
 import { createContext, useContext, useState } from 'react';
-import { deleteStorageData, getStorageData, setStorageData } from 'Utils/index';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
+import { deleteStorageData, getDate, getStorageData, setStorageData } from 'Utils/index';
 import { MONDAY } from 'Utils/constants';
 
 const TeamContext = createContext();
 
 export const TeamWrapper = ({ children }) => {
-  dayjs.extend(utc);
-  dayjs.extend(timezone);
   const [contextTeam, setContextTeam] = useState(null);
   const [contextTeamInfo, setContextTeamInfo] = useState(null);
   const [contextTeamRecap, setContextTeamRecap] = useState(null);
@@ -28,8 +23,7 @@ export const TeamWrapper = ({ children }) => {
   const bench2 = getStorageData('aflTeam.bench2');
   const bench3 = getStorageData('aflTeam.bench3');
   const details = getStorageData('aflTeam.details');
-  const currentDate = new Date();
-  const date = dayjs.tz(currentDate, 'America/New_York');
+  const date = getDate();
   const dayOfTheWeek = date.day() === MONDAY;
 
   let allTeamData = null;

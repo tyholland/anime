@@ -15,7 +15,7 @@ import {
   removeTeamFromLeague,
   updateLeague,
 } from 'src/requests/league';
-import { responseError } from 'Utils/index';
+import { getDate, responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 import ErrorMsg from 'Components/error-msg/error-msg';
 import BackLink from 'Components/back-link/back-link';
@@ -25,17 +25,12 @@ import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
 import { createDraft } from 'src/requests/draft';
 import Notification from 'src/modals/notification/notification';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
 import { useLeagueContext } from 'src/hooks/league';
 
 const Admin = () => {
   const router = useRouter();
-  dayjs.extend(utc);
-  dayjs.extend(timezone);
   const { currentUser } = useUserContext();
-  const { updateLeagueData, leagueData } = useLeagueContext();
+  const { updateLeagueData } = useLeagueContext();
   const [errorPage, setErrorPage] = useState(false);
   const [notLoggedIn, setNotLoggedIn] = useState(false);
   const [editNum, setEditNum] = useState(false);
@@ -131,8 +126,7 @@ const Admin = () => {
   }
 
   const handleYearOptions = () => {
-    const currentDate = new Date();
-    const date = dayjs.tz(currentDate, 'America/New_York');
+    const date = getDate();
     const year = date.year();
     const yearArr = [];
 
@@ -281,7 +275,7 @@ const Admin = () => {
       await createDraft(league.id, currentUser?.token);
       setIsStarted(true);
       setDraftNotify(true);
-      updateLeagueData(leagueData ? leagueData.activeDraft = true : {activeDraft: true});
+      updateLeagueData({activeDraft: true});
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to create draft'));
     }

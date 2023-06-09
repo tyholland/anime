@@ -14,7 +14,7 @@ import { getUseablePlayers } from 'src/requests/player';
 import { getTeam } from 'src/requests/team';
 import * as GlobalStyles from 'Styles/global.style';
 import { addEvent } from 'Utils/amplitude';
-import { responseError } from 'Utils/index';
+import { getDate, responseError } from 'Utils/index';
 import * as Styles from './draft.style';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import Loader from 'Components/loader/loader';
@@ -347,12 +347,8 @@ const Draft = () => {
   };
 
   const handleDraftDay = (schedule) => {
-    const currentDate = new Date();
-    const date = dayjs.tz(currentDate, 'America/New_York');
-    const currentDraftDate = new Date(
-      `${schedule.date.month} ${schedule.date.day}, ${schedule.date.year}`
-    );
-    const draftDate = dayjs.tz(currentDraftDate, 'America/New_York');
+    const date = getDate();
+    const draftDate = getDate(`${schedule.date.month} ${schedule.date.day}, ${schedule.date.year}`);
 
     return !(date.diff(draftDate) < 0);
   };

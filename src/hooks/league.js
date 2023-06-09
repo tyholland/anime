@@ -2,22 +2,17 @@ import { createContext, useContext, useState } from 'react';
 import {
   deleteCachedData,
   getCachedData,
+  getDate,
   setCachedData,
 } from 'Utils/index';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
 import { MONDAY } from 'Utils/constants';
 
 const LeagueContext = createContext();
 
 export const LeagueWrapper = ({ children }) => {
-  dayjs.extend(utc);
-  dayjs.extend(timezone);
   const [contextLeague, setContextLeague] = useState(null);
   const cachedLeaguge = getCachedData('aflLeague');
-  const currentDate = new Date();
-  const date = dayjs.tz(currentDate, 'America/New_York');
+  const date = getDate();
   const dayOfTheWeek = date.day() === MONDAY;
 
   let allLeagueData = null;
