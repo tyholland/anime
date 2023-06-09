@@ -10,11 +10,11 @@ import {
   startRound3,
   startRound4,
   addBracketVotes,
-} from 'src/requests/bracket';
+} from 'Requests/bracket';
 import { useRouter } from 'next/router';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
-import { useUserContext } from 'src/hooks/user';
+import { useUserContext } from 'Hooks/user';
 import * as Styles from './bracket.style';
 import SocialMedia from 'Components/social-media/social-media';
 import Notification from 'src/modals/notification/notification';

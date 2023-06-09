@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as GlobalStyles from 'Styles/global.style.js';
 import * as Styles from './bioCard.style';
-import { getPlayer } from 'src/requests/player';
+import { getPlayer } from 'Requests/player';
 import Error from 'PageComponents/error/error';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';

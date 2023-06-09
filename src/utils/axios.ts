@@ -3,7 +3,7 @@ import axios from 'axios';
 export const axiosClient = async (data) => {
   const { body, method, url, token } = data;
 
-  const options = {
+  const options: Record<string, any> = {
     method,
     url,
   };

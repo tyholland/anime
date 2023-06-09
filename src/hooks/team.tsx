@@ -1,8 +1,23 @@
 import { createContext, useContext, useState } from 'react';
-import { deleteStorageData, getDate, getStorageData, setStorageData } from 'Utils/index';
+import {
+  deleteStorageData,
+  getDate,
+  getStorageData,
+  setStorageData,
+} from 'Utils/index';
 import { MONDAY } from 'Utils/constants';
+import { TeamWrapperContext } from 'Utils/types';
 
-const TeamContext = createContext();
+const TeamContext = createContext<TeamWrapperContext>({
+  allTeamData: null,
+  allInfoData: null,
+  allRecapData: null,
+  updateTeamData: null,
+  updateInfoData: null,
+  updateRecapData: null,
+  deleteTeamData: null,
+  handleTeamRefresh: null,
+});
 
 export const TeamWrapper = ({ children }) => {
   const [contextTeam, setContextTeam] = useState(null);
@@ -26,9 +41,9 @@ export const TeamWrapper = ({ children }) => {
   const date = getDate();
   const dayOfTheWeek = date.day() === MONDAY;
 
-  let allTeamData = null;
-  let allInfoData = null;
-  let allRecapData = null;
+  let allTeamData: Record<string, any> = null;
+  let allInfoData: Record<string, any> = null;
+  let allRecapData: Record<string, any> = null;
 
   if (contextTeam) {
     allTeamData = contextTeam;
@@ -71,7 +86,7 @@ export const TeamWrapper = ({ children }) => {
     allRecapData = cachedTeamRecap;
   }
 
-  const updateTeamData = (additionalInfo) => {
+  const updateTeamData = (additionalInfo: Record<string, any>) => {
     delete additionalInfo.info;
     delete additionalInfo.recap;
 
@@ -109,7 +124,7 @@ export const TeamWrapper = ({ children }) => {
     );
   };
 
-  const updateInfoData = (additionalInfo) => {
+  const updateInfoData = (additionalInfo: Record<string, any>) => {
     const data = {
       ...allInfoData,
       ...additionalInfo,
@@ -119,7 +134,7 @@ export const TeamWrapper = ({ children }) => {
     setStorageData('aflTeam.info', JSON.stringify(data));
   };
 
-  const updateRecapData = (additionalInfo) => {
+  const updateRecapData = (additionalInfo: Record<string, any>) => {
     const data = {
       ...allRecapData,
       ...additionalInfo,
@@ -150,21 +165,23 @@ export const TeamWrapper = ({ children }) => {
     setContextTeamRecap(null);
   };
 
-  const handleLeagueRefresh = !!allTeamData?.isMonday;
-
-  const sharedState = {
-    allTeamData,
-    allInfoData,
-    allRecapData,
-    updateTeamData,
-    updateInfoData,
-    updateRecapData,
-    deleteTeamData,
-    handleLeagueRefresh,
-  };
+  const handleTeamRefresh: boolean = !!allTeamData?.isMonday;
 
   return (
-    <TeamContext.Provider value={sharedState}>{children}</TeamContext.Provider>
+    <TeamContext.Provider
+      value={{
+        allTeamData,
+        allInfoData,
+        allRecapData,
+        updateTeamData,
+        updateInfoData,
+        updateRecapData,
+        deleteTeamData,
+        handleTeamRefresh,
+      }}
+    >
+      {children}
+    </TeamContext.Provider>
   );
 };
 

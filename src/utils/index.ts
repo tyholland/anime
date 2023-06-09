@@ -1,4 +1,4 @@
-import { joinLeague } from 'src/requests/league';
+import { joinLeague } from 'Requests/league';
 import { addEvent } from './amplitude';
 import CryptoJS from 'crypto-js';
 import dayjs from 'dayjs';

@@ -4,23 +4,23 @@ import * as GlobalStyles from 'Styles/global.style.js';
 import Button from 'Components/button/button.js';
 import TextField from 'Components/text-field/text-field.js';
 import BackLink from 'Components/back-link/back-link.js';
-import { getTeamInfo, removeTeam, updateTeamName } from 'src/requests/team.js';
-import { addEvent } from 'Utils/amplitude.js';
+import { getTeamInfo, removeTeam, updateTeamName } from 'Requests/team';
+import { addEvent } from 'Utils/amplitude';
 import Metadata from 'Components/metadata/metadata.js';
-import { responseError } from 'Utils/index.js';
+import { responseError } from 'Utils/index';
 import ErrorMsg from 'Components/error-msg/error-msg.js';
 import { useRouter } from 'next/router.js';
 import Loader from 'Components/loader/loader.js';
 import Error from 'PageComponents/error/error.js';
-import { useUserContext } from 'src/hooks/user.js';
+import { useUserContext } from 'Hooks/user';
 import NotUser from 'Components/not-user/not-user.js';
 import ReadMore from 'Components/read-more/read-more.js';
-import { useTeamContext } from 'src/hooks/team.js';
+import { useTeamContext } from 'Hooks/team';
 
 const TeamInfo = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
-  const { allInfoData, updateInfoData, handleLeagueRefresh } = useTeamContext();
+  const { allInfoData, updateInfoData, handleTeamRefresh } = useTeamContext();
   const [edit, setEdit] = useState(false);
   const [teamData, setTeamData] = useState(null);
   const [teamName, setTeamName] = useState(null);
@@ -75,7 +75,7 @@ const TeamInfo = () => {
   const handleTeamInfo = async () => {
     const { member_id } = router.query;
 
-    if (allInfoData && !handleLeagueRefresh) {
+    if (allInfoData && !handleTeamRefresh) {
       setTeamName(allInfoData.team_name);
       setTeamData(allInfoData);
       return;

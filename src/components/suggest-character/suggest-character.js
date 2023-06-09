@@ -7,9 +7,9 @@ import Select from 'Components/select/select';
 import { addEvent } from 'Utils/amplitude';
 import SocialMedia from 'Components/social-media/social-media';
 import Loader from 'Components/loader/loader';
-import { useUserContext } from 'src/hooks/user';
+import { useUserContext } from 'Hooks/user';
 import { responseError } from 'Utils/index';
-import { addPlayerData } from 'src/requests/player';
+import { addPlayerData } from 'Requests/player';
 
 const SuggestCharacter = () => {
   const { currentUser } = useUserContext();

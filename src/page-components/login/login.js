@@ -5,15 +5,15 @@ import TextField from 'Components/text-field/text-field.js';
 import * as GlobalStyles from 'Styles/global.style.js';
 import Metadata from 'Components/metadata/metadata.js';
 import { useRouter } from 'next/router.js';
-import { useUserContext } from 'src/hooks/user.js';
+import { useUserContext } from 'Hooks/user';
 import {
   joinLeagueSetup,
   redirectToAccount,
   redirectToContinuePage,
   responseError,
-} from 'Utils/index.js';
-import { accountLogin } from 'src/requests/users.js';
-import { addEvent } from 'Utils/amplitude.js';
+} from 'Utils/index';
+import { accountLogin } from 'Requests/users';
+import { addEvent } from 'Utils/amplitude';
 import Loader from 'Components/loader/loader.js';
 import ErrorMsg from 'Components/error-msg/error-msg.js';
 import SingleSignOn from 'Components/single-sign-on/single-sign-on.js';

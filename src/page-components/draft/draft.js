@@ -2,16 +2,16 @@ import Metadata from 'Components/metadata/metadata';
 import Players from 'Components/players/players';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { useUserContext } from 'src/hooks/user';
+import { useUserContext } from 'Hooks/user';
 import BioReview from 'src/modals/bio-review/bio-review';
 import {
   draftNextRound,
   draftPlayers,
   getDraft,
   startDraft,
-} from 'src/requests/draft';
-import { getUseablePlayers } from 'src/requests/player';
-import { getTeam } from 'src/requests/team';
+} from 'Requests/draft';
+import { getUseablePlayers } from 'Requests/player';
+import { getTeam } from 'Requests/team';
 import * as GlobalStyles from 'Styles/global.style';
 import { addEvent } from 'Utils/amplitude';
 import { getDate, responseError } from 'Utils/index';
@@ -20,7 +20,7 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import Loader from 'Components/loader/loader';
 import ReadMore from 'Components/read-more/read-more';
 import Button from 'Components/button/button';
-import { getLeague, startLeague } from 'src/requests/league';
+import { getLeague, startLeague } from 'Requests/league';
 import Collapsible from 'react-collapsible';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';

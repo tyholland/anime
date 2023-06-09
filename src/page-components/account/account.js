@@ -3,11 +3,11 @@ import * as GlobalStyles from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import Metadata from 'Components/metadata/metadata';
 import Button from 'Components/button/button';
-import { useUserContext } from 'src/hooks/user';
+import { useUserContext } from 'Hooks/user';
 import { useRouter } from 'next/router';
 import Loader from 'Components/loader/loader';
 import TextField from 'Components/text-field/text-field';
-import { deleteAccount, getAdminAccess } from 'src/requests/users';
+import { deleteAccount, getAdminAccess } from 'Requests/users';
 import { responseError } from 'Utils/index';
 import * as Styles from './account.style';
 import { addEvent } from 'Utils/amplitude';
@@ -16,8 +16,8 @@ import ErrorMsg from 'Components/error-msg/error-msg';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
 import Disclaimer from 'Components/disclaimer/disclaimer';
-import { useLeagueContext } from 'src/hooks/league';
-import { useTeamContext } from 'src/hooks/team';
+import { useLeagueContext } from 'Hooks/league';
+import { useTeamContext } from 'Hooks/team';
 
 const Account = () => {
   const { deleteCurrentUser, currentUser } = useUserContext();

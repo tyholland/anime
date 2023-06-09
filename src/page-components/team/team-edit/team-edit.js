@@ -3,27 +3,27 @@ import * as GlobalStyles from 'Styles/global.style.js';
 import Button from 'Components/button/button';
 import * as Styles from './teamEdit.style';
 import ChangeCharacters from 'src/modals/change-character/change-character';
-import { getTeam, updateTeam } from 'src/requests/team';
+import { getTeam, updateTeam } from 'Requests/team';
 import Metadata from 'Components/metadata/metadata';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import ErrorMsg from 'Components/error-msg/error-msg';
 import { useRouter } from 'next/router';
-import { getUseablePlayers } from 'src/requests/player';
+import { getUseablePlayers } from 'Requests/player';
 import Error from 'PageComponents/error/error';
 import Loader from 'Components/loader/loader';
-import { useUserContext } from 'src/hooks/user';
+import { useUserContext } from 'Hooks/user';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
 import MakeTeam from 'Components/gameplay-card/make-team';
 import BioReview from 'src/modals/bio-review/bio-review';
 import SwapPlayer from 'src/modals/swap-player/swap-player';
-import { useTeamContext } from 'src/hooks/team';
+import { useTeamContext } from 'Hooks/team';
 
 const TeamEdit = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
-  const { allTeamData, allInfoData, handleLeagueRefresh } =
+  const { allTeamData, allInfoData, handleTeamRefresh } =
     useTeamContext();
   const [players, setPlayers] = useState(null);
   const [allPlayers, setAllPlayers] = useState(null);
@@ -76,7 +76,7 @@ const TeamEdit = () => {
         currentUser?.token
       );
 
-      if (allTeamData && !handleLeagueRefresh) {
+      if (allTeamData && !handleTeamRefresh) {
         const teamInfo = {
           ...allTeamData,
           info: allInfoData,

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Button from '../../components/button/button';
+import Button from 'Components/button/button';
 import * as GlobalStyles from 'Styles/global.style';
 import * as Styles from './characterStats.style';
 import MainModal from '../main/main';
-import { useUserContext } from 'src/hooks/user';
+import { useUserContext } from 'Hooks/user';
 import ErrorMsg from 'Components/error-msg/error-msg';
 
 const CharacterStats = ({

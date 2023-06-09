@@ -8,7 +8,7 @@
     "start": "next start",
     "eslint": "eslint .",
     "eslint-fix": "eslint . --fix",
-    "stylelint": "stylelint src/styles/*.style.js, src/page-components/**/*.style.js, src/page-components/**/**/*.style.js, src/components/**/*.style.js",
+    "stylelint": "stylelint src/styles/*.style.ts, src/page-components/**/*.style.ts, src/page-components/**/**/*.style.ts, src/components/**/*.style.ts",
     "clean": "rm -rf node_modules && yarn",
     "prepare": "husky install"
   },
@@ -41,12 +41,17 @@
     "stylelint": "^14.11.0",
     "stylelint-config-recommended": "^9.0.0",
     "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-prettier": "^2.0.0"
+    "stylelint-prettier": "^2.0.0",
+    "stylelint-processor-styled-components": "0.4",
+    "touch-cli": "^0.0.1"
   },
   "devDependencies": {
+    "@types/react": "^18.2.9",
+    "@types/styled-components": "^5.1.26",
     "core-js": "^3.29.0",
     "eslint": "^8.30.0",
     "eslint-config-next": "12.3.0",
-    "eslint-plugin-react": "^7.31.11"
+    "eslint-plugin-react": "^7.31.11",
+    "typescript": "^5.1.3"
   }
 }

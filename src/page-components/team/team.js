@@ -7,16 +7,16 @@ import BackLink from 'Components/back-link/back-link.js';
 import Metadata from 'Components/metadata/metadata.js';
 import { useRouter } from 'next/router.js';
 import Error from 'PageComponents/error/error.js';
-import { deleteCachedData, responseError } from 'Utils/index.js';
-import { getTeam, hideRecap } from 'src/requests/team.js';
+import { deleteCachedData, responseError } from 'Utils/index';
+import { getTeam, hideRecap } from 'Requests/team';
 import Loader from 'Components/loader/loader.js';
-import { addEvent } from 'Utils/amplitude.js';
-import { useUserContext } from 'src/hooks/user.js';
+import { addEvent } from 'Utils/amplitude';
+import { useUserContext } from 'Hooks/user';
 import NotUser from 'Components/not-user/not-user.js';
 import ReadMore from 'Components/read-more/read-more.js';
 import Recap from 'src/modals/recap/recap.js';
 import BenchCard from 'Components/bench-card/bench-card.js';
-import { useTeamContext } from 'src/hooks/team.js';
+import { useTeamContext } from 'Hooks/team';
 
 const Team = () => {
   const router = useRouter();
@@ -28,7 +28,7 @@ const Team = () => {
     allInfoData,
     allRecapData,
     allTeamData,
-    handleLeagueRefresh,
+    handleTeamRefresh,
   } = useTeamContext();
   const [teamId, setTeamId] = useState(null);
   const [teamData, setTeamData] = useState(null);
@@ -77,7 +77,7 @@ const Team = () => {
   const handleTeam = async () => {
     const { team_id } = router.query;
 
-    if (allTeamData && !handleLeagueRefresh) {
+    if (allTeamData && !handleTeamRefresh) {
       const teamInfo = {
         ...allTeamData,
         info: allInfoData,

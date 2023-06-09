@@ -7,10 +7,10 @@
   "overrides": [
     {
       "files": [
-        "src/styles/*.style.js",
-        "src/page-components/**/*.style.js",
-        "src/page-components/**/**/*.style.js",
-        "src/components/**/*.style.js"
+        "src/styles/*.style.ts",
+        "src/page-components/**/*.style.ts",
+        "src/page-components/**/**/*.style.ts",
+        "src/components/**/*.style.ts"
       ],
       "customSyntax": "@stylelint/postcss-css-in-js",
       "rules": {

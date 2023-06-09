@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import * as GlobalStyles from 'Styles/global.style';
 import Metadata from 'Components/metadata/metadata';
 import Button from 'Components/button/button';
-import { useUserContext } from 'src/hooks/user';
+import { useUserContext } from 'Hooks/user';
 import Loader from 'Components/loader/loader';
 import TextField from 'Components/text-field/text-field';
 import { responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 import NotUser from 'Components/not-user/not-user';
 import Players from 'Components/players/players';
-import { getAdminPlayers, updatePlayerData } from 'src/requests/player';
-import { getAdminAccess } from 'src/requests/users';
+import { getAdminPlayers, updatePlayerData } from 'Requests/player';
+import { getAdminAccess } from 'Requests/users';
 import * as Styles from './adminDashboard.style';
 import Image from 'next/image';
 

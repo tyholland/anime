@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAnimeNews } from 'src/requests/player';
+import { getAnimeNews } from 'Requests/player';
 import { addEvent } from 'Utils/amplitude';
 import { getStorageData, randomInt, responseError, setStorageData } from 'Utils/index';
 import * as Styles from './readMore.style';

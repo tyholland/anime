@@ -5,12 +5,12 @@ import BackLink from 'Components/back-link/back-link';
 import * as GlobalStyles from 'Styles/global.style';
 import * as Styles from './join.style';
 import Metadata from 'Components/metadata/metadata';
-import { joinLeague } from 'src/requests/league';
+import { joinLeague } from 'Requests/league';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import { useRouter } from 'next/router';
 import ErrorMsg from 'Components/error-msg/error-msg';
-import { useUserContext } from 'src/hooks/user';
+import { useUserContext } from 'Hooks/user';
 import Loader from 'Components/loader/loader';
 import ReadMore from 'Components/read-more/read-more';
 

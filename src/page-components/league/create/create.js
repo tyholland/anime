@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Button from 'Components/button/button';
 import TextField from 'Components/text-field/text-field';
 import * as GlobalStyles from 'Styles/global.style.js';
-import { createLeague } from 'src/requests/league';
+import { createLeague } from 'Requests/league';
 import * as Styles from './create.style';
 import BackLink from 'Components/back-link/back-link';
 import Select from 'Components/select/select';
@@ -11,7 +11,7 @@ import Metadata from 'Components/metadata/metadata';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import ErrorMsg from 'Components/error-msg/error-msg';
-import { useUserContext } from 'src/hooks/user';
+import { useUserContext } from 'Hooks/user';
 import Loader from 'Components/loader/loader';
 import ReadMore from 'Components/read-more/read-more';
 

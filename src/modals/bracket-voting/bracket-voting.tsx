@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import * as Styles from './bracketVoting.style.js';
 import Button from 'Components/button/button.js';
-import { getNonLoggedInUser, responseError } from 'Utils/index.js';
-import { addEvent } from 'Utils/amplitude.js';
+import { getNonLoggedInUser, responseError } from 'Utils/index';
+import { addEvent } from 'Utils/amplitude';
 import ErrorMsg from 'Components/error-msg/error-msg.js';
 import MainModal from '../main/main.js';
-import { useUserContext } from 'src/hooks/user.js';
+import { useUserContext } from 'Hooks/user';
 
 const BracketVoting = ({
   playerA,

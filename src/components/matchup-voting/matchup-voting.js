@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import * as Styles from './matchupVoting.style.js';
 import Button from 'Components/button/button.js';
 import SocialMedia from 'Components/social-media/social-media.js';
-import { addVotes } from 'src/requests/matchup.js';
-import { getNonLoggedInUser, responseError } from 'Utils/index.js';
-import { addEvent } from 'Utils/amplitude.js';
+import { addVotes } from 'Requests/matchup';
+import { getNonLoggedInUser, responseError } from 'Utils/index';
+import { addEvent } from 'Utils/amplitude';
 import ErrorMsg from 'Components/error-msg/error-msg.js';
-import { useUserContext } from 'src/hooks/user.js';
+import { useUserContext } from 'Hooks/user';
 import Loader from 'Components/loader/loader.js';
-import { addBracketVotes } from 'src/requests/bracket.js';
+import { addBracketVotes } from 'Requests/bracket';
 
 const MatchupVoting = ({
   userPlayerA,

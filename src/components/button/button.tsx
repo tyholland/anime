@@ -1,9 +1,10 @@
 import Link from 'next/link.js';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import * as Styles from './button.style.js';
 import 'react-tooltip/dist/react-tooltip.css';
 import { Tooltip } from 'react-tooltip';
 import { COLOR_BLACK, COLOR_WHITE } from 'Styles/global.style.js';
+import { ButtonProps } from 'Utils/types.js';
 
 const Button = ({
   btnColor,
@@ -14,7 +15,7 @@ const Button = ({
   isDisabled = false,
   children,
   disabledMsg = 'Currently inactive until futher notice'
-}) => {
+}: PropsWithChildren<ButtonProps>) => {
   const handledBtnAction = () => {
     if (isDisabled) {
       return;

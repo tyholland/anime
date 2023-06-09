@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import { accountLogout } from 'src/requests/users';
+import { accountLogout } from 'Requests/users';
 import { addEvent } from 'Utils/amplitude';
 import {
   deleteCachedData,
@@ -7,14 +7,19 @@ import {
   responseError,
   setCachedData,
 } from 'Utils/index';
+import { UserWrapperContext } from 'Utils/types';
 
-const UserContext = createContext();
+const UserContext = createContext<UserWrapperContext>({
+  currentUser: null,
+  updateCurrentUser: null,
+  deleteCurrentUser: null,
+});
 
 export const UserWrapper = ({ children }) => {
   const [contextUser, setContextUser] = useState(null);
   const cachedUser = getCachedData('aflUser');
 
-  let currentUser = null;
+  let currentUser: Record<string, any> = null;
 
   if (contextUser?.user_id) {
     currentUser = contextUser;
@@ -22,7 +27,7 @@ export const UserWrapper = ({ children }) => {
     currentUser = cachedUser;
   }
 
-  const updateCurrentUser = (userInfo) => {
+  const updateCurrentUser = (userInfo: Record<string, any>) => {
     const data = {
       ...currentUser,
       ...userInfo,
@@ -43,14 +48,16 @@ export const UserWrapper = ({ children }) => {
     }
   };
 
-  const sharedState = {
-    currentUser,
-    updateCurrentUser,
-    deleteCurrentUser,
-  };
-
   return (
-    <UserContext.Provider value={sharedState}>{children}</UserContext.Provider>
+    <UserContext.Provider
+      value={{
+        currentUser,
+        updateCurrentUser,
+        deleteCurrentUser,
+      }}
+    >
+      {children}
+    </UserContext.Provider>
   );
 };
 

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, PropsWithChildren } from 'react';
 import {
   deleteCachedData,
   getCachedData,
@@ -6,16 +6,22 @@ import {
   setCachedData,
 } from 'Utils/index';
 import { MONDAY } from 'Utils/constants';
+import { LeagueWrapperContext } from 'Utils/types';
 
-const LeagueContext = createContext();
+const LeagueContext = createContext<LeagueWrapperContext>({
+  allLeagueData: null,
+  updateLeagueData: null,
+  deleteLeagueData: null,
+  handleLeagueRefresh: null,
+});
 
-export const LeagueWrapper = ({ children }) => {
+export const LeagueWrapper = ({ children }: PropsWithChildren) => {
   const [contextLeague, setContextLeague] = useState(null);
   const cachedLeaguge = getCachedData('aflLeague');
   const date = getDate();
   const dayOfTheWeek = date.day() === MONDAY;
 
-  let allLeagueData = null;
+  let allLeagueData: Record<string, any> = null;
 
   if (contextLeague) {
     allLeagueData = contextLeague;
@@ -25,11 +31,10 @@ export const LeagueWrapper = ({ children }) => {
     allLeagueData.isMonday = dayOfTheWeek;
   }
 
-  const updateLeagueData = (additionalInfo) => {
-
+  const updateLeagueData = (additionalInfo: Record<string, any>) => {
     const data = {
       ...allLeagueData,
-      ...additionalInfo
+      ...additionalInfo,
     };
 
     setContextLeague(data);
@@ -41,17 +46,20 @@ export const LeagueWrapper = ({ children }) => {
     setContextLeague(null);
   };
 
-  const handleLeagueRefresh = !!allLeagueData?.activeDraft || !!allLeagueData?.isMonday;
-
-  const sharedState = {
-    allLeagueData,
-    updateLeagueData,
-    deleteLeagueData,
-    handleLeagueRefresh
-  };
+  const handleLeagueRefresh: boolean =
+    !!allLeagueData?.activeDraft || !!allLeagueData?.isMonday;
 
   return (
-    <LeagueContext.Provider value={sharedState}>{children}</LeagueContext.Provider>
+    <LeagueContext.Provider
+      value={{
+        allLeagueData,
+        updateLeagueData,
+        deleteLeagueData,
+        handleLeagueRefresh,
+      }}
+    >
+      {children}
+    </LeagueContext.Provider>
   );
 };
 

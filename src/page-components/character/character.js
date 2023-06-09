@@ -5,7 +5,7 @@ import BackLink from 'Components/back-link/back-link';
 import Players from 'Components/players/players';
 import Metadata from 'Components/metadata/metadata';
 import Error from 'PageComponents/error/error';
-import { getPlayers } from 'src/requests/player';
+import { getPlayers } from 'Requests/player';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import Loader from 'Components/loader/loader';

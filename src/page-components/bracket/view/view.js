@@ -7,10 +7,10 @@ import * as BracketStyles from '../bracket.style';
 import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error/error';
 import { addEvent } from 'Utils/amplitude';
-import { useUserContext } from 'src/hooks/user';
+import { useUserContext } from 'Hooks/user';
 import Loader from 'Components/loader/loader';
 import ReadMore from 'Components/read-more/read-more';
-import { getAllBrackets } from 'src/requests/bracket';
+import { getAllBrackets } from 'Requests/bracket';
 
 const ViewBrackets = () => {
   const { currentUser } = useUserContext();

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Button from '../../components/button/button';
+import Button from 'Components/button/button';
 import * as GlobalStyles from 'Styles/global.style';
 import * as Styles from './activateVoting.style';
 import MainModal from '../main/main';
-import { createMatchupVotes } from 'src/requests/matchup';
+import { createMatchupVotes } from 'Requests/matchup';
 import { useRouter } from 'next/router';
 import { responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
-import { useUserContext } from 'src/hooks/user';
+import { useUserContext } from 'Hooks/user';
 import ErrorMsg from 'Components/error-msg/error-msg';
 
 const ActivateVoting = ({

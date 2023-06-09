@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import * as GlobalStyles from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card/selection-card.js';
 import Metadata from 'Components/metadata/metadata';
-import { useUserContext } from 'src/hooks/user';
+import { useUserContext } from 'Hooks/user';
 import { responseError } from 'Utils/index';
 import { useRouter } from 'next/router';
-import { getLeague } from 'src/requests/league';
+import { getLeague } from 'Requests/league';
 import { addEvent } from 'Utils/amplitude';
 import Error from 'PageComponents/error/error';
 import Loader from 'Components/loader/loader';
 import NotUser from 'Components/not-user/not-user';
 import LeagueChamp from 'Components/league-champ/league-champ';
-import { useLeagueContext } from 'src/hooks/league';
+import { useLeagueContext } from 'Hooks/league';
 
 const League = () => {
   const router = useRouter();

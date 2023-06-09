@@ -7,12 +7,12 @@ import * as Styles from './view.style';
 import { responseError } from 'Utils/index';
 import Error from 'PageComponents/error/error';
 import { addEvent } from 'Utils/amplitude';
-import { getAllLeagues } from 'src/requests/league';
-import { useUserContext } from 'src/hooks/user';
+import { getAllLeagues } from 'Requests/league';
+import { useUserContext } from 'Hooks/user';
 import Loader from 'Components/loader/loader';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
-import { useLeagueContext } from 'src/hooks/league';
+import { useLeagueContext } from 'Hooks/league';
 
 const ViewLeague = () => {
   const { currentUser } = useUserContext();

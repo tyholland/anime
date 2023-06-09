@@ -4,14 +4,14 @@ import * as GlobalStyles from 'Styles/global.style.js';
 import MatchupVoting from 'Components/matchup-voting/matchup-voting';
 import { addEvent } from 'Utils/amplitude';
 import { getNonLoggedInUser, responseError } from 'Utils/index';
-import { getPlayer } from 'src/requests/player';
+import { getPlayer } from 'Requests/player';
 import Metadata from 'Components/metadata/metadata';
 import Button from 'Components/button/button';
 import * as Styles from './allVoteMatchups.style';
-import { getAllMatchupVotes } from 'src/requests/matchup';
+import { getAllMatchupVotes } from 'Requests/matchup';
 import Error from 'PageComponents/error/error';
 import Loader from 'Components/loader/loader';
-import { useUserContext } from 'src/hooks/user';
+import { useUserContext } from 'Hooks/user';
 import ReadMore from 'Components/read-more/read-more';
 import Voting from 'Components/gameplay-card/voting';
 

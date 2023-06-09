@@ -1,14 +1,14 @@
 import Header from 'Components/header/header';
 import * as GlobalStyles from 'Styles/global.style';
-import { UserWrapper } from 'src/hooks/user';
+import { UserWrapper } from 'Hooks/user';
 import { useEffect, useState } from 'react';
 import { addEvent } from 'Utils/amplitude';
 import { firebaseApp } from 'Utils/firebase';
 import Footer from 'Components/footer/footer';
 import Notification from 'src/modals/notification/notification';
-import { FRIDAY, MONDAY, SUNDAY, THURSDAY, alerts } from 'Utils/constants.js';
-import { LeagueWrapper } from 'src/hooks/league';
-import { TeamWrapper } from 'src/hooks/team';
+import { FRIDAY, MONDAY, SUNDAY, THURSDAY, alerts } from 'Utils/constants';
+import { LeagueWrapper } from 'Hooks/league';
+import { TeamWrapper } from 'Hooks/team';
 import { getDate, getStorageData, setStorageData } from 'Utils/index';
 
 const MyApp = ({ Component, pageProps, router }) => {

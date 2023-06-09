@@ -3,7 +3,7 @@ import * as GlobalStyles from 'Styles/global.style';
 import Collapsible from 'react-collapsible';
 import Metadata from 'Components/metadata/metadata';
 import Button from 'Components/button/button';
-import { useUserContext } from 'src/hooks/user';
+import { useUserContext } from 'Hooks/user';
 import Error from 'PageComponents/error/error';
 import TextField from 'Components/text-field/text-field';
 import * as Styles from './admin.style';
@@ -14,7 +14,7 @@ import {
   getLeagueAdminData,
   removeTeamFromLeague,
   updateLeague,
-} from 'src/requests/league';
+} from 'Requests/league';
 import { getDate, responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 import ErrorMsg from 'Components/error-msg/error-msg';
@@ -23,9 +23,9 @@ import Loader from 'Components/loader/loader';
 import { useRouter } from 'next/router';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
-import { createDraft } from 'src/requests/draft';
+import { createDraft } from 'Requests/draft';
 import Notification from 'src/modals/notification/notification';
-import { useLeagueContext } from 'src/hooks/league';
+import { useLeagueContext } from 'Hooks/league';
 
 const Admin = () => {
   const router = useRouter();

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
-import { getLeagueChamp } from 'src/requests/league';
-import { useUserContext } from 'src/hooks/user';
+import { getLeagueChamp } from 'Requests/league';
+import { useUserContext } from 'Hooks/user';
 import * as GlobalStyles from 'Styles/global.style';
 
 const LeagueChamp = ({classProp = null}) => {

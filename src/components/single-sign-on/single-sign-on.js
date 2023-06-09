@@ -14,8 +14,8 @@ import {
   responseError,
 } from 'Utils/index';
 import { useRouter } from 'next/router';
-import { accountExists, accountLogin, addNewAccount } from 'src/requests/users';
-import { useUserContext } from 'src/hooks/user';
+import { accountExists, accountLogin, addNewAccount } from 'Requests/users';
+import { useUserContext } from 'Hooks/user';
 import Loader from 'Components/loader/loader';
 import Image from 'next/image';
 import { FacebookIcon } from 'react-share';
