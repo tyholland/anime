@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import * as GlobalStyles from 'Styles/global.style';
 import * as Styles from './notUser.style';
 import { useRouter } from 'next/router';
-import { randomInt } from 'Utils/index';
+import { getStorageData, randomInt } from 'Utils/index';
 
 const NotUser = ({ message = null }) => {
   const router = useRouter();
@@ -11,15 +11,12 @@ const NotUser = ({ message = null }) => {
 
   const handleFunFactMsg = () => {
     if (!message) {
-      let abzNews =
-        typeof window !== 'undefined' &&
-        window.localStorage.getItem('abz.news');
+      let abzNews = getStorageData('abz.news');
 
       if (!abzNews) {
         return;
       }
 
-      abzNews = JSON.parse(abzNews);
       const news = abzNews[randomInt(50)];
       const filteredMsg = (
         <>

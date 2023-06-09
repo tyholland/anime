@@ -1,9 +1,12 @@
 import { joinLeague } from 'src/requests/league';
 import { addEvent } from './amplitude';
 import CryptoJS from 'crypto-js';
-// import Cryptr from 'cryptr';
-// const cryptr = new Cryptr(process.env.NEXT_PUBLIC_CRYPT_KEY);
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 
+dayjs.extend(utc);
+dayjs.extend(timezone);
 const secretPass = process.env.NEXT_PUBLIC_CRYPT_KEY;
 
 export const redirectUrl = (url) => {
@@ -182,15 +185,31 @@ export const getStorageData = (name) => {
   const stored = window.localStorage.getItem(name);
 
   if (stored) {
+    const currentDate = new Date();
+    const date = dayjs.tz(currentDate, 'America/New_York');
     const decryptedVal = decryptData(stored);
-    return JSON.parse(decryptedVal);
+    const expire = dayjs.tz(decryptedVal.expiry, 'America/New_York');
+
+    if (expire.diff(date) < 0) {
+      deleteStorageData(name);
+      return null;
+    }
+
+    return JSON.parse(decryptedVal.value);
   }
 
   return null;
 };
 
 export const setStorageData = (name, value) => {
-  window.localStorage.setItem(name, encryptData(value));
+  const currentDate = new Date();
+  const date = dayjs.tz(currentDate, 'America/New_York');
+  const item = {
+    value,
+    expiry: date.add(5, 'day'),
+  };
+
+  window.localStorage.setItem(name, encryptData(item));
 };
 
 export const deleteStorageData = (name) => {

@@ -12,6 +12,7 @@ import timezone from 'dayjs/plugin/timezone';
 import { FRIDAY, MONDAY, SUNDAY, THURSDAY, alerts } from 'Utils/constants.js';
 import { LeagueWrapper } from 'src/hooks/league';
 import { TeamWrapper } from 'src/hooks/team';
+import { getStorageData, setStorageData } from 'Utils/index';
 
 const MyApp = ({ Component, pageProps, router }) => {
   firebaseApp();
@@ -24,7 +25,7 @@ const MyApp = ({ Component, pageProps, router }) => {
     const currentDate = new Date();
     const date = dayjs.tz(currentDate, 'America/New_York');
     const theDate = `${date.month()}/${date.date()}/${date.year()}`;
-    const previousDate = window.localStorage.getItem(label);
+    const previousDate = getStorageData(label);
 
     if (previousDate === theDate) {
       return;
@@ -32,7 +33,7 @@ const MyApp = ({ Component, pageProps, router }) => {
 
     setMsg(message);
     setIsAlertModalOpen(true);
-    window.localStorage.setItem(label, theDate);
+    setStorageData(label, JSON.stringify(theDate));
   };
 
   const closeModal = () => {

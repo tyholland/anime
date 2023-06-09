@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAnimeNews } from 'src/requests/player';
 import { addEvent } from 'Utils/amplitude';
-import { randomInt, responseError } from 'Utils/index';
+import { getStorageData, randomInt, responseError, setStorageData } from 'Utils/index';
 import * as Styles from './readMore.style';
 
 const ReadMore = ({ children }) => {
@@ -11,7 +11,7 @@ const ReadMore = ({ children }) => {
     try {
       const data = await getAnimeNews();
 
-      window.localStorage.setItem('abz.news', JSON.stringify(data));
+      setStorageData('abz.news', JSON.stringify(data));
 
       setNews(data[randomInt(50)]);
     } catch (err) {
@@ -20,12 +20,11 @@ const ReadMore = ({ children }) => {
   };
 
   useEffect(() => {
-    let abzNews = window.localStorage.getItem('abz.news');
+    let abzNews = getStorageData('abz.news');
 
     if (!abzNews) {
       handleAnimeNews();
     } else {
-      abzNews = JSON.parse(abzNews);
       setNews(abzNews[randomInt(50)]);
     }
   }, []);
