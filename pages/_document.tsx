@@ -7,7 +7,7 @@ const Document = () => {
       <body>
         <script
           src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
-          async=""
+          async
         ></script>
         <script
           async
