@@ -3,7 +3,7 @@ import Players from 'Components/players/players';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useUserContext } from 'Hooks/user';
-import BioReview from 'src/modals/bio-review/bio-review';
+import BioReview from 'Modals/bio-review/bio-review';
 import {
   draftNextRound,
   draftPlayers,

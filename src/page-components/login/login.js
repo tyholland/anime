@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import * as Styles from './login.style.js';
-import Button from 'Components/button/button.js';
-import TextField from 'Components/text-field/text-field.js';
-import * as GlobalStyles from 'Styles/global.style.js';
-import Metadata from 'Components/metadata/metadata.js';
-import { useRouter } from 'next/router.js';
+import * as Styles from './login.style';
+import Button from 'Components/button/button';
+import TextField from 'Components/text-field/text-field';
+import * as GlobalStyles from 'Styles/global.style';
+import Metadata from 'Components/metadata/metadata';
+import { useRouter } from 'next/router';
 import { useUserContext } from 'Hooks/user';
 import {
   joinLeagueSetup,
@@ -14,9 +14,9 @@ import {
 } from 'Utils/index';
 import { accountLogin } from 'Requests/users';
 import { addEvent } from 'Utils/amplitude';
-import Loader from 'Components/loader/loader.js';
-import ErrorMsg from 'Components/error-msg/error-msg.js';
-import SingleSignOn from 'Components/single-sign-on/single-sign-on.js';
+import Loader from 'Components/loader/loader';
+import ErrorMsg from 'Components/error-msg/error-msg';
+import SingleSignOn from 'Components/single-sign-on/single-sign-on';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
@@ -108,7 +108,6 @@ const Login = () => {
               <Styles.LoginSection>
                 <TextField
                   placeholder="Email"
-                  keyboard="email-address"
                   onChange={handleEmail}
                   onKeyDown={handleKeyboardSubmit}
                 />

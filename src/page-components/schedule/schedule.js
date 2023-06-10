@@ -12,7 +12,7 @@ import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import * as Styles from './schedule.style';
 import GameSchedule from 'Components/gameplay-card/schedule';
-import Notification from 'src/modals/notification/notification';
+import Notification from 'Modals/notification/notification';
 
 const Schedule = () => {
   const router = useRouter();

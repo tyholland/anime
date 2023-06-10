@@ -8,7 +8,7 @@ import Error from 'PageComponents/error/error';
 import React, { useEffect, useState } from 'react';
 import { getMatchupVotes } from 'Requests/matchup';
 import { getPlayer } from 'Requests/player';
-import * as GlobalStyles from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style';
 import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 

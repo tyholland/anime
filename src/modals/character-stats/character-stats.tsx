@@ -40,7 +40,7 @@ const CharacterStats = ({
     character;
   const boostTotal = teamPoints - originalPower;
   const damageTotal = teamPoints - matchPoints;
-  const activeVoting = votes.filter((vote) => vote.rank === rank);
+  const activeVoting = votes.filter((vote: Record<string, any>) => vote.rank === rank);
   const canVote =
     currentUser.user_id === userId &&
     isMatchupPage &&

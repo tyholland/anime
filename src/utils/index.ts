@@ -105,7 +105,7 @@ export const getAffinitiesTypes = (character: Record<string, any>) => {
 
   const affinityList = [];
 
-  affinities.forEach((item) => {
+  affinities.forEach((item: Record<string, any>) => {
     if (!!item.value && item.value > 0) {
       affinityList.push(item.type);
     }
@@ -114,7 +114,7 @@ export const getAffinitiesTypes = (character: Record<string, any>) => {
   return affinityList;
 };
 
-export const joinLeagueSetup = async (leagueHash, currentUser, router) => {
+export const joinLeagueSetup = async (leagueHash: string | string[], currentUser: Record<string, any>, router: NextRouter) => {
   const payload = {
     hash: leagueHash,
   };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as GlobalStyles from 'Styles/global.style';
-import SelectionCard from 'Components/selection-card/selection-card.js';
+import SelectionCard from 'Components/selection-card/selection-card';
 import Metadata from 'Components/metadata/metadata';
 import { useUserContext } from 'Hooks/user';
 import { responseError } from 'Utils/index';

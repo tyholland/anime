@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'Components/button/button';
 import TextField from 'Components/text-field/text-field';
-import * as GlobalStyles from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style';
 import { createLeague } from 'Requests/league';
 import * as Styles from './create.style';
 import BackLink from 'Components/back-link/back-link';

@@ -77,8 +77,8 @@ const ActivateVoting = ({
     ];
 
     const votingList = list
-      .map((item) => {
-        const activeVoting = allVotes.filter((vote) => vote.rank === item);
+      .map((item: string) => {
+        const activeVoting = allVotes.filter((vote: Record<string, any>) => vote.rank === item);
 
         if (
           activeVoting.length ||

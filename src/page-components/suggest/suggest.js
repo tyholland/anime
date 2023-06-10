@@ -1,5 +1,5 @@
 import React from 'react';
-import * as GlobalStyles from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style';
 import BackLink from 'Components/back-link/back-link';
 import Metadata from 'Components/metadata/metadata';
 import ReadMore from 'Components/read-more/read-more';

@@ -14,9 +14,9 @@ import Loader from 'Components/loader/loader';
 import { useUserContext } from 'Hooks/user';
 import NotUser from 'Components/not-user/not-user';
 import Button from 'Components/button/button';
-import Notification from 'src/modals/notification/notification';
-import ActivateVoting from 'src/modals/activate-voting/activate-voting';
-import Recap from 'src/modals/recap/recap';
+import Notification from 'Modals/notification/notification';
+import ActivateVoting from 'Modals/activate-voting/activate-voting';
+import Recap from 'Modals/recap/recap';
 
 const ViewMatchup = () => {
   const router = useRouter();

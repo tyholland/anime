@@ -165,7 +165,7 @@ const SwapPlayer = ({
           <Styles.SwapPlayerSection className="orig"><strong>Character:</strong> {playerList[field]?.name}</Styles.SwapPlayerSection>
           <GlobalStyles.GlobalSubTitle>Swap with:</GlobalStyles.GlobalSubTitle>
           <Styles.SwapPlayerSection>
-            {swappablePlayers?.length > 0 && swappablePlayers.map(player => {
+            {swappablePlayers?.length > 0 && swappablePlayers.map((player: Record<string, any>) => {
               return (
                 <Styles.SwapPlayerCharacter key={player.name}>
                   <Button

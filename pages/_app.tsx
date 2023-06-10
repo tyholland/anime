@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { addEvent } from 'Utils/amplitude';
 import { firebaseApp } from 'Utils/firebase';
 import Footer from 'Components/footer/footer';
-import Notification from 'src/modals/notification/notification';
+import Notification from 'Modals/notification/notification';
 import { FRIDAY, MONDAY, SUNDAY, THURSDAY, alerts } from 'Utils/constants';
 import { LeagueWrapper } from 'Hooks/league';
 import { TeamWrapper } from 'Hooks/team';
@@ -14,9 +14,9 @@ import { getDate, getStorageData, setStorageData } from 'Utils/index';
 const MyApp = ({ Component, pageProps, router }) => {
   firebaseApp();
   const [msg, setMsg] = useState(null);
-  const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
+  const [isAlertModalOpen, setIsAlertModalOpen] = useState<boolean>(false);
 
-  const handleAlertMsg = (label, message) => {
+  const handleAlertMsg = (label: string, message: string) => {
     const date = getDate();
     const theDate = `${date.month()}/${date.date()}/${date.year()}`;
     const previousDate = getStorageData(label);

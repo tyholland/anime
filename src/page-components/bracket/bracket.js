@@ -17,11 +17,11 @@ import { responseError } from 'Utils/index';
 import { useUserContext } from 'Hooks/user';
 import * as Styles from './bracket.style';
 import SocialMedia from 'Components/social-media/social-media';
-import Notification from 'src/modals/notification/notification';
+import Notification from 'Modals/notification/notification';
 import * as GlobalStyles from 'Styles/global.style';
 import Error from 'PageComponents/error/error';
 import Button from 'Components/button/button';
-import BracketVoting from 'src/modals/bracket-voting/bracket-voting';
+import BracketVoting from 'Modals/bracket-voting/bracket-voting';
 
 const Bracket = () => {
   const router = useRouter();

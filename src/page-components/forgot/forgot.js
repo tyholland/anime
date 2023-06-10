@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'Components/button/button';
 import TextField from 'Components/text-field/text-field';
-import * as GlobalStyles from 'Styles/global.style.js';
-import * as Styles from 'PageComponents/login/login.style.js';
+import * as GlobalStyles from 'Styles/global.style';
+import * as Styles from 'PageComponents/login/login.style';
 import { useUserContext } from 'Hooks/user';
 import Metadata from 'Components/metadata/metadata';
 import { redirectToAccount, responseError } from 'Utils/index';
@@ -52,7 +52,6 @@ const ForgotPassword = () => {
           <GlobalStyles.GlobalTitle>Forgot Password</GlobalStyles.GlobalTitle>
           <TextField
             placeholder="Please enter a email"
-            keyboard="email-address"
             onChange={handleEmail}
             onKeyDown={handleKeyboardSubmit}
           />

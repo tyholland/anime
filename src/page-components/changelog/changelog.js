@@ -1,5 +1,5 @@
 import React from 'react';
-import * as GlobalStyles from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style';
 import Metadata from 'Components/metadata/metadata';
 
 const Changelog = () => {

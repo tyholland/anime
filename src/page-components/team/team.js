@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import * as Styles from './team.style.js';
+import * as Styles from './team.style';
 import * as GlobalStyles from 'Styles/global.style';
-import Button from 'Components/button/button.js';
-import TeamCard from 'Components/team-card/team-card.js';
-import BackLink from 'Components/back-link/back-link.js';
-import Metadata from 'Components/metadata/metadata.js';
-import { useRouter } from 'next/router.js';
-import Error from 'PageComponents/error/error.js';
+import Button from 'Components/button/button';
+import TeamCard from 'Components/team-card/team-card';
+import BackLink from 'Components/back-link/back-link';
+import Metadata from 'Components/metadata/metadata';
+import { useRouter } from 'next/router';
+import Error from 'PageComponents/error/error';
 import { deleteCachedData, responseError } from 'Utils/index';
 import { getTeam, hideRecap } from 'Requests/team';
-import Loader from 'Components/loader/loader.js';
+import Loader from 'Components/loader/loader';
 import { addEvent } from 'Utils/amplitude';
 import { useUserContext } from 'Hooks/user';
-import NotUser from 'Components/not-user/not-user.js';
-import ReadMore from 'Components/read-more/read-more.js';
-import Recap from 'src/modals/recap/recap.js';
-import BenchCard from 'Components/bench-card/bench-card.js';
+import NotUser from 'Components/not-user/not-user';
+import ReadMore from 'Components/read-more/read-more';
+import Recap from 'Modals/recap/recap';
+import BenchCard from 'Components/bench-card/bench-card';
 import { useTeamContext } from 'Hooks/team';
 
 const Team = () => {

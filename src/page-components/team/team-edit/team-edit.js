@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import * as GlobalStyles from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style';
 import Button from 'Components/button/button';
 import * as Styles from './teamEdit.style';
-import ChangeCharacters from 'src/modals/change-character/change-character';
+import ChangeCharacters from 'Modals/change-character/change-character';
 import { getTeam, updateTeam } from 'Requests/team';
 import Metadata from 'Components/metadata/metadata';
 import { addEvent } from 'Utils/amplitude';
@@ -16,8 +16,8 @@ import { useUserContext } from 'Hooks/user';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
 import MakeTeam from 'Components/gameplay-card/make-team';
-import BioReview from 'src/modals/bio-review/bio-review';
-import SwapPlayer from 'src/modals/swap-player/swap-player';
+import BioReview from 'Modals/bio-review/bio-review';
+import SwapPlayer from 'Modals/swap-player/swap-player';
 import { useTeamContext } from 'Hooks/team';
 
 const TeamEdit = () => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import BackLink from 'Components/back-link/back-link';
-import * as GlobalStyles from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style';
 import Metadata from 'Components/metadata/metadata';
 import { useRouter } from 'next/router';
 import ReadMore from 'Components/read-more/read-more';

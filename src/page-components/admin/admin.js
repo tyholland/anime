@@ -24,7 +24,7 @@ import { useRouter } from 'next/router';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
 import { createDraft } from 'Requests/draft';
-import Notification from 'src/modals/notification/notification';
+import Notification from 'Modals/notification/notification';
 import { useLeagueContext } from 'Hooks/league';
 
 const Admin = () => {

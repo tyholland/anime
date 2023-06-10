@@ -1,10 +1,10 @@
-import Link from 'next/link.js';
+import Link from 'next/link';
 import React, { PropsWithChildren } from 'react';
-import * as Styles from './button.style.js';
+import * as Styles from './button.style';
 import 'react-tooltip/dist/react-tooltip.css';
 import { Tooltip } from 'react-tooltip';
-import { COLOR_BLACK, COLOR_WHITE } from 'Styles/global.style.js';
-import { ButtonProps } from 'Utils/types.js';
+import { COLOR_BLACK, COLOR_WHITE } from 'Styles/global.style';
+import { ButtonProps } from 'Utils/types';
 
 const Button = ({
   btnColor,

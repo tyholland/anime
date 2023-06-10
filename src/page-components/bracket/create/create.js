@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import * as GlobalStyles from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style';
 import Button from 'Components/button/button';
 import * as Styles from './create.style';
-import ChangeCharacters from 'src/modals/change-character/change-character';
+import ChangeCharacters from 'Modals/change-character/change-character';
 import Metadata from 'Components/metadata/metadata';
 import { addEvent } from 'Utils/amplitude';
 import { randomInt, responseError } from 'Utils/index';

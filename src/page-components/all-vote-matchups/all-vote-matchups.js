@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import BackLink from 'Components/back-link/back-link';
-import * as GlobalStyles from 'Styles/global.style.js';
+import * as GlobalStyles from 'Styles/global.style';
 import MatchupVoting from 'Components/matchup-voting/matchup-voting';
 import { addEvent } from 'Utils/amplitude';
 import { getNonLoggedInUser, responseError } from 'Utils/index';
