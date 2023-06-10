@@ -5,6 +5,7 @@ import * as Styles from './characterStats.style';
 import MainModal from '../main/main';
 import { useUserContext } from 'Hooks/user';
 import ErrorMsg from 'Components/error-msg/error-msg';
+import { CharacterStatsProps } from 'Utils/types';
 
 const CharacterStats = ({
   isModalOpen,
@@ -14,9 +15,9 @@ const CharacterStats = ({
   isMatchupPage = true,
   userId = null,
   isActive = null,
-}) => {
+}: CharacterStatsProps) => {
   const { currentUser } = useUserContext();
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const customStyles = {
     content: {
       top: '50%',

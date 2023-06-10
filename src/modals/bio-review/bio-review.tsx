@@ -5,6 +5,7 @@ import Button from 'Components/button/button';
 import * as Styles from './bioReview.style';
 import BioCard from 'Components/bio-card/bio-card';
 import ErrorMsg from 'Components/error-msg/error-msg';
+import { BioReviewProps } from 'Utils/types';
 
 const BioReview = ({
   modalIsOpen,
@@ -14,8 +15,8 @@ const BioReview = ({
   canDraft,
   draftPlayer,
   errorMsg,
-}) => {
-  const [message, setMessage] = useState(null);
+}: BioReviewProps) => {
+  const [message, setMessage] = useState<string | null>(null);
   const customStyles = {
     content: {
       top: '50%',

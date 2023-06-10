@@ -8,6 +8,7 @@ import * as Styles from '../main/main.style';
 import BioCard from 'Components/bio-card/bio-card';
 import { useUserContext } from 'Hooks/user';
 import { addEvent } from 'Utils/amplitude';
+import { ChangeCharactersProps } from 'Utils/types';
 
 const ChangeCharacters = ({
   players,
@@ -18,10 +19,10 @@ const ChangeCharacters = ({
   field,
   isBracket = false,
   leagueWeek,
-}) => {
+}: ChangeCharactersProps) => {
   const { currentUser } = useUserContext();
-  const [isCharacter, setIsCharacter] = useState(false);
-  const [character, setCharacter] = useState(null);
+  const [isCharacter, setIsCharacter] = useState<boolean>(false);
+  const [character, setCharacter] = useState<Record<string, any> | null>(null);
 
   const customStyles = {
     content: {
@@ -37,7 +38,7 @@ const ChangeCharacters = ({
     },
   };
 
-  const handleShowBio = (player) => {
+  const handleShowBio = (player: Record<string, any>) => {
     setCharacter(player);
     setIsCharacter(true);
   };

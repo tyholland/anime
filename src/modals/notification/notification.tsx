@@ -4,8 +4,9 @@ import 'react-data-grid/lib/styles.css';
 import MainModal from '../main/main';
 import Button from 'Components/button/button';
 import * as Styles from './notification.style';
+import { NotificationProps } from 'Utils/types';
 
-const Notification = ({ message, modalIsOpen, closeModal }) => {
+const Notification = ({ message, modalIsOpen, closeModal }: NotificationProps) => {
   const customStyles = {
     content: {
       top: '50%',

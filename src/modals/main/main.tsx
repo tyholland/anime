@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import Modal from 'react-modal';
 import * as Styles from './main.style';
+import { MainModalProps } from 'Utils/types';
 
-const MainModal = ({ modalIsOpen, closeModal, children, styles }) => {
+const MainModal = ({ modalIsOpen, closeModal, children, styles }: PropsWithChildren<MainModalProps>) => {
   Modal.setAppElement('#__next');
 
   return (

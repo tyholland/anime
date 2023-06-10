@@ -6,6 +6,7 @@ import { addEvent } from 'Utils/amplitude';
 import ErrorMsg from 'Components/error-msg/error-msg.js';
 import MainModal from '../main/main.js';
 import { useUserContext } from 'Hooks/user';
+import { BracketVotingProps } from 'Utils/types.js';
 
 const BracketVoting = ({
   playerA,
@@ -17,12 +18,12 @@ const BracketVoting = ({
   setErrorMsg,
   closeModal,
   roundWinner,
-}) => {
+}: BracketVotingProps) => {
   const { currentUser } = useUserContext();
-  const [playerACount, setPlayerACount] = useState(0);
-  const [playerBCount, setPlayerBCount] = useState(0);
-  const [bracketMatch, setBracketMatch] = useState(null);
-  const [matchWinner, setMatchWinner] = useState(null);
+  const [playerACount, setPlayerACount] = useState<number>(0);
+  const [playerBCount, setPlayerBCount] = useState<number>(0);
+  const [bracketMatch, setBracketMatch] = useState<Record<string, any> | null>(null);
+  const [matchWinner, setMatchWinner] = useState<number | null>(null);
   const customStyles = {
     content: {
       top: '50%',
@@ -37,7 +38,7 @@ const BracketVoting = ({
     },
   };
 
-  const handleAddingVotes = async (player, playerCount) => {
+  const handleAddingVotes = async (player: Record<string, any>, playerCount: string) => {
     setErrorMsg(null);
 
     const payload = {

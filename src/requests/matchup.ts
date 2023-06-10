@@ -21,7 +21,7 @@ export const getMatchUpFromTeamId = async (teamId: number, token: string) => {
   return await axiosClient(data);
 };
 
-export const createMatchupVotes = async (matchupId: number, payload: Record<string, any>, token: string) => {
+export const createMatchupVotes = async (matchupId: string | string[], payload: Record<string, any>, token: string) => {
   const data = {
     url: `${api}/matchup/vote/${matchupId}`,
     method: 'post',

@@ -9,6 +9,7 @@ import { responseError } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 import { useUserContext } from 'Hooks/user';
 import ErrorMsg from 'Components/error-msg/error-msg';
+import { ActivateVotingProps } from 'Utils/types';
 
 const ActivateVoting = ({
   isModalOpen,
@@ -17,11 +18,11 @@ const ActivateVoting = ({
   team2,
   votes,
   setRetrigger,
-}) => {
+}: ActivateVotingProps) => {
   const { currentUser } = useUserContext();
   const router = useRouter();
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [allVotes, setAllVotes] = useState(votes);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [allVotes, setAllVotes] = useState<Record<string, any>>(votes);
   const customStyles = {
     content: {
       top: '50%',
@@ -41,7 +42,7 @@ const ActivateVoting = ({
     setIsModalOpen(false);
   };
 
-  const handleVotes = async (rank) => {
+  const handleVotes = async (rank: string) => {
     setErrorMsg(null);
     const { query } = router;
     const payload = {

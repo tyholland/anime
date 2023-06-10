@@ -6,6 +6,7 @@ import Button from 'Components/button/button';
 import * as Styles from './swapPlayer.style';
 import { addEvent } from 'Utils/amplitude';
 import { useUserContext } from 'Hooks/user';
+import { SwapPlayerProps } from 'Utils/types';
 
 const SwapPlayer = ({
   modalIsOpen,
@@ -13,11 +14,11 @@ const SwapPlayer = ({
   setPlayerList,
   playerList,
   field,
-}) => {
+}: SwapPlayerProps) => {
   const { currentUser } = useUserContext();
-  const [swappablePlayers, setSwappablePlayers] = useState(null);
-  const [fieldName, setFieldName] = useState(field);
-  const [players, setPlayers] = useState(playerList);
+  const [swappablePlayers, setSwappablePlayers] = useState<Record<string, any> | null>(null);
+  const [fieldName, setFieldName] = useState<string>(field);
+  const [players, setPlayers] = useState<Record<string, any>>(playerList);
 
   const customStyles = {
     content: {
@@ -33,7 +34,7 @@ const SwapPlayer = ({
     },
   };
 
-  const handleAddPlayer = (swapPlayer) => {
+  const handleAddPlayer = (swapPlayer: Record<string, any>) => {
     const origPlayer = players[fieldName];
 
     players[fieldName] = swapPlayer;
@@ -46,11 +47,11 @@ const SwapPlayer = ({
       userId: currentUser?.user_id
     });
 
-    setPlayerList(players, swapPlayer.field);
+    setPlayerList(players);
     closeModal();
   };
 
-  const handleSwappablePlayers = (fieldName, players) => {
+  const handleSwappablePlayers = (fieldName: string, players: Record<string, any>) => {
     if (!players || !fieldName) {
       return;
     }

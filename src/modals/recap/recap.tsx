@@ -4,8 +4,9 @@ import 'react-data-grid/lib/styles.css';
 import MainModal from '../main/main';
 import Button from 'Components/button/button';
 import * as Styles from './recap.style';
+import { RecapProps } from 'Utils/types';
 
-const Recap = ({ data, modalIsOpen, closeModal, teamName }) => {
+const Recap = ({ data, modalIsOpen, closeModal, teamName }: RecapProps) => {
   const customStyles = {
     content: {
       top: '50%',
