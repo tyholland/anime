@@ -1,6 +1,6 @@
-import { initializeApp } from 'firebase/app';
+import { FirebaseOptions, initializeApp } from 'firebase/app';
 
-let firebaseConfig;
+let firebaseConfig: FirebaseOptions;
 
 const setupFirebase = () => {
   firebaseConfig = {

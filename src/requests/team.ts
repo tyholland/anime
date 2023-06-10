@@ -1,7 +1,7 @@
 import { axiosClient } from 'Utils/axios';
 const api = process.env.NEXT_PUBLIC_API;
 
-export const getTeam = async (teamId, token) => {
+export const getTeam = async (teamId: number, token: string) => {
   const data = {
     url: `${api}/team/data/${teamId}`,
     method: 'get',
@@ -11,7 +11,7 @@ export const getTeam = async (teamId, token) => {
   return await axiosClient(data);
 };
 
-export const getMatchupTeam = async (teamId, token) => {
+export const getMatchupTeam = async (teamId: number, token: string) => {
   const data = {
     url: `${api}/team/matchup/${teamId}`,
     method: 'get',
@@ -21,7 +21,7 @@ export const getMatchupTeam = async (teamId, token) => {
   return await axiosClient(data);
 };
 
-export const getTeamInfo = async (memberId, token) => {
+export const getTeamInfo = async (memberId: number, token: string) => {
   const data = {
     url: `${api}/team/info/${memberId}`,
     method: 'get',
@@ -31,7 +31,7 @@ export const getTeamInfo = async (memberId, token) => {
   return await axiosClient(data);
 };
 
-export const updateTeam = async (teamId, payload, token) => {
+export const updateTeam = async (teamId: number, payload: Record<string, any>, token: string) => {
   const data = {
     url: `${api}/team/${teamId}`,
     method: 'put',
@@ -42,7 +42,7 @@ export const updateTeam = async (teamId, payload, token) => {
   return await axiosClient(data);
 };
 
-export const updateTeamName = async (memberId, payload, token) => {
+export const updateTeamName = async (memberId: number, payload: Record<string, any>, token: string) => {
   const data = {
     url: `${api}/team/name/${memberId}`,
     method: 'put',
@@ -53,7 +53,7 @@ export const updateTeamName = async (memberId, payload, token) => {
   return await axiosClient(data);
 };
 
-export const getSchedule = async (leagueId, token) => {
+export const getSchedule = async (leagueId: number, token: string) => {
   const data = {
     url: `${api}/team/schedule/${leagueId}`,
     method: 'get',
@@ -63,7 +63,7 @@ export const getSchedule = async (leagueId, token) => {
   return await axiosClient(data);
 };
 
-export const removeTeam = async (leagueId, token) => {
+export const removeTeam = async (leagueId: number, token: string) => {
   const data = {
     url: `${api}/team/${leagueId}`,
     method: 'delete',
@@ -73,7 +73,7 @@ export const removeTeam = async (leagueId, token) => {
   return await axiosClient(data);
 };
 
-export const hideRecap = async (leagueId, token) => {
+export const hideRecap = async (leagueId: number, token: string) => {
   const data = {
     url: `${api}/team/recap/${leagueId}`,
     method: 'put',

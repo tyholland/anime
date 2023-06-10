@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const axiosClient = async (data) => {
+export const axiosClient = async (data: Record<string, any>) => {
   const { body, method, url, token } = data;
 
   const options: Record<string, any> = {

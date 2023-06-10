@@ -1,7 +1,7 @@
 import { axiosClient } from 'Utils/axios';
 const api = process.env.NEXT_PUBLIC_API;
 
-export const addNewAccount = async (payload) => {
+export const addNewAccount = async (payload: Record<string, any>) => {
   const data = {
     url: `${api}/users/create`,
     method: 'post',
@@ -11,7 +11,7 @@ export const addNewAccount = async (payload) => {
   return await axiosClient(data);
 };
 
-export const accountLogin = async (payload) => {
+export const accountLogin = async (payload: Record<string, any>) => {
   const data = {
     url: `${api}/users/login`,
     method: 'post',
@@ -21,7 +21,7 @@ export const accountLogin = async (payload) => {
   return await axiosClient(data);
 };
 
-export const accountExists = async (payload) => {
+export const accountExists = async (payload: Record<string, any>) => {
   const data = {
     url: `${api}/users/exists`,
     method: 'put',
@@ -40,7 +40,7 @@ export const accountLogout = async () => {
   return await axiosClient(data);
 };
 
-export const deleteAccount = async (token) => {
+export const deleteAccount = async (token: string) => {
   const data = {
     url: `${api}/users`,
     method: 'delete',
@@ -50,7 +50,7 @@ export const deleteAccount = async (token) => {
   return await axiosClient(data);
 };
 
-export const getAdminAccess = async (token) => {
+export const getAdminAccess = async (token: string) => {
   const data = {
     url: `${api}/admin/dashboard`,
     method: 'get',

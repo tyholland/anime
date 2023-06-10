@@ -4,22 +4,23 @@ import CryptoJS from 'crypto-js';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import { NextRouter } from 'next/router';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 const secretPass = process.env.NEXT_PUBLIC_CRYPT_KEY;
 
-export const redirectUrl = (url) => {
+export const redirectUrl = (url: string) => {
   window.location.href = url;
 };
 
-export const redirectToAccount = (currentUser) => {
+export const redirectToAccount = (currentUser: Record<string, any>) => {
   if (currentUser) {
     redirectUrl('/account');
   }
 };
 
-export const redirectToContinuePage = (router) => {
+export const redirectToContinuePage = (router: NextRouter) => {
   const path = router.query;
 
   if (Object.keys(path).includes('continue')) {
@@ -29,7 +30,7 @@ export const redirectToContinuePage = (router) => {
   }
 };
 
-export const responseError = (err, description) => {
+export const responseError = (err: Record<string, any>, description: string) => {
   return {
     data: err?.response?.data || err?.message,
     status: err?.response?.status || err?.request?.status,
@@ -37,11 +38,11 @@ export const responseError = (err, description) => {
   };
 };
 
-export const randomInt = (size) => {
+export const randomInt = (size: number) => {
   return Math.floor(Math.random() * size);
 };
 
-export const getAffinitiesTypes = (character) => {
+export const getAffinitiesTypes = (character: Record<string, any>) => {
   if (!character) {
     return [];
   }
@@ -132,7 +133,7 @@ export const joinLeagueSetup = async (leagueHash, currentUser, router) => {
   }
 };
 
-const encryptData = (text) => {
+const encryptData = (text: string | Record<string, any> | number) => {
   const data = CryptoJS.AES.encrypt(
     JSON.stringify(text),
     secretPass
@@ -141,14 +142,14 @@ const encryptData = (text) => {
   return data;
 };
 
-const decryptData = (text) => {
+const decryptData = (text: string) => {
   const bytes = CryptoJS.AES.decrypt(text, secretPass);
   const data = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 
   return data;
 };
 
-export const getCachedData = (name) => {
+export const getCachedData = (name: string) => {
   if (typeof document === 'undefined') {
     return null;
   }
@@ -167,17 +168,17 @@ export const getCachedData = (name) => {
   return null;
 };
 
-export const setCachedData = (name, value) => {
+export const setCachedData = (name: string, value: string | number) => {
   document.cookie = `${name} = ${encryptData(value)}; secure; max-age=${
     5 * 24 * 60 * 60
   }`;
 };
 
-export const deleteCachedData = (name) => {
+export const deleteCachedData = (name: string) => {
   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
 };
 
-export const getStorageData = (name) => {
+export const getStorageData = (name: string) => {
   if (typeof window === 'undefined') {
     return null;
   }
@@ -200,7 +201,7 @@ export const getStorageData = (name) => {
   return null;
 };
 
-export const setStorageData = (name, value) => {
+export const setStorageData = (name: string, value: string) => {
   const date = getDate();
   const item = {
     value,
@@ -210,7 +211,7 @@ export const setStorageData = (name, value) => {
   window.localStorage.setItem(name, encryptData(item));
 };
 
-export const deleteStorageData = (name) => {
+export const deleteStorageData = (name: string) => {
   window.localStorage.removeItem(name);
 };
 
@@ -230,7 +231,7 @@ export const getNonLoggedInUser = () => {
   return parseInt(user);
 };
 
-export const getDate = (defaultDate = null) => {
+export const getDate = (defaultDate: string | null = null) => {
   let currentDate = new Date();
 
   if (defaultDate) {

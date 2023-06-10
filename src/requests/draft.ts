@@ -1,7 +1,7 @@
 import { axiosClient } from 'Utils/axios';
 const api = process.env.NEXT_PUBLIC_API;
 
-export const getDraft = async (leagueId, token) => {
+export const getDraft = async (leagueId: number, token: string) => {
   const data = {
     url: `${api}/draft/${leagueId}`,
     method: 'get',
@@ -11,7 +11,7 @@ export const getDraft = async (leagueId, token) => {
   return await axiosClient(data);
 };
 
-export const createDraft = async (leagueId, token) => {
+export const createDraft = async (leagueId: number, token: string) => {
   const data = {
     url: `${api}/draft/create/${leagueId}`,
     method: 'post',
@@ -21,7 +21,7 @@ export const createDraft = async (leagueId, token) => {
   return await axiosClient(data);
 };
 
-export const startDraft = async (leagueId, token) => {
+export const startDraft = async (leagueId: number, token: string) => {
   const data = {
     url: `${api}/draft/start/${leagueId}`,
     method: 'get',
@@ -31,7 +31,7 @@ export const startDraft = async (leagueId, token) => {
   return await axiosClient(data);
 };
 
-export const draftNextRound = async (leagueId, token) => {
+export const draftNextRound = async (leagueId: number, token: string) => {
   const data = {
     url: `${api}/draft/rounds/${leagueId}`,
     method: 'get',
@@ -41,7 +41,7 @@ export const draftNextRound = async (leagueId, token) => {
   return await axiosClient(data);
 };
 
-export const draftPlayers = async (teamId, payload, token) => {
+export const draftPlayers = async (teamId: number, payload: Record<string, any>, token: string) => {
   const data = {
     url: `${api}/draft/players/${teamId}`,
     method: 'put',

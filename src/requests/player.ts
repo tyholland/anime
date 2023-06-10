@@ -10,7 +10,7 @@ export const getPlayers = async () => {
   return await axiosClient(data);
 };
 
-export const getAdminPlayers = async (token) => {
+export const getAdminPlayers = async (token: string) => {
   const data = {
     url: `${api}/admin/player`,
     method: 'get',
@@ -20,7 +20,7 @@ export const getAdminPlayers = async (token) => {
   return await axiosClient(data);
 };
 
-export const getPlayer = async (playerId) => {
+export const getPlayer = async (playerId: number) => {
   const data = {
     url: `${api}/player/${playerId}`,
     method: 'get',
@@ -29,7 +29,7 @@ export const getPlayer = async (playerId) => {
   return await axiosClient(data);
 };
 
-export const getUseablePlayers = async (teamId, token) => {
+export const getUseablePlayers = async (teamId: number, token: string) => {
   const data = {
     url: `${api}/player/select/${teamId}`,
     method: 'get',
@@ -48,7 +48,7 @@ export const getAnimeNews = async () => {
   return await axiosClient(data);
 };
 
-export const updatePlayerData = async (payload, token) => {
+export const updatePlayerData = async (payload: Record<string, any>, token: string) => {
   const data = {
     url: `${api}/player/update`,
     method: 'put',
@@ -59,7 +59,7 @@ export const updatePlayerData = async (payload, token) => {
   return await axiosClient(data);
 };
 
-export const addPlayerData = async (payload, token) => {
+export const addPlayerData = async (payload: Record<string, any>, token: string) => {
   const data = {
     url: `${api}/player/add`,
     method: 'post',

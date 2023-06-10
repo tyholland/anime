@@ -1,7 +1,7 @@
 import { axiosClient } from 'Utils/axios';
 const api = process.env.NEXT_PUBLIC_API;
 
-export const createLeague = async (payload, token) => {
+export const createLeague = async (payload: Record<string, any>, token: string) => {
   const data = {
     url: `${api}/league/create`,
     method: 'post',
@@ -12,7 +12,7 @@ export const createLeague = async (payload, token) => {
   return await axiosClient(data);
 };
 
-export const joinLeague = async (payload, token) => {
+export const joinLeague = async (payload: Record<string, any>, token: string) => {
   const data = {
     url: `${api}/league/join`,
     method: 'put',
@@ -23,7 +23,7 @@ export const joinLeague = async (payload, token) => {
   return await axiosClient(data);
 };
 
-export const getLeague = async (leagueId, token) => {
+export const getLeague = async (leagueId: number, token: string) => {
   const data = {
     url: `${api}/league/${leagueId}`,
     method: 'get',
@@ -33,7 +33,7 @@ export const getLeague = async (leagueId, token) => {
   return await axiosClient(data);
 };
 
-export const getAllLeagues = async (token) => {
+export const getAllLeagues = async (token: string) => {
   const data = {
     url: `${api}/league/view`,
     method: 'get',
@@ -43,7 +43,7 @@ export const getAllLeagues = async (token) => {
   return await axiosClient(data);
 };
 
-export const getScoreboard = async (leagueId, token) => {
+export const getScoreboard = async (leagueId: number, token: string) => {
   const data = {
     url: `${api}/league/scoreboard/${leagueId}`,
     method: 'get',
@@ -53,7 +53,7 @@ export const getScoreboard = async (leagueId, token) => {
   return await axiosClient(data);
 };
 
-export const getStandings = async (leagueId, token) => {
+export const getStandings = async (leagueId: number, token: string) => {
   const data = {
     url: `${api}/league/standings/${leagueId}`,
     method: 'get',
@@ -63,7 +63,7 @@ export const getStandings = async (leagueId, token) => {
   return await axiosClient(data);
 };
 
-export const deleteLeague = async (leagueId, token) => {
+export const deleteLeague = async (leagueId: number, token: string) => {
   const data = {
     url: `${api}/league/${leagueId}`,
     method: 'delete',
@@ -73,7 +73,7 @@ export const deleteLeague = async (leagueId, token) => {
   return await axiosClient(data);
 };
 
-export const getLeagueAdminData = async (leagueId, token) => {
+export const getLeagueAdminData = async (leagueId: number, token: string) => {
   const data = {
     url: `${api}/league/admin/settings/${leagueId}`,
     method: 'get',
@@ -83,7 +83,7 @@ export const getLeagueAdminData = async (leagueId, token) => {
   return await axiosClient(data);
 };
 
-export const updateLeague = async (leagueId, payload, token) => {
+export const updateLeague = async (leagueId: number, payload: Record<string, any>, token: string) => {
   const data = {
     url: `${api}/league/${leagueId}`,
     method: 'put',
@@ -94,7 +94,7 @@ export const updateLeague = async (leagueId, payload, token) => {
   return await axiosClient(data);
 };
 
-export const removeTeamFromLeague = async (memberId, payload, token) => {
+export const removeTeamFromLeague = async (memberId: number, payload: Record<string, any>, token: string) => {
   const data = {
     url: `${api}/league/remove/${memberId}`,
     method: 'delete',
@@ -105,7 +105,7 @@ export const removeTeamFromLeague = async (memberId, payload, token) => {
   return await axiosClient(data);
 };
 
-export const getPlayoffs = async (leagueId, token) => {
+export const getPlayoffs = async (leagueId: number, token: string) => {
   const data = {
     url: `${api}/league/playoffs/${leagueId}`,
     method: 'get',
@@ -124,7 +124,7 @@ export const startLeague = async () => {
   return await axiosClient(data);
 };
 
-export const getLeagueChamp = async (leagueId, token) => {
+export const getLeagueChamp = async (leagueId: number, token: string) => {
   const data = {
     url: `${api}/league/champion/${leagueId}`,
     method: 'get',

@@ -1,7 +1,7 @@
 import { axiosClient } from 'Utils/axios';
 const api = process.env.NEXT_PUBLIC_API;
 
-export const getMatchUp = async (matchupId, token) => {
+export const getMatchUp = async (matchupId: number, token: string) => {
   const data = {
     url: `${api}/matchup/${matchupId}`,
     method: 'get',
@@ -11,7 +11,7 @@ export const getMatchUp = async (matchupId, token) => {
   return await axiosClient(data);
 };
 
-export const getMatchUpFromTeamId = async (teamId, token) => {
+export const getMatchUpFromTeamId = async (teamId: number, token: string) => {
   const data = {
     url: `${api}/matchup/team/${teamId}`,
     method: 'get',
@@ -21,7 +21,7 @@ export const getMatchUpFromTeamId = async (teamId, token) => {
   return await axiosClient(data);
 };
 
-export const createMatchupVotes = async (matchupId, payload, token) => {
+export const createMatchupVotes = async (matchupId: number, payload: Record<string, any>, token: string) => {
   const data = {
     url: `${api}/matchup/vote/${matchupId}`,
     method: 'post',
@@ -32,7 +32,7 @@ export const createMatchupVotes = async (matchupId, payload, token) => {
   return await axiosClient(data);
 };
 
-export const getMatchupVotes = async (voteId) => {
+export const getMatchupVotes = async (voteId: number) => {
   const data = {
     url: `${api}/matchup/votes/${voteId}`,
     method: 'get',
@@ -41,7 +41,7 @@ export const getMatchupVotes = async (voteId) => {
   return await axiosClient(data);
 };
 
-export const getAllMatchupVotes = async (payload) => {
+export const getAllMatchupVotes = async (payload: Record<string, any>) => {
   const data = {
     url: `${api}/matchup/all/votes`,
     method: 'put',
@@ -51,7 +51,7 @@ export const getAllMatchupVotes = async (payload) => {
   return await axiosClient(data);
 };
 
-export const addVotes = async (payload) => {
+export const addVotes = async (payload: Record<string, any>) => {
   const data = {
     url: `${api}/matchup/add`,
     method: 'put',
