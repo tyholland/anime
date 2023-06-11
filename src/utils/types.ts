@@ -48,7 +48,7 @@ export type BioReviewProps = {
   closeModal: () => void;
   characterId: number;
   type?: string;
-  canDraf?: boolean;
+  canDraft?: boolean;
   draftPlayer?: () => void;
   errorMsg?: string;
 };
@@ -72,8 +72,8 @@ export type ChangeCharactersProps = {
   setPlayerList: Dispatch<Record<string, any>>
   playerList: Record<string, any>
   field: string;
-  isBracket: boolean;
-  leagueWeek: number;
+  isBracket?: boolean;
+  leagueWeek?: number;
 };
 
 export type CharacterStatsProps = {
@@ -83,7 +83,7 @@ export type CharacterStatsProps = {
   votes: Record<string, any>;
   isMatchupPage?: boolean;
   userId?: number | null;
-  isActive?: number | null;
+  isActive?: boolean;
 };
 
 export type MainModalProps = {
@@ -95,7 +95,7 @@ export type MainModalProps = {
 export type NotificationProps = {
   modalIsOpen: boolean;
   closeModal: () => void;
-  message: string;
+  message: string | React.JSX.Element;
 };
 
 export type RecapProps = {
@@ -123,7 +123,7 @@ export type BenchCardStyledProps = {
 };
 
 export type BioCardProps = {
-  characterId: number;
+  characterId: number | string;
 };
 
 export type DisclaimerProps = {
@@ -136,7 +136,7 @@ export type ErrorMsgProps = {
 
 export type GameContainerProps = {
   game: Record<string, any>;
-  gameNum: number | null;
+  gameNum?: number | null;
 };
 
 export type GameContainerStyledProps = {
@@ -148,7 +148,7 @@ export type LeagueCardProps = {
 };
 
 export type LeagueChampProps = {
-  classProp: string | null;
+  classProp?: string | null;
 };
 
 export type LoaderProps = {
@@ -160,7 +160,7 @@ export type MatchUpProps = {
   team: Record<string, any>;
   votes: Record<string, any>;
   userId: number;
-  isActive: number;
+  isActive: boolean;
 };
 
 export type MatchUpStyledProps = {
@@ -178,7 +178,7 @@ export type MatchupVotingProps = {
 export type MetadataProps = {
   title: string;
   description: string;
-  image: string | null;
+  image?: string | null;
 };
 
 export type MobileHeaderProps = {
@@ -191,25 +191,25 @@ export type MobileHeaderStyledProps = {
 };
 
 export type NotUserProps = {
-  message: string | null;
+  message?: string | null;
 };
 
 export type PlayersProps = {
   data: Record<string, any>;
-  changeRoster: boolean;
-  setPlayerList: (player: Record<string, any>) => void;
-  playerList: Record<string, any>;
-  field: string;
-  page: string | null;
-  leagueWeek: number;
-  openDraft: (player: Record<string, any>) => void;
-  series: string;
+  changeRoster?: boolean;
+  setPlayerList?: (player: Record<string, any>) => void;
+  playerList?: Record<string, any>;
+  field?: string;
+  page?: string | null;
+  leagueWeek?: number;
+  openDraft?: (player: Record<string, any>) => void;
+  series?: string;
 };
 
 export type TextFieldProps = {
-  placeholder: string;
+  placeholder?: string;
   type?: React.HTMLInputTypeAttribute;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
   isDisabled?: boolean;
   inputVal?: string | number | null;
   maxLength?: number;
@@ -225,13 +225,13 @@ export type SelectProps = {
 export type SelectionCardProps = {
   btnText: string;
   redirect: string;
-  isDisabled: boolean;
+  isDisabled?: boolean;
   newTab?: boolean | null;
-  disabledMsg: string;
+  disabledMsg?: string;
 };
 
 export type SingleSignOnProps = {
-  buttonText: string;
+  buttonText?: string;
   setError: Dispatch<string>;
 };
 
@@ -250,4 +250,8 @@ export type TeamCardProps = {
 
 export type TeamCardStyledProps = {
   noCharacter?: boolean;
+};
+
+export type DraftStyledProps = {
+  teams?: number;
 };

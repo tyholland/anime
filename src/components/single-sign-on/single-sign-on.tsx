@@ -77,7 +77,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }: SingleSignOnProps) => 
       });
 
       if (join) {
-        await joinLeagueSetup(join, user, router);
+        await joinLeagueSetup(join as string, user, router);
         return;
       }
 

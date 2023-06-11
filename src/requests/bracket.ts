@@ -22,7 +22,7 @@ export const addBracketVotes = async (payload: Record<string, any>) => {
   return await axiosClient(data);
 };
 
-export const getBracket = async (bracketId: number) => {
+export const getBracket = async (bracketId: string) => {
   const data = {
     url: `${api}/bracket/${bracketId}`,
     method: 'get',
@@ -40,7 +40,7 @@ export const getAllBrackets = async (userId: number) => {
   return await axiosClient(data);
 };
 
-export const startRound1 = async (bracketId: number, token: string) => {
+export const startRound1 = async (bracketId: string, token: string) => {
   const data = {
     url: `${api}/bracket/round1/${bracketId}`,
     method: 'get',
@@ -50,7 +50,7 @@ export const startRound1 = async (bracketId: number, token: string) => {
   return await axiosClient(data);
 };
 
-export const startRound2 = async (bracketId: number, token: string) => {
+export const startRound2 = async (bracketId: string, token: string) => {
   const data = {
     url: `${api}/bracket/round2/${bracketId}`,
     method: 'get',
@@ -60,7 +60,7 @@ export const startRound2 = async (bracketId: number, token: string) => {
   return await axiosClient(data);
 };
 
-export const startRound3 = async (bracketId: number, token: string) => {
+export const startRound3 = async (bracketId: string, token: string) => {
   const data = {
     url: `${api}/bracket/round3/${bracketId}`,
     method: 'get',
@@ -70,7 +70,7 @@ export const startRound3 = async (bracketId: number, token: string) => {
   return await axiosClient(data);
 };
 
-export const startRound4 = async (bracketId: number, token: string) => {
+export const startRound4 = async (bracketId: string, token: string) => {
   const data = {
     url: `${api}/bracket/round4/${bracketId}`,
     method: 'get',
@@ -80,7 +80,7 @@ export const startRound4 = async (bracketId: number, token: string) => {
   return await axiosClient(data);
 };
 
-export const startChampRound = async (bracketId: number, token: string) => {
+export const startChampRound = async (bracketId: string, token: string) => {
   const data = {
     url: `${api}/bracket/round5/${bracketId}`,
     method: 'get',
@@ -90,7 +90,7 @@ export const startChampRound = async (bracketId: number, token: string) => {
   return await axiosClient(data);
 };
 
-export const getTheChamp = async (bracketId: number, token: string) => {
+export const getTheChamp = async (bracketId: string, token: string) => {
   const data = {
     url: `${api}/bracket/champ/${bracketId}`,
     method: 'get',

@@ -20,7 +20,7 @@ export const getAdminPlayers = async (token: string) => {
   return await axiosClient(data);
 };
 
-export const getPlayer = async (playerId: number) => {
+export const getPlayer = async (playerId: number | string) => {
   const data = {
     url: `${api}/player/${playerId}`,
     method: 'get',
@@ -29,7 +29,7 @@ export const getPlayer = async (playerId: number) => {
   return await axiosClient(data);
 };
 
-export const getUseablePlayers = async (teamId: number, token: string) => {
+export const getUseablePlayers = async (teamId: string, token: string) => {
   const data = {
     url: `${api}/player/select/${teamId}`,
     method: 'get',

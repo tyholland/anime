@@ -29,6 +29,7 @@ export const LeagueWrapper = ({ children }: PropsWithChildren) => {
   } else if (cachedLeaguge) {
     allLeagueData = cachedLeaguge;
     allLeagueData.isMonday = dayOfTheWeek;
+    setContextLeague(allLeagueData);
   }
 
   const updateLeagueData = (additionalInfo: Record<string, any>) => {

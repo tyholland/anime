@@ -14,7 +14,7 @@ const CharacterStats = ({
   votes,
   isMatchupPage = true,
   userId = null,
-  isActive = null,
+  isActive = false,
 }: CharacterStatsProps) => {
   const { currentUser } = useUserContext();
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -44,7 +44,7 @@ const CharacterStats = ({
   const canVote =
     currentUser.user_id === userId &&
     isMatchupPage &&
-    isActive > 0 &&
+    isActive &&
     rank !== 'battlefield';
 
   const closeModal = () => {

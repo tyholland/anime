@@ -48,7 +48,21 @@ export const TeamWrapper = ({ children }) => {
   if (contextTeam) {
     allTeamData = contextTeam;
     allTeamData.isMonday = dayOfTheWeek;
-  } else if (captain) {
+  } else if (
+    captain &&
+    brawler_a &&
+    brawler_b &&
+    bs_brawler &&
+    bs_support &&
+    support &&
+    battlefield &&
+    villain &&
+    bench0 &&
+    bench1 &&
+    bench2 &&
+    bench3 &&
+    details
+  ) {
     allTeamData = {
       team: {
         captain,
@@ -72,18 +86,21 @@ export const TeamWrapper = ({ children }) => {
       userPoints: details.userPoints,
       isMonday: dayOfTheWeek,
     };
+    setContextTeam(allTeamData);
   }
 
   if (contextTeamInfo) {
     allInfoData = contextTeamInfo;
   } else if (cachedTeamInfo) {
     allInfoData = cachedTeamInfo;
+    setContextTeamInfo(allInfoData);
   }
 
   if (contextTeamRecap) {
     allRecapData = contextTeamRecap;
   } else if (cachedTeamRecap) {
     allRecapData = cachedTeamRecap;
+    setContextTeamRecap(allRecapData);
   }
 
   const updateTeamData = (additionalInfo: Record<string, any>) => {

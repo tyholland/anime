@@ -114,7 +114,7 @@ export const getAffinitiesTypes = (character: Record<string, any>) => {
   return affinityList;
 };
 
-export const joinLeagueSetup = async (leagueHash: string | string[], currentUser: Record<string, any>, router: NextRouter) => {
+export const joinLeagueSetup = async (leagueHash: string, currentUser: Record<string, any>, router: NextRouter) => {
   const payload = {
     hash: leagueHash,
   };

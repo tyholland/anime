@@ -16,7 +16,7 @@ const LeagueChamp = ({classProp = null}: LeagueChampProps) => {
     const { league_id } = router.query;
 
     try {
-      const { champ } = await getLeagueChamp(league_id, currentUser?.token);
+      const { champ } = await getLeagueChamp(league_id as string, currentUser?.token);
       setTheChamp(champ);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get League Champ'));

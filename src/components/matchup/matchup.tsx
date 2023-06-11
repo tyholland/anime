@@ -32,7 +32,7 @@ const MatchUp = ({ isReverse, team, votes, userId, isActive }: MatchUpProps) => 
     return (
       <Styles.MatchupAffinity className={isReverse && 'reverse'}>
         {!!character.affinity?.length &&
-          character.affinity.map((item) => {
+          character.affinity.map((item: Record<string, any>) => {
             return (
               <GlobalStyles.GlobalCircle
                 key={item.type}

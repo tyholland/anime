@@ -23,7 +23,7 @@ export const joinLeague = async (payload: Record<string, any>, token: string) =>
   return await axiosClient(data);
 };
 
-export const getLeague = async (leagueId: number, token: string) => {
+export const getLeague = async (leagueId: string, token: string) => {
   const data = {
     url: `${api}/league/${leagueId}`,
     method: 'get',
@@ -43,7 +43,7 @@ export const getAllLeagues = async (token: string) => {
   return await axiosClient(data);
 };
 
-export const getScoreboard = async (leagueId: number, token: string) => {
+export const getScoreboard = async (leagueId: string, token: string) => {
   const data = {
     url: `${api}/league/scoreboard/${leagueId}`,
     method: 'get',
@@ -53,7 +53,7 @@ export const getScoreboard = async (leagueId: number, token: string) => {
   return await axiosClient(data);
 };
 
-export const getStandings = async (leagueId: number, token: string) => {
+export const getStandings = async (leagueId: string, token: string) => {
   const data = {
     url: `${api}/league/standings/${leagueId}`,
     method: 'get',
@@ -73,7 +73,7 @@ export const deleteLeague = async (leagueId: number, token: string) => {
   return await axiosClient(data);
 };
 
-export const getLeagueAdminData = async (leagueId: number, token: string) => {
+export const getLeagueAdminData = async (leagueId: string, token: string) => {
   const data = {
     url: `${api}/league/admin/settings/${leagueId}`,
     method: 'get',
@@ -83,7 +83,7 @@ export const getLeagueAdminData = async (leagueId: number, token: string) => {
   return await axiosClient(data);
 };
 
-export const updateLeague = async (leagueId: number, payload: Record<string, any>, token: string) => {
+export const updateLeague = async (leagueId: string, payload: Record<string, any>, token: string) => {
   const data = {
     url: `${api}/league/${leagueId}`,
     method: 'put',
@@ -105,7 +105,7 @@ export const removeTeamFromLeague = async (memberId: number, payload: Record<str
   return await axiosClient(data);
 };
 
-export const getPlayoffs = async (leagueId: number, token: string) => {
+export const getPlayoffs = async (leagueId: string, token: string) => {
   const data = {
     url: `${api}/league/playoffs/${leagueId}`,
     method: 'get',
@@ -124,7 +124,7 @@ export const startLeague = async () => {
   return await axiosClient(data);
 };
 
-export const getLeagueChamp = async (leagueId: string | string[], token: string) => {
+export const getLeagueChamp = async (leagueId: string, token: string) => {
   const data = {
     url: `${api}/league/champion/${leagueId}`,
     method: 'get',

@@ -50,7 +50,7 @@ const ActivateVoting = ({
     };
 
     try {
-      await createMatchupVotes(query?.matchup_id, payload, currentUser?.token);
+      await createMatchupVotes(query?.matchup_id as string, payload, currentUser?.token);
 
       addEvent('Start Matchup Voting', {
         matchupId: query?.matchup_id,

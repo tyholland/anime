@@ -1,7 +1,7 @@
 import { axiosClient } from 'Utils/axios';
 const api = process.env.NEXT_PUBLIC_API;
 
-export const getTeam = async (teamId: number, token: string) => {
+export const getTeam = async (teamId: string, token: string) => {
   const data = {
     url: `${api}/team/data/${teamId}`,
     method: 'get',
@@ -21,7 +21,7 @@ export const getMatchupTeam = async (teamId: number, token: string) => {
   return await axiosClient(data);
 };
 
-export const getTeamInfo = async (memberId: number, token: string) => {
+export const getTeamInfo = async (memberId: string, token: string) => {
   const data = {
     url: `${api}/team/info/${memberId}`,
     method: 'get',
@@ -31,7 +31,7 @@ export const getTeamInfo = async (memberId: number, token: string) => {
   return await axiosClient(data);
 };
 
-export const updateTeam = async (teamId: number, payload: Record<string, any>, token: string) => {
+export const updateTeam = async (teamId: string, payload: Record<string, any>, token: string) => {
   const data = {
     url: `${api}/team/${teamId}`,
     method: 'put',
@@ -53,7 +53,7 @@ export const updateTeamName = async (memberId: number, payload: Record<string, a
   return await axiosClient(data);
 };
 
-export const getSchedule = async (leagueId: number, token: string) => {
+export const getSchedule = async (leagueId: string, token: string) => {
   const data = {
     url: `${api}/team/schedule/${leagueId}`,
     method: 'get',

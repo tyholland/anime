@@ -25,6 +25,7 @@ export const UserWrapper = ({ children }) => {
     currentUser = contextUser;
   } else if (cachedUser) {
     currentUser = cachedUser;
+    setContextUser(currentUser);
   }
 
   const updateCurrentUser = (userInfo: Record<string, any>) => {
