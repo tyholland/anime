@@ -4,8 +4,10 @@ import { addEvent } from 'Utils/amplitude';
 import {
   deleteCachedData,
   getCachedData,
-  responseError,
   setCachedData,
+} from 'Utils/cache';
+import {
+  responseError,
 } from 'Utils/index';
 import { UserWrapperContext } from 'Utils/types';
 

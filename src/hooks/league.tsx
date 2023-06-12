@@ -1,10 +1,12 @@
 import { createContext, useContext, useState, PropsWithChildren } from 'react';
 import {
+  getDate,
+} from 'Utils/index';
+import {
   deleteCachedData,
   getCachedData,
-  getDate,
   setCachedData,
-} from 'Utils/index';
+} from 'Utils/cache';
 import { MONDAY } from 'Utils/constants';
 import { LeagueWrapperContext } from 'Utils/types';
 

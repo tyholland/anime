@@ -1,10 +1,12 @@
 import { createContext, useContext, useState } from 'react';
 import {
-  deleteStorageData,
   getDate,
+} from 'Utils/index';
+import {
+  deleteStorageData,
   getStorageData,
   setStorageData,
-} from 'Utils/index';
+} from 'Utils/cache';
 import { MONDAY } from 'Utils/constants';
 import { TeamWrapperContext } from 'Utils/types';
 

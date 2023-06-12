@@ -18,6 +18,7 @@ import ReadMore from 'Components/read-more/read-more';
 import Disclaimer from 'Components/disclaimer/disclaimer';
 import { useLeagueContext } from 'Hooks/league';
 import { useTeamContext } from 'Hooks/team';
+import { clearAllCache } from 'Utils/cache';
 
 const Account = () => {
   const { deleteCurrentUser, currentUser } = useUserContext();
@@ -47,6 +48,7 @@ const Account = () => {
       await deleteCurrentUser();
       deleteLeagueData();
       deleteTeamData();
+      clearAllCache();
       addEvent('Account logout');
       router.push('/');
     } catch (err) {

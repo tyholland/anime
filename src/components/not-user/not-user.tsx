@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import * as GlobalStyles from 'Styles/global.style';
 import * as Styles from './notUser.style';
 import { useRouter } from 'next/router';
-import { getStorageData, randomInt } from 'Utils/index';
+import { randomInt } from 'Utils/index';
+import { getStorageData } from 'Utils/cache';
 import { NotUserProps } from 'Utils/types';
 
 const NotUser = ({ message = null }: NotUserProps) => {

@@ -1,7 +1,8 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { getAnimeNews } from 'Requests/player';
 import { addEvent } from 'Utils/amplitude';
-import { getStorageData, randomInt, responseError, setStorageData } from 'Utils/index';
+import { randomInt, responseError } from 'Utils/index';
+import { getStorageData, setStorageData } from 'Utils/cache';
 import * as Styles from './readMore.style';
 
 const ReadMore = ({ children }: PropsWithChildren) => {

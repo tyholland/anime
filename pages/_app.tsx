@@ -9,7 +9,8 @@ import Notification from 'Modals/notification/notification';
 import { FRIDAY, MONDAY, SUNDAY, THURSDAY, alerts } from 'Utils/constants';
 import { LeagueWrapper } from 'Hooks/league';
 import { TeamWrapper } from 'Hooks/team';
-import { getDate, getStorageData, setStorageData } from 'Utils/index';
+import { getDate } from 'Utils/index';
+import { getStorageData, setStorageData } from 'Utils/cache';
 
 const MyApp = ({ Component, pageProps, router }) => {
   firebaseApp();
