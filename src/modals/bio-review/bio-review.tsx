@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import 'react-data-grid/lib/styles.css';
 import MainModal from '../main/main';
 import Button from 'Components/button/button';
 import * as Styles from './bioReview.style';

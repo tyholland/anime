@@ -1,46 +1,50 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import {
   COLOR_BLACK,
-  COLOR_WHITE_TRANSPARENT,
+  COLOR_ORANGE,
+  COLOR_ORANGE_LIGHT,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
 } from 'Styles/global.style';
 
 export const PlayersStyles = createGlobalStyle`
-  .fillGrid,
-  .fillModal,
-  .fillDraft,
-  .fillAdmin {
-    grid-template-columns: 250px 150px 150px 250px !important;
-    width: auto;
-    height: 100vh;
-    --rdg-background-color: ${COLOR_WHITE_TRANSPARENT};
-    --rdg-header-background-color: rgb(249,128,17);
-    --rdg-color: ${COLOR_BLACK};
-    --rdg-row-hover-background-color: rgba(249,128,17,.6);
-    --rdg-row-selected-background-color: none;
-    --rdg-row-selected-hover-background-color: none;
-    --rdg-selection-color: none;
-    cursor: pointer;
+  .react-grid-Container,
+  .react-grid-Canvas {
+    width: 802px !important;
   }
 
-  .fillModal {
-    grid-template-columns: 175px 120px 100px 300px !important;
-    width: auto;
-    height: 455px;
-    margin-top: 2%;
+  .react-grid-HeaderCell {
+    background: ${COLOR_ORANGE} !important;
+    border: 1px solid ${COLOR_BLACK} !important;
   }
 
-  .fillDraft {
-    grid-template-columns: 180px 110px 110px 200px !important;
+  .react-grid-Grid,
+  .react-grid-Cell {
+    border: 1px solid ${COLOR_BLACK} !important;
   }
 
-  .fillAdmin {
-    grid-template-columns: 180px 110px 110px 110px 180px !important;
+  .react-grid-Grid {
+    height: 500px !important;
   }
 
-  .fillGrid > div:hover {
+  .react-grid-Cell {
+    width: 183px !important;
+  }
+
+  .react-grid-Row:first-child:hover {
     font-weight: ${FONT_WEIGHT_BOLD};
+    background: ${COLOR_ORANGE_LIGHT};
+    border-top: 1px solid ${COLOR_BLACK};
+  }
+
+  .react-grid-Row:not(:first-child):hover {
+    font-weight: ${FONT_WEIGHT_BOLD};
+    background: ${COLOR_ORANGE_LIGHT};
+    border-top: none;
+  }
+
+  .react-grid-Main {
+    outline: 0 !important;
   }
 
   .mobileGrid {

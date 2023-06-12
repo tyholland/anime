@@ -4,6 +4,7 @@ import {
   FONT_SIZE_SMALL,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
+  RESPONSIVE_VIEW,
 } from 'Styles/global.style';
 
 export const TeamEditWrapper = styled.div`
@@ -26,7 +27,7 @@ export const TeamEditWrapper = styled.div`
 export const TeamEditBtn = styled.div`
   display: flex;
   justify-content: center;
-  height: 70px;
+  height: 100px;
   padding: 2% 0;
   align-items: center;
   border-bottom: 1px solid ${COLOR_BLACK};
@@ -36,7 +37,7 @@ export const TeamEditBtn = styled.div`
     margin-top: 3%;
   }
 
-  ${MOBILE_VIEW} {
+  ${RESPONSIVE_VIEW} {
     width: 180px;
     flex-direction: column;
   }
@@ -58,11 +59,12 @@ export const TeamEditSection = styled.div`
   align-items: center;
   border-bottom: 1px solid ${COLOR_BLACK};
   width: 100%;
-  height: 70px;
+  height: 100px;
 
   &.character {
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
   
     button {
       text-overflow: ellipsis;
@@ -94,7 +96,8 @@ export const TeamEditSection = styled.div`
   }
 
   &.desktop {
-    width: 70%;
+    width: 38%;
+    padding-right: 2%;
 
     ${MOBILE_VIEW} {
       display: none;

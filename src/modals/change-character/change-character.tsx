@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import * as GlobalStyles from 'Styles/global.style';
-import 'react-data-grid/lib/styles.css';
 import Players from 'Components/players/players';
 import MainModal from '../main/main';
 import Button from 'Components/button/button';

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as GlobalStyles from 'Styles/global.style';
-import 'react-data-grid/lib/styles.css';
 import BackLink from 'Components/back-link/back-link';
 import Players from 'Components/players/players';
 import Metadata from 'Components/metadata/metadata';

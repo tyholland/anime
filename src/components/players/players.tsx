@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import 'react-data-grid/lib/styles.css';
-import DataGrid, { Row } from 'react-data-grid';
+import ReactDataGrid, { Row } from 'react-data-grid';
 import { useRouter } from 'next/router';
 import * as Styles from './players.style';
 import TextField from 'Components/text-field/text-field';
@@ -32,7 +31,7 @@ const Players = ({
   const [powerLevel, setPowerLevel] = useState<string>('none');
   const [searchWord, setSearchWord] = useState<string | null>(null);
   const [isFilter, setIsFilter] = useState<boolean>(false);
-  const columns: DataGrid.Column<unknown>[] = [
+  const columns: ReactDataGrid.Column<unknown>[] = [
     {
       key: 'fullName',
       name: 'Name',
@@ -50,7 +49,7 @@ const Players = ({
       name: 'Anime Series',
     },
   ];
-  const mobileColumns: DataGrid.Column<unknown>[] = [
+  const mobileColumns: ReactDataGrid.Column<unknown>[] = [
     {
       key: 'fullName',
       name: 'Name',
@@ -64,7 +63,7 @@ const Players = ({
       name: 'Points',
     },
   ];
-  const teamColumns: DataGrid.Column<unknown>[] = [
+  const teamColumns: ReactDataGrid.Column<unknown>[] = [
     {
       key: 'fullName',
       name: 'Name',
@@ -82,7 +81,7 @@ const Players = ({
       name: 'Affinities',
     },
   ];
-  const teamMobileColumns: DataGrid.Column<unknown>[] = [
+  const teamMobileColumns: ReactDataGrid.Column<unknown>[] = [
     {
       key: 'name',
       name: 'Name',
@@ -96,7 +95,7 @@ const Players = ({
       name: 'Affinities',
     },
   ];
-  const adminColumns: DataGrid.Column<unknown>[] = [
+  const adminColumns: ReactDataGrid.Column<unknown>[] = [
     {
       key: 'fullName',
       name: 'Name',
@@ -118,7 +117,7 @@ const Players = ({
       name: 'Anime Series',
     },
   ];
-  const adminMobileColumns: DataGrid.Column<unknown>[] = [
+  const adminMobileColumns: ReactDataGrid.Column<unknown>[] = [
     {
       key: 'fullName',
       name: 'Name',
@@ -580,50 +579,37 @@ const Players = ({
         </Styles.PlayersFilter>
       )}
       <div className="desktopGrid">
-        <DataGrid
-          columns={
-            changeRoster || page === 'roster'
-              ? teamColumns
-              : page === 'admin'
-                ? adminColumns
-                : columns
-          }
-          rowGetter={rows}
-          rowsCount={rows.length}
-          // className={
-          //   changeRoster || page === 'roster'
-          //     ? 'fillModal'
-          //     : page === 'draft'
-          //       ? 'fillDraft'
-          //       : page === 'admin'
-          //         ? 'fillAdmin'
-          //         : 'fillGrid'
-          // }
-          onRowClick={(rowIdx, row) => handleRowClick(row)}
-        />
+        {rows.length > 0 && (
+          <ReactDataGrid
+            columns={
+              changeRoster || page === 'roster'
+                ? teamColumns
+                : page === 'admin'
+                  ? adminColumns
+                  : columns
+            }
+            rowGetter={i => rows[i]}
+            rowsCount={rows.length}
+            onRowClick={(rowIdx, row) => handleRowClick(row)}
+            enableCellSelect={false}
+          />
+        )}
       </div>
       <div className="mobileGrid">
-        <DataGrid
-          columns={
-            changeRoster || page === 'roster'
-              ? teamMobileColumns
-              : page === 'admin'
-                ? adminMobileColumns
-                : mobileColumns
-          }
-          rowGetter={rows}
-          rowsCount={rows.length}
-          // className={
-          //   changeRoster || page === 'roster'
-          //     ? 'fillModal'
-          //     : page === 'draft'
-          //       ? 'fillDraft'
-          //       : page === 'admin'
-          //         ? 'fillAdmin'
-          //         : 'fillGrid'
-          // }
-          onRowClick={(val, row) => handleRowClick(row)}
-        />
+        {rows.length > 0 && (
+          <ReactDataGrid
+            columns={
+              changeRoster || page === 'roster'
+                ? teamMobileColumns
+                : page === 'admin'
+                  ? adminMobileColumns
+                  : mobileColumns
+            }
+            rowGetter={i => rows[i]}
+            rowsCount={rows.length}
+            onRowClick={(val, row) => handleRowClick(row)}
+          />
+        )}
       </div>
     </>
   );
