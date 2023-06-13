@@ -591,6 +591,8 @@ const Players = ({
             rowGetter={i => rows[i]}
             rowsCount={rows.length}
             onRowClick={(rowIdx, row) => handleRowClick(row)}
+            minHeight={700}
+            minWidth={802}
           />
         )}
       </div>

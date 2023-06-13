@@ -8,11 +8,6 @@ import {
 } from 'Styles/global.style';
 
 export const PlayersStyles = createGlobalStyle`
-  .react-grid-Container,
-  .react-grid-Canvas {
-    width: 802px !important;
-  }
-
   .react-grid-HeaderCell {
     background: ${COLOR_ORANGE} !important;
     border: 1px solid ${COLOR_BLACK} !important;
@@ -21,10 +16,6 @@ export const PlayersStyles = createGlobalStyle`
   .react-grid-Grid,
   .react-grid-Cell {
     border: 1px solid ${COLOR_BLACK} !important;
-  }
-
-  .react-grid-Grid {
-    min-height: 700px !important;
   }
 
   .react-grid-Cell {
