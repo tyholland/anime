@@ -24,23 +24,28 @@ export const PlayersStyles = createGlobalStyle`
   }
 
   .react-grid-Grid {
-    height: 500px !important;
+    min-height: 700px !important;
   }
 
   .react-grid-Cell {
     width: 183px !important;
   }
 
-  .react-grid-Row:first-child:hover {
+  .react-grid-Row:first-child:hover > div,
+  .react-grid-Row:not(:first-child):hover > div,
+  .react-grid-Row:last-child:hover > div {
     font-weight: ${FONT_WEIGHT_BOLD};
-    background: ${COLOR_ORANGE_LIGHT};
-    border-top: 1px solid ${COLOR_BLACK};
+    background: ${COLOR_ORANGE_LIGHT} !important;
+    border-top: 1px solid ${COLOR_BLACK} !important;
+    cursor: pointer;
   }
 
-  .react-grid-Row:not(:first-child):hover {
-    font-weight: ${FONT_WEIGHT_BOLD};
-    background: ${COLOR_ORANGE_LIGHT};
-    border-top: none;
+  .react-grid-Row:not(:first-child):hover > div {
+    border-top: none !important;
+  }
+
+  .react-grid-Row:last-child:hover > div {
+    border-bottom: none !important;
   }
 
   .react-grid-Main {

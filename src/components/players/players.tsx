@@ -591,7 +591,6 @@ const Players = ({
             rowGetter={i => rows[i]}
             rowsCount={rows.length}
             onRowClick={(rowIdx, row) => handleRowClick(row)}
-            enableCellSelect={false}
           />
         )}
       </div>
