@@ -42,7 +42,7 @@ export const PlayersRowHead = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  position: sticky;
+  position: relative;
   
   .name,
   .rank,
