@@ -8,7 +8,6 @@ import Metadata from 'Components/metadata/metadata';
 import { useRouter } from 'next/router';
 import Error from 'PageComponents/error/error';
 import { responseError } from 'Utils/index';
-import { deleteCachedData } from 'Utils/cache';
 import { getTeam, hideRecap } from 'Requests/team';
 import Loader from 'Components/loader/loader';
 import { addEvent } from 'Utils/amplitude';
@@ -18,6 +17,7 @@ import ReadMore from 'Components/read-more/read-more';
 import Recap from 'Modals/recap/recap';
 import BenchCard from 'Components/bench-card/bench-card';
 import { useTeamContext } from 'Hooks/team';
+import { useLeagueContext } from 'Hooks/league';
 
 const Team = () => {
   const router = useRouter();
@@ -30,7 +30,9 @@ const Team = () => {
     allRecapData,
     allTeamData,
     handleTeamRefresh,
+    deleteTeamData
   } = useTeamContext();
+  const { deleteLeagueData } = useLeagueContext();
   const [teamId, setTeamId] = useState<string | null>(null);
   const [teamData, setTeamData] = useState<Record<string, any> | null>(null);
   const [rank, setRank] = useState<Record<string, any> | null>(null);
@@ -108,7 +110,8 @@ const Team = () => {
   const closeModal = async () => {
     try {
       await hideRecap(leagueId, currentUser?.token);
-      deleteCachedData('aflTeam.recap');
+      deleteTeamData();
+      deleteLeagueData();
       setModalIsOpen(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to close modal'));
