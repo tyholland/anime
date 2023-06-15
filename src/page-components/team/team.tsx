@@ -112,6 +112,7 @@ const Team = () => {
       await hideRecap(leagueId, currentUser?.token);
       deleteTeamData();
       deleteLeagueData();
+      await handleTeam();
       setModalIsOpen(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to close modal'));
