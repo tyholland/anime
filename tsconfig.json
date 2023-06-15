@@ -18,6 +18,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "sourceMap": true,
     "baseUrl": ".",
     "paths": {
       "Components/*": ["src/components/*"],
@@ -36,6 +37,7 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "out"
   ]
 }

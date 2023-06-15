@@ -24,7 +24,7 @@ const SpecificVoteMatchup = () => {
     const { vote_id } = router.query;
 
     try {
-      const matchupVotes = await getMatchupVotes(vote_id);
+      const matchupVotes = await getMatchupVotes(vote_id as string);
       const { player_a_id, player_b_id } = matchupVotes;
 
       const playerA = await getPlayer(player_a_id);

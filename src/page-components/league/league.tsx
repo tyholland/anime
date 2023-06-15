@@ -46,7 +46,7 @@ const League = () => {
 
     try {
       const { leagueData, matchupData, hasDraft, teamData } = await getLeague(
-        league_id,
+        league_id as string,
         currentUser?.token
       );
 

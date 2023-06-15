@@ -32,7 +32,7 @@ export const createMatchupVotes = async (matchupId: string, payload: Record<stri
   return await axiosClient(data);
 };
 
-export const getMatchupVotes = async (voteId: number) => {
+export const getMatchupVotes = async (voteId: string) => {
   const data = {
     url: `${api}/matchup/votes/${voteId}`,
     method: 'get',

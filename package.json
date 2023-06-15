@@ -9,7 +9,7 @@
     "eslint": "eslint .",
     "eslint-fix": "eslint . --fix",
     "stylelint": "stylelint src/styles/*.style.ts, src/page-components/**/*.style.ts, src/page-components/**/**/*.style.ts, src/components/**/*.style.ts",
-    "clean": "rm -rf node_modules && rm -rf yarn.lock && yarn",
+    "clean": "rm -rf node_modules && rm -rf .next && rm -rf yarn.lock && yarn",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -29,7 +29,6 @@
     "react-burger-menu": "^3.0.9",
     "react-collapsible": "^2.10.0",
     "react-countdown-circle-timer": "^3.2.1",
-    "react-data-grid": "5.0.4",
     "react-dom": "18.2.0",
     "react-modal": "^3.16.1",
     "react-paginate": "^8.1.4",
@@ -37,6 +36,7 @@
     "react-spinners": "^0.13.7",
     "react-svg-tournament-bracket": "^1.4.1",
     "react-tooltip": "^5.11.2",
+    "source-map": "^0.7.4",
     "styled-components": "^5.3.5",
     "stylelint": "^14.11.0",
     "stylelint-config-recommended": "^9.0.0",
@@ -47,7 +47,6 @@
   },
   "devDependencies": {
     "@types/react": "^18.2.9",
-    "@types/react-data-grid": "^4.0.8",
     "@types/styled-components": "^5.1.26",
     "core-js": "^3.29.0",
     "eslint": "^8.30.0",

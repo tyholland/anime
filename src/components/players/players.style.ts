@@ -1,86 +1,217 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import {
   COLOR_BLACK,
   COLOR_ORANGE,
   COLOR_ORANGE_LIGHT,
+  COLOR_WHITE_TRANSPARENT,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
 } from 'Styles/global.style';
 
-export const PlayersStyles = createGlobalStyle`
-  .react-grid-HeaderCell {
-    background: ${COLOR_ORANGE} !important;
-    border: 1px solid ${COLOR_BLACK} !important;
-  }
-
-  .react-grid-Grid,
-  .react-grid-Cell {
-    border: 1px solid ${COLOR_BLACK} !important;
-  }
-
-  .react-grid-Cell {
-    width: 183px !important;
-  }
-
-  .react-grid-Row:first-child:hover > div,
-  .react-grid-Row:not(:first-child):hover > div,
-  .react-grid-Row:last-child:hover > div {
-    font-weight: ${FONT_WEIGHT_BOLD};
-    background: ${COLOR_ORANGE_LIGHT} !important;
-    border-top: 1px solid ${COLOR_BLACK} !important;
-    cursor: pointer;
-  }
-
-  .react-grid-Row:not(:first-child):hover > div {
-    border-top: none !important;
-  }
-
-  .react-grid-Row:last-child:hover > div {
-    border-bottom: none !important;
-  }
-
-  .react-grid-Main {
-    outline: 0 !important;
-  }
-
-  .mobileGrid {
-    display: none;
-  }
+export const PlayersGrid = styled.div`
+  width: 655px;
 
   ${MOBILE_VIEW} {
-    .desktopGrid {
+    width: 100%;
+  }
+
+  &.desktopGrid {
+    ${MOBILE_VIEW} {
       display: none;
     }
+  }
 
-    .mobileGrid {
+  &.mobileGrid {
+    display: none;
+
+    ${MOBILE_VIEW} {
       display: block;
     }
+  }
 
-    .fillGrid {
-      grid-template-columns: 180px 80px 80px 0px !important;
+  &.roster {
+    width: 495px;
+
+    ${MOBILE_VIEW} {
+      width: 100%;
+    }
+  }
+`;
+
+export const PlayersRowHead = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  position: sticky;
+  
+  .name,
+  .rank,
+  .points,
+  .series,
+  .affinity {
+    border: 1px solid ${COLOR_BLACK};
+    border-right: none;
+    padding: 5px;
+    background: ${COLOR_ORANGE};
+    font-weight: ${FONT_WEIGHT_BOLD};
+  }
+
+  .name {
+    width: 150px;
+
+    ${MOBILE_VIEW} {
+      width: 80px;
+    }
+  }
+
+  .rank {
+    width: 80px;
+
+    ${MOBILE_VIEW} {
+      width: 60px;
+    }
+  }
+
+  .points {
+    width: 80px;
+
+    ${MOBILE_VIEW} {
+      width: 60px;
+    }
+  }
+
+  .series {
+    width: 150px;
+  }
+
+  .affinity {
+    width: 140px;
+  }
+  
+  div:last-child {
+    border-right: 1px solid ${COLOR_BLACK};
+  }
+`;
+
+export const PlayersRow = styled.button`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  border: none;
+  background: none;
+  text-align: left;
+  padding: 0;
+
+  .name,
+  .rank,
+  .points,
+  .series,
+  > .affinity {
+    border: 1px solid ${COLOR_BLACK};
+    border-bottom: none;
+    border-right: none;
+    padding: 5px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+  }
+
+  .name {
+    width: 150px;
+
+    span {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 145px;
+      overflow: hidden;
+
+      ${MOBILE_VIEW} {
+        width: 75px;
+      }
     }
 
-    .fillModal {
-      grid-template-columns: 80px 80px 180px 0px !important;
+    ${MOBILE_VIEW} {
+      width: 80px;
     }
+  }
 
-    .fillDraft {
-      grid-template-columns: 180px 110px 100px 0px !important;
-      height: 50vh;
-    }
+  .rank {
+    width: 80px;
 
-    .fillAdmin {
-      grid-template-columns: 100px 100px 80px 80px !important;
+    ${MOBILE_VIEW} {
+      width: 60px;
     }
+  }
+
+  .points {
+    width: 80px;
+
+    ${MOBILE_VIEW} {
+      width: 60px;
+    }
+  }
+
+  .series {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+    overflow: hidden;
+
+    span {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 145px;
+      overflow: hidden;
+    }
+  }
+
+  > .affinity {
+    width: 140px;
+  }
+
+  :last-child {
+    .name,
+    .rank,
+    .points,
+    .series,
+    > .affinity {
+      border-bottom: 1px solid ${COLOR_BLACK};
+    }
+  }
+  
+  > div:last-child {
+    border-right: 1px solid ${COLOR_BLACK};
+  }
+
+  :hover {
+    cursor: pointer;
+    background: ${COLOR_ORANGE_LIGHT};
+    font-weight: ${FONT_WEIGHT_BOLD};
+  }
+`;
+
+export const PlayersRowSection = styled.div`
+  position: relative;
+  background: ${COLOR_WHITE_TRANSPARENT};
+  overflow-y: scroll;
+  height: 500px;
+
+  &.roster {
+    height: 400px;
   }
 `;
 
 export const PlayersFilter = styled.div`
   display: flex;
   margin-bottom: 2%;
-  width: 100%;
   justify-content: center;
   align-items: center;
+  width: 655px;
+
+  ${MOBILE_VIEW} {
+    width: 100%;
+  }
 
   &.special {
     justify-content: space-between;
@@ -99,6 +230,7 @@ export const PlayersFilter = styled.div`
 
   select {
     margin-left: 2%;
+    width: 100px;
   }
 
   label {
@@ -109,6 +241,18 @@ export const PlayersFilter = styled.div`
   .seriesFilter,
   .powerFilter {
     width: 30%;
+
+    ${MOBILE_VIEW} {
+      display: flex;
+      width: 90%;
+      margin: 3% 0;
+    }
+  }
+
+  .seriesFilter {
+    ${MOBILE_VIEW} {
+      display: none;
+    }
   }
 
   input {
@@ -133,18 +277,16 @@ export const PlayersFilter = styled.div`
     }
   }
 
-  ${MOBILE_VIEW} {
-    width: 100%;
-
-    .seriesFilter {
-      display: none;
-    }
+  &.roster {
+    width: 495px;
 
     .rankFilter,
     .powerFilter {
-      display: flex;
-      width: 90%;
-      margin: 3% 0;
+      width: 50%;
+    
+      ${MOBILE_VIEW} {
+        width: 100%;
+      }
     }
   }
 `;

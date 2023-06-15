@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ReactDataGrid, { Row } from 'react-data-grid';
 import { useRouter } from 'next/router';
 import * as Styles from './players.style';
 import TextField from 'Components/text-field/text-field';
@@ -8,6 +7,7 @@ import { getAffinitiesTypes } from 'Utils/index';
 import { addEvent } from 'Utils/amplitude';
 import { useUserContext } from 'Hooks/user';
 import { PlayersProps } from 'Utils/types';
+import * as GlobalStyles from 'Styles/global.style';
 
 const Players = ({
   data,
@@ -22,7 +22,7 @@ const Players = ({
 }: PlayersProps) => {
   const router = useRouter();
   const { currentUser } = useUserContext();
-  const [rows, setRows] = useState<Row[]>([]);
+  const [rows, setRows] = useState<Record<string, any>>([]);
   const [listOfPlayers, setListOfPlayers] = useState<Record<string, any>>(data);
   const [seriesArr, setSeriesArr] = useState<Record<string, any>>([]);
   const [rankArr, setRankArr] = useState<Record<string, any>>([]);
@@ -31,7 +31,65 @@ const Players = ({
   const [powerLevel, setPowerLevel] = useState<string>('none');
   const [searchWord, setSearchWord] = useState<string | null>(null);
   const [isFilter, setIsFilter] = useState<boolean>(false);
-  const columns: ReactDataGrid.Column<unknown>[] = [
+  const columns: Record<string, any> = [
+    {
+      key: 'fullName',
+      name: 'Name',
+    },
+    {
+      key: 'rank',
+      name: 'Rank',
+    },
+    {
+      key: 'cost',
+      name: 'Points',
+    },
+    {
+      key: 'series',
+      name: 'Series',
+    },
+    {
+      key: 'affinity',
+      name: 'Affinity',
+    },
+  ];
+  const mobileColumns: Record<string, any> = [
+    {
+      key: 'fullName',
+      name: 'Name',
+    },
+    {
+      key: 'rank',
+      name: 'Rank',
+    },
+    {
+      key: 'cost',
+      name: 'Points',
+    },
+    {
+      key: 'affinity',
+      name: 'Affinity',
+    },
+  ];
+  const teamColumns: Record<string, any> = [
+    {
+      key: 'fullName',
+      name: 'Name',
+    },
+    {
+      key: 'rank',
+      name: 'Rank',
+    },
+    {
+      key: 'cost',
+      name: 'Points',
+    },
+    {
+      key: 'affinity',
+      name: 'Affinity',
+    },
+  ];
+  const adminColumns: Record<string, any> = [
     {
       key: 'fullName',
       name: 'Name',
@@ -48,22 +106,12 @@ const Players = ({
       key: 'series',
       name: 'Anime Series',
     },
-  ];
-  const mobileColumns: ReactDataGrid.Column<unknown>[] = [
     {
-      key: 'fullName',
-      name: 'Name',
-    },
-    {
-      key: 'rank',
-      name: 'Rank',
-    },
-    {
-      key: 'cost',
-      name: 'Points',
+      key: 'affinity',
+      name: 'Affinity',
     },
   ];
-  const teamColumns: ReactDataGrid.Column<unknown>[] = [
+  const adminMobileColumns: Record<string, any> = [
     {
       key: 'fullName',
       name: 'Name',
@@ -78,61 +126,7 @@ const Players = ({
     },
     {
       key: 'affinity',
-      name: 'Affinities',
-    },
-  ];
-  const teamMobileColumns: ReactDataGrid.Column<unknown>[] = [
-    {
-      key: 'name',
-      name: 'Name',
-    },
-    {
-      key: 'cost',
-      name: 'Points',
-    },
-    {
-      key: 'affinity',
-      name: 'Affinities',
-    },
-  ];
-  const adminColumns: ReactDataGrid.Column<unknown>[] = [
-    {
-      key: 'fullName',
-      name: 'Name',
-    },
-    {
-      key: 'rank',
-      name: 'Rank',
-    },
-    {
-      key: 'cost',
-      name: 'Points',
-    },
-    {
-      key: 'power',
-      name: 'Power Level',
-    },
-    {
-      key: 'series',
-      name: 'Anime Series',
-    },
-  ];
-  const adminMobileColumns: ReactDataGrid.Column<unknown>[] = [
-    {
-      key: 'fullName',
-      name: 'Name',
-    },
-    {
-      key: 'rank',
-      name: 'Rank',
-    },
-    {
-      key: 'cost',
-      name: 'Points',
-    },
-    {
-      key: 'power',
-      name: 'Power',
+      name: 'Affinity',
     },
   ];
 
@@ -166,7 +160,7 @@ const Players = ({
           cost: item.cost,
           power: item.power_level,
           series: item.series,
-          affinity: affinity.join(', '),
+          affinity: affinity,
           width: 200,
           id: item.id,
           all: item,
@@ -181,18 +175,22 @@ const Players = ({
         rank: item.category,
         cost: item.bye_week === leagueWeek ? 'Bye' : item.cost,
         series: item.series,
-        affinity: affinity.join(', '),
+        affinity: affinity,
         width: 200,
         id: item.id,
       });
     });
 
-    const uniqueSeries = series.filter((val: string, index: number, arr: Record<string, any>) => {
-      return arr.indexOf(val) === index;
-    });
-    const uniqueRank = rank.filter((val: string, index: number, arr: Record<string, any>) => {
-      return arr.indexOf(val) === index;
-    });
+    const uniqueSeries = series.filter(
+      (val: string, index: number, arr: Record<string, any>) => {
+        return arr.indexOf(val) === index;
+      }
+    );
+    const uniqueRank = rank.filter(
+      (val: string, index: number, arr: Record<string, any>) => {
+        return arr.indexOf(val) === index;
+      }
+    );
 
     setRows(playerArr);
     setSeriesArr(uniqueSeries.sort());
@@ -205,7 +203,7 @@ const Players = ({
 
       addEvent('Bracket Selection', {
         player: item.fullName,
-        userId: currentUser?.user_id
+        userId: currentUser?.user_id,
       });
 
       setPlayerList(playerList);
@@ -411,15 +409,17 @@ const Players = ({
     }
 
     if (e.target.value === 'low') {
-      playersList = data.sort((a: Record<string, any>, b: Record<string, any>) => {
-        if (a.cost < b.cost) {
-          return -1;
+      playersList = data.sort(
+        (a: Record<string, any>, b: Record<string, any>) => {
+          if (a.cost < b.cost) {
+            return -1;
+          }
+          if (a.cost > b.cost) {
+            return 1;
+          }
+          return 0;
         }
-        if (a.cost > b.cost) {
-          return 1;
-        }
-        return 0;
-      });
+      );
 
       if (rankName !== 'all') {
         playersList = playersList.filter((item: Record<string, any>) => {
@@ -451,15 +451,17 @@ const Players = ({
       return;
     }
 
-    playersList = data.sort((a: Record<string, any>, b: Record<string, any>) => {
-      if (a.cost > b.cost) {
-        return -1;
+    playersList = data.sort(
+      (a: Record<string, any>, b: Record<string, any>) => {
+        if (a.cost > b.cost) {
+          return -1;
+        }
+        if (a.cost < b.cost) {
+          return 1;
+        }
+        return 0;
       }
-      if (a.cost < b.cost) {
-        return 1;
-      }
-      return 0;
-    });
+    );
 
     if (rankName !== 'all') {
       playersList = playersList.filter((item: Record<string, any>) => {
@@ -501,18 +503,29 @@ const Players = ({
   useEffect(() => {
     const seriesObj = {
       target: {
-        value: series
-      }
+        value: series,
+      },
     };
-    
-    handleSeriesFilter(seriesObj);
 
-    setSeriesArr([series]);
+    handleSeriesFilter(seriesObj);
   }, [series]);
+
+  const theColumn =
+    changeRoster || page === 'roster'
+      ? teamColumns
+      : page === 'admin'
+        ? adminColumns
+        : columns;
+
+  const theMobileColumn =
+    changeRoster || page === 'roster'
+      ? teamColumns
+      : page === 'admin'
+        ? adminMobileColumns
+        : mobileColumns;
 
   return (
     <>
-      <Styles.PlayersStyles />
       <Styles.PlayersFilter>
         <TextField
           placeholder="Search for character..."
@@ -526,7 +539,9 @@ const Players = ({
         />
       </Styles.PlayersFilter>
       {isFilter && (
-        <Styles.PlayersFilter className={`special${changeRoster ? ' team' : ''}`}>
+        <Styles.PlayersFilter
+          className={`special ${page} ${changeRoster ? 'team' : ''}`}
+        >
           {!changeRoster && (
             <>
               <div className="rankFilter">
@@ -545,7 +560,7 @@ const Players = ({
                   })}
                 </select>
               </div>
-              {page !== 'draft' && (
+              {page !== 'draft' || !page && (
                 <div className="seriesFilter">
                   <label>Series</label>
                   <select
@@ -578,40 +593,89 @@ const Players = ({
           </div>
         </Styles.PlayersFilter>
       )}
-      <div className="desktopGrid">
+      <Styles.PlayersGrid className={`desktopGrid ${page}`}>
         {rows.length > 0 && (
-          <ReactDataGrid
-            columns={
-              changeRoster || page === 'roster'
-                ? teamColumns
-                : page === 'admin'
-                  ? adminColumns
-                  : columns
-            }
-            rowGetter={i => rows[i]}
-            rowsCount={rows.length}
-            onRowClick={(rowIdx, row) => handleRowClick(row)}
-            minHeight={700}
-            minWidth={802}
-          />
+          <>
+            <Styles.PlayersRowHead>
+              {theColumn.map((column: Record<string, any>) => {
+                return (
+                  <div key={column.key} className={column.name.toLowerCase()}>
+                    {column.name}
+                  </div>
+                );
+              })}
+            </Styles.PlayersRowHead>
+            <Styles.PlayersRowSection className={page}>
+              {rows.map((row: Record<string, any>) => {
+                return (
+                  <Styles.PlayersRow
+                    key={row.id}
+                    onClick={() => handleRowClick(row)}
+                  >
+                    <div className="name"><span>{row.fullName}</span></div>
+                    <div className="rank">{row.rank}</div>
+                    <div className="points">{row.cost}</div>
+                    { !(changeRoster || page === 'roster')  && <div className="series"><span>{row.series}</span></div> }
+                    <div className="affinity">
+                      {row.affinity.map((item: string, index: number) => {
+                        const affinity = item === 'no affinity' ? 'noAffinity' : item;
+
+                        return (
+                          <GlobalStyles.GlobalCircle
+                            key={index}
+                            className={`team ${affinity}`}
+                            title={item}
+                          ></GlobalStyles.GlobalCircle>
+                        );
+                      })}
+                    </div>
+                  </Styles.PlayersRow>
+                );
+              })}
+            </Styles.PlayersRowSection>
+          </>
         )}
-      </div>
-      <div className="mobileGrid">
-        {rows.length > 0 && (
-          <ReactDataGrid
-            columns={
-              changeRoster || page === 'roster'
-                ? teamMobileColumns
-                : page === 'admin'
-                  ? adminMobileColumns
-                  : mobileColumns
-            }
-            rowGetter={i => rows[i]}
-            rowsCount={rows.length}
-            onRowClick={(val, row) => handleRowClick(row)}
-          />
-        )}
-      </div>
+      </Styles.PlayersGrid>
+      <Styles.PlayersGrid className={`mobileGrid ${page}`}>
+        <>
+          <Styles.PlayersRowHead>
+            {theMobileColumn.map((column: Record<string, any>) => {
+              return (
+                <div key={column.key} className={column.name.toLowerCase()}>
+                  {column.name}
+                </div>
+              );
+            })}
+          </Styles.PlayersRowHead>
+          <Styles.PlayersRowSection className={page}>
+            {rows.map((row: Record<string, any>) => {
+              return (
+                <Styles.PlayersRow
+                  key={row.id}
+                  onClick={() => handleRowClick(row)}
+                >
+                  <div className="name"><span>{row.name}</span></div>
+                  <div className="rank">{row.rank}</div>
+                  <div className="points">{row.cost}</div>
+                  <div className="affinity">
+                    {row.affinity.map((item: string, index: number) => {
+                      const affinity = item === 'no affinity' ? 'noAffinity' : item;
+
+                      return (
+                        <GlobalStyles.GlobalCircle
+                          key={index}
+                          className={`team ${affinity}`}
+                          title={item}
+                        ></GlobalStyles.GlobalCircle>
+                      );
+                    })}
+                  </div>
+                </Styles.PlayersRow>
+              );
+            })}
+          </Styles.PlayersRowSection>
+        </>
+      </Styles.PlayersGrid>
     </>
   );
 };

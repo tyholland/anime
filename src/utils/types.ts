@@ -171,8 +171,8 @@ export type MatchupVotingProps = {
   userPlayerA: Record<string, any>;
   userPlayerB: Record<string, any>;
   matchup: Record<string, any>;
-  changeMatchup: () => void;
-  isChangeable: boolean;
+  changeMatchup?: () => void;
+  isChangeable?: boolean;
 };
 
 export type MetadataProps = {
