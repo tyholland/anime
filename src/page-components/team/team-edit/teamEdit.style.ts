@@ -73,6 +73,7 @@ export const TeamEditSection = styled.div`
       width: 150px !important;
       text-align: left;
       padding-bottom: 3%;
+      margin: 0;
     }
 
     .affinities {
