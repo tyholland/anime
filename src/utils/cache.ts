@@ -71,6 +71,9 @@ export const getStorageData = (name: string) => {
       return null;
     }
 
+    if (!decryptedVal.value) {
+      return null;
+    }
     return JSON.parse(decryptedVal.value);
   }
 

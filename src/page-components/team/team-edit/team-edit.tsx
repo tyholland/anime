@@ -23,7 +23,7 @@ import { useTeamContext } from 'Hooks/team';
 const TeamEdit = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
-  const { allTeamData, allInfoData, handleTeamRefresh } =
+  const { allTeamData, allInfoData, handleTeamRefresh, updateTeamData } =
     useTeamContext();
   const [players, setPlayers] = useState<Record<string, any> | null>(null);
   const [allPlayers, setAllPlayers] = useState<Record<string, any> | null>(null);
@@ -47,10 +47,10 @@ const TeamEdit = () => {
 
     setPlayerList({
       captain: team.captain,
-      brawlerA: team.brawler_a,
-      brawlerB: team.brawler_b,
-      bsBrawler: team.bs_brawler,
-      bsSupport: team.bs_support,
+      brawler_a: team.brawler_a,
+      brawler_b: team.brawler_b,
+      bs_brawler: team.bs_brawler,
+      bs_support: team.bs_support,
       support: team.support,
       villain: team.villain,
       battlefield: team.battlefield,
@@ -183,10 +183,10 @@ const TeamEdit = () => {
     const defaultPoints = 9000;
     const characterArr = [
       updatedPlayers.captain.id,
-      updatedPlayers.brawlerA.id,
-      updatedPlayers.brawlerB.id,
-      updatedPlayers.bsBrawler.id,
-      updatedPlayers.bsSupport.id,
+      updatedPlayers.brawler_a.id,
+      updatedPlayers.brawler_b.id,
+      updatedPlayers.bs_brawler.id,
+      updatedPlayers.bs_support.id,
       updatedPlayers.support.id,
       updatedPlayers.villain.id,
       updatedPlayers.battlefield.id,
@@ -252,6 +252,9 @@ const TeamEdit = () => {
       setPlayerList(thePlayers);
       setPlayers(unusedPlayers);
       setErrorMsg(null);
+      updateTeamData({
+        team: thePlayers
+      });
     } catch (err) {
       addEvent('Error', responseError(err, 'Update Team'));
       setErrorMsg(err.response.data.message);
@@ -380,26 +383,26 @@ const TeamEdit = () => {
                   {handleCharacterLine(
                     'Brawler',
                     'B',
-                    playerList.brawlerA,
-                    'brawlerA'
+                    playerList.brawler_a,
+                    'brawler_a'
                   )}
                   {handleCharacterLine(
                     'Brawler',
                     'B',
-                    playerList.brawlerB,
-                    'brawlerB'
+                    playerList.brawler_b,
+                    'brawler_b'
                   )}
                   {handleCharacterLine(
                     'Duo - Brawler',
                     'Duo - B',
-                    playerList.bsBrawler,
-                    'bsBrawler'
+                    playerList.bs_brawler,
+                    'bs_brawler'
                   )}
                   {handleCharacterLine(
                     'Duo - Support',
                     'Duo - S',
-                    playerList.bsSupport,
-                    'bsSupport'
+                    playerList.bs_support,
+                    'bs_support'
                   )}
                   {handleCharacterLine(
                     'Support',

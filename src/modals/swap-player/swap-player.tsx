@@ -66,31 +66,31 @@ const SwapPlayer = ({
       });
     }
 
-    if (players.brawlerA.type === playerType && players.brawlerA.id !== playerId) {
+    if (players.brawler_a.type === playerType && players.brawler_a.id !== playerId) {
       swappable.push({
-        ...players.brawlerA,
-        field: 'brawlerA',
+        ...players.brawler_a,
+        field: 'brawler_a',
       });
     }
 
-    if (players.brawlerB.type === playerType && players.brawlerB.id !== playerId) {
+    if (players.brawler_b.type === playerType && players.brawler_b.id !== playerId) {
       swappable.push({
-        ...players.brawlerB,
-        field: 'brawlerB',
+        ...players.brawler_b,
+        field: 'brawler_b',
       });
     }
 
-    if (players.bsBrawler.type === playerType && players.bsBrawler.id !== playerId) {
+    if (players.bs_brawler.type === playerType && players.bs_brawler.id !== playerId) {
       swappable.push({
-        ...players.bsBrawler,
-        field: 'bsBrawler',
+        ...players.bs_brawler,
+        field: 'bs_brawler',
       });
     }
 
-    if (players.bsSupport.type === playerType && players.bsSupport.id !== playerId) {
+    if (players.bs_support.type === playerType && players.bs_support.id !== playerId) {
       swappable.push({
-        ...players.bsSupport,
-        field: 'bsSupport',
+        ...players.bs_support,
+        field: 'bs_support',
       });
     }
 
