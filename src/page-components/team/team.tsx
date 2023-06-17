@@ -18,6 +18,7 @@ import Recap from 'Modals/recap/recap';
 import BenchCard from 'Components/bench-card/bench-card';
 import { useTeamContext } from 'Hooks/team';
 import { useLeagueContext } from 'Hooks/league';
+import { useStandingsContext } from 'Hooks/standings';
 
 const Team = () => {
   const router = useRouter();
@@ -33,6 +34,7 @@ const Team = () => {
     deleteTeamData
   } = useTeamContext();
   const { deleteLeagueData } = useLeagueContext();
+  const { deleteCurrentStandings } = useStandingsContext();
   const [teamId, setTeamId] = useState<string | null>(null);
   const [teamData, setTeamData] = useState<Record<string, any> | null>(null);
   const [rank, setRank] = useState<Record<string, any> | null>(null);
@@ -112,6 +114,7 @@ const Team = () => {
       await hideRecap(leagueId, currentUser?.token);
       deleteTeamData();
       deleteLeagueData();
+      deleteCurrentStandings();
       await handleTeam();
       setModalIsOpen(false);
     } catch (err) {

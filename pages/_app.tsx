@@ -11,6 +11,7 @@ import { LeagueWrapper } from 'Hooks/league';
 import { TeamWrapper } from 'Hooks/team';
 import { getDate } from 'Utils/index';
 import { getStorageData, setStorageData } from 'Utils/cache';
+import { StandingsWrapper } from 'Hooks/standings';
 
 const MyApp = ({ Component, pageProps, router }) => {
   firebaseApp();
@@ -39,7 +40,9 @@ const MyApp = ({ Component, pageProps, router }) => {
   const handleAlerts = () => {
     const date = getDate();
     const dayOfTheWeek = date.day();
-    const eligiblePage = router.state.pathname !== '/login' && router.state.pathname !== '/sign-up';
+    const eligiblePage =
+      router.state.pathname !== '/login' &&
+      router.state.pathname !== '/sign-up';
 
     if (eligiblePage) {
       switch (dayOfTheWeek) {
@@ -80,15 +83,17 @@ const MyApp = ({ Component, pageProps, router }) => {
     <UserWrapper>
       <LeagueWrapper>
         <TeamWrapper>
-          <GlobalStyles.GlobalStyles />
-          <Header />
-          <Component {...pageProps} />
-          <Footer />
-          <Notification
-            message={msg}
-            modalIsOpen={isAlertModalOpen}
-            closeModal={closeModal}
-          />
+          <StandingsWrapper>
+            <GlobalStyles.GlobalStyles />
+            <Header />
+            <Component {...pageProps} />
+            <Footer />
+            <Notification
+              message={msg}
+              modalIsOpen={isAlertModalOpen}
+              closeModal={closeModal}
+            />
+          </StandingsWrapper>
         </TeamWrapper>
       </LeagueWrapper>
     </UserWrapper>

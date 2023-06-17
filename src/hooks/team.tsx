@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { PropsWithChildren, createContext, useContext, useState } from 'react';
 import {
   getDate,
 } from 'Utils/index';
@@ -21,10 +21,10 @@ const TeamContext = createContext<TeamWrapperContext>({
   handleTeamRefresh: null,
 });
 
-export const TeamWrapper = ({ children }) => {
-  const [contextTeam, setContextTeam] = useState(null);
-  const [contextTeamInfo, setContextTeamInfo] = useState(null);
-  const [contextTeamRecap, setContextTeamRecap] = useState(null);
+export const TeamWrapper = ({ children }: PropsWithChildren) => {
+  const [contextTeam, setContextTeam] = useState<Record<string, any> | null>(null);
+  const [contextTeamInfo, setContextTeamInfo] = useState<Record<string, any> | null>(null);
+  const [contextTeamRecap, setContextTeamRecap] = useState<Record<string, any> | null>(null);
   const cachedTeamInfo = getStorageData('aflTeam.info');
   const cachedTeamRecap = getStorageData('aflTeam.recap');
   const captain = getStorageData('aflTeam.captain');

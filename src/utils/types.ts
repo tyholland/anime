@@ -24,6 +24,12 @@ export type UserWrapperContext = {
   deleteCurrentUser: () => void | null;
 };
 
+export type StandingsWrapperContext = {
+  currentStandings: Record<string, any> | null;
+  updateCurrentStandings: (data: Record<string, any>) => void | null;
+  deleteCurrentStandings: () => void | null;
+};
+
 export type ButtonProps = {
   btnColor?: string;
   btnText?: string | React.JSX.Element;

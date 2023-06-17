@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, PropsWithChildren, useContext, useState } from 'react';
 import { accountLogout } from 'Requests/users';
 import { addEvent } from 'Utils/amplitude';
 import {
@@ -17,8 +17,8 @@ const UserContext = createContext<UserWrapperContext>({
   deleteCurrentUser: null,
 });
 
-export const UserWrapper = ({ children }) => {
-  const [contextUser, setContextUser] = useState(null);
+export const UserWrapper = ({ children }: PropsWithChildren) => {
+  const [contextUser, setContextUser] = useState<Record<string, any> | null>(null);
   const cachedUser = getCachedData('aflUser');
 
   let currentUser: Record<string, any> = null;

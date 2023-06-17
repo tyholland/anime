@@ -19,11 +19,13 @@ import Disclaimer from 'Components/disclaimer/disclaimer';
 import { useLeagueContext } from 'Hooks/league';
 import { useTeamContext } from 'Hooks/team';
 import { clearAllCache } from 'Utils/cache';
+import { useStandingsContext } from 'Hooks/standings';
 
 const Account = () => {
   const { deleteCurrentUser, currentUser } = useUserContext();
   const { deleteLeagueData } = useLeagueContext();
   const { deleteTeamData } = useTeamContext();
+  const { deleteCurrentStandings } = useStandingsContext();
   const [email, setEmail] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isPwdLoading, setIsPwdLoading] = useState<boolean>(false);
@@ -38,7 +40,8 @@ const Account = () => {
   const router = useRouter();
   const message =
     'The account page contains all your Fantasy League profile information, which includes only your email address. You have the ability to change your password if you choose to do so. The account page also allows you to log out of the Fantasy League. Lastly, if you must, you can even delete your account. Though where is the fun in doing that?';
-  const disclaimerMsg = 'AFL emails notifications have been sent to all members. If you haven\'t received any, please check your spam folder for these AFL email notifications. If the emails are in your spam folder, please unmark them as spam.';
+  const disclaimerMsg =
+    'AFL emails notifications have been sent to all members. If you haven\'t received any, please check your spam folder for these AFL email notifications. If the emails are in your spam folder, please unmark them as spam.';
 
   const handleLogout = async () => {
     setIsLoading(true);
@@ -48,6 +51,7 @@ const Account = () => {
       await deleteCurrentUser();
       deleteLeagueData();
       deleteTeamData();
+      deleteCurrentStandings();
       clearAllCache();
       addEvent('Account logout');
       router.push('/');
@@ -196,10 +200,21 @@ const Account = () => {
             {!isLoading && (
               <>
                 <Styles.AccountContainer>
-                  <Collapsible trigger={profileDown} triggerWhenOpen={profileUp} triggerTagName="div" triggerElementProps={{ id: 'profile', 'aria-controls': 'profile' }} contentElementId="profile">
+                  <Collapsible
+                    trigger={profileDown}
+                    triggerWhenOpen={profileUp}
+                    triggerTagName="div"
+                    triggerElementProps={{
+                      id: 'profile',
+                      'aria-controls': 'profile',
+                    }}
+                    contentElementId="profile"
+                  >
                     <Styles.AccountWrapper>
                       <Styles.AccountSectionRight>
-                        <Styles.AccountSectionLabel>Email:</Styles.AccountSectionLabel>
+                        <Styles.AccountSectionLabel>
+                          Email:
+                        </Styles.AccountSectionLabel>
                         <TextField isDisabled={true} inputVal={email} />
                         <Button
                           btnText="Delete Account"
@@ -209,7 +224,16 @@ const Account = () => {
                       </Styles.AccountSectionRight>
                     </Styles.AccountWrapper>
                   </Collapsible>
-                  <Collapsible trigger={pwdDown} triggerWhenOpen={pwdUp} triggerTagName="div" triggerElementProps={{ id: 'password', 'aria-controls': 'password' }} contentElementId="password">
+                  <Collapsible
+                    trigger={pwdDown}
+                    triggerWhenOpen={pwdUp}
+                    triggerTagName="div"
+                    triggerElementProps={{
+                      id: 'password',
+                      'aria-controls': 'password',
+                    }}
+                    contentElementId="password"
+                  >
                     <Styles.AccountWrapper className="column">
                       <div className="pwd">
                         {errorMsg && <ErrorMsg msg={errorMsg} />}
@@ -245,7 +269,10 @@ const Account = () => {
                     trigger={logDown}
                     triggerWhenOpen={logUp}
                     triggerTagName="div"
-                    triggerElementProps={{ id: 'last', 'aria-controls': 'last' }}
+                    triggerElementProps={{
+                      id: 'last',
+                      'aria-controls': 'last',
+                    }}
                     contentElementId="last"
                   >
                     <Styles.AccountWrapper className="column">

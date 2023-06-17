@@ -1,12 +1,6 @@
 import { createContext, useContext, useState, PropsWithChildren } from 'react';
-import {
-  getDate,
-} from 'Utils/index';
-import {
-  deleteCachedData,
-  getCachedData,
-  setCachedData,
-} from 'Utils/cache';
+import { getDate } from 'Utils/index';
+import { deleteCachedData, getCachedData, setCachedData } from 'Utils/cache';
 import { MONDAY } from 'Utils/constants';
 import { LeagueWrapperContext } from 'Utils/types';
 
@@ -18,7 +12,10 @@ const LeagueContext = createContext<LeagueWrapperContext>({
 });
 
 export const LeagueWrapper = ({ children }: PropsWithChildren) => {
-  const [contextLeague, setContextLeague] = useState(null);
+  const [contextLeague, setContextLeague] = useState<Record<
+    string,
+    any
+  > | null>(null);
   const cachedLeaguge = getCachedData('aflLeague');
   const date = getDate();
   const dayOfTheWeek = date.day() === MONDAY;
