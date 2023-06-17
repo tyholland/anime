@@ -26,8 +26,10 @@ const Players = ({
   const [listOfPlayers, setListOfPlayers] = useState<Record<string, any>>(data);
   const [seriesArr, setSeriesArr] = useState<Record<string, any>>([]);
   const [rankArr, setRankArr] = useState<Record<string, any>>([]);
+  const [affinityArr, setAffinityArr] = useState<Record<string, any>>([]);
   const [seriesName, setSeriesName] = useState<string>(series);
   const [rankName, setRankName] = useState<string>('all');
+  const [affinityName, setAffinityName] = useState<string>('all');
   const [powerLevel, setPowerLevel] = useState<string>('none');
   const [searchWord, setSearchWord] = useState<string | null>(null);
   const [isFilter, setIsFilter] = useState<boolean>(false);
@@ -134,6 +136,7 @@ const Players = ({
     const playerArr = [];
     const series = [];
     const rank = [];
+    const affinities = [];
 
     if (powerLevel === 'none') {
       listOfPlayers?.sort((a: Record<string, any>, b: Record<string, any>) => {
@@ -151,6 +154,9 @@ const Players = ({
       series.push(item.series);
       rank.push(item.category);
       const affinity = getAffinitiesTypes(item);
+      affinity.forEach(item => {
+        affinities.push(item);
+      });
 
       if (!!page && page === 'admin') {
         playerArr.push({
@@ -191,10 +197,44 @@ const Players = ({
         return arr.indexOf(val) === index;
       }
     );
+    const uniqueAffinity = affinities.filter(
+      (val: string, index: number, arr: Record<string, any>) => {
+        return arr.indexOf(val) === index;
+      }
+    );
 
     setRows(playerArr);
     setSeriesArr(uniqueSeries.sort());
     setRankArr(uniqueRank.sort());
+    setAffinityArr(uniqueAffinity.sort());
+  };
+
+  const getSpecificSeries = (data: Record<string, any>) => {
+    return data.filter((item: Record<string, any>) => {
+      return item.series === seriesName;
+    });
+  };
+
+  const getSpecificRank = (data: Record<string, any>) => {
+    return data.filter((item: Record<string, any>) => {
+      return item.category === rankName;
+    });
+  };
+
+  const getSpecificAffinity = (data: Record<string, any>) => {
+    return data.filter((item: Record<string, any>) => {
+      const currentAffinities = getAffinitiesTypes(item);
+
+      return currentAffinities.some((affinity) => affinity === affinityName);
+    });
+  };
+
+  const getSpecificSearch = (data: Record<string, any>) => {
+    return data.filter((item: Record<string, any>) => {
+      return item.full_name
+        .toLowerCase()
+        .includes(searchWord.toLowerCase());
+    });
   };
 
   const handleRowClick = (item: Record<string, any>) => {
@@ -236,31 +276,16 @@ const Players = ({
     if (e.target.value === 'all') {
       let playersList = data;
 
-      if (seriesName !== 'all') {
-        playersList = data.filter((item: Record<string, any>) => {
-          if (searchWord) {
-            return (
-              item.series === seriesName &&
-              item.full_name.toLowerCase().includes(searchWord.toLowerCase())
-            );
-          }
-
-          return item.series === seriesName;
-        });
-
-        setListOfPlayers(playersList);
-        return;
+      if (searchWord) {
+        playersList = getSpecificSearch(playersList);
       }
 
-      if (searchWord) {
-        playersList = data.filter((item: Record<string, any>) => {
-          return item.full_name
-            .toLowerCase()
-            .includes(searchWord.toLowerCase());
-        });
+      if (seriesName !== 'all') {
+        playersList = getSpecificSeries(playersList);
+      }
 
-        setListOfPlayers(playersList);
-        return;
+      if (affinityName !== 'all') {
+        playersList = getSpecificAffinity(playersList);
       }
 
       setListOfPlayers(playersList);
@@ -278,17 +303,11 @@ const Players = ({
     });
 
     if (seriesName !== 'all') {
-      playersList = data.filter((item: Record<string, any>) => {
-        if (searchWord) {
-          return (
-            item.category === e.target.value &&
-            item.series === seriesName &&
-            item.full_name.toLowerCase().includes(searchWord.toLowerCase())
-          );
-        }
+      playersList = getSpecificSeries(playersList);
+    }
 
-        return item.category === e.target.value && item.series === seriesName;
-      });
+    if (affinityName !== 'all') {
+      playersList = getSpecificAffinity(playersList);
     }
 
     setListOfPlayers(playersList);
@@ -300,31 +319,16 @@ const Players = ({
     if (e.target.value === 'all') {
       let playersList = data;
 
-      if (rankName !== 'all') {
-        playersList = data.filter((item: Record<string, any>) => {
-          if (searchWord) {
-            return (
-              item.category === rankName &&
-              item.full_name.toLowerCase().includes(searchWord.toLowerCase())
-            );
-          }
-
-          return item.category === rankName;
-        });
-
-        setListOfPlayers(playersList);
-        return;
+      if (searchWord) {
+        playersList = getSpecificSearch(playersList);
       }
 
-      if (searchWord) {
-        playersList = data.filter((item: Record<string, any>) => {
-          return item.full_name
-            .toLowerCase()
-            .includes(searchWord.toLowerCase());
-        });
+      if (rankName !== 'all') {
+        playersList = getSpecificRank(playersList);
+      }
 
-        setListOfPlayers(playersList);
-        return;
+      if (affinityName !== 'all') {
+        playersList = getSpecificAffinity(playersList);
       }
 
       setListOfPlayers(playersList);
@@ -343,17 +347,57 @@ const Players = ({
     });
 
     if (rankName !== 'all') {
-      playersList = data.filter((item: Record<string, any>) => {
-        if (searchWord) {
-          return (
-            item.series === e.target.value &&
-            item.category === rankName &&
-            item.full_name.toLowerCase().includes(searchWord.toLowerCase())
-          );
-        }
+      playersList = getSpecificRank(playersList);
+    }
 
-        return item.series === e.target.value && item.category === rankName;
-      });
+    if (affinityName !== 'all') {
+      playersList = getSpecificAffinity(playersList);
+    }
+
+    setListOfPlayers(playersList);
+  };
+
+  const handleAffinityFilter = (e: Record<string, any>) => {
+    setAffinityName(e.target.value);
+
+    if (e.target.value === 'all') {
+      let playersList = data;
+
+      if (searchWord) {
+        playersList = getSpecificSearch(playersList);
+      }
+
+      if (seriesName !== 'all') {
+        playersList = getSpecificSeries(playersList);
+      }
+
+      if (rankName !== 'all') {
+        playersList = getSpecificRank(playersList);
+      }
+
+      setListOfPlayers(playersList);
+      return;
+    }
+
+    let playersList = data.filter((item: Record<string, any>) => {
+      const currentAffinities = getAffinitiesTypes(item);
+
+      if (searchWord) {
+        return (
+          currentAffinities.some((affinity) => affinity === e.target.value) &&
+          item.full_name.toLowerCase().includes(searchWord.toLowerCase())
+        );
+      }
+
+      return currentAffinities.some((affinity) => affinity === e.target.value);
+    });
+
+    if (seriesName !== 'all') {
+      playersList = getSpecificSeries(playersList);
+    }
+
+    if (rankName !== 'all') {
+      playersList = getSpecificRank(playersList);
     }
 
     setListOfPlayers(playersList);
@@ -378,30 +422,20 @@ const Players = ({
     let playersList = data;
 
     if (e.target.value === 'none') {
-      if (rankName !== 'all') {
-        playersList = playersList.filter((item: Record<string, any>) => {
-          if (searchWord) {
-            return (
-              item.category === rankName &&
-              item.full_name.toLowerCase().includes(searchWord.toLowerCase())
-            );
-          }
+      if (searchWord) {
+        playersList = getSpecificSearch(playersList);
+      }
 
-          return item.category === rankName;
-        });
+      if (rankName !== 'all') {
+        playersList = getSpecificRank(playersList);
       }
 
       if (seriesName !== 'all') {
-        playersList = playersList.filter((item: Record<string, any>) => {
-          if (searchWord) {
-            return (
-              item.series === seriesName &&
-              item.full_name.toLowerCase().includes(searchWord.toLowerCase())
-            );
-          }
+        playersList = getSpecificSeries(playersList);
+      }
 
-          return item.series === seriesName;
-        });
+      if (affinityName !== 'all') {
+        playersList = getSpecificAffinity(playersList);
       }
 
       setListOfPlayers(playersList);
@@ -421,30 +455,20 @@ const Players = ({
         }
       );
 
-      if (rankName !== 'all') {
-        playersList = playersList.filter((item: Record<string, any>) => {
-          if (searchWord) {
-            return (
-              item.category === rankName &&
-              item.full_name.toLowerCase().includes(searchWord.toLowerCase())
-            );
-          }
+      if (searchWord) {
+        playersList = getSpecificSearch(playersList);
+      }
 
-          return item.category === rankName;
-        });
+      if (rankName !== 'all') {
+        playersList = getSpecificRank(playersList);
       }
 
       if (seriesName !== 'all') {
-        playersList = playersList.filter((item: Record<string, any>) => {
-          if (searchWord) {
-            return (
-              item.series === seriesName &&
-              item.full_name.toLowerCase().includes(searchWord.toLowerCase())
-            );
-          }
+        playersList = getSpecificSeries(playersList);
+      }
 
-          return item.series === seriesName;
-        });
+      if (affinityName !== 'all') {
+        playersList = getSpecificAffinity(playersList);
       }
 
       setListOfPlayers(playersList);
@@ -464,29 +488,15 @@ const Players = ({
     );
 
     if (rankName !== 'all') {
-      playersList = playersList.filter((item: Record<string, any>) => {
-        if (searchWord) {
-          return (
-            item.category === rankName &&
-            item.full_name.toLowerCase().includes(searchWord.toLowerCase())
-          );
-        }
-
-        return item.category === rankName;
-      });
+      playersList = getSpecificRank(playersList);
     }
 
     if (seriesName !== 'all') {
-      playersList = playersList.filter((item: Record<string, any>) => {
-        if (searchWord) {
-          return (
-            item.series === seriesName &&
-            item.full_name.toLowerCase().includes(searchWord.toLowerCase())
-          );
-        }
+      playersList = getSpecificSeries(playersList);
+    }
 
-        return item.series === seriesName;
-      });
+    if (affinityName !== 'all') {
+      playersList = getSpecificAffinity(playersList);
     }
 
     setListOfPlayers(playersList);
@@ -560,7 +570,7 @@ const Players = ({
                   })}
                 </select>
               </div>
-              {page !== 'draft' || !page && (
+              {page === 'character' && (
                 <div className="seriesFilter">
                   <label>Series</label>
                   <select
@@ -569,6 +579,23 @@ const Players = ({
                   >
                     <option value="all">All</option>
                     {seriesArr.map((item: string) => {
+                      return (
+                        <option value={item} key={item}>
+                          {item}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              )}
+              {page !== 'character' && (
+                <div className="affinityFilter">
+                  <label>Affinity</label>
+                  <select
+                    onChange={(val) => handleAffinityFilter(val)}
+                  >
+                    <option value="all">All</option>
+                    {affinityArr.map((item: string) => {
                       return (
                         <option value={item} key={item}>
                           {item}

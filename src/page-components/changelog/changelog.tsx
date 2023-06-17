@@ -11,6 +11,16 @@ const Changelog = () => {
       />
       <GlobalStyles.GlobalContainer>
         <GlobalStyles.GlobalTitle>Changelog</GlobalStyles.GlobalTitle>
+        <h3>June 17, 2023</h3>
+        <ul>
+          <li>
+            Roster Selection
+            <ul>
+              <li>Add new filter for Affinities</li>
+              <li>You can now view the affinity images beside the characters</li>
+            </ul>
+          </li>
+        </ul>
         <h3>June 7, 2023</h3>
         <ul>
           <li>

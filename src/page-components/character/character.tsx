@@ -51,7 +51,7 @@ const Character = () => {
       <GlobalStyles.GlobalContainer className={`grid ${!players ? '' : 'bgImage character'}`}>
         <GlobalStyles.GlobalTitle>All Characters</GlobalStyles.GlobalTitle>
         {!players && <Loader />}
-        {players && <Players data={players} series={seriesName as string} />}
+        {players && <Players data={players} series={seriesName as string} page="character" />}
       </GlobalStyles.GlobalContainer>
       <ReadMore />
     </>

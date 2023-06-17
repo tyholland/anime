@@ -239,6 +239,7 @@ export const PlayersFilter = styled.div`
 
   .rankFilter,
   .seriesFilter,
+  .affinityFilter,
   .powerFilter {
     width: 30%;
 
@@ -279,11 +280,14 @@ export const PlayersFilter = styled.div`
 
   &.roster {
     width: 495px;
+    
+    ${MOBILE_VIEW} {
+      width: 100%;
+    }
 
     .rankFilter,
+    .affinityFilter,
     .powerFilter {
-      width: 50%;
-    
       ${MOBILE_VIEW} {
         width: 100%;
       }
