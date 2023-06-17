@@ -5,6 +5,8 @@ import {
   getAuth,
   signInWithPopup,
   FacebookAuthProvider,
+  UserCredential,
+  getAdditionalUserInfo
 } from 'firebase/auth';
 import { addEvent } from 'Utils/amplitude';
 import {
@@ -26,7 +28,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }: SingleSignOnProps) => 
   const { updateCurrentUser } = useUserContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
-  const [currentUser, setCurrentUser] = useState<Record<string, any>>(null);
+  const [currentUser, setCurrentUser] = useState<UserCredential | null>(null);
   const { join } = router.query;
 
   const handleGoogle = async () => {
@@ -58,8 +60,8 @@ const SingleSignOn = ({ buttonText = 'Login', setError }: SingleSignOnProps) => 
       setIsLoading(true);
       setIsDisabled(true);
 
-      const isLogin = currentUser?.operationType === 'signIn';
-      const eventName = isLogin ? 'Account login' : 'Account sign-up';
+      const { isNewUser } = getAdditionalUserInfo(currentUser);
+      const eventName = isNewUser ? 'Account login' : 'Account sign-up';
       const payload = {
         email: currentUser?.user.email,
         firebaseId: currentUser?.user.uid,
@@ -81,7 +83,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }: SingleSignOnProps) => 
         return;
       }
 
-      isLogin ? redirectToContinuePage(router) : redirectUrl('/league');
+      isNewUser ? redirectToContinuePage(router) : redirectUrl('/league');
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get SSO user data'));
       setIsLoading(false);
