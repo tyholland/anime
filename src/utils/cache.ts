@@ -20,6 +20,11 @@ const encryptData = (text: string | Record<string, any> | number) => {
 
 const decryptData = (text: string) => {
   const bytes = CryptoJS.AES.decrypt(text, secretPass);
+
+  if (JSON.parse(bytes.toString(CryptoJS.enc.Utf8))) {
+    clearAllCache();
+  }
+  
   const data = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 
   return data;
