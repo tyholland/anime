@@ -37,6 +37,7 @@ export const LeagueWrapper = ({ children }: PropsWithChildren) => {
       ...additionalInfo,
     };
 
+    deleteCachedData('aflLeague');
     setContextLeague(data);
     setCachedData('aflLeague', JSON.stringify(data));
   };
