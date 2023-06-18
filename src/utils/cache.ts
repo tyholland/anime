@@ -24,7 +24,7 @@ const decryptData = (text: string) => {
   if (JSON.parse(bytes.toString(CryptoJS.enc.Utf8))) {
     clearAllCache();
   }
-  
+
   const data = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 
   return data;
@@ -101,6 +101,5 @@ export const deleteStorageData = (name: string) => {
 
 export const clearAllCache = () => {
   deleteStorageData('abz.friday');
-  deleteStorageData('abz.sunday');
   deleteStorageData('abz.news');
 };

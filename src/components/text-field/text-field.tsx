@@ -11,16 +11,16 @@ const TextField = ({
   maxLength = 15,
   onKeyDown,
 }: TextFieldProps) => {
-  const isPassword = type === 'password';
+  const specialTypes = type === 'email' || type === 'password';
 
   if (onChange) {
     return (
       <Styles.Input
         placeholder={placeholder}
         autoCapitalize="none"
-        type={isPassword ? type : 'none'}
+        type={type ? type : 'none'}
         onChange={(input: Record<string, any>) => onChange(input.target.value)}
-        maxLength={maxLength}
+        maxLength={specialTypes ? 300 : maxLength}
         defaultValue={inputVal}
         onKeyDown={onKeyDown}
       />
@@ -33,7 +33,7 @@ const TextField = ({
         autoCapitalize="none"
         disabled={isDisabled}
         value={inputVal}
-        maxLength={maxLength}
+        maxLength={specialTypes ? 300 : maxLength}
       />
     );
   }
@@ -42,7 +42,7 @@ const TextField = ({
     <Styles.Input
       placeholder={placeholder}
       autoCapitalize="none"
-      type={isPassword ? type : 'none'}
+      type={type ? type : 'none'}
       defaultValue={inputVal}
       onKeyDown={onKeyDown}
     />

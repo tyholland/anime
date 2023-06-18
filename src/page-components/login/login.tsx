@@ -108,6 +108,7 @@ const Login = () => {
               <Styles.LoginSection>
                 <TextField
                   placeholder="Email"
+                  type="email"
                   onChange={handleEmail}
                   onKeyDown={handleKeyboardSubmit}
                 />

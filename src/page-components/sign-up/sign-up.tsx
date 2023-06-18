@@ -114,6 +114,7 @@ const SignUp = () => {
             <Styles.LoginSection>
               <TextField
                 placeholder="Please enter a email"
+                type="email"
                 onChange={handleSetEmail}
                 onKeyDown={handleKeyboardSubmit}
               />
