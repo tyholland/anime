@@ -209,6 +209,13 @@ export const GlobalContainer = styled.div`
       top: 22%;
       min-height: auto;
       opacity: 60%;
+      background-position: center;
+      width: 665px;
+      margin: 0 auto;
+
+      ${MOBILE_VIEW} {
+        width: 100%;
+      }
     }
   }
 
