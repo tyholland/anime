@@ -250,7 +250,7 @@ const Players = ({
       return;
     }
 
-    if (!page) {
+    if (page === 'character') {
       router.push(`/bio?character=${item.id}`);
     }
 

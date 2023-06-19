@@ -6,6 +6,7 @@ import {
   COLOR_WHITE_TRANSPARENT,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
+  FONT_SIZE_SMALL
 } from 'Styles/global.style';
 
 export const PlayersGrid = styled.div`
@@ -101,6 +102,8 @@ export const PlayersRow = styled.button`
   background: none;
   text-align: left;
   padding: 0;
+  color: ${COLOR_BLACK};
+  font-size: ${FONT_SIZE_SMALL};
 
   .name,
   .rank,
