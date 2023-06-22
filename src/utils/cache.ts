@@ -42,7 +42,19 @@ export const getCachedData = (name: string) => {
 
     if (name == cookiePair[0].trim()) {
       const cookieVal = decryptData(cookiePair[1]);
-      return JSON.parse(cookieVal);
+      const date = getDate();
+      const expire = dayjs.tz(cookieVal.expiry, 'America/New_York');
+  
+      if (expire.diff(date) < 0) {
+        deleteCachedData(name);
+        return null;
+      }
+  
+      if (!cookieVal.value) {
+        return null;
+      }
+      
+      return JSON.parse(cookieVal.value);
     }
   }
 
@@ -50,13 +62,17 @@ export const getCachedData = (name: string) => {
 };
 
 export const setCachedData = (name: string, value: string | number) => {
-  document.cookie = `${name} = ${encryptData(value)}; secure; max-age=${
-    5 * 24 * 60 * 60
-  }`;
+  const date = getDate();
+  const item = {
+    value,
+    expiry: date.add(5, 'day'),
+  };
+
+  document.cookie = `${name} = ${encryptData(item)}; secure; path=/`;
 };
 
 export const deleteCachedData = (name: string) => {
-  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/`;
 };
 
 export const getStorageData = (name: string) => {
@@ -79,6 +95,7 @@ export const getStorageData = (name: string) => {
     if (!decryptedVal.value) {
       return null;
     }
+
     return JSON.parse(decryptedVal.value);
   }
 
