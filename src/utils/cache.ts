@@ -21,8 +21,9 @@ const encryptData = (text: string | Record<string, any> | number) => {
 const decryptData = (text: string) => {
   const bytes = CryptoJS.AES.decrypt(text, secretPass);
 
-  if (JSON.parse(bytes.toString(CryptoJS.enc.Utf8))) {
+  if (bytes.toString(CryptoJS.enc.Utf8).length === 0) {
     clearAllCache();
+    return;
   }
 
   const data = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
@@ -43,14 +44,15 @@ export const getCachedData = (name: string) => {
     if (name == cookiePair[0].trim()) {
       const cookieVal = decryptData(cookiePair[1]);
       const date = getDate();
+
+      if (!cookieVal || !cookieVal.value) {
+        return null;
+      }
+
       const expire = dayjs.tz(cookieVal.expiry, 'America/New_York');
   
       if (expire.diff(date) < 0) {
         deleteCachedData(name);
-        return null;
-      }
-  
-      if (!cookieVal.value) {
         return null;
       }
       
@@ -85,14 +87,15 @@ export const getStorageData = (name: string) => {
   if (stored) {
     const date = getDate();
     const decryptedVal = decryptData(stored);
+
+    if (!decryptedVal || !decryptedVal.value) {
+      return null;
+    }
+
     const expire = dayjs.tz(decryptedVal.expiry, 'America/New_York');
 
     if (expire.diff(date) < 0) {
       deleteStorageData(name);
-      return null;
-    }
-
-    if (!decryptedVal.value) {
       return null;
     }
 
@@ -113,6 +116,7 @@ export const setStorageData = (name: string, value: string) => {
 };
 
 export const deleteStorageData = (name: string) => {
+  console.log('expire:', name);
   window.localStorage.removeItem(name);
 };
 
