@@ -84,7 +84,7 @@ const SignUp = () => {
         return;
       }
 
-      redirectUrl('/league');
+      redirectUrl('/account');
     } catch (error) {
       addEvent('Error', responseError(error, 'Sign up'));
 

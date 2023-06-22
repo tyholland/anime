@@ -83,7 +83,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }: SingleSignOnProps) => 
         return;
       }
 
-      isNewUser ? redirectToContinuePage(router) : redirectUrl('/league');
+      isNewUser ? redirectToContinuePage(router) : redirectUrl('/account');
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get SSO user data'));
       setIsLoading(false);
