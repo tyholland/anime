@@ -3,17 +3,11 @@ import * as GlobalStyles from 'Styles/global.style';
 import SelectionCard from 'Components/selection-card/selection-card';
 import Metadata from 'Components/metadata/metadata';
 import SuggestCharacter from 'Components/suggest-character/suggest-character';
-import Button from 'Components/button/button';
 import { allSeries } from 'Utils/constants';
-import Image from 'next/image';
 import Link from 'next/link';
 import * as Styles from './home.style';
 
 const Home = () => {
-  const goToSharePage = () => {
-    window.open('https://www.buzzsprout.com/1260827/share');
-  };
-
   return (
     <>
       <Metadata title="Home" description="Anime Fantasy League" />
@@ -29,7 +23,7 @@ const Home = () => {
             <SelectionCard btnText="Matchup Voting" redirect="/matchup/all" />
             <SelectionCard btnText="View Characters" redirect="/characters" />
             <SelectionCard btnText="Suggest Character" redirect="/#suggest" />
-            <SelectionCard btnText="ABZ Podcast" redirect="/#podcast" />
+            <SelectionCard btnText="Gameplay" redirect="/gameplay" />
           </div>
         </GlobalStyles.GlobalContainer>
       </GlobalStyles.GlobalContainer>
@@ -120,55 +114,7 @@ const Home = () => {
       <GlobalStyles.GlobalContainer className="homeSection" id="suggest">
         <SuggestCharacter />
       </GlobalStyles.GlobalContainer>
-      <GlobalStyles.GlobalContainer className="homeSection homeEven" id="podcast">
-        <GlobalStyles.GlobalTitle className="podcast">
-          <Image
-            src="/assets/logo/abz-logo.webp"
-            width={70}
-            height={70}
-            alt="Anime Brothaz"
-          />
-          Podcast
-        </GlobalStyles.GlobalTitle>
-        <p>
-          The ABZ Anime Podcast is hosted by the Brothaz (DiscipleDashni,
-          QuietJams, and TySoFly), a group of passionate anime enthusiasts who
-          gather together to delve into a wide variety of topics within the
-          anime community. Join us as we explore the latest episodes, manga
-          chapters, beloved characters, and so much more. Immerse yourself in
-          the vibrant world of anime with the ABZ Anime Podcast!
-        </p>
-        <p>
-          To immerse yourself in the captivating world of anime, click the link
-          below and let the adventure begin! This magical link will transport
-          you to a realm where you can select your preferred podcast
-          application, unlocking the gateway to a treasure trove of ABZ Anime
-          Podcast episodes. Prepare to be enchanted as you embark on a journey
-          through the vast anime universe.
-        </p>
-        <p>
-          For those new to the ABZ podcast channel, we highly recommend starting
-          with the spellbinding Episode 1. It serves as an introduction to our
-          mesmerizing podcast, setting the stage for an unforgettable
-          experience. Whether you're a seasoned anime aficionado or a curious
-          newcomer, Episode 1 is the perfect gateway to our wondrous realm.
-        </p>
-        <p>
-          Don't miss out on the excitement! Click the link below, choose your
-          favorite podcast application, and allow the ABZ Anime Podcast to
-          transport you to a world of limitless imagination and captivating
-          discussions. Adventure awaits!
-        </p>
-        <center>
-          <Button
-            btnText="Enter the realm of the ABZ Anime Podcast"
-            btnColor="primary"
-            customBtnClass="medium"
-            btnFunction={goToSharePage}
-          />
-        </center>
-      </GlobalStyles.GlobalContainer>
-      <GlobalStyles.GlobalContainer className="homeSection">
+      <GlobalStyles.GlobalContainer className="homeSection homeEven">
         <GlobalStyles.GlobalTitle>Anime Series</GlobalStyles.GlobalTitle>
         <div className="seriesTitle">
           A Blossoming Bouquet of Anime: A list of all the anime series from

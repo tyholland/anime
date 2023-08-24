@@ -367,6 +367,11 @@ export const alerts = {
   }
 };
 
+export const defaultAnimeNews = {
+  title: 'Anime Brothaz Podcast',
+  shortDescription: 'The ABZ Anime Podcast is hosted by the Brothaz (DiscipleDashni, QuietJams, and TySoFly), a group of passionate anime enthusiasts who gather together to delve into a wide variety of topics within the anime community. Join us as we explore the latest episodes, manga chapters, beloved characters, and so much more. Immerse yourself in the vibrant world of anime with the ABZ Anime Podcast!'
+};
+
 export const MONDAY = 1;
 export const THURSDAY = 4;
 export const FRIDAY = 5;

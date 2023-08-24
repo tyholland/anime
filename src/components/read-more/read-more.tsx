@@ -4,6 +4,7 @@ import { addEvent } from 'Utils/amplitude';
 import { randomInt, responseError } from 'Utils/index';
 import { getStorageData, setStorageData } from 'Utils/cache';
 import * as Styles from './readMore.style';
+import { defaultAnimeNews } from 'Utils/constants';
 
 const ReadMore = ({ children }: PropsWithChildren) => {
   const [news, setNews] = useState<Record<string, any> | null>(null);
@@ -17,6 +18,7 @@ const ReadMore = ({ children }: PropsWithChildren) => {
       setNews(data[randomInt(50)]);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get anime news'));
+      setNews(defaultAnimeNews);
     }
   };
 

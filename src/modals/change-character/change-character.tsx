@@ -87,7 +87,7 @@ const ChangeCharacters = ({
             field={field}
             leagueWeek={leagueWeek}
             openDraft={handleShowBio}
-            page={isBracket ? null : 'roster'}
+            page={isBracket ? 'bracket' : 'roster'}
           />
         )}
         <Styles.ChangeCharacterBio>

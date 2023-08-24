@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { randomInt } from 'Utils/index';
 import { getStorageData } from 'Utils/cache';
 import { NotUserProps } from 'Utils/types';
+import { defaultAnimeNews } from 'Utils/constants';
 
 const NotUser = ({ message = null }: NotUserProps) => {
   const router = useRouter();
@@ -14,15 +15,15 @@ const NotUser = ({ message = null }: NotUserProps) => {
   const handleFunFactMsg = () => {
     if (!message) {
       let abzNews = getStorageData('abz.news');
+      const news = !abzNews ? defaultAnimeNews : abzNews[randomInt(50)];
 
-      if (!abzNews) {
-        return;
-      }
-
-      const news = abzNews[randomInt(50)];
       const filteredMsg = (
         <>
-          <h3>Looking for a new series to watch!!!</h3>
+          <div>
+            <strong>
+              In the meantime, are you looking for a new series to watch!!!
+            </strong>
+          </div>
           <div>
             <strong>Anime Series: </strong> {news?.title}
           </div>
@@ -48,8 +49,8 @@ const NotUser = ({ message = null }: NotUserProps) => {
         <Styles.NotUserContent>
           {!!msg && (
             <div>
+              <h3>Please login to view this page.</h3>
               {msg}
-              Please login to view this page.
             </div>
           )}
           {!msg && <div>Please login to view this page.</div>}
