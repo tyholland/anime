@@ -25,25 +25,6 @@ const Header = () => {
     updateLoginStatus();
   }, [currentUser]);
 
-  useEffect(() => {
-    if (process.env.NEXT_PUBLIC_ENV === 'prod') {
-      (window as any).OneSignal = (window as any).OneSignal || [];
-      // eslint-disable-next-line no-undef
-      (window as any).OneSignal.push(function () {
-        // eslint-disable-next-line no-undef
-        (window as any).OneSignal.init({
-          appId: process.env.NEXT_PUBLIC_ONESIGNAL,
-          safari_web_id:
-            'web.onesignal.auto.597eddd1-7088-4460-8312-f4c61675b8f7',
-          notifyButton: {
-            enable: true,
-          },
-          allowLocalhostAsSecureOrigin: true,
-        });
-      });
-    }
-  }, []);
-
   return (
     <Styles.HeaderContainer>
       <Styles.HeaderTop>
