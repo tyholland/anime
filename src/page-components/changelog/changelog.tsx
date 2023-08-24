@@ -11,6 +11,16 @@ const Changelog = () => {
       />
       <GlobalStyles.GlobalContainer>
         <GlobalStyles.GlobalTitle>Changelog</GlobalStyles.GlobalTitle>
+        <h3>August 24, 2023</h3>
+        <ul>
+          <li>
+            General
+            <ul>
+              <li>Remove One Signal messaging</li>
+              <li>Remove Google Adsense</li>
+            </ul>
+          </li>
+        </ul>
         <h3>August 23, 2023</h3>
         <ul>
           <li>
