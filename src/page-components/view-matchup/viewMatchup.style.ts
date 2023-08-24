@@ -75,3 +75,7 @@ export const ViewMatchupTeamTotal = styled.div`
   text-align: center;
   margin-top: 15px;
 `;
+
+export const ViewMatchupAffinityText = styled.div`
+  margin-right: 10px;
+`;
