@@ -37,6 +37,14 @@ export const PlayersGrid = styled.div`
       width: 100%;
     }
   }
+
+  &.bracket {
+    width: auto;
+
+    ${MOBILE_VIEW} {
+      width: 100%;
+    }
+  }
 `;
 
 export const PlayersRowHead = styled.div`

@@ -9,7 +9,6 @@ import { randomInt, responseError } from 'Utils/index';
 import { getPlayers } from 'Requests/player';
 import Error from 'PageComponents/error/error';
 import { useUserContext } from 'Hooks/user';
-import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
 import { createBracket } from 'Requests/bracket';
 import { useRouter } from 'next/router';
@@ -430,10 +429,8 @@ const BracketCreate = () => {
   }, [canChange]);
 
   useEffect(() => {
-    if (account) {
-      handleAllPlayers();
-    }
-  }, [account]);
+    handleAllPlayers();
+  }, []);
 
   if (errorPage) {
     return <Error />;
@@ -445,8 +442,7 @@ const BracketCreate = () => {
         title="Create a Bracket"
         description="Create your Bracket now. Create some of the best head-tohead matchups there is to make. After creating your bracket, share it with friends and have them vote on individual matchups."
       />
-      {!account && <NotUser />}
-      {account && (
+      {players && (
         <>
           <GlobalStyles.GlobalContainer>
             <GlobalStyles.GlobalTitle>Create your Bracket</GlobalStyles.GlobalTitle>
@@ -581,8 +577,8 @@ const BracketCreate = () => {
                 btnColor="primary"
                 btnFunction={handleSubmit}
                 customBtnClass="medium"
-                isDisabled={isDisabled}
-                disabledMsg="Please complete all the fields above in order to proceed"
+                isDisabled={!account || isDisabled}
+                disabledMsg={!account ? 'Please login, in order to create a bracket.' : 'Please complete all the fields above in order to proceed'}
               />
             </Styles.BracketCreateWrapper>
             <ChangeCharacters

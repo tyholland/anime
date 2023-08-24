@@ -346,24 +346,13 @@ export const GlobalTitle = styled.div`
   }
 
   &.bracketView,
-  &.bracket,
-  &.podcast {
+  &.bracket {
     display: flex;
     justify-content: center;
     align-items: center;
 
     button {
       margin: 0 0 0 3%;
-    }
-  }
-
-  &.podcast {
-    width: 200px;
-    margin: 0 auto 5%;
-    justify-content: space-between;
-
-    ${RESPONSIVE_VIEW} {
-      width: 180px;
     }
   }
 

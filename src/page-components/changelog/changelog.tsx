@@ -11,6 +11,23 @@ const Changelog = () => {
       />
       <GlobalStyles.GlobalContainer>
         <GlobalStyles.GlobalTitle>Changelog</GlobalStyles.GlobalTitle>
+        <h3>August 23, 2023</h3>
+        <ul>
+          <li>
+            General
+            <ul>
+              <li>Remove Anime Brothaz podcast page</li>
+              <li>Remove Anime Brothaz social media links</li>
+              <li>Remove Anime Brothaz support link</li>
+            </ul>
+          </li>
+          <li>
+            Bracket
+            <ul>
+              <li>View the create bracket page without being logged in</li>
+            </ul>
+          </li>
+        </ul>
         <h3>June 17, 2023</h3>
         <ul>
           <li>

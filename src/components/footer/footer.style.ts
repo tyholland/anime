@@ -26,11 +26,7 @@ export const FooterContainer = styled.div`
 
 export const FooterSection = styled.div`
   display: flex;
-  width: 70%;
-
-  ${MOBILE_VIEW} {
-    width: 100%;
-  }
+  width: 100%;
 
   div {
     margin-bottom: 5%;
@@ -47,22 +43,6 @@ export const FooterSection = styled.div`
 
     &:hover {
       text-decoration: underline;
-    }
-  }
-
-  &.social {
-    align-items: center;
-    justify-content: space-evenly;
-    width: 30%;
-
-    ${MOBILE_VIEW} {
-      width: 100%;
-      margin-top: 2%;
-      margin-bottom: 0;
-    }
-
-    img {
-      cursor: pointer;
     }
   }
 `;
