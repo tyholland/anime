@@ -428,12 +428,6 @@ const BracketCreate = () => {
     }
   }, [canChange]);
 
-  // useEffect(() => {
-  //   if (account) {
-  //     handleAllPlayers();
-  //   }
-  // }, [account]);
-
   useEffect(() => {
     handleAllPlayers();
   }, []);
@@ -448,7 +442,6 @@ const BracketCreate = () => {
         title="Create a Bracket"
         description="Create your Bracket now. Create some of the best head-tohead matchups there is to make. After creating your bracket, share it with friends and have them vote on individual matchups."
       />
-      {/* {!account && <NotUser />} */}
       {players && (
         <>
           <GlobalStyles.GlobalContainer>
