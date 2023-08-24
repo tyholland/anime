@@ -387,6 +387,9 @@ export const GlobalSubTitle = styled.div`
 
   &.matchup {
     font-size: ${FONT_SIZE_MEDIUM};
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &.suggest {

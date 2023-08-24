@@ -37,7 +37,9 @@ const ViewMatchup = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [votingIsOpen, setVotingIsOpen] = useState<boolean>(false);
-  const [modalMsg, setModalMsg] = useState<string | React.JSX.Element | null>(null);
+  const [modalMsg, setModalMsg] = useState<string | React.JSX.Element | null>(
+    null
+  );
   const [retrigger, setRetrigger] = useState<boolean>(false);
   const [recapIsOpen, setRecapIsOpen] = useState<boolean>(false);
   const [recap, setRecap] = useState<Record<string, any> | null>(null);
@@ -47,7 +49,10 @@ const ViewMatchup = () => {
     const { matchup_id } = router.query;
 
     try {
-      const results = await getMatchUp(matchup_id as string, currentUser?.token);
+      const results = await getMatchUp(
+        matchup_id as string,
+        currentUser?.token
+      );
 
       const { team_a, team_b, score_a, score_b, active } = results.matchup;
 
@@ -64,7 +69,9 @@ const ViewMatchup = () => {
       setScore1(score_a);
       setScore2(score_b);
       setVotes(results.votes);
-      setIsActive(results.isVotingActive === 1 && active === 1 && results.isUser);
+      setIsActive(
+        results.isVotingActive === 1 && active === 1 && results.isUser
+      );
       setRetrigger(false);
       setRecapIsOpen(!!team1.recap);
       setRecap(theRecap);
@@ -107,6 +114,33 @@ const ViewMatchup = () => {
       </>
     );
     setModalIsOpen(true);
+  };
+
+  const handleWeeklyAffinityDrop = () => {
+    if (team1.team.activeAffinity === 0) {
+      return 'Unknown';
+    }
+
+    if (team1.team.affinity === 'no_affinity') {
+      return (
+        <GlobalStyles.GlobalCircle
+          className="team noAffinity"
+          title="no affinity"
+        ></GlobalStyles.GlobalCircle>
+      );
+    }
+
+    const affinity = team1.team.affinity.split(', ').map((item: any) => {
+      return (
+        <GlobalStyles.GlobalCircle
+          key={item}
+          className={`team ${item}`}
+          title={item}
+        ></GlobalStyles.GlobalCircle>
+      );
+    });
+
+    return affinity;
   };
 
   useEffect(() => {
@@ -153,27 +187,25 @@ const ViewMatchup = () => {
             {hasMatchup && (
               <>
                 <GlobalStyles.GlobalSubTitle className="matchup">
-                  Weekly Affinity:
-                  {team1.team.activeAffinity === 0
-                    ? ' Unknown'
-                    : ` ${
-                        team1.team.affinity === 'no_affinity'
-                          ? 'no affinity'
-                          : team1.team.affinity
-                      }`}
+                  <Styles.ViewMatchupAffinityText>Weekly Affinity:</Styles.ViewMatchupAffinityText>
+                  {handleWeeklyAffinityDrop()}
                 </GlobalStyles.GlobalSubTitle>
                 <Styles.ViewMatchupWrapper>
                   <Styles.ViewMatchupTeamContent>
                     <Styles.ViewMatchupTeamName>
                       {team1.teamName}
                     </Styles.ViewMatchupTeamName>
-                    <Styles.ViewMatchupTeamTotal>{score1}</Styles.ViewMatchupTeamTotal>
+                    <Styles.ViewMatchupTeamTotal>
+                      {score1}
+                    </Styles.ViewMatchupTeamTotal>
                   </Styles.ViewMatchupTeamContent>
                   <Styles.ViewMatchupTeamContent>
                     <Styles.ViewMatchupTeamName>
                       {team2.teamName}
                     </Styles.ViewMatchupTeamName>
-                    <Styles.ViewMatchupTeamTotal>{score2}</Styles.ViewMatchupTeamTotal>
+                    <Styles.ViewMatchupTeamTotal>
+                      {score2}
+                    </Styles.ViewMatchupTeamTotal>
                   </Styles.ViewMatchupTeamContent>
                 </Styles.ViewMatchupWrapper>
                 {!!isActive && (
@@ -216,7 +248,9 @@ const ViewMatchup = () => {
                       <Styles.ViewMatchupPosition>V</Styles.ViewMatchupPosition>
                     </Styles.ViewMatchupPositionSection>
                     <Styles.ViewMatchupPositionSection>
-                      <Styles.ViewMatchupPosition>BF</Styles.ViewMatchupPosition>
+                      <Styles.ViewMatchupPosition>
+                        BF
+                      </Styles.ViewMatchupPosition>
                     </Styles.ViewMatchupPositionSection>
                   </Styles.ViewMatchupPositionColumn>
                   <MatchUp
