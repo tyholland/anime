@@ -20,6 +20,12 @@ const Changelog = () => {
               <li>Remove Google Adsense</li>
             </ul>
           </li>
+          <li>
+            Matchup
+            <ul>
+              <li>Update weekly affinity to use icon instead of text</li>
+            </ul>
+          </li>
         </ul>
         <h3>August 23, 2023</h3>
         <ul>
