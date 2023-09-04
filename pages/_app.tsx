@@ -47,16 +47,16 @@ const MyApp = ({ Component, pageProps, router }) => {
     if (eligiblePage) {
       switch (dayOfTheWeek) {
       case MONDAY:
-        handleAlertMsg('abz.monday', alerts.start.msg);
+        handleAlertMsg('afl.monday', alerts.start.msg);
         break;
       case THURSDAY:
-        handleAlertMsg('abz.thursday', alerts.voting.msg);
+        handleAlertMsg('afl.thursday', alerts.voting.msg);
         break;
       case FRIDAY:
-        handleAlertMsg('abz.friday', alerts.damage.msg);
+        handleAlertMsg('afl.friday', alerts.damage.msg);
         break;
       case SUNDAY:
-        handleAlertMsg('abz.sunday', alerts.affinity.msg);
+        handleAlertMsg('afl.sunday', alerts.affinity.msg);
         break;
       default:
         break;

@@ -14,7 +14,7 @@ const NotUser = ({ message = null }: NotUserProps) => {
 
   const handleFunFactMsg = () => {
     if (!message) {
-      let abzNews = getStorageData('abz.news');
+      let abzNews = getStorageData('afl.news');
       const news = !abzNews ? defaultAnimeNews : abzNews[randomInt(50)];
 
       const filteredMsg = (
