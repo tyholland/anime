@@ -41,14 +41,14 @@ const GameplayCard = () => {
 
   const affinityUp = (
     <div className="collapseContainer">
-      <div>Weekly Element Affinities</div>
+      <div>Weekly Affinities</div>
       <div className="up">&#10132;</div>
     </div>
   );
 
   const affinityDown = (
     <div className="collapseContainer">
-      <div>Weekly Element Affinities</div>
+      <div>Weekly Affinities</div>
       <div className="down">&#10132;</div>
     </div>
   );

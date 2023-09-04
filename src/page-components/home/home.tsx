@@ -63,7 +63,7 @@ const Home = () => {
               revealed.
             </li>
             <li>
-              Sundays: Voting for duels ends, the weekly elemental affinity
+              Sundays: Voting for duels ends, the last weekly affinity
               graces the battlefield.
             </li>
           </ul>

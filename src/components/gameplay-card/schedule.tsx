@@ -30,6 +30,7 @@ const Schedule = () => {
             Send the individual head-to-head matchups to your friends, so they
             can vote for your character
           </li>
+          <li>First weekly Affinity for your league matchup drops</li>
         </ul>
       </Styles.GameplayCardSection>
       <Styles.GameplayCardSection>
@@ -46,7 +47,7 @@ const Schedule = () => {
         <ul>
           <li>Can no longer vote on individual head-to-head matchups</li>
           <li>Voting results/points can now be seen in your league matchup</li>
-          <li>Weekly Affinity for your league matchup drops</li>
+          <li>Second weekly Affinity for your league matchup drops</li>
         </ul>
       </Styles.GameplayCardSection>
     </Styles.GameplayCardContainer>

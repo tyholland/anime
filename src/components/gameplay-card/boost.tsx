@@ -6,12 +6,12 @@ const Boost = () => {
     <Styles.GameplayCardContainer>
       <Styles.GameplayCardSection>
         <Styles.GameplayCardTitle>
-          Weekly Element Affinity
+          Weekly Affinity
         </Styles.GameplayCardTitle>
         <div>
-          When a character resonates with the weekly element, they will unlock a
+          When a character resonates with one of the weekly affinities, they will unlock a
           surge of power! This power boost will be a percentage of the weekly
-          elemental spirit's might.
+          affinity spirit's might.
         </div>
       </Styles.GameplayCardSection>
       <Styles.GameplayCardSection>

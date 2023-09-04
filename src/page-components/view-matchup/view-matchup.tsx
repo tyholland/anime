@@ -102,9 +102,10 @@ const ViewMatchup = () => {
     setModalMsg(
       <>
         <div>
-          The weekly affinity will be a random affinity or a combination of
-          affinities. It will be applied every Sunday. Depending on what the
-          affinity is, it could determine whether your team wins or loses.
+          The affinity drops will be a random affinity or a combination of
+          affinities. The first one will drop on Thursday, and the second will
+          drop on Sunday. Depending on what the affinity is, it could determine
+          whether your team wins or loses.
         </div>
         <br />
         <div>
@@ -116,12 +117,15 @@ const ViewMatchup = () => {
     setModalIsOpen(true);
   };
 
-  const handleWeeklyAffinityDrop = () => {
-    if (team1.team.activeAffinity === 0) {
+  const handleWeeklyAffinityDrop = (day: string) => {
+    const teamAffinity = JSON.parse(team1.team.affinity);
+    const teamActiveAffinity = JSON.parse(team1.team.activeAffinity);
+
+    if (teamActiveAffinity[day] === 0) {
       return 'Unknown';
     }
 
-    if (team1.team.affinity === 'no_affinity') {
+    if (teamAffinity[day] === 'no_affinity') {
       return (
         <GlobalStyles.GlobalCircle
           className="team noAffinity"
@@ -130,7 +134,7 @@ const ViewMatchup = () => {
       );
     }
 
-    const affinity = team1.team.affinity.split(', ').map((item: any) => {
+    const affinity = teamAffinity[day].split(', ').map((item: any) => {
       return (
         <GlobalStyles.GlobalCircle
           key={item}
@@ -187,8 +191,18 @@ const ViewMatchup = () => {
             {hasMatchup && (
               <>
                 <GlobalStyles.GlobalSubTitle className="matchup">
-                  <Styles.ViewMatchupAffinityText>Weekly Affinity:</Styles.ViewMatchupAffinityText>
-                  {handleWeeklyAffinityDrop()}
+                  <div>
+                    <Styles.ViewMatchupAffinityText>
+                      Thursday Affinity Drop:
+                    </Styles.ViewMatchupAffinityText>
+                    {handleWeeklyAffinityDrop('thursday')}
+                  </div>
+                  <div>
+                    <Styles.ViewMatchupAffinityText>
+                      Sunday Affinity Drop:
+                    </Styles.ViewMatchupAffinityText>
+                    {handleWeeklyAffinityDrop('sunday')}
+                  </div>
                 </GlobalStyles.GlobalSubTitle>
                 <Styles.ViewMatchupWrapper>
                   <Styles.ViewMatchupTeamContent>

@@ -390,6 +390,12 @@ export const GlobalSubTitle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+
+    div {
+      display: flex;
+      margin-bottom: 1%;
+    }
   }
 
   &.suggest {
