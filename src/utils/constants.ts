@@ -351,11 +351,11 @@ export const allSeries = [
 export const alerts = {
   start: {
     title: 'Update',
-    msg: 'It\'s Monday (Eastern Standard Timezone)!!! 🌟✨ Your either just start a new League, at which Congrats! 🎉 Or a new week has started in your current League. Don\'t forget that you can update your roster at this point. 🌟💪🔥 Embrace the power of friendship and unleash your anime spirit as you embark on this epic journey! Let your favorite characters inspire you to greatness, and may your victories be as legendary as the battles fought in the anime realm! 🌟💫✨'
+    msg: 'It\'s Monday (Eastern Standard Timezone)!!! 🌟✨ Your either just started a new League, at which Congrats! 🎉 Or a new week has started in your current League. Don\'t forget that you can update your roster at this point. 🌟💪🔥 Embrace the power of friendship and unleash your anime spirit as you embark on this epic journey! Let your favorite characters inspire you to greatness, and may your victories be as legendary as the battles fought in the anime realm! 🌟💫✨'
   },
   voting: {
     title: 'Reminder',
-    msg: 'It\'s Thursday (Eastern Standad Timezone)!!! 💫 Roster editing has ended, just like in an epic anime finale. But fear not, for a new thrilling chapter awaits! ✨ You can now activate voting on individual head-to-head matches within this week\'s Matchup, where the fate of your favorite characters will be decided. Get ready to embark on an anime-inspired journey and make your voice heard!'
+    msg: 'It\'s Thursday (Eastern Standad Timezone)!!! 💫 Roster editing has ended, just like in an epic anime finale. But fear not, for a new thrilling chapter awaits! ✨ You can now activate voting on individual head-to-head matches within this week\'s Matchup, where the fate of your favorite characters will be decided. Your first Weekly Affinity for your matchup has entered the battlefield. Get ready to embark on an anime-inspired journey and make your voice heard!'
   },
   damage: {
     title: 'Reminder',
@@ -363,7 +363,7 @@ export const alerts = {
   },
   affinity: {
     title: 'Reminder',
-    msg: '🎌 Anime enthusiasts assemble! It\'s that time again on this fine Sunday (Eastern Standard Timezone) when The Weekly Affinity makes its grand appearance. Brace yourselves for the ultimate clash, as this week\'s Matchup holds the power to reshape your team\'s destiny. 🌟'
+    msg: '🎌 Anime enthusiasts assemble! It\'s that time again on this fine Sunday (Eastern Standard Timezone) when the second Weekly Affinity makes its grand appearance. Brace yourselves for the ultimate clash, as this week\'s Matchup holds the power to reshape your team\'s destiny. 🌟'
   }
 };
 
