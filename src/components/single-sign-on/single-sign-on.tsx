@@ -6,7 +6,9 @@ import {
   signInWithPopup,
   FacebookAuthProvider,
   UserCredential,
-  getAdditionalUserInfo
+  getAdditionalUserInfo,
+  signInWithRedirect,
+  getRedirectResult
 } from 'firebase/auth';
 import { addEvent } from 'Utils/amplitude';
 import {
@@ -22,6 +24,7 @@ import Loader from 'Components/loader/loader';
 import Image from 'next/image';
 import { FacebookIcon } from 'react-share';
 import { SingleSignOnProps } from 'Utils/types';
+import {isMobile} from 'react-device-detect';
 
 const SingleSignOn = ({ buttonText = 'Login', setError }: SingleSignOnProps) => {
   const router = useRouter();
@@ -35,7 +38,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }: SingleSignOnProps) => 
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
     try {
-      const firebaseUser = await signInWithPopup(auth, provider);
+      const firebaseUser = isMobile ? await signInWithRedirect(auth, provider) : await signInWithPopup(auth, provider);
 
       setCurrentUser(firebaseUser);
     } catch (err) {
@@ -95,9 +98,21 @@ const SingleSignOn = ({ buttonText = 'Login', setError }: SingleSignOnProps) => 
     }
   };
 
+  const handleGoogleRedirect = async () => {
+    const auth = getAuth();
+    try {
+      const res = await getRedirectResult(auth);
+      setCurrentUser(res);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed google sso redirect'));
+    }
+  };
+
   useEffect(() => {
     if (currentUser) {
       handleLogin();
+    } else {
+      handleGoogleRedirect();
     }
   }, [currentUser]);
 

@@ -29,6 +29,7 @@
     "react-burger-menu": "^3.0.9",
     "react-collapsible": "^2.10.0",
     "react-countdown-circle-timer": "^3.2.1",
+    "react-device-detect": "^2.2.3",
     "react-dom": "18.2.0",
     "react-modal": "^3.16.1",
     "react-paginate": "^8.1.4",
