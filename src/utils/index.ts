@@ -159,3 +159,7 @@ export const getDate = (defaultDate: string | null = null) => {
 
   return date;
 };
+
+export const getParsedObject = (item: string) => {
+  return JSON.parse(item.replace(/'/g, ''));
+};
