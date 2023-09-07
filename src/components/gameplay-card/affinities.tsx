@@ -45,7 +45,13 @@ const Affinities = () => {
         <GlobalStyles.GlobalCircle className="ice"></GlobalStyles.GlobalCircle>,{' '}
         <GlobalStyles.GlobalCircle className="arcane"></GlobalStyles.GlobalCircle>{' '}
         &{' '}
-        <GlobalStyles.GlobalCircle className="fire"></GlobalStyles.GlobalCircle>
+        <GlobalStyles.GlobalCircle className="fire"></GlobalStyles.GlobalCircle>,{' '}
+        <GlobalStyles.GlobalCircle className="celestial"></GlobalStyles.GlobalCircle>{' '}
+        &{' '}
+        <GlobalStyles.GlobalCircle className="electric"></GlobalStyles.GlobalCircle>,{' '}
+        <GlobalStyles.GlobalCircle className="earth"></GlobalStyles.GlobalCircle>{' '}
+        &{' '}
+        <GlobalStyles.GlobalCircle className="wind"></GlobalStyles.GlobalCircle>
       </Styles.GameplayCardAffinity>
       <Styles.GameplayCardWrapper>
         <div>

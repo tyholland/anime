@@ -135,6 +135,10 @@ const ViewMatchup = () => {
     }
 
     const affinity = teamAffinity[day].split(', ').map((item: any) => {
+      if (!item.length) {
+        return 'Unknown';
+      }
+
       return (
         <GlobalStyles.GlobalCircle
           key={item}
