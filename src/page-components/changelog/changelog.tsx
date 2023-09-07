@@ -11,7 +11,7 @@ const Changelog = () => {
       />
       <GlobalStyles.GlobalContainer>
         <GlobalStyles.GlobalTitle>Changelog</GlobalStyles.GlobalTitle>
-        <h3>September 05, 2023</h3>
+        <h3>September 06, 2023</h3>
         <ul>
           <li>
             Team Matchup
