@@ -50,7 +50,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }: SingleSignOnProps) => 
     const provider = new FacebookAuthProvider();
     const auth = getAuth();
     try {
-      const firebaseUser = await signInWithPopup(auth, provider);
+      const firebaseUser = isMobile ? await signInWithRedirect(auth, provider) : await signInWithPopup(auth, provider);
 
       setCurrentUser(firebaseUser);
     } catch (err) {
@@ -104,7 +104,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }: SingleSignOnProps) => 
       const res = await getRedirectResult(auth);
       setCurrentUser(res);
     } catch (err) {
-      addEvent('Error', responseError(err, 'Failed google sso redirect'));
+      addEvent('Error', responseError(err, 'Failed sso redirect'));
     }
   };
 
