@@ -13,7 +13,7 @@ const ReadMore = ({ children }: PropsWithChildren) => {
     try {
       const data = await getAnimeNews();
 
-      setStorageData('abz.news', JSON.stringify(data));
+      setStorageData('afl.news', JSON.stringify(data));
 
       setNews(data[randomInt(50)]);
     } catch (err) {
@@ -23,7 +23,7 @@ const ReadMore = ({ children }: PropsWithChildren) => {
   };
 
   useEffect(() => {
-    let abzNews = getStorageData('abz.news');
+    let abzNews = getStorageData('afl.news');
 
     if (!abzNews) {
       handleAnimeNews();

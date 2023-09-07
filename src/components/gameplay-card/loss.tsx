@@ -6,12 +6,12 @@ const Loss = () => {
     <Styles.GameplayCardContainer>
       <Styles.GameplayCardSection>
         <Styles.GameplayCardTitle>
-          Weekly Element Affinity
+          Weekly Affinity
         </Styles.GameplayCardTitle>
         <div>
-          Beware of elemental vulnerabilities! If a character's weakness aligns
-          with the weekly element, they will suffer damage. This damage is a
-          percentage of the unleashed power of the weekly element.
+          Beware of affinity vulnerabilities! If a character's weakness aligns
+          with one of the weekly affinities, they will suffer damage. This damage is a
+          percentage of the unleashed power of the weekly affinity.
         </div>
       </Styles.GameplayCardSection>
       <Styles.GameplayCardSection>

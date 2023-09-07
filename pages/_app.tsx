@@ -10,7 +10,7 @@ import { FRIDAY, MONDAY, SUNDAY, THURSDAY, alerts } from 'Utils/constants';
 import { LeagueWrapper } from 'Hooks/league';
 import { TeamWrapper } from 'Hooks/team';
 import { getDate } from 'Utils/index';
-import { getStorageData, setStorageData } from 'Utils/cache';
+import { getCachedData, getStorageData, setStorageData } from 'Utils/cache';
 import { StandingsWrapper } from 'Hooks/standings';
 
 const MyApp = ({ Component, pageProps, router }) => {
@@ -38,28 +38,32 @@ const MyApp = ({ Component, pageProps, router }) => {
   };
 
   const handleAlerts = () => {
-    const date = getDate();
-    const dayOfTheWeek = date.day();
-    const eligiblePage =
-      router.state.pathname !== '/login' &&
-      router.state.pathname !== '/sign-up';
+    const cachedLeague = getCachedData('aflLeague');
 
-    if (eligiblePage) {
-      switch (dayOfTheWeek) {
-      case MONDAY:
-        handleAlertMsg('abz.monday', alerts.start.msg);
-        break;
-      case THURSDAY:
-        handleAlertMsg('abz.thursday', alerts.voting.msg);
-        break;
-      case FRIDAY:
-        handleAlertMsg('abz.friday', alerts.damage.msg);
-        break;
-      case SUNDAY:
-        handleAlertMsg('abz.sunday', alerts.affinity.msg);
-        break;
-      default:
-        break;
+    if (cachedLeague?.current.length > 0) {
+      const date = getDate();
+      const dayOfTheWeek = date.day();
+      const eligiblePage =
+        router.state.pathname !== '/login' &&
+        router.state.pathname !== '/sign-up';
+
+      if (eligiblePage) {
+        switch (dayOfTheWeek) {
+        case MONDAY:
+          handleAlertMsg('afl.monday', alerts.start.msg);
+          break;
+        case THURSDAY:
+          handleAlertMsg('afl.thursday', alerts.voting.msg);
+          break;
+        case FRIDAY:
+          handleAlertMsg('afl.friday', alerts.damage.msg);
+          break;
+        case SUNDAY:
+          handleAlertMsg('afl.sunday', alerts.affinity.msg);
+          break;
+        default:
+          break;
+        }
       }
     }
   };

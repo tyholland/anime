@@ -11,6 +11,27 @@ const Changelog = () => {
       />
       <GlobalStyles.GlobalContainer>
         <GlobalStyles.GlobalTitle>Changelog</GlobalStyles.GlobalTitle>
+        <h3>September 06, 2023</h3>
+        <ul>
+          <li>
+            Team Matchup
+            <ul>
+              <li>Add second affinity drop</li>
+            </ul>
+          </li>
+          <li>
+            General
+            <ul>
+              <li>Update messaging throughout the site to include second affinity drop</li>
+            </ul>
+          </li>
+          <li>
+            Notification
+            <ul>
+              <li>Update notifications to only show for logged-in users who are in a active league</li>
+            </ul>
+          </li>
+        </ul>
         <h3>August 24, 2023</h3>
         <ul>
           <li>
