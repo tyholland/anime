@@ -35,8 +35,15 @@ const Draft = () => {
   const [draftTeamId, setDraftTeamId] = useState<string | null>(null);
   const [players, setPlayers] = useState<Record<string, any> | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isTeamModalOpen, setIsTeamModalOpen] = useState<boolean>(false);
   const [character, setCharacter] = useState<Record<string, any> | null>(null);
-  const [playerList, setPlayerList] = useState<Record<string, any> | null>(null);
+  const [teamCharacter, setTeamCharacter] = useState<Record<
+    string,
+    any
+  > | null>(null);
+  const [playerList, setPlayerList] = useState<Record<string, any> | null>(
+    null
+  );
   const [pickOrder, setPickOrder] = useState<number>(0);
   const [round, setRound] = useState<number | null>(null);
   const [recent, setRecent] = useState<Record<string, any> | null>(null);
@@ -47,10 +54,19 @@ const Draft = () => {
   const [restartTimer, setRestartTimer] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isInactiveDraft, setIsInactiveDraft] = useState<boolean>(false);
-  const [inactiveLeagueData, setInactiveLeagueData] = useState<Record<string, any> | null>(null);
+  const [inactiveLeagueData, setInactiveLeagueData] = useState<Record<
+    string,
+    any
+  > | null>(null);
   const [isDraftComplete, setIsDraftComplete] = useState<boolean>(false);
-  const [draftResults, setDraftResults] = useState<Record<string, any> | null>(null);
-  const [draftSchedule, setDraftSchedule] = useState<Record<string, any> | null>(null);
+  const [draftResults, setDraftResults] = useState<Record<string, any> | null>(
+    null
+  );
+  const [draftSchedule, setDraftSchedule] = useState<Record<
+    string,
+    any
+  > | null>(null);
+  const [notUsedPlayers, setNotUsedPlayers] = useState<Record<string, any>>([]);
 
   const getDraftInfo = async () => {
     const { league_id } = router.query;
@@ -80,7 +96,7 @@ const Draft = () => {
       const timerReset = new Date();
       setRestartTimer(timerReset + currentUser?.token);
 
-      !!resetTimer && (await getAllPlayers());
+      !!resetTimer && (await getAvailablePlayers());
 
       const recentPick = !draft.recent_pick
         ? null
@@ -118,7 +134,7 @@ const Draft = () => {
 
   const getAllPlayers = async () => {
     try {
-      const { unusedPlayers } = await getUseablePlayers(
+      const { allPlayers } = await getUseablePlayers(
         draftTeamId,
         currentUser?.token
       );
@@ -138,9 +154,22 @@ const Draft = () => {
         userPoints,
       });
 
-      setPlayers(unusedPlayers);
+      setPlayers(allPlayers);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get all players'));
+    }
+  };
+
+  const getAvailablePlayers = async () => {
+    try {
+      const { unusedPlayers } = await getUseablePlayers(
+        draftTeamId,
+        currentUser?.token
+      );
+
+      setNotUsedPlayers(unusedPlayers);
+    } catch (err) {
+      addEvent('Error', responseError(err, 'Failed to get available players'));
     }
   };
 
@@ -149,8 +178,14 @@ const Draft = () => {
     setIsModalOpen(true);
   };
 
+  const openTeamModal = (character: Record<string, any>) => {
+    setTeamCharacter(character);
+    setIsTeamModalOpen(true);
+  };
+
   const closeDraftModal = () => {
     setIsModalOpen(false);
+    setIsTeamModalOpen(false);
     setErrorMsg(null);
     setCharacter(null);
   };
@@ -224,7 +259,7 @@ const Draft = () => {
     const { league_id } = router.query;
     const { thePlayers, quota } = assignCharacterList();
     const index = teamsList.findIndex(
-      (item) => item.user_id === currentUser?.user_id
+      (item: Record<string, any>) => item.user_id === currentUser?.user_id
     );
 
     if (quota) {
@@ -258,7 +293,7 @@ const Draft = () => {
       };
 
       await draftPlayers(draftTeamId, payload, currentUser?.token);
-      await getAllPlayers();
+      await getAvailablePlayers();
 
       addEvent('Draft Player', {
         player: character.fullName,
@@ -302,7 +337,11 @@ const Draft = () => {
     }
   };
 
-  const draftNullPlayer = async (allTeams: Record<string, any>, draftData: Record<string, any>, userTeamId: string) => {
+  const draftNullPlayer = async (
+    allTeams: Record<string, any>,
+    draftData: Record<string, any>,
+    userTeamId: string
+  ) => {
     const { league_id } = router.query;
     const { pick_order, id, round } = draftData;
     const index = allTeams.findIndex((item: Record<string, any>) => !item.pick);
@@ -348,7 +387,9 @@ const Draft = () => {
 
   const handleDraftDay = (schedule: Record<string, any>) => {
     const date = getDate();
-    const draftDate = getDate(`${schedule.date.month} ${schedule.date.day}, ${schedule.date.year}`);
+    const draftDate = getDate(
+      `${schedule.date.month} ${schedule.date.day}, ${schedule.date.year}`
+    );
 
     return !(date.diff(draftDate) < 0);
   };
@@ -357,7 +398,10 @@ const Draft = () => {
     const { league_id } = router.query;
 
     try {
-      const { leagueData } = await getLeague(league_id as string, currentUser?.token);
+      const { leagueData } = await getLeague(
+        league_id as string,
+        currentUser?.token
+      );
       const { draft_active, draft_schedule } = leagueData[0];
 
       setIsInactiveDraft(!(draft_active === 1));
@@ -397,7 +441,10 @@ const Draft = () => {
     const { league_id } = router.query;
 
     try {
-      const { leagueData } = await getLeague(league_id as string, currentUser?.token);
+      const { leagueData } = await getLeague(
+        league_id as string,
+        currentUser?.token
+      );
       let draftTimeout: any;
 
       if (leagueData[0].draft_complete === 0) {
@@ -484,26 +531,28 @@ const Draft = () => {
                         </div>
                       </Styles.DraftRound>
                       <Styles.DraftTeamsList teams={teamsList?.length}>
-                        {teamsList?.map((item: Record<string, any>, index: number) => {
-                          const currentPick = pickOrder === index;
-                          const userPick =
-                            item.user_id === currentUser?.user_id;
+                        {teamsList?.map(
+                          (item: Record<string, any>, index: number) => {
+                            const currentPick = pickOrder === index;
+                            const userPick =
+                              item.user_id === currentUser?.user_id;
 
-                          return (
-                            <div
-                              key={item.id}
-                              className={currentPick ? 'highlight' : ''}
-                            >
-                              {item.team_name}
-                              {currentPick && userPick && (
-                                <div className="pick">Your Pick</div>
-                              )}
-                              {currentPick && !userPick && (
-                                <div className="pick">Is Drafting</div>
-                              )}
-                            </div>
-                          );
-                        })}
+                            return (
+                              <div
+                                key={item.id}
+                                className={currentPick ? 'highlight' : ''}
+                              >
+                                {item.team_name}
+                                {currentPick && userPick && (
+                                  <div className="pick">Your Pick</div>
+                                )}
+                                {currentPick && !userPick && (
+                                  <div className="pick">Is Drafting</div>
+                                )}
+                              </div>
+                            );
+                          }
+                        )}
                       </Styles.DraftTeamsList>
                     </Styles.DraftSection>
                     {!!teamsList && (
@@ -535,31 +584,70 @@ const Draft = () => {
                           {playerList?.userPoints}
                         </div>
                         <div>
-                          <strong>Captain:</strong> {playerList?.captain?.name}
+                          <strong>Captain:</strong>{' '}
+                          <button
+                            onClick={() => openTeamModal(playerList.captain)}
+                          >
+                            {playerList?.captain?.name}
+                          </button>
                         </div>
                         <div>
-                          <strong>Brawler:</strong> {playerList?.brawlerA?.name}
+                          <strong>Brawler:</strong>{' '}
+                          <button
+                            onClick={() => openTeamModal(playerList?.brawlerA)}
+                          >
+                            {playerList?.brawlerA?.name}
+                          </button>
                         </div>
                         <div>
-                          <strong>Brawler:</strong> {playerList?.brawlerB?.name}
+                          <strong>Brawler:</strong>{' '}
+                          <button
+                            onClick={() => openTeamModal(playerList?.brawlerB)}
+                          >
+                            {playerList?.brawlerB?.name}
+                          </button>
                         </div>
                         <div>
                           <strong>Brawler - Duo:</strong>{' '}
-                          {playerList?.bsBrawler?.name}
+                          <button
+                            onClick={() => openTeamModal(playerList?.bsBrawler)}
+                          >
+                            {playerList?.bsBrawler?.name}
+                          </button>
                         </div>
                         <div>
                           <strong>Support - Duo:</strong>{' '}
-                          {playerList?.bsSupport?.name}
+                          <button
+                            onClick={() => openTeamModal(playerList?.bsSupport)}
+                          >
+                            {playerList?.bsSupport?.name}
+                          </button>
                         </div>
                         <div>
-                          <strong>Support:</strong> {playerList?.support?.name}
+                          <strong>Support:</strong>{' '}
+                          <button
+                            onClick={() => openTeamModal(playerList?.support)}
+                          >
+                            {playerList?.support?.name}
+                          </button>
                         </div>
                         <div>
-                          <strong>Villain:</strong> {playerList?.villain?.name}
+                          <strong>Villain:</strong>{' '}
+                          <button
+                            onClick={() => openTeamModal(playerList?.villain)}
+                          >
+                            {playerList?.villain?.name}
+                          </button>
                         </div>
                         <div>
                           <strong>Battlefield:</strong>{' '}
-                          {playerList?.battlefield?.name}
+                          <button
+                            onClick={() =>
+                              openTeamModal(playerList?.battlefield)
+                            }
+                          >
+                            {playerList?.battlefield?.name}
+                          </button>
                         </div>
                       </Styles.DraftTeamGrid>
                     </Styles.DraftSection>
@@ -579,46 +667,48 @@ const Draft = () => {
                       <strong>Time of Draft:</strong>{' '}
                       {`${draftSchedule?.time.hour}:${draftSchedule?.time.min}${draftSchedule?.time.meridiem} EST`}
                     </Styles.DraftResults>
-                    {draftResults?.map((item: Record<string, any>, index: number) => {
-                      const count = index + 1;
-                      const teams = JSON.parse(item.teams);
+                    {draftResults?.map(
+                      (item: Record<string, any>, index: number) => {
+                        const count = index + 1;
+                        const teams = JSON.parse(item.teams);
 
-                      const roundUp = (
-                        <div className="collapseContainer">
-                          <div>Round {count}</div>
-                          <div className="up">&#10132;</div>
-                        </div>
-                      );
+                        const roundUp = (
+                          <div className="collapseContainer">
+                            <div>Round {count}</div>
+                            <div className="up">&#10132;</div>
+                          </div>
+                        );
 
-                      const roundDown = (
-                        <div className="collapseContainer">
-                          <div>Round {count}</div>
-                          <div className="down">&#10132;</div>
-                        </div>
-                      );
+                        const roundDown = (
+                          <div className="collapseContainer">
+                            <div>Round {count}</div>
+                            <div className="down">&#10132;</div>
+                          </div>
+                        );
 
-                      return (
-                        <Collapsible
-                          trigger={roundDown}
-                          triggerWhenOpen={roundUp}
-                          triggerTagName="div"
-                          key={index}
-                          triggerElementProps={{
-                            id: `round-${count}`,
-                            'aria-controls': `round-${count}`,
-                          }}
-                          contentElementId={`round-${count}`}
-                        >
-                          {teams.map((team: Record<string, any>) => {
-                            return (
-                              <Styles.DraftResults key={team.pick}>
-                                {team.team_name}: {team.pick}
-                              </Styles.DraftResults>
-                            );
-                          })}
-                        </Collapsible>
-                      );
-                    })}
+                        return (
+                          <Collapsible
+                            trigger={roundDown}
+                            triggerWhenOpen={roundUp}
+                            triggerTagName="div"
+                            key={index}
+                            triggerElementProps={{
+                              id: `round-${count}`,
+                              'aria-controls': `round-${count}`,
+                            }}
+                            contentElementId={`round-${count}`}
+                          >
+                            {teams.map((team: Record<string, any>) => {
+                              return (
+                                <Styles.DraftResults key={team.pick}>
+                                  {team.team_name}: {team.pick}
+                                </Styles.DraftResults>
+                              );
+                            })}
+                          </Collapsible>
+                        );
+                      }
+                    )}
                   </Styles.DraftAccordian>
                 )}
               </>
@@ -667,6 +757,12 @@ const Draft = () => {
         draftPlayer={draftPlayer}
         errorMsg={errorMsg}
         type="draft"
+        unusedPlayers={notUsedPlayers}
+      />
+      <BioReview
+        modalIsOpen={isTeamModalOpen}
+        closeModal={closeDraftModal}
+        characterId={teamCharacter?.id}
       />
     </>
   );

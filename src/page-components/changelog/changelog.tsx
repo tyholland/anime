@@ -11,6 +11,17 @@ const Changelog = () => {
       />
       <GlobalStyles.GlobalContainer>
         <GlobalStyles.GlobalTitle>Changelog</GlobalStyles.GlobalTitle>
+        <h3>September 08, 2023</h3>
+        <ul>
+          <li>
+            Draft
+            <ul>
+              <li>Add link to drafted characters to view their bio pages</li>
+              <li>Remove character list reset after a character is drafted</li>
+              <li>Disable draft button on a character if they have already been drafted by another team</li>
+            </ul>
+          </li>
+        </ul>
         <h3>September 06, 2023</h3>
         <ul>
           <li>
