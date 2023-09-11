@@ -18,10 +18,12 @@ import Loader from 'Components/loader/loader';
 import ErrorMsg from 'Components/error-msg/error-msg';
 import SingleSignOn from 'Components/single-sign-on/single-sign-on';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useLeagueContext } from 'Hooks/league';
 
 const Login = () => {
   const router = useRouter();
   const { currentUser, updateCurrentUser } = useUserContext();
+  const { deleteLeagueData } = useLeagueContext();
   const [email, setEmail] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -73,6 +75,7 @@ const Login = () => {
 
       if (join) {
         await joinLeagueSetup(join as string, user, router);
+        deleteLeagueData();
         return;
       }
 

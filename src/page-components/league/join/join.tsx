@@ -13,10 +13,12 @@ import ErrorMsg from 'Components/error-msg/error-msg';
 import { useUserContext } from 'Hooks/user';
 import Loader from 'Components/loader/loader';
 import ReadMore from 'Components/read-more/read-more';
+import { useLeagueContext } from 'Hooks/league';
 
 const JoinLeague = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
+  const { deleteLeagueData } = useLeagueContext();
   const [leagueHash, setLeagueHash] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
@@ -37,8 +39,10 @@ const JoinLeague = () => {
 
       addEvent('Join League', {
         league: leagueHash,
-        userId: currentUser?.user_id
+        userId: currentUser?.user_id,
       });
+
+      deleteLeagueData();
 
       router.push(`/league?league_id=${leagueId}`);
     } catch (error) {
@@ -85,7 +89,7 @@ const JoinLeague = () => {
               onChange={handleLeagueHash}
               maxLength={11}
               onKeyDown={handleKeyboardSubmit}
-              inputVal={id ? id as string : null}
+              inputVal={id ? (id as string) : null}
             />
             <Button
               btnText={isLoading ? <Loader isSmall={true} /> : 'Enter League'}
@@ -97,7 +101,10 @@ const JoinLeague = () => {
             />
             {errorMsg && <ErrorMsg msg={errorMsg} />}
           </div>
-          <Styles.JoinLeagueImg src="/assets/background/vegito.webp" alt="Vegito" />
+          <Styles.JoinLeagueImg
+            src="/assets/background/vegito.webp"
+            alt="Vegito"
+          />
         </Styles.JoinLeagueWrapper>
       </GlobalStyles.GlobalContainer>
       <ReadMore>

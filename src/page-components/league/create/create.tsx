@@ -14,9 +14,11 @@ import ErrorMsg from 'Components/error-msg/error-msg';
 import { useUserContext } from 'Hooks/user';
 import Loader from 'Components/loader/loader';
 import ReadMore from 'Components/read-more/read-more';
+import { useLeagueContext } from 'Hooks/league';
 
 const LeagueCreate = () => {
   const { currentUser } = useUserContext();
+  const { deleteLeagueData } = useLeagueContext();
   const [teams, setTeams] = useState<string>('');
   const [leagueName, setLeagueName] = useState<string>('');
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
@@ -40,7 +42,7 @@ const LeagueCreate = () => {
     const payload = {
       name: leagueName,
       numTeams: teams,
-      numBench: 0
+      numBench: 0,
     };
 
     try {
@@ -48,8 +50,10 @@ const LeagueCreate = () => {
 
       addEvent('League Created', {
         name: leagueName,
-        userId: currentUser?.user_id
+        userId: currentUser?.user_id,
       });
+
+      deleteLeagueData();
 
       router.push(`/league?league_id=${leagueId}`);
     } catch (err) {

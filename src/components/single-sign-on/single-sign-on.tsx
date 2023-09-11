@@ -8,7 +8,7 @@ import {
   UserCredential,
   getAdditionalUserInfo,
   signInWithRedirect,
-  getRedirectResult
+  getRedirectResult,
 } from 'firebase/auth';
 import { addEvent } from 'Utils/amplitude';
 import {
@@ -24,11 +24,16 @@ import Loader from 'Components/loader/loader';
 import Image from 'next/image';
 import { FacebookIcon } from 'react-share';
 import { SingleSignOnProps } from 'Utils/types';
-import {isMobile} from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
+import { useLeagueContext } from 'Hooks/league';
 
-const SingleSignOn = ({ buttonText = 'Login', setError }: SingleSignOnProps) => {
+const SingleSignOn = ({
+  buttonText = 'Login',
+  setError,
+}: SingleSignOnProps) => {
   const router = useRouter();
   const { updateCurrentUser } = useUserContext();
+  const { deleteLeagueData } = useLeagueContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<UserCredential | null>(null);
@@ -38,7 +43,9 @@ const SingleSignOn = ({ buttonText = 'Login', setError }: SingleSignOnProps) => 
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
     try {
-      const firebaseUser = isMobile ? await signInWithRedirect(auth, provider) : await signInWithPopup(auth, provider);
+      const firebaseUser = isMobile
+        ? await signInWithRedirect(auth, provider)
+        : await signInWithPopup(auth, provider);
 
       setCurrentUser(firebaseUser);
     } catch (err) {
@@ -50,7 +57,9 @@ const SingleSignOn = ({ buttonText = 'Login', setError }: SingleSignOnProps) => 
     const provider = new FacebookAuthProvider();
     const auth = getAuth();
     try {
-      const firebaseUser = isMobile ? await signInWithRedirect(auth, provider) : await signInWithPopup(auth, provider);
+      const firebaseUser = isMobile
+        ? await signInWithRedirect(auth, provider)
+        : await signInWithPopup(auth, provider);
 
       setCurrentUser(firebaseUser);
     } catch (err) {
@@ -83,6 +92,7 @@ const SingleSignOn = ({ buttonText = 'Login', setError }: SingleSignOnProps) => 
 
       if (join) {
         await joinLeagueSetup(join as string, user, router);
+        deleteLeagueData();
         return;
       }
 

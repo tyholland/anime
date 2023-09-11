@@ -40,7 +40,7 @@ const MyApp = ({ Component, pageProps, router }) => {
   const handleAlerts = () => {
     const cachedLeague = getCachedData('aflLeague');
 
-    if (cachedLeague?.current.length > 0) {
+    if (cachedLeague?.current?.length > 0) {
       const date = getDate();
       const dayOfTheWeek = date.day();
       const eligiblePage =
