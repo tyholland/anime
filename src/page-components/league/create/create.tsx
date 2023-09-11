@@ -40,6 +40,7 @@ const LeagueCreate = () => {
     const payload = {
       name: leagueName,
       numTeams: teams,
+      numBench: 0
     };
 
     try {
