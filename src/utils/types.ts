@@ -38,6 +38,7 @@ export type ButtonProps = {
   btnFunction?: () => void;
   isDisabled?: boolean;
   disabledMsg?: string;
+  isText?: boolean;
 };
 
 export type ActivateVotingProps = {

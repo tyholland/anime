@@ -38,26 +38,31 @@ const MobileHeader = ({ acct, acctLink }: MobileHeaderProps) => {
           btnText="League"
           btnFunction={() => handleBtnClick('/league/view')}
           customBtnClass="small header text"
+          isText
         />
         <Button
           btnText="Bracket"
           btnFunction={() => handleBtnClick('/bracket/view')}
           customBtnClass="small header text"
+          isText
         />
         <Button
           btnText="Gameplay"
           btnFunction={() => handleBtnClick('/gameplay')}
           customBtnClass="small header text"
+          isText
         />
         <Button
           btnText="Suggest Character"
           btnFunction={() => handleBtnClick('/suggest')}
           customBtnClass="small header text"
+          isText
         />
         <Button
           btnText={acct}
           btnFunction={() => handleBtnClick(acctLink)}
           customBtnClass="small header text"
+          isText
         />
       </Menu>
     </Styles.MobileHeaderContainer>

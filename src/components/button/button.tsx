@@ -14,7 +14,8 @@ const Button = ({
   btnFunction,
   isDisabled = false,
   children,
-  disabledMsg = 'Currently inactive until futher notice'
+  disabledMsg = 'Currently inactive until futher notice',
+  isText = false,
 }: PropsWithChildren<ButtonProps>) => {
   const handledBtnAction = () => {
     if (isDisabled) {
@@ -38,7 +39,13 @@ const Button = ({
           >
             {children}
           </Styles.Btn>
-          {isDisabled && <Tooltip id={`btnTooltip-${btnText}`} place="bottom" style={{ backgroundColor: COLOR_BLACK, color: COLOR_WHITE }} />}
+          {isDisabled && (
+            <Tooltip
+              id={`btnTooltip-${btnText}`}
+              place="bottom"
+              style={{ backgroundColor: COLOR_BLACK, color: COLOR_WHITE }}
+            />
+          )}
         </>
       );
     }
@@ -55,8 +62,24 @@ const Button = ({
         >
           <Styles.BtnText>{btnText}</Styles.BtnText>
         </Styles.Btn>
-        {isDisabled && <Tooltip id={`btnTooltip-${btnText}`} place="bottom" style={{ backgroundColor: COLOR_BLACK, color: COLOR_WHITE }} />}
+        {isDisabled && (
+          <Tooltip
+            id={`btnTooltip-${btnText}`}
+            place="bottom"
+            style={{ backgroundColor: COLOR_BLACK, color: COLOR_WHITE }}
+          />
+        )}
       </>
+    );
+  }
+
+  if (isText) {
+    return (
+      <Link href={redirect}>
+        <Styles.Btn className={customBtnClass || ''}>
+          <Styles.BtnText>{btnText}</Styles.BtnText>
+        </Styles.Btn>
+      </Link>
     );
   }
 
@@ -64,14 +87,22 @@ const Button = ({
     <>
       <Link href={isDisabled ? '#' : redirect}>
         <Styles.Btn
-          className={`${btnColor || ''} ${customBtnClass || ''} ${isDisabled ? 'disabled' : ''}`}
+          className={`${btnColor || ''} ${customBtnClass || ''} ${
+            isDisabled ? 'disabled' : ''
+          }`}
           data-tooltip-id={`btnTooltip-${btnText}`}
           data-tooltip-content={disabledMsg}
         >
           <Styles.BtnText>{btnText}</Styles.BtnText>
         </Styles.Btn>
       </Link>
-      {isDisabled && <Tooltip id={`btnTooltip-${btnText}`} place="bottom" style={{ backgroundColor: COLOR_BLACK, color: COLOR_WHITE }} />}
+      {isDisabled && (
+        <Tooltip
+          id={`btnTooltip-${btnText}`}
+          place="bottom"
+          style={{ backgroundColor: COLOR_BLACK, color: COLOR_WHITE }}
+        />
+      )}
     </>
   );
 };
