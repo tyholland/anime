@@ -42,16 +42,19 @@ const Header = () => {
             btnText="League"
             redirect="/league/view"
             customBtnClass="small header text"
+            isText
           />
           <Button
             btnText="Bracket"
             redirect="/bracket/view"
             customBtnClass="small header text"
+            isText
           />
           <Button
             btnText={btnText}
             redirect={btnlink}
             customBtnClass="small header text"
+            isText
           />
         </Styles.HeaderMenu>
         <MobileHeader acct={btnText} acctLink={btnlink} />

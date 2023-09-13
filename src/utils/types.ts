@@ -38,6 +38,7 @@ export type ButtonProps = {
   btnFunction?: () => void;
   isDisabled?: boolean;
   disabledMsg?: string;
+  isText?: boolean;
 };
 
 export type ActivateVotingProps = {
@@ -57,6 +58,7 @@ export type BioReviewProps = {
   canDraft?: boolean;
   draftPlayer?: () => void;
   errorMsg?: string;
+  isEligible?: boolean;
 };
 
 export type BracketVotingProps = {

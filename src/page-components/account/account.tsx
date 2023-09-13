@@ -170,6 +170,7 @@ const Account = () => {
 
     if (currentUser) {
       setEmail(currentUser.email);
+      handleAdminAccess();
     }
   }, [currentUser]);
 
@@ -178,10 +179,6 @@ const Account = () => {
       setAuth(getAuth());
     }
   }, [auth]);
-
-  useEffect(() => {
-    handleAdminAccess();
-  }, []);
 
   return (
     <>

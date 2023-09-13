@@ -14,8 +14,11 @@ const BioReview = ({
   canDraft,
   draftPlayer,
   errorMsg,
+  isEligible,
 }: BioReviewProps) => {
   const [message, setMessage] = useState<string | null>(null);
+  const [draftablePlayer, setDraftablePlayer] = useState<boolean>(false);
+  const [undraftablePlayer, setUndraftablePlayer] = useState<boolean>(false);
   const customStyles = {
     content: {
       top: '50%',
@@ -30,9 +33,23 @@ const BioReview = ({
     },
   };
 
+  const handleDraftPlayer = (isEligible: boolean) => {
+    const canDraftPlayer =
+      !!type && type === 'draft' && !!canDraft && isEligible;
+    const canNotDraftPlayer =
+      !!type && type === 'draft' && !!canDraft && !isEligible;
+
+    setDraftablePlayer(canDraftPlayer);
+    setUndraftablePlayer(canNotDraftPlayer);
+  };
+
   useEffect(() => {
     setMessage(errorMsg);
   }, [errorMsg]);
+
+  useEffect(() => {
+    handleDraftPlayer(isEligible);
+  }, [isEligible]);
 
   return (
     <MainModal
@@ -45,12 +62,21 @@ const BioReview = ({
       </Styles.BioReviewWrapper>
       {message && <ErrorMsg msg={message} />}
       <Styles.BioReviewWrapper className="btn">
-        {!!type && type === 'draft' && !!canDraft && (
+        {draftablePlayer && (
           <Button
             btnFunction={draftPlayer}
             btnText="Draft"
             btnColor="primary"
             customBtnClass="medium"
+          />
+        )}
+        {undraftablePlayer && (
+          <Button
+            btnText="Already Drafted"
+            btnColor="primary"
+            customBtnClass="medium"
+            isDisabled
+            disabledMsg="Character belongs to another team"
           />
         )}
         <Button
