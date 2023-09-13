@@ -19,14 +19,14 @@ export const DraftSection = styled.div`
   align-items: flex-start;
   justify-content: space-between;
 
-  ${MOBILE_VIEW} {
+  ${RESPONSIVE_VIEW} {
     flex-wrap: wrap;
   }
 
   &.team {
     margin-top: 5%;
 
-    ${MOBILE_VIEW} {
+    ${RESPONSIVE_VIEW} {
       flex-direction: column-reverse;
     }
   }
@@ -112,8 +112,8 @@ export const DraftRound = styled.div`
 `;
 
 export const DraftPlayerGrid = styled.div`
-  max-width: 600px;
-  min-width: 400px;
+  max-width: 700px;
+  min-width: 500px;
   margin-right: 5%;
 
   ${MOBILE_VIEW} {

@@ -34,7 +34,7 @@ export const FONT_WEIGHT_BOLD = '700';
 export const FONT_WEIGHT_NORMAL = '400';
 
 // Media Breaks
-export const RESPONSIVE_VIEW = '@media only screen and (max-width: 960px)';
+export const RESPONSIVE_VIEW = '@media only screen and (max-width: 1160px)';
 export const MOBILE_VIEW = '@media only screen and (max-width: 600px)';
 
 // Global Styles

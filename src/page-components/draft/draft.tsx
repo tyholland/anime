@@ -585,69 +585,83 @@ const Draft = () => {
                         </div>
                         <div>
                           <strong>Captain:</strong>{' '}
-                          <button
-                            onClick={() => openTeamModal(playerList.captain)}
-                          >
-                            {playerList?.captain?.name}
-                          </button>
+                          <Button
+                            customBtnClass="text"
+                            btnFunction={() =>
+                              openTeamModal(playerList.captain)
+                            }
+                            btnText={playerList?.captain?.name}
+                          />
                         </div>
                         <div>
                           <strong>Brawler:</strong>{' '}
-                          <button
-                            onClick={() => openTeamModal(playerList?.brawlerA)}
-                          >
-                            {playerList?.brawlerA?.name}
-                          </button>
+                          <Button
+                            customBtnClass="text"
+                            btnFunction={() =>
+                              openTeamModal(playerList.brawlerA)
+                            }
+                            btnText={playerList?.brawlerA?.name}
+                          />
                         </div>
                         <div>
                           <strong>Brawler:</strong>{' '}
-                          <button
-                            onClick={() => openTeamModal(playerList?.brawlerB)}
-                          >
-                            {playerList?.brawlerB?.name}
-                          </button>
+                          <Button
+                            customBtnClass="text"
+                            btnFunction={() =>
+                              openTeamModal(playerList.brawlerB)
+                            }
+                            btnText={playerList?.brawlerB?.name}
+                          />
                         </div>
                         <div>
                           <strong>Brawler - Duo:</strong>{' '}
-                          <button
-                            onClick={() => openTeamModal(playerList?.bsBrawler)}
-                          >
-                            {playerList?.bsBrawler?.name}
-                          </button>
+                          <Button
+                            customBtnClass="text"
+                            btnFunction={() =>
+                              openTeamModal(playerList.bsBrawler)
+                            }
+                            btnText={playerList?.bsBrawler?.name}
+                          />
                         </div>
                         <div>
                           <strong>Support - Duo:</strong>{' '}
-                          <button
-                            onClick={() => openTeamModal(playerList?.bsSupport)}
-                          >
-                            {playerList?.bsSupport?.name}
-                          </button>
+                          <Button
+                            customBtnClass="text"
+                            btnFunction={() =>
+                              openTeamModal(playerList?.bsSupport)
+                            }
+                            btnText={playerList?.bsSupport?.name}
+                          />
                         </div>
                         <div>
                           <strong>Support:</strong>{' '}
-                          <button
-                            onClick={() => openTeamModal(playerList?.support)}
-                          >
-                            {playerList?.support?.name}
-                          </button>
+                          <Button
+                            customBtnClass="text"
+                            btnFunction={() =>
+                              openTeamModal(playerList.support)
+                            }
+                            btnText={playerList?.support?.name}
+                          />
                         </div>
                         <div>
                           <strong>Villain:</strong>{' '}
-                          <button
-                            onClick={() => openTeamModal(playerList?.villain)}
-                          >
-                            {playerList?.villain?.name}
-                          </button>
+                          <Button
+                            customBtnClass="text"
+                            btnFunction={() =>
+                              openTeamModal(playerList.villain)
+                            }
+                            btnText={playerList?.villain?.name}
+                          />
                         </div>
                         <div>
                           <strong>Battlefield:</strong>{' '}
-                          <button
-                            onClick={() =>
-                              openTeamModal(playerList?.battlefield)
+                          <Button
+                            customBtnClass="text"
+                            btnFunction={() =>
+                              openTeamModal(playerList.battlefield)
                             }
-                          >
-                            {playerList?.battlefield?.name}
-                          </button>
+                            btnText={playerList?.battlefield?.name}
+                          />
                         </div>
                       </Styles.DraftTeamGrid>
                     </Styles.DraftSection>

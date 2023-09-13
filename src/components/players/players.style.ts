@@ -6,18 +6,19 @@ import {
   COLOR_WHITE_TRANSPARENT,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
-  FONT_SIZE_SMALL
+  FONT_SIZE_SMALL,
+  RESPONSIVE_VIEW
 } from 'Styles/global.style';
 
 export const PlayersGrid = styled.div`
   width: 655px;
 
-  ${MOBILE_VIEW} {
+  ${RESPONSIVE_VIEW} {
     width: 100%;
   }
 
   &.desktopGrid {
-    ${MOBILE_VIEW} {
+    ${RESPONSIVE_VIEW} {
       display: none;
     }
   }
@@ -25,7 +26,7 @@ export const PlayersGrid = styled.div`
   &.mobileGrid {
     display: none;
 
-    ${MOBILE_VIEW} {
+    ${RESPONSIVE_VIEW} {
       display: block;
     }
   }
@@ -33,7 +34,7 @@ export const PlayersGrid = styled.div`
   &.roster {
     width: 495px;
 
-    ${MOBILE_VIEW} {
+    ${RESPONSIVE_VIEW} {
       width: 100%;
     }
   }
@@ -41,7 +42,7 @@ export const PlayersGrid = styled.div`
   &.bracket {
     width: auto;
 
-    ${MOBILE_VIEW} {
+    ${RESPONSIVE_VIEW} {
       width: 100%;
     }
   }
