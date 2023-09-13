@@ -14,7 +14,7 @@ const BioReview = ({
   canDraft,
   draftPlayer,
   errorMsg,
-  unusedPlayers,
+  isEligible,
 }: BioReviewProps) => {
   const [message, setMessage] = useState<string | null>(null);
   const [draftablePlayer, setDraftablePlayer] = useState<boolean>(false);
@@ -33,14 +33,11 @@ const BioReview = ({
     },
   };
 
-  const handleDraftPlayer = (availablePlayers: Record<string, any>) => {
-    const isAvailable = availablePlayers?.some(
-      (player: Record<string, any>) => player.id === characterId
-    );
+  const handleDraftPlayer = (isEligible: boolean) => {
     const canDraftPlayer =
-      !!type && type === 'draft' && !!canDraft && !isAvailable;
+      !!type && type === 'draft' && !!canDraft && isEligible;
     const canNotDraftPlayer =
-      !!type && type === 'draft' && !!canDraft && !!isAvailable;
+      !!type && type === 'draft' && !!canDraft && !isEligible;
 
     setDraftablePlayer(canDraftPlayer);
     setUndraftablePlayer(canNotDraftPlayer);
@@ -51,8 +48,8 @@ const BioReview = ({
   }, [errorMsg]);
 
   useEffect(() => {
-    handleDraftPlayer(unusedPlayers);
-  }, [unusedPlayers]);
+    handleDraftPlayer(isEligible);
+  }, [isEligible]);
 
   return (
     <MainModal

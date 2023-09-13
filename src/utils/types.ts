@@ -58,7 +58,7 @@ export type BioReviewProps = {
   canDraft?: boolean;
   draftPlayer?: () => void;
   errorMsg?: string;
-  unusedPlayers?: Record<string, any>;
+  isEligible?: boolean;
 };
 
 export type BracketVotingProps = {

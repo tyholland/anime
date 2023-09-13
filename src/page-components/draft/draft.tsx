@@ -67,6 +67,7 @@ const Draft = () => {
     any
   > | null>(null);
   const [notUsedPlayers, setNotUsedPlayers] = useState<Record<string, any>>([]);
+  const [isEligible, setIsEligible] = useState<boolean>(false);
 
   const getDraftInfo = async () => {
     const { league_id } = router.query;
@@ -175,6 +176,10 @@ const Draft = () => {
 
   const openDraftModal = (character: Record<string, any>) => {
     setCharacter(character);
+    const isAvailable = notUsedPlayers?.some(
+      (player: Record<string, any>) => player.id === character.id
+    );
+    setIsEligible(isAvailable);
     setIsModalOpen(true);
   };
 
@@ -771,7 +776,7 @@ const Draft = () => {
         draftPlayer={draftPlayer}
         errorMsg={errorMsg}
         type="draft"
-        unusedPlayers={notUsedPlayers}
+        isEligible={isEligible}
       />
       <BioReview
         modalIsOpen={isTeamModalOpen}
