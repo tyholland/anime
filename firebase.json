@@ -134,6 +134,10 @@
       {
         "source": "/draft",
         "destination": "/draft.html"
+      },
+      {
+        "source": "/faq",
+        "destination": "/faq.html"
       }
     ]
   }
