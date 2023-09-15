@@ -1,3 +1,4 @@
+import { MOBILE_VIEW } from 'Styles/global.style';
 import styled from 'styled-components';
 
 export const FaqWrapper = styled.div`
@@ -5,6 +6,10 @@ export const FaqWrapper = styled.div`
 
   iframe {
     border: none;
+
+    ${MOBILE_VIEW} {
+      width: 100%;
+    }
   }
 `;
 
