@@ -5,7 +5,7 @@ import * as GlobalStyles from 'Styles/global.style';
 import * as Styles from './faq.style';
 import ReadMore from 'Components/read-more/read-more';
 
-const Playoffs = () => {
+const Faq = () => {
   const createLeagueUp = (
     <div className="collapseContainer">
       <div>How do I create a league?</div>
@@ -261,4 +261,4 @@ const Playoffs = () => {
   );
 };
 
-export default Playoffs;
+export default Faq;
