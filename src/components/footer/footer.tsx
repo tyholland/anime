@@ -12,6 +12,9 @@ const Footer = () => {
             <Link href="mailto:animebrothaz3@gmail.com">Contact Us</Link>
           </div>
           <div>
+            <Link href="/faq">FAQ</Link>
+          </div>
+          <div>
             <Link href="/suggest">Suggest Character</Link>
           </div>
         </Styles.FooterLinks>
