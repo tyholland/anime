@@ -34,7 +34,7 @@ export const PlayersGrid = styled.div`
   &.roster {
     width: 495px;
 
-    ${RESPONSIVE_VIEW} {
+    ${MOBILE_VIEW} {
       width: 100%;
     }
   }
@@ -42,7 +42,7 @@ export const PlayersGrid = styled.div`
   &.bracket {
     width: auto;
 
-    ${RESPONSIVE_VIEW} {
+    ${MOBILE_VIEW} {
       width: 100%;
     }
   }
