@@ -104,6 +104,20 @@ const Faq = () => {
     </div>
   );
 
+  const editRosterUp = (
+    <div className="collapseContainer">
+      <div>Where do I edit my roster?</div>
+      <div className="up">&#10132;</div>
+    </div>
+  );
+
+  const editRosterDown = (
+    <div className="collapseContainer">
+      <div>Where do I edit my roster?</div>
+      <div className="down">&#10132;</div>
+    </div>
+  );
+
   return (
     <>
       <GlobalStyles.CollapsibleStyles />
@@ -250,6 +264,26 @@ const Faq = () => {
                 height="315"
                 src="https://www.youtube.com/embed/BxM531VHNd4?si=FAE6Tw8Pc0pOqbYv"
                 title="How to view all league settings?"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              ></iframe>
+            </Styles.FaqWrapper>
+          </Collapsible>
+          <Collapsible
+            trigger={editRosterDown}
+            triggerWhenOpen={editRosterUp}
+            triggerTagName="div"
+            triggerElementProps={{
+              id: 'editRoster',
+              'aria-controls': 'editRoster',
+            }}
+            contentElementId="editRoster"
+          >
+            <Styles.FaqWrapper>
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/N3vH5mjnQno?si=RuNkie0K__t636Az"
+                title="Where do I edit my roster?"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               ></iframe>
             </Styles.FaqWrapper>
