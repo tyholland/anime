@@ -34,7 +34,6 @@ const League = () => {
     });
   };
 
-
   const handleLeagueData = async () => {
     const { league_id } = router.query;
 

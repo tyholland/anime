@@ -40,7 +40,7 @@ const ViewLeague = () => {
   const handleAllLeagues = async () => {
     setIsLoading(true);
 
-    if (allLeagueData && !handleLeagueRefresh) {
+    if (allLeagueData && !handleLeagueRefresh && !!allLeagueData.current) {
       const {current, past} = allLeagueData;
       handleLeagueSetup(current, past);
       return;
