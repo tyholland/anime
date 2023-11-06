@@ -69,7 +69,7 @@ const Schedule = () => {
               const activeGames = games.filter(
                 (match: Record<string, any>) => match.scoreA > 0 || match.scoreB > 0
               );
-              const isOldWeek = activeGames[activeGames.length - 1].week > week;
+              const isOldWeek = activeGames.length > 0 ? activeGames[activeGames.length - 1].week > week : null;
               const highlight = activeGames.length >= week;
 
               const isWinner = (team: string) => {
