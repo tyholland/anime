@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  COLOR_BLACK,
+  COLOR_WHITE,
   FONT_SIZE_SMALL,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
@@ -30,7 +30,7 @@ export const TeamEditBtn = styled.div`
   height: 100px;
   padding: 2% 0;
   align-items: center;
-  border-bottom: 1px solid ${COLOR_BLACK};
+  border-bottom: 1px solid ${COLOR_WHITE};
   width: 100%;
 
   &.decision {
@@ -57,7 +57,7 @@ export const TeamEditSection = styled.div`
   padding: 2% 0;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid ${COLOR_BLACK};
+  border-bottom: 1px solid ${COLOR_WHITE};
   width: 100%;
   height: 100px;
 
@@ -65,7 +65,7 @@ export const TeamEditSection = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-  
+
     button {
       text-overflow: ellipsis;
       overflow: hidden;

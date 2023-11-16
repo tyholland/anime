@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  COLOR_BLACK,
+  COLOR_WHITE,
   FONT_SIZE_MEDIUM,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
@@ -10,7 +10,7 @@ import {
 export const LeagueCardWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid ${COLOR_BLACK};
+  border-bottom: 2px solid ${COLOR_WHITE};
   padding: 3% 0;
   align-items: center;
   width: 80%;

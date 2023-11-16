@@ -2,16 +2,20 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 // Colors
 export const COLOR_ORANGE = 'rgb(249, 128, 17)';
-export const COLOR_ORANGE_DISABLED = 'rgba(249, 128, 17, 0.8)';
-export const COLOR_ORANGE_LIGHT = 'rgba(249, 128, 17, 0.3)';
-export const COLOR_ORANGE_EXTRA_LIGHT = 'rgba(249,128,17,0.05)';
+export const COLOR_ORANGE_DISABLED = '#ffd7b5';
+export const COLOR_ORANGE_LIGHT = '#ff9248';
+export const COLOR_ORANGE_EXTRA_LIGHT = '#ffb38a';
+export const COLOR_OFF_ORANGE = '#f6b26b';
 export const COLOR_RED = '#cc0000';
+export const COLOR_RED_LIGHT = '#ffb2b2';
 export const COLOR_SUCCESS = '#4BB543';
 export const COLOR_ERROR = '#cc000080';
 export const COLOR_WHITE = '#ffffff';
 export const COLOR_WHITE_TRANSPARENT = '#ffffff95';
+export const COLOR_DARK_WHITE = '#f3f6f4';
 export const COLOR_BLACK = '#000000';
 export const COLOR_BLACK_DISABLED = '#00000010';
+export const COLOR_OFF_BLACK = '#232b2b';
 export const COLOR_GREY = '#CDCDCD';
 export const COLOR_GREY_LIGHT = '#CDCDCD80';
 export const COLOR_GREY_EXTRA_LIGHT = '#CDCDCD30';
@@ -20,6 +24,7 @@ export const COLOR_BLUE_HOVER = '#0066cc';
 export const COLOR_DISCLAIMER = '#7BB0D0';
 export const COLOR_OVERLAY = '#00000090';
 export const COLOR_YELLOW = '#ffbf00';
+export const COLOR_YELLOW_LIGHT = '#fedc56';
 
 // Font Sizes
 export const FONT_SIZE_EXTRA_SMALL = '10px';
@@ -44,6 +49,8 @@ export const GlobalStyles = createGlobalStyle`
     min-width: 960px;
     max-width: 1200px;
     font-family: Arial, sans-serif;
+    background: ${COLOR_OFF_BLACK};
+    color: ${COLOR_WHITE};
 
     ${RESPONSIVE_VIEW} {
       min-width: auto;
@@ -62,6 +69,8 @@ export const CollapsibleStyles = createGlobalStyle`
     padding: 2%;
     border: 1px solid ${COLOR_BLACK};
     border-bottom: none;
+    background: ${COLOR_DARK_WHITE};
+    color: ${COLOR_BLACK};
 
     div[role="button"] {
       font-weight: ${FONT_WEIGHT_BOLD};
@@ -204,18 +213,7 @@ export const GlobalContainer = styled.div`
     flex-direction: column;
 
     &::before {
-      background-image: url(/assets/background/young-goku.webp);
-      background-size: contain;
-      top: 22%;
-      min-height: auto;
-      opacity: 60%;
-      background-position: center;
-      width: 665px;
-      margin: 0 auto;
-
-      ${MOBILE_VIEW} {
-        width: 100%;
-      }
+      background-image: none;
     }
   }
 
@@ -234,20 +232,6 @@ export const GlobalContainer = styled.div`
     flex-direction: column;
     align-items: center;
 
-    &::before {
-      content: " ";
-      background-image: url(/assets/background/saitama.webp);
-      background-size: 200px;
-      background-repeat: no-repeat;
-      background-position: center;
-      position: absolute;
-      top: 18%;
-      right: 0px;
-      bottom: 0px;
-      left: 0px;
-      opacity: 60%;
-    }
-
     ${RESPONSIVE_VIEW} {
       padding: 0;
     }
@@ -258,13 +242,17 @@ export const GlobalContainer = styled.div`
   }
 
   &.homeSection {
-    background: ${COLOR_ORANGE_EXTRA_LIGHT};
+    background: ${COLOR_ORANGE_LIGHT};
     min-height: auto;
     padding: 5% 3%;
   }
 
   &.homeEven {
-    background: ${COLOR_WHITE};
+    background: ${COLOR_OFF_BLACK};
+  }
+
+  &#suggest {
+    color: ${COLOR_BLACK};
   }
 
   .series {
@@ -291,7 +279,11 @@ export const GlobalContainer = styled.div`
       background: transparent;
       border: none;
       font-size: ${FONT_SIZE_MEDIUM};
-      color: ${COLOR_BLACK};
+      color: ${COLOR_DARK_WHITE};
+
+      &:hover {
+        text-decoration: underline;
+      }
 
       ${MOBILE_VIEW} {
         width: 45%;
@@ -326,6 +318,7 @@ export const GlobalTitle = styled.div`
     margin: 0 auto;
     padding: 2%;
     border-radius: 15px;
+    color: ${COLOR_BLACK};
 
     ${RESPONSIVE_VIEW} {
       width: 56%;

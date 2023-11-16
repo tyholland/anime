@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import {
   COLOR_BLACK,
+  COLOR_DARK_WHITE,
   COLOR_ORANGE,
+  COLOR_WHITE,
   FONT_SIZE_EXTRA_SMALL,
   FONT_SIZE_LARGE,
   FONT_SIZE_SMALL,
@@ -36,6 +38,7 @@ export const ViewMatchupTeamSplit = styled.div`
   align-items: center;
   width: 100%;
   margin-top: 20px;
+  background: ${COLOR_DARK_WHITE};
 `;
 
 export const ViewMatchupPositionColumn = styled.div`
@@ -74,6 +77,7 @@ export const ViewMatchupTeamTotal = styled.div`
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
   margin-top: 15px;
+  color: ${COLOR_WHITE};
 `;
 
 export const ViewMatchupAffinityText = styled.div`

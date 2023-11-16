@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { COLOR_BLACK, FONT_SIZE_EXTRA_LARGE, FONT_SIZE_SMALL, FONT_WEIGHT_BOLD } from 'Styles/global.style';
+import {
+  COLOR_WHITE,
+  FONT_SIZE_EXTRA_LARGE,
+  FONT_SIZE_SMALL,
+  FONT_WEIGHT_BOLD,
+} from 'Styles/global.style';
 
 export const CharacterStatsBtnWrapper = styled.div`
   display: flex;
@@ -18,12 +23,12 @@ export const CharacterStatsScoring = styled.div`
   margin-bottom: 20px;
 
   &.total {
-    border-top: 1px solid ${COLOR_BLACK};
+    border-top: 1px solid ${COLOR_WHITE};
     padding-top: 20px;
   }
 
   &.bye {
-    border-top: 1px solid ${COLOR_BLACK};
+    border-top: 1px solid ${COLOR_WHITE};
     padding-top: 20px;
     display: flex;
     justify-content: center;
@@ -39,7 +44,7 @@ export const CharacterStatsPoints = styled.div`
 
   &.specific {
     font-size: ${FONT_SIZE_SMALL};
-    color: rgba(0, 0, 0, 0.5);
+    color: ${COLOR_WHITE};
   }
 `;
 
@@ -52,6 +57,6 @@ export const CharacterStatsLabel = styled.div`
 
   &.specific {
     font-size: ${FONT_SIZE_SMALL};
-    color: rgba(0, 0, 0, 0.5);
+    color: ${COLOR_WHITE};
   }
 `;

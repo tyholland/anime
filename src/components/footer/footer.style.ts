@@ -56,5 +56,6 @@ export const FooterLinks = styled.div`
   .title {
     font-weight: ${FONT_WEIGHT_BOLD};
     font-size: ${FONT_SIZE_LARGE};
+    color: ${COLOR_BLACK};
   }
 `;

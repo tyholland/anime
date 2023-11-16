@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {
+  COLOR_WHITE,
   FONT_SIZE_EXTRA_LARGE,
   FONT_SIZE_SMALL,
   FONT_WEIGHT_BOLD,
@@ -23,6 +24,7 @@ export const TeamInfoStats = styled.div`
     span {
       font-size: ${FONT_SIZE_SMALL} !important;
       font-weight: ${FONT_WEIGHT_NORMAL};
+      color: ${COLOR_WHITE};
     }
   }
 `;

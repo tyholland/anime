@@ -15,7 +15,7 @@ import ReadMore from 'Components/read-more/read-more';
 import Disclaimer from 'Components/disclaimer/disclaimer';
 import { FRIDAY, MONDAY, SUNDAY, THURSDAY, alerts } from 'Utils/constants';
 import { getDate } from 'Utils/index';
-import { getStorageData, setStorageData } from 'Utils/cache';
+import { setStorageData } from 'Utils/cache';
 import { useRouter } from 'next/router';
 
 const ViewLeague = () => {
@@ -31,17 +31,12 @@ const ViewLeague = () => {
   const handleAlertMsg = (label: string, message: string) => {
     const date = getDate();
     const theDate = `${date.month()}/${date.date()}/${date.year()}`;
-    const previousDate = getStorageData(label);
-
-    if (previousDate === theDate) {
-      return;
-    }
 
     setMsg(message);
     setStorageData(label, JSON.stringify(theDate));
   };
 
-  const handleAlerts = () => {
+  const handleAlerts = (leagueCard: Record<string, any>) => {
     if (leagueCard.length) {
       const date = getDate();
       const dayOfTheWeek = date.day();
@@ -85,7 +80,7 @@ const ViewLeague = () => {
 
     setLeagueCard(currentLeagues);
     setLeaguePastCard(pastLeagues);
-    handleAlerts();
+    handleAlerts(currentLeagues);
     setIsLoading(false);
   };
 

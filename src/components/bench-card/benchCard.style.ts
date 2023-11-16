@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {
   COLOR_BLACK,
   COLOR_BLUE_HOVER,
+  COLOR_DARK_WHITE,
   COLOR_ORANGE,
   COLOR_ORANGE_LIGHT,
   FONT_SIZE_EXTRA_SMALL,
@@ -16,6 +17,7 @@ export const TeamCardSection = styled.div`
   flex-direction: row;
   align-items: center;
   border-bottom: 1px solid ${COLOR_BLACK};
+  background: ${COLOR_DARK_WHITE};
 
   &.header {
     background-color: ${COLOR_ORANGE_LIGHT};

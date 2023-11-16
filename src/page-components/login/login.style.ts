@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONT_WEIGHT_BOLD, RESPONSIVE_VIEW } from 'Styles/global.style';
+import { COLOR_BLUE_HOVER, FONT_WEIGHT_BOLD, RESPONSIVE_VIEW } from 'Styles/global.style';
 
 export const LoginSplit = styled.div`
   font-weight: ${FONT_WEIGHT_BOLD};
@@ -11,6 +11,10 @@ export const LoginContentLinks = styled.div`
   display: flex;
   margin-top: 20px;
   width: 350px;
+  
+  button span {
+    color: ${COLOR_BLUE_HOVER};
+  }
 `;
 
 export const LoginWrapper = styled.div`

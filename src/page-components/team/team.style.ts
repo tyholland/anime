@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {
-  COLOR_BLACK,
   COLOR_BLUE_HOVER,
+  COLOR_WHITE,
   FONT_SIZE_LARGE,
   FONT_SIZE_SMALL,
   FONT_WEIGHT_BOLD,
@@ -36,14 +36,14 @@ export const TeamName = styled.div`
 
 export const TeamLeague = styled.div`
   font-size: ${FONT_SIZE_SMALL};
-  color: rgba(0, 0, 0, 0.5);
+  color: ${COLOR_WHITE};
 `;
 
 export const TeamTotalText = styled.div`
   width: 65%;
   margin: 15px 0 15px 5px;
   font-weight: ${FONT_WEIGHT_BOLD};
-  color: ${COLOR_BLACK};
+  color: ${COLOR_WHITE};
   text-align: right;
 `;
 
@@ -53,7 +53,7 @@ export const TeamTotalAmount = styled.div`
   margin: 15px 0 15px -3px;
   padding-right: 10px;
   font-weight: ${FONT_WEIGHT_BOLD};
-  color: ${COLOR_BLACK};
+  color: ${COLOR_WHITE};
 `;
 
 export const TeamBtnSection = styled.div`

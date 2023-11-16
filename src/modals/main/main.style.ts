@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { MOBILE_VIEW } from 'Styles/global.style';
+import { COLOR_OFF_BLACK, MOBILE_VIEW } from 'Styles/global.style';
 
 export const MainGlobalStyles = createGlobalStyle`
   .ReactModal__Content {
@@ -7,6 +7,7 @@ export const MainGlobalStyles = createGlobalStyle`
     max-width: 85% !important;
     height: auto !important;
     width: auto !important;
+    background: ${COLOR_OFF_BLACK} !important;
   }
 
   ${MOBILE_VIEW} {

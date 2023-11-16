@@ -3,11 +3,11 @@ import {
   COLOR_BLACK,
   COLOR_ORANGE,
   COLOR_ORANGE_LIGHT,
-  COLOR_WHITE_TRANSPARENT,
   FONT_WEIGHT_BOLD,
   MOBILE_VIEW,
   FONT_SIZE_SMALL,
-  RESPONSIVE_VIEW
+  RESPONSIVE_VIEW,
+  COLOR_DARK_WHITE,
 } from 'Styles/global.style';
 
 export const PlayersGrid = styled.div`
@@ -25,9 +25,11 @@ export const PlayersGrid = styled.div`
 
   &.mobileGrid {
     display: none;
+    width: 325px;
 
     ${RESPONSIVE_VIEW} {
       display: block;
+      width: 100%;
     }
   }
 
@@ -35,7 +37,7 @@ export const PlayersGrid = styled.div`
     width: 495px;
 
     ${MOBILE_VIEW} {
-      width: 100%;
+      width: 325px;
     }
   }
 
@@ -53,7 +55,7 @@ export const PlayersRowHead = styled.div`
   width: 100%;
   align-items: center;
   position: relative;
-  
+
   .name,
   .rank,
   .points,
@@ -64,10 +66,11 @@ export const PlayersRowHead = styled.div`
     padding: 5px;
     background: ${COLOR_ORANGE};
     font-weight: ${FONT_WEIGHT_BOLD};
+    color: ${COLOR_BLACK};
   }
 
   .name {
-    width: 150px;
+    width: 35%;
 
     ${MOBILE_VIEW} {
       width: 80px;
@@ -75,7 +78,7 @@ export const PlayersRowHead = styled.div`
   }
 
   .rank {
-    width: 80px;
+    width: 15%;
 
     ${MOBILE_VIEW} {
       width: 60px;
@@ -83,7 +86,7 @@ export const PlayersRowHead = styled.div`
   }
 
   .points {
-    width: 80px;
+    width: 15%;
 
     ${MOBILE_VIEW} {
       width: 60px;
@@ -91,13 +94,17 @@ export const PlayersRowHead = styled.div`
   }
 
   .series {
-    width: 150px;
+    width: 35%;
   }
 
   .affinity {
-    width: 140px;
+    width: 35%;
+
+    ${MOBILE_VIEW} {
+      width: 80px;
+    }
   }
-  
+
   div:last-child {
     border-right: 1px solid ${COLOR_BLACK};
   }
@@ -130,7 +137,7 @@ export const PlayersRow = styled.button`
   }
 
   .name {
-    width: 150px;
+    width: 35%;
 
     span {
       text-overflow: ellipsis;
@@ -149,7 +156,7 @@ export const PlayersRow = styled.button`
   }
 
   .rank {
-    width: 80px;
+    width: 15%;
 
     ${MOBILE_VIEW} {
       width: 60px;
@@ -157,7 +164,7 @@ export const PlayersRow = styled.button`
   }
 
   .points {
-    width: 80px;
+    width: 15%;
 
     ${MOBILE_VIEW} {
       width: 60px;
@@ -167,7 +174,7 @@ export const PlayersRow = styled.button`
   .series {
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 150px;
+    width: 35%;
     overflow: hidden;
 
     span {
@@ -179,7 +186,12 @@ export const PlayersRow = styled.button`
   }
 
   > .affinity {
-    width: 140px;
+    width: 35%;
+    overflow-x: scroll;
+
+    ${MOBILE_VIEW} {
+      width: 80px;
+    }
   }
 
   :last-child {
@@ -191,7 +203,7 @@ export const PlayersRow = styled.button`
       border-bottom: 1px solid ${COLOR_BLACK};
     }
   }
-  
+
   > div:last-child {
     border-right: 1px solid ${COLOR_BLACK};
   }
@@ -205,7 +217,7 @@ export const PlayersRow = styled.button`
 
 export const PlayersRowSection = styled.div`
   position: relative;
-  background: ${COLOR_WHITE_TRANSPARENT};
+  background: ${COLOR_DARK_WHITE};
   overflow-y: scroll;
   height: 500px;
 
@@ -254,11 +266,14 @@ export const PlayersFilter = styled.div`
   .affinityFilter,
   .powerFilter {
     width: 30%;
+    display: flex;
+    flex-direction: column;
 
     ${MOBILE_VIEW} {
       display: flex;
       width: 90%;
       margin: 3% 0;
+      flex-direction: row;
     }
   }
 
@@ -292,7 +307,7 @@ export const PlayersFilter = styled.div`
 
   &.roster {
     width: 495px;
-    
+
     ${MOBILE_VIEW} {
       width: 100%;
     }

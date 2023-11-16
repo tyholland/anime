@@ -11,15 +11,16 @@ import {
 
 export const ScheduleWrapper = styled.button`
   margin-bottom: 2%;
-  padding-bottom: 2%;
+  padding: 2%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   width: 50%;
   border: none;
-  border-bottom: 1px solid ${COLOR_BLACK};
+  border-bottom: 1px solid ${COLOR_WHITE};
   background: ${COLOR_WHITE};
   color: ${COLOR_BLACK};
+  border-radius: 20px;
 
   > div {
     font-size: ${FONT_SIZE_MEDIUM};

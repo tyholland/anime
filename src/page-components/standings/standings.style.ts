@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLOR_BLACK, MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
+import { COLOR_WHITE, MOBILE_VIEW, RESPONSIVE_VIEW } from 'Styles/global.style';
 
 export const StandingsWrapper = styled.div`
   margin-bottom: 2%;
@@ -8,7 +8,7 @@ export const StandingsWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 50%;
-  border-bottom: 1px solid ${COLOR_BLACK};
+  border-bottom: 1px solid ${COLOR_WHITE};
 
   ${RESPONSIVE_VIEW} {
     width: 65%;

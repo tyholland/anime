@@ -2,12 +2,16 @@ import styled from 'styled-components';
 import {
   COLOR_BLACK,
   COLOR_BLACK_DISABLED,
+  COLOR_BLUE_HOVER,
   COLOR_GREY,
+  COLOR_OFF_ORANGE,
   COLOR_ORANGE,
   COLOR_ORANGE_DISABLED,
   COLOR_RED,
+  COLOR_RED_LIGHT,
   COLOR_WHITE,
   COLOR_YELLOW,
+  COLOR_YELLOW_LIGHT,
   FONT_SIZE_EXTRA_LARGE,
   FONT_SIZE_EXTRA_SMALL,
   FONT_SIZE_MEDIUM,
@@ -22,6 +26,7 @@ export const Btn = styled.button`
   padding: 3%;
   margin-top: 10px;
   width: 100%;
+  border: 2px solid ${COLOR_WHITE};
 
   &.primary {
     background-color: ${COLOR_ORANGE};
@@ -29,21 +34,9 @@ export const Btn = styled.button`
     span {
       color: ${COLOR_BLACK};
     }
-  }
 
-  &.secondary {
-    background-color: ${COLOR_BLACK};
-
-    span {
-      color: ${COLOR_ORANGE};
-    }
-  }
-
-  &.cancel {
-    background-color: ${COLOR_RED};
-
-    span {
-      color: ${COLOR_WHITE};
+    &:hover {
+      background-color: ${COLOR_OFF_ORANGE};
     }
   }
 
@@ -52,6 +45,10 @@ export const Btn = styled.button`
 
     span {
       color: ${COLOR_BLACK};
+    }
+
+    &:hover {
+      background-color: ${COLOR_YELLOW_LIGHT};
     }
   }
 
@@ -84,7 +81,6 @@ export const Btn = styled.button`
     padding: 3px 5px;
     position: relative;
     margin: 1% 0 0;
-    border-color: ${COLOR_WHITE};
 
     span {
       font-size: ${FONT_SIZE_EXTRA_SMALL};
@@ -97,7 +93,6 @@ export const Btn = styled.button`
     padding: 5px 15px;
     position: relative;
     margin: 2% 0 0 2%;
-    border-color: ${COLOR_WHITE};
 
     span {
       font-size: ${FONT_SIZE_EXTRA_SMALL};
@@ -137,7 +132,7 @@ export const Btn = styled.button`
 
   &.edit {
     & span {
-      color: #06c;
+      color: ${COLOR_BLUE_HOVER};
     }
   }
 
@@ -149,11 +144,43 @@ export const Btn = styled.button`
     padding: 0;
     width: auto;
 
-    & span {
+    &span {
       font-size: ${FONT_SIZE_MEDIUM};
 
       &:hover {
         text-decoration: underline;
+      }
+    }
+  }
+
+  &.cancel {
+    background-color: ${COLOR_RED};
+
+    &span {
+      color: ${COLOR_WHITE};
+    }
+
+    &:hover {
+      background-color: ${COLOR_RED_LIGHT};
+
+      &span {
+        color: ${COLOR_BLACK};
+      }
+    }
+  }
+
+  &.secondary {
+    background-color: ${COLOR_BLACK};
+
+    span {
+      color: ${COLOR_WHITE};
+    }
+
+    &:hover {
+      background-color: ${COLOR_YELLOW};
+
+      span {
+        color: ${COLOR_BLACK};
       }
     }
   }

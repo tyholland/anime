@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLOR_WHITE, FONT_SIZE_GIGANTIC, FONT_SIZE_LARGE, MOBILE_VIEW } from 'Styles/global.style';
+import { COLOR_BLACK, COLOR_WHITE, FONT_SIZE_GIGANTIC, FONT_SIZE_LARGE, MOBILE_VIEW } from 'Styles/global.style';
 
 export const NotUserContent = styled.div`
   position: relative;
@@ -12,6 +12,7 @@ export const NotUserContent = styled.div`
   background-color: ${COLOR_WHITE};
   border-radius: 10px;
   padding: 3%;
+  color: ${COLOR_BLACK};
 
   ${MOBILE_VIEW} {
     width: 94%;
