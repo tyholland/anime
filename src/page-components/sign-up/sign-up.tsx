@@ -135,7 +135,6 @@ const SignUp = () => {
                 the
                 <Button
                   btnText="Privacy Policy"
-                  btnColor="primary"
                   customBtnClass="medium text"
                   redirect="/policy"
                 />

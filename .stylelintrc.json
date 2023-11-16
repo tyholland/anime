@@ -22,6 +22,7 @@
     "at-rule-no-unknown": null,
     "prettier/prettier": true,
     "indentation": 2,
-    "function-no-unknown": null
+    "function-no-unknown": null,
+    "no-descending-specificity": null
   }
 }

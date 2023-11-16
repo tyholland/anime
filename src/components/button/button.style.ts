@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import {
   COLOR_BLACK,
-  COLOR_BLACK_DISABLED,
   COLOR_BLUE_HOVER,
+  COLOR_DARK_WHITE,
+  COLOR_DISCLAIMER,
   COLOR_GREY,
   COLOR_OFF_ORANGE,
   COLOR_ORANGE,
@@ -10,6 +11,7 @@ import {
   COLOR_RED,
   COLOR_RED_LIGHT,
   COLOR_WHITE,
+  COLOR_WHITE_TRANSPARENT,
   COLOR_YELLOW,
   COLOR_YELLOW_LIGHT,
   FONT_SIZE_EXTRA_LARGE,
@@ -40,6 +42,38 @@ export const Btn = styled.button`
     }
   }
 
+  &.secondary {
+    background-color: ${COLOR_BLACK};
+
+    span {
+      color: ${COLOR_WHITE};
+    }
+
+    &:hover {
+      background-color: ${COLOR_YELLOW};
+
+      span {
+        color: ${COLOR_BLACK};
+      }
+    }
+  }
+
+  &.cancel {
+    background-color: ${COLOR_RED};
+
+    span {
+      color: ${COLOR_WHITE};
+    }
+
+    &:hover {
+      background-color: ${COLOR_RED_LIGHT};
+
+      span {
+        color: ${COLOR_BLACK};
+      }
+    }
+  }
+
   &.tertiary {
     background-color: ${COLOR_YELLOW};
 
@@ -58,6 +92,10 @@ export const Btn = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &:hover {
+      background-color: ${COLOR_DISCLAIMER};
+    }
 
     > span {
       margin-left: 2%;
@@ -131,7 +169,7 @@ export const Btn = styled.button`
   }
 
   &.edit {
-    & span {
+    span {
       color: ${COLOR_BLUE_HOVER};
     }
   }
@@ -144,43 +182,11 @@ export const Btn = styled.button`
     padding: 0;
     width: auto;
 
-    &span {
+    span {
       font-size: ${FONT_SIZE_MEDIUM};
 
       &:hover {
         text-decoration: underline;
-      }
-    }
-  }
-
-  &.cancel {
-    background-color: ${COLOR_RED};
-
-    &span {
-      color: ${COLOR_WHITE};
-    }
-
-    &:hover {
-      background-color: ${COLOR_RED_LIGHT};
-
-      &span {
-        color: ${COLOR_BLACK};
-      }
-    }
-  }
-
-  &.secondary {
-    background-color: ${COLOR_BLACK};
-
-    span {
-      color: ${COLOR_WHITE};
-    }
-
-    &:hover {
-      background-color: ${COLOR_YELLOW};
-
-      span {
-        color: ${COLOR_BLACK};
       }
     }
   }
@@ -198,8 +204,8 @@ export const Btn = styled.button`
     }
 
     &.social {
-      background-color: ${COLOR_BLACK_DISABLED} !important;
-      border-color: ${COLOR_BLACK_DISABLED} !important;
+      background-color: ${COLOR_WHITE_TRANSPARENT} !important;
+      border-color: ${COLOR_DARK_WHITE} !important;
     }
   }
 `;
