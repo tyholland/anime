@@ -11,6 +11,15 @@ const Changelog = () => {
       />
       <GlobalStyles.GlobalContainer>
         <GlobalStyles.GlobalTitle>Changelog</GlobalStyles.GlobalTitle>
+        <h3>November 16, 2023</h3>
+        <ul>
+          <li>
+            General
+            <ul>
+              <li>Changed site theme to dark mode</li>
+            </ul>
+          </li>
+        </ul>
         <h3>November 15, 2023</h3>
         <ul>
           <li>
