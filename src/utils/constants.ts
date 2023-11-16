@@ -355,11 +355,11 @@ export const alerts = {
   },
   voting: {
     title: 'Reminder',
-    msg: 'It\'s Thursday (Eastern Standad Timezone)!!! 💫 Roster editing has ended, just like in an epic anime finale. But fear not, for a new thrilling chapter awaits! ✨ You can now activate voting on individual head-to-head matches within this week\'s Matchup, where the fate of your favorite characters will be decided. Your first Weekly Affinity for your matchup has entered the battlefield. Get ready to embark on an anime-inspired journey and make your voice heard!'
+    msg: 'It\'s Thursday (Eastern Standad Timezone)!!! 💫 Your first Weekly Affinity for your matchup has entered the battlefield. Get ready to embark on an anime-inspired journey and make your voice heard!'
   },
   damage: {
     title: 'Reminder',
-    msg: 'It\'s Friday (Eastern Standard Timezone)!!! You can now witness the damage points in this week\'s epic Matchup, straight out of an anime adventure! 🎮✨'
+    msg: 'It\'s Friday (Eastern Standard Timezone)!!! Roster editing has ended, just like in an epic anime finale. But fear not, for a new thrilling chapter awaits! ✨ You can now activate voting on individual head-to-head matches within this week\'s Matchup, where the fate of your favorite characters will be decided. You can now witness the damage points in this week\'s epic Matchup, straight out of an anime adventure! 🎮✨'
   },
   affinity: {
     title: 'Reminder',

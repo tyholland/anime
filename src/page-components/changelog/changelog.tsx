@@ -11,6 +11,27 @@ const Changelog = () => {
       />
       <GlobalStyles.GlobalContainer>
         <GlobalStyles.GlobalTitle>Changelog</GlobalStyles.GlobalTitle>
+        <h3>November 15, 2023</h3>
+        <ul>
+          <li>
+            League Updates
+            <ul>
+              <li>Removed the modal notification for all league updates. Moved the notification into the "All Leagues" page as a message on the page</li>
+            </ul>
+          </li>
+          <li>
+            Roster Editing
+            <ul>
+              <li>You can now edit your roster from Monday to Thursday of every week. Every Friday is when roster editing will stop.</li>
+            </ul>
+          </li>
+          <li>
+            Matchup Voting
+            <ul>
+              <li>Setting up individual voting matchups will now start on Friday. And will continue to end on Sunday.</li>
+            </ul>
+          </li>
+        </ul>
         <h3>September 14, 2023</h3>
         <ul>
           <li>

@@ -24,18 +24,22 @@ const Schedule = () => {
       <Styles.GameplayCardSection>
         <strong>Thursdays</strong>
         <ul>
-          <li>Can no longer update your roster</li>
-          <li>Individual head-to-head voting can be activated</li>
-          <li>
-            Send the individual head-to-head matchups to your friends, so they
-            can vote for your character
-          </li>
           <li>First weekly Affinity for your league matchup drops</li>
         </ul>
       </Styles.GameplayCardSection>
       <Styles.GameplayCardSection>
         <strong>Fridays</strong>
         <ul>
+          <li>Can no longer update your roster</li>
+          <li>
+            Individual head-to-head voting can be activated
+            <ul>
+              <li>
+                Send the individual head-to-head matchups to your friends, so
+                they can vote for your character
+              </li>
+            </ul>
+          </li>
           <li>
             Villain and Battlefield damage can now be seen in your league
             matchup

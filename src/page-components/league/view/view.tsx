@@ -12,6 +12,11 @@ import { useUserContext } from 'Hooks/user';
 import Loader from 'Components/loader/loader';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
+import Disclaimer from 'Components/disclaimer/disclaimer';
+import { FRIDAY, MONDAY, SUNDAY, THURSDAY, alerts } from 'Utils/constants';
+import { getDate } from 'Utils/index';
+import { getStorageData, setStorageData } from 'Utils/cache';
+import { useRouter } from 'next/router';
 
 const ViewLeague = () => {
   const { currentUser } = useUserContext();
@@ -20,11 +25,59 @@ const ViewLeague = () => {
   const [errorPage, setErrorPage] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isUser, setIsUser] = useState<boolean>(false);
+  const [msg, setMsg] = useState(null);
+  const router = useRouter();
 
-  const handleLeagueSetup = (current: Record<string, any>, past: Record<string, any>) => {
-    const currentLeagues = current.map((item: Record<string, any>, index: number) => {
-      return <LeagueCard key={`${item.team_name}-${index}`} data={item} />;
-    });
+  const handleAlertMsg = (label: string, message: string) => {
+    const date = getDate();
+    const theDate = `${date.month()}/${date.date()}/${date.year()}`;
+    const previousDate = getStorageData(label);
+
+    if (previousDate === theDate) {
+      return;
+    }
+
+    setMsg(message);
+    setStorageData(label, JSON.stringify(theDate));
+  };
+
+  const handleAlerts = () => {
+    if (leagueCard.length) {
+      const date = getDate();
+      const dayOfTheWeek = date.day();
+      const eligiblePage =
+        router.pathname !== '/login' && router.pathname !== '/sign-up';
+
+      if (eligiblePage) {
+        switch (dayOfTheWeek) {
+        case MONDAY:
+          handleAlertMsg('afl.monday', alerts.start.msg);
+          break;
+        case THURSDAY:
+          handleAlertMsg('afl.thursday', alerts.voting.msg);
+          break;
+        case FRIDAY:
+          handleAlertMsg('afl.friday', alerts.damage.msg);
+          break;
+        case SUNDAY:
+          handleAlertMsg('afl.sunday', alerts.affinity.msg);
+          break;
+        default:
+          break;
+        }
+      }
+    }
+  };
+
+  const handleLeagueSetup = (
+    current: Record<string, any>,
+    past: Record<string, any>
+  ) => {
+    const currentLeagues = current.map(
+      (item: Record<string, any>, index: number) => {
+        return <LeagueCard key={`${item.team_name}-${index}`} data={item} />;
+      }
+    );
 
     const pastLeagues = past.map((item: Record<string, any>, index: number) => {
       return <LeagueCard key={`${item.team_name}-${index}`} data={item} />;
@@ -32,6 +85,7 @@ const ViewLeague = () => {
 
     setLeagueCard(currentLeagues);
     setLeaguePastCard(pastLeagues);
+    handleAlerts();
     setIsLoading(false);
   };
 
@@ -39,7 +93,7 @@ const ViewLeague = () => {
     setIsLoading(true);
 
     try {
-      const {current, past} = await getAllLeagues(currentUser?.token);
+      const { current, past } = await getAllLeagues(currentUser?.token);
 
       handleLeagueSetup(current, past);
     } catch (err) {
@@ -89,6 +143,7 @@ const ViewLeague = () => {
             {isLoading && <Loader />}
             {!isLoading && (
               <>
+                {msg && <Disclaimer msg={msg} />}
                 {!!leagueCard.length && leagueCard}
                 {!leagueCard.length && (
                   <>
@@ -113,7 +168,9 @@ const ViewLeague = () => {
                 )}
                 {!!leaguePastCard.length && (
                   <Styles.ViewLeaguePast>
-                    <GlobalStyles.GlobalTitle>Past Leagues</GlobalStyles.GlobalTitle>
+                    <GlobalStyles.GlobalTitle>
+                      Past Leagues
+                    </GlobalStyles.GlobalTitle>
                     {leaguePastCard}
                   </Styles.ViewLeaguePast>
                 )}

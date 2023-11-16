@@ -55,11 +55,12 @@ const Home = () => {
           <ul>
             <li>Mondays: A new week dawns, you can adjust your roster.</li>
             <li>
-              Thursdays: Roster modifications are sealed, individual duels
-              voting commences.
+              Thursdays: The first weekly affinity
+              graces the battlefield
             </li>
             <li>
-              Fridays: The damage caused by Villains and Battlefields is
+              Fridays: Roster modifications are sealed, individual duels
+              voting commences. The damage caused by Villains and Battlefields is
               revealed.
             </li>
             <li>
