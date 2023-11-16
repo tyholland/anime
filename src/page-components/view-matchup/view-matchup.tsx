@@ -17,16 +17,10 @@ import Button from 'Components/button/button';
 import Notification from 'Modals/notification/notification';
 import ActivateVoting from 'Modals/activate-voting/activate-voting';
 import Recap from 'Modals/recap/recap';
-import { useTeamContext } from 'Hooks/team';
-import { useLeagueContext } from 'Hooks/league';
-import { useStandingsContext } from 'Hooks/standings';
 
 const ViewMatchup = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
-  const { deleteTeamData } = useTeamContext();
-  const { deleteLeagueData } = useLeagueContext();
-  const { deleteCurrentStandings } = useStandingsContext();
   const [team1, setTeam1] = useState<Record<string, any> | null>(null);
   const [team2, setTeam2] = useState<Record<string, any> | null>(null);
   const [score1, setScore1] = useState<number | null>(null);
@@ -89,9 +83,6 @@ const ViewMatchup = () => {
   const closeRecapModal = async () => {
     try {
       await hideRecap(team1.info.league_id, currentUser?.token);
-      deleteLeagueData();
-      deleteTeamData();
-      deleteCurrentStandings();
       setRecapIsOpen(false);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to close recap modal'));

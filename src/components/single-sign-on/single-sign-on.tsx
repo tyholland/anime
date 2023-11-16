@@ -25,7 +25,6 @@ import Image from 'next/image';
 import { FacebookIcon } from 'react-share';
 import { SingleSignOnProps } from 'Utils/types';
 import { isMobile } from 'react-device-detect';
-import { useLeagueContext } from 'Hooks/league';
 
 const SingleSignOn = ({
   buttonText = 'Login',
@@ -33,7 +32,6 @@ const SingleSignOn = ({
 }: SingleSignOnProps) => {
   const router = useRouter();
   const { updateCurrentUser } = useUserContext();
-  const { deleteLeagueData } = useLeagueContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<UserCredential | null>(null);
@@ -92,7 +90,6 @@ const SingleSignOn = ({
 
       if (join) {
         await joinLeagueSetup(join as string, user, router);
-        deleteLeagueData();
         return;
       }
 

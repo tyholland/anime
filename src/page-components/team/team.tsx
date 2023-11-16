@@ -16,25 +16,10 @@ import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
 import Recap from 'Modals/recap/recap';
 import BenchCard from 'Components/bench-card/bench-card';
-import { useTeamContext } from 'Hooks/team';
-import { useLeagueContext } from 'Hooks/league';
-import { useStandingsContext } from 'Hooks/standings';
 
 const Team = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
-  const {
-    updateTeamData,
-    updateInfoData,
-    updateRecapData,
-    allInfoData,
-    allRecapData,
-    allTeamData,
-    handleTeamRefresh,
-    deleteTeamData
-  } = useTeamContext();
-  const { deleteLeagueData } = useLeagueContext();
-  const { deleteCurrentStandings } = useStandingsContext();
   const [teamId, setTeamId] = useState<string | null>(null);
   const [teamData, setTeamData] = useState<Record<string, any> | null>(null);
   const [rank, setRank] = useState<Record<string, any> | null>(null);
@@ -82,27 +67,10 @@ const Team = () => {
   const handleTeam = async () => {
     const { team_id } = router.query;
 
-    if (allTeamData && !handleTeamRefresh) {
-      const teamInfo = {
-        ...allTeamData,
-        info: allInfoData,
-        recap: allRecapData,
-      };
-
-      handleTeamSetup(teamInfo, team_id as string);
-      return;
-    }
-
     try {
       const teamData = await getTeam(team_id as string, currentUser?.token);
-      const { info, recap } = teamData;
 
       handleTeamSetup(teamData, team_id as string);
-      updateTeamData(teamData);
-      updateInfoData(info);
-      if (recap) {
-        updateRecapData(recap);
-      }
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get team data'));
       setErrorPage(true);
@@ -112,9 +80,6 @@ const Team = () => {
   const closeModal = async () => {
     try {
       await hideRecap(leagueId, currentUser?.token);
-      deleteTeamData();
-      deleteLeagueData();
-      deleteCurrentStandings();
       await handleTeam();
       setModalIsOpen(false);
     } catch (err) {

@@ -18,12 +18,10 @@ import SingleSignOn from 'Components/single-sign-on/single-sign-on';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import * as SignUpStyles from './signUp.style';
 import { useRouter } from 'next/router';
-import { useLeagueContext } from 'Hooks/league';
 
 const SignUp = () => {
   const router = useRouter();
   const { updateCurrentUser, currentUser } = useUserContext();
-  const { deleteLeagueData } = useLeagueContext();
   const [userEmail, setUserEmail] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -83,7 +81,6 @@ const SignUp = () => {
 
       if (join) {
         await joinLeagueSetup(join as string, user, router);
-        deleteLeagueData();
         return;
       }
 

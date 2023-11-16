@@ -25,12 +25,10 @@ import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
 import { createDraft } from 'Requests/draft';
 import Notification from 'Modals/notification/notification';
-import { useLeagueContext } from 'Hooks/league';
 
 const Admin = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
-  const { updateLeagueData } = useLeagueContext();
   const [errorPage, setErrorPage] = useState<boolean>(false);
   const [notLoggedIn, setNotLoggedIn] = useState<boolean>(false);
   const [editNum, setEditNum] = useState<boolean>(false);
@@ -275,7 +273,6 @@ const Admin = () => {
       await createDraft(league.id, currentUser?.token);
       setIsStarted(true);
       setDraftNotify(true);
-      updateLeagueData({activeDraft: true});
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to create draft'));
     }

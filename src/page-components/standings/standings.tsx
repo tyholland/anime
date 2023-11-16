@@ -12,12 +12,10 @@ import { addEvent } from 'Utils/amplitude';
 import { responseError } from 'Utils/index';
 import * as Styles from './standings.style';
 import LeagueChamp from 'Components/league-champ/league-champ';
-import { useStandingsContext } from 'Hooks/standings';
 
 const Standings = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
-  const { updateCurrentStandings, currentStandings } = useStandingsContext();
   const [games, setGames] = useState<Record<string, any> | null>(null);
   const [errorPage, setErrorPage] = useState<boolean>(false);
   const [account, setAccount] = useState<Record<string, any> | null>(null);
@@ -25,16 +23,10 @@ const Standings = () => {
   const handleStandings = async () => {
     const { league_id } = router.query;
 
-    if (currentStandings) {
-      setGames(currentStandings);
-      return;
-    }
-
     try {
       const games = await getStandings(league_id as string, currentUser?.token);
 
       setGames(games);
-      updateCurrentStandings(games);
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get the standings'));
       setErrorPage(true);

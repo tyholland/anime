@@ -11,12 +11,10 @@ import Error from 'PageComponents/error/error';
 import Loader from 'Components/loader/loader';
 import NotUser from 'Components/not-user/not-user';
 import LeagueChamp from 'Components/league-champ/league-champ';
-import { useLeagueContext } from 'Hooks/league';
 
 const League = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
-  const { updateLeagueData, allLeagueData, handleLeagueRefresh } = useLeagueContext();
   const [account, setAccount] = useState<Record<string, any>>(null);
   const [leagueData, setLeagueData] = useState<Record<string, any>>(null);
   const [isDraftActive, setIsDraftActive] = useState<boolean>(false);
@@ -37,12 +35,6 @@ const League = () => {
   const handleLeagueData = async () => {
     const { league_id } = router.query;
 
-    if (allLeagueData && !handleLeagueRefresh && allLeagueData[`league_${league_id}`]) {
-      const {leagueData, matchupData, hasDraft, teamData} = allLeagueData[`league_${league_id}`];
-      handleLeagueSetup(league_id as string, hasDraft, leagueData, matchupData, teamData);
-      return;
-    }
-
     try {
       const { leagueData, matchupData, hasDraft, teamData } = await getLeague(
         league_id as string,
@@ -50,16 +42,6 @@ const League = () => {
       );
 
       handleLeagueSetup(league_id as string, hasDraft, leagueData, matchupData, teamData);
-
-      const leagueObj = {};
-      const currentLeague = `league_${league_id}`;
-      leagueObj[currentLeague] = {
-        leagueData,
-        matchupData,
-        hasDraft,
-        teamData
-      };
-      updateLeagueData(leagueObj);
     } catch (err) {
       addEvent(
         'Error',

@@ -7,11 +7,8 @@ import { firebaseApp } from 'Utils/firebase';
 import Footer from 'Components/footer/footer';
 import Notification from 'Modals/notification/notification';
 import { FRIDAY, MONDAY, SUNDAY, THURSDAY, alerts } from 'Utils/constants';
-import { LeagueWrapper } from 'Hooks/league';
-import { TeamWrapper } from 'Hooks/team';
 import { getDate } from 'Utils/index';
 import { getCachedData, getStorageData, setStorageData } from 'Utils/cache';
-import { StandingsWrapper } from 'Hooks/standings';
 
 const MyApp = ({ Component, pageProps, router }) => {
   firebaseApp();
@@ -85,21 +82,15 @@ const MyApp = ({ Component, pageProps, router }) => {
 
   return (
     <UserWrapper>
-      <LeagueWrapper>
-        <TeamWrapper>
-          <StandingsWrapper>
-            <GlobalStyles.GlobalStyles />
-            <Header />
-            <Component {...pageProps} />
-            <Footer />
-            <Notification
-              message={msg}
-              modalIsOpen={isAlertModalOpen}
-              closeModal={closeModal}
-            />
-          </StandingsWrapper>
-        </TeamWrapper>
-      </LeagueWrapper>
+      <GlobalStyles.GlobalStyles />
+      <Header />
+      <Component {...pageProps} />
+      <Footer />
+      <Notification
+        message={msg}
+        modalIsOpen={isAlertModalOpen}
+        closeModal={closeModal}
+      />
     </UserWrapper>
   );
 };

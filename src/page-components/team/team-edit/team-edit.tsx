@@ -18,13 +18,10 @@ import ReadMore from 'Components/read-more/read-more';
 import MakeTeam from 'Components/gameplay-card/make-team';
 import BioReview from 'Modals/bio-review/bio-review';
 import SwapPlayer from 'Modals/swap-player/swap-player';
-import { useTeamContext } from 'Hooks/team';
 
 const TeamEdit = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
-  const { allTeamData, allInfoData, handleTeamRefresh, updateTeamData } =
-    useTeamContext();
   const [players, setPlayers] = useState<Record<string, any> | null>(null);
   const [allPlayers, setAllPlayers] = useState<Record<string, any> | null>(null);
   const [teamId, setTeamId] = useState<string | null>(null);
@@ -75,16 +72,6 @@ const TeamEdit = () => {
         team_id as string,
         currentUser?.token
       );
-
-      if (allTeamData && !handleTeamRefresh) {
-        const teamInfo = {
-          ...allTeamData,
-          info: allInfoData,
-        };
-
-        handleTeamSetup(teamInfo, unusedPlayers, allPlayers, team_id as string);
-        return;
-      }
 
       const teamData = await getTeam(team_id as string, currentUser?.token);
 
@@ -252,9 +239,6 @@ const TeamEdit = () => {
       setPlayerList(thePlayers);
       setPlayers(unusedPlayers);
       setErrorMsg(null);
-      updateTeamData({
-        team: thePlayers
-      });
     } catch (err) {
       addEvent('Error', responseError(err, 'Update Team'));
       setErrorMsg(err.response.data.message);

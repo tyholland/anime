@@ -12,11 +12,9 @@ import { useUserContext } from 'Hooks/user';
 import Loader from 'Components/loader/loader';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
-import { useLeagueContext } from 'Hooks/league';
 
 const ViewLeague = () => {
   const { currentUser } = useUserContext();
-  const { updateLeagueData, allLeagueData, handleLeagueRefresh } = useLeagueContext();
   const [leagueCard, setLeagueCard] = useState<React.JSX.Element[]>([]);
   const [leaguePastCard, setLeaguePastCard] = useState<React.JSX.Element[]>([]);
   const [errorPage, setErrorPage] = useState<boolean>(false);
@@ -40,22 +38,10 @@ const ViewLeague = () => {
   const handleAllLeagues = async () => {
     setIsLoading(true);
 
-    if (allLeagueData && !handleLeagueRefresh && !!allLeagueData.current) {
-      const {current, past} = allLeagueData;
-      handleLeagueSetup(current, past);
-      return;
-    }
-
     try {
       const {current, past} = await getAllLeagues(currentUser?.token);
 
       handleLeagueSetup(current, past);
-
-      updateLeagueData({
-        current,
-        past,
-        activeDraft: false
-      });
     } catch (err) {
       addEvent('Error', responseError(err, 'Failed to get all leagues view'));
       setErrorPage(true);

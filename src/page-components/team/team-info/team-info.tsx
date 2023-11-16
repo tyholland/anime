@@ -15,12 +15,10 @@ import Error from 'PageComponents/error/error';
 import { useUserContext } from 'Hooks/user';
 import NotUser from 'Components/not-user/not-user';
 import ReadMore from 'Components/read-more/read-more';
-import { useTeamContext } from 'Hooks/team';
 
 const TeamInfo = () => {
   const router = useRouter();
   const { currentUser } = useUserContext();
-  const { allInfoData, updateInfoData, handleTeamRefresh } = useTeamContext();
   const [edit, setEdit] = useState<boolean>(false);
   const [teamData, setTeamData] = useState<Record<string, any> | null>(null);
   const [teamName, setTeamName] = useState<string | null>(null);
@@ -49,9 +47,6 @@ const TeamInfo = () => {
 
       setTeamName(changedName);
       setEdit(false);
-      updateInfoData({
-        team_name: changedName,
-      });
     } catch (err) {
       addEvent('Error', responseError(err, 'Change Team Name'));
       setErrorMsg(err.response.data.message);
@@ -74,12 +69,6 @@ const TeamInfo = () => {
 
   const handleTeamInfo = async () => {
     const { member_id } = router.query;
-
-    if (allInfoData && !handleTeamRefresh) {
-      setTeamName(allInfoData.team_name);
-      setTeamData(allInfoData);
-      return;
-    }
 
     try {
       const teamData = await getTeamInfo(member_id as string, currentUser?.token);
